@@ -1,0 +1,40 @@
+LES ANIMAUX
+
+Différents niveaux d'animaux : 
+	- Plus l'animal est rare/en danger et/ou peu adapté à la vie en captivité, plus il est de niveau élevé ;
+	- plus il est de niveau élevé, plus il est difficile à satisfaire ;
+	- mais il rapporte davantage de points aund il est satisfait.
+
+Un animal est caractérisé par :
+	- sa race
+	- son nom
+	- son sexe
+	- son âge
+	- son caractère :
+		- actif/passif
+		- collectif/solitaire
+		- dominant/dominé
+		- vaillant/peureux
+		- calme/stressé
+	- ses relations avec ses camarades d'enclos : lié à son caractère
+	- son enclos idéal : dépends pour partie de son caractère
+		- nombre d'animaux dans l'enclos
+		- bruit ambiant : en partie lié au critère précédent et à la population des enclos voisins (espèces et nombre d'individus)
+		- taille de l'enclos : en surface/animal (éventuellement, plusieurs valeurs si enclos terre/mer)
+		- aménagement de l'enclos :
+			- arbres
+			- rochers
+			- abris
+		- soigneur affecté à l'enclos
+			Plus le soigneur est qualifié pour s'occuper de cet enclos (et à de l'espérience en général), moins l'animal a de chance de tomber malade
+			il peut enrichir l'enclos mais a alors moins de temps à accorder à chaque enclos dont il a la charge
+	- état de l'enclos, notamment nettoyage : lié au temps passer par un soigneur sur l'enclos
+	- sa nourriture : en qualité (végétarien/frutivore/insectivore/carnivore/omnivore) et en quantité 
+
+
+Pour la manière de représenter tout cela :
+	- une valeur pour son espèce : la même pour tous les individus d'une même espèce
+	- des variations individuelles : plus probable d'avoir des variations faibles que des variations fortes ; +/- gaussienne autour de la moyenne d'espèce.
+
+Par exemple pour chaque couple de traits de caractère : 
+	- somme à 100	

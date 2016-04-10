@@ -1,0 +1,25 @@
+Jeu de gestion d'un zoo au tour par tour
+
+Idée générale : 
+ - le joueur joue : il peut effectuer toutes las actions qu'il veut mais il n'obtient pas d'information sur les conséquences
+de ses actes vis-à-vis de la note du zoo ; 
+- lorqu'il a fini toutes ses actions, il l'indique à l'ordinateur ;
+- l'ordinateur calcule alors les conséquences de ses actions dans l'ordre où elles se sont produites
+	- il calcule les événements spéciaux qui en découlent ainsi que du hasard 
+		- si les animaux sont suffisament bien installés, avec les deux sexes dans l'enclos et ce depuis suffisament longtemps,
+		ils peuvent se reproduire ;
+		- vieux, ils décèdent ;
+		- ils peuvent tomber malades puis guérir...
+	- il calcule les notes de bien-être de chaque animal (avant ou après les événements spéciaux ???),
+	- il calcule la note d'infrastructure du zoo (entre autre, nombre d'espèces dans le zoo, chacune étant associée à une note de popularité, naissance) (avant ou après les spéciaux ???) ;
+- il affiche les événements spéciaux puis la note globale (ordre ???).
+
+
+Je dirais de calculer les notes de bien-être, puis les événements spéciaux puis la notes d'infrastructure :
+	- le bien-être des animaux, le nombre de tours écoulés depuis qu'ils sont ensemble, etc influencent les événements spéciaux ; 
+	- les événements spéciaux influencent la note d'infrastructure (s'il y a eu une naissance, la note d'infra. augmente par exemple ; elle baisse s'il ya un décés).
+De plus, ça ne paraît pas juste que les actions du joueur influencent le tour de l'ordinateur qui suit immédiatement et non un tour plus tard.
+
+
+Comment faire pour empêcher le joueur de ne faire qu'une action par tour afin de voir les conséquences de chacune sur les scores ?
+		
