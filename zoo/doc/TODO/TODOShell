@@ -6,7 +6,7 @@ SHELL :
 	we use a Stream<String>
  d- Be able to print any line on the shell : DONE (28/03)
 	The printOnEditor method
- - Be able to obtain the last lines with the up/down arrows
+ d- Be able to obtain the last lines with the up/down arrows (DONE : 10/04)
 	we replace the current line by the one we found
 		d- if we do only one up with nothing on the current line (DONE : 01/04)
 			d- we already have one or more cmd/s in the shell (DONE : 01/4)
@@ -17,7 +17,7 @@ SHELL :
 			d- with no previous cmd and something on the current (DONE : 10/04)
 			d- with previous cmds and nothing on the current -(DONE : 10/04)
 			d- with previous cmds and something on the current (DONE : 10/04)
-		- Add down arrow
+		d- Add down arrow (DONE : 10/04)
 
  - Be able to search a previous line with Ctrl + r
  d- The last line is always visible (scroll ?) : DONE (29/03)

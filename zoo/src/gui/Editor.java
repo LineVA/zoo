@@ -153,6 +153,10 @@ public class Editor extends JTextPane {
                         upPressed();
                         lastPressedKey = KeyEvent.VK_UP;
                         break;
+                    case KeyEvent.VK_DOWN:
+                        downPressed();
+                        lastPressedKey = KeyEvent.VK_DOWN;
+                        break;
                     default:
                         lastPressedKey = -1;
                         break;
@@ -165,8 +169,9 @@ public class Editor extends JTextPane {
                     case KeyEvent.VK_ENTER:
                         enterReleased();
                         break;
+                    case KeyEvent.VK_DOWN:
                     case KeyEvent.VK_UP:
-                        upReleased();
+                        upAndDownReleased();
                         break;
                     default:
                         lastPressedKey = -1;
@@ -237,7 +242,7 @@ public class Editor extends JTextPane {
      * @return if it exists, the last cmd without the cmd invite, else an empty
      * string.
      */
-    private String findLastNotEmptyCommandLine(Object[] bufferedArray) {
+    private String findFirstPreviousNotEmptyCommandLine(Object[] bufferedArray) {
         int i = bufferedArray.length - 1;
         while (i >= 0) {
             // If the considered line begins with a command invite 
@@ -246,6 +251,20 @@ public class Editor extends JTextPane {
                 return bufferedArray[i].toString().substring(2);
             }
             i--;
+        }
+        return "";
+    }
+
+    private String findFirstNextNotEmptyCommandLine(Object[] bufferedArray) {
+        int i = 0;
+        while (i < bufferedArray.length) {
+            // If the considered line begins with a command invite 
+            if (bufferedArray[i].toString().substring(0, 2).equals(this.cmdInvite)) {
+                this.searchingLine += i + 1;
+                System.out.println(bufferedArray[i].toString().substring(2));
+                return bufferedArray[i].toString().substring(2);
+            }
+            i++;
         }
         return "";
     }
@@ -270,47 +289,41 @@ public class Editor extends JTextPane {
         if (cmdLinesArray.length != 0) {
             // If the last line is just a cmd invite
             if (cmdLinesArray[cmdLinesArray.length - 1].equals(this.cmdInvite)) {
-                this.printOnEditor(this.findLastNotEmptyCommandLine(Arrays.copyOfRange(cmdLinesArray,
+                this.printOnEditor(this.findFirstPreviousNotEmptyCommandLine(Arrays.copyOfRange(cmdLinesArray,
                         0, cmdLinesArray.length - 1)), false, false, null);
             } else if (this.searchingLine != 0) {
                 int end = this.getText().length();
                 int start = this.indexOfTheBeginningOfTheLastLine(cmdLinesArray) + 2 + cmdLinesArray.length - 1;
-                        //end - cmdLinesArray[searchingLine].toString().length() + 2;
                 cleanCharacters(start, end);
-                this.printOnEditor(this.findLastNotEmptyCommandLine(Arrays.copyOfRange(cmdLinesArray,
+                this.printOnEditor(this.findFirstPreviousNotEmptyCommandLine(Arrays.copyOfRange(cmdLinesArray,
                         0, this.searchingLine)), false, false, null);
             } else {
                 int end = this.getText().length();
                 int start = this.indexOfTheBeginningOfTheLastLine(cmdLinesArray) + 2 + cmdLinesArray.length - 1;
                 cleanCharacters(start, end);
-                this.printOnEditor(this.findLastNotEmptyCommandLine(Arrays.copyOfRange(cmdLinesArray,
+                this.printOnEditor(this.findFirstPreviousNotEmptyCommandLine(Arrays.copyOfRange(cmdLinesArray,
                         0, cmdLinesArray.length - 1)), false, false, null);
             }
         }
     }
 
-//    private void upPressed() {
-//        Object[] cmdLinesArray = recoverCmdLinesArray();
-//        // We potentially have some characters on the current line,
-//        // so we need to erase them before making any research
-//        if (cmdLinesArray.length > 1) {
-//            if (lastPressedKey != KeyEvent.VK_ENTER) {
-////                int start = indexOfTheBeginningOfTheLastLine(cmdLinesArray) +2 ;
-////                int end = this.getText().length() - 1 + cmdLinesArray.length - 1;
-////                StringBuilder builder = new StringBuilder(this.getText());
-////                builder.replace(start, end, "");
-////                this.setText(builder.toString());
-//
-//                int start = this.indexOfTheBeginningOfTheLastLine(cmdLinesArray) + 1 + i;
-//                int end = this.getText().length();
-//                StringBuilder builder = new StringBuilder(this.getText());
-//                builder.replace(start, end, "e");
-//                this.setText(builder.toString());
-//            } 
-//            //    printOnEditor(findLastNotEmptyCommandLine(Arrays.copyOfRange(cmdLinesArray, 0, cmdLinesArray.length - 1)), false, false, null);
-//        }
-//    }
-    private void upReleased() {
+    private void downPressed() {
+        Object[] cmdLinesArray = recoverCmdLinesArray();
+        // If we are not on the first line of the editor
+        if (cmdLinesArray.length != 0) {
+            if (this.lastPressedKey == KeyEvent.VK_UP || this.lastPressedKey == KeyEvent.VK_DOWN) {
+                int end = this.getText().length();
+                int start = this.indexOfTheBeginningOfTheLastLine(cmdLinesArray) + 2 + cmdLinesArray.length - 1;
+                cleanCharacters(start, end);
+                if (this.searchingLine + 1 <= cmdLinesArray.length) {
+                    this.printOnEditor(this.findFirstNextNotEmptyCommandLine(Arrays.copyOfRange(cmdLinesArray,
+                            this.searchingLine + 1, cmdLinesArray.length - 1)), false, false, null);
+                }
+            }
+        }
+    }
+
+    private void upAndDownReleased() {
         this.setCaretPosition(this.getText().length());
         // Used to set the character color back to the one of CMD
         setCharacterAttributes(aset, true);
