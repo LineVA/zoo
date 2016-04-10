@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.StringReader;
+import java.util.Arrays;
 import java.util.stream.Stream;
 import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
@@ -27,6 +28,7 @@ public class Editor extends JTextPane {
     private AttributeSet aset;
     private int lastPressedKey;
     private final String cmdInvite = "> ";
+    private int searchingLine = 0;
 
     public Editor(Dimension dimension, CommandLineParser parser) {
         super();
@@ -217,15 +219,14 @@ public class Editor extends JTextPane {
 //                        Logger.getLogger(Editor.class.getName()).
 //                          log(Level.SEVERE, null, ex);
 //                    }
-
+        this.searchingLine = 0;
         Object[] cmdLinesArray = recoverCmdLinesArray();
-      //ln(cmdLinesArray[cmdLinesArray.length - 1]);
         this.printOnEditor(this.parser.parseAnalyzeAndAct(cmdLinesArray[cmdLinesArray.length - 1].toString().substring(2)),
                 true, false, EditorColors.INFO.getColor());
         this.printCmdInvite(true);
         // Used to set the character color back to the one of CMD
         setCharacterAttributes(aset, true);
-        i++;
+        //i++;
     }
 
     /**
@@ -241,6 +242,7 @@ public class Editor extends JTextPane {
         while (i >= 0) {
             // If the considered line begins with a command invite 
             if (bufferedArray[i].toString().substring(0, 2).equals(this.cmdInvite)) {
+                this.searchingLine = i;
                 return bufferedArray[i].toString().substring(2);
             }
             i--;
@@ -250,34 +252,64 @@ public class Editor extends JTextPane {
 
     private int indexOfTheBeginningOfTheLastLine(Object[] bufferedArray) {
         int sum = 0;
-        for (Object bufferedArray1 : bufferedArray) {
+        for (Object bufferedArray1 : Arrays.copyOfRange(bufferedArray, 0, bufferedArray.length - 1)) {
             sum += bufferedArray1.toString().length();
         }
         return sum;
     }
-int i = 0;
+
+    private void cleanCharacters(int start, int end) {
+        StringBuilder builder = new StringBuilder(this.getText());
+        builder.replace(start, end, "");
+        this.setText(builder.toString());
+    }
+
     private void upPressed() {
         Object[] cmdLinesArray = recoverCmdLinesArray();
-        // We potentially have some characters on the current line,
-        // so we need to erase them before making any research
-        if (cmdLinesArray.length > 1) {
-            if (lastPressedKey != KeyEvent.VK_ENTER) {
-//                int start = indexOfTheBeginningOfTheLastLine(cmdLinesArray) +2 ;
-//                int end = this.getText().length() - 1 + cmdLinesArray.length - 1;
-//                StringBuilder builder = new StringBuilder(this.getText());
-//                builder.replace(start, end, "");
-//                this.setText(builder.toString());
-
-                int start = this.indexOfTheBeginningOfTheLastLine(cmdLinesArray) + 1 + i;
+        // If we are not on the first line of the editor
+        if (cmdLinesArray.length != 0) {
+            // If the last line is just a cmd invite
+            if (cmdLinesArray[cmdLinesArray.length - 1].equals(this.cmdInvite)) {
+                this.printOnEditor(this.findLastNotEmptyCommandLine(Arrays.copyOfRange(cmdLinesArray,
+                        0, cmdLinesArray.length - 1)), false, false, null);
+            } else if (this.searchingLine != 0) {
                 int end = this.getText().length();
-                StringBuilder builder = new StringBuilder(this.getText());
-                builder.replace(start, end, "e");
-                this.setText(builder.toString());
+                int start = this.indexOfTheBeginningOfTheLastLine(cmdLinesArray) + 2 + cmdLinesArray.length - 1;
+                        //end - cmdLinesArray[searchingLine].toString().length() + 2;
+                cleanCharacters(start, end);
+                this.printOnEditor(this.findLastNotEmptyCommandLine(Arrays.copyOfRange(cmdLinesArray,
+                        0, this.searchingLine)), false, false, null);
+            } else {
+                int end = this.getText().length();
+                int start = this.indexOfTheBeginningOfTheLastLine(cmdLinesArray) + 2 + cmdLinesArray.length - 1;
+                cleanCharacters(start, end);
+                this.printOnEditor(this.findLastNotEmptyCommandLine(Arrays.copyOfRange(cmdLinesArray,
+                        0, cmdLinesArray.length - 1)), false, false, null);
             }
-            //    printOnEditor(findLastNotEmptyCommandLine(Arrays.copyOfRange(cmdLinesArray, 0, cmdLinesArray.length - 1)), false, false, null);
         }
     }
 
+//    private void upPressed() {
+//        Object[] cmdLinesArray = recoverCmdLinesArray();
+//        // We potentially have some characters on the current line,
+//        // so we need to erase them before making any research
+//        if (cmdLinesArray.length > 1) {
+//            if (lastPressedKey != KeyEvent.VK_ENTER) {
+////                int start = indexOfTheBeginningOfTheLastLine(cmdLinesArray) +2 ;
+////                int end = this.getText().length() - 1 + cmdLinesArray.length - 1;
+////                StringBuilder builder = new StringBuilder(this.getText());
+////                builder.replace(start, end, "");
+////                this.setText(builder.toString());
+//
+//                int start = this.indexOfTheBeginningOfTheLastLine(cmdLinesArray) + 1 + i;
+//                int end = this.getText().length();
+//                StringBuilder builder = new StringBuilder(this.getText());
+//                builder.replace(start, end, "e");
+//                this.setText(builder.toString());
+//            } 
+//            //    printOnEditor(findLastNotEmptyCommandLine(Arrays.copyOfRange(cmdLinesArray, 0, cmdLinesArray.length - 1)), false, false, null);
+//        }
+//    }
     private void upReleased() {
         this.setCaretPosition(this.getText().length());
         // Used to set the character color back to the one of CMD
