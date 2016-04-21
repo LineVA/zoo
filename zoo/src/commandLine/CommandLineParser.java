@@ -1,6 +1,6 @@
 package commandLine;
 
-import zoo.AlreadyUsedNameException;
+import exception.name.AlreadyUsedNameException;
 import zoo.Zoo;
 
 /**

@@ -1,5 +1,5 @@
 
-package zoo;
+package exception.name;
 
 import java.io.IOException;
 
