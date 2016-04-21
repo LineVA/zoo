@@ -1,10 +1,7 @@
 /**
- * According to : 
- * http://cynober.developpez.com/tutoriel/java/xml/jdom/
- * and 
+ * According to : http://cynober.developpez.com/tutoriel/java/xml/jdom/ and
  * http://www.developpez.net/forums/d1488867/java/general-java/xml/extraire-informations-filter/
  */
-
 package save.poc;
 
 import java.util.List;
@@ -14,6 +11,7 @@ import java.util.Iterator;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
+import org.jdom2.input.sax.XMLReaders;
 
 /**
  *
@@ -46,9 +44,13 @@ public class JDOM2 {
     }
 
     public static void main(String[] args) {
-        SAXBuilder sax = new SAXBuilder();
+      //  SAXBuilder sax = new SAXBuilder();
+
+        SAXBuilder sax = new SAXBuilder(XMLReaders.XSDVALIDATING);
+        //Document document = builder.build(new File("yourXmlFile.xml"));
+
         try {
-            document = sax.build(new File("JDOM2.xml"));
+            document = sax.build(new File("./src/save/poc/JDOM2.xml"));
 
         } catch (JDOMException | IOException e) {
             e.printStackTrace();

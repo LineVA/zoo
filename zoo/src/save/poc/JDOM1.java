@@ -43,6 +43,6 @@ public class JDOM1 {
         nom.setText("Line");
         etudiant.addContent(nom);
         display();
-        save("JDOM1.xml");
+        save("./src/save/poc/JDOM1.xml");
     }
 }

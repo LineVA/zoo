@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<personnes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="JDOM2.xsd">
+    <etudiant classe="P2">
+        <nom>CynO</nom>
+        <prenom>Nicolas</prenom>
+    </etudiant>
+    <etudiant classe="P2">
+        <nom>CynO</nom>
+        <prenom>Laurent</prenom>
+    </etudiant>
+    <etudiant classe="P1">
+        <nom>Don Corleone</nom>
+    </etudiant>
+</personnes>
