@@ -1,5 +1,6 @@
 package zoo;
 
+import exception.name.AlreadyUsedNameException;
 import java.util.HashMap;
 
 /**
