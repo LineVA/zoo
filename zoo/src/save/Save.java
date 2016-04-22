@@ -3,7 +3,8 @@ package save;
 import exception.name.EmptyNameException;
 import java.io.FileOutputStream;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -22,17 +23,23 @@ public class Save {
         if (name.trim().equals("")) {
             throw new EmptyNameException("This name's zoo is the empty string");
         }
-        return name + ".xml";
+        return "./gameBackUps/" + name + ".xml";
     }
 
-    public Element createElementZoo(Zoo zoo) {
+    public Element createElementZoo(Zoo zoo) throws EmptyNameException {
+        if (zoo.getName().trim().equals("")) {
+            throw new EmptyNameException("This name's zoo is the empty string");
+        }
         Element zooEl = new Element("zoo");
         Attribute nameAtt = new Attribute("name", zoo.getName());
         zooEl.setAttribute(nameAtt);
         return zooEl;
     }
 
-    public Element createElementPaddock(Paddock pad) {
+    public Element createElementPaddock(Paddock pad) throws EmptyNameException {
+        if (pad.getName().trim().equals("")) {
+            throw new EmptyNameException("This name's zoo is the empty string");
+        }
         Element padEl = new Element("paddock");
         Element nameEl = new Element("name");
         nameEl.setText(pad.getName());
@@ -59,13 +66,17 @@ public class Save {
         }
     }
 
-    public void save(Zoo zoo) {
+    public void save(Zoo zoo) throws EmptyNameException {
         HashMap<String, Paddock> paddocks = zoo.getPaddocks();
         Element zooEl = createElementZoo(zoo);
         org.jdom2.Document doc = new Document(zooEl);
-        for (Map.Entry pad : paddocks.entrySet()) {
-            zooEl.addContent(createElementPaddock((Paddock) pad));
-        }
+        paddocks.entrySet().stream().forEach((pad) -> {
+            try {
+                zooEl.addContent(createElementPaddock((Paddock) pad.getValue()));
+            } catch (EmptyNameException ex) {
+                Logger.getLogger(Save.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         try {
             saveInFile(doc, createFileName(zoo.getName()));
         } catch (EmptyNameException ex) {
