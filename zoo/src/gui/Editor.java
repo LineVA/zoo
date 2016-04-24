@@ -1,8 +1,10 @@
 package gui;
 
 import commandLine.CommandLineParser;
+import exception.name.UnknownNameException;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -10,6 +12,8 @@ import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
@@ -36,6 +40,7 @@ public class Editor extends JTextPane {
         this.setEditable(true);
         sc = StyleContext.getDefaultStyleContext();
         aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, EditorColors.CMD.getColor());
+        this.setFont(new Font("Monospaced", this.getFont().getStyle(), this.getFont().getSize()));
         //  this.setForeground(EditorColors.CMD.getColor());
         this.setBackground(Color.BLACK);
         //   this.setSize(300, 600);
