@@ -5,14 +5,29 @@
  */
 package zoo;
 
+import lombok.Getter;
+
 /**
  *
  * @author doyenm
  */
 public class Animal {
-    private Species species;
-    
-    public Animal(Species spec){
-        this.species = spec;
+
+    @Getter
+    private final Species specie;
+    @Getter
+    private final String name;
+    @Getter
+    private final Paddock paddock;
+    @Getter
+    private final Sex sex;
+
+    public Animal(Species spec, String name, Paddock paddock, Sex sex) {
+        this.specie = spec;
+        this.name = name;
+        this.paddock = paddock;
+        this.sex = sex;
     }
+    
+    
 }

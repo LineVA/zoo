@@ -55,7 +55,7 @@ public class Save {
         return null;
     }
 
-    static void saveInFile(Document doc, String fichier) {
+    public void saveInFile(Document doc, String fichier) {
         try {
             //On utilise ici un affichage classique avec getPrettyFormat()
             XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
