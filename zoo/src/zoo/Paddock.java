@@ -5,19 +5,30 @@
  */
 package zoo;
 
+import lombok.Getter;
+
 /**
  *
  * @author doyenm
  */
 public class Paddock {
- 
-    private String name;
 
-    public String getName() {
-        return name;
-    }
-    
-    public Paddock(String name){
+    @Getter
+    private String name;
+    @Getter
+    private int x;
+    @Getter
+    private int y;
+    @Getter
+    private int width;
+    @Getter
+    private int height;
+
+    public Paddock(String name, int x, int y, int width, int height) {
         this.name = name;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
     }
 }
