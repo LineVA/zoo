@@ -7,9 +7,9 @@ SUR LE ZOO :
 
 SUR UN ENCLOS :
 	i. voir la liste des enclos : paddock ls
-	ii. voir la fiche d'un enclos
+	ii. voir la fiche d'un enclos : paddock <name>
 	iii. Construire un enclos : superficie et position 
-		(Provisoire) > paddock <name>
+		(Provisoire) > paddock <name> <x> <y> <width> <height>
 	iv. détruire un enclos
 	v. peupler un enclos
 	vi. changer le nom d'un enclos

@@ -11,7 +11,7 @@ de ses actes vis-à-vis de la note du zoo ;
 		- vieux, ils décèdent ;
 		- ils peuvent tomber malades puis guérir...
 	- il calcule les notes de bien-être de chaque animal (avant ou après les événements spéciaux ???),
-	- il calcule la note d'infrastructure du zoo (entre autre, nombre d'espèces dans le zoo, chacune étant associée à une note de popularité, naissance) (avant ou après les spéciaux ???) ;
+	- il calcule la note d'infrastructure du zoo (entre autre, nombre d'espèces dans le zoo, chacune étant associée à une note de popularité, naissance ; taux d'occupation du zoo : un zoo immense avec un seul enclos ; ) (avant ou après les spéciaux ???) ;
 - il affiche les événements spéciaux puis la note globale (ordre ???).
 
 
