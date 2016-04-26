@@ -88,37 +88,6 @@ public class CommandLineParser {
             unknownCmd(parse, "paddock");
         }
     }
-//        if (this.zoo != null) {
-//            switch (parse.length) {
-//                case 2:
-//                    if (parse[1].equals("ls")) {
-//                        return this.zoo.listPaddock();
-//                    } else {
-//                        return zoo.detailedPaddock(parse[1]);
-//                    }
-//                case 7:
-//                    if (parse[1].equals("create")) {
-//                        try {
-//                            this.zoo.addPaddock(parse[2],
-//                                    this.stringToInteger(parse[3]),
-//                                    this.stringToInteger(parse[4]),
-//                                    this.stringToInteger(parse[5]),
-//                                    this.stringToInteger(parse[6]));
-//                            return "This paddock has been successfully created.";
-//                        } catch (AlreadyUsedNameException ex) {
-//                            return ex.getMessage();
-//                        }
-//                    } else {
-//                        return unknownCmd(parse, "paddock");
-//                    }
-//                default:
-//                    return unknownCmd(parse, "paddock");
-//            }
-//        } else {
-//            return "You must create a zoo before.";
-//        }
-//        return null;
-    //}
 
     public void unknownCmd(String[] parse, String cpt) {
         this.transmission.unknownCmd(cpt);
