@@ -4,7 +4,10 @@ import exception.IncorrectDimensionsException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.UnknownNameException;
 import gui.FormattingDisplay;
+import java.util.ArrayList;
+import static java.util.Collections.list;
 import java.util.HashMap;
+import java.util.List;
 import lombok.Getter;
 
 /**
@@ -34,21 +37,20 @@ public class Zoo {
         paddocks = new HashMap<>();
     }
 
-    public int addPaddock(String paddockName, int x, int y, int width, int height)
+    public void addPaddock(String paddockName, int x, int y, int width, int height)
             throws AlreadyUsedNameException {
         if (paddocks.containsKey(paddockName)) {
             throw new AlreadyUsedNameException("A paddock with this name is already existing. Please choose another one.");
         } else {
             Paddock paddock = new Paddock(paddockName, x, y, width, height);
             this.paddocks.put(paddockName, paddock);
-            return 0;
         }
     }
 
-    public String listPaddock() {
-        String list = "";
+    public ArrayList<String> listPaddock() {
+        ArrayList<String> list = new ArrayList<>();
         for (HashMap.Entry<String, Paddock> entry : paddocks.entrySet()) {
-            list += entry.getKey() + "\n";
+            list.add(entry.getKey());
         }
         return list;
     }

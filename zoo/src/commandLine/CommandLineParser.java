@@ -1,10 +1,6 @@
 package commandLine;
 
-import exception.IncorrectDimensionsException;
-import exception.name.AlreadyUsedNameException;
-import exception.name.UnknownNameException;
-import gui.FormattingDisplay;
-import zoo.Zoo;
+import lombok.Getter;
 
 /**
  *
@@ -12,33 +8,36 @@ import zoo.Zoo;
  */
 public class CommandLineParser {
 
-    private Zoo zoo;
-    private FormattingDisplay formatting;
+    @Getter
+    private Transmission transmission;
 
-    public CommandLineParser() {
-        formatting = new FormattingDisplay();
+    public CommandLineParser(Transmission transmission) {
+        this.transmission = transmission;
     }
 
     public String hello() {
         return "Hello world";
-//  System.out.println("Hello world");
     }
 
     private String animal(String[] parse) {
         return "";
     }
 
-    private String findMan(String[] parse) {
-        switch (parse[1]) {
-            case "man":
-                return manMan();
-            case "pad":
-            case "paddock":
-                return manPaddock();
-            case "zoo":
-                return manZoo();
-            default:
-                return unknownCmd(parse, "man");
+    private void findMan(String[] parse) {
+        if (parse.length == 2) {
+            switch (parse[1]) {
+//                case "man":
+//                    return manMan();
+//                case "pad":
+//                case "paddock":
+//                    return manPaddock();
+//                case "zoo":
+//                    return manZoo();
+                default:
+                    unknownCmd(parse, "man");
+            }
+        } else {
+            unknownCmd(parse, "man");
         }
     }
 
@@ -47,7 +46,8 @@ public class CommandLineParser {
             case 1:
                 return "See 'man man' for more information.";
             case 2:
-                return findMan(parse);
+                findMan(parse);
+                return "";
             default:
                 return "See 'man man' for more information.";
         }
@@ -65,44 +65,63 @@ public class CommandLineParser {
         return "man zoo";
     }
 
-    private String paddock(String[] parse) throws UnknownNameException {
-        if (this.zoo != null) {
-            switch (parse.length) {
-                case 2:
-                    if (parse[1].equals("ls")) {
-                        return this.zoo.listPaddock();
-                    } else {
-                        return zoo.detailedPaddock(parse[1]);
-                    }
-                case 7:
-                    if (parse[1].equals("create")) {
-                        try {
-                            this.zoo.addPaddock(parse[2],
-                                    this.stringToInteger(parse[3]),
-                                    this.stringToInteger(parse[4]),
-                                    this.stringToInteger(parse[5]),
-                                    this.stringToInteger(parse[6]));
-                            return "This paddock has been successfully created.";
-                        } catch (AlreadyUsedNameException ex) {
-                            return ex.getMessage();
-                        }
-                    } else {
-                        return unknownCmd(parse, "paddock");
-                    }
-                default:
-                    return unknownCmd(parse, "paddock");
-            }
-        } else {
-            return "You must create a zoo before.";
+    private void paddock(String[] parse) {
+        boolean found = false;
+        switch (parse.length) {
+            case 2:
+                if (parse[1].equals("ls")) {
+                    transmission.paddockLs();
+                    found = true;
+                } else {
+                    transmission.paddockDetailed(parse[1]);
+                    found = true;
+                }
+            case 7:
+                if (parse[1].equals("create")) {
+                    transmission.paddockCreate(parse[2], parse[3], parse[4],
+                            parse[5], parse[6]);
+                    found = true;
+
+                }
+        }
+        if (!found) {
+            unknownCmd(parse, "paddock");
         }
     }
+//        if (this.zoo != null) {
+//            switch (parse.length) {
+//                case 2:
+//                    if (parse[1].equals("ls")) {
+//                        return this.zoo.listPaddock();
+//                    } else {
+//                        return zoo.detailedPaddock(parse[1]);
+//                    }
+//                case 7:
+//                    if (parse[1].equals("create")) {
+//                        try {
+//                            this.zoo.addPaddock(parse[2],
+//                                    this.stringToInteger(parse[3]),
+//                                    this.stringToInteger(parse[4]),
+//                                    this.stringToInteger(parse[5]),
+//                                    this.stringToInteger(parse[6]));
+//                            return "This paddock has been successfully created.";
+//                        } catch (AlreadyUsedNameException ex) {
+//                            return ex.getMessage();
+//                        }
+//                    } else {
+//                        return unknownCmd(parse, "paddock");
+//                    }
+//                default:
+//                    return unknownCmd(parse, "paddock");
+//            }
+//        } else {
+//            return "You must create a zoo before.";
+//        }
+//        return null;
+    //}
 
-    public String unknownCmd(String[] parse, String cpt) {
-        String info = "Unknown command line";
-        if (cpt != null) {
-            info += " : see 'man " + cpt + "' for more information.";
-        }
-        return info;
+    public void unknownCmd(String[] parse, String cpt) {
+        this.transmission.unknownCmd(cpt);
     }
 
     /**
@@ -112,68 +131,53 @@ public class CommandLineParser {
      * @param parse
      * @return
      */
-    private String zoo(String[] parse) throws IncorrectDimensionsException {
+    private void zoo(String[] parse) {
+        boolean found = false;
         // zoo map
         if (parse.length == 2) {
             if (parse[1].equals("map")) {
-                return formatting.zooMap(zoo.getWidth(), zoo.getHeight());
-            } else {
-                return unknownCmd(parse, "zoo");
+                //   return formatting.zooMap(zoo.getWidth(), zoo.getHeight());
+                this.transmission.zooMap();
+                found = true;
             }
             // zoo create name width height
         } else if (parse.length == 5) {
             if (parse[1].equals("create")) {
-                int width = -1, height = -1;
-                try {
-                    width = this.stringToInteger(parse[3]);
-                    height = this.stringToInteger(parse[4]);
-                } catch (Exception ex) {
-
-                }
-                Zoo zooLocal = new Zoo(parse[2], width, height);
-                this.zoo = zooLocal;
-                return " Your zoo is now created.";
-            } else {
-                return unknownCmd(parse, "zoo");
+                this.transmission.zooCreate(parse[2], parse[3], parse[4]);
+                found = true;
             }
-        } else {
-            return unknownCmd(parse, "zoo");
         }
-    }
-
-    public int stringToInteger(String str) {
-        return Integer.parseInt(str);
+        if (!found) {
+            unknownCmd(parse, "zoo");
+        }
     }
 
     public String[] parse(String cmd) {
         return cmd.split(" ");
     }
 
-    public String analyze(String[] parse) throws IncorrectDimensionsException, UnknownNameException {
+    public void analyze(String[] parse) {
         if (parse.length != 0) {
             switch (parse[0]) {
-                case "man":
-                    return man(parse);
-                //      break;
+//                case "man":
+//                    return man(parse);
+//                //      break;
                 case "pad":
                 case "paddock":
-                    return paddock(parse);
+                    paddock(parse);
+                    break;
                 case "zoo":
-                    return zoo(parse);
+                    zoo(parse);
+                    break;
                 default:
-                    return unknownCmd(parse, null);
-                //    break;
+                    unknownCmd(parse, null);
+                    break;
             }
         }
-        return "empty command line";
     }
 
-    public String parseAnalyzeAndAct(String cmd) {
-        try {
-            String[] parse = this.parse(cmd);
-            return this.analyze(parse);
-        } catch (IncorrectDimensionsException | UnknownNameException ex) {
-            return ex.getMessage();
-        }
+    public void parseAnalyzeAndAct(String cmd) {
+        String[] parse = this.parse(cmd);
+        this.analyze(parse);
     }
 }

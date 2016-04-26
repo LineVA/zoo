@@ -1,5 +1,8 @@
 package gui;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 /**
  *
  * @author doyenm
@@ -31,5 +34,20 @@ public class FormattingDisplay {
     
     public static String idDisplay(String name){
         return " coco";
+    }
+    
+    public static String formattingArrayList(ArrayList<String> list){
+        Iterator it = list.iterator();
+        String str = "";
+        String finalStr = "";
+        while(it.hasNext()){
+             str = (String)it.next();
+             if(it.hasNext()){
+                 finalStr += str + "\n";
+             } else {
+                 finalStr += str;
+             }
+        }
+        return finalStr;
     }
 }

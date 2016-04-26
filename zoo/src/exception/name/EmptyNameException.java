@@ -1,12 +1,10 @@
 package exception.name;
 
-import java.io.IOException;
-
 /**
  *
  * @author doyenm
  */
-public class EmptyNameException extends IOException {
+public class EmptyNameException extends NameException {
     public EmptyNameException(String message){
         super(message);
     }

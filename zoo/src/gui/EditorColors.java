@@ -12,7 +12,7 @@ import java.awt.Color;
  * @author doyenm
  */
 public enum EditorColors {
-    CMD(Color.WHITE), INFO(Color.CYAN);
+    CMD(Color.WHITE), EXCEPTION(Color.ORANGE), INFO(Color.CYAN);
     
     private Color color;
     EditorColors(Color color){

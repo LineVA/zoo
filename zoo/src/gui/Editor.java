@@ -1,7 +1,6 @@
 package gui;
 
 import commandLine.CommandLineParser;
-import exception.name.UnknownNameException;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -12,8 +11,6 @@ import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Stream;
 import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
@@ -231,8 +228,7 @@ public class Editor extends JTextPane {
 //                    }
         this.searchingLine = 0;
         Object[] cmdLinesArray = recoverCmdLinesArray();
-        this.printOnEditor(this.parser.parseAnalyzeAndAct(cmdLinesArray[cmdLinesArray.length - 1].toString().substring(2)),
-                true, false, EditorColors.INFO.getColor());
+        this.parser.parseAnalyzeAndAct(cmdLinesArray[cmdLinesArray.length - 1].toString().substring(2));
         this.printCmdInvite(true);
         // Used to set the character color back to the one of CMD
         setCharacterAttributes(aset, true);
@@ -251,9 +247,11 @@ public class Editor extends JTextPane {
         int i = bufferedArray.length - 1;
         while (i >= 0) {
             // If the considered line begins with a command invite 
-            if (bufferedArray[i].toString().substring(0, 2).equals(this.cmdInvite)) {
-                this.searchingLine = i;
-                return bufferedArray[i].toString().substring(2);
+            if (bufferedArray[i].toString().length() >= 2) {
+                if (bufferedArray[i].toString().substring(0, 2).equals(this.cmdInvite)) {
+                    this.searchingLine = i;
+                    return bufferedArray[i].toString().substring(2);
+                }
             }
             i--;
         }
@@ -264,10 +262,12 @@ public class Editor extends JTextPane {
         int i = 0;
         while (i < bufferedArray.length) {
             // If the considered line begins with a command invite 
-            if (bufferedArray[i].toString().substring(0, 2).equals(this.cmdInvite)) {
-                this.searchingLine += i + 1;
-                System.out.println(bufferedArray[i].toString().substring(2));
-                return bufferedArray[i].toString().substring(2);
+            if (bufferedArray[i].toString().length() >= 2) {
+                if (bufferedArray[i].toString().substring(0, 2).equals(this.cmdInvite)) {
+                    this.searchingLine += i + 1;
+                    System.out.println(bufferedArray[i].toString().substring(2));
+                    return bufferedArray[i].toString().substring(2);
+                }
             }
             i++;
         }

@@ -1,12 +1,10 @@
 package exception.name;
 
-import java.io.IOException;
-
 /**
  *
  * @author doyenm
  */
-public class AlreadyUsedNameException extends IOException {
+public class AlreadyUsedNameException extends NameException {
     public AlreadyUsedNameException(String message){
         super(message);
     }

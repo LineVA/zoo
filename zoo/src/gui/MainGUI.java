@@ -32,7 +32,7 @@ public class MainGUI extends JFrame {
         
         this.pack();
         setVisible(true);
-        
+        parser.getTransmission().setEditor(editor);
     }
 
     private void closeWindows() {

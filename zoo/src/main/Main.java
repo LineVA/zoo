@@ -6,6 +6,7 @@
 
 
 import commandLine.CommandLineParser;
+import commandLine.Transmission;
 import gui.MainGUI;
 
 /**
@@ -15,7 +16,8 @@ import gui.MainGUI;
 public class Main {
 
     public static void main(String[] args) {
-        CommandLineParser parser = new CommandLineParser();
+        Transmission transmission = new Transmission();
+        CommandLineParser parser = new CommandLineParser(transmission);
         MainGUI mainGUI = new MainGUI(parser);
     }
 }
