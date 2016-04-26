@@ -16,19 +16,10 @@ public class Paddock {
     @Getter
     private String name;
     @Getter
-    private int x;
-    @Getter
-    private int y;
-    @Getter
-    private int width;
-    @Getter
-    private int height;
+    private PaddockCoordinates coordinates;
 
-    public Paddock(String name, int x, int y, int width, int height) {
+    public Paddock(String name, PaddockCoordinates coor) {
         this.name = name;
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        this.coordinates = coor;
     }
 }

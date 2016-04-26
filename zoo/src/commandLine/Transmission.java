@@ -49,7 +49,7 @@ public class Transmission {
                         Integer.parseInt(width), Integer.parseInt(height));
                 this.editor.printOnEditor("Your paddock has been sucessfully created.",
                         true, false, EditorColors.INFO.getColor());
-            } catch (NameException ex) {
+            } catch (NameException | IncorrectDimensionsException ex) {
                 reportedException(ex);
             }
         }
@@ -82,6 +82,8 @@ public class Transmission {
                  +"' for more information.",
                     true, false, EditorColors.INFO.getColor());
     }
+    
+    // TODO : If a dimension is a letter
 
     public void zooCreate(String name, String width, String height) {
         try {

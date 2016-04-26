@@ -5,9 +5,7 @@ import exception.name.AlreadyUsedNameException;
 import exception.name.UnknownNameException;
 import gui.FormattingDisplay;
 import java.util.ArrayList;
-import static java.util.Collections.list;
 import java.util.HashMap;
-import java.util.List;
 import lombok.Getter;
 
 /**
@@ -38,11 +36,23 @@ public class Zoo {
     }
 
     public void addPaddock(String paddockName, int x, int y, int width, int height)
-            throws AlreadyUsedNameException {
+            throws AlreadyUsedNameException, IncorrectDimensionsException {
         if (paddocks.containsKey(paddockName)) {
-            throw new AlreadyUsedNameException("A paddock with this name is already existing. Please choose another one.");
+            throw new AlreadyUsedNameException("A paddock with this name is"
+                    + " already existing. Please choose another one.");
         } else {
-            Paddock paddock = new Paddock(paddockName, x, y, width, height);
+            PaddockCoordinates coor = new PaddockCoordinates(x, y, width, height);
+            if (this.tooSmallforThisPaddock(coor)) {
+                throw new IncorrectDimensionsException("This paddock cannot be "
+                        + "set here : the zoo is too small.");
+            }
+            for (HashMap.Entry<String, Paddock> entry : paddocks.entrySet()) {
+                if (coor.isCompeting(entry.getValue().getCoordinates())) {
+                    throw new IncorrectDimensionsException("This paddock cannot"
+                            + " be set here : there is already another one on this place.");
+                }
+            }
+            Paddock paddock = new Paddock(paddockName, coor);
             this.paddocks.put(paddockName, paddock);
         }
     }
@@ -54,24 +64,26 @@ public class Zoo {
         }
         return list;
     }
-    
-   
 
     public String detailedPaddock(String name) throws UnknownNameException {
         boolean found = false;
         final Paddock detailed;
-          for (HashMap.Entry<String, Paddock> entry : paddocks.entrySet()) {
-              if(entry.getKey().equals(name)){
-                  found = true;
-                  detailed = entry.getValue();
-                  break;
-              }
-          }
-        if(found){
+        for (HashMap.Entry<String, Paddock> entry : paddocks.entrySet()) {
+            if (entry.getKey().equals(name)) {
+                found = true;
+                detailed = entry.getValue();
+                break;
+            }
+        }
+        if (found) {
             return FormattingDisplay.idDisplay(name);
         } else {
             throw new UnknownNameException("This paddock does not exist.");
         }
     }
 
+    private boolean tooSmallforThisPaddock(PaddockCoordinates coor) {
+        return ((coor.getX() + coor.getWidth() > this.width)
+                || (coor.getY() + coor.getHeight() > this.height));
+    }
 }
