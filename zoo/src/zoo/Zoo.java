@@ -47,7 +47,7 @@ public class Zoo {
                         + "set here : the zoo is too small.");
             }
             for (HashMap.Entry<String, Paddock> entry : paddocks.entrySet()) {
-                if (coor.isCompeting(entry.getValue().getCoordinates())) {
+                if (!coor.isNotCompeting(entry.getValue().getCoordinates())) {
                     throw new IncorrectDimensionsException("This paddock cannot"
                             + " be set here : there is already another one on this place.");
                 }

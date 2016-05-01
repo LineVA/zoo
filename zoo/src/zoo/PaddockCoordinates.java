@@ -28,13 +28,13 @@ public class PaddockCoordinates {
         this.width = width;
         this.height = height;
     }
-
-    public boolean isCompeting(PaddockCoordinates coor) {
-        boolean competing = ((coor.getX() <= this.x) && (this.x <= (coor.x + coor.width)));
-        competing = competing || ((coor.y <= this.y) && (this.y <= (coor.y + coor.height)));
-        competing = competing || ((this.x <= coor.x) && (coor.x <= (this.x + this.width)));
-        competing = competing || ((this.y <= coor.y) && (coor.y <= (this.y + this.height)));
-        return competing;
+    
+    public boolean isNotCompeting(PaddockCoordinates coor){
+        boolean notCompeting = ((this.y + this.height - 1)<coor.y);
+        notCompeting = notCompeting || (this.y > (coor.y + coor.height - 1));
+        notCompeting = notCompeting || ((this.x + this.width - 1) < coor.x);
+        notCompeting = notCompeting || (this.x > (coor.x + coor.width - 1));
+        return notCompeting;
     }
 
 }
