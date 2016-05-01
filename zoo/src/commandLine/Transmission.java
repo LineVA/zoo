@@ -5,10 +5,14 @@ import exception.name.NameException;
 import gui.Editor;
 import gui.EditorColors;
 import gui.FormattingDisplay;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lombok.Getter;
 import lombok.Setter;
+import zoo.Paddock;
+import zoo.PaddockCoordinates;
 import zoo.Zoo;
 
 /**
@@ -76,15 +80,14 @@ public class Transmission {
                     true, false, EditorColors.INFO.getColor());
         }
     }
-    
-    void unknownCmd(String cpt) {
-         this.editor.printOnEditor("Unknown command line : see 'man " + cpt 
-                 +"' for more information.",
-                    true, false, EditorColors.INFO.getColor());
-    }
-    
-    // TODO : If a dimension is a letter
 
+    void unknownCmd(String cpt) {
+        this.editor.printOnEditor("Unknown command line : see 'man " + cpt
+                + "' for more information.",
+                true, false, EditorColors.INFO.getColor());
+    }
+
+    // TODO : If a dimension is a letter
     public void zooCreate(String name, String width, String height) {
         try {
             this.zoo = new Zoo(name, Integer.parseInt(width), Integer.parseInt(height));
@@ -99,11 +102,13 @@ public class Transmission {
         if (zoo == null) {
             zooIsNull();
         } else {
+            ArrayList<PaddockCoordinates> paddocksList = new ArrayList<>();
+            Paddock pad;
+            for (HashMap.Entry<String, Paddock> entry : zoo.getPaddocks().entrySet()) {
+                paddocksList.add(entry.getValue().getCoordinates());
+            }
             this.editor.printOnEditor(FormattingDisplay.zooMap(zoo.getWidth(),
-                    zoo.getHeight()), true, false, EditorColors.INFO.getColor());
+                    zoo.getHeight(), paddocksList), true, false, EditorColors.INFO.getColor());
         }
     }
-
-    
-
 }
