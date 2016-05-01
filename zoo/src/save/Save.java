@@ -1,5 +1,6 @@
 package save;
 
+import exception.IncorrectDimensionsException;
 import exception.name.EmptyNameException;
 import java.io.FileOutputStream;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import org.jdom2.Element;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 import zoo.Paddock;
+import zoo.PaddockCoordinates;
 import zoo.Zoo;
 
 /**
@@ -19,11 +21,31 @@ import zoo.Zoo;
  */
 public class Save {
 
+    /**
+     * Create the name of the file in wich the backup of the zoo will be saved
+     * @param name the name of the file without any extension
+     * @return the name of the file with the extension ".xml"
+     * @throws EmptyNameException throws if the name is empty
+     */
     public String createFileName(String name) throws EmptyNameException {
         if (name.trim().equals("")) {
             throw new EmptyNameException("This name's zoo is the empty string");
         }
         return "./gameBackUps/" + name + ".xml";
+    }
+
+    
+    public Element createElementCoordinate(String name, int value) {
+        Element coorEl = new Element(name);
+        coorEl.setText(Integer.toString(value));
+        return coorEl;
+    }
+
+    public Element createElementDimensionsZoo(int width, int height) {
+        Element dimEl = new Element("dimensions");
+        dimEl.addContent(createElementCoordinate("width", width));
+        dimEl.addContent(createElementCoordinate("height", height));
+        return dimEl;
     }
 
     public Element createElementZoo(Zoo zoo) throws EmptyNameException {
@@ -33,17 +55,35 @@ public class Save {
         Element zooEl = new Element("zoo");
         Attribute nameAtt = new Attribute("name", zoo.getName());
         zooEl.setAttribute(nameAtt);
+        zooEl.addContent(createElementDimensionsZoo(zoo.getWidth(), zoo.getHeight()));
         return zooEl;
     }
 
-    public Element createElementPaddock(Paddock pad) throws EmptyNameException {
-        if (pad.getName().trim().equals("")) {
+    public Element createElementNamePaddock(String name) throws EmptyNameException {
+        if (name.trim().equals("")) {
             throw new EmptyNameException("This name's zoo is the empty string");
         }
-        Element padEl = new Element("paddock");
         Element nameEl = new Element("name");
-        nameEl.setText(pad.getName());
-        padEl.addContent(nameEl);
+        nameEl.setText(name);
+        return nameEl;
+    }
+
+    public Element createElementCoordinatesPaddock(PaddockCoordinates coor) throws EmptyNameException, IncorrectDimensionsException {
+        if (coor == null) {
+            throw new IncorrectDimensionsException("The coordinates of this paddock are null.");
+        }
+        Element coorEl = new Element("coordinates");
+        coorEl.addContent(createElementCoordinate("x", coor.getX()));
+        coorEl.addContent(createElementCoordinate("y", coor.getY()));
+        coorEl.addContent(createElementCoordinate("width", coor.getWidth()));
+        coorEl.addContent(createElementCoordinate("height", coor.getHeight()));
+        return coorEl;
+    }
+
+    public Element createElementPaddock(Paddock pad) throws EmptyNameException, IncorrectDimensionsException {
+        Element padEl = new Element("paddock");
+        padEl.addContent(createElementNamePaddock(pad.getName()));
+        padEl.addContent(createElementCoordinatesPaddock(pad.getCoordinates()));
         return padEl;
     }
 
@@ -73,7 +113,7 @@ public class Save {
         paddocks.entrySet().stream().forEach((pad) -> {
             try {
                 zooEl.addContent(createElementPaddock((Paddock) pad.getValue()));
-            } catch (EmptyNameException ex) {
+            } catch (EmptyNameException | IncorrectDimensionsException ex) {
                 Logger.getLogger(Save.class.getName()).log(Level.SEVERE, null, ex);
             }
         });

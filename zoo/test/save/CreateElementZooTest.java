@@ -1,5 +1,6 @@
 package save;
 
+import exception.IncorrectDimensionsException;
 import exception.name.EmptyNameException;
 import org.jdom2.Element;
 import org.junit.AfterClass;
@@ -31,25 +32,31 @@ private static Save save;
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void should_returnElementZooWithAttributeNameSetToFoo() throws EmptyNameException {
+    public void should_returnElementZooWithAttributeNameSetToFooAndDimensionsElement() 
+            throws EmptyNameException, IncorrectDimensionsException {
         //Given
-        Zoo zoo = new Zoo("foo");
+        Zoo zoo = new Zoo("foo", 1, 1);
         // When
         Element actualEl = save.createElementZoo(zoo);
         // Then 
         String expectedName = "foo";
-        // It has no child
-        assertEquals(0, actualEl.getChildren().size());
+       
         // It only has one attribute
         assertEquals(1, actualEl.getAttributes().size());
         // This attribute is "name" and its value is "foo"
         assertEquals(expectedName, actualEl.getAttributeValue("name"));
+        
+         // It has one child
+        assertEquals(1, actualEl.getChildren().size());
+        // It is "dimensions".
+        Element dimensions = actualEl.getChild("dimensions");
     }
 
      @Test
-    public void should_ThrownANEmptyNmeExceptionIfTheNameIsEmpty() throws EmptyNameException {
+    public void should_ThrownANEmptyNmeExceptionIfTheNameIsEmpty()
+            throws EmptyNameException, IncorrectDimensionsException {
         //Given
-        Zoo zoo = new Zoo("");
+        Zoo zoo = new Zoo("", 1, 1);
         thrown.expect(EmptyNameException.class);
         save.createElementZoo(zoo);
         // When

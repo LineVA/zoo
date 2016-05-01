@@ -1,5 +1,6 @@
 package save;
 
+import exception.IncorrectDimensionsException;
 import exception.name.EmptyNameException;
 import org.jdom2.Element;
 import org.junit.AfterClass;
@@ -31,9 +32,9 @@ public class CreateElementPaddockTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void should_returnElementPaddockWithElementNameSetToFoo() throws EmptyNameException {
+    public void should_returnElementPaddockWithElementNameSetToFoo() throws EmptyNameException, IncorrectDimensionsException {
         //Given
-        Paddock pad = new Paddock("foo");
+        Paddock pad = new Paddock("foo", null);
         // When
         Element actualEl = save.createElementPaddock(pad);
         // Then 
@@ -52,9 +53,9 @@ public class CreateElementPaddockTest {
     }
 
     @Test
-    public void should_ThrownANEmptyNmeExceptionIfTheNameIsEmpty() throws EmptyNameException {
+    public void should_ThrownANEmptyNmeExceptionIfTheNameIsEmpty() throws EmptyNameException, IncorrectDimensionsException {
         //Given
-        Paddock pad = new Paddock("");
+        Paddock pad = new Paddock("", null);
         thrown.expect(EmptyNameException.class);
         save.createElementPaddock(pad);
         // When

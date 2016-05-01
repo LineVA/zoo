@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <zoo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <paddocks>
+            <paddock>
+                <name>pad1</name>
+                <coordinates>
+                    <coordinate>1;3</coordinate>
+                    <coordinate>1;3</coordinate>
+                    <coordinate>1;3</coordinate>
+                    <coordinate>1;3</coordinate>
+                </coordinates>
+            </paddock>
+            <paddock>
+                <name>pad2</name>
+                <coordinates>
+                    <coordinate>1;3</coordinate>
+                    <coordinate>1;3</coordinate>
+                    <coordinate>1;3</coordinate>
+                    <coordinate>1;3</coordinate>
+                </coordinates>
+            </paddock>
+        </paddocks>
+    </zoo>
