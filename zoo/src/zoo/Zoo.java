@@ -14,12 +14,24 @@ import lombok.Getter;
  */
 public class Zoo {
 
+    /**
+     * The name of the zoo
+     */
     @Getter
     private String name;
+    /**
+     * Its width
+     */
     @Getter
     private int width;
+    /**
+     * Its height
+     */
     @Getter
     private int height;
+    /**
+     * The hashmap of the paddocks it contains
+     */
     @Getter
     private HashMap<String, Paddock> paddocks;
 
