@@ -1,6 +1,7 @@
 package commandLine;
 
 import exception.IncorrectDimensionsException;
+import exception.name.EmptyNameException;
 import exception.name.NameException;
 import gui.Editor;
 import gui.EditorColors;
@@ -93,7 +94,7 @@ public class Transmission {
             this.zoo = new Zoo(name, Integer.parseInt(width), Integer.parseInt(height));
             this.editor.printOnEditor("Your zoo has been sucessfully created.",
                     true, false, EditorColors.INFO.getColor());
-        } catch (IncorrectDimensionsException ex) {
+        } catch (IncorrectDimensionsException | EmptyNameException ex) {
             reportedException(ex);
         }
     }

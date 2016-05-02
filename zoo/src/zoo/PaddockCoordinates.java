@@ -1,12 +1,14 @@
 package zoo;
 
 import exception.IncorrectDimensionsException;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
  *
  * @author doyenm
  */
+ @EqualsAndHashCode()
 public class PaddockCoordinates {
 
     @Getter

@@ -2,6 +2,7 @@ package zoo;
 
 import exception.IncorrectDimensionsException;
 import exception.name.AlreadyUsedNameException;
+import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import gui.FormattingDisplay;
 import java.util.ArrayList;
@@ -44,8 +45,13 @@ public class Zoo {
      * @throws IncorrectDimensionsException throws if the width and/or the
      * height is/are smaller than 1
      */
-    public Zoo(String name, int width, int height) throws IncorrectDimensionsException {
-        this.name = name;
+    public Zoo(String name, int width, int height)
+            throws IncorrectDimensionsException, EmptyNameException {
+        if (name.trim().equals("")) {
+            throw new EmptyNameException("Please enter a no-empty name for the zoo.");
+        } else {
+            this.name = name;
+        }
         if (width < 1 || height < 1) {
             throw new IncorrectDimensionsException("A zoo must have a width and "
                     + "an height greater or equals to 1 each.");
@@ -106,11 +112,15 @@ public class Zoo {
 
     /**
      * Method used to find a paddock by its name
+     *
      * @param name the name to search
      * @return the paddock if it exists
      * @throws UnknownNameException if the paddock does not exist
      */
-    public Paddock paddockByName(String name) throws UnknownNameException {
+    public Paddock paddockByName(String name) throws UnknownNameException, EmptyNameException {
+        if(name.trim().equals("")){
+            throw new EmptyNameException("");
+        }
         for (HashMap.Entry<String, Paddock> entry : paddocks.entrySet()) {
             if (entry.getKey().equals(name)) {
                 return entry.getValue();
@@ -121,18 +131,20 @@ public class Zoo {
 
     /**
      * method used to obtain detailed information about a paddock
+     *
      * @param name the name of the paddock we search
      * @return these information without mef
      * @throws UnknownNameException if the searched paddock does not exist
      */
-    public String detailedPaddock(String name) throws UnknownNameException {
+    public String detailedPaddock(String name) throws UnknownNameException, EmptyNameException {
         Paddock pad = paddockByName(name);
         return FormattingDisplay.idDisplay(name);
     }
 
     /**
-     * Method used to know if a paddock can be placed into the zoo without 
+     * Method used to know if a paddock can be placed into the zoo without
      * looking for the others paddocks
+     *
      * @param coor the coordinates of the new paddock
      * @return true if we can set it, false if it is too big for the zoo.
      */

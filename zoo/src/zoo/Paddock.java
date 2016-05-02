@@ -5,15 +5,17 @@
  */
 package zoo;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
  *
  * @author doyenm
  */
+ @EqualsAndHashCode()
 public class Paddock {
 
-    @Getter
+    @Getter 
     private String name;
     @Getter
     private PaddockCoordinates coordinates;
@@ -22,4 +24,5 @@ public class Paddock {
         this.name = name;
         this.coordinates = coor;
     }
+    
 }
