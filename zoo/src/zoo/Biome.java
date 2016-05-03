@@ -1,6 +1,7 @@
 package zoo;
 
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
@@ -25,6 +26,7 @@ public enum Biome {
      MANGROVE - Mangroves   - Mangrove 
      */
 
+    NONE("No biome", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
     RAINFOREST("Tropical rainforest", 22.0, 27.5, 2400.0, 150.0, 40.0, 0.0, 0.0, 0.8),
     DRYBROADLEAF("Tropical and subtropical dry broadleaf forests", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
     TROPICALCONIFEROUS("Tropical and subtropical coniferous forests", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
@@ -42,29 +44,29 @@ public enum Biome {
 
     @Getter
     private final String name;
-    @Getter
-    private final double nightTemperature;
-    @Getter
-    private final double dayTemperature;
-    @Getter
-    private final double pluviometry;
-    @Getter
-    private final double treeDensity;
-    @Getter
-    private final double treeHeight;
-    @Getter
-    private final double drop;
-    @Getter
-    private final double waterSalinity;
-    @Getter
-    private final double humidity;
+    @Getter @Setter
+    private  double nightTemperature;
+    @Getter @Setter
+    private double dayTemperature;
+    @Getter @Setter
+    private double pluviometry;
+    @Getter @Setter
+    private double treeDensity;
+    @Getter @Setter
+    private double treeHeight;
+    @Getter @Setter
+    private double drop;
+    @Getter @Setter
+    private double waterSalinity;
+    @Getter @Setter
+    private double humidity;
 
     Biome(String name, double night, double day, double pluvio, double treeD,
             double treeH, double drop, double water, double humidity){
-        if (isPositivOrZero(pluvio) && isPositivOrZero(pluvio)
-                && isPositivOrZero(pluvio) && isPositivOrZero(pluvio)
-                && isPositivOrZero(pluvio) && isPositivOrZero(pluvio)
-                && isLowerOrEqualsThanOne(humidity)) {
+        if (isPositivOrZero(pluvio) && isPositivOrZero(treeD)
+                && isPositivOrZero(treeH) && isPositivOrZero(drop)
+                && isPositivOrZero(water) && isPositivOrZero(water) 
+                && isPositivOrZero(humidity) && isLowerOrEqualsThanOne(humidity)) {
             this.name = name;
             this.nightTemperature = night;
             this.dayTemperature = day;
