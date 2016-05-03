@@ -34,6 +34,8 @@ public class AddPaddockTest {
         zoo = new Zoo(name, width, height);
         PaddockCoordinates coor = mock(PaddockCoordinates.class);
         when(coor.isNotCompeting(any(PaddockCoordinates.class))).thenReturn(true);
+        PaddockCoordinates coor2 = mock(PaddockCoordinates.class);
+        when(coor2.isNotCompeting(any(PaddockCoordinates.class))).thenReturn(true);
     }
 
     @After
@@ -82,15 +84,16 @@ public class AddPaddockTest {
         // Then
     }
 
+    // Pb : How to "un-mock" the isNotCompeting method 
+    // in order to re-mock it ?
     @Test
     public void shouldThrowAnIncorrectDimensionsExceptionWhenPaddocksAreCompeting()
             throws AlreadyUsedNameException, IncorrectDimensionsException {
         // Given : we always have competing paddocks
-        PaddockCoordinates coor2 = mock(PaddockCoordinates.class);
-        when(coor2.isNotCompeting(any(PaddockCoordinates.class))).thenReturn(false);
+        PaddockCoordinates coor = mock(PaddockCoordinates.class);
+        when(coor.isNotCompeting(any(PaddockCoordinates.class))).thenReturn(false);
         // When
-        assertFalse(new PaddockCoordinates(1, 1, 1, 1).isNotCompeting(new PaddockCoordinates(2, 2, 1, 1)));
-    //    thrown.expect(IncorrectDimensionsException.class);
+        thrown.expect(IncorrectDimensionsException.class);
         zoo.addPaddock("a", 0, 0, 1, 1);
         zoo.addPaddock("b", 1, 1, 1, 1);
         // Then
