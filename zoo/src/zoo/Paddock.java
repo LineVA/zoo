@@ -51,10 +51,13 @@ public class Paddock {
     private double waterSalinity;
     @Getter 
     private double humidity;
+    
     /**
-     *
-     * @param name
-     * @param coor
+     * The main constructor of the class
+     * Because no biome is known, the fields take the values
+     * of the ones forme Biome.NONE
+     * @param name the name of the paddock
+     * @param coor the coordinates of the paddock
      */
     public Paddock(String name, PaddockCoordinates coor) {
         this.name = name;
@@ -70,6 +73,10 @@ public class Paddock {
         this.humidity = Biome.NONE.getHumidity();
     }
 
+    /**
+     * Setetr of the fields linked to the biome
+     * @param biome the new biome of the paddock
+     */
     public void setBiome(Biome biome) {
         this.biome = biome.getName();
         this.nightTemperature = biome.getNightTemperature();
@@ -82,6 +89,7 @@ public class Paddock {
         this.humidity = biome.getHumidity();
     }
 
+    
     private boolean isPositivOrZero(double test) {
         return test >= 0.0;
     }
