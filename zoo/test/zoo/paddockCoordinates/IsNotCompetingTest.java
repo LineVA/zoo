@@ -5,7 +5,7 @@ import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import zoo.PaddockCoordinates;
+import zoo.paddock.PaddockCoordinates;
 
 /**
  * All these tests should return true; The only change between them is the

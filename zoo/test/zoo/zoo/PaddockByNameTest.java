@@ -10,8 +10,8 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import zoo.Paddock;
-import zoo.PaddockCoordinates;
+import zoo.paddock.Paddock;
+import zoo.paddock.PaddockCoordinates;
 import zoo.Zoo;
 
 /**

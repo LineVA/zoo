@@ -13,8 +13,8 @@ import org.junit.rules.ExpectedException;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import zoo.Paddock;
-import zoo.PaddockCoordinates;
+import zoo.paddock.Paddock;
+import zoo.paddock.PaddockCoordinates;
 import zoo.Zoo;
 
 /**

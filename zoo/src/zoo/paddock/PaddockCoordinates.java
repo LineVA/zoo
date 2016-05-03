@@ -1,4 +1,4 @@
-package zoo;
+package zoo.paddock;
 
 import exception.IncorrectDimensionsException;
 import lombok.EqualsAndHashCode;

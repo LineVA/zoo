@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package zoo;
+package zoo.animal;
 
+import zoo.animal.Species;
+import zoo.animal.Sex;
+import zoo.paddock.Paddock;
 import lombok.Getter;
 
 /**

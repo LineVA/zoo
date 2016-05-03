@@ -1,5 +1,7 @@
 package zoo;
 
+import zoo.paddock.PaddockCoordinates;
+import zoo.paddock.Paddock;
 import exception.IncorrectDimensionsException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;

@@ -1,4 +1,4 @@
-package zoo;
+package zoo.paddock;
 
 import lombok.Getter;
 import lombok.Setter;
