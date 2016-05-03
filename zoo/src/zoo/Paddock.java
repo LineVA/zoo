@@ -14,11 +14,17 @@ import lombok.Getter;
  */
  @EqualsAndHashCode()
 public class Paddock {
-
+     
+     /**
+      * The name of the paddock
+      */
     @Getter 
-    private String name;
+    private final String name;
+    /**
+     * Its coordinates
+     */
     @Getter
-    private PaddockCoordinates coordinates;
+    private final PaddockCoordinates coordinates;
 
     public Paddock(String name, PaddockCoordinates coor) {
         this.name = name;

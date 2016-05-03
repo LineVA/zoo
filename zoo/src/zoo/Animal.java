@@ -11,6 +11,7 @@ import lombok.Getter;
  *
  * @author doyenm
  */
+
 public class Animal {
 
     @Getter
