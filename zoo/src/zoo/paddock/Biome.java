@@ -1,13 +1,14 @@
 package zoo.paddock;
 
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  *
  * @author doyenm
  */
-public enum Biome {
+//@EqualsAndHashCode(exclude={"nightTemperature", "dayTemperature", "pluviometry",
+//"treeDensity", "treeHeight", "drop", "waterSalinity", "humidity"})
+public enum Biome implements Cloneable {
     /*
      The 14 biomes according to the WWF
      RAINFOREST -  Forets de feuillus humides tropicales et subtropicales - Tropical rainforest
@@ -44,38 +45,18 @@ public enum Biome {
 
     @Getter
     private final String name;
-    @Getter @Setter
-    private  double nightTemperature;
-    @Getter @Setter
-    private double dayTemperature;
-    @Getter @Setter
-    private double pluviometry;
-    @Getter @Setter
-    private double treeDensity;
-    @Getter @Setter
-    private double treeHeight;
-    @Getter @Setter
-    private double drop;
-    @Getter @Setter
-    private double waterSalinity;
-    @Getter @Setter
-    private double humidity;
+    @Getter
+    private BiomeAttributes attributes;
 
     Biome(String name, double night, double day, double pluvio, double treeD,
-            double treeH, double drop, double water, double humidity){
+            double treeH, double drop, double water, double humidity) {
         if (isPositivOrZero(pluvio) && isPositivOrZero(treeD)
                 && isPositivOrZero(treeH) && isPositivOrZero(drop)
-                && isPositivOrZero(water) && isPositivOrZero(water) 
+                && isPositivOrZero(water) && isPositivOrZero(water)
                 && isPositivOrZero(humidity) && isLowerOrEqualsThanOne(humidity)) {
             this.name = name;
-            this.nightTemperature = night;
-            this.dayTemperature = day;
-            this.pluviometry = pluvio;
-            this.treeDensity = treeD;
-            this.treeHeight = treeH;
-            this.drop = drop;
-            this.waterSalinity = water;
-            this.humidity = humidity;
+            this.attributes = new BiomeAttributes(night, water, pluvio, treeD,
+                    treeH, drop, water, humidity);
         } else {
             throw new ExceptionInInitializerError("One or more data are incorrects ;"
                     + " see 'man biome' for more information.");
@@ -88,5 +69,9 @@ public enum Biome {
 
     private boolean isLowerOrEqualsThanOne(double test) {
         return test <= 1.0;
+    }
+
+    public boolean equals(Biome second) {
+        return this.getName().equals(second.getName());
     }
 }
