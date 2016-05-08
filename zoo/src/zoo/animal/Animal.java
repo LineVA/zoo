@@ -1,6 +1,6 @@
 package zoo.animal;
 
-import zoo.animal.feeding.Sex;
+import zoo.animal.reproduction.Sex;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.paddock.Paddock;
 import lombok.Getter;
