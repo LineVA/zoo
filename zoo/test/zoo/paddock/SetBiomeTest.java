@@ -1,5 +1,6 @@
 package zoo.paddock;
 
+import zoo.paddock.biome.Biome;
 import exception.IncorrectDimensionsException;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;

@@ -1,4 +1,4 @@
-package zoo.paddock;
+package zoo.paddock.biome;
 
 import lombok.Getter;
 

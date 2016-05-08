@@ -5,6 +5,8 @@
  */
 package zoo.paddock;
 
+import zoo.paddock.biome.BiomeAttributes;
+import zoo.paddock.biome.Biome;
 import exception.IncorrectDataException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

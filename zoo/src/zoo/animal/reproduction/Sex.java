@@ -1,4 +1,4 @@
-package zoo.animal;
+package zoo.animal.reproduction;
 
 /**
  * Enum of the sex

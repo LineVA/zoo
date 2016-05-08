@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import zoo.paddock.Biome;
+import zoo.paddock.biome.Biome;
 
 /**
  *

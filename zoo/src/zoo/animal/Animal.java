@@ -1,13 +1,15 @@
 package zoo.animal;
 
+import zoo.animal.feeding.Sex;
+import zoo.animal.feeding.FeedingAttributes;
 import zoo.paddock.Paddock;
 import lombok.Getter;
+import zoo.paddock.biome.BiomeAttributes;
 
 /**
  *
  * @author doyenm
  */
-
 public class Animal {
 
     @Getter
@@ -20,7 +22,10 @@ public class Animal {
     private final Sex sex;
     @Getter
     private int age;
-    
+    @Getter
+    private AnimalsAttributes optimals;
+    @Getter
+    private AnimalsAttributes actuals;
 
     public Animal(Species spec, String name, Paddock paddock, Sex sex) {
         this.specie = spec;
@@ -28,7 +33,28 @@ public class Animal {
         this.paddock = paddock;
         this.sex = sex;
         this.age = 0;
+        this.optimals = new AnimalsAttributes(this.drawBiomeOptimals(spec), this.drawFeedingOptimals(spec));
+        // Initially, the values are the ones of the specie
+        this.actuals = new AnimalsAttributes(null, null);
+    }
+
+    public BiomeAttributes drawBiomeOptimals(Species spec) {
+        double night = spec.getGaussiansAnimals().getBiome().getNightTemperature().nextGaussian();
+        double day = 0.0;
+        double pluvio = 0.0;
+        double trreH = 0.0;
+        double treeD = 0.0;
+        double drop = 0.0;
+        double water = 0.0;
+        double humidity = 0.0;
+
+        BiomeAttributes biome = new BiomeAttributes(night, water, pluvio, treeD, treeD, drop, water, humidity);
+
+        return biome;
     }
     
-    
+    public FeedingAttributes drawFeedingOptimals(Species spec) {
+        return new FeedingAttributes(0.0);
+    }
+
 }
