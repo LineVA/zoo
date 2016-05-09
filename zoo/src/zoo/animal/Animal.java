@@ -4,6 +4,7 @@ import zoo.animal.reproduction.Sex;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.paddock.Paddock;
 import lombok.Getter;
+import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.paddock.biome.BiomeAttributes;
 
 /**
@@ -27,15 +28,28 @@ public class Animal {
     @Getter
     private AnimalsAttributes actuals;
 
-    public Animal(Species spec, String name, Paddock paddock, Sex sex) {
+    public Animal(Species spec, String name, Paddock paddock, Sex sex, int age) {
         this.specie = spec;
         this.name = name;
         this.paddock = paddock;
         this.sex = sex;
-        this.age = 0;
-        this.optimals = new AnimalsAttributes(this.drawBiomeOptimals(spec), this.drawFeedingOptimals(spec));
+        this.age = age;
+        this.optimals = new AnimalsAttributes(this.drawBiomeOptimals(spec),
+                this.drawFeedingOptimals(spec), this.drawReproductionOptimals(spec));
         // Initially, the values are the ones of the specie
-        this.actuals = new AnimalsAttributes(null, null);
+        this.actuals = new AnimalsAttributes(null, null, null);
+    }
+    
+    public Animal(Species spec, String name, Paddock paddock, Sex sex, int age,
+            BiomeAttributes biome, FeedingAttributes feeding, ReproductionAttributes repro) {
+        this.specie = spec;
+        this.name = name;
+        this.paddock = paddock;
+        this.sex = sex;
+        this.age = age;
+        this.optimals = new AnimalsAttributes(biome, feeding, repro);
+        // Initially, the values are the ones of the specie
+        this.actuals = new AnimalsAttributes(null, null, null);
     }
 
     public BiomeAttributes drawBiomeOptimals(Species spec) {
@@ -52,9 +66,13 @@ public class Animal {
 
         return biome;
     }
-    
+
     public FeedingAttributes drawFeedingOptimals(Species spec) {
         return new FeedingAttributes(0.0);
+    }
+
+    public ReproductionAttributes drawReproductionOptimals(Species spec) {
+        return new ReproductionAttributes(0, 0, 0, 0);
     }
 
 }

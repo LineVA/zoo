@@ -1,6 +1,7 @@
 package zoo.animal.reproduction;
 
 import lombok.Getter;
+import zoo.animal.Animal;
 
 /**
  *

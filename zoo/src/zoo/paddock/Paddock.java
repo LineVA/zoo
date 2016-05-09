@@ -8,8 +8,10 @@ package zoo.paddock;
 import zoo.paddock.biome.BiomeAttributes;
 import zoo.paddock.biome.Biome;
 import exception.IncorrectDataException;
+import java.util.HashMap;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import zoo.animal.Animal;
 
 /**
  *
@@ -18,7 +20,7 @@ import lombok.Getter;
 // @EqualsAndHashCode(exclude={"nightTemperature", "dayTemperature", "pluviometry",
 // "treeDensity", "treeHeight", "drop", "waterSalinity", "humidity"})
 @EqualsAndHashCode()
-public class Paddock implements Cloneable{
+public class Paddock implements Cloneable {
 
     /**
      * The name of the paddock
@@ -40,6 +42,9 @@ public class Paddock implements Cloneable{
     @Getter
     BiomeAttributes attributes;
 
+    @Getter
+    HashMap<String, Animal> animals;
+
     /**
      * The main constructor of the class Because no biome is known, the fields
      * take the values of the ones forme Biome.NONE
@@ -52,6 +57,7 @@ public class Paddock implements Cloneable{
         this.coordinates = coor;
         this.biome = Biome.NONE.getName();
         this.attributes = (BiomeAttributes) Biome.NONE.getAttributes().clone();
+        this.animals = new HashMap<>();
     }
 
     /**
@@ -133,21 +139,25 @@ public class Paddock implements Cloneable{
                     + "between 0 and 1.");
         }
     }
-    
+
     public Object clone() {
-	    Paddock pad = null;
-	    try {
-	      	pad = (Paddock) super.clone();
-	    } catch(CloneNotSupportedException cnse) {
+        Paddock pad = null;
+        try {
+            pad = (Paddock) super.clone();
+        } catch (CloneNotSupportedException cnse) {
 	      	// Ne devrait jamais arriver car nous implémentons 
-	      	// l'interface Cloneable
-	      	cnse.printStackTrace(System.err);
-	    }
-	    
-	    // On clone l'attribut de type Patronyme qui n'est pas immuable.
-	    pad.attributes = (BiomeAttributes) attributes.clone();
-	    
-	    // on renvoie le clone
-	    return pad;
-	}
+            // l'interface Cloneable
+            cnse.printStackTrace(System.err);
+        }
+
+        // On clone l'attribut de type Patronyme qui n'est pas immuable.
+        pad.attributes = (BiomeAttributes) attributes.clone();
+
+        // on renvoie le clone
+        return pad;
+    }
+    
+    public void addAnimal(Animal animal){
+        animals.put(animal.getName(), animal);
+    }
 }

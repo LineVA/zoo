@@ -8,4 +8,12 @@ public enum Sex {
 
     FEMALE,
     MALE;
+    
+    public boolean isFemale(){
+        return this == Sex.FEMALE;
+    }
+    
+    public boolean isMale(){
+        return this == Sex.MALE;
+    }
 }
