@@ -12,7 +12,7 @@ import zoo.paddock.biome.BiomeAttributes;
  */
 public enum Species {
 
-    CAT("cat", Biome.RAINFOREST);
+    CAT("cat", Biome.RAINFOREST), DOG("dog", Biome.RAINFOREST);
 
     /**
      * The name of the specie

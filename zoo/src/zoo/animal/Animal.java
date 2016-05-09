@@ -37,7 +37,7 @@ public class Animal {
         this.optimals = new AnimalsAttributes(this.drawBiomeOptimals(spec),
                 this.drawFeedingOptimals(spec), this.drawReproductionOptimals(spec));
         // Initially, the values are the ones of the specie
-        this.actuals = new AnimalsAttributes(null, null, null);
+        this.actuals = (AnimalsAttributes) this.optimals.clone();
     }
     
     public Animal(Species spec, String name, Paddock paddock, Sex sex, int age,
@@ -49,7 +49,7 @@ public class Animal {
         this.age = age;
         this.optimals = new AnimalsAttributes(biome, feeding, repro);
         // Initially, the values are the ones of the specie
-        this.actuals = new AnimalsAttributes(null, null, null);
+        this.actuals = (AnimalsAttributes) this.optimals.clone();
     }
 
     public BiomeAttributes drawBiomeOptimals(Species spec) {

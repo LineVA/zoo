@@ -9,7 +9,7 @@ import zoo.paddock.biome.BiomeAttributes;
  *
  * @author doyenm
  */
-public class AnimalsAttributes {
+public class AnimalsAttributes implements Cloneable{
 
     @Getter
     private BiomeAttributes biomeAttributes;
@@ -25,5 +25,16 @@ public class AnimalsAttributes {
         this.biomeAttributes = biome;
         this.feedinAttributes = feeding;
         this.reproductionAttributes = reproduction;
+    }
+    
+    @Override
+     public Object clone() {
+        Object o = null;
+        try {
+            o = super.clone();
+        } catch (CloneNotSupportedException cnse) {
+            cnse.printStackTrace(System.err);
+        }
+        return o;
     }
 }

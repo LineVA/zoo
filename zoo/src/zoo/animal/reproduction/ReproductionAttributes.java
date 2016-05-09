@@ -14,14 +14,14 @@ public class ReproductionAttributes {
     @Getter
     private int maleMaturityAge;
     @Getter
-    private int gestationTime;
+    private double gestationFrequency;
     @Getter
     private int litterSize;
     
-    public ReproductionAttributes(int female, int male, int gestation, int litter){
+    public ReproductionAttributes(int female, int male, double frequency, int litter){
         this.femaleMaturityAge = female;
         this.maleMaturityAge = male;
-        this.gestationTime = gestation;
+        this.gestationFrequency = frequency;
         this.litterSize = litter;
     }
 }

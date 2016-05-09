@@ -1,7 +1,7 @@
 package zoo.animal.reproduction;
 
 import lombok.Getter;
-import zoo.animal.Gaussian;
+import zoo.Statistics.Gaussian;
 
 /**
  *
@@ -21,7 +21,7 @@ public class GaussianReproductionAttributes {
     public GaussianReproductionAttributes(ReproductionAttributes average, ReproductionAttributes sd) {
         this.femaleMaturityAge = new Gaussian(average.getFemaleMaturityAge(), sd.getFemaleMaturityAge());
         this.maleMaturityAge = new Gaussian(average.getMaleMaturityAge(), sd.getMaleMaturityAge());
-        this.gestationTime = new Gaussian(average.getGestationTime(), sd.getGestationTime());
+        this.gestationTime = new Gaussian(average.getGestationFrequency(), sd.getGestationFrequency());
         this.litterSize = new Gaussian(average.getLitterSize(), sd.getLitterSize());
     }
 }

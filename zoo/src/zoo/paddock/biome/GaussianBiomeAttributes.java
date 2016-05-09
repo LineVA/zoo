@@ -1,7 +1,7 @@
 package zoo.paddock.biome;
 
 import lombok.Getter;
-import zoo.animal.Gaussian;
+import zoo.Statistics.Gaussian;
 import zoo.paddock.biome.BiomeAttributes;
 
 /**

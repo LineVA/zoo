@@ -1,4 +1,4 @@
-package zoo.animal;
+package zoo.Statistics;
 
 import java.util.Random;
 
