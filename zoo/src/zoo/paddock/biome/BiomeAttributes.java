@@ -1,5 +1,6 @@
 package zoo.paddock.biome;
 
+import exception.IncorrectDataException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,28 +13,20 @@ import lombok.Setter;
 public class BiomeAttributes implements Cloneable {
 
     @Getter
-    @Setter
     private double nightTemperature;
     @Getter
-    @Setter
     private double dayTemperature;
     @Getter
-    @Setter
     private double pluviometry;
     @Getter
-    @Setter
     private double treeDensity;
     @Getter
-    @Setter
     private double treeHeight;
     @Getter
-    @Setter
     private double drop;
     @Getter
-    @Setter
     private double waterSalinity;
     @Getter
-    @Setter
     private double humidity;
 
     public BiomeAttributes(double nightTemperature, double dayTemperature,
@@ -57,6 +50,76 @@ public class BiomeAttributes implements Cloneable {
             cnse.printStackTrace(System.err);
         }
         return o;
+    }
+    
+     private boolean isPositivOrZero(double test) {
+        return test >= 0.0;
+    }
+
+    private boolean isLowerOrEqualsThanOne(double test) {
+        return test <= 1.0;
+    }
+
+    public void setNightTemperature(double night) {
+        this.nightTemperature = night;
+    }
+
+    public void setDayTemperature(double day) {
+        this.dayTemperature = day;
+    }
+
+    public void setPluviometry(double pluvio) throws IncorrectDataException {
+        if (isPositivOrZero(pluvio)) {
+            this.pluviometry = pluvio;
+        } else {
+            throw new IncorrectDataException("The pluviometry must be "
+                    + "greater or equals than zero.");
+        }
+    }
+
+    public void setTreeDensity(double density) throws IncorrectDataException {
+        if (isPositivOrZero(density)) {
+            this.treeDensity = density;
+        } else {
+            throw new IncorrectDataException("The tree's density must be "
+                    + "greater or equals than zero.");
+        }
+    }
+
+    public void setTreeHeight(double height) throws IncorrectDataException {
+        if (isPositivOrZero(height)) {
+            this.treeHeight = height;
+        } else {
+            throw new IncorrectDataException("The tree's height must be "
+                    + "greater or equals than zero.");
+        }
+    }
+
+    public void setDrop(double drop) throws IncorrectDataException {
+        if (isPositivOrZero(drop)) {
+            this.drop = drop;
+        } else {
+            throw new IncorrectDataException("The drop must be "
+                    + "greater or equals than zero.");
+        }
+    }
+
+    public void setWaterSalinity(double water) throws IncorrectDataException {
+        if (isPositivOrZero(water) && isLowerOrEqualsThanOne(water)) {
+            this.waterSalinity = water;
+        } else {
+            throw new IncorrectDataException("The water salinity must be "
+                    + "between 0 and 1.");
+        }
+    }
+
+    public void setHumidity(double humidity) throws IncorrectDataException {
+        if (isPositivOrZero(humidity) && isLowerOrEqualsThanOne(humidity)) {
+            this.humidity = humidity;
+        } else {
+            throw new IncorrectDataException("The humidity must be "
+                    + "between 0 and 1.");
+        }
     }
 
 }

@@ -34,7 +34,7 @@ public class SetBiomeTest {
         Paddock pad1 = new Paddock("A", coor);
         // When
         pad1.setBiome(Biome.DESERT);
-        pad1.setNightTemperature(33.0);
+        pad1.attributes.setNightTemperature(33.0);
         // Then
         assertEquals(0.0, Biome.DESERT.getAttributes().getNightTemperature(), 0.0);
     }

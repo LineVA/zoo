@@ -70,75 +70,7 @@ public class Paddock implements Cloneable {
         this.attributes = (BiomeAttributes) biome.getAttributes().clone();
     }
 
-    private boolean isPositivOrZero(double test) {
-        return test >= 0.0;
-    }
-
-    private boolean isLowerOrEqualsThanOne(double test) {
-        return test <= 1.0;
-    }
-
-    public void setNightTemperature(double night) {
-        this.attributes.setNightTemperature(night);
-    }
-
-    public void setDayTemperature(double day) {
-        this.attributes.setDayTemperature(day);
-    }
-
-    public void setPluviometry(double pluvio) throws IncorrectDataException {
-        if (isPositivOrZero(pluvio)) {
-            this.attributes.setPluviometry(pluvio);
-        } else {
-            throw new IncorrectDataException("The pluviometry must be "
-                    + "greater or equals than zero.");
-        }
-    }
-
-    public void setTreeDensity(double density) throws IncorrectDataException {
-        if (isPositivOrZero(density)) {
-            this.attributes.setTreeDensity(density);
-        } else {
-            throw new IncorrectDataException("The tree's density must be "
-                    + "greater or equals than zero.");
-        }
-    }
-
-    public void setTreeHeight(double height) throws IncorrectDataException {
-        if (isPositivOrZero(height)) {
-            this.attributes.setTreeHeight(height);
-        } else {
-            throw new IncorrectDataException("The tree's height must be "
-                    + "greater or equals than zero.");
-        }
-    }
-
-    public void setDrop(double drop) throws IncorrectDataException {
-        if (isPositivOrZero(drop)) {
-            this.attributes.setDrop(drop);
-        } else {
-            throw new IncorrectDataException("The drop must be "
-                    + "greater or equals than zero.");
-        }
-    }
-
-    public void setWaterSalinity(double water) throws IncorrectDataException {
-        if (isPositivOrZero(water) && isLowerOrEqualsThanOne(water)) {
-            this.attributes.setWaterSalinity(water);
-        } else {
-            throw new IncorrectDataException("The water salinity must be "
-                    + "between 0 and 1.");
-        }
-    }
-
-    public void setHumidity(double humidity) throws IncorrectDataException {
-        if (isPositivOrZero(humidity) && isLowerOrEqualsThanOne(humidity)) {
-            this.attributes.setHumidity(humidity);
-        } else {
-            throw new IncorrectDataException("The humidity must be "
-                    + "between 0 and 1.");
-        }
-    }
+   
 
     public Object clone() {
         Paddock pad = null;
