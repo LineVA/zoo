@@ -15,8 +15,15 @@ import zoo.paddock.Paddock;
  */
 public class ReproductionImpl implements Reproduction {
 
-    protected Uniform uniform = new Uniform();
+    protected Uniform uniform;
 
+    public ReproductionImpl(){
+        this.uniform = new Uniform();
+    }
+    
+    public ReproductionImpl(Uniform uni){
+        this.uniform = uni;
+    }
     
     @Override
     public ArrayList<Animal> reproducte(Animal animal) {

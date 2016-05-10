@@ -1,7 +1,6 @@
 package zoo.animal.reproduction;
 
 import org.junit.After;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -26,6 +25,8 @@ public class CanFemaleReproducteTest {
         // Mock getFemaleMaturityAge()
         repro = mock(ReproductionAttributes.class);
         when(repro.getFemaleMaturityAge()).thenReturn(12);
+        when(repro.getGestationFrequency()).thenReturn(0.0);
+
     }
 
     @After
@@ -62,6 +63,18 @@ public class CanFemaleReproducteTest {
     public void shouldReturnFalseWhenTheAnimalIsAMale() {
         // Given
         Animal animal = new Animal(Species.CAT, null, null, Sex.MALE, 36, null, null, repro);
+        // When
+        ReproductionImpl reproduction = new ReproductionImpl();
+        boolean actual = reproduction.canFemaleReproducte(animal);
+        // Then
+        assertFalse(actual);
+    }
+
+    @Test
+    public void shouldReturnFalseWhenTheAnimalHasAFrequencyGestationToOne() {
+        // Given
+        when(repro.getGestationFrequency()).thenReturn(1.0);
+        Animal animal = new Animal(Species.CAT, null, null, Sex.FEMALE, 36, null, null, repro);
         // When
         ReproductionImpl reproduction = new ReproductionImpl();
         boolean actual = reproduction.canFemaleReproducte(animal);

@@ -41,32 +41,37 @@ public class WhichMaleTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void shouldReturnMaleWhenThereIsNoMatureMale() {
+    public void shouldReturnMaleWhenThereIsNoMatureMaleOfTheSameSpecie() {
         // Given
         Animal female1 = new Animal(Species.CAT, null, pad, Sex.FEMALE, 14, null, null, repro);
         Animal male1 = new Animal(Species.CAT, null, pad, Sex.MALE, 10, null, null, repro);
+        Animal male2 = new Animal(Species.DOG, null, pad, Sex.MALE, 20, null, null, repro);
+
         pad.addAnimal(male1);
+        pad.addAnimal(male2);
         pad.addAnimal(female1);
         ReproductionImpl reproduction = new ReproductionImpl();
         // When
-        Animal father = reproduction.whichMale(female1.getPaddock().getAnimals());
+        Animal father = reproduction.whichMale(female1.getSpecie(), female1.getPaddock().getAnimals());
         // Then
         Assert.assertNull(father);
     }
 
     @Test
-    public void shouldReturnTheFirstMatureMaleWhenThereIsSeveralMales() {
+    public void shouldReturnTheFirstMatureMaleOfTheSameSpecieWhenThereIsSeveralMales() {
         // Given
         Animal female1 = new Animal(Species.CAT, null, pad, Sex.FEMALE, 14, null, null, repro);
         Animal male1 = new Animal(Species.CAT, null, pad, Sex.MALE, 10, null, null, repro);
-        Animal male2 = new Animal(Species.CAT, null, pad, Sex.MALE, 15, null, null, repro);
+        Animal male2 = new Animal(Species.DOG, null, pad, Sex.MALE, 20, null, null, repro);
+        Animal male3 = new Animal(Species.CAT, null, pad, Sex.MALE, 15, null, null, repro);
         pad.addAnimal(female1);
         pad.addAnimal(male1);
         pad.addAnimal(male2);
+        pad.addAnimal(male3);
         ReproductionImpl reproduction = new ReproductionImpl();
         // When
-        Animal father = reproduction.whichMale(female1.getPaddock().getAnimals());
+        Animal father = reproduction.whichMale(female1.getSpecie(), female1.getPaddock().getAnimals());
         // Then
-        assertEquals(male2, father);
+        assertEquals(male3, father);
     }
 }

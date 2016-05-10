@@ -70,7 +70,7 @@ public class AddPaddockTest {
         // When
         thrown.expect(AlreadyUsedNameException.class);
         zoo.addPaddock("a", 0, 0, 1, 1);
-        zoo.addPaddock("a", 1, 1, 1, 1);
+        zoo.addPaddock("a", 0, 0, 1, 1);
         // Then
     }
 

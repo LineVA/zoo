@@ -2,6 +2,7 @@ package zoo.animal.reproduction;
 
 import java.util.ArrayList;
 import org.junit.After;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -9,21 +10,23 @@ import org.junit.rules.ExpectedException;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import zoo.Statistics.Uniform;
 import zoo.animal.Animal;
 import zoo.animal.Species;
 import zoo.paddock.Paddock;
+
 /**
  *
  * @author doyenm
  */
 public class GenerateFamilyTest {
 
-    ReproductionImpl repro;
+    Uniform uniform;
 
     @Before
     public void setUpClass() {
-        repro = mock(ReproductionImpl.class);
-        when(repro.uniform.intAverage(any(int.class))).thenReturn(2);
+        uniform = mock(Uniform.class);
+        when(uniform.intAverage(any(int.class))).thenReturn(2);
     }
 
     @After
@@ -37,13 +40,24 @@ public class GenerateFamilyTest {
     @Test
     public void shouldReturnAnArrayListWithThreeElements() {
         // Given
-        Paddock pad = new Paddock(null, null);
-        Animal mother = new Animal(Species.CAT, "mother", pad, Sex.FEMALE, 0);
-        Animal father = new Animal(Species.CAT, "father", pad, Sex.MALE, 0);
+        Paddock expectedPad = new Paddock(null, null);
+        Species expectedSpecie = Species.CAT;
+        Animal mother = new Animal(expectedSpecie, "mother", expectedPad, Sex.FEMALE, 0);
+        Animal father = new Animal(expectedSpecie, "father", expectedPad, Sex.MALE, 0);
         // When
+        ReproductionImpl repro = new ReproductionImpl(uniform);
         ArrayList<Animal> actual = repro.generateFamily(mother, father);
         // Then
-        AssertEquals(3, actual.size());
-        AssertEquals(father, actual.get(0));
+        String expectedName1 = "motherfather0";
+        String expectedName2 = "motherfather1";
+
+        assertEquals(3, actual.size());
+        assertEquals(father, actual.get(0));
+        assertEquals(expectedSpecie, actual.get(1).getSpecie());
+        assertEquals(expectedPad, actual.get(1).getPaddock());
+        assertEquals(expectedName1, actual.get(1).getName());
+        assertEquals(expectedSpecie, actual.get(2).getSpecie());
+        assertEquals(expectedPad, actual.get(2).getPaddock());
+        assertEquals(expectedName2, actual.get(2).getName());
     }
 }
