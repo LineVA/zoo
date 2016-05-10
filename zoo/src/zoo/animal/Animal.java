@@ -24,7 +24,7 @@ public class Animal {
     @Getter
     private int age;
     @Getter
-    private AnimalsAttributes optimals;
+    private AnimalsLightAttributes optimals;
     @Getter
     private AnimalsAttributes actuals;
 
@@ -34,8 +34,8 @@ public class Animal {
         this.paddock = paddock;
         this.sex = sex;
         this.age = age;
-        this.optimals = new AnimalsAttributes(this.drawBiomeOptimals(spec),
-                this.drawFeedingOptimals(spec), this.drawReproductionOptimals(spec));
+        this.optimals = new AnimalsLightAttributes(this.drawBiomeOptimals(spec),
+                this.drawFeedingOptimals(spec));
         // Initially, the values are the ones of the specie
         this.actuals = (AnimalsAttributes) this.optimals.clone();
     }
@@ -47,7 +47,7 @@ public class Animal {
         this.paddock = paddock;
         this.sex = sex;
         this.age = age;
-        this.optimals = new AnimalsAttributes(biome, feeding, repro);
+        this.optimals = new AnimalsLightAttributes(biome, feeding);
         // Initially, the values are the ones of the specie
         this.actuals = (AnimalsAttributes) this.optimals.clone();
     }
