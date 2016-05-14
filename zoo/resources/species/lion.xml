@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <animal
-    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
-    xsi:noNamespaceSchemaLocation='file:/home/doyenm/Documents/Projets/zoo/zoo/src/zoo/animal/specie/resourceSpecie/model.xsd'>
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./specie.xsd">
     <names>
         <fr>Lion</fr>
        <en>Lion</en>

@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import zoo.paddock.Paddock;
 import zoo.Zoo;
+import zoo.animal.specie.Specie;
 
 /**
  * Test of the constructor of the class Zoo is zoo package
@@ -24,11 +25,11 @@ public class ZooTest {
     }
 
     @Before
-    public static void setUpClass() {
+    public void setUpClass() {
     }
 
     @After
-    public static void tearDownClass() {
+    public void tearDownClass() {
     }
 
     @Rule
@@ -42,17 +43,20 @@ public class ZooTest {
         int expectedWidth = 6;
         int expectedHeight = 7;
         HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
+        HashMap<String, Specie> expectedSpecies = new HashMap<>();
         // When
-        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight);
+        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight, expectedSpecies);
         // Then
         String actualName = zoo.getName();
         int actualWidth = zoo.getWidth();
         int actualHeight = zoo.getHeight();
         HashMap<String, Paddock> actualPaddocks = zoo.getPaddocks();
+        HashMap<String, Specie> actualSpecies = zoo.getSpecies();
         assertEquals(expectedWidth, actualWidth);
         assertEquals(expectedHeight, actualHeight);
         assertEquals(expectedName, actualName);
         assertEquals(expectedPaddocks, actualPaddocks);
+        assertEquals(null, actualSpecies);
     }
 
     @Test
@@ -65,7 +69,7 @@ public class ZooTest {
         HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
         // When
         thrown.expect(IncorrectDimensionsException.class);
-        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight);
+        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight, null);
         // Then
     }
 
@@ -79,7 +83,7 @@ public class ZooTest {
         HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
         // When
         thrown.expect(IncorrectDimensionsException.class);
-        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight);
+        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight, null);
         // Then
     }
 
@@ -93,7 +97,7 @@ public class ZooTest {
         HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
         // When
         thrown.expect(IncorrectDimensionsException.class);
-        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight);
+        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight, null);
         // Then
     }
 
@@ -107,12 +111,12 @@ public class ZooTest {
         HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
         // When
         thrown.expect(IncorrectDimensionsException.class);
-        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight);
+        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight, null);
         // Then
     }
-    
-     @Test
-    public void shouldThrowAnEmptyNameExceptionWhenNameIsEmpty() 
+
+    @Test
+    public void shouldThrowAnEmptyNameExceptionWhenNameIsEmpty()
             throws IncorrectDimensionsException, EmptyNameException, IOException {
         // Given
         String expectedName = "";
@@ -121,12 +125,12 @@ public class ZooTest {
         HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
         // When
         thrown.expect(EmptyNameException.class);
-        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight);
+        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight, null);
         // Then
     }
-    
-      @Test
-    public void shouldThrowAnEmptyNameExceptionWhenNameIsSpaceonly() 
+
+    @Test
+    public void shouldThrowAnEmptyNameExceptionWhenNameIsSpaceonly()
             throws IncorrectDimensionsException, EmptyNameException, IOException {
         // Given
         String expectedName = " ";
@@ -135,7 +139,7 @@ public class ZooTest {
         HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
         // When
         thrown.expect(EmptyNameException.class);
-        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight);
+        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight, null);
         // Then
     }
 

@@ -43,7 +43,7 @@ public class PaddockByNameTest {
         String name = "foo";
         int width = 6;
         int height = 7;
-        Zoo zoo = new Zoo(name, width, height);
+        Zoo zoo = new Zoo(name, width, height, null);
         zoo.addPaddock("a", 1, 1, 1, 1);
         zoo.addPaddock("b", 2, 2, 2, 2);
         // When
@@ -62,7 +62,7 @@ public class PaddockByNameTest {
         String name = "foo";
         int width = 6;
         int height = 7;
-        Zoo zoo = new Zoo(name, width, height);
+        Zoo zoo = new Zoo(name, width, height, null);
         zoo.addPaddock("a", 1, 1, 1, 1);
         zoo.addPaddock("b", 2, 2, 2, 2);
         // When
@@ -79,7 +79,7 @@ public class PaddockByNameTest {
         String name = "foo";
         int width = 6;
         int height = 7;
-        Zoo zoo = new Zoo(name, width, height);
+        Zoo zoo = new Zoo(name, width, height, null);
         zoo.addPaddock("a", 1, 1, 1, 1);
         zoo.addPaddock("b", 2, 2, 2, 2);
         // When

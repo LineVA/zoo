@@ -62,7 +62,7 @@ public class Zoo {
      * @throws IncorrectDimensionsException throws if the width and/or the
      * height is/are smaller than 1
      */
-    public Zoo(String name, int width, int height)
+    public Zoo(String name, int width, int height, HashMap<String, Specie> species)
             throws IncorrectDimensionsException, EmptyNameException, IOException {
         if (name.trim().equals("")) {
             throw new EmptyNameException("Please enter a no-empty name for the zoo.");
@@ -77,25 +77,9 @@ public class Zoo {
             this.height = height;
         }
         paddocks = new HashMap<>();
-        species = new HashMap<>();
+        this.species = species;
     }
-
-    public HashMap<String, Specie> instanciateSpecie(String resource) throws IOException, JDOMException {
-        Stream<Path> files = Files.list(Paths.get(resource));
-        files.forEach((Path file)->{
-            try {
-                Specie tmpSpec = ParserSpecie.mainParserSpecie(file.toFile()); 
-                species.put(tmpSpec.getNames().getEnglishName(), tmpSpec);
-            } catch (IOException ex) {
-                Logger.getLogger(Zoo.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (JDOMException ex) {
-                Logger.getLogger(Zoo.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-
-        return species;
-    }
-
+    
     /**
      * Method used to add a paddock to the zoo
      *

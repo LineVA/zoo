@@ -1,4 +1,4 @@
-<animal xsi:noNamespaceSchemaLocation="file:/home/doyenm/Documents/Projets/zoo/zoo/src/zoo/animal/specie/resourceSpecie/model.xsd">
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./specie.xsd">
     <names>
         <fr>Bonobo</fr>
         <en>Bonobo</en>

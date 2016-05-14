@@ -1,13 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package main;
 
-
-import commandLine.CommandLineParser;
-import commandLine.Transmission;
-import gui.MainGUI;
+import exception.name.EmptyNameException;
+import java.io.IOException;
+import java.util.HashMap;
+import org.jdom2.JDOMException;
+import zoo.Zoo;
+import zoo.animal.specie.Specie;
 
 /**
  *
@@ -15,9 +13,13 @@ import gui.MainGUI;
  */
 public class Main {
 
-    public static void main(String[] args) {
-        Transmission transmission = new Transmission();
-        CommandLineParser parser = new CommandLineParser(transmission);
-        MainGUI mainGUI = new MainGUI(parser);
+    public static void main(String[] args) throws EmptyNameException, IOException, JDOMException {
+//        Transmission transmission = new Transmission();
+//        CommandLineParser parser = new CommandLineParser(transmission);
+//        MainGUI mainGUI = new MainGUI(parser);
+        HashMap<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species");
+        Zoo zoo = new Zoo("mainZoo", 50, 50, species);
+        System.out.println(zoo.getSpecies().size());
+
     }
 }

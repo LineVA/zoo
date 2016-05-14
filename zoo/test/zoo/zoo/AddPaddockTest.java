@@ -32,7 +32,7 @@ public class AddPaddockTest {
         String name = "foo";
         int width = 6;
         int height = 7;
-        zoo = new Zoo(name, width, height);
+        zoo = new Zoo(name, width, height, null);
         PaddockCoordinates coor = mock(PaddockCoordinates.class);
         when(coor.isNotCompeting(any(PaddockCoordinates.class))).thenReturn(true);
         PaddockCoordinates coor2 = mock(PaddockCoordinates.class);

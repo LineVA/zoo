@@ -4,8 +4,7 @@ import exception.IncorrectDimensionsException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map.Entry;
+import main.InstanciateSpecies;
 import org.jdom2.JDOMException;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
@@ -14,8 +13,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import zoo.Zoo;
 import zoo.animal.specie.Specie;
+import static zoo.zoo.AddPaddockTest.zoo;
 
 /**
  *
@@ -23,12 +22,9 @@ import zoo.animal.specie.Specie;
  */
 public class InstanciateSpeciesTest {
 
-    static Zoo zoo;
-
     @Before
     public void setUpClass() throws AlreadyUsedNameException,
             IncorrectDimensionsException, EmptyNameException, IOException {
-        zoo = new Zoo("foo", 10, 10);
     }
 
     @After
@@ -44,7 +40,7 @@ public class InstanciateSpeciesTest {
         // Given
         String resource = "./test/zoo/zoo/resourceSpeciesTest";
         // When
-        zoo.instanciateSpecie(resource);
+        InstanciateSpecies.instanciateSpecies(resource);
         // Then
         assertEquals(2, zoo.getSpecies().size());
         assertTrue(zoo.getSpecies().containsKey("Blue kangoroo"));
@@ -55,19 +51,19 @@ public class InstanciateSpeciesTest {
         double expectedBlueGestation = 3.0;
         int expectedBlueFemaleLife = 5;
         int expectedBlueMaleLife = 6;
-        assertEquals(expectedBlueFemaleMat, blue.getReproduction().getFemaleMaturityAge());
-        assertEquals(expectedBlueMaleMat, blue.getReproduction().getMaleMaturityAge());
-        assertEquals(expectedBlueLitterSize, blue.getReproduction().getLitterSize());
-        assertEquals(expectedBlueGestation, blue.getReproduction().getGestationFrequency(), 0.0);
+        assertEquals(expectedBlueFemaleMat, blue.getSpecieReproduction().getFemaleMaturityAge());
+        assertEquals(expectedBlueMaleMat, blue.getSpecieReproduction().getMaleMaturityAge());
+        assertEquals(expectedBlueLitterSize, blue.getSpecieReproduction().getLitterSize());
+        assertEquals(expectedBlueGestation, blue.getSpecieReproduction().getGestationFrequency(), 0.0);
         assertTrue(zoo.getSpecies().containsKey("Blue kangoroo"));
         Specie red = zoo.getSpecies().get("Red kangoroo");
         int expectedRedFemaleMat = 17;
         int expectedRedMaleMat = 22;
         int expectedRedLitterSize = 1;
         double expectedRedGestation = 1.5;
-        assertEquals(expectedRedFemaleMat, red.getReproduction().getFemaleMaturityAge());
-        assertEquals(expectedRedMaleMat, red.getReproduction().getMaleMaturityAge());
-        assertEquals(expectedRedLitterSize, red.getReproduction().getLitterSize());
-        assertEquals(expectedRedGestation, red.getReproduction().getGestationFrequency(), 0.0);
+        assertEquals(expectedRedFemaleMat, red.getSpecieReproduction().getFemaleMaturityAge());
+        assertEquals(expectedRedMaleMat, red.getSpecieReproduction().getMaleMaturityAge());
+        assertEquals(expectedRedLitterSize, red.getSpecieReproduction().getLitterSize());
+        assertEquals(expectedRedGestation, red.getSpecieReproduction().getGestationFrequency(), 0.0);
     }
 }

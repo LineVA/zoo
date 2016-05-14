@@ -27,7 +27,7 @@ public class ListPaddockTest {
         String name = "foo";
         int width = 6;
         int height = 7;
-        zoo = new Zoo(name, width, height);
+        zoo = new Zoo(name, width, height, null);
     }
 
     @AfterClass
