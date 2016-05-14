@@ -3,6 +3,7 @@ package zoo.zoo;
 import exception.IncorrectDimensionsException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
@@ -22,7 +23,7 @@ public class ListPaddockTest {
 
     @BeforeClass
     public static void setUpClass() throws AlreadyUsedNameException,
-            IncorrectDimensionsException, EmptyNameException {
+            IncorrectDimensionsException, EmptyNameException, IOException {
         String name = "foo";
         int width = 6;
         int height = 7;

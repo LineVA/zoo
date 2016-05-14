@@ -3,6 +3,7 @@ package zoo.zoo;
 import exception.IncorrectDimensionsException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
+import java.io.IOException;
 import java.util.HashMap;
 import org.junit.After;
 import static org.junit.Assert.*;
@@ -27,7 +28,7 @@ public class AddPaddockTest {
 
     @Before
     public void setUpClass() throws AlreadyUsedNameException,
-            IncorrectDimensionsException, EmptyNameException {
+            IncorrectDimensionsException, EmptyNameException, IOException {
         String name = "foo";
         int width = 6;
         int height = 7;

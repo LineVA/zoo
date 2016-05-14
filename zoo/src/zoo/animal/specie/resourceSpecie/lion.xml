@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<animal
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xsi:noNamespaceSchemaLocation='file:/home/doyenm/Documents/Projets/zoo/zoo/src/zoo/animal/specie/resourceSpecie/model.xsd'>
+    <names>
+        <fr>Lion</fr>
+       <en>Lion</en>
+        <scientific>Panthera leo</scientific>
+    </names>
+    <reproduction>
+        <femaleMaturity>42</femaleMaturity>
+        <maleMaturity>48</maleMaturity>
+        <gestationFrequency>2</gestationFrequency>
+        <litterSize>3</litterSize>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>180</femaleLifespan>
+        <maleLifeSpan>180</maleLifeSpan>
+    </lifespan>
+
+</animal>

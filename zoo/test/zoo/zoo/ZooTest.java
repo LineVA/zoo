@@ -2,10 +2,11 @@ package zoo.zoo;
 
 import exception.IncorrectDimensionsException;
 import exception.name.EmptyNameException;
+import java.io.IOException;
 import java.util.HashMap;
-import org.junit.AfterClass;
+import org.junit.After;
 import static org.junit.Assert.assertEquals;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -22,11 +23,11 @@ public class ZooTest {
     public ZooTest() {
     }
 
-    @BeforeClass
+    @Before
     public static void setUpClass() {
     }
 
-    @AfterClass
+    @After
     public static void tearDownClass() {
     }
 
@@ -35,7 +36,7 @@ public class ZooTest {
 
     @Test
     public void shouldConstructAZooWithNameAndDimensions()
-            throws IncorrectDimensionsException, EmptyNameException {
+            throws IncorrectDimensionsException, EmptyNameException, IOException {
         // Given
         String expectedName = "foo";
         int expectedWidth = 6;
@@ -56,7 +57,7 @@ public class ZooTest {
 
     @Test
     public void shouldThrowAnIncorrectDimensionsExceptionWhenWidthIsNegativ()
-            throws IncorrectDimensionsException, EmptyNameException {
+            throws IncorrectDimensionsException, EmptyNameException, IOException {
         // Given
         String expectedName = "foo";
         int expectedWidth = -1;
@@ -70,7 +71,7 @@ public class ZooTest {
 
     @Test
     public void shouldThrowAnIncorrectDimensionsExceptionWhenWidthIsZero()
-            throws IncorrectDimensionsException, EmptyNameException {
+            throws IncorrectDimensionsException, EmptyNameException, IOException {
         // Given
         String expectedName = "foo";
         int expectedWidth = 0;
@@ -84,7 +85,7 @@ public class ZooTest {
 
     @Test
     public void shouldThrowAnIncorrectDimensionsExceptionWhenHeightIsNegativ()
-            throws IncorrectDimensionsException, EmptyNameException {
+            throws IncorrectDimensionsException, EmptyNameException, IOException {
         // Given
         String expectedName = "foo";
         int expectedWidth = 6;
@@ -98,7 +99,7 @@ public class ZooTest {
 
     @Test
     public void shouldThrowAnIncorrectDimensionsExceptionWhenHeightIsZero()
-            throws IncorrectDimensionsException, EmptyNameException {
+            throws IncorrectDimensionsException, EmptyNameException, IOException {
         // Given
         String expectedName = "foo";
         int expectedWidth = 6;
@@ -112,7 +113,7 @@ public class ZooTest {
     
      @Test
     public void shouldThrowAnEmptyNameExceptionWhenNameIsEmpty() 
-            throws IncorrectDimensionsException, EmptyNameException {
+            throws IncorrectDimensionsException, EmptyNameException, IOException {
         // Given
         String expectedName = "";
         int expectedWidth = 6;
@@ -126,7 +127,7 @@ public class ZooTest {
     
       @Test
     public void shouldThrowAnEmptyNameExceptionWhenNameIsSpaceonly() 
-            throws IncorrectDimensionsException, EmptyNameException {
+            throws IncorrectDimensionsException, EmptyNameException, IOException {
         // Given
         String expectedName = " ";
         int expectedWidth = 6;

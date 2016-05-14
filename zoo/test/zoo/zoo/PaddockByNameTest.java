@@ -4,6 +4,7 @@ import exception.IncorrectDimensionsException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
+import java.io.IOException;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
@@ -37,7 +38,7 @@ public class PaddockByNameTest {
     @Test
     public void shouldReturnTheResearchedPaddock()
             throws IncorrectDimensionsException, EmptyNameException,
-            AlreadyUsedNameException, UnknownNameException {
+            AlreadyUsedNameException, UnknownNameException, IOException {
         // Given
         String name = "foo";
         int width = 6;
@@ -56,7 +57,7 @@ public class PaddockByNameTest {
       @Test
     public void shouldThrowAnUnknownNameExceptionWhenTheResearchedPaddockDoesNotExist()
             throws IncorrectDimensionsException, EmptyNameException,
-            AlreadyUsedNameException, UnknownNameException {
+            AlreadyUsedNameException, UnknownNameException, IOException {
         // Given
         String name = "foo";
         int width = 6;
@@ -73,7 +74,7 @@ public class PaddockByNameTest {
       @Test
     public void shouldThrowAnEmptyNameExceptionWhenTheResearchedNameIsEmpty()
             throws IncorrectDimensionsException, EmptyNameException,
-            AlreadyUsedNameException, UnknownNameException {
+            AlreadyUsedNameException, UnknownNameException, IOException {
         // Given
         String name = "foo";
         int width = 6;

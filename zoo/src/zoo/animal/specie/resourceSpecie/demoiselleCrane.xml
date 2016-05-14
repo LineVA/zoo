@@ -1,0 +1,17 @@
+<animal xsi:noNamespaceSchemaLocation="file:/home/doyenm/Documents/Projets/zoo/zoo/src/zoo/animal/specie/resourceSpecie/model.xsd">
+    <names>
+        <fr>Grue demoiselle</fr>
+        <en>Demoiselle crane</en>
+        <scientific>Anthropoides virgo</scientific>
+    </names>
+    <reproduction>
+        <femaleMaturity>72</femaleMaturity>
+        <maleMaturity>72</maleMaturity>
+        <gestationFrequency>1</gestationFrequency>
+        <litterSize>2</litterSize>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>324</femaleLifespan>
+        <maleLifeSpan>324</maleLifeSpan>
+    </lifespan>
+</animal>

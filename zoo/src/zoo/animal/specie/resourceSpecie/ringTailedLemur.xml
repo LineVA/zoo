@@ -1,0 +1,17 @@
+<animal xsi:noNamespaceSchemaLocation="file:/home/doyenm/Documents/Projets/zoo/zoo/src/zoo/animal/specie/resourceSpecie/model.xsd">
+    <names>
+        <fr>Maki catta</fr>
+        <en>Ring-tailed lemur</en>
+        <scientific>Lemur catta</scientific>
+    </names>
+    <reproduction>
+        <femaleMaturity>36</femaleMaturity>
+        <maleMaturity>42</maleMaturity>
+        <gestationFrequency>1</gestationFrequency>
+        <litterSize>1</litterSize>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>324</femaleLifespan>
+        <maleLifeSpan>324</maleLifeSpan>
+    </lifespan>
+</animal>

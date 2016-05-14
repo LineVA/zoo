@@ -1,0 +1,17 @@
+<animal xsi:noNamespaceSchemaLocation="file:/home/doyenm/Documents/Projets/zoo/zoo/src/zoo/animal/specie/resourceSpecie/model.xsd">
+    <names>
+        <fr>Vari noir et blanc</fr>
+        <en>Black and white ruffed lemur</en>
+        <scientific>Varecia variegata</scientific>
+    </names>
+    <reproduction>
+        <femaleMaturity>20</femaleMaturity>
+        <maleMaturity>20</maleMaturity>
+        <gestationFrequency>1</gestationFrequency>
+        <litterSize>3</litterSize>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>228</femaleLifespan>
+        <maleLifeSpan>228</maleLifeSpan>
+    </lifespan>
+</animal>

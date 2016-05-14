@@ -7,9 +7,19 @@ import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import gui.FormattingDisplay;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Stream;
 import lombok.Getter;
+import org.jdom2.JDOMException;
+import zoo.animal.specie.ParserSpecie;
+import zoo.animal.specie.Specie;
 
 /**
  *
@@ -37,6 +47,11 @@ public class Zoo {
      */
     @Getter
     private HashMap<String, Paddock> paddocks;
+    /**
+     * The HashMap of the existing species
+     */
+    @Getter
+    private HashMap<String, Specie> species;
 
     /**
      * Constructor of the object 'Zoo'
@@ -48,7 +63,7 @@ public class Zoo {
      * height is/are smaller than 1
      */
     public Zoo(String name, int width, int height)
-            throws IncorrectDimensionsException, EmptyNameException {
+            throws IncorrectDimensionsException, EmptyNameException, IOException {
         if (name.trim().equals("")) {
             throw new EmptyNameException("Please enter a no-empty name for the zoo.");
         } else {
@@ -62,6 +77,23 @@ public class Zoo {
             this.height = height;
         }
         paddocks = new HashMap<>();
+        species = new HashMap<>();
+    }
+
+    public HashMap<String, Specie> instanciateSpecie(String resource) throws IOException, JDOMException {
+        Stream<Path> files = Files.list(Paths.get(resource));
+        files.forEach((Path file)->{
+            try {
+                Specie tmpSpec = ParserSpecie.mainParserSpecie(file.toFile()); 
+                species.put(tmpSpec.getNames().getEnglishName(), tmpSpec);
+            } catch (IOException ex) {
+                Logger.getLogger(Zoo.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JDOMException ex) {
+                Logger.getLogger(Zoo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+
+        return species;
     }
 
     /**
@@ -120,7 +152,7 @@ public class Zoo {
      * @throws UnknownNameException if the paddock does not exist
      */
     public Paddock paddockByName(String name) throws UnknownNameException, EmptyNameException {
-        if(name.trim().equals("")){
+        if (name.trim().equals("")) {
             throw new EmptyNameException("");
         }
         for (HashMap.Entry<String, Paddock> entry : paddocks.entrySet()) {
