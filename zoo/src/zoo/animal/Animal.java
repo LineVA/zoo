@@ -65,14 +65,14 @@ public class Animal {
      * @return its optimalBiomeAttributes
      */
     public BiomeAttributes drawOptimalBiome(Specie spec) {
-        double night = 0.0;
-        double day = 0.0;
-        double pluvio = 0.0;
-        double treeH = 0.0;
-        double treeD = 0.0;
-        double drop = 0.0;
-        double water = 0.0;
-        double humidity = 0.0;
+        double night = spec.getGaussianBiome().getNightTemperature().nextDouble();
+        double day = spec.getGaussianBiome().getDayTemperature().nextDouble();
+        double pluvio = spec.getGaussianBiome().getPluviometry().nextDouble();
+        double treeH = spec.getGaussianBiome().getTreeHeight().nextDouble();
+        double treeD = spec.getGaussianBiome().getTreeDensity().nextDouble();
+        double drop = spec.getGaussianBiome().getDrop().nextDouble();
+        double water = spec.getGaussianBiome().getWaterSalinity().nextDouble();
+        double humidity = spec.getGaussianBiome().getHumidity().nextDouble();
         return new BiomeAttributes(night, day, pluvio, treeD, treeH, drop, water, humidity);
     }
 
@@ -84,7 +84,8 @@ public class Animal {
      * @return its optimalFeedingAttributes
      */
     public FeedingAttributes drawOptimalFeeding(Specie spec) {
-        return new FeedingAttributes(0.0);
+        double quantity = spec.getGaussianFeeding().getFoodQuantity().nextDouble();
+        return new FeedingAttributes(quantity);
     }
 
     /**
@@ -95,7 +96,7 @@ public class Animal {
      * @return its actualFeedingAttributes
      */
     public FeedingAttributes drawActualFeeding(Specie spec) {
-        return spec.getFeeding();
+        return spec.getSpecieFeeding();
     }
 
     /**
@@ -106,6 +107,10 @@ public class Animal {
      * @return its actualReproductionAttributes
      */
     public ReproductionAttributes drawActualReproduction(Specie spec) {
-        return new ReproductionAttributes(0, 0, 0, 0);
+        int female = spec.getGaussianReproduction().getFemaleMaturityAge().nextInt();
+        int male = spec.getGaussianReproduction().getFemaleMaturityAge().nextInt();
+        double frequency = spec.getGaussianReproduction().getGestationFrequency().nextDouble();
+        int litter = spec.getGaussianReproduction().getLitterSize().nextInt();
+        return new ReproductionAttributes(female, male, frequency, litter);
     }
 }

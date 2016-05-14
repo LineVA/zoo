@@ -18,7 +18,12 @@ public class Gaussian extends Random{
     }
     
     @Override
-    public double nextGaussian(){
+    public double nextDouble(){
         return super.nextGaussian()*this.standardDeviation + average;
+    }
+    
+    @Override
+    public int nextInt(){
+        return (int) (super.nextInt()*this.standardDeviation + average);
     }
 }

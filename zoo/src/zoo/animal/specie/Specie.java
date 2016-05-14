@@ -16,11 +16,11 @@ import zoo.paddock.biome.GaussianBiomeAttributes;
 public class Specie {
 
     @Getter
-    private final BiomeAttributes biome;
+    private final BiomeAttributes specieBiome;
     @Getter
-    private final FeedingAttributes feeding;
+    private final FeedingAttributes specieFeeding;
     @Getter
-    private final ReproductionAttributes reproduction;
+    private final ReproductionAttributes specieReproduction;
     @Getter
     private final Names names;
     @Getter
@@ -33,9 +33,9 @@ public class Specie {
     public Specie(Names names, BiomeAttributes biome, FeedingAttributes feeding,
             ReproductionAttributes repro) {
         this.names = names;
-        this.biome = biome;
-        this.feeding = feeding;
-        this.reproduction = repro;
+        this.specieBiome = biome;
+        this.specieFeeding = feeding;
+        this.specieReproduction = repro;
         this.gaussianBiome = new GaussianBiomeAttributes(biome);
         this.gaussianFeeding = new GaussianFeedingAttributes(feeding);
         this.gaussianReproduction = new GaussianReproductionAttributes(repro);
