@@ -35,7 +35,7 @@ public class Animal {
     // the first are computed when the animal is created,
     // the second are determined by the player.
     @Getter
-    private FeedingAttributes optimalFeeding;
+    private final FeedingAttributes optimalFeeding;
     @Getter
     @Setter
     private FeedingAttributes actualFeeding;
@@ -43,7 +43,7 @@ public class Animal {
     // when the animal is created ;
     // there is no notion of "optimal reproduction attributes".
     @Getter
-    private ReproductionAttributes actualReproduction;
+    private final ReproductionAttributes actualReproduction;
 
     public Animal(Specie spec, String name, Paddock paddock, Sex sex, int age) {
         this.specie = spec;
@@ -57,19 +57,6 @@ public class Animal {
         this.actualReproduction = drawActualReproduction(spec);
     }
 
-//    public Animal(Specie spec, String name, Paddock paddock, Sex sex, int age,
-//            BiomeAttributes biome, FeedingAttributes feeding, ReproductionAttributes repro) {
-//        this.specie = spec;
-//        this.name = name;
-//        this.paddock = paddock;
-//        this.sex = sex;
-//        this.age = age;
-//        this.optimalBiome = drawOptimalBiome(spec;
-//        this.optimalFeeding = drawOptimalFeeding(spec);
-//        this.actualFeeding = feeding;
-//        this.actualReproduction = repro;
-//    }
-
     /**
      * Computes the optimal values of the biome attributes for this animal
      * according to its specie
@@ -81,13 +68,12 @@ public class Animal {
         double night = 0.0;
         double day = 0.0;
         double pluvio = 0.0;
-        double trreH = 0.0;
+        double treeH = 0.0;
         double treeD = 0.0;
         double drop = 0.0;
         double water = 0.0;
         double humidity = 0.0;
-        BiomeAttributes biome = new BiomeAttributes(night, water, pluvio, treeD, treeD, drop, water, humidity);
-        return biome;
+        return new BiomeAttributes(night, day, pluvio, treeD, treeH, drop, water, humidity);
     }
 
     /**
