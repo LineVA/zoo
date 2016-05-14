@@ -12,6 +12,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import zoo.animal.Animal;
 import zoo.animal.Species;
+import zoo.animal.feeding.FeedingAttributes;
+import zoo.animal.specie.Specie;
+import zoo.paddock.biome.BiomeAttributes;
 
 /**
  *
@@ -20,12 +23,16 @@ import zoo.animal.Species;
 public class CanMaleReproducteTest {
 
     ReproductionAttributes repro;
+    Specie specie;
 
     @Before
     public void setUpClass() {
         // Mock getFemaleMaturityAge()
         repro = mock(ReproductionAttributes.class);
         when(repro.getMaleMaturityAge()).thenReturn(12);
+         BiomeAttributes biomeAt = new BiomeAttributes(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+        FeedingAttributes feedingAt = new FeedingAttributes(0.0);
+        specie = new Specie(null, biomeAt, feedingAt, repro);
     }
 
     @After
@@ -39,7 +46,7 @@ public class CanMaleReproducteTest {
     @Test
     public void shouldReturnTrueWhenTheAnimalIsAMatureMale() {
         // Given
-        Animal animal = new Animal(Species.CAT, null, null, Sex.MALE, 36, null, null, repro);
+        Animal animal = new Animal(specie, null, null, Sex.MALE, 36);
         // When
         ReproductionImpl reproduction = new ReproductionImpl();
         boolean actual = reproduction.canMaleReproducte(animal);
@@ -47,10 +54,11 @@ public class CanMaleReproducteTest {
         assertTrue(actual);
     }
 
+    // This test does not check anymore : pb with the mock
     @Test
     public void shouldReturnFalseWhenTheAnimalIsANonMatureMale() {
         // Given
-        Animal animal = new Animal(Species.CAT, null, null, Sex.MALE, 10, null, null, repro);
+        Animal animal = new Animal(specie, null, null, Sex.MALE, 10);
         // When
         ReproductionImpl reproduction = new ReproductionImpl();
         boolean actual = reproduction.canMaleReproducte(animal);
@@ -61,7 +69,7 @@ public class CanMaleReproducteTest {
     @Test
     public void shouldReturnFalseWhenTheAnimalIsAFemale() {
         // Given
-        Animal animal = new Animal(Species.CAT, null, null, Sex.FEMALE, 36, null, null, repro);
+        Animal animal = new Animal(specie, null, null, Sex.FEMALE, 36);
         // When
         ReproductionImpl reproduction = new ReproductionImpl();
         boolean actual = reproduction.canMaleReproducte(animal);

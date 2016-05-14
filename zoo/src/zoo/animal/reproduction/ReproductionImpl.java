@@ -47,9 +47,10 @@ public class ReproductionImpl implements Reproduction {
     public ArrayList<Animal> generateFamily(Animal mother, Animal father) {
         ArrayList<Animal> family = new ArrayList<>();
         family.add(father);
-        for (int i = 0; i < uniform.intAverage(mother.getActuals().
-                getReproductionAttributes().getLitterSize()); i++) {
-            family.add(generateAnimal(mother.getSpecie(), mother.getName() + father.getName() + i, mother.getPaddock()));
+        for (int i = 0; i < uniform.intAverage(mother.getActualReproduction()
+                .getLitterSize()); i++) {
+            family.add(generateAnimal(mother.getSpecie(), mother.getName()
+                    + father.getName() + i, mother.getPaddock()));
         }
         return family;
     }
@@ -79,8 +80,7 @@ public class ReproductionImpl implements Reproduction {
      */
     public boolean canFemaleReproducte(Animal animal) {
         if (animal.getSex().isFemale()) {
-            if (animal.getAge() > animal.getActuals()
-                    .getReproductionAttributes().getFemaleMaturityAge()) {
+            if (animal.getAge() > animal.getActualReproduction().getFemaleMaturityAge()) {
                 return true && isGestation(animal);
             } else {
                 return false;
@@ -95,7 +95,7 @@ public class ReproductionImpl implements Reproduction {
      * @return true if it can, false else
      */
     public boolean isGestation(Animal animal) {
-        return uniform.isGreaterOrEquals(animal.getActuals().getReproductionAttributes().getGestationFrequency());
+        return uniform.isGreaterOrEquals(animal.getActualReproduction().getGestationFrequency());
     }
 
     /**
@@ -105,8 +105,7 @@ public class ReproductionImpl implements Reproduction {
      */
     public boolean canMaleReproducte(Animal animal) {
         if (animal.getSex().isMale()) {
-            if (animal.getAge() > animal.getActuals()
-                    .getReproductionAttributes().getMaleMaturityAge()) {
+            if (animal.getAge() > animal.getActualReproduction().getMaleMaturityAge()) {
                 return true;
             }
         }

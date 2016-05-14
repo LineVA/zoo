@@ -12,7 +12,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import zoo.Statistics.Uniform;
 import zoo.animal.Animal;
-import zoo.animal.Species;
+import zoo.animal.specie.Specie;
 import zoo.paddock.Paddock;
 
 /**
@@ -41,7 +41,7 @@ public class GenerateFamilyTest {
     public void shouldReturnAnArrayListWithThreeElements() {
         // Given
         Paddock expectedPad = new Paddock(null, null);
-        Species expectedSpecie = Species.CAT;
+        Specie expectedSpecie = new Specie(null, null, null, null);
         Animal mother = new Animal(expectedSpecie, "mother", expectedPad, Sex.FEMALE, 0);
         Animal father = new Animal(expectedSpecie, "father", expectedPad, Sex.MALE, 0);
         // When

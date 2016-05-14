@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import zoo.animal.Animal;
 import zoo.animal.Species;
+import zoo.animal.specie.Specie;
 import zoo.paddock.Paddock;
 
 /**
@@ -32,7 +33,7 @@ public class GenerateAnimalTest {
     @Test
     public void shouldReturnAnAnimalWithTheExpectedValues() {
         // Given
-        Species expectedSpec = Species.CAT;
+        Specie expectedSpec = new Specie(null, null, null, null);
         String expectedName = "foo";
         Paddock expectedPad = new Paddock("paddock", null);
         ReproductionImpl reproduction = new ReproductionImpl();
@@ -41,7 +42,7 @@ public class GenerateAnimalTest {
         // Then
         String actualName = actualAnimal.getName();
         Paddock actualPad = actualAnimal.getPaddock();
-        Species actualSpec = actualAnimal.getSpecie();
+        Specie actualSpec = actualAnimal.getSpecie();
         assertEquals(actualName, expectedName);
         assertEquals(expectedPad, actualPad);
         assertEquals(expectedSpec, actualSpec);

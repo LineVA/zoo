@@ -4,6 +4,7 @@ import zoo.animal.reproduction.Sex;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.paddock.Paddock;
 import lombok.Getter;
+import lombok.Setter;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.specie.Specie;
 import zoo.paddock.biome.BiomeAttributes;
@@ -25,10 +26,24 @@ public class Animal {
     private final Sex sex;
     @Getter
     private int age;
+    // There is both optimal and actual biome attributes :
+    // the first are determined when the animal is created,
+    // the second are the ones of its paddock.
     @Getter
-    private AnimalsLightAttributes optimals;
+    private BiomeAttributes optimalBiome;
+    // There is both optimal and actual feeding attributes : 
+    // the first are computed when the animal is created,
+    // the second are determined by the player.
     @Getter
-    private AnimalsAttributes actuals;
+    private FeedingAttributes optimalFeeding;
+    @Getter
+    @Setter
+    private FeedingAttributes actualFeeding;
+    // The actual reproduction attributes are computed 
+    // when the animal is created ;
+    // there is no notion of "optimal reproduction attributes".
+    @Getter
+    private ReproductionAttributes actualReproduction;
 
     public Animal(Specie spec, String name, Paddock paddock, Sex sex, int age) {
         this.specie = spec;
@@ -36,26 +51,34 @@ public class Animal {
         this.paddock = paddock;
         this.sex = sex;
         this.age = age;
-        this.optimals = new AnimalsLightAttributes(this.drawBiomeOptimals(spec),
-                this.drawFeedingOptimals(spec));
-        // Initially, the values are the ones of the specie
-        this.actuals = (AnimalsAttributes) this.optimals.clone();
-    }
-    
-    public Animal(Specie spec, String name, Paddock paddock, Sex sex, int age,
-            BiomeAttributes biome, FeedingAttributes feeding, ReproductionAttributes repro) {
-        this.specie = spec;
-        this.name = name;
-        this.paddock = paddock;
-        this.sex = sex;
-        this.age = age;
-        this.optimals = new AnimalsLightAttributes(biome, feeding);
-        // Initially, the values are the ones of the specie
-        this.actuals = (AnimalsAttributes) this.optimals.clone();
+        this.optimalBiome = drawOptimalBiome(spec);
+        this.optimalFeeding = drawOptimalFeeding(spec);
+        this.actualFeeding = drawActualFeeding(spec);
+        this.actualReproduction = drawActualReproduction(spec);
     }
 
-    public BiomeAttributes drawBiomeOptimals(Specie spec) {
-        double night = spec.getGaussiansAnimals().getBiome().getNightTemperature().nextGaussian();
+//    public Animal(Specie spec, String name, Paddock paddock, Sex sex, int age,
+//            BiomeAttributes biome, FeedingAttributes feeding, ReproductionAttributes repro) {
+//        this.specie = spec;
+//        this.name = name;
+//        this.paddock = paddock;
+//        this.sex = sex;
+//        this.age = age;
+//        this.optimalBiome = drawOptimalBiome(spec;
+//        this.optimalFeeding = drawOptimalFeeding(spec);
+//        this.actualFeeding = feeding;
+//        this.actualReproduction = repro;
+//    }
+
+    /**
+     * Computes the optimal values of the biome attributes for this animal
+     * according to its specie
+     *
+     * @param spec the Specie of the animal
+     * @return its optimalBiomeAttributes
+     */
+    public BiomeAttributes drawOptimalBiome(Specie spec) {
+        double night = 0.0;
         double day = 0.0;
         double pluvio = 0.0;
         double trreH = 0.0;
@@ -63,18 +86,40 @@ public class Animal {
         double drop = 0.0;
         double water = 0.0;
         double humidity = 0.0;
-
         BiomeAttributes biome = new BiomeAttributes(night, water, pluvio, treeD, treeD, drop, water, humidity);
-
         return biome;
     }
 
-    public FeedingAttributes drawFeedingOptimals(Specie spec) {
+    /**
+     * Compute the optimal values of the feeding attributes for this animal
+     * according to its specie
+     *
+     * @param spec the Specie of the animal
+     * @return its optimalFeedingAttributes
+     */
+    public FeedingAttributes drawOptimalFeeding(Specie spec) {
         return new FeedingAttributes(0.0);
     }
 
-    public ReproductionAttributes drawReproductionOptimals(Specie spec) {
-        return new ReproductionAttributes(0, 0, 0, 0);
+    /**
+     * Compute the actual values of the biome attributes for this animal
+     * according to its specie : there are the ones of the specie
+     *
+     * @param spec the Specie of the animal
+     * @return its actualFeedingAttributes
+     */
+    public FeedingAttributes drawActualFeeding(Specie spec) {
+        return spec.getFeeding();
     }
 
+    /**
+     * Compute the actual values of the reproduction attributes for this animal
+     * according to its specie
+     *
+     * @param spec the Specie of the animal
+     * @return its actualReproductionAttributes
+     */
+    public ReproductionAttributes drawActualReproduction(Specie spec) {
+        return new ReproductionAttributes(0, 0, 0, 0);
+    }
 }

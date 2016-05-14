@@ -6,7 +6,6 @@ import zoo.animal.Names;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.paddock.biome.BiomeAttributes;
-import zoo.paddock.biome.GaussianBiomeAttributes;
 
 /**
  *
