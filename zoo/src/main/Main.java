@@ -19,7 +19,6 @@ public class Main {
 //        MainGUI mainGUI = new MainGUI(parser);
         HashMap<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species");
         Zoo zoo = new Zoo("mainZoo", 50, 50, species);
-        System.out.println(zoo.getSpecies().size());
 
     }
 }
