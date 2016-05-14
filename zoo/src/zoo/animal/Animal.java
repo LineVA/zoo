@@ -5,6 +5,7 @@ import zoo.animal.feeding.FeedingAttributes;
 import zoo.paddock.Paddock;
 import lombok.Getter;
 import zoo.animal.reproduction.ReproductionAttributes;
+import zoo.animal.specie.Specie;
 import zoo.paddock.biome.BiomeAttributes;
 
 /**
@@ -14,7 +15,8 @@ import zoo.paddock.biome.BiomeAttributes;
 public class Animal {
 
     @Getter
-    private final Species specie;
+    //private final Species specie;
+    private final Specie specie;
     @Getter
     private final String name;
     @Getter
@@ -28,7 +30,7 @@ public class Animal {
     @Getter
     private AnimalsAttributes actuals;
 
-    public Animal(Species spec, String name, Paddock paddock, Sex sex, int age) {
+    public Animal(Specie spec, String name, Paddock paddock, Sex sex, int age) {
         this.specie = spec;
         this.name = name;
         this.paddock = paddock;
@@ -40,7 +42,7 @@ public class Animal {
         this.actuals = (AnimalsAttributes) this.optimals.clone();
     }
     
-    public Animal(Species spec, String name, Paddock paddock, Sex sex, int age,
+    public Animal(Specie spec, String name, Paddock paddock, Sex sex, int age,
             BiomeAttributes biome, FeedingAttributes feeding, ReproductionAttributes repro) {
         this.specie = spec;
         this.name = name;
@@ -52,7 +54,7 @@ public class Animal {
         this.actuals = (AnimalsAttributes) this.optimals.clone();
     }
 
-    public BiomeAttributes drawBiomeOptimals(Species spec) {
+    public BiomeAttributes drawBiomeOptimals(Specie spec) {
         double night = spec.getGaussiansAnimals().getBiome().getNightTemperature().nextGaussian();
         double day = 0.0;
         double pluvio = 0.0;
@@ -67,11 +69,11 @@ public class Animal {
         return biome;
     }
 
-    public FeedingAttributes drawFeedingOptimals(Species spec) {
+    public FeedingAttributes drawFeedingOptimals(Specie spec) {
         return new FeedingAttributes(0.0);
     }
 
-    public ReproductionAttributes drawReproductionOptimals(Species spec) {
+    public ReproductionAttributes drawReproductionOptimals(Specie spec) {
         return new ReproductionAttributes(0, 0, 0, 0);
     }
 

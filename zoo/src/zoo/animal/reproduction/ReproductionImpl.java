@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import zoo.Statistics.Uniform;
 import zoo.animal.Animal;
-import zoo.animal.Species;
+import zoo.animal.specie.Specie;
 import zoo.paddock.Paddock;
 
 /**
@@ -61,7 +61,7 @@ public class ReproductionImpl implements Reproduction {
      * @param pad its paddock
      * @return the baby
      */
-    public Animal generateAnimal(Species spec, String name, Paddock pad) {
+    public Animal generateAnimal(Specie spec, String name, Paddock pad) {
         Sex sex;
         if (uniform.nextBoolean()) {
             sex = Sex.FEMALE;
@@ -121,7 +121,7 @@ public class ReproductionImpl implements Reproduction {
      * @param animals the animals in the paddock
      * @return the male if one has been found, null else.
      */
-    public Animal whichMale(Species spec, HashMap<String, Animal> animals) {
+    public Animal whichMale(Specie spec, HashMap<String, Animal> animals) {
         for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
             Animal value = entry.getValue();
             if (value.getSpecie().equals(spec)) {
