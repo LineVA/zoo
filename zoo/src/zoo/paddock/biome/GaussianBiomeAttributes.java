@@ -26,14 +26,14 @@ public class GaussianBiomeAttributes {
     @Getter
     private Gaussian humidity;
 
-    public GaussianBiomeAttributes(BiomeAttributes average, BiomeAttributes sd) {
-        this.nightTemperature = new Gaussian(average.getNightTemperature(), sd.getNightTemperature());
-        this.dayTemperature = new Gaussian(average.getDayTemperature(), sd.getDayTemperature());
-        this.pluviometry = new Gaussian(average.getNightTemperature(), sd.getPluviometry());
-        this.treeDensity = new Gaussian(average.getTreeDensity(), sd.getTreeDensity());
-        this.treeHeight = new Gaussian(average.getTreeHeight(), sd.getTreeHeight());
-        this.drop = new Gaussian(average.getDrop(), sd.getDrop());
-        this.waterSalinity = new Gaussian(average.getWaterSalinity(), sd.getWaterSalinity());
-        this.humidity = new Gaussian(average.getHumidity(), sd.getHumidity());
+    public GaussianBiomeAttributes(BiomeAttributes average) {
+        this.nightTemperature = new Gaussian(average.getNightTemperature(), average.getNightTemperature()/10.0);
+        this.dayTemperature = new Gaussian(average.getDayTemperature(), average.getDayTemperature()/10.0);
+        this.pluviometry = new Gaussian(average.getNightTemperature(), average.getPluviometry()/10.0);
+        this.treeDensity = new Gaussian(average.getTreeDensity(), average.getTreeDensity()/10.0);
+        this.treeHeight = new Gaussian(average.getTreeHeight(), average.getTreeHeight()/10.0);
+        this.drop = new Gaussian(average.getDrop(), average.getDrop()/10.0);
+        this.waterSalinity = new Gaussian(average.getWaterSalinity(), average.getWaterSalinity()/10.0);
+        this.humidity = new Gaussian(average.getHumidity(), average.getHumidity()/10.0);
     }
 }
