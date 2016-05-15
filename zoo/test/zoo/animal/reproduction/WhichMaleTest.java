@@ -1,5 +1,6 @@
 package zoo.animal.reproduction;
 
+import exception.name.AlreadyUsedNameException;
 import org.junit.After;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
@@ -46,7 +47,7 @@ public class WhichMaleTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void shouldReturnMaleWhenThereIsNoMatureMaleOfTheSameSpecie() {
+    public void shouldReturnMaleWhenThereIsNoMatureMaleOfTheSameSpecie() throws AlreadyUsedNameException {
         // Given
         Animal female1 = new Animal(specie1, null, pad, Sex.FEMALE, 14);
         Animal male1 = new Animal(specie1, null, pad, Sex.MALE, 10);
@@ -64,7 +65,7 @@ public class WhichMaleTest {
 
     // This test does not check anymore : pb with the mock.
     @Test
-    public void shouldReturnTheFirstMatureMaleOfTheSameSpecieWhenThereIsSeveralMales() {
+    public void shouldReturnTheFirstMatureMaleOfTheSameSpecieWhenThereIsSeveralMales() throws AlreadyUsedNameException {
         // Given
         Animal female1 = new Animal(specie1, null, pad, Sex.FEMALE, 14);
         Animal male1 = new Animal(specie1, null, pad, Sex.MALE, 10);

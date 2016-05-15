@@ -5,9 +5,9 @@ import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import java.io.IOException;
 import java.util.ArrayList;
-import org.junit.AfterClass;
+import org.junit.After;
 import static org.junit.Assert.assertEquals;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -19,20 +19,20 @@ import zoo.Zoo;
  */
 public class ListPaddockTest {
 
-    static Zoo zoo;
+    Zoo zoo;
 
-    @BeforeClass
-    public static void setUpClass() throws AlreadyUsedNameException,
+    @Before
+    public void setUpClass() throws AlreadyUsedNameException,
             IncorrectDimensionsException, EmptyNameException, IOException {
         String name = "foo";
         int width = 6;
         int height = 7;
-        zoo = new Zoo(name, width, height, null);
+        zoo = new Zoo();
+        zoo.initiateZoo(name, width, height, null);
     }
 
-    @AfterClass
-    public static void tearDownClass() {
-        zoo = null;
+    @After
+    public void tearDownClass() {
     }
 
     @Rule

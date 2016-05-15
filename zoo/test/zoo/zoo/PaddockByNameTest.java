@@ -7,7 +7,7 @@ import exception.name.UnknownNameException;
 import java.io.IOException;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -21,11 +21,15 @@ import zoo.Zoo;
  */
 public class PaddockByNameTest {
 
-    public PaddockByNameTest() {
-    }
+    Zoo zoo;
 
-    @BeforeClass
-    public static void setUpClass() {
+    @Before
+    public void setUpClass() throws EmptyNameException, IOException {
+        String name = "foo";
+        int width = 6;
+        int height = 7;
+        zoo = new Zoo();
+        zoo.initiateZoo(name, width, height, null);
     }
 
     @AfterClass
@@ -40,10 +44,6 @@ public class PaddockByNameTest {
             throws IncorrectDimensionsException, EmptyNameException,
             AlreadyUsedNameException, UnknownNameException, IOException {
         // Given
-        String name = "foo";
-        int width = 6;
-        int height = 7;
-        Zoo zoo = new Zoo(name, width, height, null);
         zoo.addPaddock("a", 1, 1, 1, 1);
         zoo.addPaddock("b", 2, 2, 2, 2);
         // When
@@ -53,16 +53,12 @@ public class PaddockByNameTest {
         Paddock expectedPaddock = new Paddock("b", coor);
         assertEquals(true, actualPaddock.getName().equals(expectedPaddock.getName()));
     }
-    
-      @Test
+
+    @Test
     public void shouldThrowAnUnknownNameExceptionWhenTheResearchedPaddockDoesNotExist()
             throws IncorrectDimensionsException, EmptyNameException,
             AlreadyUsedNameException, UnknownNameException, IOException {
         // Given
-        String name = "foo";
-        int width = 6;
-        int height = 7;
-        Zoo zoo = new Zoo(name, width, height, null);
         zoo.addPaddock("a", 1, 1, 1, 1);
         zoo.addPaddock("b", 2, 2, 2, 2);
         // When
@@ -70,16 +66,12 @@ public class PaddockByNameTest {
         Paddock actualPaddock = zoo.paddockByName("c");
         // Then
     }
-    
-      @Test
+
+    @Test
     public void shouldThrowAnEmptyNameExceptionWhenTheResearchedNameIsEmpty()
             throws IncorrectDimensionsException, EmptyNameException,
             AlreadyUsedNameException, UnknownNameException, IOException {
         // Given
-        String name = "foo";
-        int width = 6;
-        int height = 7;
-        Zoo zoo = new Zoo(name, width, height, null);
         zoo.addPaddock("a", 1, 1, 1, 1);
         zoo.addPaddock("b", 2, 2, 2, 2);
         // When

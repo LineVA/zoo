@@ -45,7 +45,8 @@ public class ZooTest {
         HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
         HashMap<String, Specie> expectedSpecies = new HashMap<>();
         // When
-        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight, expectedSpecies);
+        Zoo zoo = new Zoo();
+        zoo.initiateZoo(expectedName, expectedWidth, expectedHeight, null);
         // Then
         String actualName = zoo.getName();
         int actualWidth = zoo.getWidth();
@@ -69,7 +70,8 @@ public class ZooTest {
         HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
         // When
         thrown.expect(IncorrectDimensionsException.class);
-        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight, null);
+        Zoo zoo = new Zoo();
+        zoo.initiateZoo(expectedName, expectedWidth, expectedHeight, null);
         // Then
     }
 
@@ -83,7 +85,8 @@ public class ZooTest {
         HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
         // When
         thrown.expect(IncorrectDimensionsException.class);
-        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight, null);
+        Zoo zoo = new Zoo();
+        zoo.initiateZoo(expectedName, expectedWidth, expectedHeight, null);
         // Then
     }
 
@@ -97,7 +100,8 @@ public class ZooTest {
         HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
         // When
         thrown.expect(IncorrectDimensionsException.class);
-        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight, null);
+        Zoo zoo = new Zoo();
+        zoo.initiateZoo(expectedName, expectedWidth, expectedHeight, null);
         // Then
     }
 
@@ -111,7 +115,8 @@ public class ZooTest {
         HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
         // When
         thrown.expect(IncorrectDimensionsException.class);
-        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight, null);
+        Zoo zoo = new Zoo();
+        zoo.initiateZoo(expectedName, expectedWidth, expectedHeight, null);
         // Then
     }
 
@@ -125,7 +130,8 @@ public class ZooTest {
         HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
         // When
         thrown.expect(EmptyNameException.class);
-        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight, null);
+        Zoo zoo = new Zoo();
+        zoo.initiateZoo(expectedName, expectedWidth, expectedHeight, null);
         // Then
     }
 
@@ -139,7 +145,8 @@ public class ZooTest {
         HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
         // When
         thrown.expect(EmptyNameException.class);
-        Zoo zoo = new Zoo(expectedName, expectedWidth, expectedHeight, null);
+        Zoo zoo = new Zoo();
+        zoo.initiateZoo(expectedName, expectedWidth, expectedHeight, null);
         // Then
     }
 

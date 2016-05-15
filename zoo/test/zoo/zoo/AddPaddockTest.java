@@ -14,6 +14,7 @@ import org.junit.rules.ExpectedException;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import zoo.IZoo;
 import zoo.paddock.Paddock;
 import zoo.paddock.PaddockCoordinates;
 import zoo.Zoo;
@@ -32,7 +33,8 @@ public class AddPaddockTest {
         String name = "foo";
         int width = 6;
         int height = 7;
-        zoo = new Zoo(name, width, height, null);
+        zoo = new Zoo();
+        zoo.initiateZoo(name, width, height, null);
         PaddockCoordinates coor = mock(PaddockCoordinates.class);
         when(coor.isNotCompeting(any(PaddockCoordinates.class))).thenReturn(true);
         PaddockCoordinates coor2 = mock(PaddockCoordinates.class);
