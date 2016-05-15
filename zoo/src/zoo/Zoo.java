@@ -6,12 +6,9 @@ import exception.IncorrectDimensionsException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
-import gui.FormattingDisplay;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import lombok.Getter;
 import zoo.animal.Animal;
 import zoo.animal.death.DieImpl;
@@ -24,7 +21,7 @@ import zoo.animal.specie.Specie;
  *
  * @author doyenm
  */
-public class Zoo {
+public class Zoo implements IZoo {
 
     /**
      * The name of the zoo
@@ -63,7 +60,8 @@ public class Zoo {
      * height is/are smaller than 1
      * @throws exception.name.EmptyNameException
      */
-    public Zoo(String name, int width, int height, HashMap<String, Specie> species)
+    @Override
+    public void initiateZoo(String name, int width, int height, HashMap<String, Specie> species)
             throws IncorrectDimensionsException, EmptyNameException, IOException {
         if (name.trim().equals("")) {
             throw new EmptyNameException("Please enter a no-empty name for the zoo.");
@@ -94,6 +92,7 @@ public class Zoo {
      * @throws IncorrectDimensionsException if the paddock is to big for the zoo
      * or its width and/or are smaller than 1 or its origins are sammler than 0
      */
+    @Override
     public void addPaddock(String paddockName, int x, int y, int width, int height)
             throws AlreadyUsedNameException, IncorrectDimensionsException {
         if (paddocks.containsKey(paddockName)) {
@@ -118,9 +117,9 @@ public class Zoo {
 
     /**
      * Method used to list the paddocks of the zoo
-     *
-     * @return an Arraylist<String> of their names
+     * @return ArrayList of their names
      */
+    @Override
     public ArrayList<String> listPaddock() {
         ArrayList<String> list = new ArrayList<>();
         for (HashMap.Entry<String, Paddock> entry : paddocks.entrySet()) {
@@ -155,11 +154,14 @@ public class Zoo {
      * @param name the name of the paddock we search
      * @return these information without mef
      * @throws UnknownNameException if the searched paddock does not exist
+     * @throws exception.name.EmptyNameException
      */
-    public String detailedPaddock(String name) throws UnknownNameException,
+    @Override
+    public String detailledPaddock(String name) throws UnknownNameException,
             EmptyNameException {
-        Paddock pad = paddockByName(name);
-        return FormattingDisplay.idDisplay(name);
+      Paddock pad = paddockByName(name);
+    //    return FormattingDisplay.idDisplay(name);
+      return "";
     }
 
     /**
@@ -192,6 +194,7 @@ public class Zoo {
 //            if()
 //        }
 //    }
+    @Override
     public int evaluate() {
         ArrayList<String> presentedSpecies = new ArrayList<>();
         int kidsNb = 0;
@@ -241,4 +244,5 @@ public class Zoo {
             }
         }
     }
+    
 }

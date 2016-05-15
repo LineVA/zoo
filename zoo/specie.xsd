@@ -1,0 +1,36 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="animal">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="names">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="fr"/>
+              <xs:element type="xs:string" name="en"/>
+              <xs:element type="xs:string" name="scientific"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="reproduction">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:integer" name="femaleMaturity"/>
+              <xs:element type="xs:integer" name="maleMaturity"/>
+              <xs:element type="xs:decimal" name="gestationFrequency"/>
+              <xs:element type="xs:integer" name="litterSize"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="lifespan">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:decimal" name="femaleLifespan"/>
+              <xs:element type="xs:decimal" name="maleLifeSpan"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+
