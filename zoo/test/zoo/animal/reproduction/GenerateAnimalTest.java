@@ -33,7 +33,7 @@ public class GenerateAnimalTest {
     @Test
     public void shouldReturnAnAnimalWithTheExpectedValues() {
         // Given
-        Specie expectedSpec = new Specie(null, null, null, null);
+        Specie expectedSpec = new Specie(null, null, null, null, null);
         String expectedName = "foo";
         Paddock expectedPad = new Paddock("paddock", null);
         ReproductionImpl reproduction = new ReproductionImpl();

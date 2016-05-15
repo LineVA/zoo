@@ -5,6 +5,7 @@ import zoo.animal.feeding.FeedingAttributes;
 import zoo.paddock.Paddock;
 import lombok.Getter;
 import lombok.Setter;
+import zoo.animal.death.LifeSpanAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.specie.Specie;
 import zoo.paddock.biome.BiomeAttributes;
@@ -44,6 +45,11 @@ public class Animal {
     // there is no notion of "optimal reproduction attributes".
     @Getter
     private final ReproductionAttributes actualReproduction;
+    // The actual life span is computed when the animal is created ; 
+    // the "optimal" lifespan has no sense.
+    @Getter
+    private final LifeSpanAttributes actualLifeSpan;
+    
 
     public Animal(Specie spec, String name, Paddock paddock, Sex sex, int age) {
         this.specie = spec;
@@ -55,6 +61,7 @@ public class Animal {
         this.optimalFeeding = drawOptimalFeeding(spec);
         this.actualFeeding = drawActualFeeding(spec);
         this.actualReproduction = drawActualReproduction(spec);
+        this.actualLifeSpan = drawActualLifeSpan(spec);
     }
 
     /**
@@ -113,4 +120,37 @@ public class Animal {
         int litter = spec.getGaussianReproduction().getLitterSize().nextInt();
         return new ReproductionAttributes(female, male, frequency, litter);
     }
+    
+    private LifeSpanAttributes drawActualLifeSpan(Specie spec) {
+        int femaleLifeSpan = spec.getGaussianLifeSpanAttributesSpan().getFemaleLifeSpan().nextInt();
+        int maleLifeSpan = spec.getGaussianLifeSpanAttributesSpan().getMaleLifeSpan().nextInt();
+        return new LifeSpanAttributes(femaleLifeSpan, maleLifeSpan);
+    }
+
+    /**
+     * Compute if the animal is mature by comparing its age and the age age of
+     * sexual maturity for its sex
+     * @return true if it is mature, false else
+     */
+    public boolean isMature() {
+        if (this.sex == Sex.FEMALE) {
+            return this.age >= this.actualReproduction.getFemaleMaturityAge();
+        } else {
+            return this.age >= this.actualReproduction.getMaleMaturityAge();
+        }
+    }
+    
+    /**
+     * Compute if a animal older than its life span according to its sex
+     * @return true if it is older, false else.
+     */
+    public boolean isTooOld(){
+        if (this.sex == Sex.FEMALE) {
+            return this.age >= this.actualLifeSpan.getFemaleLifeSpan();
+        } else {
+            return this.age >= this.actualLifeSpan.getMaleLifeSpan();
+        }
+    }
+
+    
 }

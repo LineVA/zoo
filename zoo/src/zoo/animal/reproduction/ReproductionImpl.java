@@ -80,7 +80,7 @@ public class ReproductionImpl implements Reproduction {
      */
     public boolean canFemaleReproducte(Animal animal) {
         if (animal.getSex().isFemale()) {
-            if (animal.getAge() > animal.getActualReproduction().getFemaleMaturityAge()) {
+            if (animal.isMature()) {
                 return true && isGestation(animal);
             } else {
                 return false;
@@ -105,7 +105,7 @@ public class ReproductionImpl implements Reproduction {
      */
     public boolean canMaleReproducte(Animal animal) {
         if (animal.getSex().isMale()) {
-            if (animal.getAge() > animal.getActualReproduction().getMaleMaturityAge()) {
+            if (animal.isMature()) {
                 return true;
             }
         }
