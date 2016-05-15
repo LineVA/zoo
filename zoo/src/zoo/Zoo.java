@@ -10,8 +10,14 @@ import gui.FormattingDisplay;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lombok.Getter;
 import zoo.animal.Animal;
+import zoo.animal.death.DieImpl;
+import zoo.animal.death.IDie;
+import zoo.animal.reproduction.Reproduction;
+import zoo.animal.reproduction.ReproductionImpl;
 import zoo.animal.specie.Specie;
 
 /**
@@ -186,21 +192,53 @@ public class Zoo {
 //            if()
 //        }
 //    }
-    
     public int evaluate() {
         ArrayList<String> presentedSpecies = new ArrayList<>();
         int kidsNb = 0;
         for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
             for (HashMap.Entry<String, Animal> animalEntry : padEntry.getValue().getAnimals().entrySet()) {
-                if (animalEntry.getValue().isMature()) {
-                    kidsNb +=  1;
+                if (!animalEntry.getValue().isMature()) {
+                    kidsNb += 1;
                 }
                 String name = animalEntry.getValue().getSpecie().getNames().getEnglishName();
-                if(!presentedSpecies.contains(name)){
+                if (!presentedSpecies.contains(name)) {
                     presentedSpecies.add(name);
                 }
             }
         }
         return kidsNb * 5 + presentedSpecies.size();
+    }
+
+    public void death() {
+        IDie die = new DieImpl();
+        for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
+            for (HashMap.Entry<String, Animal> animalEntry : padEntry.getValue().getAnimals().entrySet()) {
+                // If the animal is dead
+                if (die.isDied(animalEntry.getValue())) {
+                    try {
+                        padEntry.getValue().removeAnimal(animalEntry.getValue().getName());
+                    } catch (UnknownNameException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
+    public void birth() {
+        Reproduction repro = new ReproductionImpl();
+        ArrayList<Animal> newFamily;
+        for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
+            for (HashMap.Entry<String, Animal> animalEntry : padEntry.getValue().getAnimals().entrySet()) {
+                newFamily = repro.reproducte(animalEntry.getValue());
+                for(int i = 2 ; i<newFamily.size() ; i++){
+                    try {
+                        padEntry.getValue().addAnimal(newFamily.get(i));
+                    } catch (AlreadyUsedNameException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        }
     }
 }

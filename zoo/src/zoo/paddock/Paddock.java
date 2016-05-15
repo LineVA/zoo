@@ -7,7 +7,8 @@ package zoo.paddock;
 
 import zoo.paddock.biome.BiomeAttributes;
 import zoo.paddock.biome.Biome;
-import exception.IncorrectDataException;
+import exception.name.AlreadyUsedNameException;
+import exception.name.UnknownNameException;
 import java.util.HashMap;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -70,14 +71,12 @@ public class Paddock implements Cloneable {
         this.attributes = (BiomeAttributes) biome.getAttributes().clone();
     }
 
-   
-
     public Object clone() {
         Paddock pad = null;
         try {
             pad = (Paddock) super.clone();
         } catch (CloneNotSupportedException cnse) {
-	      	// Ne devrait jamais arriver car nous implémentons 
+            // Ne devrait jamais arriver car nous implémentons 
             // l'interface Cloneable
             cnse.printStackTrace(System.err);
         }
@@ -88,8 +87,22 @@ public class Paddock implements Cloneable {
         // on renvoie le clone
         return pad;
     }
-    
-    public void addAnimal(Animal animal){
-        animals.put(animal.getName(), animal);
+
+    public void addAnimal(Animal animal) throws AlreadyUsedNameException {
+        if (this.animals.containsKey(animal.getName())) {
+            throw new AlreadyUsedNameException("There is already an animal with"
+                    + " this name is this paddock, please choose another one.");
+        } else {
+            animals.put(animal.getName(), animal);
+        }
     }
+
+    public void removeAnimal(String name) throws UnknownNameException {
+        if (this.animals.containsKey(name)) {
+            this.animals.remove(name);
+        } else {
+            throw new UnknownNameException("No animal with this name exists in this paddock.");
+        }
+    }
+
 }
