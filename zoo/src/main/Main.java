@@ -18,7 +18,9 @@ public class Main {
 //        CommandLineParser parser = new CommandLineParser(transmission);
 //        MainGUI mainGUI = new MainGUI(parser);
         HashMap<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species");
+        // TO DO : why not a IZoo
         Zoo zoo = new Zoo("mainZoo", 50, 50, species);
+        
 
     }
 }

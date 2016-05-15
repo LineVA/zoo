@@ -8,17 +8,10 @@ import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import gui.FormattingDisplay;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.Stream;
 import lombok.Getter;
-import org.jdom2.JDOMException;
-import zoo.animal.specie.ParserSpecie;
+import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
 
 /**
@@ -59,8 +52,10 @@ public class Zoo {
      * @param name the name of the zoo
      * @param width the width of the zoo
      * @param height the height of the zoo
+     * @param species
      * @throws IncorrectDimensionsException throws if the width and/or the
      * height is/are smaller than 1
+     * @throws exception.name.EmptyNameException
      */
     public Zoo(String name, int width, int height, HashMap<String, Specie> species)
             throws IncorrectDimensionsException, EmptyNameException, IOException {
@@ -79,7 +74,7 @@ public class Zoo {
         paddocks = new HashMap<>();
         this.species = species;
     }
-    
+
     /**
      * Method used to add a paddock to the zoo
      *
@@ -135,7 +130,8 @@ public class Zoo {
      * @return the paddock if it exists
      * @throws UnknownNameException if the paddock does not exist
      */
-    public Paddock paddockByName(String name) throws UnknownNameException, EmptyNameException {
+    public Paddock paddockByName(String name) throws UnknownNameException,
+            EmptyNameException {
         if (name.trim().equals("")) {
             throw new EmptyNameException("");
         }
@@ -154,7 +150,8 @@ public class Zoo {
      * @return these information without mef
      * @throws UnknownNameException if the searched paddock does not exist
      */
-    public String detailedPaddock(String name) throws UnknownNameException, EmptyNameException {
+    public String detailedPaddock(String name) throws UnknownNameException,
+            EmptyNameException {
         Paddock pad = paddockByName(name);
         return FormattingDisplay.idDisplay(name);
     }
@@ -169,5 +166,41 @@ public class Zoo {
     private boolean tooSmallforThisPaddock(PaddockCoordinates coor) {
         return ((coor.getX() + coor.getWidth() > this.width)
                 || (coor.getY() + coor.getHeight() > this.height));
+    }
+
+//    public int kidsNbEvaluation() {
+//        int kidsNb = 0;
+//        for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
+//            for (HashMap.Entry<String, Animal> animalEntry : padEntry.getValue().getAnimals().entrySet()) {
+//                if (animalEntry.getValue().isMature()) {
+//                    kidsNb += 1;
+//                }
+//            }
+//        }
+//        return kidsNb;
+//    }
+//  
+//    public int presentedSpeciesNbEvaluation() {
+//        ArrayList<String> presentedSpecies = new ArrayList<>();
+//          for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
+//            if()
+//        }
+//    }
+    
+    public int evaluate() {
+        ArrayList<String> presentedSpecies = new ArrayList<>();
+        int kidsNb = 0;
+        for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
+            for (HashMap.Entry<String, Animal> animalEntry : padEntry.getValue().getAnimals().entrySet()) {
+                if (animalEntry.getValue().isMature()) {
+                    kidsNb +=  1;
+                }
+                String name = animalEntry.getValue().getSpecie().getNames().getEnglishName();
+                if(!presentedSpecies.contains(name)){
+                    presentedSpecies.add(name);
+                }
+            }
+        }
+        return kidsNb * 5 + presentedSpecies.size();
     }
 }
