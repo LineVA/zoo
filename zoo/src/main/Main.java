@@ -4,6 +4,7 @@ import exception.name.EmptyNameException;
 import java.io.IOException;
 import java.util.HashMap;
 import org.jdom2.JDOMException;
+import zoo.IZoo;
 import zoo.Zoo;
 import zoo.animal.specie.Specie;
 
@@ -19,7 +20,8 @@ public class Main {
 //        MainGUI mainGUI = new MainGUI(parser);
         HashMap<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species");
         // TO DO : why not a IZoo
-        Zoo zoo = new Zoo("mainZoo", 50, 50, species);
+        IZoo zoo = new Zoo();
+        zoo.initiateZoo("mainZoo", 50, 50, species);
         
 
     }
