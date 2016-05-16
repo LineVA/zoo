@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import zoo.animal.specie.Specie;
+import zoo.paddock.Paddock;
+import zoo.paddock.PaddockCoordinates;
 
 /**
  *
@@ -28,13 +30,20 @@ public interface IZoo {
 
     public ArrayList<String> listPaddock();
 
-    public String detailledPaddock(String name) throws UnknownNameException, EmptyNameException;
+  //  public ArrayList<String> detailledPaddock(String name) throws UnknownNameException, EmptyNameException;
+    
+    public ArrayList<PaddockCoordinates> map() throws IncorrectDimensionsException;
 
     public int evaluate();
 
     public void death() throws UnknownNameException;
     
     public void birth() throws AlreadyUsedNameException;
+    
+    public Paddock findPaddockByName(String paddockName) throws EmptyNameException, UnknownNameException;
+    
+//    public void setBiome(String paddockName, String biomeName)
+//            throws UnknownNameException, EmptyNameException;
 }
 
 

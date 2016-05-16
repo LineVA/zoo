@@ -65,5 +65,11 @@ public class PaddockCoordinates {
         notCompeting = notCompeting || (this.x > (coor.x + coor.width - 1));
         return notCompeting;
     }
+    
+    @Override
+    public String toString(){
+        return "x = " + this.x + ", y = " + this.y + 
+                ", width = " + this.width + ", height = " + this.height;
+    }
 
 }

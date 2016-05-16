@@ -9,6 +9,7 @@ import zoo.paddock.biome.BiomeAttributes;
 import zoo.paddock.biome.Biome;
 import exception.name.AlreadyUsedNameException;
 import exception.name.UnknownNameException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -62,13 +63,25 @@ public class Paddock implements Cloneable {
     }
 
     /**
-     * Setetr of the fields linked to the biome
+     * Setter of the fields linked to the biome
      *
      * @param biome the new biome of the paddock
      */
     public void setBiome(Biome biome) {
-        this.biome = biome.getName();
-        this.attributes = (BiomeAttributes) biome.getAttributes().clone();
+        if (biome != null) {
+            this.biome = biome.getName();
+            this.attributes = (BiomeAttributes) biome.getAttributes().clone();
+        } else {
+            setBiome(Biome.NONE);
+        }
+    }
+
+    public void setBiome(String biomeName) throws UnknownNameException {
+       try{
+           setBiome(Biome.NONE.findById(Integer.parseInt(biomeName)));
+       } catch(java.lang.NumberFormatException ex){
+           setBiome(Biome.NONE.findByName(biomeName));
+       }
     }
 
     public Object clone() {
@@ -103,6 +116,16 @@ public class Paddock implements Cloneable {
         } else {
             throw new UnknownNameException("No animal with this name exists in this paddock.");
         }
+    }
+
+    public ArrayList<String> info() {
+        ArrayList<String> info = new ArrayList<>();
+        info.add("Name : " + this.name);
+        info.add("Coordinates : " + this.coordinates.toString());
+        info.add("Animals : " + "None yet");
+        info.add("Biome : " + this.biome);
+        info.add("Biome's characteristics : " + this.attributes.toString());
+        return info;
     }
 
 }

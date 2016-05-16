@@ -117,6 +117,7 @@ public class Zoo implements IZoo {
 
     /**
      * Method used to list the paddocks of the zoo
+     *
      * @return ArrayList of their names
      */
     @Override
@@ -135,7 +136,8 @@ public class Zoo implements IZoo {
      * @return the paddock if it exists
      * @throws UnknownNameException if the paddock does not exist
      */
-    public Paddock paddockByName(String name) throws UnknownNameException,
+    @Override
+    public Paddock findPaddockByName(String name) throws UnknownNameException,
             EmptyNameException {
         if (name.trim().equals("")) {
             throw new EmptyNameException("");
@@ -156,13 +158,19 @@ public class Zoo implements IZoo {
      * @throws UnknownNameException if the searched paddock does not exist
      * @throws exception.name.EmptyNameException
      */
-    @Override
-    public String detailledPaddock(String name) throws UnknownNameException,
-            EmptyNameException {
-      Paddock pad = paddockByName(name);
-    //    return FormattingDisplay.idDisplay(name);
-      return "";
-    }
+//    public ArrayList<String> detailledPaddock(String name) 
+//            throws UnknownNameException,
+//            EmptyNameException {
+//        Paddock pad = findPaddockByName(name);
+//        return pad.info();
+//    }
+//    
+//    public void setBiome(String paddockName, String biomeName)
+//            throws UnknownNameException, EmptyNameException{
+//        Paddock pad = findPaddockByName(paddockName);
+//        pad.setBiome(biomeName);
+//    }
+    
 
     /**
      * Method used to know if a paddock can be placed into the zoo without
@@ -234,7 +242,7 @@ public class Zoo implements IZoo {
         for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
             for (HashMap.Entry<String, Animal> animalEntry : padEntry.getValue().getAnimals().entrySet()) {
                 newFamily = repro.reproducte(animalEntry.getValue());
-                for(int i = 2 ; i<newFamily.size() ; i++){
+                for (int i = 2; i < newFamily.size(); i++) {
                     try {
                         padEntry.getValue().addAnimal(newFamily.get(i));
                     } catch (AlreadyUsedNameException ex) {
@@ -244,5 +252,15 @@ public class Zoo implements IZoo {
             }
         }
     }
-    
+
+    @Override
+    public ArrayList<PaddockCoordinates> map() throws IncorrectDimensionsException {
+        ArrayList<PaddockCoordinates> map = new ArrayList<>();
+        map.add(new PaddockCoordinates(0, 0, width, height));
+        for (HashMap.Entry<String, Paddock> padEntry : paddocks.entrySet()) {
+            map.add(padEntry.getValue().getCoordinates());
+        }
+        return map;
+    }
+
 }

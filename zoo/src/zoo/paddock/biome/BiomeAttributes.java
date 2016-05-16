@@ -3,7 +3,6 @@ package zoo.paddock.biome;
 import exception.IncorrectDataException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  *
@@ -51,8 +50,8 @@ public class BiomeAttributes implements Cloneable {
         }
         return o;
     }
-    
-     private boolean isPositivOrZero(double test) {
+
+    private boolean isPositivOrZero(double test) {
         return test >= 0.0;
     }
 
@@ -121,7 +120,19 @@ public class BiomeAttributes implements Cloneable {
                     + "between 0 and 1.");
         }
     }
-    
-    
+
+    @Override
+    public String toString() {
+        String info = "";
+        info += "night temperature = " + this.nightTemperature + ", ";
+        info += "day temperature = " + this.dayTemperature + ", ";
+        info += "pluviometry = " + this.pluviometry + ", ";
+        info += "tree's density = " + this.treeDensity + ", ";
+        info += "tree's height = " + this.treeHeight + ", ";
+        info += "drop = " + this.drop + ", ";
+        info += "water salinity = " + this.waterSalinity + ", ";
+        info += "humidity = " + this.humidity;
+        return info;
+    }
 
 }
