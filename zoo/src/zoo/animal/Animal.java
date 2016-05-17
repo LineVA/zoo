@@ -1,5 +1,6 @@
 package zoo.animal;
 
+import exception.IncorrectDataException;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.paddock.Paddock;
@@ -50,12 +51,16 @@ public class Animal {
     @Getter
     private final LifeSpanAttributes actualLifeSpan;
 
-    public Animal(Specie spec, String name, Paddock paddock, Sex sex, int age) {
+    public Animal(Specie spec, String name, Paddock paddock, Sex sex, int age) throws IncorrectDataException {
         this.specie = spec;
         this.name = name;
         this.paddock = paddock;
         this.sex = sex;
-        this.age = age;
+        if (age >= 0) {
+            this.age = age;
+        }else {
+            throw new IncorrectDataException("An animal cannot be younger than 0 month...");
+        }
 //        this.optimalBiome = drawOptimalBiome(spec);
 //        this.optimalFeeding = drawOptimalFeeding(spec);
 //        this.actualFeeding = drawActualFeeding(spec);
@@ -65,7 +70,7 @@ public class Animal {
         this.optimalFeeding = null;
         this.actualFeeding = null;
        // this.actualReproduction = null;
-       // this.actualLifeSpan = null;
+        // this.actualLifeSpan = null;
     }
 
     /**

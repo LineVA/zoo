@@ -1,6 +1,7 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
+import exception.IncorrectDataException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
@@ -25,8 +26,8 @@ public class Evaluate implements Command {
             zoo.death();
             // Zoo evaluation
            zooEvaluation = zoo.evaluate();
-        } catch (UnknownNameException | AlreadyUsedNameException ex) {
-            return "A problem with names";
+        } catch (UnknownNameException | AlreadyUsedNameException | IncorrectDataException ex) {
+            return ex.getMessage();
         }
         return "The evaluation of the zoo : " + zooEvaluation;
     }

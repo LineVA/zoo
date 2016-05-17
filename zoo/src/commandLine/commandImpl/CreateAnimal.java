@@ -1,6 +1,7 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
+import exception.IncorrectDataException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
@@ -24,7 +25,8 @@ public class CreateAnimal implements Command {
             Animal animal = new Animal(specie, cmd[3], pad, sex, Integer.parseInt(cmd[6]));
             pad.addAnimal(animal);
             return "Yhe animal has been created.";
-        } catch (EmptyNameException | UnknownNameException  | AlreadyUsedNameException ex) {
+        } catch (EmptyNameException | UnknownNameException  
+                | AlreadyUsedNameException | IncorrectDataException  ex) {
             return ex.getMessage();
         }
     }

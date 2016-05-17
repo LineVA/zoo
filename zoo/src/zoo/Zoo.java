@@ -1,5 +1,6 @@
 package zoo;
 
+import exception.IncorrectDataException;
 import zoo.paddock.PaddockCoordinates;
 import zoo.paddock.Paddock;
 import exception.IncorrectDimensionsException;
@@ -236,7 +237,7 @@ public class Zoo implements IZoo {
         }
     }
 
-    public void birth() {
+    public void birth() throws IncorrectDataException{
         Reproduction repro = new ReproductionImpl();
         ArrayList<Animal> newFamily;
         for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {

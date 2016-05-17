@@ -5,6 +5,7 @@
  */
 package zoo;
 
+import exception.IncorrectDataException;
 import exception.IncorrectDimensionsException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
@@ -38,7 +39,7 @@ public interface IZoo {
 
     public void death() throws UnknownNameException;
     
-    public void birth() throws AlreadyUsedNameException;
+    public void birth() throws AlreadyUsedNameException, IncorrectDataException;
     
     public Paddock findPaddockByName(String paddockName) throws EmptyNameException, UnknownNameException;
     

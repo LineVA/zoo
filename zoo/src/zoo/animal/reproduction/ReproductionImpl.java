@@ -1,5 +1,6 @@
 package zoo.animal.reproduction;
 
+import exception.IncorrectDataException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import zoo.Statistics.Uniform;
@@ -26,7 +27,7 @@ public class ReproductionImpl implements Reproduction {
     }
     
     @Override
-    public ArrayList<Animal> reproducte(Animal animal) {
+    public ArrayList<Animal> reproducte(Animal animal) throws IncorrectDataException{
         if (canFemaleReproducte(animal)) {
             Animal father = whichMale(animal.getSpecie(), animal.getPaddock().getAnimals());
             if (father != null) {
@@ -44,7 +45,7 @@ public class ReproductionImpl implements Reproduction {
      * @return an ArrayList ; the first element is the fater, the following
      * are the babies
      */
-    public ArrayList<Animal> generateFamily(Animal mother, Animal father) {
+    public ArrayList<Animal> generateFamily(Animal mother, Animal father) throws IncorrectDataException {
         ArrayList<Animal> family = new ArrayList<>();
         family.add(father);
         for (int i = 0; i < uniform.intAverage(mother.getActualReproduction()
@@ -62,7 +63,7 @@ public class ReproductionImpl implements Reproduction {
      * @param pad its paddock
      * @return the baby
      */
-    public Animal generateAnimal(Specie spec, String name, Paddock pad) {
+    public Animal generateAnimal(Specie spec, String name, Paddock pad) throws IncorrectDataException {
         Sex sex;
         if (uniform.nextBoolean()) {
             sex = Sex.FEMALE;
