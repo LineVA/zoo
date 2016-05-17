@@ -49,7 +49,6 @@ public class Animal {
     // the "optimal" lifespan has no sense.
     @Getter
     private final LifeSpanAttributes actualLifeSpan;
-    
 
     public Animal(Specie spec, String name, Paddock paddock, Sex sex, int age) {
         this.specie = spec;
@@ -57,11 +56,16 @@ public class Animal {
         this.paddock = paddock;
         this.sex = sex;
         this.age = age;
-        this.optimalBiome = drawOptimalBiome(spec);
-        this.optimalFeeding = drawOptimalFeeding(spec);
-        this.actualFeeding = drawActualFeeding(spec);
+//        this.optimalBiome = drawOptimalBiome(spec);
+//        this.optimalFeeding = drawOptimalFeeding(spec);
+//        this.actualFeeding = drawActualFeeding(spec);
         this.actualReproduction = drawActualReproduction(spec);
         this.actualLifeSpan = drawActualLifeSpan(spec);
+        this.optimalBiome = null;
+        this.optimalFeeding = null;
+        this.actualFeeding = null;
+       // this.actualReproduction = null;
+       // this.actualLifeSpan = null;
     }
 
     /**
@@ -114,13 +118,13 @@ public class Animal {
      * @return its actualReproductionAttributes
      */
     public ReproductionAttributes drawActualReproduction(Specie spec) {
-        int female = spec.getGaussianReproduction().getFemaleMaturityAge().nextInt();
-        int male = spec.getGaussianReproduction().getFemaleMaturityAge().nextInt();
-        double frequency = spec.getGaussianReproduction().getGestationFrequency().nextDouble();
-        int litter = spec.getGaussianReproduction().getLitterSize().nextInt();
+        int female = spec.getGaussianReproduction().getFemaleMaturityAge().gaussianInt();
+        int male = spec.getGaussianReproduction().getFemaleMaturityAge().gaussianInt();
+        double frequency = spec.getGaussianReproduction().getGestationFrequency().gaussianDouble();
+        int litter = spec.getGaussianReproduction().getLitterSize().gaussianInt();
         return new ReproductionAttributes(female, male, frequency, litter);
     }
-    
+
     private LifeSpanAttributes drawActualLifeSpan(Specie spec) {
         int femaleLifeSpan = spec.getGaussianLifeSpanAttributesSpan().getFemaleLifeSpan().nextInt();
         int maleLifeSpan = spec.getGaussianLifeSpanAttributesSpan().getMaleLifeSpan().nextInt();
@@ -130,6 +134,7 @@ public class Animal {
     /**
      * Compute if the animal is mature by comparing its age and the age age of
      * sexual maturity for its sex
+     *
      * @return true if it is mature, false else
      */
     public boolean isMature() {
@@ -139,12 +144,13 @@ public class Animal {
             return this.age >= this.actualReproduction.getMaleMaturityAge();
         }
     }
-    
+
     /**
      * Compute if a animal older than its life span according to its sex
+     *
      * @return true if it is older, false else.
      */
-    public boolean isTooOld(){
+    public boolean isTooOld() {
         if (this.sex == Sex.FEMALE) {
             return this.age >= this.actualLifeSpan.getFemaleLifeSpan();
         } else {
@@ -152,5 +158,4 @@ public class Animal {
         }
     }
 
-    
 }

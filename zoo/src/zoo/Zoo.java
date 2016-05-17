@@ -263,4 +263,17 @@ public class Zoo implements IZoo {
         return map;
     }
 
+    @Override
+    public Specie findSpeciebyName(String specieName) throws EmptyNameException, UnknownNameException {
+          if (specieName.trim().equals("")) {
+            throw new EmptyNameException("");
+        }
+        for (HashMap.Entry<String, Specie> entry : species.entrySet()) {
+            if (entry.getKey().equals(specieName)) {
+                return entry.getValue();
+            }
+        }
+        throw new UnknownNameException("No specie with this name exists.");
+    }
+
 }
