@@ -11,7 +11,7 @@ import org.junit.rules.ExpectedException;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import zoo.Statistics.Uniform;
+import zoo.statistics.Uniform;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
 import zoo.paddock.Paddock;
