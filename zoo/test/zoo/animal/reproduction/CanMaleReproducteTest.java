@@ -1,5 +1,6 @@
 package zoo.animal.reproduction;
 
+import exception.IncorrectDataException;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -44,7 +45,7 @@ public class CanMaleReproducteTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void shouldReturnTrueWhenTheAnimalIsAMatureMale() {
+    public void shouldReturnTrueWhenTheAnimalIsAMatureMale() throws IncorrectDataException {
         // Given
         Animal animal = new Animal(specie, null, null, Sex.MALE, 36);
         // When
@@ -56,7 +57,7 @@ public class CanMaleReproducteTest {
 
     // This test does not check anymore : pb with the mock
     @Test
-    public void shouldReturnFalseWhenTheAnimalIsANonMatureMale() {
+    public void shouldReturnFalseWhenTheAnimalIsANonMatureMale() throws IncorrectDataException {
         // Given
         Animal animal = new Animal(specie, null, null, Sex.MALE, 10);
         // When
@@ -67,7 +68,7 @@ public class CanMaleReproducteTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenTheAnimalIsAFemale() {
+    public void shouldReturnFalseWhenTheAnimalIsAFemale() throws IncorrectDataException {
         // Given
         Animal animal = new Animal(specie, null, null, Sex.FEMALE, 36);
         // When

@@ -47,7 +47,7 @@ public class PaddockByNameTest {
         zoo.addPaddock("a", 1, 1, 1, 1);
         zoo.addPaddock("b", 2, 2, 2, 2);
         // When
-        Paddock actualPaddock = zoo.paddockByName("b");
+        Paddock actualPaddock = zoo.findPaddockByName("b");
         // Then
         PaddockCoordinates coor = new PaddockCoordinates(2, 2, 2, 2);
         Paddock expectedPaddock = new Paddock("b", coor);
@@ -63,7 +63,7 @@ public class PaddockByNameTest {
         zoo.addPaddock("b", 2, 2, 2, 2);
         // When
         thrown.expect(UnknownNameException.class);
-        Paddock actualPaddock = zoo.paddockByName("c");
+        Paddock actualPaddock = zoo.findPaddockByName("c");
         // Then
     }
 
@@ -76,7 +76,7 @@ public class PaddockByNameTest {
         zoo.addPaddock("b", 2, 2, 2, 2);
         // When
         thrown.expect(EmptyNameException.class);
-        Paddock actualPaddock = zoo.paddockByName(" ");
+        Paddock actualPaddock = zoo.findPaddockByName(" ");
         // Then
     }
 

@@ -17,4 +17,12 @@ public class LifeSpanAttributes {
         this.femaleLifeSpan = femaleLifeSpan;
         this.maleLifeSpan = maleLifeSpan;
     }
+    
+     @Override
+    public String toString() {
+        String info = "";
+        info += "life span (female) = " + this.femaleLifeSpan + ", ";
+        info += "life span (male) = " + this.maleLifeSpan;
+        return info;
+    }
 }

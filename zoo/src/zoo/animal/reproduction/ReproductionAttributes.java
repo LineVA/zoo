@@ -1,7 +1,6 @@
 package zoo.animal.reproduction;
 
 import lombok.Getter;
-import zoo.animal.Animal;
 
 /**
  *
@@ -10,18 +9,29 @@ import zoo.animal.Animal;
 public class ReproductionAttributes {
 
     @Getter
-    private int femaleMaturityAge;
+    private final int femaleMaturityAge;
     @Getter
-    private int maleMaturityAge;
+    private final int maleMaturityAge;
     @Getter
-    private double gestationFrequency;
+    private final double gestationFrequency;
     @Getter
-    private int litterSize;
-    
-    public ReproductionAttributes(int female, int male, double frequency, int litter){
+    private final int litterSize;
+
+    public ReproductionAttributes(int female, int male, double frequency, int litter) {
         this.femaleMaturityAge = female;
         this.maleMaturityAge = male;
         this.gestationFrequency = frequency;
         this.litterSize = litter;
+    }
+
+    @Override
+    public String toString() {
+        String info = "";
+        info += "age of sexual maturity (female) = " + this.femaleMaturityAge + ", ";
+        info += "age of sexual maturity (male) = " + this.maleMaturityAge + ", ";
+        info += "gestation frequency = " + this.gestationFrequency +", ";
+        info += "size of the litter = " + this.litterSize;
+
+        return info;
     }
 }

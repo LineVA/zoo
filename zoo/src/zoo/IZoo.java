@@ -13,6 +13,7 @@ import exception.name.UnknownNameException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
 import zoo.paddock.Paddock;
 import zoo.paddock.PaddockCoordinates;
@@ -46,6 +47,8 @@ public interface IZoo {
     public Specie findSpeciebyName(String specieName) throws EmptyNameException, UnknownNameException;
 //    public void setBiome(String paddockName, String biomeName)
 //            throws UnknownNameException, EmptyNameException;
+    
+    public Animal findAnimalByName(String animalName) throws UnknownNameException, EmptyNameException;
 }
 
 

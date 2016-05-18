@@ -267,7 +267,7 @@ public class Zoo implements IZoo {
     @Override
     public Specie findSpeciebyName(String specieName) throws EmptyNameException, UnknownNameException {
           if (specieName.trim().equals("")) {
-            throw new EmptyNameException("");
+            throw new EmptyNameException("The name of the paddock is empty");
         }
         for (HashMap.Entry<String, Specie> entry : species.entrySet()) {
             if (entry.getKey().equals(specieName)) {
@@ -275,6 +275,21 @@ public class Zoo implements IZoo {
             }
         }
         throw new UnknownNameException("No specie with this name exists.");
+    }
+
+    @Override
+    public Animal findAnimalByName(String animalName) throws UnknownNameException, EmptyNameException {
+          if (animalName.trim().equals("")) {
+            throw new EmptyNameException("The name of the animal is empty");
+        }
+        for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
+            for (HashMap.Entry<String, Animal> animalEntry : padEntry.getValue().getAnimals().entrySet()) {
+                if(animalEntry.getKey().equals(animalName)){
+                    return animalEntry.getValue();
+                }
+            }
+        }
+        throw new UnknownNameException("There is no animal with this name in the zoo.");
     }
 
 }

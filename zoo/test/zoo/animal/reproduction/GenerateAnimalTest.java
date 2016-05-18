@@ -1,5 +1,6 @@
 package zoo.animal.reproduction;
 
+import exception.IncorrectDataException;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
@@ -31,7 +32,7 @@ public class GenerateAnimalTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void shouldReturnAnAnimalWithTheExpectedValues() {
+    public void shouldReturnAnAnimalWithTheExpectedValues() throws IncorrectDataException {
         // Given
         Specie expectedSpec = new Specie(null, null, null, null, null);
         String expectedName = "foo";

@@ -1,6 +1,7 @@
 package zoo.animal;
 
 import exception.IncorrectDataException;
+import java.util.ArrayList;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.paddock.Paddock;
@@ -58,7 +59,7 @@ public class Animal {
         this.sex = sex;
         if (age >= 0) {
             this.age = age;
-        }else {
+        } else {
             throw new IncorrectDataException("An animal cannot be younger than 0 month...");
         }
 //        this.optimalBiome = drawOptimalBiome(spec);
@@ -69,7 +70,7 @@ public class Animal {
         this.optimalBiome = null;
         this.optimalFeeding = null;
         this.actualFeeding = null;
-       // this.actualReproduction = null;
+        // this.actualReproduction = null;
         // this.actualLifeSpan = null;
     }
 
@@ -161,6 +162,20 @@ public class Animal {
         } else {
             return this.age >= this.actualLifeSpan.getMaleLifeSpan();
         }
+    }
+
+    public ArrayList<String> info() {
+        ArrayList<String> info = new ArrayList<>();
+        info.add("Name : " + this.name);
+        info.add("Paddock : " + this.paddock.getName());
+        info.add("Specie : " + this.specie.getNames().getEnglishName());
+        info.add("Age : " + this.age);
+        info.add("Sex : " + this.sex.toString());
+        info.add("Reproduction attributes : " + this.actualReproduction);
+        info.add("Life span attributes : " + this.actualLifeSpan.toString());
+//        info.add("Optimal feeding attributes : " + this.optimalFeeding.toString());
+  //      info.add("Actual feeding attributes : " + this.actualFeeding.toString());
+        return info;
     }
 
 }

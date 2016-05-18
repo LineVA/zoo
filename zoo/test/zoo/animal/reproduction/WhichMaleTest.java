@@ -1,5 +1,6 @@
 package zoo.animal.reproduction;
 
+import exception.IncorrectDataException;
 import exception.name.AlreadyUsedNameException;
 import org.junit.After;
 import org.junit.Assert;
@@ -11,7 +12,6 @@ import org.junit.rules.ExpectedException;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import zoo.animal.Animal;
-import zoo.animal.Species;
 import zoo.animal.specie.Specie;
 import zoo.paddock.Paddock;
 
@@ -47,7 +47,7 @@ public class WhichMaleTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void shouldReturnMaleWhenThereIsNoMatureMaleOfTheSameSpecie() throws AlreadyUsedNameException {
+    public void shouldReturnMaleWhenThereIsNoMatureMaleOfTheSameSpecie() throws AlreadyUsedNameException, IncorrectDataException {
         // Given
         Animal female1 = new Animal(specie1, null, pad, Sex.FEMALE, 14);
         Animal male1 = new Animal(specie1, null, pad, Sex.MALE, 10);
@@ -65,7 +65,7 @@ public class WhichMaleTest {
 
     // This test does not check anymore : pb with the mock.
     @Test
-    public void shouldReturnTheFirstMatureMaleOfTheSameSpecieWhenThereIsSeveralMales() throws AlreadyUsedNameException {
+    public void shouldReturnTheFirstMatureMaleOfTheSameSpecieWhenThereIsSeveralMales() throws AlreadyUsedNameException, IncorrectDataException {
         // Given
         Animal female1 = new Animal(specie1, null, pad, Sex.FEMALE, 14);
         Animal male1 = new Animal(specie1, null, pad, Sex.MALE, 10);

@@ -5,6 +5,7 @@ import commandLine.commandImpl.BiomePad;
 import commandLine.commandImpl.CreateAnimal;
 import commandLine.commandImpl.CreatePaddock;
 import commandLine.commandImpl.CreateZoo;
+import commandLine.commandImpl.DetailAnimal;
 import commandLine.commandImpl.DetailPad;
 import commandLine.commandImpl.Evaluate;
 import commandLine.commandImpl.LsPaddock;
@@ -20,7 +21,7 @@ public class CommandManager {
     private final Iterable<Command> commands = asList(new CreateZoo(), 
             new CreatePaddock(), new LsPaddock(), new MapZoo(), new DetailPad(),
             new Evaluate(), new BiomePad(), new BiomeAttributesPaddock(),
-            new CreateAnimal());
+            new CreateAnimal(), new DetailAnimal());
     
     public String run(String cmd){
         String[] parse = cmd.split(" ");

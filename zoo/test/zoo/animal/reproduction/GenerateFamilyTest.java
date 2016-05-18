@@ -1,5 +1,6 @@
 package zoo.animal.reproduction;
 
+import exception.IncorrectDataException;
 import java.util.ArrayList;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
@@ -38,7 +39,7 @@ public class GenerateFamilyTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void shouldReturnAnArrayListWithThreeElements() {
+    public void shouldReturnAnArrayListWithThreeElements() throws IncorrectDataException {
         // Given
         Paddock expectedPad = new Paddock(null, null);
         Specie expectedSpecie = new Specie(null, null, null, null, null);

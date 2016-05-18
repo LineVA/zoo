@@ -1,5 +1,6 @@
 package zoo.animal.reproduction;
 
+import exception.IncorrectDataException;
 import org.junit.After;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -52,7 +53,7 @@ public class CanFemaleReproducteTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void shouldReturnTrueWhenTheAnimalIsAMatureFemale() {
+    public void shouldReturnTrueWhenTheAnimalIsAMatureFemale() throws IncorrectDataException {
         // Given
         Animal animal = new Animal(specie, null, null, Sex.FEMALE, 36);
         // When
@@ -64,7 +65,7 @@ public class CanFemaleReproducteTest {
 
     // This test does not check anymore : pb with the mock
     @Test
-    public void shouldReturnFalseWhenTheAnimalIsANonMatureFemale() {
+    public void shouldReturnFalseWhenTheAnimalIsANonMatureFemale() throws IncorrectDataException {
         // Given
         Animal animal = new Animal(specie, null, null, Sex.FEMALE, 10);
         // When
@@ -75,7 +76,7 @@ public class CanFemaleReproducteTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenTheAnimalIsAMale() {
+    public void shouldReturnFalseWhenTheAnimalIsAMale() throws IncorrectDataException {
         // Given
         Animal animal = new Animal(specie, null, null, Sex.MALE, 36);
         // When
@@ -87,7 +88,7 @@ public class CanFemaleReproducteTest {
 
     // This test does not check anymore : pb with the mock
     @Test
-    public void shouldReturnFalseWhenTheAnimalHasAFrequencyGestationToOne() {
+    public void shouldReturnFalseWhenTheAnimalHasAFrequencyGestationToOne() throws IncorrectDataException {
         // Given
         when(repro.getGestationFrequency()).thenReturn(1.0);
         Animal animal = new Animal(specie, null, null, Sex.FEMALE, 36);
