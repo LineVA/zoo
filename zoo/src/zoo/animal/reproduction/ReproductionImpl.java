@@ -3,7 +3,7 @@ package zoo.animal.reproduction;
 import exception.IncorrectDataException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import zoo.Statistics.Uniform;
+import zoo.statistics.Uniform;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
 import zoo.paddock.Paddock;

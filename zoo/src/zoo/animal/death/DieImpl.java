@@ -1,6 +1,6 @@
 package zoo.animal.death;
 
-import zoo.Statistics.Uniform;
+import zoo.statistics.Uniform;
 import zoo.animal.Animal;
 
 /**

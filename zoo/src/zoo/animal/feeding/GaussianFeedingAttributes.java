@@ -1,7 +1,7 @@
 package zoo.animal.feeding;
 
 import lombok.Getter;
-import zoo.Statistics.Gaussian;
+import zoo.statistics.Gaussian;
 
 /**
  *
