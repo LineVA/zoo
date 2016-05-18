@@ -132,8 +132,8 @@ public class Animal {
     }
 
     private LifeSpanAttributes drawActualLifeSpan(Specie spec) {
-        int femaleLifeSpan = spec.getGaussianLifeSpanAttributesSpan().getFemaleLifeSpan().nextInt();
-        int maleLifeSpan = spec.getGaussianLifeSpanAttributesSpan().getMaleLifeSpan().nextInt();
+        int femaleLifeSpan = spec.getGaussianLifeSpanAttributesSpan().getFemaleLifeSpan().gaussianInt();
+        int maleLifeSpan = spec.getGaussianLifeSpanAttributesSpan().getMaleLifeSpan().gaussianInt();
         return new LifeSpanAttributes(femaleLifeSpan, maleLifeSpan);
     }
 

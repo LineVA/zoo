@@ -22,6 +22,6 @@ public class Gaussian extends Random{
     }
     
     public int gaussianInt(){
-        return (int) (super.nextInt()*this.standardDeviation + average);
+        return (int)gaussianDouble();
     }
 }
