@@ -21,7 +21,7 @@ public enum Sex {
     
      public Sex findByName(String name) throws UnknownNameException{
         for(Sex sex : Sex.values()){
-            if(sex.name().equals(name)){
+            if(sex.name().equalsIgnoreCase(name)){
                 return sex;
             }
         }

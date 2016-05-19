@@ -144,7 +144,7 @@ public class Zoo implements IZoo {
             throw new EmptyNameException("");
         }
         for (HashMap.Entry<String, Paddock> entry : paddocks.entrySet()) {
-            if (entry.getKey().equals(name)) {
+            if (entry.getKey().equalsIgnoreCase(name)) {
                 return entry.getValue();
             }
         }
@@ -271,7 +271,7 @@ public class Zoo implements IZoo {
             throw new EmptyNameException("The name of the paddock is empty");
         }
         for (HashMap.Entry<String, Specie> entry : species.entrySet()) {
-            if (entry.getKey().equals(specieName)) {
+            if (entry.getKey().equalsIgnoreCase(specieName)) {
                 return entry.getValue();
             }
         }
@@ -284,11 +284,11 @@ public class Zoo implements IZoo {
             throw new EmptyNameException("The name of the animal is empty");
         }
         for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
-            for (HashMap.Entry<String, Animal> animalEntry : padEntry.getValue().getAnimals().entrySet()) {
-                if (animalEntry.getKey().equals(animalName)) {
-                    return animalEntry.getValue();
-                }
-            }
+           try{
+               return padEntry.getValue().findAnimalByName(animalName);
+           } catch(UnknownNameException ex){
+               
+           }
         }
         throw new UnknownNameException("There is no animal with this name in the zoo.");
     }

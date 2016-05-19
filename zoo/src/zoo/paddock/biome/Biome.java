@@ -81,7 +81,7 @@ public enum Biome implements Cloneable {
     
     public Biome findByName(String name) throws UnknownNameException{
         for(Biome biome : Biome.values()){
-            if(biome.getName().equals(name)){
+            if(biome.getName().equalsIgnoreCase(name)){
                 return biome;
             }
         }

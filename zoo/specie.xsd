@@ -2,20 +2,20 @@
     <xs:element name="animal">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="general">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element type="xs:integer" name="uicn"/>
-                            <xs:element type="xs:string" name="family"/>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
                 <xs:element name="names">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element type="xs:string" name="fr"/>
                             <xs:element type="xs:string" name="en"/>
                             <xs:element type="xs:string" name="scientific"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                 <xs:element name="general">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:integer" name="uicn"/>
+                            <xs:element type="xs:string" name="family"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -42,7 +42,7 @@
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element type="xs:integer" name="biome"/>
-                            <xs:element type="xs:decimal" name="terrotorySize"/>
+                            <xs:element type="xs:decimal" name="territorySize"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>

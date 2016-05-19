@@ -72,11 +72,11 @@ public class Paddock implements Cloneable {
     }
 
     public void setBiome(String biomeName) throws UnknownNameException {
-       try{
-           setBiome(Biome.NONE.findById(Integer.parseInt(biomeName)));
-       } catch(java.lang.NumberFormatException ex){
-           setBiome(Biome.NONE.findByName(biomeName));
-       }
+        try {
+            setBiome(Biome.NONE.findById(Integer.parseInt(biomeName)));
+        } catch (java.lang.NumberFormatException ex) {
+            setBiome(Biome.NONE.findByName(biomeName));
+        }
     }
 
     public Object clone() {
@@ -121,6 +121,16 @@ public class Paddock implements Cloneable {
         info.add("Biome : " + this.biome);
         info.add("Biome's characteristics : " + this.attributes.toString());
         return info;
+    }
+
+    public Animal findAnimalByName(String animalName) throws UnknownNameException {
+        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
+            if (animalEntry.getKey().equalsIgnoreCase(animalName)) {
+                return animalEntry.getValue();
+            }
+        }
+        throw new UnknownNameException("There is no animal in this paddock "
+                + "with this name.");
     }
 
 }
