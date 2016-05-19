@@ -20,11 +20,11 @@ public class CreateAnimal implements Command {
     public String execute(String[] cmd) {
         try {
             Paddock pad = this.zoo.findPaddockByName(cmd[2]);
-            Specie specie = this.zoo.findSpeciebyName(cmd[4]);
+            Specie specie = this.zoo.findSpeciebyName("Mountain zebra");
             Sex sex = Sex.MALE.findByName(cmd[5]);
             Animal animal = new Animal(specie, cmd[3], pad, sex, Integer.parseInt(cmd[6]));
             pad.addAnimal(animal);
-            return "Yhe animal has been created.";
+            return "The animal has been created.";
         } catch (EmptyNameException | UnknownNameException  
                 | AlreadyUsedNameException | IncorrectDataException  ex) {
             return ex.getMessage();
