@@ -1,36 +1,67 @@
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="animal">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="names">
-          <xs:complexType>
+    <xs:element name="animal">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element type="xs:string" name="fr"/>
-              <xs:element type="xs:string" name="en"/>
-              <xs:element type="xs:string" name="scientific"/>
+                <xs:element name="general">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:integer" name="uicn"/>
+                            <xs:element type="xs:string" name="family"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="names">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="fr"/>
+                            <xs:element type="xs:string" name="en"/>
+                            <xs:element type="xs:string" name="scientific"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="reproduction">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:integer" name="femaleMaturity"/>
+                            <xs:element type="xs:integer" name="maleMaturity"/>
+                            <xs:element type="xs:decimal" name="gestationFrequency"/>
+                            <xs:element type="xs:integer" name="litterSize"/>
+                            <xs:element type="xs:integer" name="leavingAge"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="lifespan">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:decimal" name="femaleLifespan"/>
+                            <xs:element type="xs:decimal" name="maleLifeSpan"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="territory">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:integer" name="biome"/>
+                            <xs:element type="xs:decimal" name="terrotorySize"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="feeding">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="diet"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="social">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:integer" name="groupSize"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="reproduction">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element type="xs:integer" name="femaleMaturity"/>
-              <xs:element type="xs:integer" name="maleMaturity"/>
-              <xs:element type="xs:decimal" name="gestationFrequency"/>
-              <xs:element type="xs:integer" name="litterSize"/>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="lifespan">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element type="xs:decimal" name="femaleLifespan"/>
-              <xs:element type="xs:decimal" name="maleLifeSpan"/>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+        </xs:complexType>
+    </xs:element>
 </xs:schema>
 

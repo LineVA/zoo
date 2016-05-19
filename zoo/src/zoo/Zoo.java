@@ -171,8 +171,6 @@ public class Zoo implements IZoo {
 //        Paddock pad = findPaddockByName(paddockName);
 //        pad.setBiome(biomeName);
 //    }
-    
-
     /**
      * Method used to know if a paddock can be placed into the zoo without
      * looking for the others paddocks
@@ -237,17 +235,20 @@ public class Zoo implements IZoo {
         }
     }
 
-    public void birth() throws IncorrectDataException{
+    public void birth() throws IncorrectDataException {
         Reproduction repro = new ReproductionImpl();
         ArrayList<Animal> newFamily;
         for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
             for (HashMap.Entry<String, Animal> animalEntry : padEntry.getValue().getAnimals().entrySet()) {
                 newFamily = repro.reproducte(animalEntry.getValue());
-                for (int i = 2; i < newFamily.size(); i++) {
-                    try {
-                        padEntry.getValue().addAnimal(newFamily.get(i));
-                    } catch (AlreadyUsedNameException ex) {
-                        ex.printStackTrace();
+                // If there is reproduction
+                if (newFamily != null) {
+                    for (int i = 2; i < newFamily.size(); i++) {
+                        try {
+                            padEntry.getValue().addAnimal(newFamily.get(i));
+                        } catch (AlreadyUsedNameException ex) {
+                            ex.printStackTrace();
+                        }
                     }
                 }
             }
@@ -266,7 +267,7 @@ public class Zoo implements IZoo {
 
     @Override
     public Specie findSpeciebyName(String specieName) throws EmptyNameException, UnknownNameException {
-          if (specieName.trim().equals("")) {
+        if (specieName.trim().equals("")) {
             throw new EmptyNameException("The name of the paddock is empty");
         }
         for (HashMap.Entry<String, Specie> entry : species.entrySet()) {
@@ -279,12 +280,12 @@ public class Zoo implements IZoo {
 
     @Override
     public Animal findAnimalByName(String animalName) throws UnknownNameException, EmptyNameException {
-          if (animalName.trim().equals("")) {
+        if (animalName.trim().equals("")) {
             throw new EmptyNameException("The name of the animal is empty");
         }
         for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
             for (HashMap.Entry<String, Animal> animalEntry : padEntry.getValue().getAnimals().entrySet()) {
-                if(animalEntry.getKey().equals(animalName)){
+                if (animalEntry.getKey().equals(animalName)) {
                     return animalEntry.getValue();
                 }
             }

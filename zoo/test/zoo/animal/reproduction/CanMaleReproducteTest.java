@@ -33,7 +33,7 @@ public class CanMaleReproducteTest {
         when(repro.getMaleMaturityAge()).thenReturn(12);
          BiomeAttributes biomeAt = new BiomeAttributes(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
         FeedingAttributes feedingAt = new FeedingAttributes(0.0);
-        specie = new Specie(null, biomeAt, feedingAt, repro, null);
+        specie = new Specie(null, biomeAt, feedingAt, repro, null, null);
     }
 
     @After

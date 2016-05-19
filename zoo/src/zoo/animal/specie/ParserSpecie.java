@@ -8,6 +8,7 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.input.sax.XMLReaders;
 import zoo.animal.Names;
+import zoo.animal.conservation.ConservationAttribute;
 import zoo.animal.death.LifeSpanAttributes;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
@@ -30,10 +31,10 @@ public class ParserSpecie {
         FeedingAttributes feeding = feedingParser(root);
         ReproductionAttributes repro = reproductionParser(root);
         LifeSpanAttributes lifeSpan = lifeSpanParser(root);
-        Specie spec = new Specie(names, biome, feeding, repro, lifeSpan);
+        ConservationAttribute conservation = conservationParser(root);
+        Specie spec = new Specie(names, biome, feeding, repro, lifeSpan, 
+                conservation);
         return spec;
-
-      //   return null;
     }
     
     private static Names namesParser(Element root) {
@@ -64,5 +65,10 @@ public class ParserSpecie {
          Element lifeEl = root.getChild("lifespan");
         return new LifeSpanAttributes(Integer.parseInt(lifeEl.getChildText("femaleLifespan")),
                 Integer.parseInt(lifeEl.getChildText("maleLifeSpan")));
+    }
+
+    private static ConservationAttribute conservationParser(Element root) {
+          Element consEl = root.getChild("general");
+        return new ConservationAttribute(Integer.parseInt(consEl.getChildText("uicn")));
     }
 }

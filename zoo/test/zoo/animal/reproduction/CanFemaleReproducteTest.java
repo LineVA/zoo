@@ -33,7 +33,7 @@ public class CanFemaleReproducteTest {
         // when(repro.getGestationFrequency()).thenReturn(0.0);
         BiomeAttributes biomeAt = new BiomeAttributes(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
         FeedingAttributes feedingAt = new FeedingAttributes(0.0);
-        specie = new Specie(null, biomeAt, feedingAt, repro, null);
+        specie = new Specie(null, biomeAt, feedingAt, repro, null, null);
         // Mock Animal methods
         mockAnimal = mock(Animal.class);
         when(mockAnimal.drawActualFeeding(any(Specie.class))).thenReturn(feedingAt);

@@ -42,7 +42,7 @@ public class GenerateFamilyTest {
     public void shouldReturnAnArrayListWithThreeElements() throws IncorrectDataException {
         // Given
         Paddock expectedPad = new Paddock(null, null);
-        Specie expectedSpecie = new Specie(null, null, null, null, null);
+        Specie expectedSpecie = new Specie(null, null, null, null, null, null);
         Animal mother = new Animal(expectedSpecie, "mother", expectedPad, Sex.FEMALE, 0);
         Animal father = new Animal(expectedSpecie, "father", expectedPad, Sex.MALE, 0);
         // When

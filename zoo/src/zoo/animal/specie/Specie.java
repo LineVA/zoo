@@ -2,6 +2,7 @@ package zoo.animal.specie;
 
 import lombok.Getter;
 import zoo.animal.Names;
+import zoo.animal.conservation.ConservationAttribute;
 import zoo.animal.death.GaussianLifeSpanAttributes;
 import zoo.animal.death.LifeSpanAttributes;
 import zoo.animal.feeding.FeedingAttributes;
@@ -27,6 +28,8 @@ public class Specie {
     private final LifeSpanAttributes specieLifeSpan;
     @Getter
     private final Names names;
+    @Getter 
+    private final ConservationAttribute conservation;
     @Getter
     private GaussianBiomeAttributes gaussianBiome;
     @Getter
@@ -35,14 +38,17 @@ public class Specie {
     private GaussianReproductionAttributes gaussianReproduction;
     @Getter
     private GaussianLifeSpanAttributes gaussianLifeSpanAttributesSpan;
+    
 
     public Specie(Names names, BiomeAttributes biome, FeedingAttributes feeding,
-            ReproductionAttributes repro, LifeSpanAttributes lifeSpan) {
+            ReproductionAttributes repro, LifeSpanAttributes lifeSpan,
+            ConservationAttribute conservation) {
         this.names = names;
         this.specieBiome = biome;
         this.specieFeeding = feeding;
         this.specieReproduction = repro;
         this.specieLifeSpan = lifeSpan;
+        this.conservation = conservation;
         this.gaussianBiome = new GaussianBiomeAttributes(biome);
         this.gaussianFeeding = new GaussianFeedingAttributes(feeding);
         this.gaussianReproduction = new GaussianReproductionAttributes(repro);
