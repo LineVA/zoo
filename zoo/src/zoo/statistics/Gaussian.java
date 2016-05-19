@@ -22,6 +22,10 @@ public class Gaussian extends Random{
     }
     
     public int gaussianInt(){
-        return (int)gaussianDouble();
+        int gaussian = (int) gaussianDouble();
+        if(gaussian == 0){
+            return 1;
+        }
+        return gaussian;
     }
 }
