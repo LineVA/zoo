@@ -27,6 +27,8 @@ public class Animal {
     private final Paddock paddock;
     @Getter
     private final Sex sex;
+    @Getter @Setter
+    private int wellBeeing;
     @Getter
     private int age;
     // There is both optimal and actual biome attributes :
@@ -62,6 +64,7 @@ public class Animal {
         } else {
             throw new IncorrectDataException("An animal cannot be younger than 0 month...");
         }
+        this.wellBeeing = 0;
 //        this.optimalBiome = drawOptimalBiome(spec);
 //        this.optimalFeeding = drawOptimalFeeding(spec);
 //        this.actualFeeding = drawActualFeeding(spec);
@@ -171,6 +174,7 @@ public class Animal {
         info.add("Specie : " + this.specie.getNames().getEnglishName());
         info.add("Age : " + this.age);
         info.add("Sex : " + this.sex.toString());
+        info.add("Well-beeing : " + this.wellBeeing);
         info.add("Reproduction attributes : " + this.actualReproduction);
         info.add("Life span attributes : " + this.actualLifeSpan.toString());
 //        info.add("Optimal feeding attributes : " + this.optimalFeeding.toString());
