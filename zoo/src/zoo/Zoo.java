@@ -181,6 +181,7 @@ public class Zoo implements IZoo {
         return kidsNb * 5 + presentedSpecies.size();
     }
 
+    @Override
     public void death() {
         IDie die = new DieImpl();
         for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
@@ -197,6 +198,7 @@ public class Zoo implements IZoo {
         }
     }
 
+    @Override
     public void birth() throws IncorrectDataException {
         Reproduction repro = new ReproductionImpl();
         ArrayList<Animal> newFamily;
