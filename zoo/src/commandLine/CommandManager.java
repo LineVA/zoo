@@ -24,7 +24,8 @@ public class CommandManager {
             new CreateAnimal(), new DetailAnimal());
     
     public String run(String cmd){
-        String[] parse = cmd.split(" ");
+       // String[] parse = cmd.split(" ");
+        String[] parse = SplitDoubleQuotes.split(cmd);
         for(Command command: commands){
             if(command.canExecute(parse)){
                 return command.execute(parse);
