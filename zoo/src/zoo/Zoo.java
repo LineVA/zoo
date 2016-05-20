@@ -264,4 +264,13 @@ public class Zoo implements IZoo {
         return list;
     }
 
+    @Override
+    public ArrayList<String> listSpecie() {
+         ArrayList<String> list = new ArrayList<>();
+        for (HashMap.Entry<String, Specie> entry : species.entrySet()) {
+            list.add(entry.getValue().getNames().getEnglishName());
+        }
+        return list;
+    }
+
 }

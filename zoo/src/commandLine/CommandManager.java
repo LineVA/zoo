@@ -10,6 +10,7 @@ import commandLine.commandImpl.DetailPad;
 import commandLine.commandImpl.Evaluate;
 import commandLine.commandImpl.LsAnimal;
 import commandLine.commandImpl.LsPaddock;
+import commandLine.commandImpl.LsSpecie;
 import commandLine.commandImpl.MapZoo;
 import static java.util.Arrays.asList;
 
@@ -23,7 +24,8 @@ public class CommandManager {
     private final Iterable<Command> commands = asList(new CreateZoo(), 
             new CreatePaddock(), new LsPaddock(), new MapZoo(), new DetailPad(),
             new Evaluate(), new BiomePad(), new BiomeAttributesPaddock(),
-            new CreateAnimal(), new LsAnimal(), new DetailAnimal());
+            new CreateAnimal(), new LsAnimal(), new DetailAnimal(),
+            new LsSpecie());
     
     public String run(String cmd){
        // String[] parse = cmd.split(" ");
