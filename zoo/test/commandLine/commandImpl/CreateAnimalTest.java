@@ -37,7 +37,7 @@ public class CreateAnimalTest {
     @Test
     public void shouldReturnTrueWhenTheCommandIsCorrect() {
         // Given
-        cmd = "animal create pad name specie sex age".split(" ");
+        cmd = "animal create pad name specie sex".split(" ");
         // When
         actual = create.canExecute(cmd);
         // Then
@@ -47,7 +47,7 @@ public class CreateAnimalTest {
     @Test
     public void shouldReturnFalseWhenTheCommandIsTooLong() {
         // Given
-        cmd = "animal create pad name specie sex age long".split(" ");
+        cmd = "animal create pad name specie sex long".split(" ");
         // When
         actual = create.canExecute(cmd);
         // Then
@@ -57,7 +57,7 @@ public class CreateAnimalTest {
     @Test
     public void shouldReturnFalseWhenTheCommandIsNotEnoughLong() {
         // Given
-        cmd = "animal create pad name specie sex".split(" ");
+        cmd = "animal create pad name specie".split(" ");
         // When
         actual = create.canExecute(cmd);
         // Then
@@ -67,7 +67,7 @@ public class CreateAnimalTest {
     @Test
     public void shouldReturnFalseWhenTheCommandDoesNotBeginWithAnimal() {
         // Given
-        cmd = "animal2 create pad name specie sex age".split(" ");
+        cmd = "animal2 create pad name specie sex".split(" ");
         // When
         actual = create.canExecute(cmd);
         // Then
@@ -77,7 +77,7 @@ public class CreateAnimalTest {
     @Test
     public void shouldReturnFalseWhenTheCommandDoesNotHaveCreateInSecondPosition() {
         // Given
-        cmd = "animal create2 pad name specie sex age".split(" ");
+        cmd = "animal create2 pad name specie sex".split(" ");
         // When
         actual = create.canExecute(cmd);
         // Then

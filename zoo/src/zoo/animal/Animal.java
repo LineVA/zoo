@@ -76,6 +76,27 @@ public class Animal {
         // this.actualReproduction = null;
         // this.actualLifeSpan = null;
     }
+    
+    public Animal(Specie spec, String name, Paddock paddock, Sex sex) throws IncorrectDataException {
+        this.specie = spec;
+        this.name = name;
+        this.paddock = paddock;
+        this.sex = sex;
+        this.wellBeeing = 0;
+//        this.optimalBiome = drawOptimalBiome(spec);
+//        this.optimalFeeding = drawOptimalFeeding(spec);
+//        this.actualFeeding = drawActualFeeding(spec);
+        this.actualReproduction = drawActualReproduction(spec);
+        this.actualLifeSpan = drawActualLifeSpan(spec);
+        this.optimalBiome = null;
+        this.optimalFeeding = null;
+        this.actualFeeding = null;
+        // this.actualReproduction = null;
+        // this.actualLifeSpan = null;
+        this.age = this.sex.isFemale() ? 
+                this.actualReproduction.getFemaleMaturityAge() :
+                this.actualReproduction.getMaleMaturityAge();
+    }
 
     /**
      * Computes the optimal values of the biome attributes for this animal

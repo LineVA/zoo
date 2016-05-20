@@ -22,7 +22,7 @@ public class CreateAnimal implements Command {
             Paddock pad = this.zoo.findPaddockByName(cmd[2]);
             Specie specie = this.zoo.findSpeciebyName(cmd[4]);
             Sex sex = Sex.MALE.findByName(cmd[5]);
-            Animal animal = new Animal(specie, cmd[3], pad, sex, Integer.parseInt(cmd[6]));
+            Animal animal = new Animal(specie, cmd[3], pad, sex);
             pad.addAnimal(animal);
             return "The animal has been created.";
         } catch (EmptyNameException | UnknownNameException  
@@ -33,7 +33,7 @@ public class CreateAnimal implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 7) {
+        if (cmd.length == 6) {
             if (cmd[0].equals("animal") && cmd[1].equals("create")) {
                 return true;
             }
