@@ -49,6 +49,8 @@ public interface IZoo {
 //            throws UnknownNameException, EmptyNameException;
     
     public Animal findAnimalByName(String animalName) throws UnknownNameException, EmptyNameException;
+
+    public ArrayList<String> listAnimal();
 }
 
 

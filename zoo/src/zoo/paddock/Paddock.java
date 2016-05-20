@@ -133,4 +133,12 @@ public class Paddock implements Cloneable {
                 + "with this name.");
     }
 
+    public ArrayList<String> listAnimal() {
+        ArrayList<String> list = new ArrayList<>();
+        for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
+            list.add(entry.getKey());
+        }
+        return list;
+    }
+
 }

@@ -152,26 +152,6 @@ public class Zoo implements IZoo {
     }
 
     /**
-     * method used to obtain detailed information about a paddock
-     *
-     * @param name the name of the paddock we search
-     * @return these information without mef
-     * @throws UnknownNameException if the searched paddock does not exist
-     * @throws exception.name.EmptyNameException
-     */
-//    public ArrayList<String> detailledPaddock(String name) 
-//            throws UnknownNameException,
-//            EmptyNameException {
-//        Paddock pad = findPaddockByName(name);
-//        return pad.info();
-//    }
-//    
-//    public void setBiome(String paddockName, String biomeName)
-//            throws UnknownNameException, EmptyNameException{
-//        Paddock pad = findPaddockByName(paddockName);
-//        pad.setBiome(biomeName);
-//    }
-    /**
      * Method used to know if a paddock can be placed into the zoo without
      * looking for the others paddocks
      *
@@ -183,24 +163,6 @@ public class Zoo implements IZoo {
                 || (coor.getY() + coor.getHeight() > this.height));
     }
 
-//    public int kidsNbEvaluation() {
-//        int kidsNb = 0;
-//        for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
-//            for (HashMap.Entry<String, Animal> animalEntry : padEntry.getValue().getAnimals().entrySet()) {
-//                if (animalEntry.getValue().isMature()) {
-//                    kidsNb += 1;
-//                }
-//            }
-//        }
-//        return kidsNb;
-//    }
-//  
-//    public int presentedSpeciesNbEvaluation() {
-//        ArrayList<String> presentedSpecies = new ArrayList<>();
-//          for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
-//            if()
-//        }
-//    }
     @Override
     public int evaluate() {
         ArrayList<String> presentedSpecies = new ArrayList<>();
@@ -284,13 +246,22 @@ public class Zoo implements IZoo {
             throw new EmptyNameException("The name of the animal is empty");
         }
         for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
-           try{
-               return padEntry.getValue().findAnimalByName(animalName);
-           } catch(UnknownNameException ex){
-               
-           }
+            try {
+                return padEntry.getValue().findAnimalByName(animalName);
+            } catch (UnknownNameException ex) {
+
+            }
         }
         throw new UnknownNameException("There is no animal with this name in the zoo.");
+    }
+
+    @Override
+    public ArrayList<String> listAnimal() {
+        ArrayList<String> list = new ArrayList<>();
+        for (HashMap.Entry<String, Paddock> entry : paddocks.entrySet()) {
+            list.addAll(entry.getValue().listAnimal());
+        }
+        return list;
     }
 
 }
