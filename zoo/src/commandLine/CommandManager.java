@@ -7,6 +7,7 @@ import commandLine.commandImpl.CreatePaddock;
 import commandLine.commandImpl.CreateZoo;
 import commandLine.commandImpl.DetailAnimal;
 import commandLine.commandImpl.DetailPad;
+import commandLine.commandImpl.DetailSpecie;
 import commandLine.commandImpl.Evaluate;
 import commandLine.commandImpl.LsAnimal;
 import commandLine.commandImpl.LsPaddock;
@@ -25,7 +26,7 @@ public class CommandManager {
             new CreatePaddock(), new LsPaddock(), new MapZoo(), new DetailPad(),
             new Evaluate(), new BiomePad(), new BiomeAttributesPaddock(),
             new CreateAnimal(), new LsAnimal(), new DetailAnimal(),
-            new LsSpecie());
+            new LsSpecie(), new DetailSpecie());
     
     public String run(String cmd){
        // String[] parse = cmd.split(" ");

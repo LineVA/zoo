@@ -20,7 +20,7 @@ public class CreateAnimal implements Command {
     public String execute(String[] cmd) {
         try {
             Paddock pad = this.zoo.findPaddockByName(cmd[2]);
-            Specie specie = this.zoo.findSpeciebyName("Mountain zebra");
+            Specie specie = this.zoo.findSpeciebyName(cmd[4]);
             Sex sex = Sex.MALE.findByName(cmd[5]);
             Animal animal = new Animal(specie, cmd[3], pad, sex, Integer.parseInt(cmd[6]));
             pad.addAnimal(animal);

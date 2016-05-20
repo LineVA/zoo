@@ -1,5 +1,6 @@
 package zoo.animal.specie;
 
+import exception.name.UnknownNameException;
 import java.io.File;
 import java.io.IOException;
 import org.jdom2.Document;
@@ -9,6 +10,7 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.input.sax.XMLReaders;
 import zoo.animal.Names;
 import zoo.animal.conservation.ConservationAttribute;
+import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.death.LifeSpanAttributes;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
@@ -31,7 +33,7 @@ public class ParserSpecie {
         FeedingAttributes feeding = feedingParser(root);
         ReproductionAttributes repro = reproductionParser(root);
         LifeSpanAttributes lifeSpan = lifeSpanParser(root);
-        ConservationAttribute conservation = conservationParser(root);
+        ConservationStatus conservation = conservationParser(root);
         Specie spec = new Specie(names, biome, feeding, repro, lifeSpan, 
                 conservation);
         return spec;
@@ -67,8 +69,8 @@ public class ParserSpecie {
                 Integer.parseInt(lifeEl.getChildText("maleLifeSpan")));
     }
 
-    private static ConservationAttribute conservationParser(Element root) {
+    private static ConservationStatus conservationParser(Element root) throws UnknownNameException {
           Element consEl = root.getChild("general");
-        return new ConservationAttribute(Integer.parseInt(consEl.getChildText("uicn")));
+        return ConservationStatus.UNKNOWN.findById(Integer.parseInt(consEl.getChildText("uicn")));
     }
 }

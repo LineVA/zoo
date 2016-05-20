@@ -1,8 +1,10 @@
 package zoo.animal.specie;
 
+import java.util.ArrayList;
 import lombok.Getter;
 import zoo.animal.Names;
 import zoo.animal.conservation.ConservationAttribute;
+import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.death.GaussianLifeSpanAttributes;
 import zoo.animal.death.LifeSpanAttributes;
 import zoo.animal.feeding.FeedingAttributes;
@@ -28,8 +30,8 @@ public class Specie {
     private final LifeSpanAttributes specieLifeSpan;
     @Getter
     private final Names names;
-    @Getter 
-    private final ConservationAttribute conservation;
+    @Getter
+    private final ConservationStatus conservation;
     @Getter
     private GaussianBiomeAttributes gaussianBiome;
     @Getter
@@ -38,11 +40,10 @@ public class Specie {
     private GaussianReproductionAttributes gaussianReproduction;
     @Getter
     private GaussianLifeSpanAttributes gaussianLifeSpanAttributesSpan;
-    
 
     public Specie(Names names, BiomeAttributes biome, FeedingAttributes feeding,
             ReproductionAttributes repro, LifeSpanAttributes lifeSpan,
-            ConservationAttribute conservation) {
+            ConservationStatus conservation) {
         this.names = names;
         this.specieBiome = biome;
         this.specieFeeding = feeding;
@@ -53,5 +54,15 @@ public class Specie {
         this.gaussianFeeding = new GaussianFeedingAttributes(feeding);
         this.gaussianReproduction = new GaussianReproductionAttributes(repro);
         this.gaussianLifeSpanAttributesSpan = new GaussianLifeSpanAttributes(lifeSpan);
+    }
+
+    public ArrayList<String> info() {
+        ArrayList<String> info = new ArrayList<>();
+        info.add("English name : " + this.names.getEnglishName());
+        info.add("Scientific name : " + this.names.getScientificName());
+        info.add("Conservation status : " + this.conservation.toString());
+        info.add("Reproduction attributes : " + this.specieReproduction.toString());
+        info.add("Life span attributes : " + this.specieLifeSpan.toString());
+        return info;
     }
 }
