@@ -12,6 +12,7 @@ import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.Specie;
 import zoo.paddock.biome.BiomeAttributes;
+import zoo.wellBeing.Compare;
 
 /**
  *
@@ -208,6 +209,7 @@ public class Animal {
         info.add("Well-beeing : " + this.wellBeeing);
         info.add("Reproduction attributes : " + this.actualReproduction);
         info.add("Life span attributes : " + this.actualLifeSpan.toString());
+         info.add("Optimal group size : " + this.optimalSocial.getGroupSize());
         info.add("Group size : " + this.paddock.countAnimalOfTheSameSpecie(this.specie));
 //        info.add("Optimal feeding attributes : " + this.optimalFeeding.toString());
         //      info.add("Actual feeding attributes : " + this.actualFeeding.toString());
@@ -216,6 +218,14 @@ public class Animal {
 
     public void ageing() {
         this.age += 6;
+    }
+
+    public int wellBeing() {
+     int wB = 0;
+     // group size of SocialAttributes
+     wB += Compare.compare(this.optimalSocial.getGroupSize(), this.paddock.countAnimalOfTheSameSpecie(this.specie));
+     System.out.println(this.name + " : " + wB);
+     return wB;
     }
 
 }

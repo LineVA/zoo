@@ -16,6 +16,7 @@ public class Evaluate implements Command {
         int zooEvaluation = 0;
         try {
             // Well-beeing of each animal
+           zooEvaluation += zoo.wellBeing();
             // Special events :
             // ageing
             zoo.ageing();
@@ -24,7 +25,7 @@ public class Evaluate implements Command {
             // death
             zoo.death();
             // Zoo evaluation
-           zooEvaluation = zoo.evaluate();
+           zooEvaluation += zoo.evaluate();
         } catch (UnknownNameException | AlreadyUsedNameException | IncorrectDataException ex) {
             return ex.getMessage();
         }

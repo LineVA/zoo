@@ -55,6 +55,8 @@ public interface IZoo {
     public ArrayList<String> listSpecie();
 
     public void ageing();
+
+    public int wellBeing();
 }
 
 

@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import lombok.Getter;
 import zoo.animal.Animal;
-import zoo.animal.death.DieImpl;
-import zoo.animal.death.IDie;
 import zoo.animal.specie.Specie;
 
 /**
@@ -254,5 +252,14 @@ public class Zoo implements IZoo {
             list.add(entry.getValue().getNames().getEnglishName());
         }
         return list;
+    }
+
+    @Override
+    public int wellBeing() {
+        int wB = 0;
+        for (HashMap.Entry<String, Paddock> entry : paddocks.entrySet()) {
+            wB += entry.getValue().wellBeing();
+        }
+        return wB;
     }
 }

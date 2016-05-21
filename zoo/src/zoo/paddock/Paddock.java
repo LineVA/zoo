@@ -212,4 +212,12 @@ public class Paddock implements Cloneable {
         return count;
     }
 
+    public int wellBeing() {
+        int wB = 0;
+        for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
+            wB += entry.getValue().wellBeing();
+        }
+        return wB;
+    }
+
 }
