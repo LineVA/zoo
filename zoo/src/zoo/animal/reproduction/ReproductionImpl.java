@@ -47,9 +47,10 @@ public class ReproductionImpl implements Reproduction {
      */
     public ArrayList<Animal> generateFamily(Animal mother, Animal father) throws IncorrectDataException {
         ArrayList<Animal> family = new ArrayList<>();
+        family.add(mother);
         family.add(father);
-        for (int i = 0; i < uniform.intAverage(mother.getActualReproduction()
-                .getLitterSize()); i++) {
+        int litterSize = uniform.intAverage(mother.getActualReproduction().getLitterSize());
+        for (int i = 0; i < litterSize ; i++) {
             family.add(generateAnimal(mother.getSpecie(), mother.getName()
                     + father.getName() + i, mother.getPaddock()));
         }

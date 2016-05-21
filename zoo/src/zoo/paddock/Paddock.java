@@ -1,14 +1,18 @@
 package zoo.paddock;
 
+import exception.IncorrectDataException;
 import zoo.paddock.biome.BiomeAttributes;
 import zoo.paddock.biome.Biome;
 import exception.name.AlreadyUsedNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import zoo.animal.Animal;
+import zoo.animal.reproduction.Reproduction;
+import zoo.animal.reproduction.ReproductionImpl;
 
 /**
  *
@@ -139,6 +143,33 @@ public class Paddock implements Cloneable {
             list.add(entry.getKey());
         }
         return list;
+    }
+
+    public void birth() throws IncorrectDataException {
+        ArrayList<Animal> tmpAnimal = new ArrayList<>();
+        Reproduction repro = new ReproductionImpl();
+        ArrayList<Animal> newFamily;
+        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
+            newFamily = repro.reproducte(animalEntry.getValue());
+            // If there is reproduction
+            if (newFamily != null) {
+                // newFamily[0] = mother;
+                // new Family[1] = father;
+                for (int i = 2; i < newFamily.size(); i++) {
+                    tmpAnimal.add(newFamily.get(i));
+                }
+            }
+        }
+        incomingNewBorn(tmpAnimal);
+    }
+
+    private void incomingNewBorn(ArrayList<Animal> tmpAnimal) {
+        Iterator it = tmpAnimal.iterator();
+        Animal animal;
+        while (it.hasNext()) {
+            animal = (Animal) it.next();
+            this.animals.put(animal.getName(), animal);
+        }
     }
 
 }

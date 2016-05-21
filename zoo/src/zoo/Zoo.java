@@ -200,22 +200,8 @@ public class Zoo implements IZoo {
 
     @Override
     public void birth() throws IncorrectDataException {
-        Reproduction repro = new ReproductionImpl();
-        ArrayList<Animal> newFamily;
         for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
-            for (HashMap.Entry<String, Animal> animalEntry : padEntry.getValue().getAnimals().entrySet()) {
-                newFamily = repro.reproducte(animalEntry.getValue());
-                // If there is reproduction
-                if (newFamily != null) {
-                    for (int i = 2; i < newFamily.size(); i++) {
-                        try {
-                            padEntry.getValue().addAnimal(newFamily.get(i));
-                        } catch (AlreadyUsedNameException ex) {
-                            ex.printStackTrace();
-                        }
-                    }
-                }
-            }
+           padEntry.getValue().birth();
         }
     }
 
