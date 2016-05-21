@@ -229,8 +229,8 @@ public class Animal {
         return info;
     }
 
-    public void ageing() {
-        this.age += 6;
+    public void ageing(int monthsPerEvaluation) {
+        this.age += monthsPerEvaluation;
     }
 
     public int wellBeing() {

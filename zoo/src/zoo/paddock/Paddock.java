@@ -175,9 +175,9 @@ public class Paddock implements Cloneable {
         }
     }
 
-    public void ageing() {
+    public void ageing(int monthsPerEvaluation) {
         for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
-            animalEntry.getValue().ageing();
+            animalEntry.getValue().ageing(monthsPerEvaluation);
         }
     }
 

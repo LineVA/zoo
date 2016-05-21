@@ -45,7 +45,15 @@ public class Zoo implements IZoo {
      */
     @Getter
     private HashMap<String, Specie> species;
+    /**
+     * The number of months which flows when we evaluate the zoo
+     */
+    private final int monthsPerEvaluation;
 
+    public Zoo(){
+        this.monthsPerEvaluation = 6;
+    }
+    
     /**
      * Constructor of the object 'Zoo'
      *
@@ -194,7 +202,7 @@ public class Zoo implements IZoo {
      @Override
     public void ageing() {
         for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
-           padEntry.getValue().ageing();
+           padEntry.getValue().ageing(this.monthsPerEvaluation);
         }
     }
 
