@@ -31,6 +31,9 @@ public class PaddockCoordinates {
      */
     @Getter
     private int height;
+    
+    @Getter
+    private int size;
 
     /**
      * Constructor
@@ -50,6 +53,7 @@ public class PaddockCoordinates {
         this.y = y;
         this.width = width;
         this.height = height;
+        this.size = width * height;
     }
 
     /**
@@ -70,6 +74,10 @@ public class PaddockCoordinates {
     public String toString(){
         return "x = " + this.x + ", y = " + this.y + 
                 ", width = " + this.width + ", height = " + this.height;
+    }
+    
+    public int computeSize(){
+        return this.size;
     }
 
 }

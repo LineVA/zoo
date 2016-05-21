@@ -221,7 +221,7 @@ public class Paddock implements Cloneable {
     }
 
     public int computeSize() {
-        return this.coordinates.getWidth()*this.coordinates.getHeight();
+        return this.coordinates.computeSize();
     }
 
 }
