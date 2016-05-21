@@ -11,6 +11,8 @@ import java.util.Iterator;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import zoo.animal.Animal;
+import zoo.animal.death.DieImpl;
+import zoo.animal.death.IDie;
 import zoo.animal.reproduction.Reproduction;
 import zoo.animal.reproduction.ReproductionImpl;
 
@@ -175,6 +177,27 @@ public class Paddock implements Cloneable {
     public void ageing() {
         for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
             animalEntry.getValue().ageing();
+        }
+    }
+
+    public void death() {
+        IDie die = new DieImpl();
+        ArrayList<Animal> tmpAnimal = new ArrayList<>();
+        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
+            // If the animal is dead
+            if (die.isDied(animalEntry.getValue())) {
+                tmpAnimal.add(animalEntry.getValue());
+            }
+        }
+        leavingNewDead(tmpAnimal);
+    }
+
+    private void leavingNewDead(ArrayList<Animal> tmpAnimal) {
+        Iterator it = tmpAnimal.iterator();
+        Animal animal;
+        while (it.hasNext()) {
+            animal = (Animal) it.next();
+            this.animals.remove(animal.getName());
         }
     }
 

@@ -181,18 +181,8 @@ public class Zoo implements IZoo {
 
     @Override
     public void death() {
-        IDie die = new DieImpl();
         for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
-            for (HashMap.Entry<String, Animal> animalEntry : padEntry.getValue().getAnimals().entrySet()) {
-                // If the animal is dead
-                if (die.isDied(animalEntry.getValue())) {
-                    try {
-                        padEntry.getValue().removeAnimal(animalEntry.getValue().getName());
-                    } catch (UnknownNameException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            }
+           padEntry.getValue().death();
         }
     }
 
