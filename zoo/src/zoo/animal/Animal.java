@@ -203,4 +203,8 @@ public class Animal {
         return info;
     }
 
+    public void ageing() {
+        this.age += 6;
+    }
+
 }

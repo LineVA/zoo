@@ -53,6 +53,8 @@ public interface IZoo {
     public ArrayList<String> listAnimal();
 
     public ArrayList<String> listSpecie();
+
+    public void ageing();
 }
 
 

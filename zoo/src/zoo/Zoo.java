@@ -14,8 +14,6 @@ import lombok.Getter;
 import zoo.animal.Animal;
 import zoo.animal.death.DieImpl;
 import zoo.animal.death.IDie;
-import zoo.animal.reproduction.Reproduction;
-import zoo.animal.reproduction.ReproductionImpl;
 import zoo.animal.specie.Specie;
 
 /**
@@ -204,6 +202,13 @@ public class Zoo implements IZoo {
            padEntry.getValue().birth();
         }
     }
+    
+     @Override
+    public void ageing() {
+        for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
+           padEntry.getValue().ageing();
+        }
+    }
 
     @Override
     public ArrayList<PaddockCoordinates> map() throws IncorrectDimensionsException {
@@ -260,5 +265,4 @@ public class Zoo implements IZoo {
         }
         return list;
     }
-
 }

@@ -3,10 +3,7 @@ package commandLine.commandImpl;
 import commandLine.Command;
 import exception.IncorrectDataException;
 import exception.name.AlreadyUsedNameException;
-import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -20,6 +17,8 @@ public class Evaluate implements Command {
         try {
             // Well-beeing of each animal
             // Special events :
+            // ageing
+            zoo.ageing();
             // birth
             zoo.birth();
             // death
