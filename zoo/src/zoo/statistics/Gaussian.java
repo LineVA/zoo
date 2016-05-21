@@ -18,7 +18,12 @@ public class Gaussian extends Random{
     }
     
     public double gaussianDouble(){
-        return super.nextGaussian()*this.standardDeviation + average;
+        double gaussian = super.nextGaussian()*this.standardDeviation + average;
+        if(gaussian > 0.0){
+            return gaussian;
+        } else {
+           return gaussianDouble();
+        }
     }
     
     public int gaussianInt(){
