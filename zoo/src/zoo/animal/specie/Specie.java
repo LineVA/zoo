@@ -3,7 +3,6 @@ package zoo.animal.specie;
 import java.util.ArrayList;
 import lombok.Getter;
 import zoo.animal.Names;
-import zoo.animal.conservation.ConservationAttribute;
 import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.death.GaussianLifeSpanAttributes;
 import zoo.animal.death.LifeSpanAttributes;
@@ -11,6 +10,8 @@ import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.feeding.GaussianFeedingAttributes;
 import zoo.animal.reproduction.GaussianReproductionAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
+import zoo.animal.social.GaussianSocialAttributes;
+import zoo.animal.social.SocialAttributes;
 import zoo.paddock.biome.BiomeAttributes;
 import zoo.paddock.biome.GaussianBiomeAttributes;
 
@@ -29,6 +30,8 @@ public class Specie {
     @Getter
     private final LifeSpanAttributes specieLifeSpan;
     @Getter
+    private final SocialAttributes specieSocial;
+    @Getter
     private final Names names;
     @Getter
     private final ConservationStatus conservation;
@@ -40,20 +43,24 @@ public class Specie {
     private GaussianReproductionAttributes gaussianReproduction;
     @Getter
     private GaussianLifeSpanAttributes gaussianLifeSpanAttributesSpan;
+    @Getter
+    private GaussianSocialAttributes gaussianSocialAttributes;
 
     public Specie(Names names, BiomeAttributes biome, FeedingAttributes feeding,
             ReproductionAttributes repro, LifeSpanAttributes lifeSpan,
-            ConservationStatus conservation) {
+            ConservationStatus conservation, SocialAttributes social) {
         this.names = names;
         this.specieBiome = biome;
         this.specieFeeding = feeding;
         this.specieReproduction = repro;
         this.specieLifeSpan = lifeSpan;
+        this.specieSocial = social;
         this.conservation = conservation;
         this.gaussianBiome = new GaussianBiomeAttributes(biome);
         this.gaussianFeeding = new GaussianFeedingAttributes(feeding);
         this.gaussianReproduction = new GaussianReproductionAttributes(repro);
         this.gaussianLifeSpanAttributesSpan = new GaussianLifeSpanAttributes(lifeSpan);
+        this.gaussianSocialAttributes = new GaussianSocialAttributes(social);
     }
 
     public ArrayList<String> info() {
@@ -63,6 +70,7 @@ public class Specie {
         info.add("Conservation status : " + this.conservation.toString());
         info.add("Reproduction attributes : " + this.specieReproduction.toString());
         info.add("Life span attributes : " + this.specieLifeSpan.toString());
+        info.add("Group size : " + this.specieSocial.toString());
         return info;
     }
 }

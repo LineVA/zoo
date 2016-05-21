@@ -34,8 +34,8 @@ public class WhichMaleTest {
         when(repro.getMaleMaturityAge()).thenReturn(13);
         // Create a paddock 
         pad = new Paddock(null, null);
-        specie1 = new Specie(null, null, null, null, null, null);
-        specie2 = new Specie(null, null, null, null, null, null);
+        specie1 = new Specie(null, null, null, null, null, null, null);
+        specie2 = new Specie(null, null, null, null, null, null, null);
     }
 
     @After

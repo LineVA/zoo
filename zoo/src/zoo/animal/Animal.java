@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 import zoo.animal.death.LifeSpanAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
+import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.Specie;
 import zoo.paddock.biome.BiomeAttributes;
 
@@ -27,7 +28,8 @@ public class Animal {
     private final Paddock paddock;
     @Getter
     private final Sex sex;
-    @Getter @Setter
+    @Getter
+    @Setter
     private int wellBeeing;
     @Getter
     private int age;
@@ -53,6 +55,11 @@ public class Animal {
     // the "optimal" lifespan has no sense.
     @Getter
     private final LifeSpanAttributes actualLifeSpan;
+    // There is only optimal social attributes : 
+    // it is computed when the animal is created,
+    // actual is given by the number of animal is the paddock.
+    @Getter
+    private final SocialAttributes optimalSocial;
 
     public Animal(Specie spec, String name, Paddock paddock, Sex sex, int age) throws IncorrectDataException {
         this.specie = spec;
@@ -73,10 +80,9 @@ public class Animal {
         this.optimalBiome = null;
         this.optimalFeeding = null;
         this.actualFeeding = null;
-        // this.actualReproduction = null;
-        // this.actualLifeSpan = null;
+        this.optimalSocial = drawOptimalSocial(spec);
     }
-    
+
     public Animal(Specie spec, String name, Paddock paddock, Sex sex) throws IncorrectDataException {
         this.specie = spec;
         this.name = name;
@@ -91,11 +97,10 @@ public class Animal {
         this.optimalBiome = null;
         this.optimalFeeding = null;
         this.actualFeeding = null;
-        // this.actualReproduction = null;
-        // this.actualLifeSpan = null;
-        this.age = this.sex.isFemale() ? 
-                this.actualReproduction.getFemaleMaturityAge() :
-                this.actualReproduction.getMaleMaturityAge();
+        this.optimalSocial = drawOptimalSocial(spec);
+        this.age = this.sex.isFemale()
+                ? this.actualReproduction.getFemaleMaturityAge()
+                : this.actualReproduction.getMaleMaturityAge();
     }
 
     /**
@@ -161,6 +166,11 @@ public class Animal {
         return new LifeSpanAttributes(femaleLifeSpan, maleLifeSpan);
     }
 
+    private SocialAttributes drawOptimalSocial(Specie spec) {
+        int groupSize = spec.getGaussianSocialAttributes().getGroupSize().gaussianInt();
+        return new SocialAttributes(groupSize);
+    }
+
     /**
      * Compute if the animal is mature by comparing its age and the age age of
      * sexual maturity for its sex
@@ -198,8 +208,9 @@ public class Animal {
         info.add("Well-beeing : " + this.wellBeeing);
         info.add("Reproduction attributes : " + this.actualReproduction);
         info.add("Life span attributes : " + this.actualLifeSpan.toString());
+        info.add("Group size : " + this.paddock.countAnimalOfTheSameSpecie(this.specie));
 //        info.add("Optimal feeding attributes : " + this.optimalFeeding.toString());
-  //      info.add("Actual feeding attributes : " + this.actualFeeding.toString());
+        //      info.add("Actual feeding attributes : " + this.actualFeeding.toString());
         return info;
     }
 

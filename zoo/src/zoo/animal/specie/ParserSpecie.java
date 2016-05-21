@@ -9,11 +9,11 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.input.sax.XMLReaders;
 import zoo.animal.Names;
-import zoo.animal.conservation.ConservationAttribute;
 import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.death.LifeSpanAttributes;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
+import zoo.animal.social.SocialAttributes;
 import zoo.paddock.biome.BiomeAttributes;
 
 /**
@@ -34,8 +34,9 @@ public class ParserSpecie {
         ReproductionAttributes repro = reproductionParser(root);
         LifeSpanAttributes lifeSpan = lifeSpanParser(root);
         ConservationStatus conservation = conservationParser(root);
+        SocialAttributes social = socialParser(root);
         Specie spec = new Specie(names, biome, feeding, repro, lifeSpan, 
-                conservation);
+                conservation, social);
         return spec;
     }
     
@@ -72,5 +73,10 @@ public class ParserSpecie {
     private static ConservationStatus conservationParser(Element root) throws UnknownNameException {
           Element consEl = root.getChild("general");
         return ConservationStatus.UNKNOWN.findById(Integer.parseInt(consEl.getChildText("uicn")));
+    }
+    
+    private static SocialAttributes socialParser(Element root){
+        Element socialEl = root.getChild("social");
+        return new SocialAttributes(Integer.parseInt(socialEl.getChildText("groupSize")));
     }
 }

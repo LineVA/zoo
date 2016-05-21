@@ -15,6 +15,7 @@ import zoo.animal.death.DieImpl;
 import zoo.animal.death.IDie;
 import zoo.animal.reproduction.Reproduction;
 import zoo.animal.reproduction.ReproductionImpl;
+import zoo.animal.specie.Specie;
 
 /**
  *
@@ -199,6 +200,16 @@ public class Paddock implements Cloneable {
             animal = (Animal) it.next();
             this.animals.remove(animal.getName());
         }
+    }
+
+    public int countAnimalOfTheSameSpecie(Specie specie) {
+        int count = 0;
+        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
+            if(animalEntry.getValue().getSpecie().equals(specie)){
+                count++;
+            }
+        }
+        return count;
     }
 
 }
