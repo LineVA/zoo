@@ -7,7 +7,7 @@ import zoo.animal.feeding.FeedingAttributes;
 import zoo.paddock.Paddock;
 import lombok.Getter;
 import lombok.Setter;
-import zoo.animal.death.LifeSpanAttributes;
+import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.Specie;
@@ -56,7 +56,7 @@ public class Animal {
     // The actual life span is computed when the animal is created ; 
     // the "optimal" lifespan has no sense.
     @Getter
-    private final LifeSpanAttributes actualLifeSpan;
+    private final LifeSpanLightAttributes actualLifeSpan;
     // There is only optimal social attributes : 
     // it is computed when the animal is created,
     // actual is given by the number of animal is the paddock.
@@ -169,10 +169,14 @@ public class Animal {
         return new ReproductionAttributes(female, male, frequency, litter);
     }
 
-    private LifeSpanAttributes drawActualLifeSpan(Specie spec) {
-        int femaleLifeSpan = spec.getGaussianLifeSpanAttributesSpan().getFemaleLifeSpan().gaussianInt();
-        int maleLifeSpan = spec.getGaussianLifeSpanAttributesSpan().getMaleLifeSpan().gaussianInt();
-        return new LifeSpanAttributes(femaleLifeSpan, maleLifeSpan);
+    private LifeSpanLightAttributes drawActualLifeSpan(Specie spec) {
+        int lifeSpan;
+        if (this.sex.isFemale()) {
+            lifeSpan = spec.getGaussianLifeSpanAttributesSpan().getFemaleLifeSpan().gaussianInt();
+        } else {
+            lifeSpan = spec.getGaussianLifeSpanAttributesSpan().getMaleLifeSpan().gaussianInt();
+        }
+        return new LifeSpanLightAttributes(lifeSpan);
     }
 
     private SocialAttributes drawOptimalSocial(Specie spec) {
@@ -204,11 +208,7 @@ public class Animal {
      * @return true if it is older, false else.
      */
     public boolean isTooOld() {
-        if (this.sex == Sex.FEMALE) {
-            return this.age >= this.actualLifeSpan.getFemaleLifeSpan();
-        } else {
-            return this.age >= this.actualLifeSpan.getMaleLifeSpan();
-        }
+        return this.age >= this.actualLifeSpan.getLifeSpan();
     }
 
     public ArrayList<String> info() {
