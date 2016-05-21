@@ -11,6 +11,7 @@ import zoo.animal.death.LifeSpanAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.Specie;
+import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
 import zoo.wellBeing.Compare;
 
@@ -61,6 +62,11 @@ public class Animal {
     // actual is given by the number of animal is the paddock.
     @Getter
     private final SocialAttributes optimalSocial;
+    // There is only optimal social attributes : 
+    // it is computed when the animal is created,
+    // actual is given by the number of animal is the paddock.
+    @Getter
+    private final TerritoryAttributes optimalTerritory;
 
     public Animal(Specie spec, String name, Paddock paddock, Sex sex, int age) throws IncorrectDataException {
         this.specie = spec;
@@ -82,6 +88,7 @@ public class Animal {
         this.optimalFeeding = null;
         this.actualFeeding = null;
         this.optimalSocial = drawOptimalSocial(spec);
+        this.optimalTerritory = drawOptimalTerritory(spec);
     }
 
     public Animal(Specie spec, String name, Paddock paddock, Sex sex) throws IncorrectDataException {
@@ -99,6 +106,7 @@ public class Animal {
         this.optimalFeeding = null;
         this.actualFeeding = null;
         this.optimalSocial = drawOptimalSocial(spec);
+        this.optimalTerritory = drawOptimalTerritory(spec);
         this.age = this.sex.isFemale()
                 ? this.actualReproduction.getFemaleMaturityAge()
                 : this.actualReproduction.getMaleMaturityAge();
@@ -172,6 +180,10 @@ public class Animal {
         return new SocialAttributes(groupSize);
     }
 
+    private TerritoryAttributes drawOptimalTerritory(Specie spec) {
+        return new TerritoryAttributes(spec.getGaussianTerritoryAttributes().getTerritorySize().gaussianDouble());
+    }
+
     /**
      * Compute if the animal is mature by comparing its age and the age age of
      * sexual maturity for its sex
@@ -209,10 +221,11 @@ public class Animal {
         info.add("Well-beeing : " + this.wellBeeing);
         info.add("Reproduction attributes : " + this.actualReproduction);
         info.add("Life span attributes : " + this.actualLifeSpan.toString());
-         info.add("Optimal group size : " + this.optimalSocial.getGroupSize());
+        info.add("Optimal group size : " + this.optimalSocial.getGroupSize());
         info.add("Group size : " + this.paddock.countAnimalOfTheSameSpecie(this.specie));
 //        info.add("Optimal feeding attributes : " + this.optimalFeeding.toString());
         //      info.add("Actual feeding attributes : " + this.actualFeeding.toString());
+        info.add("Territory size : " + this.paddock.computeSize());
         return info;
     }
 
@@ -221,11 +234,14 @@ public class Animal {
     }
 
     public int wellBeing() {
-     int wB = 0;
-     // group size of SocialAttributes
-     wB += Compare.compare(this.optimalSocial.getGroupSize(), this.paddock.countAnimalOfTheSameSpecie(this.specie));
-     System.out.println(this.name + " : " + wB);
-     return wB;
+        int wB = 0;
+        // group size of SocialAttributes
+        wB += Compare.compare(this.optimalSocial.getGroupSize(), this.paddock.countAnimalOfTheSameSpecie(this.specie));
+        System.out.println("(Social) " + this.name + " : " + wB);
+        // territory size of TerritoryAttributes
+        wB += Compare.compare(this.optimalTerritory.getTerritorySize(), this.paddock.computeSize());
+        System.out.println("(Social) " + this.name + " : " + wB);
+        return wB;
     }
 
 }

@@ -12,6 +12,8 @@ import zoo.animal.reproduction.GaussianReproductionAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.GaussianSocialAttributes;
 import zoo.animal.social.SocialAttributes;
+import zoo.paddock.GaussianTerritoryAttributes;
+import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
 import zoo.paddock.biome.GaussianBiomeAttributes;
 
@@ -32,6 +34,8 @@ public class Specie {
     @Getter
     private final SocialAttributes specieSocial;
     @Getter
+    private final TerritoryAttributes specieTerritory;
+    @Getter
     private final Names names;
     @Getter
     private final ConservationStatus conservation;
@@ -45,22 +49,27 @@ public class Specie {
     private GaussianLifeSpanAttributes gaussianLifeSpanAttributesSpan;
     @Getter
     private GaussianSocialAttributes gaussianSocialAttributes;
+    @Getter
+    private GaussianTerritoryAttributes gaussianTerritoryAttributes;
 
     public Specie(Names names, BiomeAttributes biome, FeedingAttributes feeding,
             ReproductionAttributes repro, LifeSpanAttributes lifeSpan,
-            ConservationStatus conservation, SocialAttributes social) {
+            ConservationStatus conservation, SocialAttributes social,
+            TerritoryAttributes territory) {
         this.names = names;
         this.specieBiome = biome;
         this.specieFeeding = feeding;
         this.specieReproduction = repro;
         this.specieLifeSpan = lifeSpan;
         this.specieSocial = social;
+        this.specieTerritory = territory;
         this.conservation = conservation;
         this.gaussianBiome = new GaussianBiomeAttributes(biome);
         this.gaussianFeeding = new GaussianFeedingAttributes(feeding);
         this.gaussianReproduction = new GaussianReproductionAttributes(repro);
         this.gaussianLifeSpanAttributesSpan = new GaussianLifeSpanAttributes(lifeSpan);
         this.gaussianSocialAttributes = new GaussianSocialAttributes(social);
+        this.gaussianTerritoryAttributes = new GaussianTerritoryAttributes(territory);
     }
 
     public ArrayList<String> info() {
@@ -71,6 +80,7 @@ public class Specie {
         info.add("Reproduction attributes : " + this.specieReproduction.toString());
         info.add("Life span attributes : " + this.specieLifeSpan.toString());
         info.add("Group size : " + this.specieSocial.toString());
+        info.add("Territory size : " + this.specieTerritory.toString());
         return info;
     }
 }

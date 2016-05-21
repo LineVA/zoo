@@ -14,6 +14,7 @@ import zoo.animal.death.LifeSpanAttributes;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
+import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
 
 /**
@@ -21,7 +22,7 @@ import zoo.paddock.biome.BiomeAttributes;
  * @author doyenm
  */
 public class ParserSpecie {
-    
+
     public static Specie mainParserSpecie(File file) throws IOException, JDOMException {
         SAXBuilder sax = new SAXBuilder(XMLReaders.XSDVALIDATING);
         Document document;
@@ -35,27 +36,28 @@ public class ParserSpecie {
         LifeSpanAttributes lifeSpan = lifeSpanParser(root);
         ConservationStatus conservation = conservationParser(root);
         SocialAttributes social = socialParser(root);
-        Specie spec = new Specie(names, biome, feeding, repro, lifeSpan, 
-                conservation, social);
+        TerritoryAttributes territory = territoryParser(root);
+        Specie spec = new Specie(names, biome, feeding, repro, lifeSpan,
+                conservation, social, territory);
         return spec;
     }
-    
+
     private static Names namesParser(Element root) {
         Element nameEl = root.getChild("names");
         return new Names(nameEl.getChildText("fr"), nameEl.getChildText("en"),
                 nameEl.getChildText("scientific"));
     }
-    
+
     private static BiomeAttributes biomeParser(Element root) {
         BiomeAttributes biome = new BiomeAttributes(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
         return biome;
     }
-    
+
     private static FeedingAttributes feedingParser(Element root) {
         FeedingAttributes feeding = new FeedingAttributes(0.0);
         return feeding;
     }
-    
+
     private static ReproductionAttributes reproductionParser(Element root) {
         Element reproEl = root.getChild("reproduction");
         return new ReproductionAttributes(Integer.parseInt(reproEl.getChildText("femaleMaturity")),
@@ -65,18 +67,23 @@ public class ParserSpecie {
     }
 
     private static LifeSpanAttributes lifeSpanParser(Element root) {
-         Element lifeEl = root.getChild("lifespan");
+        Element lifeEl = root.getChild("lifespan");
         return new LifeSpanAttributes(Integer.parseInt(lifeEl.getChildText("femaleLifespan")),
                 Integer.parseInt(lifeEl.getChildText("maleLifeSpan")));
     }
 
     private static ConservationStatus conservationParser(Element root) throws UnknownNameException {
-          Element consEl = root.getChild("general");
+        Element consEl = root.getChild("general");
         return ConservationStatus.UNKNOWN.findById(Integer.parseInt(consEl.getChildText("uicn")));
     }
-    
-    private static SocialAttributes socialParser(Element root){
+
+    private static SocialAttributes socialParser(Element root) {
         Element socialEl = root.getChild("social");
         return new SocialAttributes(Integer.parseInt(socialEl.getChildText("groupSize")));
+    }
+
+    private static TerritoryAttributes territoryParser(Element root) {
+        Element terriEl = root.getChild("territory");
+        return new TerritoryAttributes(Double.parseDouble(terriEl.getChildText("territorySize")));
     }
 }
