@@ -1,14 +1,23 @@
-
-Expression licensePrefix is undefined on line 4, column 3 in Templates/Licenses/license-default.txt.To change this license header, choose License Headers in Project Properties.
-Expression licensePrefix is undefined on line 5, column 3 in Templates/Licenses/license-default.txt.To change this template file, choose Tools | Templates
-Expression licensePrefix is undefined on line 6, column 3 in Templates/Licenses/license-default.txt.and open the template in the editor.
-
 package zoo.animal.death;
+
+import lombok.Getter;
 
 /**
  *
  * @author doyenm
  */
 public class LifeSpanLightAttributes {
+    @Getter
+    private final int lifeSpan;
 
+    public LifeSpanLightAttributes(int lifeSpan) {
+        this.lifeSpan = lifeSpan;
+    }
+
+    @Override
+    public String toString() {
+        String info = "";
+        info += "life span = " + this.lifeSpan + ", ";
+        return info;
+    }
 }

@@ -14,10 +14,10 @@ import org.junit.rules.ExpectedException;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import zoo.IZoo;
 import zoo.paddock.Paddock;
 import zoo.paddock.PaddockCoordinates;
 import zoo.Zoo;
+import zoo.paddock.IPaddock;
 
 /**
  *
@@ -57,7 +57,7 @@ public class AddPaddockTest {
         zoo.addPaddock("a", 0, 0, 1, 1);
         zoo.addPaddock("b", 1, 1, 1, 1);
         // Then
-        HashMap<String, Paddock> actualList = zoo.getPaddocks();
+        HashMap<String, IPaddock> actualList = zoo.getPaddocks();
         assertEquals(2, actualList.size());
         // We do not check if a value has the correct key
         assertTrue(actualList.containsKey("a"));
@@ -84,21 +84,6 @@ public class AddPaddockTest {
         thrown.expect(IncorrectDimensionsException.class);
         // When
         zoo.addPaddock("a", 5, 5, 3, 3);
-        // Then
-    }
-
-    // Pb : How to "un-mock" the isNotCompeting method 
-    // in order to re-mock it ?
-    @Test
-    public void shouldThrowAnIncorrectDimensionsExceptionWhenPaddocksAreCompeting()
-            throws AlreadyUsedNameException, IncorrectDimensionsException {
-        // Given : we always have competing paddocks
-        PaddockCoordinates coor = mock(PaddockCoordinates.class);
-        when(coor.isNotCompeting(any(PaddockCoordinates.class))).thenReturn(false);
-        // When
-        thrown.expect(IncorrectDimensionsException.class);
-        zoo.addPaddock("a", 0, 0, 1, 1);
-        zoo.addPaddock("b", 1, 1, 1, 1);
         // Then
     }
 

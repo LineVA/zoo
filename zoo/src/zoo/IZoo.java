@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
-import zoo.paddock.Paddock;
+import zoo.paddock.IPaddock;
 import zoo.paddock.PaddockCoordinates;
 
 /**
@@ -42,7 +42,7 @@ public interface IZoo {
     
     public void birth() throws AlreadyUsedNameException, IncorrectDataException;
     
-    public Paddock findPaddockByName(String paddockName) throws EmptyNameException, UnknownNameException;
+    public IPaddock findPaddockByName(String paddockName) throws EmptyNameException, UnknownNameException;
     
     public Specie findSpeciebyName(String specieName) throws EmptyNameException, UnknownNameException;
 //    public void setBiome(String paddockName, String biomeName)

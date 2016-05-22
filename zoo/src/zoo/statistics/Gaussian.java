@@ -22,7 +22,7 @@ public class Gaussian extends Random{
         if(gaussian > 0.0){
             return gaussian;
         } else {
-           return gaussianDouble();
+           return 0.01;
         }
     }
     

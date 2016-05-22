@@ -13,6 +13,7 @@ import org.junit.rules.ExpectedException;
 import zoo.paddock.Paddock;
 import zoo.Zoo;
 import zoo.animal.specie.Specie;
+import zoo.paddock.IPaddock;
 
 /**
  * Test of the constructor of the class Zoo is zoo package
@@ -51,7 +52,7 @@ public class ZooTest {
         String actualName = zoo.getName();
         int actualWidth = zoo.getWidth();
         int actualHeight = zoo.getHeight();
-        HashMap<String, Paddock> actualPaddocks = zoo.getPaddocks();
+        HashMap<String, IPaddock> actualPaddocks = zoo.getPaddocks();
         HashMap<String, Specie> actualSpecies = zoo.getSpecies();
         assertEquals(expectedWidth, actualWidth);
         assertEquals(expectedHeight, actualHeight);

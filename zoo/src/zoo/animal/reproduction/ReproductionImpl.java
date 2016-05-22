@@ -2,11 +2,11 @@ package zoo.animal.reproduction;
 
 import exception.IncorrectDataException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Iterator;
 import zoo.statistics.Uniform;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
-import zoo.paddock.Paddock;
+import zoo.paddock.IPaddock;
 
 /**
  * First implementation of a reproduction : 
@@ -29,7 +29,7 @@ public class ReproductionImpl implements Reproduction {
     @Override
     public ArrayList<Animal> reproducte(Animal animal) throws IncorrectDataException{
         if (canFemaleReproducte(animal)) {
-            Animal father = whichMale(animal.getSpecie(), animal.getPaddock().getAnimals());
+            Animal father = whichMale(animal.getPaddock().animalsOfTheSameSpecie(animal.getSpecie()));
             if (father != null) {
                 return generateFamily(animal, father);
             }
@@ -64,7 +64,7 @@ public class ReproductionImpl implements Reproduction {
      * @param pad its paddock
      * @return the baby
      */
-    public Animal generateAnimal(Specie spec, String name, Paddock pad) throws IncorrectDataException {
+    public Animal generateAnimal(Specie spec, String name, IPaddock pad) throws IncorrectDataException {
         Sex sex;
         if (uniform.nextBoolean()) {
             sex = Sex.FEMALE;
@@ -122,14 +122,14 @@ public class ReproductionImpl implements Reproduction {
      * @param animals the animals in the paddock
      * @return the male if one has been found, null else.
      */
-    public Animal whichMale(Specie spec, HashMap<String, Animal> animals) {
-        for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
-            Animal value = entry.getValue();
-            if (value.getSpecie().equals(spec)) {
-                if (canMaleReproducte(value)) {
-                    return value;
+    public Animal whichMale(ArrayList<Animal> animals) {
+        Iterator it = animals.iterator();
+        Animal potentialMale;
+        while(it.hasNext()){
+            potentialMale = (Animal)it.next();
+                if (canMaleReproducte(potentialMale)) {
+                    return potentialMale;
                 }
-            }
         }
         return null;
     }

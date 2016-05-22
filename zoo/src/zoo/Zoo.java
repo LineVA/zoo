@@ -13,6 +13,7 @@ import java.util.HashMap;
 import lombok.Getter;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
+import zoo.paddock.IPaddock;
 
 /**
  *
@@ -39,7 +40,7 @@ public class Zoo implements IZoo {
      * The hashmap of the paddocks it contains
      */
     @Getter
-    private HashMap<String, Paddock> paddocks;
+    private HashMap<String, IPaddock> paddocks;
     /**
      * The HashMap of the existing species
      */
@@ -109,13 +110,13 @@ public class Zoo implements IZoo {
                 throw new IncorrectDimensionsException("This paddock cannot be "
                         + "set here : the zoo is too small.");
             }
-            for (HashMap.Entry<String, Paddock> entry : paddocks.entrySet()) {
-                if (!coor.isNotCompeting(entry.getValue().getCoordinates())) {
+            for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
+                if (!entry.getValue().isNotCompetingForSpace(coor)) {
                     throw new IncorrectDimensionsException("This paddock cannot"
                             + " be set here : there is already another one on this place.");
                 }
             }
-            Paddock paddock = new Paddock(paddockName, coor);
+            IPaddock paddock = new Paddock(paddockName, coor);
             this.paddocks.put(paddockName, paddock);
         }
     }
@@ -128,7 +129,7 @@ public class Zoo implements IZoo {
     @Override
     public ArrayList<String> listPaddock() {
         ArrayList<String> list = new ArrayList<>();
-        for (HashMap.Entry<String, Paddock> entry : paddocks.entrySet()) {
+        for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
             list.add(entry.getKey());
         }
         return list;
@@ -142,12 +143,12 @@ public class Zoo implements IZoo {
      * @throws UnknownNameException if the paddock does not exist
      */
     @Override
-    public Paddock findPaddockByName(String name) throws UnknownNameException,
+    public IPaddock findPaddockByName(String name) throws UnknownNameException,
             EmptyNameException {
         if (name.trim().equals("")) {
             throw new EmptyNameException("");
         }
-        for (HashMap.Entry<String, Paddock> entry : paddocks.entrySet()) {
+        for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
             if (entry.getKey().equalsIgnoreCase(name)) {
                 return entry.getValue();
             }
@@ -171,37 +172,30 @@ public class Zoo implements IZoo {
     public int evaluate() {
         ArrayList<String> presentedSpecies = new ArrayList<>();
         int kidsNb = 0;
-        for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
-            for (HashMap.Entry<String, Animal> animalEntry : padEntry.getValue().getAnimals().entrySet()) {
-                if (!animalEntry.getValue().isMature()) {
-                    kidsNb += 1;
-                }
-                String name = animalEntry.getValue().getSpecie().getNames().getEnglishName();
-                if (!presentedSpecies.contains(name)) {
-                    presentedSpecies.add(name);
-                }
-            }
+        for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
+            kidsNb += padEntry.getValue().countNonMatureAnimals();
+            presentedSpecies = padEntry.getValue().countSpecies(presentedSpecies);
         }
         return kidsNb * 5 + presentedSpecies.size();
     }
 
     @Override
     public void death() {
-        for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
+        for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
            padEntry.getValue().death();
         }
     }
 
     @Override
     public void birth() throws IncorrectDataException {
-        for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
+        for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
            padEntry.getValue().birth();
         }
     }
     
      @Override
     public void ageing() {
-        for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
+        for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
            padEntry.getValue().ageing(this.monthsPerEvaluation);
         }
     }
@@ -210,7 +204,7 @@ public class Zoo implements IZoo {
     public ArrayList<PaddockCoordinates> map() throws IncorrectDimensionsException {
         ArrayList<PaddockCoordinates> map = new ArrayList<>();
         map.add(new PaddockCoordinates(0, 0, width, height));
-        for (HashMap.Entry<String, Paddock> padEntry : paddocks.entrySet()) {
+        for (HashMap.Entry<String, IPaddock> padEntry : paddocks.entrySet()) {
             map.add(padEntry.getValue().getCoordinates());
         }
         return map;
@@ -234,7 +228,7 @@ public class Zoo implements IZoo {
         if (animalName.trim().equals("")) {
             throw new EmptyNameException("The name of the animal is empty");
         }
-        for (HashMap.Entry<String, Paddock> padEntry : this.paddocks.entrySet()) {
+        for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
             try {
                 return padEntry.getValue().findAnimalByName(animalName);
             } catch (UnknownNameException ex) {
@@ -247,7 +241,7 @@ public class Zoo implements IZoo {
     @Override
     public ArrayList<String> listAnimal() {
         ArrayList<String> list = new ArrayList<>();
-        for (HashMap.Entry<String, Paddock> entry : paddocks.entrySet()) {
+        for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
             list.addAll(entry.getValue().listAnimal());
         }
         return list;
@@ -265,7 +259,7 @@ public class Zoo implements IZoo {
     @Override
     public int wellBeing() {
         int wB = 0;
-        for (HashMap.Entry<String, Paddock> entry : paddocks.entrySet()) {
+        for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
             wB += entry.getValue().wellBeing();
         }
         return wB;

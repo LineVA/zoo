@@ -8,9 +8,15 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import zoo.animal.Animal;
-import zoo.animal.Species;
+import zoo.animal.conservation.ConservationStatus;
+import zoo.animal.death.LifeSpanAttributes;
+import zoo.animal.feeding.FeedingAttributes;
+import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.Specie;
+import zoo.paddock.IPaddock;
 import zoo.paddock.Paddock;
+import zoo.paddock.TerritoryAttributes;
+import zoo.paddock.biome.BiomeAttributes;
 
 /**
  *
@@ -18,7 +24,6 @@ import zoo.paddock.Paddock;
  */
 public class GenerateAnimalTest {
 
-    
     @Before
     public void setUpClass() {
     }
@@ -34,7 +39,14 @@ public class GenerateAnimalTest {
     @Test
     public void shouldReturnAnAnimalWithTheExpectedValues() throws IncorrectDataException {
         // Given
-        Specie expectedSpec = new Specie(null, null, null, null, null, null, null, null);
+        BiomeAttributes biome = new BiomeAttributes(1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0);
+        FeedingAttributes feeding = new FeedingAttributes(1.0);
+        SocialAttributes social = new SocialAttributes(1);
+        LifeSpanAttributes lifeSpan = new LifeSpanAttributes(1, 1);
+        TerritoryAttributes territory = new TerritoryAttributes(1.0);
+        ReproductionAttributes repro = new ReproductionAttributes(1, 1, 1, 1);
+        Specie expectedSpec = new Specie(null, biome, feeding, repro, lifeSpan,
+                ConservationStatus.UNKNOWN, social, territory);
         String expectedName = "foo";
         Paddock expectedPad = new Paddock("paddock", null);
         ReproductionImpl reproduction = new ReproductionImpl();
@@ -42,7 +54,7 @@ public class GenerateAnimalTest {
         Animal actualAnimal = reproduction.generateAnimal(expectedSpec, expectedName, expectedPad);
         // Then
         String actualName = actualAnimal.getName();
-        Paddock actualPad = actualAnimal.getPaddock();
+        IPaddock actualPad = actualAnimal.getPaddock();
         Specie actualSpec = actualAnimal.getSpecie();
         assertEquals(actualName, expectedName);
         assertEquals(expectedPad, actualPad);

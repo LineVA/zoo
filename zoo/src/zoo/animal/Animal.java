@@ -11,6 +11,7 @@ import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.Specie;
+import zoo.paddock.IPaddock;
 import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
 import zoo.wellBeing.Compare;
@@ -27,7 +28,7 @@ public class Animal {
     @Getter
     private final String name;
     @Getter
-    private final Paddock paddock;
+    private final IPaddock paddock;
     @Getter
     private final Sex sex;
     @Getter
@@ -68,7 +69,7 @@ public class Animal {
     @Getter
     private final TerritoryAttributes optimalTerritory;
 
-    public Animal(Specie spec, String name, Paddock paddock, Sex sex, int age) throws IncorrectDataException {
+    public Animal(Specie spec, String name, IPaddock paddock, Sex sex, int age) throws IncorrectDataException {
         this.specie = spec;
         this.name = name;
         this.paddock = paddock;
@@ -91,7 +92,7 @@ public class Animal {
         this.optimalTerritory = drawOptimalTerritory(spec);
     }
 
-    public Animal(Specie spec, String name, Paddock paddock, Sex sex) throws IncorrectDataException {
+    public Animal(Specie spec, String name, IPaddock paddock, Sex sex) throws IncorrectDataException {
         this.specie = spec;
         this.name = name;
         this.paddock = paddock;
@@ -222,7 +223,7 @@ public class Animal {
         info.add("Reproduction attributes : " + this.actualReproduction);
         info.add("Life span attributes : " + this.actualLifeSpan.toString());
         info.add("Optimal group size : " + this.optimalSocial.getGroupSize());
-        info.add("Group size : " + this.paddock.countAnimalOfTheSameSpecie(this.specie));
+        info.add("Group size : " + this.paddock.countAnimalsOfTheSameSpecie(this.specie));
 //        info.add("Optimal feeding attributes : " + this.optimalFeeding.toString());
         //      info.add("Actual feeding attributes : " + this.actualFeeding.toString());
         info.add("Territory size : " + this.paddock.computeSize());
@@ -236,7 +237,7 @@ public class Animal {
     public int wellBeing() {
         int wB = 0;
         // group size of SocialAttributes
-        wB += Compare.compare(this.optimalSocial.getGroupSize(), this.paddock.countAnimalOfTheSameSpecie(this.specie));
+        wB += Compare.compare(this.optimalSocial.getGroupSize(), this.paddock.countAnimalsOfTheSameSpecie(this.specie));
         System.out.println("(Social) " + this.name + " : " + wB);
         // territory size of TerritoryAttributes
         wB += Compare.compare(this.optimalTerritory.getTerritorySize(), this.paddock.computeSize());

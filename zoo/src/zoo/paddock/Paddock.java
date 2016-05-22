@@ -24,17 +24,15 @@ import zoo.animal.specie.Specie;
 // @EqualsAndHashCode(exclude={"nightTemperature", "dayTemperature", "pluviometry",
 // "treeDensity", "treeHeight", "drop", "waterSalinity", "humidity"})
 @EqualsAndHashCode()
-public class Paddock implements Cloneable {
+public class Paddock implements Cloneable, IPaddock {
 
     /**
      * The name of the paddock
      */
-    @Getter
     private final String name;
     /**
      * Its coordinates
      */
-    @Getter
     private final PaddockCoordinates coordinates;
 
     /**
@@ -78,6 +76,7 @@ public class Paddock implements Cloneable {
         }
     }
 
+    @Override
     public void setBiome(String biomeName) throws UnknownNameException {
         try {
             setBiome(Biome.NONE.findById(Integer.parseInt(biomeName)));
@@ -103,6 +102,7 @@ public class Paddock implements Cloneable {
         return pad;
     }
 
+    @Override
     public void addAnimal(Animal animal) throws AlreadyUsedNameException {
         if (this.animals.containsKey(animal.getName())) {
             throw new AlreadyUsedNameException("There is already an animal with"
@@ -120,6 +120,7 @@ public class Paddock implements Cloneable {
         }
     }
 
+    @Override
     public ArrayList<String> info() {
         ArrayList<String> info = new ArrayList<>();
         info.add("Name : " + this.name);
@@ -130,6 +131,7 @@ public class Paddock implements Cloneable {
         return info;
     }
 
+    @Override
     public Animal findAnimalByName(String animalName) throws UnknownNameException {
         for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
             if (animalEntry.getKey().equalsIgnoreCase(animalName)) {
@@ -140,6 +142,7 @@ public class Paddock implements Cloneable {
                 + "with this name.");
     }
 
+    @Override
     public ArrayList<String> listAnimal() {
         ArrayList<String> list = new ArrayList<>();
         for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
@@ -148,6 +151,7 @@ public class Paddock implements Cloneable {
         return list;
     }
 
+    @Override
     public void birth() throws IncorrectDataException {
         ArrayList<Animal> tmpAnimal = new ArrayList<>();
         Reproduction repro = new ReproductionImpl();
@@ -175,12 +179,14 @@ public class Paddock implements Cloneable {
         }
     }
 
+    @Override
     public void ageing(int monthsPerEvaluation) {
         for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
             animalEntry.getValue().ageing(monthsPerEvaluation);
         }
     }
 
+    @Override
     public void death() {
         IDie die = new DieImpl();
         ArrayList<Animal> tmpAnimal = new ArrayList<>();
@@ -202,16 +208,12 @@ public class Paddock implements Cloneable {
         }
     }
 
-    public int countAnimalOfTheSameSpecie(Specie specie) {
-        int count = 0;
-        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
-            if(animalEntry.getValue().getSpecie().equals(specie)){
-                count++;
-            }
-        }
-        return count;
+    @Override
+    public int countAnimalsOfTheSameSpecie(Specie specie) {
+       return animalsOfTheSameSpecie(specie).size();
     }
 
+    @Override
     public int wellBeing() {
         int wB = 0;
         for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
@@ -220,8 +222,61 @@ public class Paddock implements Cloneable {
         return wB;
     }
 
+    @Override
     public int computeSize() {
         return this.coordinates.computeSize();
+    }
+
+    @Override
+    public void instanciatePaddock() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean isNotCompetingForSpace(PaddockCoordinates coordinates) {
+        return this.coordinates.isNotCompeting(coordinates);
+    }
+
+    @Override
+    public int countNonMatureAnimals() {
+        int count = 0;
+        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
+            if (!animalEntry.getValue().isMature()) {
+                count += 1;
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public ArrayList<String> countSpecies(ArrayList<String> presentedSpecies) {
+        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
+            String name = animalEntry.getValue().getSpecie().getNames().getEnglishName();
+            if (!presentedSpecies.contains(name)) {
+                presentedSpecies.add(name);
+            }
+        }
+        return presentedSpecies;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public PaddockCoordinates getCoordinates() {
+        return this.coordinates;
+    }
+
+    @Override
+    public ArrayList<Animal> animalsOfTheSameSpecie(Specie specie) {
+        ArrayList<Animal> sameSpecieAnimals = new ArrayList<>();
+        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
+            if (animalEntry.getValue().getSpecie().equals(specie)) {
+                sameSpecieAnimals.add(animalEntry.getValue());
+            }
+        }
+        return sameSpecieAnimals;
     }
 
 }

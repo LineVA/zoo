@@ -14,6 +14,7 @@ import org.junit.rules.ExpectedException;
 import zoo.paddock.Paddock;
 import zoo.paddock.PaddockCoordinates;
 import zoo.Zoo;
+import zoo.paddock.IPaddock;
 
 /**
  *
@@ -47,7 +48,7 @@ public class PaddockByNameTest {
         zoo.addPaddock("a", 1, 1, 1, 1);
         zoo.addPaddock("b", 2, 2, 2, 2);
         // When
-        Paddock actualPaddock = zoo.findPaddockByName("b");
+        IPaddock actualPaddock = zoo.findPaddockByName("b");
         // Then
         PaddockCoordinates coor = new PaddockCoordinates(2, 2, 2, 2);
         Paddock expectedPaddock = new Paddock("b", coor);
@@ -63,7 +64,7 @@ public class PaddockByNameTest {
         zoo.addPaddock("b", 2, 2, 2, 2);
         // When
         thrown.expect(UnknownNameException.class);
-        Paddock actualPaddock = zoo.findPaddockByName("c");
+        IPaddock actualPaddock = zoo.findPaddockByName("c");
         // Then
     }
 
@@ -76,7 +77,7 @@ public class PaddockByNameTest {
         zoo.addPaddock("b", 2, 2, 2, 2);
         // When
         thrown.expect(EmptyNameException.class);
-        Paddock actualPaddock = zoo.findPaddockByName(" ");
+        IPaddock actualPaddock = zoo.findPaddockByName(" ");
         // Then
     }
 
