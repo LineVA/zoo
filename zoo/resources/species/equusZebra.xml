@@ -11,7 +11,7 @@
     <reproduction>
         <femaleMaturity>66</femaleMaturity>
         <maleMaturity>42</maleMaturity>
-        <gestationFrequency>0.5</gestationFrequency>
+        <gestationFrequency>0</gestationFrequency>
         <litterSize>1</litterSize>
         <leavingAge>22</leavingAge>
     </reproduction>
@@ -25,6 +25,7 @@
     </territory>
     <feeding>
         <diet>folivore</diet>
+        <quantity>5.7</quantity>
     </feeding>
     <social>
         <groupSize>10</groupSize>

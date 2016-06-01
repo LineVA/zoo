@@ -1,0 +1,33 @@
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./specie.xsd">
+    <names>
+        <fr>Lion</fr>
+        <en>Lion</en>
+        <scientific>Panthera leo</scientific>
+    </names>
+<general>
+    <uicn>3</uicn>
+    <family>Felidae</family>
+</general>
+<reproduction>
+        <femaleMaturity>48</femaleMaturity>
+        <maleMaturity>60</maleMaturity>
+        <gestationFrequency>0.5</gestationFrequency>
+        <litterSize>3</litterSize>
+        <leavingAge>16</leavingAge>
+</reproduction>
+<lifespan>
+        <femaleLifespan>168</femaleLifespan>
+        <maleLifeSpan>168</maleLifeSpan>
+</lifespan>
+<territory>
+    <biome>7</biome>
+    <territorySize>210</territorySize>
+</territory>
+<feeding>
+        <diet>carnivore</diet>
+        <quantity>7</quantity>
+    </feeding>
+<social>
+    <groupSize>20</groupSize>
+</social>
+</animal>

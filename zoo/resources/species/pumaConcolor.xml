@@ -1,0 +1,33 @@
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./specie.xsd">
+    <names>
+        <fr>Puma</fr>
+        <en>Cougar</en>
+        <scientific>Puma concolor</scientific>
+    </names>
+<general>
+    <uicn>1</uicn>
+    <family>Felidae</family>
+</general>
+<reproduction>
+        <femaleMaturity>24</femaleMaturity>
+        <maleMaturity>30</maleMaturity>
+        <gestationFrequency>0.5</gestationFrequency>
+        <litterSize>3</litterSize>
+        <leavingAge>12</leavingAge>
+</reproduction>
+<lifespan>
+        <femaleLifespan>228</femaleLifespan>
+        <maleLifeSpan>228</maleLifeSpan>
+</lifespan>
+<territory>
+    <biome>1</biome>
+    <territorySize>175</territorySize>
+</territory>
+<feeding>
+        <diet>carnivore</diet>
+        <quantity>1</quantity>
+    </feeding>
+<social>
+    <groupSize>1</groupSize>
+</social>
+</animal>
