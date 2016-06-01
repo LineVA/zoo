@@ -11,7 +11,7 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                 <xs:element name="general">
+                <xs:element name="general">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element type="xs:integer" name="uicn"/>
@@ -50,6 +50,7 @@
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element type="xs:string" name="diet"/>
+                            <xs:element type="xs:decimal" name="quantity"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
