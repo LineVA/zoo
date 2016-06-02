@@ -23,8 +23,10 @@ public class InstanciateSpecies {
         Stream<Path> files = Files.list(Paths.get(resource));
         files.forEach((Path file) -> {
             try {
+                if(file.endsWith(".xml")){
                 Specie tmpSpec = ParserSpecie.mainParserSpecie(file.toFile());
                 species.put(tmpSpec.getNames().getEnglishName(), tmpSpec);
+                } 
             } catch (IOException ex) {
                 Logger.getLogger(Zoo.class.getName()).log(Level.SEVERE, null, ex);
             } catch (JDOMException ex) {
