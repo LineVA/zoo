@@ -1,8 +1,7 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
-import java.util.ArrayList;
-import java.util.Arrays;
+import main.Play;
 
 /**
  *
@@ -10,6 +9,13 @@ import java.util.Arrays;
  */
 public class BiomeAttributesPaddock implements Command {
 
+        Play play;
+    
+    public BiomeAttributesPaddock(Play play){
+        this.play = play;
+    }
+//    
+    
     private Object[] attributesArray;
 
     @Override

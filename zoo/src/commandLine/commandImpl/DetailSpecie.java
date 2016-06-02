@@ -4,6 +4,7 @@ import basicGui.FormattingDisplay;
 import commandLine.Command;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
+import main.Play;
 import zoo.animal.specie.Specie;
 
 /**
@@ -12,10 +13,16 @@ import zoo.animal.specie.Specie;
  */
 public class DetailSpecie implements Command {
 
+    Play play;
+
+    public DetailSpecie(Play play) {
+        this.play = play;
+    }
+
     @Override
     public String execute(String[] cmd) {
         try {
-            Specie spec = this.zoo.findSpeciebyName(cmd[1]);
+            Specie spec = this.play.zoo.findSpeciebyName(cmd[1]);
             return (FormattingDisplay.formattingArrayList(spec.info()));
         } catch (UnknownNameException ex) {
             return "No paddock has this name.";

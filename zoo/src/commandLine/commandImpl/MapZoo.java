@@ -4,6 +4,7 @@ import basicGui.FormattingDisplay;
 import commandLine.Command;
 import exception.IncorrectDimensionsException;
 import java.util.ArrayList;
+import main.Play;
 import zoo.paddock.PaddockCoordinates;
 
 /**
@@ -12,10 +13,16 @@ import zoo.paddock.PaddockCoordinates;
  */
 public class MapZoo implements Command {
 
+    Play play;
+
+    public MapZoo(Play play) {
+        this.play = play;
+    }
+
     @Override
     public String execute(String[] cmd) {
         try {
-            ArrayList<PaddockCoordinates> map = this.zoo.map();
+            ArrayList<PaddockCoordinates> map = this.play.zoo.map();
             return FormattingDisplay.zooMap(map);
         } catch (IncorrectDimensionsException ex) {
             return "Fail !";

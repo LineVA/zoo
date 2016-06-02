@@ -1,6 +1,7 @@
 package commandLine.commandImpl;
 
-import basicGui.FormattingDisplay;
+import backup.load.Load;
+import backup.load.LoadImpl;
 import commandLine.Command;
 import main.Play;
 
@@ -8,26 +9,26 @@ import main.Play;
  *
  * @author doyenm
  */
-public class LsSpecie implements Command {
+public class LoadZoo implements Command {
 
     Play play;
-
-    public LsSpecie(Play play) {
+    
+    public LoadZoo(Play play){
         this.play = play;
     }
-
+    
     @Override
     public String execute(String[] cmd) {
-        return FormattingDisplay.formattingArrayList(this.play.zoo.listSpecie());
+        Load load = new LoadImpl();
+        this.play.zoo = load.loadZoo(cmd[1]);
+        return "You are now in your new zoo.";
     }
 
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
-            if (cmd[0].equals("specie") || cmd[0].equals("spec")) {
-                if (cmd[1].equals("ls")) {
-                    return true;
-                }
+            if (cmd[0].equals("load")) {
+                return true;
             }
         }
         return false;

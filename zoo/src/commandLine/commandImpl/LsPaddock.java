@@ -2,6 +2,7 @@ package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
 import commandLine.Command;
+import main.Play;
 
 /**
  *
@@ -9,9 +10,15 @@ import commandLine.Command;
  */
 public class LsPaddock implements Command {
 
+    Play play;
+    
+    public LsPaddock(Play play){
+        this.play = play;
+    }
+    
     @Override
     public String execute(String[] cmd) {
-        return FormattingDisplay.formattingArrayList(this.zoo.listPaddock());
+        return FormattingDisplay.formattingArrayList(this.play.zoo.listPaddock());
     }
 
     @Override

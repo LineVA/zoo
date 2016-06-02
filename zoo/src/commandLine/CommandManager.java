@@ -9,11 +9,14 @@ import commandLine.commandImpl.DetailAnimal;
 import commandLine.commandImpl.DetailPad;
 import commandLine.commandImpl.DetailSpecie;
 import commandLine.commandImpl.Evaluate;
+import commandLine.commandImpl.LoadZoo;
 import commandLine.commandImpl.LsAnimal;
 import commandLine.commandImpl.LsPaddock;
 import commandLine.commandImpl.LsSpecie;
 import commandLine.commandImpl.MapZoo;
+import commandLine.commandImpl.SaveZoo;
 import static java.util.Arrays.asList;
+import main.Play;
 
 /**
  *
@@ -21,18 +24,27 @@ import static java.util.Arrays.asList;
  */
 public class CommandManager {
 
-    // For Paddock and Animal : Ls must be before Detail
-    private final Iterable<Command> commands = asList(new CreateZoo(), 
-            new CreatePaddock(), new LsPaddock(), new MapZoo(), new DetailPad(),
-            new Evaluate(), new BiomePad(), new BiomeAttributesPaddock(),
-            new CreateAnimal(), new LsAnimal(), new DetailAnimal(),
-            new LsSpecie(), new DetailSpecie());
-    
-    public String run(String cmd){
-       // String[] parse = cmd.split(" ");
+    Play play;
+    private final Iterable<Command> commands;
+
+    public CommandManager(Play play) {
+        this.play = play;
+        // For Paddock and Animal : Ls must be before Detail
+        commands = asList(new CreateZoo(play),
+                new CreatePaddock(play),
+                new LsPaddock(play), new MapZoo(play), new DetailPad(play),
+                new Evaluate(play), new BiomePad(play), new BiomeAttributesPaddock(play),
+                new CreateAnimal(play), new LsAnimal(play), new DetailAnimal(play),
+                new LsSpecie(play), new DetailSpecie(play),
+                new SaveZoo(play),
+                new LoadZoo(play));
+    }
+
+    public String run(String cmd) {
+        // String[] parse = cmd.split(" ");
         String[] parse = SplitDoubleQuotes.split(cmd);
-        for(Command command: commands){
-            if(command.canExecute(parse)){
+        for (Command command : commands) {
+            if (command.canExecute(parse)) {
                 return command.execute(parse);
             }
         }

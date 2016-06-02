@@ -2,6 +2,7 @@ package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
 import commandLine.Command;
+import main.Play;
 
 /**
  *
@@ -9,9 +10,15 @@ import commandLine.Command;
  */
 public class LsAnimal implements Command {
 
+    Play play;
+
+    public LsAnimal(Play play) {
+        this.play = play;
+    }
+
     @Override
     public String execute(String[] cmd) {
-        return FormattingDisplay.formattingArrayList(this.zoo.listAnimal());
+        return FormattingDisplay.formattingArrayList(this.play.zoo.listAnimal());
     }
 
     @Override

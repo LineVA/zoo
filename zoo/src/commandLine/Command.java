@@ -9,7 +9,7 @@ import zoo.Zoo;
  */
 public interface Command {
     
-    public IZoo zoo = new Zoo();
+  //  IZoo zoo = new Zoo();
     
     public String execute(String[] cmd);
     

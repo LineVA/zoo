@@ -3,6 +3,7 @@ package commandLine.commandImpl;
 import commandLine.Command;
 import exception.IncorrectDimensionsException;
 import exception.name.NameException;
+import main.Play;
 
 /**
  *
@@ -10,11 +11,17 @@ import exception.name.NameException;
  */
 public class CreatePaddock implements Command {
 
+            Play play;
+    
+    public CreatePaddock(Play play){
+        this.play = play;
+    }
+    
     @Override
     public String execute(String[] cmd) {
         // TO DO : if zoo has not been yet initiate
         try {
-            this.zoo.addPaddock(cmd[2], Integer.parseInt(cmd[3]), Integer.parseInt(cmd[4]),
+            this.play.zoo.addPaddock(cmd[2], Integer.parseInt(cmd[3]), Integer.parseInt(cmd[4]),
                     Integer.parseInt(cmd[5]), Integer.parseInt(cmd[6]));
             return "Your paddock has been sucessfully created.";
         } catch (NameException | IncorrectDimensionsException ex) {

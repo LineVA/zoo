@@ -4,6 +4,7 @@ import commandLine.Command;
 import exception.IncorrectDataException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.UnknownNameException;
+import main.Play;
 
 /**
  *
@@ -11,21 +12,27 @@ import exception.name.UnknownNameException;
  */
 public class Evaluate implements Command {
 
+     Play play;
+
+    public Evaluate(Play play) {
+        this.play = play;
+    }
+    
     @Override
     public String execute(String[] cmd) {
         int zooEvaluation = 0;
         try {
             // Well-beeing of each animal
-           zooEvaluation += zoo.wellBeing();
+           zooEvaluation += this.play.zoo.wellBeing();
             // Special events :
             // ageing
-            zoo.ageing();
+            this.play.zoo.ageing();
             // birth
-            zoo.birth();
+            this.play.zoo.birth();
             // death
-            zoo.death();
+            this.play.zoo.death();
             // Zoo evaluation
-           zooEvaluation += zoo.evaluate();
+           zooEvaluation += this.play.zoo.evaluate();
         } catch (UnknownNameException | AlreadyUsedNameException | IncorrectDataException ex) {
             return ex.getMessage();
         }

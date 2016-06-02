@@ -6,6 +6,7 @@ import exception.name.EmptyNameException;
 import java.io.IOException;
 import java.util.HashMap;
 import main.InstanciateSpecies;
+import main.Play;
 import org.jdom2.JDOMException;
 import zoo.animal.specie.Specie;
 
@@ -15,16 +16,22 @@ import zoo.animal.specie.Specie;
  */
 public class CreateZoo implements Command {
 
+    Play play;
+
+    public CreateZoo(Play play) {
+        this.play = play;
+    }
+
     @Override
     public String execute(String[] cmd) {
         try {
             HashMap<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species");
-            this.zoo.initiateZoo(cmd[2], Integer.parseInt(cmd[3]), Integer.parseInt(cmd[4]), species);
+            this.play.zoo.initiateZoo(cmd[2], Integer.parseInt(cmd[3]), Integer.parseInt(cmd[4]), species);
             return "Your zoo has been sucessfully created";
         } catch (IncorrectDimensionsException | EmptyNameException ex) {
             return ex.getMessage();
         } catch (IOException ex) {
-           return ex.getMessage();
+            return ex.getMessage();
         } catch (JDOMException ex) {
             return ex.getMessage();
         }

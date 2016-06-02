@@ -1,42 +1,42 @@
 package commandLine.commandImpl;
 
-import basicGui.FormattingDisplay;
 import commandLine.Command;
 import exception.name.EmptyNameException;
-import exception.name.UnknownNameException;
+import backup.save.Save;
+import backup.save.SaveImpl;
 import main.Play;
-import zoo.animal.Animal;
 
 /**
  *
  * @author doyenm
  */
-public class DetailAnimal implements Command {
+public class SaveZoo implements Command {
 
     Play play;
 
-    public DetailAnimal(Play play) {
+    public SaveZoo(Play play) {
         this.play = play;
     }
 
     @Override
     public String execute(String[] cmd) {
+        Save saveProcess = new SaveImpl();
         try {
-            Animal animal = this.play.zoo.findAnimalByName(cmd[1]);
-            return (FormattingDisplay.formattingArrayList(animal.info()));
-        } catch (UnknownNameException | EmptyNameException ex) {
+            saveProcess.saveZoo(this.play.zoo, cmd[1]);
+            return "Your zoo has been saved.";
+        } catch (EmptyNameException ex) {
             return ex.getMessage();
+            //  Logger.getLogger(SaveZoo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
-            if (cmd[0].equals("animal")) {
+            if (cmd[0].equals("save")) {
                 return true;
             }
         }
         return false;
     }
-
 }
