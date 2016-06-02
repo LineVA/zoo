@@ -21,7 +21,7 @@ public class LoadImpl implements Load {
     public IZoo loadZoo(String fileName) {
         IZoo zoo = new Zoo();
         try {
-            File file = new File("gameBackUps/test3.xml");
+            File file = new File(fileName);
             ParserBackUp parser = new ParserBackUp(file);
             // Creation of the zoo
             zoo = parser.parserZoo();
