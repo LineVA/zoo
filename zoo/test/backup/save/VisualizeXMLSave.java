@@ -1,7 +1,5 @@
 package backup.save;
 
-import backup.save.Save;
-import backup.save.SaveImpl;
 import zoo.Zoo;
 import exception.IncorrectDimensionsException;
 import exception.name.AlreadyUsedNameException;
@@ -86,7 +84,7 @@ public class VisualizeXMLSave {
             Logger.getLogger(VisualizeXMLSave.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
-        save.saveZoo(zoo, "test2");
+        save.saveZoo(zoo, "test3");
     }
 
 }

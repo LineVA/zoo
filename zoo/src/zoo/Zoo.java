@@ -10,7 +10,6 @@ import exception.name.UnknownNameException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import lombok.Getter;
 import backup.save.SaveImpl;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
@@ -230,7 +229,7 @@ public class Zoo implements IZoo {
     @Override
     public Specie findSpeciebyName(String specieName) throws EmptyNameException, UnknownNameException {
         if (specieName.trim().equals("")) {
-            throw new EmptyNameException("The name of the paddock is empty");
+            throw new EmptyNameException("This specie is unknown.");
         }
         for (HashMap.Entry<String, Specie> entry : species.entrySet()) {
             if (entry.getKey().equalsIgnoreCase(specieName)) {
@@ -311,5 +310,15 @@ public class Zoo implements IZoo {
     @Override
     public int getMonthsPerEvaluation(SaveImpl.FriendSave friend) {
         return this.monthsPerEvaluation;
+    }
+
+    @Override
+    public HashMap<String, IPaddock> getPaddocks() {
+        return this.paddocks;
+    }
+
+    @Override
+    public HashMap<String, Specie> getSpecies() {
+        return this.species;
     }
 }

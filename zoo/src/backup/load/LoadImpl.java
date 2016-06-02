@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import org.jdom2.JDOMException;
 import zoo.IZoo;
 import zoo.Zoo;
+import zoo.animal.Animal;
 import zoo.paddock.IPaddock;
 
 /**
@@ -20,7 +21,7 @@ public class LoadImpl implements Load {
     public IZoo loadZoo(String fileName) {
         IZoo zoo = new Zoo();
         try {
-            File file = new File("gameBackUps/test2.xml");
+            File file = new File("gameBackUps/test3.xml");
             ParserBackUp parser = new ParserBackUp(file);
             // Creation of the zoo
             zoo = parser.parserZoo();
@@ -30,7 +31,12 @@ public class LoadImpl implements Load {
                 zoo.addPaddock(pad);
             }
             // Creation of the animals
-            
+            ArrayList<Animal> animalList = parser.parserAnimal(zoo.getSpecies(), zoo.getPaddocks());
+            IPaddock pad;
+            for (Animal animal : animalList) {
+                pad = zoo.findPaddockByName(animal.getPaddock().getName());
+                pad.addAnimal(animal);
+            }
             return zoo;
         } catch (IOException ex) {
             Logger.getLogger(Zoo.class.getName()).log(Level.SEVERE, null, ex);

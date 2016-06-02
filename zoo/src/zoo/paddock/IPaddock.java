@@ -55,6 +55,7 @@ public interface IPaddock {
      * Friend pattern : give access to each of the fields of Zoo only to the
      * save methods
      */
+    
     public String getName(SaveImpl.FriendSave friend);
 
     public HashMap<String, Animal> getAnimals(SaveImpl.FriendSave friend);

@@ -91,7 +91,8 @@ public class Animal {
         this.optimalTerritory = drawOptimalTerritory(spec);
     }
 
-    public Animal(Specie spec, String name, IPaddock paddock, Sex sex) throws IncorrectDataException {
+    public Animal(Specie spec, String name, IPaddock paddock, Sex sex)
+            throws IncorrectDataException {
         this.specie = spec;
         this.name = name;
         this.paddock = paddock;
@@ -110,6 +111,27 @@ public class Animal {
         this.age = this.sex.isFemale()
                 ? this.actualReproduction.getFemaleMaturityAge()
                 : this.actualReproduction.getMaleMaturityAge();
+    }
+    
+     public Animal(Specie spec, String name, IPaddock paddock, Sex sex, int age,
+             BiomeAttributes biome, FeedingAttributes optimalFeeding, 
+             FeedingAttributes actualFeeding, ReproductionAttributes reproduction,
+             LifeSpanLightAttributes life, SocialAttributes social,
+             TerritoryAttributes territory)
+             throws IncorrectDataException {
+        this.specie = spec;
+        this.name = name;
+        this.paddock = paddock;
+        this.sex = sex;
+        this.wellBeeing = 0;
+        this.actualReproduction = reproduction;
+        this.actualLifeSpan = life;
+        this.optimalBiome = biome;
+        this.optimalFeeding = optimalFeeding;
+        this.actualFeeding = actualFeeding;
+        this.optimalSocial = social;
+        this.optimalTerritory = territory;
+        this.age = age;
     }
 
     /**

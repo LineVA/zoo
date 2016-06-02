@@ -37,7 +37,7 @@ public interface IZoo {
 
     public ArrayList<String> listPaddock();
 
-  //  public ArrayList<String> detailledPaddock(String name) throws UnknownNameException, EmptyNameException;
+    //  public ArrayList<String> detailledPaddock(String name) throws UnknownNameException, EmptyNameException;
     public ArrayList<PaddockCoordinates> map() throws IncorrectDimensionsException;
 
     public int evaluate();
@@ -77,4 +77,10 @@ public interface IZoo {
     public HashMap<String, Specie> getSpecies(SaveImpl.FriendSave friend);
 
     public int getMonthsPerEvaluation(SaveImpl.FriendSave friend);
+
+    // TEMPORARY !!!!!!!!!!!!!!
+    public HashMap<String, IPaddock> getPaddocks();
+
+    public HashMap<String, Specie> getSpecies();
+
 }
