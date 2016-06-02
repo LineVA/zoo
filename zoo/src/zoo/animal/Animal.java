@@ -4,7 +4,6 @@ import exception.IncorrectDataException;
 import java.util.ArrayList;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.feeding.FeedingAttributes;
-import zoo.paddock.Paddock;
 import lombok.Getter;
 import lombok.Setter;
 import zoo.animal.death.LifeSpanLightAttributes;
@@ -245,4 +244,6 @@ public class Animal {
         return wB;
     }
 
+    
+    
 }

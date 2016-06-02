@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import backup.save.SaveImpl;
 import zoo.animal.Animal;
 import zoo.animal.death.DieImpl;
 import zoo.animal.death.IDie;
@@ -277,6 +278,16 @@ public class Paddock implements Cloneable, IPaddock {
             }
         }
         return sameSpecieAnimals;
+    }
+
+    @Override
+    public String getName(SaveImpl.FriendSave friend) {
+        return this.name;
+    }
+    
+     @Override
+    public HashMap<String, Animal> getAnimals(SaveImpl.FriendSave friend) {
+        return this.animals;
     }
 
 }

@@ -1,5 +1,6 @@
-package save;
+package backup.save;
 
+import backup.save.Save;
 import exception.IncorrectDimensionsException;
 import exception.name.EmptyNameException;
 import org.jdom2.Element;
@@ -9,7 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import zoo.Paddock;
+import zoo.paddock.Paddock;
 
 /**
  *

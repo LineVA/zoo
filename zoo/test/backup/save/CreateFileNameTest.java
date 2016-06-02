@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package save;
+package backup.save;
 
+import backup.save.Save;
+import backup.save.SaveImpl;
 import exception.name.EmptyNameException;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
@@ -22,7 +24,7 @@ public class CreateFileNameTest {
     
     @BeforeClass
     public static void setUpClass() {
-        save = new Save();
+        save = new SaveImpl();
     }
     
     @AfterClass

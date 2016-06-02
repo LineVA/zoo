@@ -49,7 +49,7 @@ public class ZooTest {
         Zoo zoo = new Zoo();
         zoo.initiateZoo(expectedName, expectedWidth, expectedHeight, null);
         // Then
-        String actualName = zoo.getName();
+        String actualName = zoo.getName(null);
         int actualWidth = zoo.getWidth();
         int actualHeight = zoo.getHeight();
         HashMap<String, IPaddock> actualPaddocks = zoo.getPaddocks();

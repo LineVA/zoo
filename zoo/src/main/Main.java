@@ -17,8 +17,9 @@ public class Main {
 //        MainGUI mainGUI = new MainGUI(parser);
         //HashMap<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species");
 //        IZoo zoo = new Zoo();
-  //      zoo.initiateZoo("mainZoo", 50, 50, species);
-        Scan scan = new Scan();
+        //      zoo.initiateZoo("mainZoo", 50, 50, species);
+        Play play = new Play();
+        Scan scan = new Scan(play);
         scan.read();
     }
 }

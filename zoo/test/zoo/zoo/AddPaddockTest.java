@@ -57,7 +57,7 @@ public class AddPaddockTest {
         zoo.addPaddock("a", 0, 0, 1, 1);
         zoo.addPaddock("b", 1, 1, 1, 1);
         // Then
-        HashMap<String, IPaddock> actualList = zoo.getPaddocks();
+        HashMap<String, IPaddock> actualList = zoo.getPaddocks(null);
         assertEquals(2, actualList.size());
         // We do not check if a value has the correct key
         assertTrue(actualList.containsKey("a"));

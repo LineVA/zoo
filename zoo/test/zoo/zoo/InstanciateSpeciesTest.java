@@ -42,9 +42,9 @@ public class InstanciateSpeciesTest {
         // When
         InstanciateSpecies.instanciateSpecies(resource);
         // Then
-        assertEquals(2, zoo.getSpecies().size());
-        assertTrue(zoo.getSpecies().containsKey("Blue kangoroo"));
-        Specie blue = zoo.getSpecies().get("Blue kangoroo");
+        assertEquals(2, zoo.getSpecies(null).size());
+        assertTrue(zoo.getSpecies(null).containsKey("Blue kangoroo"));
+        Specie blue = zoo.getSpecies(null).get("Blue kangoroo");
         int expectedBlueFemaleMat = 1;
         int expectedBlueMaleMat = 2;
         int expectedBlueLitterSize = 4;
@@ -55,8 +55,8 @@ public class InstanciateSpeciesTest {
         assertEquals(expectedBlueMaleMat, blue.getSpecieReproduction().getMaleMaturityAge());
         assertEquals(expectedBlueLitterSize, blue.getSpecieReproduction().getLitterSize());
         assertEquals(expectedBlueGestation, blue.getSpecieReproduction().getGestationFrequency(), 0.0);
-        assertTrue(zoo.getSpecies().containsKey("Blue kangoroo"));
-        Specie red = zoo.getSpecies().get("Red kangoroo");
+        assertTrue(zoo.getSpecies(null).containsKey("Blue kangoroo"));
+        Specie red = zoo.getSpecies(null).get("Red kangoroo");
         int expectedRedFemaleMat = 17;
         int expectedRedMaleMat = 22;
         int expectedRedLitterSize = 1;

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import lombok.Getter;
+import backup.save.SaveImpl;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
@@ -24,27 +25,22 @@ public class Zoo implements IZoo {
     /**
      * The name of the zoo
      */
-    @Getter
     private String name;
     /**
      * Its width
      */
-    @Getter
     private int width;
     /**
      * Its height
      */
-    @Getter
     private int height;
     /**
      * The hashmap of the paddocks it contains
      */
-    @Getter
     private HashMap<String, IPaddock> paddocks;
     /**
      * The HashMap of the existing species
      */
-    @Getter
     private HashMap<String, Specie> species;
     /**
      * The number of months which flows when we evaluate the zoo
@@ -120,6 +116,27 @@ public class Zoo implements IZoo {
             this.paddocks.put(paddockName, paddock);
         }
     }
+    
+     public void addPaddock(IPaddock paddock)
+            throws AlreadyUsedNameException, IncorrectDimensionsException{
+         if (paddocks.containsKey(paddock.getName())) {
+            throw new AlreadyUsedNameException("A paddock with this name is"
+                    + " already existing. Please choose another one.");
+        } else {
+            PaddockCoordinates coor = paddock.getCoordinates();
+            if (this.tooSmallforThisPaddock(coor)) {
+                throw new IncorrectDimensionsException("This paddock cannot be "
+                        + "set here : the zoo is too small.");
+            }
+            for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
+                if (!entry.getValue().isNotCompetingForSpace(coor)) {
+                    throw new IncorrectDimensionsException("This paddock cannot"
+                            + " be set here : there is already another one on this place.");
+                }
+            }
+            this.paddocks.put(paddock.getName(), paddock);
+        }
+     }
 
     /**
      * Method used to list the paddocks of the zoo
@@ -263,5 +280,36 @@ public class Zoo implements IZoo {
             wB += entry.getValue().wellBeing();
         }
         return wB;
+    }
+
+    // Access to the fields only the the friend class
+    @Override
+    public String getName(SaveImpl.FriendSave friend) {
+        return this.name;
+    }
+    
+    @Override
+    public int getWidth(SaveImpl.FriendSave friend) {
+        return this.width;
+    }
+
+    @Override
+    public int getHeight(SaveImpl.FriendSave friend) {
+        return this.height;
+    }
+
+    @Override
+    public HashMap<String, IPaddock> getPaddocks(SaveImpl.FriendSave friend) {
+        return this.paddocks;
+    }
+
+    @Override
+    public HashMap<String, Specie> getSpecies(SaveImpl.FriendSave friend) {
+        return this.species;
+    }
+
+    @Override
+    public int getMonthsPerEvaluation(SaveImpl.FriendSave friend) {
+        return this.monthsPerEvaluation;
     }
 }
