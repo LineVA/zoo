@@ -70,7 +70,7 @@ public class VisualizeXMLSave {
         Specie spec2 = new Specie(new Names("Lion", "Lion", "scientific2"), biome, feeding, reproduction, lifeSpan, ConservationStatus.UNKNOWN, social, territory);
         species.put("spec1", spec1);
         species.put("spec2", spec2);
-        zoo.initiateZoo("myZoo2", 10, 10, species, 90);
+        zoo.initiateZoo("myZoo2", 10, 10, species, 90, 98);
         try {
             zoo.addPaddock("padName1", 1, 2, 3, 4);
             zoo.addPaddock("padName2", 5, 8, 1, 1);

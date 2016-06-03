@@ -29,7 +29,7 @@ public class ListPaddockTest {
         int height = 7;
         int age = 0;
         zoo = new Zoo();
-        zoo.initiateZoo(name, width, height, null, 0);
+        zoo.initiateZoo(name, width, height, null, 0, 6);
     }
 
     @After

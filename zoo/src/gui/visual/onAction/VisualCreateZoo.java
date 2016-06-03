@@ -23,7 +23,8 @@ public class VisualCreateZoo implements CommandVisual {
     public void execute(String[] cmd) {
         try {
             HashMap<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species");
-            this.zoo.initiateZoo(cmd[0], Integer.parseInt(cmd[1]), Integer.parseInt(cmd[2]), species);
+            this.zoo.initiateZoo(cmd[0], Integer.parseInt(cmd[1]),
+                    Integer.parseInt(cmd[2]), species, 0, 6);
         } catch (IOException | JDOMException ex) {
             System.out.println(ex.getMessage());
         }

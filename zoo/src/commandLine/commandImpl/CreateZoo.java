@@ -26,7 +26,8 @@ public class CreateZoo implements Command {
     public String execute(String[] cmd) {
         try {
             HashMap<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species");
-            this.play.zoo.initiateZoo(cmd[2], Integer.parseInt(cmd[3]), Integer.parseInt(cmd[4]), species, 0);
+            this.play.zoo.initiateZoo(cmd[2], Integer.parseInt(cmd[3]), 
+                    Integer.parseInt(cmd[4]), species, 0, 6);
             return "Your zoo has been sucessfully created";
         } catch (IncorrectDimensionsException | EmptyNameException ex) {
             return ex.getMessage();

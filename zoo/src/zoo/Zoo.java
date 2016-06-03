@@ -44,14 +44,14 @@ public class Zoo implements IZoo {
     /**
      * The number of months which flows when we evaluate the zoo
      */
-    private final int monthsPerEvaluation;
+    private int monthsPerEvaluation;
     /**
      * The age of the zoo
      */
     private int age;
 
     public Zoo() {
-        this.monthsPerEvaluation = 6;
+      //  this.monthsPerEvaluation = 6;
     }
 
     /**
@@ -66,7 +66,8 @@ public class Zoo implements IZoo {
      * @throws exception.name.EmptyNameException
      */
     @Override
-    public void initiateZoo(String name, int width, int height, HashMap<String, Specie> species, int age)
+    public void initiateZoo(String name, int width, int height,
+            HashMap<String, Specie> species, int age, int monthsPerEvaluation)
             throws IncorrectDimensionsException, EmptyNameException, IOException {
         if (name.trim().equals("")) {
             throw new EmptyNameException("Please enter a no-empty name for the zoo.");
@@ -83,6 +84,7 @@ public class Zoo implements IZoo {
         paddocks = new HashMap<>();
         this.species = species;
         this.age = age;
+        this.monthsPerEvaluation = monthsPerEvaluation;
     }
 
     /**

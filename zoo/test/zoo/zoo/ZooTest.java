@@ -44,21 +44,27 @@ public class ZooTest {
         int expectedWidth = 6;
         int expectedHeight = 7;
         int expectedAge = 0;
+        int expectedMonths = 6;
         HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
         HashMap<String, Specie> expectedSpecies = new HashMap<>();
         // When
         Zoo zoo = new Zoo();
-        zoo.initiateZoo(expectedName, expectedWidth, expectedHeight, null, 0);
+        zoo.initiateZoo(expectedName, expectedWidth, expectedHeight,
+                null, expectedAge, expectedMonths);
         // Then
         String actualName = zoo.getName(null);
         int actualWidth = zoo.getWidth();
         int actualHeight = zoo.getHeight();
+        int actualAge = zoo.getAge();
+        int actualMonths = zoo.getMonthsPerEvaluation();
         HashMap<String, IPaddock> actualPaddocks = zoo.getPaddocks();
         HashMap<String, Specie> actualSpecies = zoo.getSpecies();
         assertEquals(expectedWidth, actualWidth);
         assertEquals(expectedHeight, actualHeight);
         assertEquals(expectedName, actualName);
         assertEquals(expectedPaddocks, actualPaddocks);
+        assertEquals(expectedAge, actualAge);
+        assertEquals(expectedMonths, actualMonths);
         assertEquals(null, actualSpecies);
     }
 

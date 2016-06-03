@@ -30,8 +30,9 @@ public class PaddockByNameTest {
         int width = 6;
         int height = 7;
         int age = 0;
+        int months = 6;
         zoo = new Zoo();
-        zoo.initiateZoo(name, width, height, null, age);
+        zoo.initiateZoo(name, width, height, null, age, months);
     }
 
     @AfterClass

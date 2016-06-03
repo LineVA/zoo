@@ -53,7 +53,8 @@ public class ParserBackUp {
         zoo.initiateZoo(zooEl.getAttributeValue("name"),
                 Integer.parseInt(dimEl.getChild("width").getText()),
                 Integer.parseInt(dimEl.getChild("height").getText()), spec,
-                 Integer.parseInt(zooEl.getChild("age").getText()));
+                 Integer.parseInt(zooEl.getChild("age").getText()),
+                  Integer.parseInt(zooEl.getChild("monthsPerEvaluation").getText()));
         return zoo;
     }
 
