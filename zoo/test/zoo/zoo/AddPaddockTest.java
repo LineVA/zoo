@@ -34,7 +34,7 @@ public class AddPaddockTest {
         int width = 6;
         int height = 7;
         zoo = new Zoo();
-        zoo.initiateZoo(name, width, height, null);
+        zoo.initiateZoo(name, width, height, null, 0);
         PaddockCoordinates coor = mock(PaddockCoordinates.class);
         when(coor.isNotCompeting(any(PaddockCoordinates.class))).thenReturn(true);
         PaddockCoordinates coor2 = mock(PaddockCoordinates.class);

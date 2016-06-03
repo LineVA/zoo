@@ -45,11 +45,15 @@ public class Zoo implements IZoo {
      * The number of months which flows when we evaluate the zoo
      */
     private final int monthsPerEvaluation;
+    /**
+     * The age of the zoo
+     */
+    private int age;
 
-    public Zoo(){
+    public Zoo() {
         this.monthsPerEvaluation = 6;
     }
-    
+
     /**
      * Constructor of the object 'Zoo'
      *
@@ -62,7 +66,7 @@ public class Zoo implements IZoo {
      * @throws exception.name.EmptyNameException
      */
     @Override
-    public void initiateZoo(String name, int width, int height, HashMap<String, Specie> species)
+    public void initiateZoo(String name, int width, int height, HashMap<String, Specie> species, int age)
             throws IncorrectDimensionsException, EmptyNameException, IOException {
         if (name.trim().equals("")) {
             throw new EmptyNameException("Please enter a no-empty name for the zoo.");
@@ -78,6 +82,7 @@ public class Zoo implements IZoo {
         }
         paddocks = new HashMap<>();
         this.species = species;
+        this.age = age;
     }
 
     /**
@@ -115,10 +120,10 @@ public class Zoo implements IZoo {
             this.paddocks.put(paddockName, paddock);
         }
     }
-    
-     public void addPaddock(IPaddock paddock)
-            throws AlreadyUsedNameException, IncorrectDimensionsException{
-         if (paddocks.containsKey(paddock.getName())) {
+
+    public void addPaddock(IPaddock paddock)
+            throws AlreadyUsedNameException, IncorrectDimensionsException {
+        if (paddocks.containsKey(paddock.getName())) {
             throw new AlreadyUsedNameException("A paddock with this name is"
                     + " already existing. Please choose another one.");
         } else {
@@ -135,7 +140,7 @@ public class Zoo implements IZoo {
             }
             this.paddocks.put(paddock.getName(), paddock);
         }
-     }
+    }
 
     /**
      * Method used to list the paddocks of the zoo
@@ -198,21 +203,22 @@ public class Zoo implements IZoo {
     @Override
     public void death() {
         for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
-           padEntry.getValue().death();
+            padEntry.getValue().death();
         }
     }
 
     @Override
     public void birth() throws IncorrectDataException {
         for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
-           padEntry.getValue().birth();
+            padEntry.getValue().birth();
         }
     }
-    
-     @Override
+
+    @Override
     public void ageing() {
+        this.age += this.monthsPerEvaluation;
         for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
-           padEntry.getValue().ageing(this.monthsPerEvaluation);
+            padEntry.getValue().ageing(this.monthsPerEvaluation);
         }
     }
 
@@ -265,7 +271,7 @@ public class Zoo implements IZoo {
 
     @Override
     public ArrayList<String> listSpecie() {
-         ArrayList<String> list = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
         for (HashMap.Entry<String, Specie> entry : species.entrySet()) {
             list.add(entry.getValue().getNames().getEnglishName());
         }
@@ -286,7 +292,7 @@ public class Zoo implements IZoo {
     public String getName(SaveImpl.FriendSave friend) {
         return this.name;
     }
-    
+
     @Override
     public int getWidth(SaveImpl.FriendSave friend) {
         return this.width;
@@ -310,6 +316,11 @@ public class Zoo implements IZoo {
     @Override
     public int getMonthsPerEvaluation(SaveImpl.FriendSave friend) {
         return this.monthsPerEvaluation;
+    }
+
+    @Override
+    public int getAge(SaveImpl.FriendSave friend) {
+        return this.age;
     }
 
     @Override

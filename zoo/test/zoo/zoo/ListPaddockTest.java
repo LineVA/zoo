@@ -27,8 +27,9 @@ public class ListPaddockTest {
         String name = "foo";
         int width = 6;
         int height = 7;
+        int age = 0;
         zoo = new Zoo();
-        zoo.initiateZoo(name, width, height, null);
+        zoo.initiateZoo(name, width, height, null, 0);
     }
 
     @After

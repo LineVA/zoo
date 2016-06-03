@@ -186,6 +186,7 @@ public class SaveImpl implements Save {
         Element zooEl = new Element("zoo");
         zooEl.setAttribute(createAttribute("name", zoo.getName(friendSave).trim()));
         zooEl.addContent(createElementDimensionsZoo(zoo.getWidth(friendSave), zoo.getHeight(friendSave)));
+        zooEl.addContent(createElementWithText("age", Integer.toString(zoo.getAge(friendSave))));
         return zooEl;
     }
 }

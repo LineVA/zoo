@@ -66,11 +66,11 @@ public class VisualizeXMLSave {
         SocialAttributes social = new SocialAttributes(0);
         TerritoryAttributes territory = new TerritoryAttributes(0.0);
 
-        Specie spec1 = new Specie(new Names("en1", "fr1", "scientific1"), biome, feeding, reproduction, lifeSpan, ConservationStatus.UNKNOWN, social, territory);
-        Specie spec2 = new Specie(new Names("en2", "fr2", "scientific2"), biome, feeding, reproduction, lifeSpan, ConservationStatus.UNKNOWN, social, territory);
+        Specie spec1 = new Specie(new Names("Zèbre", "Mountain zebra", "scientific1"), biome, feeding, reproduction, lifeSpan, ConservationStatus.UNKNOWN, social, territory);
+        Specie spec2 = new Specie(new Names("Lion", "Lion", "scientific2"), biome, feeding, reproduction, lifeSpan, ConservationStatus.UNKNOWN, social, territory);
         species.put("spec1", spec1);
         species.put("spec2", spec2);
-        zoo.initiateZoo("myZoo2", 10, 10, species);
+        zoo.initiateZoo("myZoo2", 10, 10, species, 90);
         try {
             zoo.addPaddock("padName1", 1, 2, 3, 4);
             zoo.addPaddock("padName2", 5, 8, 1, 1);

@@ -43,11 +43,12 @@ public class ZooTest {
         String expectedName = "foo";
         int expectedWidth = 6;
         int expectedHeight = 7;
+        int expectedAge = 0;
         HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
         HashMap<String, Specie> expectedSpecies = new HashMap<>();
         // When
         Zoo zoo = new Zoo();
-        zoo.initiateZoo(expectedName, expectedWidth, expectedHeight, null);
+        zoo.initiateZoo(expectedName, expectedWidth, expectedHeight, null, 0);
         // Then
         String actualName = zoo.getName(null);
         int actualWidth = zoo.getWidth();

@@ -52,7 +52,8 @@ public class ParserBackUp {
         HashMap<String, Specie> spec = InstanciateSpecies.instanciateSpecies("resources/species");
         zoo.initiateZoo(zooEl.getAttributeValue("name"),
                 Integer.parseInt(dimEl.getChild("width").getText()),
-                Integer.parseInt(dimEl.getChild("height").getText()), spec);
+                Integer.parseInt(dimEl.getChild("height").getText()), spec,
+                 Integer.parseInt(zooEl.getChild("age").getText()));
         return zoo;
     }
 
