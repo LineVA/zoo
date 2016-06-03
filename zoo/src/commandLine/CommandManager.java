@@ -15,6 +15,7 @@ import commandLine.commandImpl.LsPaddock;
 import commandLine.commandImpl.LsSpecie;
 import commandLine.commandImpl.MapZoo;
 import commandLine.commandImpl.SaveZoo;
+import commandLine.commandImpl.DetailZoo;
 import static java.util.Arrays.asList;
 import main.Play;
 
@@ -30,14 +31,13 @@ public class CommandManager {
     public CommandManager(Play play) {
         this.play = play;
         // For Paddock and Animal : Ls must be before Detail
-        commands = asList(new CreateZoo(play),
+        commands = asList(new CreateZoo(play), new DetailZoo(play), 
                 new CreatePaddock(play),
                 new LsPaddock(play), new MapZoo(play), new DetailPad(play),
                 new Evaluate(play), new BiomePad(play), new BiomeAttributesPaddock(play),
                 new CreateAnimal(play), new LsAnimal(play), new DetailAnimal(play),
                 new LsSpecie(play), new DetailSpecie(play),
-                new SaveZoo(play),
-                new LoadZoo(play));
+                new SaveZoo(play), new LoadZoo(play));
     }
 
     public String run(String cmd) {

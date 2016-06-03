@@ -61,8 +61,10 @@ public interface IZoo {
 
     public void ageing();
 
-    public int wellBeing();
+    public int grade();
 
+     public ArrayList<String> info();
+    
     /**
      * Friend pattern : give access to each of the fields of Zoo only to the
      * save methods

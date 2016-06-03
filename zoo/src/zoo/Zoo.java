@@ -49,9 +49,14 @@ public class Zoo implements IZoo {
      * The age of the zoo
      */
     private int age;
+    /**
+     * The grade of the zoo
+     * Does not have to be save, can be re-calculate each time we need it
+     */
+    private int grade;
 
     public Zoo() {
-      //  this.monthsPerEvaluation = 6;
+        //  this.monthsPerEvaluation = 6;
     }
 
     /**
@@ -281,12 +286,23 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public int wellBeing() {
-        int wB = 0;
+    public int grade() {
+        this.grade = 0;
         for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-            wB += entry.getValue().wellBeing();
+            this.grade += entry.getValue().wellBeing();
         }
-        return wB;
+        return this.grade;
+    }
+
+    @Override
+    public ArrayList<String> info() {
+        ArrayList<String> info = new ArrayList<>();
+        info.add("Name : " + this.name);
+        info.add("Age : " + this.age);
+        info.add("Months per evaluation : " + this.monthsPerEvaluation);
+        info.add("Dimensions : width = " + this.width + ", height = " + this.height);
+        info.add("Grade : " + this.grade);
+        return info;
     }
 
     // Access to the fields only the the friend class

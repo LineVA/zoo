@@ -23,7 +23,7 @@ public class Evaluate implements Command {
         int zooEvaluation = 0;
         try {
             // Well-beeing of each animal
-           zooEvaluation += this.play.zoo.wellBeing();
+           zooEvaluation += this.play.zoo.grade();
             // Special events :
             // ageing
             this.play.zoo.ageing();
