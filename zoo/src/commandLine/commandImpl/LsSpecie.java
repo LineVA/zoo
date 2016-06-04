@@ -2,7 +2,10 @@ package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
 import commandLine.Command;
+import exception.name.EmptyNameException;
+import exception.name.UnknownNameException;
 import main.Play;
+import zoo.paddock.IPaddock;
 
 /**
  *
@@ -11,6 +14,7 @@ import main.Play;
 public class LsSpecie implements Command {
 
     Play play;
+    String[] args;
 
     public LsSpecie(Play play) {
         this.play = play;
@@ -18,16 +22,37 @@ public class LsSpecie implements Command {
 
     @Override
     public String execute(String[] cmd) {
-        return FormattingDisplay.formattingArrayList(this.play.zoo.listSpecie());
+        IPaddock pad = null;
+        try {
+            if (args[0] != null) {
+                pad = this.play.zoo.findPaddockByName(args[0]);
+            }
+        } catch (EmptyNameException | UnknownNameException ex) {
+            return ex.getMessage();
+        }
+        return FormattingDisplay.formattingArrayList(this.play.zoo.listSpecie(pad));
     }
 
-    @Override
-    public boolean canExecute(String[] cmd) {
-        if (cmd.length == 2) {
+    public boolean firstCmd(String[] cmd) {
+        if (cmd.length >= 2) {
             if (cmd[0].equals("specie") || cmd[0].equals("spec")) {
                 if (cmd[1].equals("ls")) {
                     return true;
                 }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean canExecute(String[] cmd) {
+        this.args = new String[]{null};
+        if (firstCmd(cmd)) {
+            if (cmd.length == 2) {
+                return true;
+            } else if (cmd.length == 4 && cmd[2].equals("-p")) {
+                args[0] = cmd[3];
+                return true;
             }
         }
         return false;

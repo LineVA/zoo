@@ -142,13 +142,31 @@ public class Paddock implements Cloneable, IPaddock {
                 + "with this name.");
     }
 
-    @Override
-    public ArrayList<String> listAnimal() {
+    public ArrayList<String> listAnimalWithSpecie(Specie specie) {
+        ArrayList<String> list = new ArrayList<>();
+        for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
+            if (entry.getValue().getSpecie().equals(specie)) {
+                list.add(entry.getKey());
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<String> listAnimalWithoutSpecie() {
         ArrayList<String> list = new ArrayList<>();
         for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
             list.add(entry.getKey());
         }
         return list;
+    }
+
+    @Override
+    public ArrayList<String> listAnimal(Specie specie) {
+        if (specie != null) {
+            return listAnimalWithSpecie(specie);
+        } else {
+            return listAnimalWithoutSpecie();
+        }
     }
 
     @Override
@@ -210,7 +228,7 @@ public class Paddock implements Cloneable, IPaddock {
 
     @Override
     public int countAnimalsOfTheSameSpecie(Specie specie) {
-       return animalsOfTheSameSpecie(specie).size();
+        return animalsOfTheSameSpecie(specie).size();
     }
 
     @Override
@@ -280,11 +298,22 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
+    public ArrayList<String> listSpecie() {
+        ArrayList<String> listSpecie = new ArrayList<>();
+        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
+            if (!listSpecie.contains(animalEntry.getValue().getSpecie())) {
+                listSpecie.add(animalEntry.getValue().getSpecie().getNames().getEnglishName());
+            }
+        }
+        return listSpecie;
+    }
+
+    @Override
     public String getName(SaveImpl.FriendSave friend) {
         return this.name;
     }
-    
-     @Override
+
+    @Override
     public HashMap<String, Animal> getAnimals(SaveImpl.FriendSave friend) {
         return this.animals;
     }

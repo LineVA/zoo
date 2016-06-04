@@ -25,7 +25,7 @@ public interface IPaddock {
 
     public Animal findAnimalByName(String animalName) throws UnknownNameException;
 
-    public ArrayList<String> listAnimal();
+    public ArrayList<String> listAnimal(Specie specie);
 
     public void birth() throws IncorrectDataException;
 
@@ -48,6 +48,8 @@ public interface IPaddock {
     public int countNonMatureAnimals();
 
     public ArrayList<String> countSpecies(ArrayList<String> presentedSpecies);
+    
+    public ArrayList<String> listSpecie();
 
     public String getName();
 

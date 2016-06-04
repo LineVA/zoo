@@ -50,8 +50,8 @@ public class Zoo implements IZoo {
      */
     private int age;
     /**
-     * The grade of the zoo
-     * Does not have to be save, can be re-calculate each time we need it
+     * The grade of the zoo Does not have to be save, can be re-calculate each
+     * time we need it
      */
     private int grade;
 
@@ -155,10 +155,18 @@ public class Zoo implements IZoo {
      * @return ArrayList of their names
      */
     @Override
-    public ArrayList<String> listPaddock() {
+    public ArrayList<String> listPaddock(Specie specie) {
         ArrayList<String> list = new ArrayList<>();
-        for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-            list.add(entry.getKey());
+        if (specie == null) {
+            for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
+                list.add(entry.getKey());
+            }
+        } else {
+            for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
+                if (entry.getValue().countAnimalsOfTheSameSpecie(specie) != 0) {
+                    list.add(entry.getKey());
+                }
+            }
         }
         return list;
     }
@@ -268,19 +276,27 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<String> listAnimal() {
-        ArrayList<String> list = new ArrayList<>();
-        for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-            list.addAll(entry.getValue().listAnimal());
+    public ArrayList<String> listAnimal(Specie specie, IPaddock paddock) {
+        if (paddock == null) {
+            ArrayList<String> list = new ArrayList<>();
+            for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
+                list.addAll(entry.getValue().listAnimal(specie));
+            }
+            return list;
+        } else {
+            return paddock.listAnimal(specie);
         }
-        return list;
     }
 
     @Override
-    public ArrayList<String> listSpecie() {
+    public ArrayList<String> listSpecie(IPaddock paddock) {
         ArrayList<String> list = new ArrayList<>();
-        for (HashMap.Entry<String, Specie> entry : species.entrySet()) {
-            list.add(entry.getValue().getNames().getEnglishName());
+        if (paddock == null) {
+            for (HashMap.Entry<String, Specie> entry : species.entrySet()) {
+                list.add(entry.getValue().getNames().getEnglishName());
+            }
+        } else {
+            list.addAll(paddock.listSpecie());
         }
         return list;
     }

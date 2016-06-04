@@ -36,9 +36,8 @@ public interface IZoo {
     public void addPaddock(IPaddock paddock)
             throws AlreadyUsedNameException, IncorrectDimensionsException;
 
-    public ArrayList<String> listPaddock();
+    public ArrayList<String> listPaddock(Specie specie);
 
-    //  public ArrayList<String> detailledPaddock(String name) throws UnknownNameException, EmptyNameException;
     public ArrayList<PaddockCoordinates> map() throws IncorrectDimensionsException;
 
     public int evaluate();
@@ -55,9 +54,9 @@ public interface IZoo {
 
     public Animal findAnimalByName(String animalName) throws UnknownNameException, EmptyNameException;
 
-    public ArrayList<String> listAnimal();
+    public ArrayList<String> listAnimal(Specie specie, IPaddock paddock);
 
-    public ArrayList<String> listSpecie();
+    public ArrayList<String> listSpecie(IPaddock paddock);
 
     public void ageing();
 
