@@ -113,8 +113,8 @@ public class SaveImpl implements Save {
         el.addContent(createElementWithText("age", String.valueOf(animal.getAge())));
         el.addContent(createElementWithText("paddock", animal.getPaddock().getName(friendSave)));
 //        el.addContent(createElementBiomeAttributes(animal.getOptimalBiome()));
-//        el.addContent(createElementOptimalFeedingAttributes(animal.getOptimalFeeding()));
-//        el.addContent(createElementActualFeedingAttributes(animal.getActualFeeding()));
+        el.addContent(createElementOptimalFeedingAttributes(animal.getOptimalFeeding()));
+        el.addContent(createElementActualFeedingAttributes(animal, animal.getActualFeeding()));
         el.addContent(createElementReproductionAttributes(animal.getActualReproduction()));
         el.addContent(createElementLifeSpanAttributes(animal.getActualLifeSpan()));
         el.addContent(createElementSocialAttributes(animal.getOptimalSocial()));
@@ -142,8 +142,9 @@ public class SaveImpl implements Save {
         return el;
     }
 
-    public Element createElementActualFeedingAttributes(FeedingAttributes att) {
+    public Element createElementActualFeedingAttributes(Animal animal, FeedingAttributes att) {
         Element el = new Element("actualFeedingAttributes");
+        el.addContent(createElementWithText("diet", String.valueOf(animal.getDiet())));
         el.addContent(createElementWithText("quantity", String.valueOf(att.getFoodQuantity())));
         return el;
     }

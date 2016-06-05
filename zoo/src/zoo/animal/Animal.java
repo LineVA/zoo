@@ -1,12 +1,14 @@
 package zoo.animal;
 
 import exception.IncorrectDataException;
+import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.feeding.FeedingAttributes;
 import lombok.Getter;
 import lombok.Setter;
 import zoo.animal.death.LifeSpanLightAttributes;
+import zoo.animal.feeding.Diet;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.Specie;
@@ -44,6 +46,9 @@ public class Animal {
     // the first are computed when the animal is created,
     // the second are determined by the player.
     @Getter
+    @Setter
+    private int diet;
+    @Getter
     private final FeedingAttributes optimalFeeding;
     @Getter
     @Setter
@@ -80,13 +85,14 @@ public class Animal {
         }
         this.wellBeeing = 0;
 //        this.optimalBiome = drawOptimalBiome(spec);
-//        this.optimalFeeding = drawOptimalFeeding(spec);
-//        this.actualFeeding = drawActualFeeding(spec);
+        this.optimalFeeding = drawOptimalFeeding(spec);
+        this.actualFeeding = drawActualFeeding(spec);
         this.actualReproduction = drawActualReproduction(spec);
         this.actualLifeSpan = drawActualLifeSpan(spec);
         this.optimalBiome = null;
-        this.optimalFeeding = null;
-        this.actualFeeding = null;
+        this.diet = Diet.NONE.getId();
+        //   this.optimalFeeding = null;
+        // this.actualFeeding = null;
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
     }
@@ -99,26 +105,26 @@ public class Animal {
         this.sex = sex;
         this.wellBeeing = 0;
 //        this.optimalBiome = drawOptimalBiome(spec);
-//        this.optimalFeeding = drawOptimalFeeding(spec);
-//        this.actualFeeding = drawActualFeeding(spec);
+        this.optimalFeeding = drawOptimalFeeding(spec);
+        this.actualFeeding = drawActualFeeding(spec);
         this.actualReproduction = drawActualReproduction(spec);
         this.actualLifeSpan = drawActualLifeSpan(spec);
         this.optimalBiome = null;
-        this.optimalFeeding = null;
-        this.actualFeeding = null;
+        this.diet = Diet.NONE.getId();
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
         this.age = this.sex.isFemale()
                 ? this.actualReproduction.getFemaleMaturityAge()
                 : this.actualReproduction.getMaleMaturityAge();
     }
-    
-     public Animal(Specie spec, String name, IPaddock paddock, Sex sex, int age,
-             BiomeAttributes biome, FeedingAttributes optimalFeeding, 
-             FeedingAttributes actualFeeding, ReproductionAttributes reproduction,
-             LifeSpanLightAttributes life, SocialAttributes social,
-             TerritoryAttributes territory)
-             throws IncorrectDataException {
+
+    public Animal(Specie spec, String name, IPaddock paddock, Sex sex, int age,
+            BiomeAttributes biome, FeedingAttributes optimalFeeding,
+            FeedingAttributes actualFeeding, int diet,
+            ReproductionAttributes reproduction,
+            LifeSpanLightAttributes life, SocialAttributes social,
+            TerritoryAttributes territory)
+            throws IncorrectDataException {
         this.specie = spec;
         this.name = name;
         this.paddock = paddock;
@@ -127,6 +133,7 @@ public class Animal {
         this.actualReproduction = reproduction;
         this.actualLifeSpan = life;
         this.optimalBiome = biome;
+        this.diet = diet;
         this.optimalFeeding = optimalFeeding;
         this.actualFeeding = actualFeeding;
         this.optimalSocial = social;
@@ -233,7 +240,7 @@ public class Animal {
         return this.age >= this.actualLifeSpan.getLifeSpan();
     }
 
-    public ArrayList<String> info() {
+    public ArrayList<String> info() throws UnknownNameException {
         ArrayList<String> info = new ArrayList<>();
         info.add("Name : " + this.name);
         info.add("Paddock : " + this.paddock.getName());
@@ -241,12 +248,13 @@ public class Animal {
         info.add("Age : " + this.age);
         info.add("Sex : " + this.sex.toString());
         info.add("Well-beeing : " + this.wellBeeing);
+        info.add("Diet : " + Diet.NONE.findDietById(diet).toString());
         info.add("Reproduction attributes : " + this.actualReproduction);
         info.add("Life span attributes : " + this.actualLifeSpan.toString());
         info.add("Optimal group size : " + this.optimalSocial.getGroupSize());
         info.add("Group size : " + this.paddock.countAnimalsOfTheSameSpecie(this.specie));
-//        info.add("Optimal feeding attributes : " + this.optimalFeeding.toString());
-        //      info.add("Actual feeding attributes : " + this.actualFeeding.toString());
+        info.add("Optimal feeding attributes : " + this.optimalFeeding.toString());
+        info.add("Actual feeding attributes : " + this.actualFeeding.toString());
         info.add("Territory size : " + this.paddock.computeSize());
         return info;
     }
@@ -262,10 +270,13 @@ public class Animal {
         System.out.println("(Social) " + this.name + " : " + wB);
         // territory size of TerritoryAttributes
         wB += Compare.compare(this.optimalTerritory.getTerritorySize(), this.paddock.computeSize());
-        System.out.println("(Social) " + this.name + " : " + wB);
+        System.out.println("(Teritory) " + this.name + " : " + wB);
+        // food quantity of FeedingAttributes
+        if (this.diet == this.specie.getDiet()) {
+            wB += Compare.compare(this.optimalFeeding.getFoodQuantity(), this.actualFeeding.getFoodQuantity());
+            System.out.println("(Teritory) " + this.name + " : " + wB);
+        }
         return wB;
     }
 
-    
-    
 }

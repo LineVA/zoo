@@ -31,13 +31,14 @@ public class ParserSpecie {
         root = document.getRootElement();
         Names names = namesParser(root);
         BiomeAttributes biome = biomeParser(root);
+        int diet = dietParser(root);
         FeedingAttributes feeding = feedingParser(root);
         ReproductionAttributes repro = reproductionParser(root);
         LifeSpanAttributes lifeSpan = lifeSpanParser(root);
         ConservationStatus conservation = conservationParser(root);
         SocialAttributes social = socialParser(root);
         TerritoryAttributes territory = territoryParser(root);
-        Specie spec = new Specie(names, biome, feeding, repro, lifeSpan,
+        Specie spec = new Specie(names, biome,feeding, diet, repro, lifeSpan,
                 conservation, social, territory);
         return spec;
     }
@@ -85,5 +86,9 @@ public class ParserSpecie {
     private static TerritoryAttributes territoryParser(Element root) {
         Element terriEl = root.getChild("territory");
         return new TerritoryAttributes(Double.parseDouble(terriEl.getChildText("territorySize")));
+    }
+
+    private static int dietParser(Element root) {
+        return Integer.parseInt(root.getChild("feeding").getChildText("diet"));
     }
 }

@@ -53,8 +53,8 @@ public class ParserBackUp {
         zoo.initiateZoo(zooEl.getAttributeValue("name"),
                 Integer.parseInt(dimEl.getChild("width").getText()),
                 Integer.parseInt(dimEl.getChild("height").getText()), spec,
-                 Integer.parseInt(zooEl.getChild("age").getText()),
-                  Integer.parseInt(zooEl.getChild("monthsPerEvaluation").getText()));
+                Integer.parseInt(zooEl.getChild("age").getText()),
+                Integer.parseInt(zooEl.getChild("monthsPerEvaluation").getText()));
         return zoo;
     }
 
@@ -90,6 +90,7 @@ public class ParserBackUp {
         BiomeAttributes biome;
         FeedingAttributes optFeed;
         FeedingAttributes actualFeed;
+        int diet;
         ReproductionAttributes repro;
         LifeSpanLightAttributes life;
         SocialAttributes social;
@@ -103,13 +104,14 @@ public class ParserBackUp {
             biome = parserBiomeAttributes(tmpAnimalEl);
             optFeed = parserOptimalFeedingAttributes(tmpAnimalEl);
             actualFeed = parserActualFeedingAttributes(tmpAnimalEl);
+            diet = parserDiet(tmpAnimalEl);
             repro = parserReproductionAttributes(tmpAnimalEl);
             life = parserLifeSpanAttributes(tmpAnimalEl);
             social = parserSocialAttributes(tmpAnimalEl);
             territory = parserTerritoryAttributes(tmpAnimalEl);
             animalsList.add(new Animal(spec,
                     tmpAnimalEl.getAttributeValue("name"),
-                    pad, sex, age, biome, optFeed, actualFeed, repro,
+                    pad, sex, age, biome, optFeed, actualFeed, diet, repro,
                     life, social, territory));
         }
         return animalsList;
@@ -146,13 +148,20 @@ public class ParserBackUp {
     }
 
     private FeedingAttributes parserOptimalFeedingAttributes(Element tmpAnimalEl) {
-        FeedingAttributes feeding = new FeedingAttributes(0.0);
-        return feeding;
+        Element feedEl = tmpAnimalEl.getChild("optimalFeedingAttributes");
+        return new FeedingAttributes(
+                Double.parseDouble(feedEl.getChildText("quantity")));
     }
 
     private FeedingAttributes parserActualFeedingAttributes(Element tmpAnimalEl) {
-        FeedingAttributes feeding = new FeedingAttributes(0.0);
-        return feeding;
+         Element feedEl = tmpAnimalEl.getChild("actualFeedingAttributes");
+        return new FeedingAttributes(
+                Double.parseDouble(feedEl.getChildText("quantity")));
+    }
+    
+     private int parserDiet(Element tmpAnimalEl) {
+         Element feedEl = tmpAnimalEl.getChild("actualFeedingAttributes");
+        return Integer.parseInt(feedEl.getChildText("diet"));
     }
 
     private ReproductionAttributes parserReproductionAttributes(Element tmpAnimalEl) {

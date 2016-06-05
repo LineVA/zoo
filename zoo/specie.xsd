@@ -49,7 +49,7 @@
                 <xs:element name="feeding">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element type="xs:string" name="diet"/>
+                            <xs:element type="xs:int" name="diet"/>
                             <xs:element type="xs:decimal" name="quantity"/>
                         </xs:sequence>
                     </xs:complexType>

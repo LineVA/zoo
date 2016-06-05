@@ -66,8 +66,12 @@ public class VisualizeXMLSave {
         SocialAttributes social = new SocialAttributes(0);
         TerritoryAttributes territory = new TerritoryAttributes(0.0);
 
-        Specie spec1 = new Specie(new Names("Zèbre", "Mountain zebra", "scientific1"), biome, feeding, reproduction, lifeSpan, ConservationStatus.UNKNOWN, social, territory);
-        Specie spec2 = new Specie(new Names("Lion", "Lion", "scientific2"), biome, feeding, reproduction, lifeSpan, ConservationStatus.UNKNOWN, social, territory);
+        Specie spec1 = new Specie(new Names("Zèbre", "Mountain zebra", "scientific1"),
+                biome, feeding, 1, reproduction, lifeSpan, 
+                ConservationStatus.UNKNOWN, social, territory);
+        Specie spec2 = new Specie(new Names("Lion", "Lion", "scientific2"),
+                biome, feeding, 2,reproduction, lifeSpan, 
+                ConservationStatus.UNKNOWN, social, territory);
         species.put("spec1", spec1);
         species.put("spec2", spec2);
         zoo.initiateZoo("myZoo2", 10, 10, species, 90, 98);
@@ -84,7 +88,7 @@ public class VisualizeXMLSave {
             Logger.getLogger(VisualizeXMLSave.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
-        save.saveZoo(zoo, "test3");
+        save.saveZoo(zoo, "test4");
     }
 
 }

@@ -16,6 +16,7 @@ import commandLine.commandImpl.LsSpecie;
 import commandLine.commandImpl.MapZoo;
 import commandLine.commandImpl.SaveZoo;
 import commandLine.commandImpl.DetailZoo;
+import commandLine.commandImpl.FeedingAnimal;
 import static java.util.Arrays.asList;
 import main.Play;
 
@@ -36,6 +37,7 @@ public class CommandManager {
                 new LsPaddock(play), new MapZoo(play), new DetailPad(play),
                 new Evaluate(play), new BiomePad(play), new BiomeAttributesPaddock(play),
                 new CreateAnimal(play), new LsAnimal(play), new DetailAnimal(play),
+                new FeedingAnimal(play),
                 new LsSpecie(play), new DetailSpecie(play),
                 new SaveZoo(play), new LoadZoo(play));
     }

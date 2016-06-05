@@ -1,11 +1,13 @@
 package zoo.animal.specie;
 
+import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import lombok.Getter;
 import zoo.animal.Names;
 import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.death.GaussianLifeSpanAttributes;
 import zoo.animal.death.LifeSpanAttributes;
+import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.feeding.GaussianFeedingAttributes;
 import zoo.animal.reproduction.GaussianReproductionAttributes;
@@ -25,6 +27,8 @@ public class Specie {
 
     @Getter
     private final BiomeAttributes specieBiome;
+    @Getter
+    private final int diet;
     @Getter
     private final FeedingAttributes specieFeeding;
     @Getter
@@ -53,11 +57,13 @@ public class Specie {
     private GaussianTerritoryAttributes gaussianTerritoryAttributes;
 
     public Specie(Names names, BiomeAttributes biome, FeedingAttributes feeding,
+            int diet,
             ReproductionAttributes repro, LifeSpanAttributes lifeSpan,
             ConservationStatus conservation, SocialAttributes social,
             TerritoryAttributes territory) {
         this.names = names;
         this.specieBiome = biome;
+        this.diet = diet;
         this.specieFeeding = feeding;
         this.specieReproduction = repro;
         this.specieLifeSpan = lifeSpan;
@@ -72,11 +78,12 @@ public class Specie {
         this.gaussianTerritoryAttributes = new GaussianTerritoryAttributes(territory);
     }
 
-    public ArrayList<String> info() {
+    public ArrayList<String> info() throws UnknownNameException {
         ArrayList<String> info = new ArrayList<>();
         info.add("English name : " + this.names.getEnglishName());
         info.add("Scientific name : " + this.names.getScientificName());
         info.add("Conservation status : " + this.conservation.toString());
+        info.add("Diet : " + Diet.NONE.findDietById(diet));
         info.add("Reproduction attributes : " + this.specieReproduction.toString());
         info.add("Life span attributes : " + this.specieLifeSpan.toString());
         info.add("Group size : " + this.specieSocial.toString());

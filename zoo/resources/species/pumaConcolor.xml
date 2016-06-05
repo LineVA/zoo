@@ -24,7 +24,7 @@
     <territorySize>175</territorySize>
 </territory>
 <feeding>
-        <diet>2e</diet>
+        <diet>2</diet>
         <quantity>1</quantity>
     </feeding>
 <social>
