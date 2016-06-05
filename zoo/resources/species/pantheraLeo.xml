@@ -24,7 +24,7 @@
     <territorySize>210</territorySize>
 </territory>
 <feeding>
-        <diet>carnivore</diet>
+        <diet>2</diet>
         <quantity>7</quantity>
     </feeding>
 <social>

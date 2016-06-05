@@ -24,7 +24,7 @@
         <territorySize>9.4</territorySize>
     </territory>
     <feeding>
-        <diet>folivore</diet>
+        <diet>27</diet>
         <quantity>5.7</quantity>
     </feeding>
     <social>

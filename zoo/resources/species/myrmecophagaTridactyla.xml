@@ -24,7 +24,7 @@
     <territorySize>10</territorySize>
 </territory>
 <feeding>
-        <diet>insectivore</diet>
+        <diet>7</diet>
         <quantity>0.7</quantity>
     </feeding>
 <social>
