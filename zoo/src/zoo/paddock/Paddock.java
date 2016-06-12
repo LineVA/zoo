@@ -170,10 +170,12 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public void birth() throws IncorrectDataException {
+    public ArrayList<String> birth() throws IncorrectDataException {
+        ArrayList<String> info = new ArrayList<>();
         ArrayList<Animal> tmpAnimal = new ArrayList<>();
         Reproduction repro = new ReproductionImpl();
         ArrayList<Animal> newFamily;
+        Animal newComer;
         for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
             newFamily = repro.reproducte(animalEntry.getValue());
             // If there is reproduction
@@ -181,11 +183,17 @@ public class Paddock implements Cloneable, IPaddock {
                 // newFamily[0] = mother;
                 // new Family[1] = father;
                 for (int i = 2; i < newFamily.size(); i++) {
-                    tmpAnimal.add(newFamily.get(i));
+                    newComer = newFamily.get(i);
+                    tmpAnimal.add(newComer);
+                    info.add("A newcomer : the baby of "
+                            + newFamily.get(0).getName() + " and "
+                            + newFamily.get(1).getName()
+                            + ", called " + newComer.getName());
                 }
             }
         }
         incomingNewBorn(tmpAnimal);
+        return info;
     }
 
     private void incomingNewBorn(ArrayList<Animal> tmpAnimal) {
@@ -205,16 +213,21 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public void death() {
+    public ArrayList<String> death() {
+        ArrayList<String> info = new ArrayList<>();
         IDie die = new DieImpl();
         ArrayList<Animal> tmpAnimal = new ArrayList<>();
+        Animal dying;
         for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
             // If the animal is dead
-            if (die.isDied(animalEntry.getValue())) {
-                tmpAnimal.add(animalEntry.getValue());
+            dying = animalEntry.getValue();
+            if (die.isDied(dying)) {
+                info.add("A dying animal : " + dying.getName());
+                tmpAnimal.add(dying);
             }
         }
         leavingNewDead(tmpAnimal);
+        return info;
     }
 
     private void leavingNewDead(ArrayList<Animal> tmpAnimal) {

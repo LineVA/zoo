@@ -216,17 +216,21 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public void death() {
+    public ArrayList<String> death() {
+        ArrayList<String> info = new ArrayList<>();
         for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
-            padEntry.getValue().death();
+            info.addAll(padEntry.getValue().death());
         }
+        return info;
     }
 
     @Override
-    public void birth() throws IncorrectDataException {
+    public ArrayList<String> birth() throws IncorrectDataException {
+        ArrayList<String> info = new ArrayList<>();
         for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
-            padEntry.getValue().birth();
+            info.addAll(padEntry.getValue().birth());
         }
+        return info;
     }
 
     @Override

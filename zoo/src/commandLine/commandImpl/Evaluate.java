@@ -1,9 +1,11 @@
 package commandLine.commandImpl;
 
+import basicGui.FormattingDisplay;
 import commandLine.Command;
 import exception.IncorrectDataException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.UnknownNameException;
+import java.util.ArrayList;
 import main.Play;
 
 /**
@@ -20,6 +22,7 @@ public class Evaluate implements Command {
     
     @Override
     public String execute(String[] cmd) {
+        ArrayList<String> info = new ArrayList<>();
         int zooEvaluation = 0;
         try {
             // Well-beeing of each animal
@@ -28,15 +31,16 @@ public class Evaluate implements Command {
             // ageing
             this.play.zoo.ageing();
             // birth
-            this.play.zoo.birth();
+            info.addAll(this.play.zoo.birth());
             // death
-            this.play.zoo.death();
+            info.addAll(this.play.zoo.death());
             // Zoo evaluation
            zooEvaluation += this.play.zoo.evaluate();
         } catch (UnknownNameException | AlreadyUsedNameException | IncorrectDataException ex) {
             return ex.getMessage();
         }
-        return "The evaluation of the zoo : " + zooEvaluation;
+        info.add("The evaluation of the zoo : " + zooEvaluation);
+        return FormattingDisplay.formattingArrayList(info);
     }
 
     @Override

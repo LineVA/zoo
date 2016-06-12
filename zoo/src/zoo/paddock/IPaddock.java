@@ -27,11 +27,11 @@ public interface IPaddock {
 
     public ArrayList<String> listAnimal(Specie specie);
 
-    public void birth() throws IncorrectDataException;
+    public ArrayList<String> birth() throws IncorrectDataException;
 
     public void ageing(int monthsPerEvaluation);
 
-    public void death();
+    public ArrayList<String> death();
 
     public ArrayList<Animal> animalsOfTheSameSpecie(Specie specie);
 

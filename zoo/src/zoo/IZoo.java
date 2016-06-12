@@ -17,7 +17,6 @@ import backup.save.SaveImpl;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
-import zoo.paddock.Paddock;
 import zoo.paddock.PaddockCoordinates;
 
 /**
@@ -42,9 +41,15 @@ public interface IZoo {
 
     public int evaluate();
 
-    public void death() throws UnknownNameException;
+    public ArrayList<String> death() throws UnknownNameException;
 
-    public void birth() throws AlreadyUsedNameException, IncorrectDataException;
+    /**
+     *
+     * @return 
+     * @throws AlreadyUsedNameException
+     * @throws IncorrectDataException
+     */
+    public ArrayList<String> birth() throws AlreadyUsedNameException, IncorrectDataException;
 
     public IPaddock findPaddockByName(String paddockName) throws EmptyNameException, UnknownNameException;
 
