@@ -1,6 +1,7 @@
 package zoo.animal.feeding;
 
 import exception.name.UnknownNameException;
+import java.util.ArrayList;
 import lombok.Getter;
 
 /**
@@ -54,5 +55,22 @@ public enum Diet {
             }
         }
         throw new UnknownNameException("No diet has this identifier.");
+    }
+    
+    public Diet findDietByName(String name) throws UnknownNameException {
+        for (Diet diet : Diet.values()) {
+            if (diet.toString().equals(name)) {
+                return diet;
+            }
+        }
+        throw new UnknownNameException("No diet has this identifier.");
+    }
+    
+    public ArrayList<String> list(){
+        ArrayList<String> list = new ArrayList<>();
+        for(Diet diet : Diet.values()){
+            list.add(diet.toString() + " : " + diet.definition);
+        }    
+        return list;
     }
 }
