@@ -32,14 +32,21 @@ public class FeedingAnimal implements Command {
             Animal animal = this.play.zoo.findAnimalByName(cmd[1]);
             Boolean changeDiet = false;
             if (args[0] != null) {
-                if (Diet.NONE.findDietById(Integer.parseInt(args[0])) != null) {
-                    animal.setDiet(Integer.parseInt(args[0]));
+                try {
+                    if (Diet.NONE.findDietById(Integer.parseInt(args[0])) != null) {
+                        animal.setDiet(Integer.parseInt(args[0]));
+                    }
+                } catch (NumberFormatException ex) {
+                    Diet diet = Diet.NONE.findDietByName(args[0].toUpperCase());
+                    if (diet != null) {
+                        animal.setDiet(diet.getId());
+                    }
                 }
             }
             if (args[1] != null) {
                 animal.getActualFeeding().setFoodQuantity(Integer.parseInt(args[1]));
             }
-            return "Ok";
+            return "The animal " + animal.getName() + " has a new diet.";
         } catch (EmptyNameException | UnknownNameException | IncorrectDataException ex) {
             return ex.getMessage();
         }
