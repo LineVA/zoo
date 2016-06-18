@@ -1,12 +1,9 @@
 package commandLine.commandImpl;
 
-import basicGui.FormattingDisplay;
 import commandLine.Command;
 import exception.IncorrectDataException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import main.Play;
 import zoo.animal.Animal;
 import zoo.animal.feeding.Diet;
@@ -44,7 +41,7 @@ public class FeedingAnimal implements Command {
                 }
             }
             if (args[1] != null) {
-                animal.getActualFeeding().setFoodQuantity(Integer.parseInt(args[1]));
+                animal.getActualFeeding().setFoodQuantity(Double.parseDouble(args[1]));
             }
             return "The animal " + animal.getName() + " has a new diet.";
         } catch (EmptyNameException | UnknownNameException | IncorrectDataException ex) {
