@@ -375,14 +375,4 @@ public class Zoo implements IZoo {
         friend.hashCode();
         return this.age;
     }
-
-    @Override
-    public Map<String, IPaddock> getPaddocks() {
-        return this.paddocks;
-    }
-
-    @Override
-    public Map<String, Specie> getSpecies() {
-        return this.species;
-    }
 }

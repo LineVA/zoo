@@ -81,10 +81,4 @@ public interface IZoo {
     public int getMonthsPerEvaluation(SaveImpl.FriendSave friend);
     
      public int getAge(SaveImpl.FriendSave friend);
-
-    // TEMPORARY !!!!!!!!!!!!!!
-    public Map<String, IPaddock> getPaddocks();
-
-    public Map<String, Specie> getSpecies();
-
 }
