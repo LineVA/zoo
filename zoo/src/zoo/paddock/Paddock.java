@@ -323,11 +323,13 @@ public class Paddock implements Cloneable, IPaddock {
 
     @Override
     public String getName(SaveImpl.FriendSave friend) {
+        friend.hashCode();
         return this.name;
     }
 
     @Override
     public Map<String, Animal> getAnimals(SaveImpl.FriendSave friend) {
+        friend.hashCode();
         return this.animals;
     }
 
