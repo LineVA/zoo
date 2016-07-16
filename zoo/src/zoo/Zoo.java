@@ -191,9 +191,9 @@ public class Zoo implements IZoo {
 //                return entry.getValue();
 //            }
 //        }
-        if(paddocks.containsKey(name)){
+        if (paddocks.containsKey(name)) {
             return paddocks.get(name);
-        } 
+        }
         throw new UnknownNameException("This paddock does not exist.");
     }
 
@@ -266,7 +266,7 @@ public class Zoo implements IZoo {
 //                return entry.getValue();
 //            }
 //        }
-        if(species.containsKey(specieName)){
+        if (species.containsKey(specieName)) {
             return species.get(specieName);
         }
         throw new UnknownNameException("No specie with this name exists.");
@@ -336,36 +336,43 @@ public class Zoo implements IZoo {
     // Access to the fields only the the friend class
     @Override
     public String getName(SaveImpl.FriendSave friend) {
+        friend.hashCode();
         return this.name;
     }
 
     @Override
     public int getWidth(SaveImpl.FriendSave friend) {
+        friend.hashCode();
         return this.width;
     }
 
     @Override
     public int getHeight(SaveImpl.FriendSave friend) {
+        friend.hashCode();
         return this.height;
     }
 
     @Override
     public Map<String, IPaddock> getPaddocks(SaveImpl.FriendSave friend) {
+        friend.hashCode();
         return this.paddocks;
     }
 
     @Override
     public Map<String, Specie> getSpecies(SaveImpl.FriendSave friend) {
+        friend.hashCode();
         return this.species;
     }
 
     @Override
     public int getMonthsPerEvaluation(SaveImpl.FriendSave friend) {
+        friend.hashCode();
         return this.monthsPerEvaluation;
     }
 
     @Override
     public int getAge(SaveImpl.FriendSave friend) {
+        friend.hashCode();
         return this.age;
     }
 
