@@ -139,8 +139,8 @@ public class ParserBackUp {
         ReproductionAttributes repro = new ReproductionAttributes(
                 Integer.parseInt(reproEl.getChildText("femaleMaturityAge")),
                 Integer.parseInt(reproEl.getChildText("maleMaturityAge")),
-                Double.parseDouble(reproEl.getChildText("femaleMaturityAge")),
-                Integer.parseInt(reproEl.getChildText("femaleMaturityAge"))
+                Double.parseDouble(reproEl.getChildText("gestationFrequency")),
+                Integer.parseInt(reproEl.getChildText("litterSize"))
         );
         return repro;
     }
