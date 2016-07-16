@@ -18,30 +18,23 @@ import zoo.paddock.IPaddock;
 public class LoadImpl implements Load {
 
     @Override
-    public IZoo loadZoo(String fileName) {
+    public IZoo loadZoo(String fileName) throws IOException, JDOMException {
         IZoo zoo = new Zoo();
-        try {
-            File file = new File(fileName);
-            ParserBackUp parser = new ParserBackUp(file);
-            // Creation of the zoo
-            zoo = parser.parserZoo();
-            // Creation of the paddocks
-            ArrayList<IPaddock> padList = parser.parserPaddock();
-            for (IPaddock pad : padList) {
-                zoo.addPaddock(pad);
-            }
-            // Creation of the animals
-            ArrayList<Animal> animalList = parser.parserAnimal(zoo.getSpecies(), zoo.getPaddocks());
-            IPaddock pad;
-            for (Animal animal : animalList) {
-                pad = zoo.findPaddockByName(animal.getPaddock().getName());
-                pad.addAnimal(animal);
-            }
-            return zoo;
-        } catch (IOException ex) {
-            Logger.getLogger(Zoo.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JDOMException ex) {
-            Logger.getLogger(Zoo.class.getName()).log(Level.SEVERE, null, ex);
+        File file = new File(fileName);
+        ParserBackUp parser = new ParserBackUp(file);
+        // Creation of the zoo
+        zoo = parser.parserZoo();
+        // Creation of the paddocks
+        ArrayList<IPaddock> padList = parser.parserPaddock();
+        for (IPaddock pad : padList) {
+            zoo.addPaddock(pad);
+        }
+        // Creation of the animals
+        ArrayList<Animal> animalList = parser.parserAnimal(zoo.getSpecies(), zoo.getPaddocks());
+        IPaddock pad;
+        for (Animal animal : animalList) {
+            pad = zoo.findPaddockByName(animal.getPaddock().getName());
+            pad.addAnimal(animal);
         }
         return zoo;
     }
