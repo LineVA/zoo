@@ -29,7 +29,7 @@ public class LoadImpl implements Load {
         // Creation of the zoo
         zoo = parser.parserZoo();
         // Creation of the paddocks
-        ArrayList<IPaddock> padList = parser.parserPaddock();
+        ArrayList<IPaddock> padList = parser.parserPaddocks();
         for (IPaddock pad : padList) {
             zoo.addPaddock(pad);
         }

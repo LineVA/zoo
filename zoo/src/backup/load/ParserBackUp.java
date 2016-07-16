@@ -54,7 +54,7 @@ public class ParserBackUp {
         return zoo;
     }
 
-    public ArrayList<IPaddock> parserPaddock() throws IncorrectDimensionsException {
+    public ArrayList<IPaddock> parserPaddocks() throws IncorrectDimensionsException {
         Element paddocksEl = zooEl.getChild("paddocks");
         List<Element> paddocksElList = paddocksEl.getChildren("paddock");
         ArrayList<IPaddock> paddocksList = new ArrayList<>();
