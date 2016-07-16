@@ -7,9 +7,9 @@ import exception.name.UnknownNameException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import main.InstanciateSpecies;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -18,7 +18,6 @@ import org.jdom2.input.SAXBuilder;
 import zoo.IZoo;
 import zoo.Zoo;
 import zoo.animal.Animal;
-import zoo.animal.death.LifeSpanAttributes;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
@@ -49,7 +48,7 @@ public class ParserBackUp {
     public IZoo parserZoo() throws EmptyNameException, IOException, JDOMException {
         IZoo zoo = new Zoo();
         Element dimEl = zooEl.getChild("dimensions");
-        HashMap<String, Specie> spec = InstanciateSpecies.instanciateSpecies("resources/species");
+        Map<String, Specie> spec = InstanciateSpecies.instanciateSpecies("resources/species");
         zoo.initiateZoo(zooEl.getAttributeValue("name"),
                 Integer.parseInt(dimEl.getChild("width").getText()),
                 Integer.parseInt(dimEl.getChild("height").getText()), spec,
@@ -76,8 +75,8 @@ public class ParserBackUp {
         return paddocksList;
     }
 
-    public ArrayList<Animal> parserAnimal(HashMap<String, Specie> species,
-            HashMap<String, IPaddock> paddocks) throws IncorrectDimensionsException, EmptyNameException, UnknownNameException, IncorrectDataException {
+    public ArrayList<Animal> parserAnimal(Map<String, Specie> species,
+            Map<String, IPaddock> paddocks) throws IncorrectDimensionsException, EmptyNameException, UnknownNameException, IncorrectDataException {
         Element animalsEl = zooEl.getChild("animals");
         List<Element> animalsElList = animalsEl.getChildren("animal");
         ArrayList<Animal> animalsList = new ArrayList<>();
@@ -117,11 +116,11 @@ public class ParserBackUp {
         return animalsList;
     }
 
-    public Specie findSpeciebyName(HashMap<String, Specie> species, String specieName) throws EmptyNameException, UnknownNameException {
+    public Specie findSpeciebyName(Map<String, Specie> species, String specieName) throws EmptyNameException, UnknownNameException {
         if (specieName.trim().equals("")) {
             throw new EmptyNameException("This specie is unknown");
         }
-        for (HashMap.Entry<String, Specie> entry : species.entrySet()) {
+        for (Map.Entry<String, Specie> entry : species.entrySet()) {
             if (entry.getKey().equalsIgnoreCase(specieName)) {
                 return entry.getValue();
             }
@@ -129,12 +128,12 @@ public class ParserBackUp {
         throw new UnknownNameException("No specie with this name exists.");
     }
 
-    public IPaddock findPaddockByName(HashMap<String, IPaddock> paddocks, String name) throws UnknownNameException,
+    public IPaddock findPaddockByName(Map<String, IPaddock> paddocks, String name) throws UnknownNameException,
             EmptyNameException {
         if (name.trim().equals("")) {
             throw new EmptyNameException("");
         }
-        for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
+        for (Map.Entry<String, IPaddock> entry : paddocks.entrySet()) {
             if (entry.getKey().equalsIgnoreCase(name)) {
                 return entry.getValue();
             }

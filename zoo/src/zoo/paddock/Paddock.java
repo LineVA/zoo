@@ -11,6 +11,9 @@ import java.util.Iterator;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import backup.save.SaveImpl;
+import exception.name.EmptyNameException;
+import java.util.Map;
+import java.util.TreeMap;
 import zoo.animal.Animal;
 import zoo.animal.death.DieImpl;
 import zoo.animal.death.IDie;
@@ -46,7 +49,7 @@ public class Paddock implements Cloneable, IPaddock {
     BiomeAttributes attributes;
 
     @Getter
-    HashMap<String, Animal> animals;
+    Map<String, Animal> animals;
 
     /**
      * The main constructor of the class Because no biome is known, the fields
@@ -60,7 +63,7 @@ public class Paddock implements Cloneable, IPaddock {
         this.coordinates = coor;
         this.biome = Biome.NONE.getName();
         this.attributes = (BiomeAttributes) Biome.NONE.getAttributes().clone();
-        this.animals = new HashMap<>();
+        this.animals = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     }
 
     /**
@@ -132,11 +135,18 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public Animal findAnimalByName(String animalName) throws UnknownNameException {
-        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
-            if (animalEntry.getKey().equalsIgnoreCase(animalName)) {
-                return animalEntry.getValue();
-            }
+    public Animal findAnimalByName(String animalName) 
+            throws UnknownNameException, EmptyNameException {
+//        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
+//            if (animalEntry.getKey().equalsIgnoreCase(animalName)) {
+//                return animalEntry.getValue();
+//            }
+//        }
+        if (name.trim().equals("")) {
+            throw new EmptyNameException("");
+        }
+        if(animals.containsKey(animalName)){
+            return animals.get(animalName);
         }
         throw new UnknownNameException("There is no animal in this paddock "
                 + "with this name.");
@@ -327,7 +337,7 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public HashMap<String, Animal> getAnimals(SaveImpl.FriendSave friend) {
+    public Map<String, Animal> getAnimals(SaveImpl.FriendSave friend) {
         return this.animals;
     }
 

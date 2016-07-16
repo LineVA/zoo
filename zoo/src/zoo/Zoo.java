@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import backup.save.SaveImpl;
+import java.util.Map;
+import java.util.TreeMap;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
@@ -36,11 +38,11 @@ public class Zoo implements IZoo {
     /**
      * The hashmap of the paddocks it contains
      */
-    private HashMap<String, IPaddock> paddocks;
+    private Map<String, IPaddock> paddocks;
     /**
      * The HashMap of the existing species
      */
-    private HashMap<String, Specie> species;
+    private Map<String, Specie> species;
     /**
      * The number of months which flows when we evaluate the zoo
      */
@@ -72,7 +74,7 @@ public class Zoo implements IZoo {
      */
     @Override
     public void initiateZoo(String name, int width, int height,
-            HashMap<String, Specie> species, int age, int monthsPerEvaluation)
+            Map<String, Specie> species, int age, int monthsPerEvaluation)
             throws IncorrectDimensionsException, EmptyNameException, IOException {
         if (name.trim().equals("")) {
             throw new EmptyNameException("Please enter a no-empty name for the zoo.");
@@ -86,7 +88,7 @@ public class Zoo implements IZoo {
             this.width = width;
             this.height = height;
         }
-        paddocks = new HashMap<>();
+        paddocks = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         this.species = species;
         this.age = age;
         this.monthsPerEvaluation = monthsPerEvaluation;
@@ -184,11 +186,14 @@ public class Zoo implements IZoo {
         if (name.trim().equals("")) {
             throw new EmptyNameException("");
         }
-        for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-            if (entry.getKey().equalsIgnoreCase(name)) {
-                return entry.getValue();
-            }
-        }
+//        for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
+//            if (entry.getKey().equalsIgnoreCase(name)) {
+//                return entry.getValue();
+//            }
+//        }
+        if(paddocks.containsKey(name)){
+            return paddocks.get(name);
+        } 
         throw new UnknownNameException("This paddock does not exist.");
     }
 
@@ -256,10 +261,13 @@ public class Zoo implements IZoo {
         if (specieName.trim().equals("")) {
             throw new EmptyNameException("This specie is unknown.");
         }
-        for (HashMap.Entry<String, Specie> entry : species.entrySet()) {
-            if (entry.getKey().equalsIgnoreCase(specieName)) {
-                return entry.getValue();
-            }
+//        for (HashMap.Entry<String, Specie> entry : species.entrySet()) {
+//            if (entry.getKey().equalsIgnoreCase(specieName)) {
+//                return entry.getValue();
+//            }
+//        }
+        if(species.containsKey(specieName)){
+            return species.get(specieName);
         }
         throw new UnknownNameException("No specie with this name exists.");
     }
@@ -342,12 +350,12 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public HashMap<String, IPaddock> getPaddocks(SaveImpl.FriendSave friend) {
+    public Map<String, IPaddock> getPaddocks(SaveImpl.FriendSave friend) {
         return this.paddocks;
     }
 
     @Override
-    public HashMap<String, Specie> getSpecies(SaveImpl.FriendSave friend) {
+    public Map<String, Specie> getSpecies(SaveImpl.FriendSave friend) {
         return this.species;
     }
 
@@ -362,12 +370,12 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public HashMap<String, IPaddock> getPaddocks() {
+    public Map<String, IPaddock> getPaddocks() {
         return this.paddocks;
     }
 
     @Override
-    public HashMap<String, Specie> getSpecies() {
+    public Map<String, Specie> getSpecies() {
         return this.species;
     }
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package zoo;
 
 import exception.IncorrectDataException;
@@ -14,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import backup.save.SaveImpl;
+import java.util.Map;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
@@ -25,7 +21,7 @@ import zoo.paddock.PaddockCoordinates;
  */
 public interface IZoo {
 
-    public void initiateZoo(String name, int width, int height, HashMap<String,
+    public void initiateZoo(String name, int width, int height, Map<String,
             Specie> species, int age, int monthsPerEvaluation)
             throws IncorrectDimensionsException, EmptyNameException, IOException;
 
@@ -79,17 +75,17 @@ public interface IZoo {
 
     public int getHeight(SaveImpl.FriendSave friend);
 
-    public HashMap<String, IPaddock> getPaddocks(SaveImpl.FriendSave friend);
+    public Map<String, IPaddock> getPaddocks(SaveImpl.FriendSave friend);
 
-    public HashMap<String, Specie> getSpecies(SaveImpl.FriendSave friend);
+    public Map<String, Specie> getSpecies(SaveImpl.FriendSave friend);
 
     public int getMonthsPerEvaluation(SaveImpl.FriendSave friend);
     
      public int getAge(SaveImpl.FriendSave friend);
 
     // TEMPORARY !!!!!!!!!!!!!!
-    public HashMap<String, IPaddock> getPaddocks();
+    public Map<String, IPaddock> getPaddocks();
 
-    public HashMap<String, Specie> getSpecies();
+    public Map<String, Specie> getSpecies();
 
 }

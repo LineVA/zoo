@@ -4,8 +4,9 @@ import exception.IncorrectDataException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import backup.save.SaveImpl;
+import exception.name.EmptyNameException;
+import java.util.Map;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
 
@@ -23,7 +24,8 @@ public interface IPaddock {
 
     public ArrayList<String> info();
 
-    public Animal findAnimalByName(String animalName) throws UnknownNameException;
+    public Animal findAnimalByName(String animalName) 
+            throws UnknownNameException, EmptyNameException;
 
     public ArrayList<String> listAnimal(Specie specie);
 
@@ -60,6 +62,6 @@ public interface IPaddock {
     
     public String getName(SaveImpl.FriendSave friend);
 
-    public HashMap<String, Animal> getAnimals(SaveImpl.FriendSave friend);
+    public Map<String, Animal> getAnimals(SaveImpl.FriendSave friend);
 
 }

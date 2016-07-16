@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
@@ -19,8 +20,8 @@ import zoo.animal.specie.Specie;
  */
 public class InstanciateSpecies {
 
-    public static HashMap<String, Specie> instanciateSpecies(String resource) throws IOException, JDOMException {
-        HashMap<String, Specie> species = new HashMap<>();
+    public static Map<String, Specie> instanciateSpecies(String resource) throws IOException, JDOMException {
+        Map<String, Specie> species = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         Stream<Path> files = Files.list(Paths.get(resource));
         files.forEach((Path file) -> {
             try{ 

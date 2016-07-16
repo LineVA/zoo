@@ -2,7 +2,7 @@ package gui.visual.onAction;
 
 import gui.visual.CommandVisual;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.Map;
 import main.InstanciateSpecies;
 import org.jdom2.JDOMException;
 import zoo.animal.specie.Specie;
@@ -22,7 +22,7 @@ public class VisualCreateZoo implements CommandVisual {
     @Override
     public void execute(String[] cmd) {
         try {
-            HashMap<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species");
+            Map<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species");
             this.zoo.initiateZoo(cmd[0], Integer.parseInt(cmd[1]),
                     Integer.parseInt(cmd[2]), species, 0, 6);
         } catch (IOException | JDOMException ex) {

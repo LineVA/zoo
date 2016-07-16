@@ -20,7 +20,7 @@ public class LoadZoo implements Command {
     @Override
     public String execute(String[] cmd) {
         Load load = new LoadImpl();
-        this.play.zoo = load.loadZoo(cmd[1]);
+        this.play.zoo = load.loadZoo("./gameBackUps/"+cmd[1]+".xml");
         return "You are now in your new zoo.";
     }
 

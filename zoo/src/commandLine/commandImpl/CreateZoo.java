@@ -4,7 +4,7 @@ import commandLine.Command;
 import exception.IncorrectDimensionsException;
 import exception.name.EmptyNameException;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.Map;
 import main.InstanciateSpecies;
 import main.Play;
 import org.jdom2.JDOMException;
@@ -25,7 +25,7 @@ public class CreateZoo implements Command {
     @Override
     public String execute(String[] cmd) {
         try {
-            HashMap<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species");
+            Map<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species");
             this.play.zoo.initiateZoo(cmd[2], Integer.parseInt(cmd[3]), 
                     Integer.parseInt(cmd[4]), species, 0, 6);
             return "Your zoo has been sucessfully created";
