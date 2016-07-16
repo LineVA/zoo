@@ -36,7 +36,7 @@ public class SaveImpl implements Save {
         Element zooEl = createElementZoo(zoo);
         org.jdom2.Document doc = new Document(zooEl);
         zooEl.addContent(createElementPaddocks(zoo));
-        zooEl.addContent(createElementAnimals(zoo));
+      //  zooEl.addContent(createElementAnimals(zoo));
         saveInFile(doc, createFileName(fileName));
     }
 
@@ -91,16 +91,14 @@ public class SaveImpl implements Save {
         el.addContent(createElementWithText("width", Integer.toString(pad.getCoordinates().getWidth())));
         el.addContent(createElementWithText("height", Integer.toString(pad.getCoordinates().getHeight())));
         // el.addContent(createElementWithText("biome", pad.getBiome());
-        // el.addContent(createElementAnimals(pad));
+        el.addContent(createElementAnimals(pad));
         return el;
     }
 
-    public Element createElementAnimals(IZoo zoo) {
+    public Element createElementAnimals(IPaddock pad) {
         Element el = new Element("animals");
-        for (HashMap.Entry<String, IPaddock> entry : zoo.getPaddocks(friendSave).entrySet()) {
-            for (HashMap.Entry<String, Animal> animal : entry.getValue().getAnimals(friendSave).entrySet()) {
-                el.addContent(createElementAnimal((Animal) animal.getValue()));
-            }
+        for (HashMap.Entry<String, Animal> animal : pad.getAnimals(friendSave).entrySet()) {
+            el.addContent(createElementAnimal((Animal) animal.getValue()));
         }
         return el;
     }
@@ -111,7 +109,7 @@ public class SaveImpl implements Save {
         el.addContent(createElementWithText("specie", animal.getSpecie().getNames().getEnglishName()));
         el.addContent(createElementWithText("sex", animal.getSex().toString()));
         el.addContent(createElementWithText("age", String.valueOf(animal.getAge())));
-        el.addContent(createElementWithText("paddock", animal.getPaddock().getName(friendSave)));
+       // el.addContent(createElementWithText("paddock", animal.getPaddock().getName(friendSave)));
 //        el.addContent(createElementBiomeAttributes(animal.getOptimalBiome()));
         el.addContent(createElementOptimalFeedingAttributes(animal.getOptimalFeeding()));
         el.addContent(createElementActualFeedingAttributes(animal, animal.getActualFeeding()));

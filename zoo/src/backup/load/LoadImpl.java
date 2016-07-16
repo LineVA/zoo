@@ -34,15 +34,15 @@ public class LoadImpl implements Load {
             zoo.addPaddock(pad);
         }
         // Creation of the animals
-        ArrayList<FakeAnimal> animalList = parser.parserAnimal();
+        ArrayList<FakeAnimal> animalList = parser.parserAnimals();
         IPaddock pad;
         for (FakeAnimal animal : animalList) {
-            addAnimalToZoo(zoo, animal);
+            addFakeAnimalToZoo(zoo, animal);
         }
         return zoo;
     }
     
-    public void addAnimalToZoo(IZoo zoo, FakeAnimal animal)
+    public void addFakeAnimalToZoo(IZoo zoo, FakeAnimal animal)
             throws EmptyNameException, UnknownNameException, IncorrectDataException,
                 AlreadyUsedNameException {
             Specie spec = zoo.findSpeciebyName(animal.getSpecie());

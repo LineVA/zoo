@@ -72,14 +72,29 @@ public class ParserBackUp {
         return paddocksList;
     }
 
-    public ArrayList<FakeAnimal> parserAnimal(){
-        Element animalsEl = zooEl.getChild("animals");
+    private ArrayList<Element> findElementsAnimals() {
+        ArrayList<Element> animalsEl = new ArrayList<>();
+        Element paddocksEl = zooEl.getChild("paddocks");
+        List<Element> paddocksElList = paddocksEl.getChildren("paddock");
+        paddocksElList.stream().forEach((Element el) -> animalsEl.add(el.getChild("animals")));
+        return animalsEl;
+    }
+
+    public ArrayList<FakeAnimal> parserAnimals() {
+        ArrayList<Element> animalsElList = findElementsAnimals();
+        ArrayList<FakeAnimal> animalList = new ArrayList<>();
+        animalsElList.stream().forEach((Element el) -> animalList.addAll(parserAnimal(el)));
+        return animalList;
+    }
+
+    public ArrayList<FakeAnimal> parserAnimal(Element animalsEl) {
+      //  Element animalsEl = zooEl.getChild("animals");
         List<Element> animalsElList = animalsEl.getChildren("animal");
         ArrayList<FakeAnimal> animalsList = new ArrayList<>();
         Iterator it = animalsElList.iterator();
         Element tmpAnimalEl;
         String spec;
-        String pad;
+        String pad = animalsEl.getParentElement().getAttributeValue("name");
         String sex;
         int age;
         BiomeAttributes biome;
@@ -93,7 +108,6 @@ public class ParserBackUp {
         while (it.hasNext()) {
             tmpAnimalEl = (Element) it.next();
             spec = tmpAnimalEl.getChildText("specie");
-            pad = tmpAnimalEl.getChildText("paddock");
             sex = tmpAnimalEl.getChildText("sex");
             age = Integer.parseInt(tmpAnimalEl.getChildText("age"));
             biome = parserBiomeAttributes(tmpAnimalEl);
@@ -124,13 +138,13 @@ public class ParserBackUp {
     }
 
     private FeedingAttributes parserActualFeedingAttributes(Element tmpAnimalEl) {
-         Element feedEl = tmpAnimalEl.getChild("actualFeedingAttributes");
+        Element feedEl = tmpAnimalEl.getChild("actualFeedingAttributes");
         return new FeedingAttributes(
                 Double.parseDouble(feedEl.getChildText("quantity")));
     }
-    
-     private int parserDiet(Element tmpAnimalEl) {
-         Element feedEl = tmpAnimalEl.getChild("actualFeedingAttributes");
+
+    private int parserDiet(Element tmpAnimalEl) {
+        Element feedEl = tmpAnimalEl.getChild("actualFeedingAttributes");
         return Integer.parseInt(feedEl.getChildText("diet"));
     }
 
@@ -166,4 +180,3 @@ public class ParserBackUp {
         return territory;
     }
 }
-
