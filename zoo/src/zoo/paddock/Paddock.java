@@ -333,4 +333,9 @@ public class Paddock implements Cloneable, IPaddock {
         return this.animals;
     }
 
+     @Override
+    public PaddockCoordinates getCoordinates(SaveImpl.FriendSave friend) {
+        friend.hashCode();
+        return this.coordinates;
+    }
 }

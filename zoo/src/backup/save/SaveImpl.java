@@ -85,11 +85,11 @@ public class SaveImpl implements Save {
 
     public Element createElementPaddock(IPaddock pad) {
         Element el = new Element("paddock");
-        el.setAttribute(createAttribute("name", pad.getName()));
-        el.addContent(createElementWithText("x", Integer.toString(pad.getCoordinates().getX())));
-        el.addContent(createElementWithText("y", Integer.toString(pad.getCoordinates().getY())));
-        el.addContent(createElementWithText("width", Integer.toString(pad.getCoordinates().getWidth())));
-        el.addContent(createElementWithText("height", Integer.toString(pad.getCoordinates().getHeight())));
+        el.setAttribute(createAttribute("name", pad.getName(friendSave)));
+        el.addContent(createElementWithText("x", Integer.toString(pad.getCoordinates(friendSave).getX())));
+        el.addContent(createElementWithText("y", Integer.toString(pad.getCoordinates(friendSave).getY())));
+        el.addContent(createElementWithText("width", Integer.toString(pad.getCoordinates(friendSave).getWidth())));
+        el.addContent(createElementWithText("height", Integer.toString(pad.getCoordinates(friendSave).getHeight())));
         // el.addContent(createElementWithText("biome", pad.getBiome());
         el.addContent(createElementAnimals(pad));
         return el;

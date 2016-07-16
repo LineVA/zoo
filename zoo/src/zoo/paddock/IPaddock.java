@@ -63,5 +63,7 @@ public interface IPaddock {
     public String getName(SaveImpl.FriendSave friend);
 
     public Map<String, Animal> getAnimals(SaveImpl.FriendSave friend);
+    
+    public PaddockCoordinates getCoordinates(SaveImpl.FriendSave friend);
 
 }
