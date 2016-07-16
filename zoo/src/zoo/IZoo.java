@@ -7,7 +7,6 @@ import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import backup.save.SaveImpl;
 import java.util.Map;
 import zoo.animal.Animal;
