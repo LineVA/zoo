@@ -1,14 +1,18 @@
 package backup.load;
 
+import exception.IncorrectDataException;
+import exception.name.AlreadyUsedNameException;
+import exception.name.EmptyNameException;
+import exception.name.UnknownNameException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.jdom2.JDOMException;
 import zoo.IZoo;
 import zoo.Zoo;
-import zoo.animal.Animal;
+import zoo.animal.FakeAnimal;
+import zoo.animal.reproduction.Sex;
+import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
 
 /**
@@ -30,12 +34,24 @@ public class LoadImpl implements Load {
             zoo.addPaddock(pad);
         }
         // Creation of the animals
-        ArrayList<Animal> animalList = parser.parserAnimal(zoo.getSpecies(), zoo.getPaddocks());
+        ArrayList<FakeAnimal> animalList = parser.parserAnimal();
         IPaddock pad;
-        for (Animal animal : animalList) {
-            pad = zoo.findPaddockByName(animal.getPaddock().getName());
-            pad.addAnimal(animal);
+        for (FakeAnimal animal : animalList) {
+            addAnimalToZoo(zoo, animal);
         }
         return zoo;
     }
+    
+    public void addAnimalToZoo(IZoo zoo, FakeAnimal animal)
+            throws EmptyNameException, UnknownNameException, IncorrectDataException,
+                AlreadyUsedNameException {
+            Specie spec = zoo.findSpeciebyName(animal.getSpecie());
+            IPaddock pad = zoo.findPaddockByName(animal.getPaddock());
+            Sex sex = Sex.FEMALE.findByName(animal.getSex());
+            pad.addAnimal(animal.convertToAnimal(spec, pad, sex));
+    }
+
+  
 }
+
+

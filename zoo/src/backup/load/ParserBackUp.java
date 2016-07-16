@@ -1,9 +1,7 @@
 package backup.load;
 
-import exception.IncorrectDataException;
 import exception.IncorrectDimensionsException;
 import exception.name.EmptyNameException;
-import exception.name.UnknownNameException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,11 +15,10 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import zoo.IZoo;
 import zoo.Zoo;
-import zoo.animal.Animal;
+import zoo.animal.FakeAnimal;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
-import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
@@ -75,16 +72,15 @@ public class ParserBackUp {
         return paddocksList;
     }
 
-    public ArrayList<Animal> parserAnimal(Map<String, Specie> species,
-            Map<String, IPaddock> paddocks) throws IncorrectDimensionsException, EmptyNameException, UnknownNameException, IncorrectDataException {
+    public ArrayList<FakeAnimal> parserAnimal(){
         Element animalsEl = zooEl.getChild("animals");
         List<Element> animalsElList = animalsEl.getChildren("animal");
-        ArrayList<Animal> animalsList = new ArrayList<>();
+        ArrayList<FakeAnimal> animalsList = new ArrayList<>();
         Iterator it = animalsElList.iterator();
         Element tmpAnimalEl;
-        Specie spec;
-        IPaddock pad;
-        Sex sex;
+        String spec;
+        String pad;
+        String sex;
         int age;
         BiomeAttributes biome;
         FeedingAttributes optFeed;
@@ -96,9 +92,9 @@ public class ParserBackUp {
         TerritoryAttributes territory;
         while (it.hasNext()) {
             tmpAnimalEl = (Element) it.next();
-            spec = findSpeciebyName(species, tmpAnimalEl.getChildText("specie"));
-            pad = findPaddockByName(paddocks, tmpAnimalEl.getChildText("paddock"));
-            sex = Sex.FEMALE.findByName(tmpAnimalEl.getChildText("sex"));
+            spec = tmpAnimalEl.getChildText("specie");
+            pad = tmpAnimalEl.getChildText("paddock");
+            sex = tmpAnimalEl.getChildText("sex");
             age = Integer.parseInt(tmpAnimalEl.getChildText("age"));
             biome = parserBiomeAttributes(tmpAnimalEl);
             optFeed = parserOptimalFeedingAttributes(tmpAnimalEl);
@@ -108,37 +104,12 @@ public class ParserBackUp {
             life = parserLifeSpanAttributes(tmpAnimalEl);
             social = parserSocialAttributes(tmpAnimalEl);
             territory = parserTerritoryAttributes(tmpAnimalEl);
-            animalsList.add(new Animal(spec,
+            animalsList.add(new FakeAnimal(spec,
                     tmpAnimalEl.getAttributeValue("name"),
                     pad, sex, age, biome, optFeed, actualFeed, diet, repro,
                     life, social, territory));
         }
         return animalsList;
-    }
-
-    public Specie findSpeciebyName(Map<String, Specie> species, String specieName) throws EmptyNameException, UnknownNameException {
-        if (specieName.trim().equals("")) {
-            throw new EmptyNameException("This specie is unknown");
-        }
-        for (Map.Entry<String, Specie> entry : species.entrySet()) {
-            if (entry.getKey().equalsIgnoreCase(specieName)) {
-                return entry.getValue();
-            }
-        }
-        throw new UnknownNameException("No specie with this name exists.");
-    }
-
-    public IPaddock findPaddockByName(Map<String, IPaddock> paddocks, String name) throws UnknownNameException,
-            EmptyNameException {
-        if (name.trim().equals("")) {
-            throw new EmptyNameException("");
-        }
-        for (Map.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-            if (entry.getKey().equalsIgnoreCase(name)) {
-                return entry.getValue();
-            }
-        }
-        throw new UnknownNameException("This paddock does not exist.");
     }
 
     private BiomeAttributes parserBiomeAttributes(Element tmpAnimalEl) {
@@ -195,3 +166,4 @@ public class ParserBackUp {
         return territory;
     }
 }
+
