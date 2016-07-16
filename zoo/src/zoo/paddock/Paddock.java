@@ -108,20 +108,15 @@ public class Paddock implements Cloneable, IPaddock {
 
     @Override
     public void addAnimal(Animal animal) throws AlreadyUsedNameException {
-        if (this.animals.containsKey(animal.getName())) {
+        Animal success = this.animals.putIfAbsent(animal.getName(), animal);
+        if (success != null) {
             throw new AlreadyUsedNameException("There is already an animal with"
                     + " this name is this paddock, please choose another one.");
-        } else {
-            animals.put(animal.getName(), animal);
         }
     }
 
     public void removeAnimal(String name) throws UnknownNameException {
-        if (this.animals.containsKey(name)) {
-            this.animals.remove(name);
-        } else {
-            throw new UnknownNameException("No animal with this name exists in this paddock.");
-        }
+        this.animals.remove(name);
     }
 
     @Override
@@ -135,17 +130,12 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public Animal findAnimalByName(String animalName) 
+    public Animal findAnimalByName(String animalName)
             throws UnknownNameException, EmptyNameException {
-//        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
-//            if (animalEntry.getKey().equalsIgnoreCase(animalName)) {
-//                return animalEntry.getValue();
-//            }
-//        }
         if (name.trim().equals("")) {
             throw new EmptyNameException("");
         }
-        if(animals.containsKey(animalName)){
+        if (animals.containsKey(animalName)) {
             return animals.get(animalName);
         }
         throw new UnknownNameException("There is no animal in this paddock "

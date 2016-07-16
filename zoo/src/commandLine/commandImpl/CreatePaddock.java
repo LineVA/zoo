@@ -25,7 +25,7 @@ public class CreatePaddock implements Command {
                     Integer.parseInt(cmd[5]), Integer.parseInt(cmd[6]));
             return "Your paddock has been sucessfully created.";
         } catch (NameException | IncorrectDimensionsException ex) {
-            return "Fail !";
+            return ex.getMessage();
         }
     }
 

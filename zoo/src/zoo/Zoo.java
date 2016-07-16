@@ -110,44 +110,42 @@ public class Zoo implements IZoo {
     @Override
     public void addPaddock(String paddockName, int x, int y, int width, int height)
             throws AlreadyUsedNameException, IncorrectDimensionsException {
-        if (paddocks.containsKey(paddockName)) {
-            throw new AlreadyUsedNameException("A paddock with this name is"
-                    + " already existing. Please choose another one.");
-        } else {
-            PaddockCoordinates coor = new PaddockCoordinates(x, y, width, height);
-            if (this.tooSmallforThisPaddock(coor)) {
-                throw new IncorrectDimensionsException("This paddock cannot be "
-                        + "set here : the zoo is too small.");
+        PaddockCoordinates coor = new PaddockCoordinates(x, y, width, height);
+        if (this.tooSmallforThisPaddock(coor)) {
+            throw new IncorrectDimensionsException("This paddock cannot be "
+                    + "set here : the zoo is too small.");
+        }
+        for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
+            if (!entry.getValue().isNotCompetingForSpace(coor)) {
+                throw new IncorrectDimensionsException("This paddock cannot"
+                        + " be set here : there is already another one on this place.");
             }
-            for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-                if (!entry.getValue().isNotCompetingForSpace(coor)) {
-                    throw new IncorrectDimensionsException("This paddock cannot"
-                            + " be set here : there is already another one on this place.");
-                }
-            }
-            IPaddock paddock = new Paddock(paddockName, coor);
-            this.paddocks.put(paddockName, paddock);
+        }
+        IPaddock paddock = new Paddock(paddockName, coor);
+        IPaddock success = this.paddocks.putIfAbsent(paddockName, paddock);
+        if (success != null) {
+            throw new AlreadyUsedNameException("A paddock with this name "
+                    + " already exists. Please choose another one.");
         }
     }
 
     public void addPaddock(IPaddock paddock)
             throws AlreadyUsedNameException, IncorrectDimensionsException {
-        if (paddocks.containsKey(paddock.getName())) {
-            throw new AlreadyUsedNameException("A paddock with this name is"
-                    + " already existing. Please choose another one.");
-        } else {
-            PaddockCoordinates coor = paddock.getCoordinates();
-            if (this.tooSmallforThisPaddock(coor)) {
-                throw new IncorrectDimensionsException("This paddock cannot be "
-                        + "set here : the zoo is too small.");
+        PaddockCoordinates coor = paddock.getCoordinates();
+        if (this.tooSmallforThisPaddock(coor)) {
+            throw new IncorrectDimensionsException("This paddock cannot be "
+                    + "set here : the zoo is too small.");
+        }
+        for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
+            if (!entry.getValue().isNotCompetingForSpace(coor)) {
+                throw new IncorrectDimensionsException("This paddock cannot"
+                        + " be set here : there is already another one on this place.");
             }
-            for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-                if (!entry.getValue().isNotCompetingForSpace(coor)) {
-                    throw new IncorrectDimensionsException("This paddock cannot"
-                            + " be set here : there is already another one on this place.");
-                }
-            }
-            this.paddocks.put(paddock.getName(), paddock);
+        }
+        IPaddock success = this.paddocks.putIfAbsent(paddock.getName(), paddock);
+        if (success != null) {
+            throw new AlreadyUsedNameException("A paddock with this name "
+                    + " already exists. Please choose another one.");
         }
     }
 
@@ -186,11 +184,6 @@ public class Zoo implements IZoo {
         if (name.trim().equals("")) {
             throw new EmptyNameException("");
         }
-//        for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-//            if (entry.getKey().equalsIgnoreCase(name)) {
-//                return entry.getValue();
-//            }
-//        }
         if (paddocks.containsKey(name)) {
             return paddocks.get(name);
         }
@@ -261,11 +254,6 @@ public class Zoo implements IZoo {
         if (specieName.trim().equals("")) {
             throw new EmptyNameException("This specie is unknown.");
         }
-//        for (HashMap.Entry<String, Specie> entry : species.entrySet()) {
-//            if (entry.getKey().equalsIgnoreCase(specieName)) {
-//                return entry.getValue();
-//            }
-//        }
         if (species.containsKey(specieName)) {
             return species.get(specieName);
         }
