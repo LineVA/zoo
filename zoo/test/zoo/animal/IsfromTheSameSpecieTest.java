@@ -41,16 +41,16 @@ public class IsfromTheSameSpecieTest {
     TerritoryAttributes terri = new TerritoryAttributes(0);
     LifeSpanAttributes life = new LifeSpanAttributes(0, 0);
     ConservationStatus conservation = ConservationStatus.UNKNOWN;
-    
+
     @Test
-    public void shouldReturnFalseTheSpeciesAreNotTheSame() throws IncorrectDataException {
+    public void shouldReturnFalseWhenTheSpeciesAreNotTheSame() throws IncorrectDataException {
         // Given
         Names names1 = new Names("english1", "french1", "scientific1");
         Specie spec1 = new Specie(names1, biome, feed,
-            0, repro, life, conservation, social, terri);
-         Names names2 = new Names("english2", "french2", "scientific2");
-          Specie spec2 = new Specie(names2, biome, feed,
-            0, repro, life, conservation, social, terri);
+                0, repro, life, conservation, social, terri);
+        Names names2 = new Names("english2", "french2", "scientific2");
+        Specie spec2 = new Specie(names2, biome, feed,
+                0, repro, life, conservation, social, terri);
         AnimalImpl animal = new AnimalImpl(spec1, "", null, null, 0, null,
                 null, null, 0, null, null, null, null);
         // When
@@ -58,15 +58,15 @@ public class IsfromTheSameSpecieTest {
         // Then
         assertFalse(expectedResult);
     }
-    
-     @Test
-    public void shouldReturnTrueTheSpeciesAreTheSame() throws IncorrectDataException {
+
+    @Test
+    public void shouldReturnTrueWhenTheSpeciesAreTheSame() throws IncorrectDataException {
         // Given
         Names names1 = new Names("english1", "french1", "scientific1");
         Specie spec1 = new Specie(names1, biome, feed,
-            0, repro, life, conservation, social, terri);
-          Specie spec2 = new Specie(names1, biome, feed,
-            0, repro, life, conservation, social, terri);
+                0, repro, life, conservation, social, terri);
+        Specie spec2 = new Specie(names1, biome, feed,
+                0, repro, life, conservation, social, terri);
         AnimalImpl animal = new AnimalImpl(spec1, "", null, null, 0, null,
                 null, null, 0, null, null, null, null);
         // When
@@ -74,6 +74,34 @@ public class IsfromTheSameSpecieTest {
         // Then
         assertTrue(expectedResult);
     }
-        
-        
+
+    @Test
+    public void shouldReturnFalseWhenTheSpecieIsNull() throws IncorrectDataException {
+        // Given
+        Names names1 = new Names("english1", "french1", "scientific1");
+        Specie spec1 = new Specie(names1, biome, feed,
+                0, repro, life, conservation, social, terri);
+        AnimalImpl animal = new AnimalImpl(spec1, "", null, null, 0, null,
+                null, null, 0, null, null, null, null);
+        // When
+        boolean expectedResult = animal.isFromTheSameSpecie(null);
+        // Then
+        assertFalse(expectedResult);
+    }
+    
+    @Test
+    public void shouldReturnFalseWhenTheSpecieOfTheAnimalIsNull() throws IncorrectDataException {
+        // Given
+        Names names1 = new Names("english1", "french1", "scientific1");
+        Specie spec1 = new Specie(names1, biome, feed,
+                0, repro, life, conservation, social, terri);
+        Specie spec2 = new Specie(names1, biome, feed,
+                0, repro, life, conservation, social, terri);
+        AnimalImpl animal = new AnimalImpl(null, "", null, null, 0, null,
+                null, null, 0, null, null, null, null);
+        // When
+        boolean expectedResult = animal.isFromTheSameSpecie(spec2);
+        // Then
+        assertFalse(expectedResult);
+    }
 }

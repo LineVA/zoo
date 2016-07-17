@@ -271,7 +271,10 @@ public class AnimalImpl implements Animal {
 
     @Override
     public boolean isFromTheSameSpecie(Specie specie) {
-        return this.specie.equals(specie);
+        if (this.specie != null) {
+            return this.specie.equals(specie);
+        }
+        return false;
     }
 
     @Override
@@ -289,7 +292,7 @@ public class AnimalImpl implements Animal {
         return isMature() && this.sex.isMale();
     }
 
-     /////////////////
+    /////////////////
     @Override
     public String getName() {
         return this.name;
