@@ -210,11 +210,14 @@ public class AnimalImpl implements Animal {
      */
     @Override
     public boolean isMature() {
-        if (this.sex == Sex.FEMALE) {
-            return this.age >= this.actualReproduction.getFemaleMaturityAge();
-        } else {
-            return this.age >= this.actualReproduction.getMaleMaturityAge();
+        if (this.actualReproduction != null && this.sex != null) {
+            if (this.sex == Sex.FEMALE) {
+                return this.age >= this.actualReproduction.getFemaleMaturityAge();
+            } else {
+                return this.age >= this.actualReproduction.getMaleMaturityAge();
+            }
         }
+        return false;
     }
 
     /**

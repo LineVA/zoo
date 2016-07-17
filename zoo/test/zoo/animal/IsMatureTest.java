@@ -124,5 +124,37 @@ String expected;
         // Then
         assertTrue(expectedResult);
     } 
+    
+      @Test
+    public void shouldReturnFalseWhenTheReproductionAttributesIsNull() throws IncorrectDataException{
+        // Given
+        int age = 40;
+        Sex sex = Sex.MALE;
+        int femaleMat = 10;
+        int maleMat =30;
+        ReproductionAttributes repro = new ReproductionAttributes(femaleMat, maleMat, 0.0, 0);
+        AnimalImpl male = new AnimalImpl(null, "", null, sex, age, null,
+                null, null, 0, null, null, null, null);
+        // When
+        boolean expectedResult = male.isMature();
+        // Then
+        assertFalse(expectedResult);
+    } 
+    
+    @Test
+    public void shouldReturnFalseWhenTheSexIsNull() throws IncorrectDataException{
+        // Given
+        int age = 40;
+        Sex sex = Sex.MALE;
+        int femaleMat = 10;
+        int maleMat =30;
+        ReproductionAttributes repro = new ReproductionAttributes(femaleMat, maleMat, 0.0, 0);
+        AnimalImpl male = new AnimalImpl(null, "", null, null, age, null,
+                null, null, 0, repro, null, null, null);
+        // When
+        boolean expectedResult = male.isMature();
+        // Then
+        assertFalse(expectedResult);
+    } 
 
 }
