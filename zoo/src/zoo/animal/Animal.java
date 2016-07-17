@@ -40,7 +40,9 @@ public interface Animal {
 
     public Specie getSpecie();
     
-    public ReproductionAttributes getActualReproductionAttributes();
+    public int getActualLitterSize();
+    
+    public double getActualGestationFrequency();
     
     public IPaddock getPaddock();
 

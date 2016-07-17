@@ -84,7 +84,7 @@ public class AnimalImpl implements Animal {
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
     }
-    
+
     public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex)
             throws IncorrectDataException {
         this.specie = spec;
@@ -105,9 +105,9 @@ public class AnimalImpl implements Animal {
                 ? this.actualReproduction.getFemaleMaturityAge()
                 : this.actualReproduction.getMaleMaturityAge();
     }
-    
-    public void drawAttributes(){
-        
+
+    public void drawAttributes() {
+
     }
 
     public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex, int age,
@@ -268,53 +268,54 @@ public class AnimalImpl implements Animal {
         }
         return wB;
     }
-    
+
     @Override
-    public boolean isFromTheSameSpecie(Specie specie){
+    public boolean isFromTheSameSpecie(Specie specie) {
         return this.specie.equals(specie);
     }
-    
+
     @Override
-     public ArrayList<Animal> findRoommateOfTheSameSpecie(){
-         return this.paddock.animalsOfTheSameSpecie(this.specie);
-     }
-     
-     @Override
-     public boolean canBePregnant(){
-         return isMature() && this.sex.isFemale();
-     }
-     
-     @Override
-     public boolean  canFecundateAFemale(){
-         return isMature() && this.sex.isMale();
-     }
-     
+    public ArrayList<Animal> findRoommateOfTheSameSpecie() {
+        return this.paddock.animalsOfTheSameSpecie(this.specie);
+    }
+
+    @Override
+    public boolean canBePregnant() {
+        return isMature() && this.sex.isFemale();
+    }
+
+    @Override
+    public boolean canFecundateAFemale() {
+        return isMature() && this.sex.isMale();
+    }
+
      /////////////////
-    
     @Override
-    public String getName(){
+    public String getName() {
         return this.name;
     }
-    
+
     @Override
-    public Specie getSpecie(){
+    public Specie getSpecie() {
         return this.specie;
     }
-    
+
     @Override
-    public ReproductionAttributes getActualReproductionAttributes(){
-        return this.actualReproduction;
+    public int getActualLitterSize() {
+        return this.actualReproduction.getLitterSize();
     }
-    
+
     @Override
-    public IPaddock getPaddock(){
+    public double getActualGestationFrequency() {
+        return this.actualReproduction.getGestationFrequency();
+    }
+
+    @Override
+    public IPaddock getPaddock() {
         return this.paddock;
     }
-    
-    
-    /////////////////////
-    
 
+    /////////////////////
     @Override
     public String getName(SaveImpl.FriendSave friend) {
         return this.name;
@@ -365,7 +366,7 @@ public class AnimalImpl implements Animal {
         return this.optimalTerritory;
     }
 
-     @Override
+    @Override
     public int getDiet(SaveImpl.FriendSave save) {
         return this.diet;
     }
