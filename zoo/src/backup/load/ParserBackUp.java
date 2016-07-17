@@ -7,22 +7,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import main.InstanciateSpecies;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
-import zoo.IZoo;
+import zoo.FakeZoo;
 import zoo.Zoo;
 import zoo.animal.FakeAnimal;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
-import zoo.animal.specie.Specie;
 import zoo.paddock.FakePaddock;
-import zoo.paddock.PaddockCoordinates;
 import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
 
@@ -41,16 +37,13 @@ public class ParserBackUp {
         this.zooEl = document.getRootElement();
     }
 
-    public IZoo parserZoo() throws EmptyNameException, IOException, JDOMException {
-        IZoo zoo = new Zoo();
+    public FakeZoo parserZoo() throws EmptyNameException, IOException, JDOMException {
         Element dimEl = zooEl.getChild("dimensions");
-        Map<String, Specie> spec = InstanciateSpecies.instanciateSpecies("resources/species");
-        zoo.initiateZoo(zooEl.getAttributeValue("name"),
+        return new FakeZoo(zooEl.getAttributeValue("name"),
                 Integer.parseInt(dimEl.getChild("width").getText()),
-                Integer.parseInt(dimEl.getChild("height").getText()), spec,
+                Integer.parseInt(dimEl.getChild("height").getText()),
                 Integer.parseInt(zooEl.getChild("age").getText()),
                 Integer.parseInt(zooEl.getChild("monthsPerEvaluation").getText()));
-        return zoo;
     }
 
     public ArrayList<FakePaddock> parserPaddocks() throws IncorrectDimensionsException {

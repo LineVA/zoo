@@ -27,7 +27,7 @@ public class LoadImpl implements Load {
         File file = new File(fileName);
         ParserBackUp parser = new ParserBackUp(file);
         // Creation of the zoo
-        IZoo zoo = parser.parserZoo();
+        IZoo zoo = parser.parserZoo().convertToZoo();
         // Creation of the paddocks
         ArrayList<FakePaddock> padList = parser.parserPaddocks();
         for (FakePaddock pad : padList) {
