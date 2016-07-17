@@ -49,7 +49,7 @@ public interface IPaddock {
 
     public int countNonMatureAnimals();
 
-    public ArrayList<String> countSpecies(ArrayList<String> presentedSpecies);
+    public ArrayList<String> listSpecies(ArrayList<String> presentedSpecies);
     
     public ArrayList<String> listSpecie();
 

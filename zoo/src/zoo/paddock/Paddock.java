@@ -145,7 +145,7 @@ public class Paddock implements Cloneable, IPaddock {
     public ArrayList<String> listAnimalWithSpecie(Specie specie) {
         ArrayList<String> list = new ArrayList<>();
         for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
-            if (entry.getValue().getSpecie().equals(specie)) {
+            if (entry.getValue().isFromTheSameSpecie(specie)) {
                 list.add(entry.getKey());
             }
         }
@@ -279,17 +279,6 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public ArrayList<String> countSpecies(ArrayList<String> presentedSpecies) {
-        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
-            String name = animalEntry.getValue().getSpecie().getNames().getEnglishName();
-            if (!presentedSpecies.contains(name)) {
-                presentedSpecies.add(name);
-            }
-        }
-        return presentedSpecies;
-    }
-
-    @Override
     public String getName() {
         return this.name;
     }
@@ -303,7 +292,7 @@ public class Paddock implements Cloneable, IPaddock {
     public ArrayList<Animal> animalsOfTheSameSpecie(Specie specie) {
         ArrayList<Animal> sameSpecieAnimals = new ArrayList<>();
         for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
-            if (animalEntry.getValue().getSpecie().equals(specie)) {
+            if (animalEntry.getValue().isFromTheSameSpecie(specie)) {
                 sameSpecieAnimals.add(animalEntry.getValue());
             }
         }
@@ -319,6 +308,17 @@ public class Paddock implements Cloneable, IPaddock {
             }
         }
         return listSpecie;
+    }
+    
+      @Override
+    public ArrayList<String> listSpecies(ArrayList<String> presentedSpecies) {
+        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
+            String name = animalEntry.getValue().getSpecie().getNames().getEnglishName();
+            if (!presentedSpecies.contains(name)) {
+                presentedSpecies.add(name);
+            }
+        }
+        return presentedSpecies;
     }
 
     @Override

@@ -205,10 +205,11 @@ public class Zoo implements IZoo {
     @Override
     public int evaluate() {
         ArrayList<String> presentedSpecies = new ArrayList<>();
+        ArrayList<String> localPresentedSpecies = new ArrayList<>();
         int kidsNb = 0;
         for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
             kidsNb += padEntry.getValue().countNonMatureAnimals();
-            presentedSpecies = padEntry.getValue().countSpecies(presentedSpecies);
+            localPresentedSpecies = padEntry.getValue().listSpecies(presentedSpecies);
         }
         return kidsNb * 5 + presentedSpecies.size();
     }

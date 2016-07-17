@@ -25,28 +25,29 @@ public class FeedingAnimal implements Command {
 
     @Override
     public String execute(String[] cmd) {
-        try {
-            Animal animal = this.play.zoo.findAnimalByName(cmd[1]);
-            Boolean changeDiet = false;
-            if (args[0] != null) {
-                try {
-                    if (Diet.NONE.findDietById(Integer.parseInt(args[0])) != null) {
-                        animal.setDiet(Integer.parseInt(args[0]));
-                    }
-                } catch (NumberFormatException ex) {
-                    Diet diet = Diet.NONE.findDietByName(args[0].toUpperCase());
-                    if (diet != null) {
-                        animal.setDiet(diet.getId());
-                    }
-                }
-            }
-            if (args[1] != null) {
-                animal.getActualFeeding().setFoodQuantity(Double.parseDouble(args[1]));
-            }
-            return "The animal " + animal.getName() + " has a new diet.";
-        } catch (EmptyNameException | UnknownNameException | IncorrectDataException ex) {
-            return ex.getMessage();
-        }
+//        try {
+//            Animal animal = this.play.zoo.findAnimalByName(cmd[1]);
+//            Boolean changeDiet = false;
+//            if (args[0] != null) {
+//                try {
+//                    if (Diet.NONE.findDietById(Integer.parseInt(args[0])) != null) {
+//                        animal.setDiet(Integer.parseInt(args[0]));
+//                    }
+//                } catch (NumberFormatException ex) {
+//                    Diet diet = Diet.NONE.findDietByName(args[0].toUpperCase());
+//                    if (diet != null) {
+//                        animal.setDiet(diet.getId());
+//                    }
+//                }
+//            }
+//            if (args[1] != null) {
+//                animal.getActualFeeding().setFoodQuantity(Double.parseDouble(args[1]));
+//            }
+//            return "The animal " + animal.getName() + " has a new diet.";
+//        } catch (EmptyNameException | UnknownNameException | IncorrectDataException ex) {
+//            return ex.getMessage();
+//        }
+        return "";
     }
 
     private boolean firstCmd(String[] cmd) {

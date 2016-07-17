@@ -57,7 +57,7 @@ public class FakeAnimal {
 
     public Animal convertToAnimal(Specie spec, IPaddock pad, Sex sex)
             throws IncorrectDataException {
-        return new Animal(spec, this.name, pad, sex, this.age, this.biome,
+        return new AnimalImpl(spec, this.name, pad, sex, this.age, this.biome,
                 this.optFeed, this.actualFeed, this.diet, this.repro, this.life,
                 this.social, this.territory);
     }

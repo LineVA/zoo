@@ -7,6 +7,7 @@ import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import main.Play;
 import zoo.animal.Animal;
+import zoo.animal.AnimalImpl;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
@@ -29,7 +30,7 @@ public class CreateAnimal implements Command {
             IPaddock pad = this.play.zoo.findPaddockByName(cmd[2]);
             Specie specie = this.play.zoo.findSpeciebyName(cmd[4]);
             Sex sex = Sex.MALE.findByName(cmd[5]);
-            Animal animal = new Animal(specie, cmd[3], pad, sex);
+            Animal animal = new AnimalImpl(specie, cmd[3], pad, sex);
             pad.addAnimal(animal);
             return "The animal has been created.";
         } catch (EmptyNameException | UnknownNameException | AlreadyUsedNameException | IncorrectDataException ex) {

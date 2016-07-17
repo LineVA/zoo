@@ -105,19 +105,18 @@ public class SaveImpl implements Save {
 
     public Element createElementAnimal(Animal animal) {
         Element el = new Element("animal");
-        el.setAttribute(createAttribute("name", animal.getName()));
-        el.addContent(createElementWithText("specie", animal.getSpecie().getNames().getEnglishName()));
-        el.addContent(createElementWithText("sex", animal.getSex().toString()));
-        el.addContent(createElementWithText("age", String.valueOf(animal.getAge())));
+        el.setAttribute(createAttribute("name", animal.getName(friendSave)));
+        el.addContent(createElementWithText("specie", animal.getSpecie(friendSave).getNames().getEnglishName()));
+        el.addContent(createElementWithText("sex", animal.getSex(friendSave).toString()));
+        el.addContent(createElementWithText("age", String.valueOf(animal.getAge(friendSave))));
        // el.addContent(createElementWithText("paddock", animal.getPaddock().getName(friendSave)));
 //        el.addContent(createElementBiomeAttributes(animal.getOptimalBiome()));
-        el.addContent(createElementOptimalFeedingAttributes(animal.getOptimalFeeding()));
-        el.addContent(createElementActualFeedingAttributes(animal, animal.getActualFeeding()));
-        el.addContent(createElementReproductionAttributes(animal.getActualReproduction()));
-        el.addContent(createElementLifeSpanAttributes(animal.getActualLifeSpan()));
-        el.addContent(createElementSocialAttributes(animal.getOptimalSocial()));
-        el.addContent(createElementTeritoryAttributes(animal.getOptimalTerritory()));
-
+        el.addContent(createElementOptimalFeedingAttributes(animal.getOptimalFeeding(friendSave)));
+        el.addContent(createElementActualFeedingAttributes(animal, animal.getActualFeeding(friendSave)));
+        el.addContent(createElementReproductionAttributes(animal.getActualReproduction(friendSave)));
+        el.addContent(createElementLifeSpanAttributes(animal.getActualLifeSpan(friendSave)));
+        el.addContent(createElementSocialAttributes(animal.getOptimalSocial(friendSave)));
+        el.addContent(createElementTeritoryAttributes(animal.getOptimalTerritory(friendSave)));
         return el;
     }
 
@@ -142,7 +141,7 @@ public class SaveImpl implements Save {
 
     public Element createElementActualFeedingAttributes(Animal animal, FeedingAttributes att) {
         Element el = new Element("actualFeedingAttributes");
-        el.addContent(createElementWithText("diet", String.valueOf(animal.getDiet())));
+        el.addContent(createElementWithText("diet", String.valueOf(animal.getDiet(friendSave))));
         el.addContent(createElementWithText("quantity", String.valueOf(att.getFoodQuantity())));
         return el;
     }
