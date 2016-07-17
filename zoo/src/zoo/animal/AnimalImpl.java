@@ -227,7 +227,10 @@ public class AnimalImpl implements Animal {
      */
     @Override
     public boolean isTooOld() {
-        return this.age >= this.actualLifeSpan.getLifeSpan();
+        if (this.actualLifeSpan != null) {
+            return this.age >= this.actualLifeSpan.getLifeSpan();
+        }
+        return false;
     }
 
     @Override

@@ -68,4 +68,17 @@ public class IsTooOldTest {
         // Then
         assertTrue(expectedResult);
     }
+    
+       @Test
+    public void shouldReturnFalseWhenLifeSpanAttributesIsNull() throws IncorrectDataException {
+        // Given
+        int age = 40;
+        int lifespan = 30;
+        AnimalImpl animal = new AnimalImpl(null, "", null, null, age, null,
+                null, null, 0, null, null, null, null);
+        // When
+        boolean expectedResult = animal.isTooOld();
+        // Then
+        assertFalse(expectedResult);
+    }
 }
