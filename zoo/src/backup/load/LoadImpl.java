@@ -1,6 +1,7 @@
 package backup.load;
 
 import exception.IncorrectDataException;
+import exception.IncorrectDimensionsException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
@@ -9,10 +10,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import org.jdom2.JDOMException;
 import zoo.IZoo;
-import zoo.Zoo;
 import zoo.animal.FakeAnimal;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.Specie;
+import zoo.paddock.FakePaddock;
 import zoo.paddock.IPaddock;
 
 /**
@@ -23,15 +24,14 @@ public class LoadImpl implements Load {
 
     @Override
     public IZoo loadZoo(String fileName) throws IOException, JDOMException {
-        IZoo zoo = new Zoo();
         File file = new File(fileName);
         ParserBackUp parser = new ParserBackUp(file);
         // Creation of the zoo
-        zoo = parser.parserZoo();
+        IZoo zoo = parser.parserZoo();
         // Creation of the paddocks
-        ArrayList<IPaddock> padList = parser.parserPaddocks();
-        for (IPaddock pad : padList) {
-            zoo.addPaddock(pad);
+        ArrayList<FakePaddock> padList = parser.parserPaddocks();
+        for (FakePaddock pad : padList) {
+            addFakePaddockToZoo(zoo, pad);
         }
         // Creation of the animals
         ArrayList<FakeAnimal> animalList = parser.parserAnimals();
@@ -51,7 +51,10 @@ public class LoadImpl implements Load {
             pad.addAnimal(animal.convertToAnimal(spec, pad, sex));
     }
 
-  
+    public void addFakePaddockToZoo(IZoo zoo, FakePaddock paddock)
+            throws IncorrectDimensionsException, AlreadyUsedNameException{
+        zoo.addPaddock(paddock.convertToPaddock());
+    }
 }
 
 

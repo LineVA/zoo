@@ -21,8 +21,7 @@ import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.Specie;
-import zoo.paddock.IPaddock;
-import zoo.paddock.Paddock;
+import zoo.paddock.FakePaddock;
 import zoo.paddock.PaddockCoordinates;
 import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
@@ -54,20 +53,20 @@ public class ParserBackUp {
         return zoo;
     }
 
-    public ArrayList<IPaddock> parserPaddocks() throws IncorrectDimensionsException {
+    public ArrayList<FakePaddock> parserPaddocks() throws IncorrectDimensionsException {
         Element paddocksEl = zooEl.getChild("paddocks");
         List<Element> paddocksElList = paddocksEl.getChildren("paddock");
-        ArrayList<IPaddock> paddocksList = new ArrayList<>();
+        ArrayList<FakePaddock> paddocksList = new ArrayList<>();
         Iterator it = paddocksElList.iterator();
         Element tmpPadEl;
-        PaddockCoordinates tmpCoor;
         while (it.hasNext()) {
             tmpPadEl = (Element) it.next();
-            tmpCoor = new PaddockCoordinates(Integer.parseInt(tmpPadEl.getChildText("x")),
+            paddocksList.add(new FakePaddock(tmpPadEl.getAttributeValue("name"),
+                    Integer.parseInt(tmpPadEl.getChildText("x")),
                     Integer.parseInt(tmpPadEl.getChildText("y")),
                     Integer.parseInt(tmpPadEl.getChildText("width")),
-                    Integer.parseInt(tmpPadEl.getChildText("height")));
-            paddocksList.add(new Paddock(tmpPadEl.getAttributeValue("name"), tmpCoor));
+                    Integer.parseInt(tmpPadEl.getChildText("height"))
+            ));
         }
         return paddocksList;
     }
@@ -88,7 +87,7 @@ public class ParserBackUp {
     }
 
     public ArrayList<FakeAnimal> parserAnimal(Element animalsEl) {
-      //  Element animalsEl = zooEl.getChild("animals");
+        //  Element animalsEl = zooEl.getChild("animals");
         List<Element> animalsElList = animalsEl.getChildren("animal");
         ArrayList<FakeAnimal> animalsList = new ArrayList<>();
         Iterator it = animalsElList.iterator();
