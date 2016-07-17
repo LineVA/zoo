@@ -30,7 +30,7 @@ public interface Animal {
 
     public boolean isFromTheSameSpecie(Specie specie);
 
-    public ArrayList<Animal> findRoommateOfTheSameSpecie();
+    public ArrayList<Animal> findRoommatesOfTheSameSpecie();
 
     public boolean canBePregnant();
     

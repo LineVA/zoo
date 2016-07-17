@@ -284,8 +284,11 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public ArrayList<Animal> findRoommateOfTheSameSpecie() {
-        return this.paddock.animalsOfTheSameSpecie(this.specie);
+    public ArrayList<Animal> findRoommatesOfTheSameSpecie() {
+        if (this.paddock != null && this.specie != null) {
+            return this.paddock.animalsOfTheSameSpecie(this.specie);
+        }
+        return null;
     }
 
     @Override

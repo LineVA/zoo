@@ -31,7 +31,7 @@ public class ReproductionImpl implements Reproduction {
     @Override
     public ArrayList<Animal> reproducte(Animal animal) throws IncorrectDataException {
         if (canFemaleReproducte(animal)) {
-            Animal father = whichMale(animal.findRoommateOfTheSameSpecie());
+            Animal father = whichMale(animal.findRoommatesOfTheSameSpecie());
             if (father != null) {
                 return generateFamily(animal, father);
             }
