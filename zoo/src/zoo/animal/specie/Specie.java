@@ -2,6 +2,7 @@ package zoo.animal.specie;
 
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.Objects;
 import lombok.Getter;
 import zoo.animal.Names;
 import zoo.animal.conservation.ConservationStatus;
@@ -90,4 +91,28 @@ public class Specie {
         info.add("Territory size : " + this.specieTerritory.toString());
         return info;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + Objects.hashCode(this.names);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Specie other = (Specie) obj;
+        if (!Objects.equals(this.names, other.names)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }
