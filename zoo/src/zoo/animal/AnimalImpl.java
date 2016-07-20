@@ -293,12 +293,18 @@ public class AnimalImpl implements Animal {
 
     @Override
     public boolean canBePregnant() {
-        return isMature() && this.sex.isFemale();
+        if (sex != null ) {
+            return isMature() && this.sex.isFemale();
+        }
+        return false;
     }
 
     @Override
     public boolean canFecundateAFemale() {
-        return isMature() && this.sex.isMale();
+        if (this.sex != null) {
+            return isMature() && this.sex.isMale();
+        }
+        return false;
     }
 
     /////////////////
