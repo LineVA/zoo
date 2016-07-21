@@ -7,6 +7,7 @@
 <general>
     <uicn>1</uicn>
     <family>Felidae</family>
+    <ecoregion>1</ecoregion>
 </general>
 <reproduction>
         <femaleMaturity>24</femaleMaturity>

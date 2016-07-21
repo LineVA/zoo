@@ -7,6 +7,7 @@
     <general>
         <uicn>3</uicn>
         <family>Equidae</family>
+        <ecoregion>0</ecoregion>
     </general>
     <reproduction>
         <femaleMaturity>66</femaleMaturity>

@@ -51,10 +51,10 @@ public class FindRoomatesOfTheSameSpecieTest {
 
     Names names1 = new Names("english1", "french1", "scientific1");
     Specie spec1 = new Specie(names1, biome, feed,
-            0, repro, life, conservation, social, terri);
+            0, repro, life, conservation, social, terri, 0);
     Names names2 = new Names("english2", "french2", "scientific2");
     Specie spec2 = new Specie(names2, biome, feed,
-            0, repro, life, conservation, social, terri);
+            0, repro, life, conservation, social, terri, 0);
 
     /**
      * One paddock, two animals, one specie

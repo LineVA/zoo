@@ -16,6 +16,7 @@
                         <xs:sequence>
                             <xs:element type="xs:integer" name="uicn"/>
                             <xs:element type="xs:string" name="family"/>
+                             <xs:element type="xs:integer" name="ecoregion"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
