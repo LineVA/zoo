@@ -300,7 +300,7 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public ArrayList<String> listSpecie() {
+    public ArrayList<String> listSpeciesByName() {
         ArrayList<String> listSpecie = new ArrayList<>();
         for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
             if (!listSpecie.contains(animalEntry.getValue().getSpecie())) {
@@ -311,7 +311,7 @@ public class Paddock implements Cloneable, IPaddock {
     }
     
       @Override
-    public ArrayList<String> listSpecies(ArrayList<String> presentedSpecies) {
+    public ArrayList<String> listSpeciesByName(ArrayList<String> presentedSpecies) {
         for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
             String name = animalEntry.getValue().getSpecie().getNames().getEnglishName();
             if (!presentedSpecies.contains(name)) {
@@ -320,6 +320,23 @@ public class Paddock implements Cloneable, IPaddock {
         }
         return presentedSpecies;
     }
+    
+     @Override
+    public ArrayList<Specie> listSpecies() {
+        ArrayList<Specie> listSpecie = new ArrayList<>();
+        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
+            if (!listSpecie.contains(animalEntry.getValue().getSpecie())) {
+                listSpecie.add(animalEntry.getValue().getSpecie());
+            }
+        }
+        return listSpecie;
+    }
+    
+//    public boolean isThereIncompatibleSpecies(Specie specie){
+//        boolean thereAreOnlyCompatibilitesSpecies = true;
+//        thereAreOnlyCompatibilitesSpecies = this.animals.entrySet().stream().map((animalEntry) -> animalEntry.isCompatibleWithSpecie(specie)).reduce(thereAreOnlyCompatibilitesSpecies, (accumulator, _item) -> accumulator & _item);
+//        return !thereAreOnlyCompatibilitesSpecies;
+//    }
 
     @Override
     public String getName(SaveImpl.FriendSave friend) {

@@ -209,7 +209,7 @@ public class Zoo implements IZoo {
         int kidsNb = 0;
         for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
             kidsNb += padEntry.getValue().countNonMatureAnimals();
-            localPresentedSpecies = padEntry.getValue().listSpecies(presentedSpecies);
+            localPresentedSpecies = padEntry.getValue().listSpeciesByName(presentedSpecies);
         }
         return kidsNb * 5 + presentedSpecies.size();
     }
@@ -297,7 +297,7 @@ public class Zoo implements IZoo {
                 list.add(entry.getValue().getNames().getEnglishName());
             }
         } else {
-            list.addAll(paddock.listSpecie());
+            list.addAll(paddock.listSpeciesByName());
         }
         return list;
     }

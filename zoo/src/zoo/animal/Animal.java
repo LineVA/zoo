@@ -45,7 +45,7 @@ public interface Animal {
     public double getActualGestationFrequency();
     
     public IPaddock getPaddock();
-
+    
     /**
      * Friend pattern : give access to each of the fields of Animal only to the
      * save methods

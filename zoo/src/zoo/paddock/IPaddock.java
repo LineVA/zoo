@@ -24,7 +24,7 @@ public interface IPaddock {
 
     public ArrayList<String> info();
 
-    public Animal findAnimalByName(String animalName) 
+    public Animal findAnimalByName(String animalName)
             throws UnknownNameException, EmptyNameException;
 
     public ArrayList<String> listAnimal(Specie specie);
@@ -49,9 +49,11 @@ public interface IPaddock {
 
     public int countNonMatureAnimals();
 
-    public ArrayList<String> listSpecies(ArrayList<String> presentedSpecies);
-    
-    public ArrayList<String> listSpecie();
+    public ArrayList<String> listSpeciesByName(ArrayList<String> presentedSpecies);
+
+    public ArrayList<String> listSpeciesByName();
+
+    public ArrayList<Specie> listSpecies();
 
     public String getName();
 
@@ -59,11 +61,10 @@ public interface IPaddock {
      * Friend pattern : give access to each of the fields of Zoo only to the
      * save methods
      */
-    
     public String getName(SaveImpl.FriendSave friend);
 
     public Map<String, Animal> getAnimals(SaveImpl.FriendSave friend);
-    
+
     public PaddockCoordinates getCoordinates(SaveImpl.FriendSave friend);
 
 }

@@ -4,6 +4,8 @@ import backup.save.SaveImpl;
 import exception.IncorrectDataException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lombok.Getter;
 import lombok.Setter;
 import zoo.animal.death.LifeSpanLightAttributes;
@@ -270,11 +272,30 @@ public class AnimalImpl implements Animal {
         // food quantity of FeedingAttributes
         if (this.diet == this.specie.getDiet()) {
             wB += Compare.compare(this.optimalFeeding.getFoodQuantity(), this.actualFeeding.getFoodQuantity());
-            System.out.println("(Teritory) " + this.name + " : " + wB);
+            System.out.println("(Feeding) " + this.name + " : " + wB);
+        }
+        try {
+            // Compatibility with the animals of the same paddock
+            if(isThereIncompatibleSpeciesInThePaddock()){
+                System.out.println("Incompabilities");
+                wB -= 5;
+            }
+        } catch (UnknownNameException ex) {
+            Logger.getLogger(AnimalImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return wB;
     }
 
+    public boolean isThereIncompatibleSpeciesInThePaddock() 
+            throws UnknownNameException{
+        boolean absenceOfIncompabilities = true;
+        ArrayList<Specie> species = this.paddock.listSpecies();
+        for(Specie spec : species){
+            absenceOfIncompabilities &= this.specie.canBeInTheSamePaddock(spec);
+        }
+        return !absenceOfIncompabilities;
+    }
+    
     @Override
     public boolean isFromTheSameSpecie(Specie specie) {
         if (this.specie != null) {
