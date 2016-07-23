@@ -156,6 +156,7 @@ public class Zoo implements IZoo {
         }
         IPaddock success = this.paddocks.putIfAbsent(paddock.getName(), paddock);
         if (success == null) {
+            paddock.addAllInNeightbourhood(neightbourhood);
             reactualizeNeightbourhoods(paddock, neightbourhood);
         } else {
             throw new AlreadyUsedNameException("A paddock with this name "

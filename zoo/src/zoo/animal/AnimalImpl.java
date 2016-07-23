@@ -300,12 +300,12 @@ public class AnimalImpl implements Animal {
 
     public boolean isAfraidBySpeciesInOtherPaddocks()
             throws UnknownNameException {
-        boolean absenceOfFear = true;
+        boolean isAfraid = false;
         ArrayList<Specie> species = this.paddock.listSpeciesInNeightbourhood();
         for (Specie spec : species) {
-            absenceOfFear &= this.specie.canBeAfraidOf(spec);
+            isAfraid |= this.specie.canBeAfraidOf(spec);
         }
-        return !absenceOfFear;
+        return isAfraid;
     }
 
     @Override

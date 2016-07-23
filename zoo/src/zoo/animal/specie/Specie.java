@@ -90,7 +90,7 @@ public class Specie {
     
     public boolean canBeAfraidOf(Specie specie) throws UnknownNameException{
         return Diet.NONE.findDietById(this.diet).canBeEatenBy(specie.diet)
-                && Ecoregion.UNKNOWN.findById(this.ecoregion).equals(specie.ecoregion);
+                && this.ecoregion == specie.ecoregion;
     }
     
     public ArrayList<String> info() throws UnknownNameException {

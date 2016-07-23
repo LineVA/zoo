@@ -348,13 +348,19 @@ public class Paddock implements Cloneable, IPaddock {
      public void addInNeightbourhood(IPaddock paddock){
          this.neightbourhood.add(paddock);
      }
+     
+     public void addAllInNeightbourhood(ArrayList<IPaddock> neightbourhood){
+         this.neightbourhood.addAll(neightbourhood);
+     }
 
     public ArrayList<Specie> listSpeciesInNeightbourhood() {
-        ArrayList<Specie> species = new ArrayList<>();
+        ArrayList<Specie> speciesList = new ArrayList<>();
+        ArrayList<Specie> localList = new ArrayList<>();
         for (IPaddock pad : this.neightbourhood) {
-            species.addAll(pad.listSpecies(species));
+            localList.addAll(pad.listSpecies(speciesList));
+            speciesList = localList;
         }
-        return species;
+        return speciesList;
     }
 
 //    public boolean isThereIncompatibleSpecies(Specie specie){

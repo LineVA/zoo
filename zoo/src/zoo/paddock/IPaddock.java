@@ -62,6 +62,8 @@ public interface IPaddock {
     public String getName();
     
     public void addInNeightbourhood(IPaddock paddock);
+    
+    public void addAllInNeightbourhood(ArrayList<IPaddock> neightbourhood);
 
     /**
      * Friend pattern : give access to each of the fields of Zoo only to the
