@@ -20,7 +20,7 @@ import org.junit.rules.ExpectedException;
  */
 public class CreateFileNameTest {
 
-    private static Save save;
+    private static SaveImpl save;
     
     @BeforeClass
     public static void setUpClass() {
@@ -44,7 +44,7 @@ public class CreateFileNameTest {
         // When
         String actualNameFile = save.createFileName(name);
         // Then 
-        String expectedNameFile = "foo.xml";
+        String expectedNameFile = "./gameBackUps/foo.xml";
         assertEquals(expectedNameFile, actualNameFile);
     }
     
