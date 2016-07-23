@@ -259,7 +259,8 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public int wellBeing() throws UnknownNameException{
+    public int wellBeing() throws UnknownNameException {
+        System.out.println(this.name.toUpperCase());
         int wB = 0;
         // group size of SocialAttributes
         wB += Compare.compare(this.optimalSocial.getGroupSize(), this.paddock.countAnimalsOfTheSameSpecie(this.specie));
@@ -278,7 +279,7 @@ public class AnimalImpl implements Animal {
             wB -= 5;
         }
         // Is affraid by animals in others paddocks
-         if (isAfraidBySpeciesInOtherPaddocks()) {
+        if (isAfraidBySpeciesInOtherPaddocks()) {
             System.out.println("Afraid");
             wB -= 2;
         }
@@ -290,12 +291,14 @@ public class AnimalImpl implements Animal {
         boolean absenceOfIncompabilities = true;
         ArrayList<Specie> species = this.paddock.listSpecies();
         for (Specie spec : species) {
-            absenceOfIncompabilities &= this.specie.canBeInTheSamePaddock(spec);
+            if (spec != this.specie) {
+                absenceOfIncompabilities &= this.specie.canBeInTheSamePaddock(spec);
+            }
         }
         return !absenceOfIncompabilities;
     }
-    
-     public boolean isAfraidBySpeciesInOtherPaddocks()
+
+    public boolean isAfraidBySpeciesInOtherPaddocks()
             throws UnknownNameException {
         boolean absenceOfFear = true;
         ArrayList<Specie> species = this.paddock.listSpeciesInNeightbourhood();
