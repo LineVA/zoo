@@ -31,7 +31,7 @@ public class SetBiomeTest {
             throws IncorrectDimensionsException {
         // Given
         PaddockCoordinates coor = new PaddockCoordinates(1, 1, 1, 1);
-        Paddock pad1 = new Paddock("A", coor);
+        Paddock pad1 = new Paddock("A", coor, null);
         // When
         pad1.setBiome(Biome.DESERT);
         pad1.attributes.setNightTemperature(33.0);

@@ -31,13 +31,13 @@ public class ZooPaddockTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void shouldConstructAPAddockWithTheGivenValues() 
+    public void shouldConstructAPaddockWithTheGivenValues() 
             throws IncorrectDimensionsException {
        // Given
         expectedCoor = new PaddockCoordinates(0, 0, 1, 1);
         expectedName = "foo";
        // When
-        pad = new Paddock(expectedName, expectedCoor);
+        pad = new Paddock(expectedName, expectedCoor, null);
         // Then
         String actualName = pad.getName();
         PaddockCoordinates actualCoor = pad.getCoordinates();
