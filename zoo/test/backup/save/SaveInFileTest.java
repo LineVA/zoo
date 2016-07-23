@@ -1,6 +1,5 @@
 package backup.save;
 
-import backup.save.Save;
 import exception.name.EmptyNameException;
 import java.io.File;
 import org.jdom2.Document;
@@ -16,11 +15,11 @@ import org.junit.rules.ExpectedException;
  * @author doyenm
  */
 public class SaveInFileTest {
-private static Save save;
+private static SaveImpl save;
 
     @BeforeClass
     public static void setUpClass() {
-        save = new Save();
+        save = new SaveImpl();
     }
 
     @AfterClass
@@ -36,8 +35,8 @@ private static Save save;
         //Given
         org.jdom2.Document doc = new Document();
         // When
-        save.saveInFile(doc, "./test/save/saveInFileTest.xml");
-        File expectedFile = new File("./test/save/saveInFileTest.xml");
+        save.saveInFile(doc, "./test/backup/save/saveInFileTest.xml");
+        File expectedFile = new File("./test/backup/save/saveInFileTest.xml");
         // Then 
         assertEquals(true, expectedFile.exists());
         // We delete the test file in order to prepare the folder 
