@@ -5,6 +5,7 @@ import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.io.IOException;
+import java.util.HashMap;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
@@ -14,7 +15,9 @@ import org.junit.rules.ExpectedException;
 import zoo.paddock.Paddock;
 import zoo.paddock.PaddockCoordinates;
 import zoo.Zoo;
+import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
+import static zoo.zoo.AddPaddockTest.zoo;
 
 /**
  *
@@ -26,13 +29,16 @@ public class PaddockByNameTest {
 
     @Before
     public void setUpClass() throws EmptyNameException, IOException {
-        String name = "foo";
-        int width = 6;
-        int height = 7;
-        int age = 0;
-        int months = 6;
+       String expectedName = "foo";
+        int expectedWidth = 6;
+        int expectedHeight = 7;
+        HashMap<String, Specie> expectedSpecies = null;
+        int expectedAge  = 1;
+        int expectedMonthsPerEval = 8;
+        int expectedHorizon = 9;
         zoo = new Zoo();
-        zoo.initiateZoo(name, width, height, null, age, months);
+        zoo.initiateZoo(expectedName, expectedWidth, expectedHeight, expectedSpecies,
+                expectedAge, expectedMonthsPerEval, expectedHorizon);
     }
 
     @AfterClass
@@ -53,7 +59,7 @@ public class PaddockByNameTest {
         IPaddock actualPaddock = zoo.findPaddockByName("b");
         // Then
         PaddockCoordinates coor = new PaddockCoordinates(2, 2, 2, 2);
-        Paddock expectedPaddock = new Paddock("b", coor);
+        Paddock expectedPaddock = new Paddock("b", coor, null);
         assertEquals(true, actualPaddock.getName().equals(expectedPaddock.getName()));
     }
 

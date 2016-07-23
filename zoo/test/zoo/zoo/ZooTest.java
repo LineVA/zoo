@@ -44,13 +44,14 @@ public class ZooTest {
         int expectedWidth = 6;
         int expectedHeight = 7;
         int expectedAge = 0;
-        int expectedMonths = 6;
+        int expectedMonths = 9;
+        int expectedHorizon = 8;
         HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
         HashMap<String, Specie> expectedSpecies = new HashMap<>();
         // When
         Zoo zoo = new Zoo();
         zoo.initiateZoo(expectedName, expectedWidth, expectedHeight,
-                null, expectedAge, expectedMonths);
+                null, expectedAge, expectedMonths, expectedHorizon);
         // Then
         String actualName = zoo.getName(null);
         int actualWidth = zoo.getWidth();
@@ -79,7 +80,8 @@ public class ZooTest {
         // When
         thrown.expect(IncorrectDimensionsException.class);
         Zoo zoo = new Zoo();
-        zoo.initiateZoo(expectedName, expectedWidth, expectedHeight, null);
+         zoo.initiateZoo(expectedName, expectedWidth, expectedHeight,
+                null, expectedAge, expectedMonths, expectedHorizon);
         // Then
     }
 

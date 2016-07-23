@@ -5,6 +5,7 @@ import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import org.junit.After;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -17,6 +18,7 @@ import static org.mockito.Mockito.when;
 import zoo.paddock.Paddock;
 import zoo.paddock.PaddockCoordinates;
 import zoo.Zoo;
+import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
 
 /**
@@ -30,11 +32,16 @@ public class AddPaddockTest {
     @Before
     public void setUpClass() throws AlreadyUsedNameException,
             IncorrectDimensionsException, EmptyNameException, IOException {
-        String name = "foo";
-        int width = 6;
-        int height = 7;
+        String expectedName = "foo";
+        int expectedWidth = 6;
+        int expectedHeight = 7;
+        HashMap<String, Specie> expectedSpecies = null;
+        int expectedAge  = 1;
+        int expectedMonthsPerEval = 8;
+        int expectedHorizon = 9;
         zoo = new Zoo();
-        zoo.initiateZoo(name, width, height, null, 0, 6);
+        zoo.initiateZoo(expectedName, expectedWidth, expectedHeight, expectedSpecies,
+                expectedAge, expectedMonthsPerEval, expectedHorizon);
         PaddockCoordinates coor = mock(PaddockCoordinates.class);
         when(coor.isNotCompeting(any(PaddockCoordinates.class))).thenReturn(true);
         PaddockCoordinates coor2 = mock(PaddockCoordinates.class);
@@ -57,13 +64,13 @@ public class AddPaddockTest {
         zoo.addPaddock("a", 0, 0, 1, 1);
         zoo.addPaddock("b", 1, 1, 1, 1);
         // Then
-        HashMap<String, IPaddock> actualList = zoo.getPaddocks(null);
+        Map<String, IPaddock> actualList = zoo.getPaddocks(null);
         assertEquals(2, actualList.size());
         // We do not check if a value has the correct key
         assertTrue(actualList.containsKey("a"));
         assertTrue(actualList.containsKey("b"));
-        assertTrue(actualList.containsValue(new Paddock("a", new PaddockCoordinates(0, 0, 1, 1))));
-        assertTrue(actualList.containsValue(new Paddock("b", new PaddockCoordinates(1, 1, 1, 1))));
+        assertTrue(actualList.containsValue(new Paddock("a", new PaddockCoordinates(0, 0, 1, 1), null)));
+        assertTrue(actualList.containsValue(new Paddock("b", new PaddockCoordinates(1, 1, 1, 1), null)));
     }
 
     @Test

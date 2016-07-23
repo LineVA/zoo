@@ -5,6 +5,7 @@ import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
@@ -12,6 +13,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import zoo.Zoo;
+import zoo.animal.specie.Specie;
 
 /**
  *
@@ -24,12 +26,16 @@ public class ListPaddockTest {
     @Before
     public void setUpClass() throws AlreadyUsedNameException,
             IncorrectDimensionsException, EmptyNameException, IOException {
-        String name = "foo";
-        int width = 6;
-        int height = 7;
-        int age = 0;
+        String expectedName = "foo";
+        int expectedWidth = 6;
+        int expectedHeight = 7;
+        HashMap<String, Specie> expectedSpecies = null;
+        int expectedAge  = 1;
+        int expectedMonthsPerEval = 8;
+        int expectedHorizon = 9;
         zoo = new Zoo();
-        zoo.initiateZoo(name, width, height, null, 0, 6);
+        zoo.initiateZoo(expectedName, expectedWidth, expectedHeight, expectedSpecies,
+                expectedAge, expectedMonthsPerEval, expectedHorizon);
     }
 
     @After
@@ -46,7 +52,7 @@ public class ListPaddockTest {
         zoo.addPaddock("a", 1, 1, 1, 1);
         zoo.addPaddock("b", 2, 2, 2, 2);
         // When
-        ArrayList<String> actualList = zoo.listPaddock();
+        ArrayList<String> actualList = zoo.listPaddockByName();
         // Then
         assertEquals(2, actualList.size());
         assertEquals(true, actualList.contains("a"));
@@ -57,7 +63,7 @@ public class ListPaddockTest {
     public void shouldReturnAnEmptyListWhenThereIsNoPaddock() {
         // Given
         // When
-        ArrayList<String> actualList = zoo.listPaddock();
+        ArrayList<String> actualList = zoo.listPaddockByName();
         // Then
         assertEquals(0, actualList.size());
     }
