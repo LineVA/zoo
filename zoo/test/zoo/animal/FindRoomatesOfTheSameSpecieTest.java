@@ -63,7 +63,7 @@ public class FindRoomatesOfTheSameSpecieTest {
     public void shouldReturnAnArrayOf2WhenThereIsTwoAnimalsOfTheSameSpecieInThePaddock()
             throws IncorrectDataException, AlreadyUsedNameException, IncorrectDimensionsException {
         // Given
-        IPaddock pad1 = new Paddock("pad1", new PaddockCoordinates(0, 0, 1, 1));
+        IPaddock pad1 = new Paddock("pad1", new PaddockCoordinates(0, 0, 1, 1), null);
         AnimalImpl animal1 = new AnimalImpl(spec1, "animal1", pad1, null, 0, null,
                 null, null, 0, null, null, null, null);
         AnimalImpl animal2 = new AnimalImpl(spec1, "animal2", pad1, null, 0, null,
@@ -88,7 +88,7 @@ public class FindRoomatesOfTheSameSpecieTest {
     public void shouldReturnAnArrayOf1WhenThereIsOneAnimalsOfTheSameSpecieInThePaddock()
             throws IncorrectDataException, AlreadyUsedNameException, IncorrectDimensionsException {
         // Given
-        IPaddock pad1 = new Paddock("pad1", new PaddockCoordinates(0, 0, 1, 1));
+        IPaddock pad1 = new Paddock("pad1", new PaddockCoordinates(0, 0, 1, 1), null);
         AnimalImpl animal1 = new AnimalImpl(spec1, "animal1", pad1, null, 0, null,
                 null, null, 0, null, null, null, null);
         AnimalImpl animal2 = new AnimalImpl(spec2, "animal2", pad1, null, 0, null,
@@ -112,8 +112,8 @@ public class FindRoomatesOfTheSameSpecieTest {
     public void shouldReturnAnArrayOf1WhenTheOthersOfTheSameSpecieAreNotInTheSamePaddock()
             throws IncorrectDataException, AlreadyUsedNameException, IncorrectDimensionsException {
         // Given
-        IPaddock pad1 = new Paddock("pad1", new PaddockCoordinates(0, 0, 1, 1));
-        IPaddock pad2 = new Paddock("pad2", new PaddockCoordinates(0, 0, 1, 1));
+        IPaddock pad1 = new Paddock("pad1", new PaddockCoordinates(0, 0, 1, 1), null);
+        IPaddock pad2 = new Paddock("pad2", new PaddockCoordinates(0, 0, 1, 1), null);
         AnimalImpl animal1 = new AnimalImpl(spec1, "animal1", pad1, null, 0, null,
                 null, null, 0, null, null, null, null);
         AnimalImpl animal2 = new AnimalImpl(spec2, "animal2", pad1, null, 0, null,
@@ -136,7 +136,7 @@ public class FindRoomatesOfTheSameSpecieTest {
     public void shouldReturnNullWhenThePaddockIsNull()
             throws IncorrectDataException, AlreadyUsedNameException, IncorrectDimensionsException {
         // Given
-        IPaddock pad1 = new Paddock("pad1", new PaddockCoordinates(0, 0, 1, 1));
+        IPaddock pad1 = new Paddock("pad1", new PaddockCoordinates(0, 0, 1, 1), null);
         AnimalImpl animal1 = new AnimalImpl(spec1, "animal1", null, null, 0, null,
                 null, null, 0, null, null, null, null);
         pad1.addAnimal(animal1);
@@ -151,7 +151,7 @@ public class FindRoomatesOfTheSameSpecieTest {
     public void shouldReturnNullWhenTheSpecieIsNull()
             throws IncorrectDataException, AlreadyUsedNameException, IncorrectDimensionsException {
         // Given
-        IPaddock pad1 = new Paddock("pad1", new PaddockCoordinates(0, 0, 1, 1));
+        IPaddock pad1 = new Paddock("pad1", new PaddockCoordinates(0, 0, 1, 1), null);
         AnimalImpl animal1 = new AnimalImpl(null, "animal1", pad1, null, 0, null,
                 null, null, 0, null, null, null, null);
         pad1.addAnimal(animal1);
