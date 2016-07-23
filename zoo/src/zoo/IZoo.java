@@ -38,12 +38,6 @@ public interface IZoo {
 
     public ArrayList<String> death() throws UnknownNameException;
 
-    /**
-     *
-     * @return 
-     * @throws AlreadyUsedNameException
-     * @throws IncorrectDataException
-     */
     public ArrayList<String> birth() throws AlreadyUsedNameException, IncorrectDataException;
 
     public IPaddock findPaddockByName(String paddockName) throws EmptyNameException, UnknownNameException;
@@ -60,7 +54,7 @@ public interface IZoo {
 
     public void ageing();
 
-    public int grade();
+    public int grade() throws UnknownNameException;
 
      public ArrayList<String> info();
     

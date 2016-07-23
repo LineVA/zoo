@@ -115,15 +115,22 @@ public class Zoo implements IZoo {
             throw new IncorrectDimensionsException("This paddock cannot be "
                     + "set here : the zoo is too small.");
         }
+        ArrayList<IPaddock> neightbourhood = new ArrayList<>();
+        PaddockCoordinates coorNeightbourhood = coor.getNeightbourhoodCoordinates(5);
         for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
             if (!entry.getValue().isNotCompetingForSpace(coor)) {
                 throw new IncorrectDimensionsException("This paddock cannot"
                         + " be set here : there is already another one on this place.");
             }
+            if (entry.getValue().isNotCompetingForSpace(coorNeightbourhood)) {
+                neightbourhood.add(entry.getValue());
+            }
         }
-        IPaddock paddock = new Paddock(paddockName, coor);
+        IPaddock paddock = new Paddock(paddockName, coor, neightbourhood);
         IPaddock success = this.paddocks.putIfAbsent(paddockName, paddock);
-        if (success != null) {
+        if (success == null) {
+            reactualizeNeightbourhoods(paddock, neightbourhood);
+        } else {
             throw new AlreadyUsedNameException("A paddock with this name "
                     + " already exists. Please choose another one.");
         }
@@ -136,16 +143,29 @@ public class Zoo implements IZoo {
             throw new IncorrectDimensionsException("This paddock cannot be "
                     + "set here : the zoo is too small.");
         }
+        ArrayList<IPaddock> neightbourhood = new ArrayList<>();
+        PaddockCoordinates coorNeightbourhood = coor.getNeightbourhoodCoordinates(5);
         for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
             if (!entry.getValue().isNotCompetingForSpace(coor)) {
                 throw new IncorrectDimensionsException("This paddock cannot"
                         + " be set here : there is already another one on this place.");
             }
+            if (entry.getValue().isNotCompetingForSpace(coorNeightbourhood)) {
+                neightbourhood.add(entry.getValue());
+            }
         }
         IPaddock success = this.paddocks.putIfAbsent(paddock.getName(), paddock);
-        if (success != null) {
+        if (success == null) {
+            reactualizeNeightbourhoods(paddock, neightbourhood);
+        } else {
             throw new AlreadyUsedNameException("A paddock with this name "
                     + " already exists. Please choose another one.");
+        }
+    }
+
+    private void reactualizeNeightbourhoods(IPaddock paddock, ArrayList<IPaddock> neightbourhoods) {
+        for (IPaddock neightbour : neightbourhoods) {
+            neightbour.addInNeightbourhood(paddock);
         }
     }
 
@@ -303,7 +323,7 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public int grade() {
+    public int grade() throws UnknownNameException {
         this.grade = 0;
         for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
             this.grade += entry.getValue().wellBeing();

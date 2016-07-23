@@ -80,4 +80,14 @@ public class PaddockCoordinates {
         return this.size;
     }
 
+     public PaddockCoordinates getNeightbourhoodCoordinates(int horizon) 
+            throws IncorrectDimensionsException {
+        int offsetX = (this.getX() - horizon >= 0) ? horizon : 0;
+        int offsetY = (this.getY() - horizon >= 0) ? horizon : 0;
+        int x = this.getX() - offsetX;
+        int y = this.getY() - offsetY;
+        int width = this.getWidth() + horizon + offsetX;
+        int height = this.getHeight() + horizon + offsetY;
+        return new PaddockCoordinates(x, y, width, height);
+    }
 }

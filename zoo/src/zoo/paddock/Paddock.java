@@ -11,6 +11,7 @@ import java.util.Iterator;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import backup.save.SaveImpl;
+import exception.IncorrectDimensionsException;
 import exception.name.EmptyNameException;
 import java.util.Map;
 import java.util.TreeMap;
@@ -51,6 +52,8 @@ public class Paddock implements Cloneable, IPaddock {
     @Getter
     Map<String, Animal> animals;
 
+    private ArrayList<IPaddock> neightbourhood;
+
     /**
      * The main constructor of the class Because no biome is known, the fields
      * take the values of the ones forme Biome.NONE
@@ -58,12 +61,13 @@ public class Paddock implements Cloneable, IPaddock {
      * @param name the name of the paddock
      * @param coor the coordinates of the paddock
      */
-    public Paddock(String name, PaddockCoordinates coor) {
+    public Paddock(String name, PaddockCoordinates coor, ArrayList<IPaddock> neightbourhood) {
         this.name = name;
         this.coordinates = coor;
         this.biome = Biome.NONE.getName();
         this.attributes = (BiomeAttributes) Biome.NONE.getAttributes().clone();
         this.animals = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        this.neightbourhood = neightbourhood;
     }
 
     /**
@@ -245,7 +249,7 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public int wellBeing() {
+    public int wellBeing() throws UnknownNameException {
         int wB = 0;
         for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
             wB += entry.getValue().wellBeing();
@@ -309,8 +313,8 @@ public class Paddock implements Cloneable, IPaddock {
         }
         return listSpecie;
     }
-    
-      @Override
+
+    @Override
     public ArrayList<String> listSpeciesByName(ArrayList<String> presentedSpecies) {
         for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
             String name = animalEntry.getValue().getSpecie().getNames().getEnglishName();
@@ -320,8 +324,8 @@ public class Paddock implements Cloneable, IPaddock {
         }
         return presentedSpecies;
     }
-    
-     @Override
+
+    @Override
     public ArrayList<Specie> listSpecies() {
         ArrayList<Specie> listSpecie = new ArrayList<>();
         for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
@@ -331,13 +335,33 @@ public class Paddock implements Cloneable, IPaddock {
         }
         return listSpecie;
     }
+
+    public ArrayList<Specie> listSpecies(ArrayList<Specie> presentedSpecies) {
+        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
+            if (!presentedSpecies.contains(animalEntry.getValue().getSpecie())) {
+                presentedSpecies.add(animalEntry.getValue().getSpecie());
+            }
+        }
+        return presentedSpecies;
+    }
     
+     public void addInNeightbourhood(IPaddock paddock){
+         this.neightbourhood.add(paddock);
+     }
+
+    public ArrayList<Specie> listSpeciesInNeightbourhood() {
+        ArrayList<Specie> species = new ArrayList<>();
+        for (IPaddock pad : this.neightbourhood) {
+            species.addAll(pad.listSpecies(species));
+        }
+        return species;
+    }
+
 //    public boolean isThereIncompatibleSpecies(Specie specie){
 //        boolean thereAreOnlyCompatibilitesSpecies = true;
 //        thereAreOnlyCompatibilitesSpecies = this.animals.entrySet().stream().map((animalEntry) -> animalEntry.isCompatibleWithSpecie(specie)).reduce(thereAreOnlyCompatibilitesSpecies, (accumulator, _item) -> accumulator & _item);
 //        return !thereAreOnlyCompatibilitesSpecies;
 //    }
-
     @Override
     public String getName(SaveImpl.FriendSave friend) {
         friend.hashCode();
@@ -350,7 +374,7 @@ public class Paddock implements Cloneable, IPaddock {
         return this.animals;
     }
 
-     @Override
+    @Override
     public PaddockCoordinates getCoordinates(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.coordinates;

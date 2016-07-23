@@ -26,7 +26,7 @@ public interface Animal {
 
     public void ageing(int monthsPerEvaluation);
 
-    public int wellBeing();
+    public int wellBeing() throws UnknownNameException;
 
     public boolean isFromTheSameSpecie(Specie specie);
 

@@ -39,7 +39,7 @@ public interface IPaddock {
 
     public int countAnimalsOfTheSameSpecie(Specie specie);
 
-    public int wellBeing();
+    public int wellBeing() throws UnknownNameException;
 
     public int computeSize();
 
@@ -53,9 +53,15 @@ public interface IPaddock {
 
     public ArrayList<String> listSpeciesByName();
 
+    public ArrayList<Specie> listSpecies(ArrayList<Specie> presentedSpecies);
+    
     public ArrayList<Specie> listSpecies();
+    
+    public ArrayList<Specie> listSpeciesInNeightbourhood();
 
     public String getName();
+    
+    public void addInNeightbourhood(IPaddock paddock);
 
     /**
      * Friend pattern : give access to each of the fields of Zoo only to the

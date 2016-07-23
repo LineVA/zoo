@@ -4,8 +4,6 @@ import backup.save.SaveImpl;
 import exception.IncorrectDataException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import lombok.Getter;
 import lombok.Setter;
 import zoo.animal.death.LifeSpanLightAttributes;
@@ -261,7 +259,7 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public int wellBeing() {
+    public int wellBeing() throws UnknownNameException{
         int wB = 0;
         // group size of SocialAttributes
         wB += Compare.compare(this.optimalSocial.getGroupSize(), this.paddock.countAnimalsOfTheSameSpecie(this.specie));
@@ -274,28 +272,39 @@ public class AnimalImpl implements Animal {
             wB += Compare.compare(this.optimalFeeding.getFoodQuantity(), this.actualFeeding.getFoodQuantity());
             System.out.println("(Feeding) " + this.name + " : " + wB);
         }
-        try {
-            // Compatibility with the animals of the same paddock
-            if(isThereIncompatibleSpeciesInThePaddock()){
-                System.out.println("Incompabilities");
-                wB -= 5;
-            }
-        } catch (UnknownNameException ex) {
-            Logger.getLogger(AnimalImpl.class.getName()).log(Level.SEVERE, null, ex);
+        // Compatibility with the animals of the same paddock
+        if (isThereIncompatibleSpeciesInThePaddock()) {
+            System.out.println("Incompabilities");
+            wB -= 5;
+        }
+        // Is affraid by animals in others paddocks
+         if (isAfraidBySpeciesInOtherPaddocks()) {
+            System.out.println("Afraid");
+            wB -= 2;
         }
         return wB;
     }
 
-    public boolean isThereIncompatibleSpeciesInThePaddock() 
-            throws UnknownNameException{
+    public boolean isThereIncompatibleSpeciesInThePaddock()
+            throws UnknownNameException {
         boolean absenceOfIncompabilities = true;
         ArrayList<Specie> species = this.paddock.listSpecies();
-        for(Specie spec : species){
+        for (Specie spec : species) {
             absenceOfIncompabilities &= this.specie.canBeInTheSamePaddock(spec);
         }
         return !absenceOfIncompabilities;
     }
     
+     public boolean isAfraidBySpeciesInOtherPaddocks()
+            throws UnknownNameException {
+        boolean absenceOfFear = true;
+        ArrayList<Specie> species = this.paddock.listSpeciesInNeightbourhood();
+        for (Specie spec : species) {
+            absenceOfFear &= this.specie.canBeAfraidOf(spec);
+        }
+        return !absenceOfFear;
+    }
+
     @Override
     public boolean isFromTheSameSpecie(Specie specie) {
         if (this.specie != null) {
@@ -314,7 +323,7 @@ public class AnimalImpl implements Animal {
 
     @Override
     public boolean canBePregnant() {
-        if (sex != null ) {
+        if (sex != null) {
             return isMature() && this.sex.isFemale();
         }
         return false;
