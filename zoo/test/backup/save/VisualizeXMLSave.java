@@ -14,7 +14,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import zoo.IZoo;
-import zoo.animal.Animal;
+import zoo.animal.AnimalImpl;
 import zoo.animal.Names;
 import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.death.LifeSpanAttributes;
@@ -65,24 +65,35 @@ public class VisualizeXMLSave {
         LifeSpanAttributes lifeSpan = new LifeSpanAttributes(0, 0);
         SocialAttributes social = new SocialAttributes(0);
         TerritoryAttributes territory = new TerritoryAttributes(0.0);
-
+        int ecoregion = 0;
+        
         Specie spec1 = new Specie(new Names("Zèbre", "Mountain zebra", "scientific1"),
                 biome, feeding, 1, reproduction, lifeSpan, 
-                ConservationStatus.UNKNOWN, social, territory);
+                ConservationStatus.UNKNOWN, social, territory, ecoregion);
         Specie spec2 = new Specie(new Names("Lion", "Lion", "scientific2"),
                 biome, feeding, 2,reproduction, lifeSpan, 
-                ConservationStatus.UNKNOWN, social, territory);
+                ConservationStatus.UNKNOWN, social, territory, ecoregion);
         species.put("spec1", spec1);
         species.put("spec2", spec2);
-        zoo.initiateZoo("myZoo2", 10, 10, species, 90, 98);
+        
+        String expectedName = "myZoo2";
+        int expectedWidth = 10;
+        int expectedHeight = 10;
+        HashMap<String, Specie> expectedSpecies = null;
+        int expectedAge = 90;
+        int expectedMonthsPerEval = 98;
+        int expectedHorizon = 8;
+        
+        zoo.initiateZoo(expectedName, expectedWidth, expectedHeight , expectedSpecies,
+                expectedAge, expectedMonthsPerEval, expectedHorizon);
         try {
             zoo.addPaddock("padName1", 1, 2, 3, 4);
             zoo.addPaddock("padName2", 5, 8, 1, 1);
             IPaddock pad1 = zoo.findPaddockByName("padName1");
             IPaddock pad2 = zoo.findPaddockByName("padName2");
-            pad1.addAnimal(new Animal(spec1, "animal1", pad1, Sex.MALE, 1));
-            pad1.addAnimal(new Animal(spec2, "animal2", pad1, Sex.MALE, 2));
-            pad2.addAnimal(new Animal(spec1, "animal3", pad2, Sex.MALE, 3));
+            pad1.addAnimal(new AnimalImpl(spec1, "animal1", pad1, Sex.MALE, 1));
+            pad1.addAnimal(new AnimalImpl(spec2, "animal2", pad1, Sex.MALE, 2));
+            pad2.addAnimal(new AnimalImpl(spec1, "animal3", pad2, Sex.MALE, 3));
 
         } catch (AlreadyUsedNameException ex) {
             Logger.getLogger(VisualizeXMLSave.class.getName())
