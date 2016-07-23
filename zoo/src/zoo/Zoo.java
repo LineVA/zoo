@@ -2,7 +2,6 @@ package zoo;
 
 import exception.IncorrectDataException;
 import zoo.paddock.PaddockCoordinates;
-import zoo.paddock.Paddock;
 import exception.IncorrectDimensionsException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
@@ -12,10 +11,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import backup.save.SaveImpl;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
+import zoo.paddock.Paddock;
 
 /**
  *
@@ -111,19 +112,14 @@ public class Zoo implements IZoo {
     public void addPaddock(String paddockName, int x, int y, int width, int height)
             throws AlreadyUsedNameException, IncorrectDimensionsException {
         PaddockCoordinates coor = new PaddockCoordinates(x, y, width, height);
-        if (this.tooSmallforThisPaddock(coor)) {
-            throw new IncorrectDimensionsException("This paddock cannot be "
-                    + "set here : the zoo is too small.");
-        }
+        checkEmplacement(coor);
         ArrayList<IPaddock> neightbourhood = new ArrayList<>();
         PaddockCoordinates coorNeightbourhood = coor.getNeightbourhoodCoordinates(5);
+        IPaddock tmp;
         for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-            if (!entry.getValue().isNotCompetingForSpace(coor)) {
-                throw new IncorrectDimensionsException("This paddock cannot"
-                        + " be set here : there is already another one on this place.");
-            }
-            if (entry.getValue().isNotCompetingForSpace(coorNeightbourhood)) {
-                neightbourhood.add(entry.getValue());
+            tmp = checkNeightbourhood(entry, coor, coorNeightbourhood);
+            if (tmp != null) {
+                neightbourhood.add(tmp);
             }
         }
         IPaddock paddock = new Paddock(paddockName, coor, neightbourhood);
@@ -136,22 +132,39 @@ public class Zoo implements IZoo {
         }
     }
 
-    public void addPaddock(IPaddock paddock)
-            throws AlreadyUsedNameException, IncorrectDimensionsException {
-        PaddockCoordinates coor = paddock.getCoordinates();
+    private IPaddock checkNeightbourhood(Entry<String, IPaddock> entry,
+            PaddockCoordinates coor, PaddockCoordinates coorNeightbourhood)
+            throws IncorrectDimensionsException {
+        IPaddock neightbour = null;
+        if (!entry.getValue().isNotCompetingForSpace(coor)) {
+            throw new IncorrectDimensionsException("This paddock cannot"
+                    + " be set here : there is already another one on this place.");
+        }
+        if (entry.getValue().isNotCompetingForSpace(coorNeightbourhood)) {
+            neightbour = entry.getValue();
+        }
+        return neightbour;
+    }
+
+    private boolean checkEmplacement(PaddockCoordinates coor) throws IncorrectDimensionsException {
         if (this.tooSmallforThisPaddock(coor)) {
             throw new IncorrectDimensionsException("This paddock cannot be "
                     + "set here : the zoo is too small.");
-        }
+        } 
+        return true;
+    }
+
+    public void addPaddock(IPaddock paddock)
+            throws AlreadyUsedNameException, IncorrectDimensionsException {
+        PaddockCoordinates coor = paddock.getCoordinates();
+        checkEmplacement(coor);
         ArrayList<IPaddock> neightbourhood = new ArrayList<>();
         PaddockCoordinates coorNeightbourhood = coor.getNeightbourhoodCoordinates(5);
+        IPaddock tmp;
         for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-            if (!entry.getValue().isNotCompetingForSpace(coor)) {
-                throw new IncorrectDimensionsException("This paddock cannot"
-                        + " be set here : there is already another one on this place.");
-            }
-            if (entry.getValue().isNotCompetingForSpace(coorNeightbourhood)) {
-                neightbourhood.add(entry.getValue());
+            tmp = checkNeightbourhood(entry, coor, coorNeightbourhood);
+            if (tmp != null) {
+                neightbourhood.add(tmp);
             }
         }
         IPaddock success = this.paddocks.putIfAbsent(paddock.getName(), paddock);
