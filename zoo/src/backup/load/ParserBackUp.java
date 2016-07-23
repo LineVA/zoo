@@ -12,7 +12,6 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import zoo.FakeZoo;
-import zoo.Zoo;
 import zoo.animal.FakeAnimal;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.FeedingAttributes;
@@ -43,7 +42,9 @@ public class ParserBackUp {
                 Integer.parseInt(dimEl.getChild("width").getText()),
                 Integer.parseInt(dimEl.getChild("height").getText()),
                 Integer.parseInt(zooEl.getChild("age").getText()),
-                Integer.parseInt(zooEl.getChild("monthsPerEvaluation").getText()));
+                Integer.parseInt(zooEl.getChild("monthsPerEvaluation").getText()),
+                Integer.parseInt(zooEl.getChild("horizon").getText())
+        );
     }
 
     public ArrayList<FakePaddock> parserPaddocks() throws IncorrectDimensionsException {

@@ -57,7 +57,8 @@ public class Zoo implements IZoo {
      * time we need it
      */
     private int grade;
-
+    private int horizon;
+    
     public Zoo() {
         //  this.monthsPerEvaluation = 6;
     }
@@ -75,7 +76,7 @@ public class Zoo implements IZoo {
      */
     @Override
     public void initiateZoo(String name, int width, int height,
-            Map<String, Specie> species, int age, int monthsPerEvaluation)
+            Map<String, Specie> species, int age, int monthsPerEvaluation, int horizon)
             throws IncorrectDimensionsException, EmptyNameException, IOException {
         if (name.trim().equals("")) {
             throw new EmptyNameException("Please enter a no-empty name for the zoo.");
@@ -93,6 +94,7 @@ public class Zoo implements IZoo {
         this.species = species;
         this.age = age;
         this.monthsPerEvaluation = monthsPerEvaluation;
+        this.horizon = horizon;
     }
 
     /**
@@ -114,7 +116,7 @@ public class Zoo implements IZoo {
         PaddockCoordinates coor = new PaddockCoordinates(x, y, width, height);
         checkEmplacement(coor);
         ArrayList<IPaddock> neightbourhood = new ArrayList<>();
-        PaddockCoordinates coorNeightbourhood = coor.getNeightbourhoodCoordinates(5);
+        PaddockCoordinates coorNeightbourhood = coor.getNeightbourhoodCoordinates(this.horizon);
         IPaddock tmp;
         for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
             tmp = checkNeightbourhood(entry, coor, coorNeightbourhood);
@@ -159,7 +161,7 @@ public class Zoo implements IZoo {
         PaddockCoordinates coor = paddock.getCoordinates();
         checkEmplacement(coor);
         ArrayList<IPaddock> neightbourhood = new ArrayList<>();
-        PaddockCoordinates coorNeightbourhood = coor.getNeightbourhoodCoordinates(5);
+        PaddockCoordinates coorNeightbourhood = coor.getNeightbourhoodCoordinates(this.horizon);
         IPaddock tmp;
         for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
             tmp = checkNeightbourhood(entry, coor, coorNeightbourhood);
@@ -349,9 +351,10 @@ public class Zoo implements IZoo {
     public ArrayList<String> info() {
         ArrayList<String> info = new ArrayList<>();
         info.add("Name : " + this.name);
-        info.add("Age : " + this.age);
         info.add("Months per evaluation : " + this.monthsPerEvaluation);
         info.add("Dimensions : width = " + this.width + ", height = " + this.height);
+        info.add("Horizon : " + this.horizon);
+        info.add("Age : " + this.age);
         info.add("Grade : " + this.grade);
         return info;
     }
@@ -397,5 +400,11 @@ public class Zoo implements IZoo {
     public int getAge(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.age;
+    }
+    
+    @Override
+    public int getHorizon(SaveImpl.FriendSave friend) {
+        friend.hashCode();
+        return this.horizon;
     }
 }

@@ -36,7 +36,7 @@ public class SaveImpl implements Save {
         Element zooEl = createElementZoo(zoo);
         org.jdom2.Document doc = new Document(zooEl);
         zooEl.addContent(createElementPaddocks(zoo));
-      //  zooEl.addContent(createElementAnimals(zoo));
+        //  zooEl.addContent(createElementAnimals(zoo));
         saveInFile(doc, createFileName(fileName));
     }
 
@@ -109,7 +109,7 @@ public class SaveImpl implements Save {
         el.addContent(createElementWithText("specie", animal.getSpecie(friendSave).getNames().getEnglishName()));
         el.addContent(createElementWithText("sex", animal.getSex(friendSave).toString()));
         el.addContent(createElementWithText("age", String.valueOf(animal.getAge(friendSave))));
-       // el.addContent(createElementWithText("paddock", animal.getPaddock().getName(friendSave)));
+        // el.addContent(createElementWithText("paddock", animal.getPaddock().getName(friendSave)));
 //        el.addContent(createElementBiomeAttributes(animal.getOptimalBiome()));
         el.addContent(createElementOptimalFeedingAttributes(animal.getOptimalFeeding(friendSave)));
         el.addContent(createElementActualFeedingAttributes(animal, animal.getActualFeeding(friendSave)));
@@ -186,6 +186,7 @@ public class SaveImpl implements Save {
         zooEl.addContent(createElementDimensionsZoo(zoo.getWidth(friendSave), zoo.getHeight(friendSave)));
         zooEl.addContent(createElementWithText("age", Integer.toString(zoo.getAge(friendSave))));
         zooEl.addContent(createElementWithText("monthsPerEvaluation", Integer.toString(zoo.getMonthsPerEvaluation(friendSave))));
+        zooEl.addContent(createElementWithText("horizon", Integer.toString(zoo.getHorizon(friendSave))));
         return zooEl;
     }
 }

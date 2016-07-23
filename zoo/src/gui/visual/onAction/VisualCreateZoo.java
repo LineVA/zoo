@@ -23,8 +23,11 @@ public class VisualCreateZoo implements CommandVisual {
     public void execute(String[] cmd) {
         try {
             Map<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species");
+            int monthsPerEvaluation = 6;
+            int horizon = 5;
+            int age = 0;
             this.zoo.initiateZoo(cmd[0], Integer.parseInt(cmd[1]),
-                    Integer.parseInt(cmd[2]), species, 0, 6);
+                    Integer.parseInt(cmd[2]), species, age, monthsPerEvaluation, horizon);
         } catch (IOException | JDOMException ex) {
             System.out.println(ex.getMessage());
         }

@@ -20,8 +20,7 @@ import zoo.paddock.PaddockCoordinates;
  */
 public interface IZoo {
 
-    public void initiateZoo(String name, int width, int height, Map<String,
-            Specie> species, int age, int monthsPerEvaluation)
+    public void initiateZoo(String name, int width, int height, Map<String, Specie> species, int age, int monthsPerEvaluation, int horizon)
             throws IncorrectDimensionsException, EmptyNameException, IOException;
 
     public void addPaddock(String paddockName, int x, int y, int width, int height)
@@ -56,8 +55,8 @@ public interface IZoo {
 
     public int grade() throws UnknownNameException;
 
-     public ArrayList<String> info();
-    
+    public ArrayList<String> info();
+
     /**
      * Friend pattern : give access to each of the fields of Zoo only to the
      * save methods
@@ -73,6 +72,8 @@ public interface IZoo {
     public Map<String, Specie> getSpecies(SaveImpl.FriendSave friend);
 
     public int getMonthsPerEvaluation(SaveImpl.FriendSave friend);
-    
-     public int getAge(SaveImpl.FriendSave friend);
+
+    public int getAge(SaveImpl.FriendSave friend);
+
+    public int getHorizon(SaveImpl.FriendSave friend);
 }
