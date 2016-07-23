@@ -48,7 +48,8 @@ public class CanFemaleReproducteTest {
         ConservationStatus status = ConservationStatus.UNKNOWN;
         Names names = new Names("", "", "");
         LifeSpanAttributes lifespanAtt = new LifeSpanAttributes(0, 0);
-        specie = new Specie(names, biomeAtt, feedingAtt, 0, reproAtt, lifespanAtt, status, socialAtt, terriAtt);
+        int ecoregion = 0;
+        specie = new Specie(names, biomeAtt, feedingAtt, 0, reproAtt, lifespanAtt, status, socialAtt, terriAtt, 0);
         // Mock Animal methods
 //        mockAnimal = mock(AnimalImpl.class);
 //        when(mockAnimal.drawActualFeeding(any(Specie.class))).thenReturn(feedingAt);

@@ -13,6 +13,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import zoo.statistics.Uniform;
 import zoo.animal.Animal;
+import zoo.animal.AnimalImpl;
 import zoo.animal.specie.Specie;
 import zoo.paddock.Paddock;
 
@@ -41,10 +42,12 @@ public class GenerateFamilyTest {
     @Test
     public void shouldReturnAnArrayListWithThreeElements() throws IncorrectDataException {
         // Given
-        Paddock expectedPad = new Paddock(null, null);
-        Specie expectedSpecie = new Specie(null, null, null, null, null, null, null, null);
-        Animal mother = new Animal(expectedSpecie, "mother", expectedPad, Sex.FEMALE, 0);
-        Animal father = new Animal(expectedSpecie, "father", expectedPad, Sex.MALE, 0);
+        Paddock expectedPad = new Paddock(null, null, null);
+        int ecoregion = 0; 
+        int diet = 0;
+        Specie expectedSpecie = new Specie(null, null, null, diet, null, null, null, null, null, ecoregion);
+        Animal mother = new AnimalImpl(expectedSpecie, "mother", expectedPad, Sex.FEMALE, 0);
+        Animal father = new AnimalImpl(expectedSpecie, "father", expectedPad, Sex.MALE, 0);
         // When
         ReproductionImpl repro = new ReproductionImpl(uniform);
         ArrayList<Animal> actual = repro.generateFamily(mother, father);

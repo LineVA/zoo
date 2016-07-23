@@ -2,7 +2,6 @@ package zoo.animal.reproduction;
 
 import exception.IncorrectDataException;
 import org.junit.After;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -12,7 +11,7 @@ import org.junit.rules.ExpectedException;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import zoo.animal.Animal;
-import zoo.animal.Species;
+import zoo.animal.AnimalImpl;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.specie.Specie;
 import zoo.paddock.biome.BiomeAttributes;
@@ -31,9 +30,11 @@ public class CanMaleReproducteTest {
         // Mock getFemaleMaturityAge()
         repro = mock(ReproductionAttributes.class);
         when(repro.getMaleMaturityAge()).thenReturn(12);
-         BiomeAttributes biomeAt = new BiomeAttributes(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+        BiomeAttributes biomeAt = new BiomeAttributes(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
         FeedingAttributes feedingAt = new FeedingAttributes(0.0);
-        specie = new Specie(null, biomeAt, feedingAt, repro, null, null, null, null);
+        int ecoregion = 0;
+        int diet = 0;
+        specie = new Specie(null, biomeAt, feedingAt, diet, repro, null, null, null, null, ecoregion);
     }
 
     @After
@@ -47,7 +48,7 @@ public class CanMaleReproducteTest {
     @Test
     public void shouldReturnTrueWhenTheAnimalIsAMatureMale() throws IncorrectDataException {
         // Given
-        Animal animal = new Animal(specie, null, null, Sex.MALE, 36);
+        Animal animal = new AnimalImpl(specie, null, null, Sex.MALE, 36);
         // When
         ReproductionImpl reproduction = new ReproductionImpl();
         boolean actual = reproduction.canMaleReproducte(animal);
@@ -59,7 +60,7 @@ public class CanMaleReproducteTest {
     @Test
     public void shouldReturnFalseWhenTheAnimalIsANonMatureMale() throws IncorrectDataException {
         // Given
-        Animal animal = new Animal(specie, null, null, Sex.MALE, 10);
+        Animal animal = new AnimalImpl(specie, null, null, Sex.MALE, 10);
         // When
         ReproductionImpl reproduction = new ReproductionImpl();
         boolean actual = reproduction.canMaleReproducte(animal);
@@ -70,7 +71,7 @@ public class CanMaleReproducteTest {
     @Test
     public void shouldReturnFalseWhenTheAnimalIsAFemale() throws IncorrectDataException {
         // Given
-        Animal animal = new Animal(specie, null, null, Sex.FEMALE, 36);
+        Animal animal = new AnimalImpl(specie, null, null, Sex.FEMALE, 36);
         // When
         ReproductionImpl reproduction = new ReproductionImpl();
         boolean actual = reproduction.canMaleReproducte(animal);

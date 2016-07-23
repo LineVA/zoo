@@ -45,10 +45,12 @@ public class GenerateAnimalTest {
         LifeSpanAttributes lifeSpan = new LifeSpanAttributes(1, 1);
         TerritoryAttributes territory = new TerritoryAttributes(1.0);
         ReproductionAttributes repro = new ReproductionAttributes(1, 1, 1, 1);
-        Specie expectedSpec = new Specie(null, biome, feeding, repro, lifeSpan,
-                ConservationStatus.UNKNOWN, social, territory);
+        int ecoregion = 0;
+        int diet = 0;
+        Specie expectedSpec = new Specie(null, biome, feeding, diet, repro, lifeSpan,
+                ConservationStatus.UNKNOWN, social, territory, ecoregion);
         String expectedName = "foo";
-        Paddock expectedPad = new Paddock("paddock", null);
+        Paddock expectedPad = new Paddock("paddock", null, null);
         ReproductionImpl reproduction = new ReproductionImpl();
         // When
         Animal actualAnimal = reproduction.generateAnimal(expectedSpec, expectedName, expectedPad);

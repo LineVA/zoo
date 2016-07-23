@@ -12,6 +12,7 @@ import org.junit.rules.ExpectedException;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import zoo.animal.Animal;
+import zoo.animal.AnimalImpl;
 import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.death.LifeSpanAttributes;
 import zoo.animal.feeding.FeedingAttributes;
@@ -39,16 +40,18 @@ public class WhichMaleTest {
         when(repro.getFemaleMaturityAge()).thenReturn(12);
         when(repro.getMaleMaturityAge()).thenReturn(13);
         // Create a paddock 
-        pad = new Paddock(null, null);
+        pad = new Paddock(null, null, null);
         BiomeAttributes biome = new BiomeAttributes(1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0);
         FeedingAttributes feeding = new FeedingAttributes(1.0);
         SocialAttributes social = new SocialAttributes(1);
         LifeSpanAttributes lifeSpan = new LifeSpanAttributes(1, 1);
         TerritoryAttributes territory = new TerritoryAttributes(1.0);
-        specie1 = new Specie(null, biome, feeding, repro, lifeSpan,
-                ConservationStatus.UNKNOWN, social, territory);
-        specie2 = new Specie(null, biome, feeding, repro, lifeSpan,
-                ConservationStatus.UNKNOWN, social, territory);
+        int ecoregion = 0;
+        int diet = 0;
+        specie1 = new Specie(null, biome, feeding, diet, repro, lifeSpan,
+                ConservationStatus.UNKNOWN, social, territory, ecoregion);
+        specie2 = new Specie(null, biome, feeding, diet, repro, lifeSpan,
+                ConservationStatus.UNKNOWN, social, territory, ecoregion);
     }
 
     @After
@@ -60,12 +63,12 @@ public class WhichMaleTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void shouldReturnNullWhenThereIsNoMatureMaleOfTheSameSpecie() 
+    public void shouldReturnNullWhenThereIsNoMatureMaleOfTheSameSpecie()
             throws AlreadyUsedNameException, IncorrectDataException {
         // Given
-        Animal female1 = new Animal(specie1, "female1", pad, Sex.FEMALE, 14);
-        Animal male1 = new Animal(specie1, "male1", pad, Sex.MALE, 10);
-        Animal male2 = new Animal(specie2, "male2", pad, Sex.MALE, 20);
+        Animal female1 = new AnimalImpl(specie1, "female1", pad, Sex.FEMALE, 14);
+        Animal male1 = new AnimalImpl(specie1, "male1", pad, Sex.MALE, 10);
+        Animal male2 = new AnimalImpl(specie2, "male2", pad, Sex.MALE, 20);
 
         pad.addAnimal(male1);
         pad.addAnimal(male2);
@@ -83,10 +86,10 @@ public class WhichMaleTest {
     public void shouldReturnTheFirstMatureMaleOfTheSameSpecieWhenThereIsSeveralMales()
             throws AlreadyUsedNameException, IncorrectDataException {
         // Given
-        Animal female1 = new Animal(specie1, "female1", pad, Sex.FEMALE, 14);
-        Animal male1 = new Animal(specie1, "male1", pad, Sex.MALE, 10);
-        Animal male2 = new Animal(specie2, "male2", pad, Sex.MALE, 20);
-        Animal male3 = new Animal(specie1, "male3", pad, Sex.MALE, 15);
+        Animal female1 = new AnimalImpl(specie1, "female1", pad, Sex.FEMALE, 14);
+        Animal male1 = new AnimalImpl(specie1, "male1", pad, Sex.MALE, 10);
+        Animal male2 = new AnimalImpl(specie2, "male2", pad, Sex.MALE, 20);
+        Animal male3 = new AnimalImpl(specie1, "male3", pad, Sex.MALE, 15);
         pad.addAnimal(female1);
         pad.addAnimal(male1);
         pad.addAnimal(male2);
