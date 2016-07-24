@@ -20,7 +20,7 @@ public class DetailSpecieTest {
 
     @Before
     public void setUpClass() {
-        create = new DetailSpecie();
+        create = new DetailSpecie(null);
     }
 
     @After

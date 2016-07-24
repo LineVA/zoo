@@ -20,7 +20,7 @@ public class LsPaddockTest {
 
     @Before
     public void setUpClass() {
-        cmdImpl = new LsPaddock();
+        cmdImpl = new LsPaddock(null);
     }
 
     @After

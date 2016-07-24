@@ -20,7 +20,7 @@ public class CreatePaddockTest {
 
     @Before
     public void setUpClass() {
-        cmdImpl = new CreatePaddock();
+        cmdImpl = new CreatePaddock(null);
     }
 
     @After

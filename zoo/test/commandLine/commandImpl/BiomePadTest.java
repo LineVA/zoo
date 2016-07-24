@@ -20,7 +20,7 @@ public class BiomePadTest {
 
     @Before
     public void setUpClass() {
-        cmdImpl = new BiomePad();
+        cmdImpl = new BiomePad(null);
     }
 
     @After

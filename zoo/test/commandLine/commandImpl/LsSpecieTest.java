@@ -20,7 +20,7 @@ public class LsSpecieTest {
 
     @Before
     public void setUpClass() {
-        cmdImpl = new LsSpecie();
+        cmdImpl = new LsSpecie(null);
     }
 
     @After

@@ -20,7 +20,7 @@ public class MapZooTest {
 
     @Before
     public void setUpClass() {
-        cmdImpl = new MapZoo();
+        cmdImpl = new MapZoo(null);
     }
 
     @After

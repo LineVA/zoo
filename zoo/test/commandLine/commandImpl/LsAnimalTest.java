@@ -20,7 +20,7 @@ public class LsAnimalTest {
 
     @Before
     public void setUpClass() {
-        cmdImpl = new LsAnimal();
+        cmdImpl = new LsAnimal(null);
     }
 
     @After

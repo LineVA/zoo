@@ -20,7 +20,7 @@ public class EvaluateTest {
 
     @Before
     public void setUpClass() {
-        cmdImpl = new Evaluate();
+        cmdImpl = new Evaluate(null);
     }
 
     @After

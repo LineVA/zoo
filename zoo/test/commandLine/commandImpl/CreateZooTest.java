@@ -20,7 +20,7 @@ public class CreateZooTest {
     
     @Before
     public void setUpClass() {
-        create = new CreateZoo();
+        create = new CreateZoo(null);
     }
 
     @After
