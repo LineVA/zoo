@@ -238,9 +238,15 @@ public class Paddock implements Cloneable, IPaddock {
         Iterator it = tmpAnimal.iterator();
         Animal animal;
         while (it.hasNext()) {
-            animal = (Animal) it.next();
-            this.animals.remove(animal.getName());
+//            animal = (Animal) it.next();
+       //     this.animals.remove(animal.getName());
+            it.remove();
         }
+    }
+    
+    @Override
+    public void removeAnimal(Animal animal){
+        this.animals.remove(animal.getName());
     }
 
     @Override
@@ -363,11 +369,6 @@ public class Paddock implements Cloneable, IPaddock {
         return speciesList;
     }
 
-//    public boolean isThereIncompatibleSpecies(Specie specie){
-//        boolean thereAreOnlyCompatibilitesSpecies = true;
-//        thereAreOnlyCompatibilitesSpecies = this.animals.entrySet().stream().map((animalEntry) -> animalEntry.isCompatibleWithSpecie(specie)).reduce(thereAreOnlyCompatibilitesSpecies, (accumulator, _item) -> accumulator & _item);
-//        return !thereAreOnlyCompatibilitesSpecies;
-//    }
     @Override
     public String getName(SaveImpl.FriendSave friend) {
         friend.hashCode();

@@ -21,6 +21,8 @@ public interface IPaddock {
     public void setBiome(String biomeName) throws UnknownNameException;
 
     public void addAnimal(Animal animal) throws AlreadyUsedNameException;
+    
+    public void removeAnimal(Animal animal);
 
     public ArrayList<String> info();
 
