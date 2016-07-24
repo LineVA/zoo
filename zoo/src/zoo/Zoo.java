@@ -226,6 +226,12 @@ public class Zoo implements IZoo {
         throw new UnknownNameException("This paddock does not exist.");
     }
 
+    @Override 
+    public void removePaddock(IPaddock paddock){
+        this.paddocks.remove(paddock.getName());
+        paddock.removeFromNeightbourhood();
+    }
+    
     /**
      * Method used to know if a paddock can be placed into the zoo without
      * looking for the others paddocks

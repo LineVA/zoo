@@ -66,6 +66,10 @@ public interface IPaddock {
     public void addInNeightbourhood(IPaddock paddock);
     
     public void addAllInNeightbourhood(ArrayList<IPaddock> neightbourhood);
+    
+    public void removeFromNeightbourhood();
+    
+    public void removeANeightbour(IPaddock paddock);
 
     /**
      * Friend pattern : give access to each of the fields of Zoo only to the

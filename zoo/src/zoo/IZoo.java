@@ -28,6 +28,8 @@ public interface IZoo {
 
     public void addPaddock(IPaddock paddock)
             throws AlreadyUsedNameException, IncorrectDimensionsException;
+    
+    public void removePaddock(IPaddock paddock);
 
     public ArrayList<String> listPaddock(Specie specie);
 

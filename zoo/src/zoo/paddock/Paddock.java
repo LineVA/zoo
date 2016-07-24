@@ -11,7 +11,6 @@ import java.util.Iterator;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import backup.save.SaveImpl;
-import exception.IncorrectDimensionsException;
 import exception.name.EmptyNameException;
 import java.util.Map;
 import java.util.TreeMap;
@@ -351,14 +350,32 @@ public class Paddock implements Cloneable, IPaddock {
         return presentedSpecies;
     }
     
-     public void addInNeightbourhood(IPaddock paddock){
+    /**
+     *
+     * @param paddock
+     */
+    public void addInNeightbourhood(IPaddock paddock){
          this.neightbourhood.add(paddock);
      }
      
+    @Override
      public void addAllInNeightbourhood(ArrayList<IPaddock> neightbourhood){
          this.neightbourhood.addAll(neightbourhood);
      }
+     
+     @Override
+     public void removeFromNeightbourhood(){
+         for(IPaddock neightbour : this.neightbourhood){
+             neightbour.removeANeightbour(this);
+         }
+     }
+     
+     @Override
+     public void removeANeightbour(IPaddock paddock){
+         this.neightbourhood.remove(paddock);
+     }
 
+    @Override
     public ArrayList<Specie> listSpeciesInNeightbourhood() {
         ArrayList<Specie> speciesList = new ArrayList<>();
         ArrayList<Specie> localList = new ArrayList<>();
