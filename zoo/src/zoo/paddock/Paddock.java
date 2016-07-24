@@ -127,9 +127,18 @@ public class Paddock implements Cloneable, IPaddock {
         ArrayList<String> info = new ArrayList<>();
         info.add("Name : " + this.name);
         info.add("Coordinates : " + this.coordinates.toString());
+        info.add("Neightbours : " + this.listNeightbourhood());
         info.add("Biome : " + this.biome);
         info.add("Biome's characteristics : " + this.attributes.toString());
         return info;
+    }
+    
+    private String listNeightbourhood(){
+        String neightbours = "";
+        for(IPaddock pad : this.neightbourhood){
+            neightbours += pad.getName() + ", ";
+        }
+        return neightbours;
     }
 
     @Override
