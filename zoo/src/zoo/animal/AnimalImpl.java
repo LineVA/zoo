@@ -16,7 +16,7 @@ import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
 import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
-import zoo.wellBeing.Compare;
+import zoo.statistics.Compare;
 
 /**
  *
@@ -32,7 +32,8 @@ public class AnimalImpl implements Animal {
     @Setter
     private int wellBeeing;
     private int age;
-    // There is both optimal and actual biome attributes :
+    private final double coefNiveau;
+// There is both optimal and actual biome attributes :
     // the first are determined when the animal is created,
     // the second are the ones of its paddock.
     private BiomeAttributes optimalBiome;
@@ -83,6 +84,7 @@ public class AnimalImpl implements Animal {
         // this.actualFeeding = null;
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
+        this.coefNiveau = spec.getConservation().getCoefficient();
     }
 
     public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex)
@@ -104,6 +106,7 @@ public class AnimalImpl implements Animal {
         this.age = this.sex.isFemale()
                 ? this.actualReproduction.getFemaleMaturityAge()
                 : this.actualReproduction.getMaleMaturityAge();
+        this.coefNiveau = spec.getConservation().getCoefficient();
     }
 
     public void drawAttributes() {
@@ -131,6 +134,7 @@ public class AnimalImpl implements Animal {
         this.optimalSocial = social;
         this.optimalTerritory = territory;
         this.age = age;
+        this.coefNiveau = spec.getConservation().getCoefficient();
     }
 
     private BiomeAttributes drawOptimalBiome(Specie spec) {
@@ -263,14 +267,14 @@ public class AnimalImpl implements Animal {
         System.out.println(this.name.toUpperCase());
         int wB = 0;
         // group size of SocialAttributes
-        wB += Compare.compare(this.optimalSocial.getGroupSize(), this.paddock.countAnimalsOfTheSameSpecie(this.specie));
+        wB += Compare.compare(this.optimalSocial.getGroupSize(), this.paddock.countAnimalsOfTheSameSpecie(this.specie), this.coefNiveau);
         System.out.println("(Social) " + this.name + " : " + wB);
         // territory size of TerritoryAttributes
-        wB += Compare.compare(this.optimalTerritory.getTerritorySize(), this.paddock.computeSize());
+        wB += Compare.compare(this.optimalTerritory.getTerritorySize(), this.paddock.computeSize(), this.coefNiveau);
         System.out.println("(Teritory) " + this.name + " : " + wB);
         // food quantity of FeedingAttributes
         if (this.diet == this.specie.getDiet()) {
-            wB += Compare.compare(this.optimalFeeding.getFoodQuantity(), this.actualFeeding.getFoodQuantity());
+            wB += Compare.compare(this.optimalFeeding.getFoodQuantity(), this.actualFeeding.getFoodQuantity(), this.coefNiveau);
             System.out.println("(Feeding) " + this.name + " : " + wB);
         }
         // Compatibility with the animals of the same paddock

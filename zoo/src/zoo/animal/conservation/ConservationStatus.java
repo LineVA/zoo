@@ -9,20 +9,23 @@ import lombok.Getter;
  */
 public enum ConservationStatus {
 
-    UNKNOWN(0),
-    LEASTCONCERNED(1),
-    NEARTHREATENED(2),
-    VULNERABLE(3),
-    ENDANGERED(4),
-    CRITICALLYENDANGERED(5),
-    EXTINCTINWILD(6),
-    EXTINCT(7);
+    UNKNOWN(0, 1.0),
+    LEASTCONCERNED(1, 1.1),
+    NEARTHREATENED(2, 1.2),
+    VULNERABLE(3, 1.3),
+    ENDANGERED(4, 1.4),
+    CRITICALLYENDANGERED(5, 1.5),
+    EXTINCTINWILD(6, 1.6),
+    EXTINCT(7, 1.7);
 
     @Getter
     int id;
+    @Getter
+    double coefficient;
 
-    ConservationStatus(int id) {
+    ConservationStatus(int id, double coef) {
         this.id = id;
+        this.coefficient = coef;
     }
 
     public ConservationStatus findById(int id) throws UnknownNameException {
@@ -31,6 +34,6 @@ public enum ConservationStatus {
                 return status;
             }
         }
-          throw new UnknownNameException("This conservation status does not exist.");
+        throw new UnknownNameException("This conservation status does not exist.");
     }
 }
