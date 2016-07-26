@@ -3,32 +3,46 @@ package zoo.animal;
 import zoo.animal.feeding.FeedingAttributes;
 import lombok.Getter;
 import zoo.animal.reproduction.ReproductionAttributes;
+import zoo.animal.social.SocialAttributes;
+import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
 
 /**
  *
  * @author doyenm
  */
-public class AnimalsAttributes implements Cloneable{
+public class AnimalsAttributes implements Cloneable {
 
     @Getter
-    private BiomeAttributes biomeAttributes;
-    
-    @Getter 
-    private FeedingAttributes feedinAttributes;
-    
+    private final BiomeAttributes optimalBiome;
+
     @Getter
-    private ReproductionAttributes reproductionAttributes;
-    
-    public AnimalsAttributes(BiomeAttributes biome, FeedingAttributes feeding,
-            ReproductionAttributes reproduction){
-        this.biomeAttributes = biome;
-        this.feedinAttributes = feeding;
-        this.reproductionAttributes = reproduction;
+    private final FeedingAttributes optimalFeeding;
+
+    @Getter
+    private final FeedingAttributes actualFeeding;
+
+    @Getter
+    private final int actualDiet;
+
+    @Getter
+    private final SocialAttributes optimalSocial;
+
+    @Getter
+    private final TerritoryAttributes optimalTerritory;
+
+    public AnimalsAttributes(BiomeAttributes biome, FeedingAttributes optimalFeeding,
+            FeedingAttributes actualFeeding, int diet, SocialAttributes social, TerritoryAttributes territory) {
+        this.optimalBiome = biome;
+        this.optimalFeeding = optimalFeeding;
+        this.actualFeeding = actualFeeding;
+        this.optimalSocial = social;
+        this.optimalTerritory = territory;
+        this.actualDiet = diet;
     }
-    
+
     @Override
-     public Object clone() {
+    public Object clone() {
         Object o = null;
         try {
             o = super.clone();

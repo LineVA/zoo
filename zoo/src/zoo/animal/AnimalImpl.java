@@ -13,10 +13,11 @@ import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.Specie;
+import zoo.animal.wellbeing.WellBeing;
+import zoo.animal.wellbeing.WellBeingImpl;
 import zoo.paddock.IPaddock;
 import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
-import zoo.statistics.Compare;
 
 /**
  *
@@ -30,9 +31,9 @@ public class AnimalImpl implements Animal {
     private final Sex sex;
     @Getter
     @Setter
-    private int wellBeeing;
+    private int wellBeing;
     private int age;
-    private final double coefNiveau;
+    private final WellBeing wB;
 // There is both optimal and actual biome attributes :
     // the first are determined when the animal is created,
     // the second are the ones of its paddock.
@@ -72,7 +73,6 @@ public class AnimalImpl implements Animal {
         } else {
             throw new IncorrectDataException("An animal cannot be younger than 0 month...");
         }
-        this.wellBeeing = 0;
 //        this.optimalBiome = drawOptimalBiome(spec);
         this.optimalFeeding = drawOptimalFeeding(spec);
         this.actualFeeding = drawActualFeeding(spec);
@@ -84,7 +84,8 @@ public class AnimalImpl implements Animal {
         // this.actualFeeding = null;
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
-        this.coefNiveau = spec.getConservation().getCoefficient();
+        this.wB = new WellBeingImpl(spec.getConservation().getCoefficient());
+        this.wellBeing = 0;
     }
 
     public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex)
@@ -93,7 +94,6 @@ public class AnimalImpl implements Animal {
         this.name = name;
         this.paddock = paddock;
         this.sex = sex;
-        this.wellBeeing = 0;
 //        this.optimalBiome = drawOptimalBiome(spec);
         this.optimalFeeding = drawOptimalFeeding(spec);
         this.actualFeeding = drawActualFeeding(spec);
@@ -106,7 +106,8 @@ public class AnimalImpl implements Animal {
         this.age = this.sex.isFemale()
                 ? this.actualReproduction.getFemaleMaturityAge()
                 : this.actualReproduction.getMaleMaturityAge();
-        this.coefNiveau = spec.getConservation().getCoefficient();
+        this.wB = new WellBeingImpl(spec.getConservation().getCoefficient());
+        this.wellBeing = 0;
     }
 
     public void drawAttributes() {
@@ -124,7 +125,6 @@ public class AnimalImpl implements Animal {
         this.name = name;
         this.paddock = paddock;
         this.sex = sex;
-        this.wellBeeing = 0;
         this.actualReproduction = reproduction;
         this.actualLifeSpan = life;
         this.optimalBiome = biome;
@@ -134,7 +134,8 @@ public class AnimalImpl implements Animal {
         this.optimalSocial = social;
         this.optimalTerritory = territory;
         this.age = age;
-        this.coefNiveau = spec.getConservation().getCoefficient();
+         this.wB = new WellBeingImpl(spec.getConservation().getCoefficient());
+        this.wellBeing = 0;
     }
 
     private BiomeAttributes drawOptimalBiome(Specie spec) {
@@ -245,7 +246,7 @@ public class AnimalImpl implements Animal {
         info.add("Specie : " + this.specie.getNames().getEnglishName());
         info.add("Age : " + this.age);
         info.add("Sex : " + this.sex.toString());
-        info.add("Well-beeing : " + this.wellBeeing);
+        info.add("Well-being : " + this.wellBeing);
         info.add("Diet : " + Diet.NONE.findDietById(diet).toString());
         info.add("Reproduction attributes : " + this.actualReproduction);
         info.add("Life span attributes : " + this.actualLifeSpan.toString());
@@ -263,53 +264,10 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public int wellBeing() throws UnknownNameException {
-        System.out.println(this.name.toUpperCase());
-        int wB = 0;
-        // group size of SocialAttributes
-        wB += Compare.compare(this.optimalSocial.getGroupSize(), this.paddock.countAnimalsOfTheSameSpecie(this.specie), this.coefNiveau);
-        System.out.println("(Social) " + this.name + " : " + wB);
-        // territory size of TerritoryAttributes
-        wB += Compare.compare(this.optimalTerritory.getTerritorySize(), this.paddock.computeSize(), this.coefNiveau);
-        System.out.println("(Teritory) " + this.name + " : " + wB);
-        // food quantity of FeedingAttributes
-        if (this.diet == this.specie.getDiet()) {
-            wB += Compare.compare(this.optimalFeeding.getFoodQuantity(), this.actualFeeding.getFoodQuantity(), this.coefNiveau);
-            System.out.println("(Feeding) " + this.name + " : " + wB);
-        }
-        // Compatibility with the animals of the same paddock
-        if (isThereIncompatibleSpeciesInThePaddock()) {
-            System.out.println("Incompabilities");
-            wB -= 5;
-        }
-        // Is affraid by animals in others paddocks
-        if (isAfraidBySpeciesInOtherPaddocks()) {
-            System.out.println("Afraid");
-            wB -= 2;
-        }
-        return wB;
-    }
-
-    public boolean isThereIncompatibleSpeciesInThePaddock()
-            throws UnknownNameException {
-        boolean absenceOfIncompabilities = true;
-        ArrayList<Specie> species = this.paddock.listSpecies();
-        for (Specie spec : species) {
-            if (spec != this.specie) {
-                absenceOfIncompabilities &= this.specie.canBeInTheSamePaddock(spec);
-            }
-        }
-        return !absenceOfIncompabilities;
-    }
-
-    public boolean isAfraidBySpeciesInOtherPaddocks()
-            throws UnknownNameException {
-        boolean isAfraid = false;
-        ArrayList<Specie> species = this.paddock.listSpeciesInNeightbourhood();
-        for (Specie spec : species) {
-            isAfraid |= this.specie.canBeAfraidOf(spec);
-        }
-        return isAfraid;
+    public double wellBeing() throws UnknownNameException {
+        AnimalsAttributes attributes = new AnimalsAttributes(this.optimalBiome, this.optimalFeeding, 
+                this.actualFeeding, this.diet, this.optimalSocial, this.optimalTerritory);
+        return wB.computeWellBeing(attributes, this.paddock, this.specie);
     }
 
     @Override
