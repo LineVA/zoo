@@ -17,46 +17,57 @@ import zoo.statistics.Compare;
 public class WellBeingImpl implements WellBeing {
 
     private double coefficient;
+    private double diameter;
 
-    public WellBeingImpl(double coefficient) {
+    public WellBeingImpl(double coefficient, double diameter) {
         this.coefficient = coefficient;
+        this.diameter = diameter;
     }
 
     @Override
-    public double computeWellBeing(AnimalsAttributes attributes, IPaddock pad, Specie specie) 
-            throws UnknownNameException{
+    public double computeWellBeing(AnimalsAttributes attributes, IPaddock pad, Specie specie)
+            throws UnknownNameException {
         double wB = 0.0;
         wB += computeSocialWB(attributes.getOptimalSocial(), pad, specie);
         wB += computeTerritoryWB(attributes.getOptimalTerritory(), pad);
         wB += computeFoodWB(attributes.getActualDiet(), attributes.getOptimalFeeding(),
                 attributes.getActualFeeding(), specie);
-        wB /= 3;
+        wB = (wB/3)*this.coefficient;
         wB += compatibilitiesWB(pad, specie);
         wB += fearWB(pad, specie);
+        System.out.println(wB);
         return wB;
     }
 
     public double computeSocialWB(SocialAttributes social, IPaddock pad, Specie spec) {
         System.out.println("Social : ");
-        return Compare.compare(social.getGroupSize(), pad.countAnimalsOfTheSameSpecie(spec), this.coefficient);
+        double a = Compare.compare(social.getGroupSize(), pad.countAnimalsOfTheSameSpecie(spec), this.diameter);
+        System.out.println(a);
+        return a;
     }
 
     public double computeTerritoryWB(TerritoryAttributes territory, IPaddock pad) {
         System.out.println("Territory : ");
-        return Compare.compare(territory.getTerritorySize(), pad.computeSize(), this.coefficient);
+        double a = Compare.compare(territory.getTerritorySize(), pad.computeSize(), this.diameter);
+        System.out.println(a);
+        return a;
     }
 
     public double computeFoodWB(int diet, FeedingAttributes optimalFeeding,
             FeedingAttributes actualFeeding, Specie spec) {
         System.out.println("Diet : ");
         if (diet == spec.getDiet()) {
-            return Compare.compare(optimalFeeding.getFoodQuantity(), actualFeeding.getFoodQuantity(), this.coefficient);
+            double a = Compare.compare(optimalFeeding.getFoodQuantity(), actualFeeding.getFoodQuantity(), this.diameter);
+            System.out.println(a);
+            return a;
         } else {
-            return Compare.compare(optimalFeeding.getFoodQuantity(), 0, this.coefficient);
+            double a = Compare.compare(optimalFeeding.getFoodQuantity(), 0, this.diameter);
+            System.out.println(a);
+            return a;
         }
     }
 
-    public double compatibilitiesWB(IPaddock pad, Specie spec) throws UnknownNameException{
+    public double compatibilitiesWB(IPaddock pad, Specie spec) throws UnknownNameException {
         if (isThereIncompatibleSpeciesInThePaddock(pad, spec)) {
             System.out.println("Inciompatibilities");
             return Compare.returnMin() * this.coefficient;
@@ -68,7 +79,7 @@ public class WellBeingImpl implements WellBeing {
     public double fearWB(IPaddock pad, Specie spec) throws UnknownNameException {
         if (isAfraidBySpeciesInOtherPaddocks(pad, spec)) {
             System.out.println("Afraid");
-          return Compare.returnNegativMean() * this.coefficient;
+            return Compare.returnNegativMean() * this.coefficient;
         } else {
             return 0.0;
         }

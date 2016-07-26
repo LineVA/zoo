@@ -84,7 +84,7 @@ public class AnimalImpl implements Animal {
         // this.actualFeeding = null;
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
-        this.wB = new WellBeingImpl(spec.getConservation().getCoefficient());
+        this.wB = new WellBeingImpl(spec.getConservation().getCoefficient(), spec.getConservation().getDiameter());
         this.wellBeing = 0;
     }
 
@@ -106,7 +106,7 @@ public class AnimalImpl implements Animal {
         this.age = this.sex.isFemale()
                 ? this.actualReproduction.getFemaleMaturityAge()
                 : this.actualReproduction.getMaleMaturityAge();
-        this.wB = new WellBeingImpl(spec.getConservation().getCoefficient());
+        this.wB = new WellBeingImpl(spec.getConservation().getCoefficient(), spec.getConservation().getDiameter());
         this.wellBeing = 0;
     }
 
@@ -134,7 +134,7 @@ public class AnimalImpl implements Animal {
         this.optimalSocial = social;
         this.optimalTerritory = territory;
         this.age = age;
-         this.wB = new WellBeingImpl(spec.getConservation().getCoefficient());
+         this.wB = new WellBeingImpl(spec.getConservation().getCoefficient(), spec.getConservation().getDiameter());
         this.wellBeing = 0;
     }
 
