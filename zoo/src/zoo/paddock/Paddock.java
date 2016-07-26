@@ -263,7 +263,7 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public int wellBeing() throws UnknownNameException {
+    public double wellBeing() throws UnknownNameException {
         int wB = 0;
         for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
             wB += entry.getValue().wellBeing();

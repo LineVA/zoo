@@ -56,7 +56,7 @@ public class Zoo implements IZoo {
      * The grade of the zoo Does not have to be save, can be re-calculate each
      * time we need it
      */
-    private int grade;
+    private double grade;
     private int horizon;
     
     public Zoo() {
@@ -345,8 +345,8 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public int grade() throws UnknownNameException {
-        this.grade = 0;
+    public double grade() throws UnknownNameException {
+        this.grade = 0.0;
         for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
             this.grade += entry.getValue().wellBeing();
         }

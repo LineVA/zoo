@@ -55,7 +55,7 @@ public interface IZoo {
 
     public void ageing();
 
-    public int grade() throws UnknownNameException;
+    public double grade() throws UnknownNameException;
 
     public ArrayList<String> info();
 

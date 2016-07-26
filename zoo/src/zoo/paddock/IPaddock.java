@@ -41,7 +41,7 @@ public interface IPaddock {
 
     public int countAnimalsOfTheSameSpecie(Specie specie);
 
-    public int wellBeing() throws UnknownNameException;
+    public double wellBeing() throws UnknownNameException;
 
     public int computeSize();
 
