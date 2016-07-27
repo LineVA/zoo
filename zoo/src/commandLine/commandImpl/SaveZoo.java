@@ -22,7 +22,7 @@ public class SaveZoo implements Command {
     public String execute(String[] cmd) {
         Save saveProcess = new SaveImpl();
         try {
-            saveProcess.saveZoo(this.play.zoo, cmd[1]);
+            saveProcess.saveZoo(this.play.getZoo(), cmd[1]);
             return "Your zoo has been saved.";
         } catch (EmptyNameException ex) {
             return ex.getMessage();

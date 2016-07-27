@@ -27,8 +27,8 @@ public class CreateAnimal implements Command {
     @Override
     public String execute(String[] cmd) {
         try {
-            IPaddock pad = this.play.zoo.findPaddockByName(cmd[2]);
-            Specie specie = this.play.zoo.findSpeciebyName(cmd[4]);
+            IPaddock pad = this.play.getZoo().findPaddockByName(cmd[2]);
+            Specie specie = this.play.getZoo().findSpeciebyName(cmd[4]);
             Sex sex = Sex.MALE.findByName(cmd[5]);
             Animal animal = new AnimalImpl(specie, cmd[3], pad, sex);
             pad.addAnimal(animal);

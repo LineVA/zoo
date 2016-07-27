@@ -21,7 +21,7 @@ public class DetailZoo implements Command {
 
     @Override
     public String execute(String[] cmd) {
-        return (FormattingDisplay.formattingArrayList(this.play.zoo.info()));
+        return (FormattingDisplay.formattingArrayList(this.play.getZoo().info()));
     }
 
     @Override

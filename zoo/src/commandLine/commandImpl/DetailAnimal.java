@@ -22,7 +22,7 @@ public class DetailAnimal implements Command {
     @Override
     public String execute(String[] cmd) {
         try {
-            Animal animal = this.play.zoo.findAnimalByName(cmd[1]);
+            Animal animal = this.play.getZoo().findAnimalByName(cmd[1]);
             return (FormattingDisplay.formattingArrayList(animal.info()));
         } catch (UnknownNameException | EmptyNameException ex) {
             return ex.getMessage();

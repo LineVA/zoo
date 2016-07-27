@@ -22,7 +22,7 @@ public class DetailPad implements Command {
     @Override
     public String execute(String[] cmd) {
         try {
-            IPaddock pad = this.play.zoo.findPaddockByName(cmd[1]);
+            IPaddock pad = this.play.getZoo().findPaddockByName(cmd[1]);
             return (FormattingDisplay.formattingArrayList(pad.info()));
         } catch (UnknownNameException ex) {
             return "No paddock has this name.";

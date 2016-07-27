@@ -7,14 +7,10 @@ import zoo.Zoo;
  *
  * @author doyenm
  */
-public class Play {
+public interface Play {
 
-    public IZoo zoo;
+    public IZoo getZoo();
     
-    public Play(){
-        this.zoo = new Zoo();
-    }
-    
-    
+    public void setZoo(IZoo zoo);
     
 }

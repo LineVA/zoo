@@ -26,16 +26,16 @@ public class Evaluate implements Command {
         int zooEvaluation = 0;
         try {
             // Well-beeing of each animal
-           zooEvaluation += this.play.zoo.grade();
+           zooEvaluation += this.play.getZoo().grade();
             // Special events :
             // ageing
-            this.play.zoo.ageing();
+            this.play.getZoo().ageing();
             // birth
-            info.addAll(this.play.zoo.birth());
+            info.addAll(this.play.getZoo().birth());
             // death
-            info.addAll(this.play.zoo.death());
+            info.addAll(this.play.getZoo().death());
             // Zoo evaluation
-           zooEvaluation += this.play.zoo.evaluate();
+           zooEvaluation += this.play.getZoo().evaluate();
         } catch (UnknownNameException | AlreadyUsedNameException | IncorrectDataException ex) {
             return ex.getMessage();
         }

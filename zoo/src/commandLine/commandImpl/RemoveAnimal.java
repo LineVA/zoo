@@ -27,7 +27,7 @@ public class RemoveAnimal implements Command {
     @Override
     public String execute(String[] cmd) {
         try {
-            Animal animal = this.play.zoo.findAnimalByName(cmd[2]);
+            Animal animal = this.play.getZoo().findAnimalByName(cmd[2]);
              animal.getPaddock().removeAnimal(animal);
             return "This animal has been removed.";
         } catch (EmptyNameException | UnknownNameException ex) {

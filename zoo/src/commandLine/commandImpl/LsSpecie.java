@@ -25,12 +25,12 @@ public class LsSpecie implements Command {
         IPaddock pad = null;
         try {
             if (args[0] != null) {
-                pad = this.play.zoo.findPaddockByName(args[0]);
+                pad = this.play.getZoo().findPaddockByName(args[0]);
             }
         } catch (EmptyNameException | UnknownNameException ex) {
             return ex.getMessage();
         }
-        return FormattingDisplay.formattingArrayList(this.play.zoo.listSpecie(pad));
+        return FormattingDisplay.formattingArrayList(this.play.getZoo().listSpecie(pad));
     }
 
     public boolean firstCmd(String[] cmd) {
