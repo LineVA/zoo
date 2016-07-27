@@ -4,7 +4,7 @@ import commandLine.Command;
 import exception.name.EmptyNameException;
 import backup.save.Save;
 import backup.save.SaveImpl;
-import main.Play;
+import launch.Play;
 
 /**
  *

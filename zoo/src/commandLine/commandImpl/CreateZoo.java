@@ -5,8 +5,8 @@ import exception.IncorrectDimensionsException;
 import exception.name.EmptyNameException;
 import java.io.IOException;
 import java.util.Map;
-import main.InstanciateSpecies;
-import main.Play;
+import launch.InstanciateSpecies;
+import launch.Play;
 import org.jdom2.JDOMException;
 import zoo.animal.specie.Specie;
 

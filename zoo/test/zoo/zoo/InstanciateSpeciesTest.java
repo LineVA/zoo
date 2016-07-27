@@ -4,7 +4,7 @@ import exception.IncorrectDimensionsException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import java.io.IOException;
-import main.InstanciateSpecies;
+import launch.InstanciateSpecies;
 import org.jdom2.JDOMException;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;

@@ -5,7 +5,7 @@ import exception.IncorrectDataException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
-import main.Play;
+import launch.Play;
 import zoo.animal.Animal;
 import zoo.animal.AnimalImpl;
 import zoo.animal.reproduction.Sex;

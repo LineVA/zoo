@@ -1,7 +1,7 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
-import main.Play;
+import launch.Play;
 
 /**
  *

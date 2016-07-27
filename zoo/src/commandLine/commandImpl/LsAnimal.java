@@ -6,7 +6,7 @@ import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import main.Play;
+import launch.Play;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
 

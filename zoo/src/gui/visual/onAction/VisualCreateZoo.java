@@ -3,7 +3,7 @@ package gui.visual.onAction;
 import gui.visual.CommandVisual;
 import java.io.IOException;
 import java.util.Map;
-import main.InstanciateSpecies;
+import launch.InstanciateSpecies;
 import org.jdom2.JDOMException;
 import zoo.animal.specie.Specie;
 

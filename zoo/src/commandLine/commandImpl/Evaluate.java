@@ -6,7 +6,7 @@ import exception.IncorrectDataException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
-import main.Play;
+import launch.Play;
 
 /**
  *

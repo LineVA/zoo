@@ -21,7 +21,7 @@ import commandLine.commandImpl.LsFeeding;
 import commandLine.commandImpl.RemoveAnimal;
 import commandLine.commandImpl.RemovePaddock;
 import static java.util.Arrays.asList;
-import main.Play;
+import launch.Play;
 
 /**
  *

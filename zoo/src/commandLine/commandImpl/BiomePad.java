@@ -3,7 +3,7 @@ package commandLine.commandImpl;
 import commandLine.Command;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
-import main.Play;
+import launch.Play;
 import zoo.paddock.IPaddock;
 
 /**

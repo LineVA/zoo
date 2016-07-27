@@ -2,7 +2,7 @@ package zoo;
 
 import java.io.IOException;
 import java.util.Map;
-import main.InstanciateSpecies;
+import launch.InstanciateSpecies;
 import org.jdom2.JDOMException;
 import zoo.animal.specie.Specie;
 
