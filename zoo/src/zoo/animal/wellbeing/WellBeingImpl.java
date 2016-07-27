@@ -16,8 +16,8 @@ import zoo.statistics.Compare;
  */
 public class WellBeingImpl implements WellBeing {
 
-    private double coefficient;
-    private double diameter;
+    private final double coefficient;
+    private final double diameter;
 
     public WellBeingImpl(double coefficient, double diameter) {
         this.coefficient = coefficient;
