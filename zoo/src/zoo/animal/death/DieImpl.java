@@ -4,7 +4,8 @@ import zoo.statistics.Uniform;
 import zoo.animal.Animal;
 
 /**
- *
+ * An animal die only if it is too old (its age is greater or equals to its lifespan).
+ * If its well-being is greater than 80% of the maximum, it is a fifty-fifty chance to survive to this turn.
  * @author doyenm
  */
 public class DieImpl implements IDie{
@@ -21,6 +22,11 @@ public class DieImpl implements IDie{
     }
     
     public boolean mustDie(Animal animal){
-        return animal.isTooOld();
+        if(animal.isTooOld()){
+            if(animal.isEnoughHappy()){
+                return this.uniform.isGreaterOrEquals(0.5);
+            }
+        }
+        return false;
     }
 }

@@ -33,6 +33,7 @@ public class AnimalImpl implements Animal {
     @Setter
     private double wellBeing;
     private int age;
+    @Getter
     private final WellBeing wB;
 // There is both optimal and actual biome attributes :
     // the first are determined when the animal is created,
@@ -290,7 +291,7 @@ public class AnimalImpl implements Animal {
     @Override
     public boolean canBePregnant() {
         if (sex != null) {
-            return isMature() && this.sex.isFemale() && isEnoughHappyToReproducte();
+            return isMature() && this.sex.isFemale() && isEnoughHappy();
         }
         return false;
     }
@@ -298,12 +299,13 @@ public class AnimalImpl implements Animal {
     @Override
     public boolean canFecundateAFemale() {
         if (this.sex != null) {
-            return isMature() && this.sex.isMale() && isEnoughHappyToReproducte();
+            return isMature() && this.sex.isMale() && isEnoughHappy();
         }
         return false;
     }
 
-    private boolean isEnoughHappyToReproducte(){
+    @Override
+    public boolean isEnoughHappy(){
         return this.wB.isCloseEnoughToMax(this.wellBeing);
     }
     

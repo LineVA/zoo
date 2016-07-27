@@ -9,6 +9,7 @@ import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.Specie;
+import zoo.animal.wellbeing.WellBeing;
 import zoo.paddock.IPaddock;
 import zoo.paddock.TerritoryAttributes;
 
@@ -35,6 +36,8 @@ public interface Animal {
     public boolean canBePregnant();
     
     public boolean canFecundateAFemale();
+    
+    public boolean isEnoughHappy();
 
     public String getName();
 
