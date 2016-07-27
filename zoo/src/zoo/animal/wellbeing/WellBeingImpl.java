@@ -2,6 +2,7 @@ package zoo.animal.wellbeing;
 
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import lombok.Getter;
 import zoo.animal.AnimalsAttributes;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.social.SocialAttributes;
@@ -18,6 +19,7 @@ public class WellBeingImpl implements WellBeing {
 
     private final double coefficient;
     private final double diameter;
+    @Getter
     private final int criteriaNumber = 3;
 
     public WellBeingImpl(double coefficient, double diameter) {
