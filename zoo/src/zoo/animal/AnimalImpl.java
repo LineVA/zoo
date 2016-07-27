@@ -31,7 +31,7 @@ public class AnimalImpl implements Animal {
     private final Sex sex;
     @Getter
     @Setter
-    private int wellBeing;
+    private double wellBeing;
     private int age;
     private final WellBeing wB;
 // There is both optimal and actual biome attributes :
@@ -267,7 +267,8 @@ public class AnimalImpl implements Animal {
     public double wellBeing() throws UnknownNameException {
         AnimalsAttributes attributes = new AnimalsAttributes(this.optimalBiome, this.optimalFeeding, 
                 this.actualFeeding, this.diet, this.optimalSocial, this.optimalTerritory);
-        return wB.computeWellBeing(attributes, this.paddock, this.specie);
+        this.wellBeing = wB.computeWellBeing(attributes, paddock, specie);
+        return this.wellBeing;
     }
 
     @Override
