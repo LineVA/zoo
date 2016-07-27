@@ -12,4 +12,6 @@ import zoo.paddock.IPaddock;
 public interface WellBeing {
     public double computeWellBeing(AnimalsAttributes attributes, IPaddock pad, Specie specie)
             throws UnknownNameException;
+    
+    public boolean isCloseEnoughToMax(double compare);
 }

@@ -44,4 +44,8 @@ public class Compare {
     public static double returnNegativMean() {
         return -max2;
     }
+    
+    public static double getMax(){
+        return max5;
+    }
 }

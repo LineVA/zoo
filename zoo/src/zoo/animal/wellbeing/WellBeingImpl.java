@@ -18,6 +18,7 @@ public class WellBeingImpl implements WellBeing {
 
     private final double coefficient;
     private final double diameter;
+    private final int criteriaNumber = 3;
 
     public WellBeingImpl(double coefficient, double diameter) {
         this.coefficient = coefficient;
@@ -107,4 +108,8 @@ public class WellBeingImpl implements WellBeing {
         return isAfraid;
     }
 
+    public boolean isCloseEnoughToMax(double compare){
+         return (compare >= (1-2*this.diameter)*Compare.getMax()*this.criteriaNumber);
+    }
+    
 }

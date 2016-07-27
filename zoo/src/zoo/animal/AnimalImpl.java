@@ -290,7 +290,7 @@ public class AnimalImpl implements Animal {
     @Override
     public boolean canBePregnant() {
         if (sex != null) {
-            return isMature() && this.sex.isFemale();
+            return isMature() && this.sex.isFemale() && isEnoughHappyToReproducte();
         }
         return false;
     }
@@ -298,11 +298,15 @@ public class AnimalImpl implements Animal {
     @Override
     public boolean canFecundateAFemale() {
         if (this.sex != null) {
-            return isMature() && this.sex.isMale();
+            return isMature() && this.sex.isMale() && isEnoughHappyToReproducte();
         }
         return false;
     }
 
+    private boolean isEnoughHappyToReproducte(){
+        return this.wB.isCloseEnoughToMax(this.wellBeing);
+    }
+    
     /////////////////
     @Override
     public String getName() {
