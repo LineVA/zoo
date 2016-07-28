@@ -19,7 +19,7 @@ public class Main {
         //HashMap<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species");
 //        IZoo zoo = new Zoo();
         //      zoo.initiateZoo("mainZoo", 50, 50, species);
-        Play play = new Play();
+        Play play = new FreePlayImpl();
         Scan scan = new Scan(play);
         scan.read();
     }
