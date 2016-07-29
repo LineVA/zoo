@@ -23,12 +23,9 @@ public class MainGUI extends JFrame {
         super("Zoo");
         this.setLayout(new FlowLayout());
         // To set the JFrame in fullscreen 
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         Dimension dimension = new Dimension(600, 600);
-        Area editor = new Area(play);
+        Area editor = new Area(play, 100, 30);
         JScrollPane scroll = new JScrollPane(editor);
-        this.getContentPane().add(editor);
-        this.editor = editor;
         this.getContentPane().add(scroll);
         this.setSize(dimension);
         this.closeWindows();

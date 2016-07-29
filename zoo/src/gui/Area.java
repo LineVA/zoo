@@ -1,6 +1,7 @@
 package gui;
 
 import commandLine.CommandManager;
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.BufferedReader;
@@ -18,8 +19,10 @@ public class Area extends JTextArea {
 
     CommandManager manager;
 
-    public Area(Play play) {
-        super("zoo create a 11 11");
+    public Area(Play play, int columns, int line) {
+        super(line, columns);
+        this.setLineWrap(true);
+        this.setWrapStyleWord(false); //default
         JTextAreaOutputStream outStream = new JTextAreaOutputStream(this);
         JTextAreaOutputStream errStream = new JTextAreaOutputStream(this);
         System.setOut(new PrintStream(outStream));
