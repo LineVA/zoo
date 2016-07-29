@@ -1,6 +1,5 @@
 package gui;
 
-import commandLine.CommandLineParser;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -24,14 +23,13 @@ import javax.swing.text.StyleContext;
  */
 public class Editor extends JTextPane {
 
-    private final CommandLineParser parser;
     private final StyleContext sc;
     private AttributeSet aset;
     private int lastPressedKey;
     private final String cmdInvite = "> ";
     private int searchingLine = 0;
 
-    public Editor(Dimension dimension, CommandLineParser parser) {
+    public Editor(Dimension dimension) {
         super();
         this.setPreferredSize(dimension);
         this.setEditable(true);
@@ -40,17 +38,17 @@ public class Editor extends JTextPane {
         this.setFont(new Font("Monospaced", this.getFont().getStyle(), this.getFont().getSize()));
         //  this.setForeground(EditorColors.CMD.getColor());
         this.setBackground(Color.BLACK);
-        //   this.setSize(300, 600);
-        this.parser = parser;
-        this.setVisible(true);
-        lastPressedKey = -1;
-        this.keyEventListener();
-        // this.addActionListener(new ClickListener());
-        this.mouseEventListener();
-        printCmdInvite(false);
-        this.setCaretPosition(2);
+        this.setSize(dimension.width, dimension.height);
+//        lastPressedKey = -1;
+//        this.keyEventListener();
+//        // this.addActionListener(new ClickListener());
+//        this.mouseEventListener();
+//        printCmdInvite(false);
+//        this.setCaretPosition(2);
         // Used to set the character color back to the one of CMD
         setCharacterAttributes(aset, true);
+        this.setVisible(true);
+
     }
 
     /**
@@ -228,7 +226,7 @@ public class Editor extends JTextPane {
 //                    }
         this.searchingLine = 0;
         Object[] cmdLinesArray = recoverCmdLinesArray();
-        this.parser.parseAnalyzeAndAct(cmdLinesArray[cmdLinesArray.length - 1].toString().substring(2));
+//        this.parser.parseAnalyzeAndAct(cmdLinesArray[cmdLinesArray.length - 1].toString().substring(2));
         this.printCmdInvite(true);
         // Used to set the character color back to the one of CMD
         setCharacterAttributes(aset, true);

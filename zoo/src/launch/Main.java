@@ -1,6 +1,5 @@
 package launch;
 
-import basicGui.Scan;
 import exception.name.EmptyNameException;
 import gui.MainGUI;
 import java.io.IOException;
@@ -19,8 +18,8 @@ public class Main {
         //HashMap<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species");
 //        IZoo zoo = new Zoo();
         //      zoo.initiateZoo("mainZoo", 50, 50, species);
-        Play play = new Play();
-        Scan scan = new Scan(play);
-        scan.read();
+//        Play play = new Play();
+//        Scan scan = new Scan(play);
+//        scan.read();
     }
 }
