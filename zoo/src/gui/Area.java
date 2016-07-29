@@ -1,6 +1,7 @@
 package gui;
 
 import commandLine.CommandManager;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -22,7 +23,9 @@ public class Area extends JTextArea {
     public Area(Play play, int columns, int line) {
         super(line, columns);
         this.setLineWrap(true);
-        this.setWrapStyleWord(false); //default
+        this.setWrapStyleWord(false); 
+        this.setBackground(Color.BLACK);
+        this.setForeground(Color.WHITE);
         JTextAreaOutputStream outStream = new JTextAreaOutputStream(this);
         JTextAreaOutputStream errStream = new JTextAreaOutputStream(this);
         System.setOut(new PrintStream(outStream));
