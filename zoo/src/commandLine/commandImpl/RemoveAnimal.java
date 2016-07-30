@@ -23,6 +23,11 @@ public class RemoveAnimal implements Command {
     public RemoveAnimal(Play play) {
         this.play = play;
     }
+    
+      @Override
+    public boolean hasInitiateAZoo() {
+        return false;
+    }
 
     @Override
     public String execute(String[] cmd) {

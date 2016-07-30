@@ -24,6 +24,11 @@ public class LsFeeding implements Command {
         return FormattingDisplay.formattingArrayList(Diet.NONE.list());
     }
 
+      @Override
+    public boolean hasInitiateAZoo() {
+        return false;
+    }
+    
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {

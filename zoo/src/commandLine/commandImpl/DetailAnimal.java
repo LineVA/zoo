@@ -18,6 +18,11 @@ public class DetailAnimal implements Command {
     public DetailAnimal(Play play) {
         this.play = play;
     }
+    
+      @Override
+    public boolean hasInitiateAZoo() {
+        return false;
+    }
 
     @Override
     public String execute(String[] cmd) {

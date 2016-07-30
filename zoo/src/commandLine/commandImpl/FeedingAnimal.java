@@ -23,6 +23,11 @@ public class FeedingAnimal implements Command {
         this.play = play;
     }
 
+      @Override
+    public boolean hasInitiateAZoo() {
+        return false;
+    }
+    
     @Override
     public String execute(String[] cmd) {
 //        try {

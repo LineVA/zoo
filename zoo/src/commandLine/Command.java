@@ -15,4 +15,6 @@ public interface Command {
     
     public boolean canExecute(String[] cmd);
     
+    public boolean hasInitiateAZoo();
+    
 }

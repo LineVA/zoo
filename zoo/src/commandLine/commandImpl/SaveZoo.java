@@ -17,6 +17,11 @@ public class SaveZoo implements Command {
     public SaveZoo(Play play) {
         this.play = play;
     }
+    
+      @Override
+    public boolean hasInitiateAZoo() {
+        return false;
+    }
 
     @Override
     public String execute(String[] cmd) {

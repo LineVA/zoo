@@ -17,6 +17,11 @@ public class CreatePaddock implements Command {
         this.play = play;
     }
     
+      @Override
+    public boolean hasInitiateAZoo() {
+        return false;
+    }
+    
     @Override
     public String execute(String[] cmd) {
         // TO DO : if zoo has not been yet initiate

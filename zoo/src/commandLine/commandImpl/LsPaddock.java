@@ -20,6 +20,11 @@ public class LsPaddock implements Command {
     public LsPaddock(Play play) {
         this.play = play;
     }
+    
+      @Override
+    public boolean hasInitiateAZoo() {
+        return false;
+    }
 
     @Override
     public String execute(String[] cmd) {

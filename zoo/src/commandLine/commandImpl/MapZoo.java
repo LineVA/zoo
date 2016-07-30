@@ -18,6 +18,11 @@ public class MapZoo implements Command {
     public MapZoo(Play play) {
         this.play = play;
     }
+    
+      @Override
+    public boolean hasInitiateAZoo() {
+        return false;
+    }
 
     @Override
     public String execute(String[] cmd) {

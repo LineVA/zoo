@@ -18,6 +18,11 @@ public class DetailPad implements Command {
     public DetailPad(Play play) {
         this.play = play;
     }
+    
+      @Override
+    public boolean hasInitiateAZoo() {
+        return false;
+    }
 
     @Override
     public String execute(String[] cmd) {

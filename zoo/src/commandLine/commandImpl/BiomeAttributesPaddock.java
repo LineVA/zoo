@@ -14,7 +14,11 @@ public class BiomeAttributesPaddock implements Command {
     public BiomeAttributesPaddock(Play play){
         this.play = play;
     }
-//    
+
+    @Override
+    public boolean hasInitiateAZoo() {
+        return false;
+    }
     
     private Object[] attributesArray;
 

@@ -19,6 +19,11 @@ public class BiomePad implements Command {
     }
 
     @Override
+    public boolean hasInitiateAZoo() {
+        return false;
+    }
+
+    @Override
     public String execute(String[] cmd) {
         try {
             IPaddock pad = this.play.zoo.findPaddockByName(cmd[1]);
