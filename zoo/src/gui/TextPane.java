@@ -106,7 +106,8 @@ public class TextPane extends JTextPane {
 
     private void enterPressed() {
         Object[] cmdLinesArray = recoverCmdLinesArray();
-        append(manager.run(cmdLinesArray[cmdLinesArray.length - 1].toString()), EditorColors.INFO.getColor());
+        String currentCmdLineWithCdInvite = cmdLinesArray[cmdLinesArray.length - 1].toString();
+        append(manager.run(currentCmdLineWithCdInvite.substring(this.cmdInvite.length())), EditorColors.INFO.getColor());
     }
 
     private void enterReleased() {
