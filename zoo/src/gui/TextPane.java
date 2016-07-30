@@ -55,9 +55,14 @@ public class TextPane extends JTextPane {
                         e.consume();
                         break;
                     case KeyEvent.VK_BACK_SPACE:
-                        if (!canUseBackSpace()) {
+                    case KeyEvent.VK_LEFT:
+                        if (!canMove()) {
                             e.consume();
                         }
+                        break;
+                    case KeyEvent.VK_DOWN:
+                    case KeyEvent.VK_UP:
+                        e.consume();
                         break;
                     default:
                         break;
@@ -70,12 +75,21 @@ public class TextPane extends JTextPane {
         };
         addKeyListener(l);
     }
+    
+    private int countCharBeforeCurrentLine(Object[] lines){
+        int count = 0;
+        for(int i=0 ; i<lines.length - 1 ; i++){
+            count += lines[i].toString().length();
+        }
+        return count;
+    }
 
-    public boolean canUseBackSpace() {
+    public boolean canMove() {
         Object[] lines = recoverCmdLinesArray();
-        String currentLine = lines[lines.length - 1].toString();
-        int lengthCurrentLine = currentLine.length();
-        return (lengthCurrentLine > this.cmdInvite.length());
+        int caret = this.getCaretPosition();
+        // 2 : \n
+        int caretInCurrent = caret - countCharBeforeCurrentLine(lines) - 2;
+        return (caretInCurrent > this.cmdInvite.length());
     }
 
     private Object[] recoverCmdLinesArray() {
