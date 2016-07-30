@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.BufferedReader;
-import java.io.PrintStream;
 import java.io.StringReader;
 import java.util.stream.Stream;
 import javax.swing.JTextPane;
@@ -23,14 +22,8 @@ public class TextPane extends JTextPane {
     public TextPane(Play play, int columns, int line) {
         super();
         this.setPreferredSize(new Dimension(line, columns));
-//        this.setLineWrap(true);
-//        this.setWrapStyleWord(false); 
         this.setBackground(Color.BLACK);
-        this.setForeground(Color.WHITE);
-        JTextPaneOutputStream outStream = new JTextPaneOutputStream(this);
-        JTextPaneOutputStream errStream = new JTextPaneOutputStream(this);
-        System.setOut(new PrintStream(outStream));
-        System.setErr(new PrintStream(errStream));
+        this.setForeground(EditorColors.CMD.getColor());
         manager = new CommandManager(play);
         this.keyEventListener();
     }
@@ -81,7 +74,9 @@ public class TextPane extends JTextPane {
 
     private void enterPressed() {
         Object[] cmdLinesArray = recoverCmdLinesArray();
-        System.out.println("\n" + manager.run(cmdLinesArray[cmdLinesArray.length - 1].toString()));
+//        System.out.println("\n" + manager.run(cmdLinesArray[cmdLinesArray.length - 1].toString()));
+        this.setText(this.getText() + "\n" + manager.run(cmdLinesArray[cmdLinesArray.length - 1].toString()));
+
     }
 
 }
