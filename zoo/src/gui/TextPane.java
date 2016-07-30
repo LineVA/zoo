@@ -37,7 +37,8 @@ public class TextPane extends JTextPane {
         this.keyEventListener();
         this.mouseEventListener();
         sc = StyleContext.getDefaultStyleContext();
-        this.setText(cmdInvite);
+        this.setText(this.cmdInvite);
+        this.setCaretPosition(this.cmdInvite.length());
     }
 
     private void keyEventListener() {
