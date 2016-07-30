@@ -17,14 +17,14 @@ import lombok.Getter;
 public class MainGUI extends JFrame {
 
     @Getter
-    private Area editor;
+    private TextPane editor;
 
     public MainGUI(Play play) {
         super("Zoo");
         this.setLayout(new FlowLayout());
         // To set the JFrame in fullscreen 
         Dimension dimension = new Dimension(600, 600);
-        Area editor = new Area(play, 100, 30);
+        TextPane editor = new TextPane(play, 700, 700);
         JScrollPane scroll = new JScrollPane(editor);
         this.getContentPane().add(scroll);
         this.setSize(dimension);

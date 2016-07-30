@@ -9,25 +9,26 @@ import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.io.StringReader;
 import java.util.stream.Stream;
-import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import launch.Play;
 
 /**
  *
  * @author doyenm
  */
-public class Area extends JTextArea {
+public class TextPane extends JTextPane {
 
     CommandManager manager;
 
-    public Area(Play play, int columns, int line) {
-        super(line, columns);
-        this.setLineWrap(true);
-        this.setWrapStyleWord(false); 
+    public TextPane(Play play, int columns, int line) {
+        super();
+        this.setPreferredSize(new Dimension(line, columns));
+//        this.setLineWrap(true);
+//        this.setWrapStyleWord(false); 
         this.setBackground(Color.BLACK);
         this.setForeground(Color.WHITE);
-        JTextAreaOutputStream outStream = new JTextAreaOutputStream(this);
-        JTextAreaOutputStream errStream = new JTextAreaOutputStream(this);
+        JTextPaneOutputStream outStream = new JTextPaneOutputStream(this);
+        JTextPaneOutputStream errStream = new JTextPaneOutputStream(this);
         System.setOut(new PrintStream(outStream));
         System.setErr(new PrintStream(errStream));
         manager = new CommandManager(play);
@@ -69,7 +70,7 @@ public class Area extends JTextArea {
     }
 
     private void enterReleased() {
-        this.setCaretPosition(this.getCaretPosition() + 2);
+//        this.setCaretPosition(this.getCaretPosition() + 2);
     }
 
     private Object[] recoverCmdLinesArray() {
@@ -80,7 +81,7 @@ public class Area extends JTextArea {
 
     private void enterPressed() {
         Object[] cmdLinesArray = recoverCmdLinesArray();
-        System.out.println(manager.run(cmdLinesArray[cmdLinesArray.length - 1].toString()));
+        System.out.println("\n" + manager.run(cmdLinesArray[cmdLinesArray.length - 1].toString()));
     }
 
 }
