@@ -10,7 +10,7 @@ public class SplitDoubleQuotes {
 
     public static String[] split(String str) {
         ArrayList<String> array = new ArrayList<>();
-        String[] split = str.split(" ");
+        String[] split = str.split("[ ]+");
         boolean end = false;
         String current = "";
         for (int i = 0; i < split.length; i++) {
