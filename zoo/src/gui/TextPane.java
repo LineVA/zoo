@@ -9,6 +9,10 @@ import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.stream.Stream;
 import javax.swing.JTextPane;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
 import launch.Play;
 
 /**
@@ -75,11 +79,22 @@ public class TextPane extends JTextPane {
     private void enterPressed() {
         Object[] cmdLinesArray = recoverCmdLinesArray();
 //        this.setText(this.getText() + "\n" + manager.run(cmdLinesArray[cmdLinesArray.length - 1].toString()));
-        append(manager.run(cmdLinesArray[cmdLinesArray.length - 1].toString()));
+        append(manager.run(cmdLinesArray[cmdLinesArray.length - 1].toString()), EditorColors.INFO.getColor());
     }
 
-    public void append(String str) {
-        this.setText(this.getText() + "\n" + str);
+    public void append(String str, Color color) {
+        StyleContext sc = StyleContext.getDefaultStyleContext();
+        AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY,
+                StyleConstants.Foreground, color);
+
+        setCaretPosition(getDocument().getLength());
+        setCharacterAttributes(aset, false);
+        replaceSelection("\n" + str);
+        aset = sc.addAttribute(SimpleAttributeSet.EMPTY,
+                StyleConstants.Foreground, EditorColors.CMD.getColor());
+
+        setCaretPosition(getDocument().getLength());
+        setCharacterAttributes(aset, false);
     }
 
 }
