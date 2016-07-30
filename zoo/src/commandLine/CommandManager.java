@@ -72,7 +72,7 @@ public class CommandManager {
                 }
             }
             return "There is only two command to create a zoo : "
-                    + "'zoo create' and 'load' ; see 'man zoo' and 'man load' for more information.";
+                    + "see 'man zoo' and 'man load' for more information.";
         }
 
     }
