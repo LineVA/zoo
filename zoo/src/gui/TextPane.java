@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.stream.Stream;
@@ -22,6 +24,8 @@ import launch.Play;
 public class TextPane extends JTextPane {
 
     CommandManager manager;
+    AttributeSet aset;
+    StyleContext sc;
 
     public TextPane(Play play, int columns, int line) {
         super();
@@ -30,6 +34,8 @@ public class TextPane extends JTextPane {
         this.setForeground(EditorColors.CMD.getColor());
         manager = new CommandManager(play);
         this.keyEventListener();
+        this.mouseEventListener();
+        sc = StyleContext.getDefaultStyleContext();
     }
 
     private void keyEventListener() {
@@ -38,7 +44,6 @@ public class TextPane extends JTextPane {
 
             @Override
             public void keyTyped(KeyEvent e) {
-                //  throw new UnsupportedOperationException("Not supported yet."); 
             }
 
             @Override
@@ -54,13 +59,6 @@ public class TextPane extends JTextPane {
 
             @Override
             public void keyReleased(KeyEvent e) {
-                switch (e.getKeyCode()) {
-                    case KeyEvent.VK_ENTER:
-                        enterReleased();
-                        break;
-                    default:
-                        break;
-                }
             }
         };
         addKeyListener(l);
@@ -78,13 +76,11 @@ public class TextPane extends JTextPane {
 
     private void enterPressed() {
         Object[] cmdLinesArray = recoverCmdLinesArray();
-//        this.setText(this.getText() + "\n" + manager.run(cmdLinesArray[cmdLinesArray.length - 1].toString()));
         append(manager.run(cmdLinesArray[cmdLinesArray.length - 1].toString()), EditorColors.INFO.getColor());
     }
 
     public void append(String str, Color color) {
-        StyleContext sc = StyleContext.getDefaultStyleContext();
-        AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY,
+        aset = sc.addAttribute(SimpleAttributeSet.EMPTY,
                 StyleConstants.Foreground, color);
 
         setCaretPosition(getDocument().getLength());
@@ -95,6 +91,41 @@ public class TextPane extends JTextPane {
 
         setCaretPosition(getDocument().getLength());
         setCharacterAttributes(aset, false);
+    }
+
+    private void mouseEventListener() {
+        MouseListener m = new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                goEndOfTheText();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        };
+        addMouseListener(m);
+    }
+
+    private void goEndOfTheText() {
+        this.setCaretPosition(this.getText().length());
+        // Used to set the character color back to the one of CMD
+        aset = sc.addAttribute(SimpleAttributeSet.EMPTY,
+                StyleConstants.Foreground, EditorColors.CMD.getColor());
+        setCharacterAttributes(aset, true);
     }
 
 }
