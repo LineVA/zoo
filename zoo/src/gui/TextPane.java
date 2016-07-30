@@ -74,9 +74,12 @@ public class TextPane extends JTextPane {
 
     private void enterPressed() {
         Object[] cmdLinesArray = recoverCmdLinesArray();
-//        System.out.println("\n" + manager.run(cmdLinesArray[cmdLinesArray.length - 1].toString()));
-        this.setText(this.getText() + "\n" + manager.run(cmdLinesArray[cmdLinesArray.length - 1].toString()));
+//        this.setText(this.getText() + "\n" + manager.run(cmdLinesArray[cmdLinesArray.length - 1].toString()));
+        append(manager.run(cmdLinesArray[cmdLinesArray.length - 1].toString()));
+    }
 
+    public void append(String str) {
+        this.setText(this.getText() + "\n" + str);
     }
 
 }
