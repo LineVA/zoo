@@ -26,6 +26,7 @@ public class TextPane extends JTextPane {
     CommandManager manager;
     AttributeSet aset;
     StyleContext sc;
+    private final String cmdInvite = "> ";
 
     public TextPane(Play play, int columns, int line) {
         super();
@@ -51,6 +52,12 @@ public class TextPane extends JTextPane {
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_ENTER:
                         enterPressed();
+                        e.consume();
+                        break;
+                    case KeyEvent.VK_BACK_SPACE:
+                        if (!canUseBackSpace()) {
+                            e.consume();
+                        }
                         break;
                     default:
                         break;
@@ -64,8 +71,11 @@ public class TextPane extends JTextPane {
         addKeyListener(l);
     }
 
-    private void enterReleased() {
-//        this.setCaretPosition(this.getCaretPosition() + 2);
+    public boolean canUseBackSpace() {
+        Object[] lines = recoverCmdLinesArray();
+        String currentLine = lines[lines.length - 1].toString();
+        int lengthCurrentLine = currentLine.length();
+        return (lengthCurrentLine > this.cmdInvite.length());
     }
 
     private Object[] recoverCmdLinesArray() {
@@ -77,6 +87,10 @@ public class TextPane extends JTextPane {
     private void enterPressed() {
         Object[] cmdLinesArray = recoverCmdLinesArray();
         append(manager.run(cmdLinesArray[cmdLinesArray.length - 1].toString()), EditorColors.INFO.getColor());
+    }
+
+    private void enterReleased() {
+        this.setCaretPosition(this.getCaretPosition() + 2);
     }
 
     public void append(String str, Color color) {
@@ -91,6 +105,7 @@ public class TextPane extends JTextPane {
 
         setCaretPosition(getDocument().getLength());
         setCharacterAttributes(aset, false);
+        replaceSelection("\n" + this.cmdInvite);
     }
 
     private void mouseEventListener() {
