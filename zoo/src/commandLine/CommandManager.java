@@ -30,12 +30,15 @@ import launch.Play;
 public class CommandManager {
 
     Play play;
-    private final Iterable<Command> commands;
+    private final Iterable<Command> playCommands;
+    private final Iterable<Command> initialCommands;
+
+    public boolean isInitiate = false;
 
     public CommandManager(Play play) {
         this.play = play;
         // For Paddock and Animal : Ls must be before Detail
-        commands = asList(new CreateZoo(play), new DetailZoo(play), 
+        playCommands = asList(new CreateZoo(play), new DetailZoo(play),
                 new CreatePaddock(play),
                 new LsPaddock(play), new MapZoo(play), new DetailPad(play),
                 new Evaluate(play), new BiomePad(play), new BiomeAttributesPaddock(play),
@@ -45,16 +48,32 @@ public class CommandManager {
                 new LsSpecie(play), new DetailSpecie(play),
                 new LsFeeding(play),
                 new SaveZoo(play), new LoadZoo(play));
+        initialCommands = asList(new CreateZoo(play), new LoadZoo(play));
     }
 
     public String run(String cmd) {
         // String[] parse = cmd.split(" ");
         String[] parse = SplitDoubleQuotes.split(cmd);
-        for (Command command : commands) {
-            if (command.canExecute(parse)) {
-                return command.execute(parse);
+        if (isInitiate) {
+            for (Command command : playCommands) {
+                if (command.canExecute(parse)) {
+                    String result = command.execute(parse);
+                    this.isInitiate = command.hasInitiateAZoo();
+                    return result;
+                }
             }
+            return "Unknown command";
+        } else {
+            for (Command command : initialCommands) {
+                if (command.canExecute(parse)) {
+                    String result = command.execute(parse);
+                    this.isInitiate = command.hasInitiateAZoo();
+                    return result;
+                }
+            }
+            return "There is only two command to create a zoo : "
+                    + "'zoo create' and 'load' ; see 'man zoo' and 'man load' for more information.";
         }
-        return "Unknown command";
+
     }
 }
