@@ -37,6 +37,7 @@ public class TextPane extends JTextPane {
         this.keyEventListener();
         this.mouseEventListener();
         sc = StyleContext.getDefaultStyleContext();
+        this.setText(cmdInvite);
     }
 
     private void keyEventListener() {
@@ -87,8 +88,13 @@ public class TextPane extends JTextPane {
     public boolean canMove() {
         Object[] lines = recoverCmdLinesArray();
         int caret = this.getCaretPosition();
-        // 2 : \n
-        int caretInCurrent = caret - countCharBeforeCurrentLine(lines) - 2;
+        // 2 : \n except first the very first line
+        int caretInCurrent;
+        if(lines.length == 1){
+            caretInCurrent = caret -countCharBeforeCurrentLine(lines);
+        } else {
+        caretInCurrent = caret - countCharBeforeCurrentLine(lines) - 2;
+        }
         return (caretInCurrent > this.cmdInvite.length());
     }
 
