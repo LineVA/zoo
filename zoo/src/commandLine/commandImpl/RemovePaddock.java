@@ -27,8 +27,8 @@ public class RemovePaddock implements Command{
     @Override
     public String execute(String[] cmd) {
         try {
-            IPaddock pad = this.play.zoo.findPaddockByName(cmd[2]);
-            this.play.zoo.removePaddock(pad);
+            IPaddock pad = this.play.getZoo().findPaddockByName(cmd[2]);
+            this.play.getZoo().removePaddock(pad);
             return "This paddock has been removed.";
         } catch (EmptyNameException | UnknownNameException ex) {
             return ex.getMessage();

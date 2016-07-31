@@ -31,12 +31,12 @@ public class LsPaddock implements Command {
         Specie spec = null;
         if (args[0] != null) {
             try {
-                spec = this.play.zoo.findSpeciebyName(args[0]);
+                spec = this.play.getZoo().findSpeciebyName(args[0]);
             } catch (EmptyNameException | UnknownNameException ex) {
                 return ex.getMessage();
             }
         }
-        return FormattingDisplay.formattingArrayList(this.play.zoo.listPaddock(spec));
+        return FormattingDisplay.formattingArrayList(this.play.getZoo().listPaddock(spec));
     }
 
     public boolean firstCmd(String[] cmd) {

@@ -23,7 +23,7 @@ public class CreateZoo implements Command {
     public boolean hasInitiateAZoo() {
         return this.previousHasBeenSuccessfull;
     }
-    
+
     public CreateZoo(Play play) {
         this.play = play;
     }
@@ -35,7 +35,7 @@ public class CreateZoo implements Command {
             int horizon = 5;
             int age = 0;
             Map<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species");
-            this.play.zoo.initiateZoo(cmd[2], Integer.parseInt(cmd[3]),
+            this.play.getZoo().initiateZoo(cmd[2], Integer.parseInt(cmd[3]),
                     Integer.parseInt(cmd[4]), species, age, monthsPerEvaluation, horizon);
             this.previousHasBeenSuccessfull = true;
             return "Your zoo has been sucessfully created";

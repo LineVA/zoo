@@ -26,7 +26,7 @@ public class CreatePaddock implements Command {
     public String execute(String[] cmd) {
         // TO DO : if zoo has not been yet initiate
         try {
-            this.play.zoo.addPaddock(cmd[2], Integer.parseInt(cmd[3]), Integer.parseInt(cmd[4]),
+            this.play.getZoo().addPaddock(cmd[2], Integer.parseInt(cmd[3]), Integer.parseInt(cmd[4]),
                     Integer.parseInt(cmd[5]), Integer.parseInt(cmd[6]));
             return "Your paddock has been sucessfully created.";
         } catch (NameException | IncorrectDimensionsException ex) {

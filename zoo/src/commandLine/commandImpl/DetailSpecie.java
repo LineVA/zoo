@@ -27,7 +27,7 @@ public class DetailSpecie implements Command {
     @Override
     public String execute(String[] cmd) {
         try {
-            Specie spec = this.play.zoo.findSpeciebyName(cmd[1]);
+            Specie spec = this.play.getZoo().findSpeciebyName(cmd[1]);
             return (FormattingDisplay.formattingArrayList(spec.info()));
         } catch (UnknownNameException ex) {
             return "No paddock has this name.";

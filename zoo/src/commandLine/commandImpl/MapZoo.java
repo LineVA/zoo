@@ -27,7 +27,7 @@ public class MapZoo implements Command {
     @Override
     public String execute(String[] cmd) {
         try {
-            ArrayList<PaddockCoordinates> map = this.play.zoo.map();
+            ArrayList<PaddockCoordinates> map = this.play.getZoo().map();
             return FormattingDisplay.zooMap(map);
         } catch (IncorrectDimensionsException ex) {
             return "Fail !";

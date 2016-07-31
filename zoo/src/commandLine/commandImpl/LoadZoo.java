@@ -28,7 +28,7 @@ public class LoadZoo implements Command {
     public String execute(String[] cmd) {
         try {
             Load load = new LoadImpl();
-            this.play.zoo = load.loadZoo("gameBackUps/" + cmd[1] + ".xml");
+            this.play.setZoo(load.loadZoo("gameBackUps/" + cmd[1] + ".xml"));
             this.previousHasBeenSuccessfull = true;
             return "You are now in your new zoo.";
         } catch (Exception ex) {

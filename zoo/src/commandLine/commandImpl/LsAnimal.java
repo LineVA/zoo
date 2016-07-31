@@ -36,12 +36,12 @@ public class LsAnimal implements Command {
         IPaddock pad = null;
         try {
             if (args[0] != null) {
-                spec = this.play.zoo.findSpeciebyName(args[0]);
+                spec = this.play.getZoo().findSpeciebyName(args[0]);
             }
             if (args[1] != null) {
-                pad = this.play.zoo.findPaddockByName(args[1]);
+                pad = this.play.getZoo().findPaddockByName(args[1]);
             }
-            return FormattingDisplay.formattingArrayList(this.play.zoo.listAnimal(spec, pad));
+            return FormattingDisplay.formattingArrayList(this.play.getZoo().listAnimal(spec, pad));
         } catch (EmptyNameException ex) {
             return ex.getMessage();
         } catch (UnknownNameException ex) {
