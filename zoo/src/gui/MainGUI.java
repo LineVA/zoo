@@ -7,7 +7,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
-import launch.Play;
+import launch.play.Play;
 import lombok.Getter;
 
 /**

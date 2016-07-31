@@ -3,7 +3,7 @@ package commandLine.commandImpl;
 import commandLine.Command;
 import exception.IncorrectDimensionsException;
 import exception.name.NameException;
-import launch.Play;
+import launch.play.Play;
 
 /**
  *

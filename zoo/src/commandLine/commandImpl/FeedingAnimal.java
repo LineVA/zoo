@@ -4,7 +4,7 @@ import commandLine.Command;
 import exception.IncorrectDataException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
-import launch.Play;
+import launch.play.Play;
 import zoo.animal.Animal;
 import zoo.animal.feeding.Diet;
 

@@ -2,7 +2,7 @@ package basicGui;
 
 import commandLine.CommandManager;
 import java.util.Scanner;
-import launch.Play;
+import launch.play.Play;
 
 /**
  *

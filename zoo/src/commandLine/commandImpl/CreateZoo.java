@@ -6,7 +6,7 @@ import exception.name.EmptyNameException;
 import java.io.IOException;
 import java.util.Map;
 import launch.InstanciateSpecies;
-import launch.Play;
+import launch.play.Play;
 import org.jdom2.JDOMException;
 import zoo.animal.specie.Specie;
 

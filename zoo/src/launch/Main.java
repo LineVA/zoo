@@ -1,5 +1,7 @@
 package launch;
 
+import launch.play.FreePlayImpl;
+import launch.play.Play;
 import basicGui.Scan;
 import exception.name.EmptyNameException;
 import gui.MainGUI;

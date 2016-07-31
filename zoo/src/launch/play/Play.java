@@ -1,4 +1,4 @@
-package launch;
+package launch.play;
 
 import zoo.IZoo;
 import zoo.Zoo;
