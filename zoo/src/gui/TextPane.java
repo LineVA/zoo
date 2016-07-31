@@ -1,6 +1,7 @@
 package gui;
 
 import commandLine.CommandManager;
+import commandLine.commandManagerImpl.FreeCommandManager;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -33,7 +34,7 @@ public class TextPane extends JTextPane {
         this.setPreferredSize(new Dimension(line, columns));
         this.setBackground(Color.BLACK);
         this.setForeground(EditorColors.CMD.getColor());
-        manager = new CommandManager(play);
+        manager = new FreeCommandManager(play);
         this.keyEventListener();
         this.mouseEventListener();
         sc = StyleContext.getDefaultStyleContext();
