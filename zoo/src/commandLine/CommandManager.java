@@ -58,7 +58,7 @@ public class CommandManager {
             for (Command command : playCommands) {
                 if (command.canExecute(parse)) {
                     String result = command.execute(parse);
-                    this.isInitiate = command.hasInitiateAZoo();
+                    this.isInitiate |= command.hasInitiateAZoo();
                     return result;
                 }
             }
