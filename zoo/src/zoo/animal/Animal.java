@@ -1,6 +1,7 @@
 package zoo.animal;
 
 import backup.save.SaveImpl;
+import exception.IncorrectDataException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import zoo.animal.death.LifeSpanLightAttributes;
@@ -9,7 +10,6 @@ import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.Specie;
-import zoo.animal.wellbeing.WellBeing;
 import zoo.paddock.IPaddock;
 import zoo.paddock.TerritoryAttributes;
 
@@ -34,21 +34,25 @@ public interface Animal {
     public ArrayList<Animal> findRoommatesOfTheSameSpecie();
 
     public boolean canBePregnant();
-    
+
     public boolean canFecundateAFemale();
-    
+
     public boolean isEnoughHappy();
+
+    public void changeDiet(Object obj) throws UnknownNameException;
+
+    public void changeFoodQuantity(Double quantity) throws IncorrectDataException;
 
     public String getName();
 
     public Specie getSpecie();
-    
+
     public int getActualLitterSize();
-    
+
     public double getActualGestationFrequency();
-    
+
     public IPaddock getPaddock();
-    
+
     /**
      * Friend pattern : give access to each of the fields of Animal only to the
      * save methods

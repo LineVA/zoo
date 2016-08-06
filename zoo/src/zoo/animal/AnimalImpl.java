@@ -135,7 +135,7 @@ public class AnimalImpl implements Animal {
         this.optimalSocial = social;
         this.optimalTerritory = territory;
         this.age = age;
-         this.wB = new WellBeingImpl(spec.getConservation().getCoefficient(), spec.getConservation().getDiameter());
+        this.wB = new WellBeingImpl(spec.getConservation().getCoefficient(), spec.getConservation().getDiameter());
         this.wellBeing = 0;
     }
 
@@ -266,7 +266,7 @@ public class AnimalImpl implements Animal {
 
     @Override
     public double wellBeing() throws UnknownNameException {
-        AnimalsAttributes attributes = new AnimalsAttributes(this.optimalBiome, this.optimalFeeding, 
+        AnimalsAttributes attributes = new AnimalsAttributes(this.optimalBiome, this.optimalFeeding,
                 this.actualFeeding, this.diet, this.optimalSocial, this.optimalTerritory);
         this.wellBeing = wB.computeWellBeing(attributes, paddock, specie);
         return this.wellBeing;
@@ -305,10 +305,31 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public boolean isEnoughHappy(){
+    public boolean isEnoughHappy() {
         return this.wB.isCloseEnoughToMax(this.wellBeing);
     }
-    
+
+    @Override
+    public void changeDiet(Object obj) throws UnknownNameException {
+        try {
+            int tmpDietInt = Integer.parseInt((String) obj);
+            Diet.NONE.findDietById(tmpDietInt);
+            this.diet = tmpDietInt;
+        } catch (UnknownNameException | NumberFormatException ex) {
+            String tmpDietStr = (String) obj;
+            int tmpDiet = Diet.NONE.findDietByName(tmpDietStr).getId();
+            this.diet = tmpDiet;
+        }
+    }
+
+    public void changeFoodQuantity(Double quantity) throws IncorrectDataException {
+        if(quantity>0.0){
+            this.actualFeeding.setFoodQuantity(quantity);
+        } else {
+            throw new IncorrectDataException("The food quantity must be greater or equals than zero.");
+        } 
+    }
+
     /////////////////
     @Override
     public String getName() {
