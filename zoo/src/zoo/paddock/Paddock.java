@@ -56,6 +56,8 @@ public class Paddock implements Cloneable, IPaddock {
 
     private ArrayList<IPaddock> neightbourhood;
 
+    BirthObservable obs = new BirthObservable();
+
     /**
      * The main constructor of the class Because no biome is known, the fields
      * take the values of the ones forme Biome.NONE
@@ -70,6 +72,12 @@ public class Paddock implements Cloneable, IPaddock {
         this.attributes = (BiomeAttributes) Biome.NONE.getAttributes().clone();
         this.animals = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         this.neightbourhood = neightbourhood;
+        obs.addObserver(new Observer() {
+            @Override
+            public void update(Observable o, Object arg) {
+                setNewComerName((String) arg);
+            }
+        });
     }
 
     /**
@@ -198,17 +206,7 @@ public class Paddock implements Cloneable, IPaddock {
                 // newFamily[0] = mother;
                 // new Family[1] = father;
                 for (int i = 2; i < newFamily.size(); i++) {
-                      newComer = newFamily.get(i);
-                    BirthObservable obs = new BirthObservable();
-                    obs.addObserver(new Observer() {
-                        String name = "";
-                        @Override
-                        public void update(Observable o, Object arg) {
-                            setNewComerName((String) arg);
-                        }
-                    });
-                    obs.askAndWait(newFamily.get(0).getName(), newFamily.get(1).getName(), newFamily.get(i).getSex().toString());
-                    newComer.setName(newComerName);
+                    newComer = specifieNameOfTheNewBorn(newFamily.get(i), newFamily.get(0), newFamily.get(1));
                     tmpAnimal.add(newComer);
                     info.add("A newcomer : the baby of "
                             + newFamily.get(0).getName() + " and "
@@ -220,10 +218,16 @@ public class Paddock implements Cloneable, IPaddock {
         incomingNewBorn(tmpAnimal);
         return info;
     }
-    
+
+    private Animal specifieNameOfTheNewBorn(Animal newBorn, Animal mother, Animal father) {
+        obs.askAndWait(mother.getName(), father.getName(), newBorn.getSex().toString());
+        newBorn.setName(newComerName);
+        return newBorn;
+    }
+
     String newComerName = "";
-    
-    public void setNewComerName(String name){
+
+    public void setNewComerName(String name) {
         this.newComerName = name;
     }
 
