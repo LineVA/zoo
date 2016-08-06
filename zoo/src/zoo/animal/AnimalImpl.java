@@ -2,6 +2,7 @@ package zoo.animal;
 
 import backup.save.SaveImpl;
 import exception.IncorrectDataException;
+import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import lombok.Getter;
@@ -64,9 +65,14 @@ public class AnimalImpl implements Animal {
     // actual is given by the number of animal is the paddock.
     private final TerritoryAttributes optimalTerritory;
 
-    public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex, int age) throws IncorrectDataException {
+    public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex, int age) 
+            throws IncorrectDataException, EmptyNameException {
         this.specie = spec;
-        this.name = name;
+       if (name.trim().equals("")) {
+            throw new EmptyNameException("An animal cannot have an empty name.");
+        } else {
+            this.name = name;
+        }
         this.paddock = paddock;
         this.sex = sex;
         if (age >= 0) {
@@ -90,9 +96,13 @@ public class AnimalImpl implements Animal {
     }
 
     public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex)
-            throws IncorrectDataException {
+            throws IncorrectDataException, EmptyNameException {
         this.specie = spec;
-        this.name = name;
+       if (name.trim().equals("")) {
+            throw new EmptyNameException("An animal cannot have an empty name.");
+        } else {
+            this.name = name;
+        }
         this.paddock = paddock;
         this.sex = sex;
 //        this.optimalBiome = drawOptimalBiome(spec);
@@ -121,9 +131,13 @@ public class AnimalImpl implements Animal {
             ReproductionAttributes reproduction,
             LifeSpanLightAttributes life, SocialAttributes social,
             TerritoryAttributes territory)
-            throws IncorrectDataException {
+            throws IncorrectDataException, EmptyNameException {
         this.specie = spec;
-        this.name = name;
+       if (name.trim().equals("")) {
+            throw new EmptyNameException("An animal cannot have an empty name.");
+        } else {
+            this.name = name;
+        }
         this.paddock = paddock;
         this.sex = sex;
         this.actualReproduction = reproduction;
