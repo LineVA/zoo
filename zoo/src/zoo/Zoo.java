@@ -79,7 +79,7 @@ public class Zoo implements IZoo {
             Map<String, Specie> species, int age, int monthsPerEvaluation, int horizon)
             throws IncorrectDimensionsException, EmptyNameException, IOException {
         if (name.trim().equals("")) {
-            throw new EmptyNameException("Please enter a no-empty name for the zoo.");
+            throw new EmptyNameException("A zoo cannot have an empty name.");
         } else {
             this.name = name;
         }
