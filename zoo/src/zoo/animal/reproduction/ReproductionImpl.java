@@ -53,8 +53,7 @@ public class ReproductionImpl implements Reproduction {
         family.add(father);
         int litterSize = uniform.intAverage(mother.getActualLitterSize());
         for (int i = 0; i < litterSize; i++) {
-            family.add(generateAnimal(mother.getSpecie(), mother.getName()
-                    + father.getName() + i, mother.getPaddock()));
+            family.add(generateAnimal(mother.getSpecie(), "", mother.getPaddock()));
         }
         return family;
     }

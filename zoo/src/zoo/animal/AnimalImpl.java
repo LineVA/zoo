@@ -26,7 +26,7 @@ import zoo.paddock.biome.BiomeAttributes;
 public class AnimalImpl implements Animal {
 
     private final Specie specie;
-    private final String name;
+    private  String name;
     private final IPaddock paddock;
     private final Sex sex;
     @Getter
@@ -291,7 +291,7 @@ public class AnimalImpl implements Animal {
     @Override
     public boolean canBePregnant() {
         if (sex != null) {
-            return isMature() && this.sex.isFemale() && isEnoughHappy();
+            return isMature() && this.sex.isFemale() /*&& isEnoughHappy()*/;
         }
         return false;
     }
@@ -299,7 +299,7 @@ public class AnimalImpl implements Animal {
     @Override
     public boolean canFecundateAFemale() {
         if (this.sex != null) {
-            return isMature() && this.sex.isMale() && isEnoughHappy();
+            return isMature() && this.sex.isMale() /*&& isEnoughHappy()*/;
         }
         return false;
     }
@@ -313,6 +313,16 @@ public class AnimalImpl implements Animal {
     @Override
     public String getName() {
         return this.name;
+    }
+    
+      @Override
+    public Sex getSex() {
+        return this.sex;
+    }
+    
+    @Override
+    public void setName(String name) {
+       this.name = name;
     }
 
     @Override

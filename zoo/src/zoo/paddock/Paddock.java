@@ -13,7 +13,10 @@ import lombok.Getter;
 import backup.save.SaveImpl;
 import exception.name.EmptyNameException;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.TreeMap;
+import zoo.BirthObservable;
 import zoo.animal.Animal;
 import zoo.animal.death.DieImpl;
 import zoo.animal.death.IDie;
@@ -132,10 +135,10 @@ public class Paddock implements Cloneable, IPaddock {
         info.add("Biome's characteristics : " + this.attributes.toString());
         return info;
     }
-    
-    private String listNeightbourhood(){
+
+    private String listNeightbourhood() {
         String neightbours = "";
-        for(IPaddock pad : this.neightbourhood){
+        for (IPaddock pad : this.neightbourhood) {
             neightbours += pad.getName() + ", ";
         }
         return neightbours;
@@ -195,7 +198,17 @@ public class Paddock implements Cloneable, IPaddock {
                 // newFamily[0] = mother;
                 // new Family[1] = father;
                 for (int i = 2; i < newFamily.size(); i++) {
-                    newComer = newFamily.get(i);
+                      newComer = newFamily.get(i);
+                    BirthObservable obs = new BirthObservable();
+                    obs.addObserver(new Observer() {
+                        String name = "";
+                        @Override
+                        public void update(Observable o, Object arg) {
+                            setNewComerName((String) arg);
+                        }
+                    });
+                    obs.askAndWait(newFamily.get(0).getName(), newFamily.get(1).getName(), newFamily.get(i).getSex().toString());
+                    newComer.setName(newComerName);
                     tmpAnimal.add(newComer);
                     info.add("A newcomer : the baby of "
                             + newFamily.get(0).getName() + " and "
@@ -206,6 +219,12 @@ public class Paddock implements Cloneable, IPaddock {
         }
         incomingNewBorn(tmpAnimal);
         return info;
+    }
+    
+    String newComerName = "";
+    
+    public void setNewComerName(String name){
+        this.newComerName = name;
     }
 
     private void incomingNewBorn(ArrayList<Animal> tmpAnimal) {
@@ -247,13 +266,13 @@ public class Paddock implements Cloneable, IPaddock {
         Animal animal;
         while (it.hasNext()) {
 //            animal = (Animal) it.next();
-       //     this.animals.remove(animal.getName());
+            //     this.animals.remove(animal.getName());
             it.remove();
         }
     }
-    
+
     @Override
-    public void removeAnimal(Animal animal){
+    public void removeAnimal(Animal animal) {
         this.animals.remove(animal.getName());
     }
 
@@ -358,31 +377,31 @@ public class Paddock implements Cloneable, IPaddock {
         }
         return presentedSpecies;
     }
-    
+
     /**
      *
      * @param paddock
      */
-    public void addInNeightbourhood(IPaddock paddock){
-         this.neightbourhood.add(paddock);
-     }
-     
+    public void addInNeightbourhood(IPaddock paddock) {
+        this.neightbourhood.add(paddock);
+    }
+
     @Override
-     public void addAllInNeightbourhood(ArrayList<IPaddock> neightbourhood){
-         this.neightbourhood.addAll(neightbourhood);
-     }
-     
-     @Override
-     public void removeFromNeightbourhood(){
-         for(IPaddock neightbour : this.neightbourhood){
-             neightbour.removeANeightbour(this);
-         }
-     }
-     
-     @Override
-     public void removeANeightbour(IPaddock paddock){
-         this.neightbourhood.remove(paddock);
-     }
+    public void addAllInNeightbourhood(ArrayList<IPaddock> neightbourhood) {
+        this.neightbourhood.addAll(neightbourhood);
+    }
+
+    @Override
+    public void removeFromNeightbourhood() {
+        for (IPaddock neightbour : this.neightbourhood) {
+            neightbour.removeANeightbour(this);
+        }
+    }
+
+    @Override
+    public void removeANeightbour(IPaddock paddock) {
+        this.neightbourhood.remove(paddock);
+    }
 
     @Override
     public ArrayList<Specie> listSpeciesInNeightbourhood() {

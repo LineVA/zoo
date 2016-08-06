@@ -49,6 +49,10 @@ public interface Animal {
     
     public IPaddock getPaddock();
     
+    public void setName(String name);
+    
+    public Sex getSex();
+    
     /**
      * Friend pattern : give access to each of the fields of Animal only to the
      * save methods
