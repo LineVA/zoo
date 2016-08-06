@@ -94,7 +94,7 @@ public class ReproductionImpl implements Reproduction {
      * @return true if it can, false else
      */
     public boolean isGestation(Animal animal) {
-        return uniform.isGreaterOrEquals(animal.getActualGestationFrequency());
+        return uniform.isLowerOrEquals(animal.getActualGestationFrequency());
     }
 
     /**

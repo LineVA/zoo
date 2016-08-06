@@ -22,4 +22,8 @@ public class Uniform extends Random {
         return super.nextDouble() >= lim;
     }
 
+    public boolean isLowerOrEquals(double lim) {
+        return super.nextDouble() <= lim;
+    }
+
 }
