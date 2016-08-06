@@ -84,7 +84,7 @@ public class ReproductionImpl implements Reproduction {
      * @return true if it can reproducte
      */
     public boolean canFemaleReproducte(Animal animal) {
-       return animal.canBePregnant() && isGestation(animal);
+       return animal.canBePregnant() && isInGestation(animal);
     }
 
     /**
@@ -93,7 +93,7 @@ public class ReproductionImpl implements Reproduction {
      * @param animal the animal we test
      * @return true if it can, false else
      */
-    public boolean isGestation(Animal animal) {
+    public boolean isInGestation(Animal animal) {
         return uniform.isLowerOrEquals(animal.getActualGestationFrequency());
     }
 

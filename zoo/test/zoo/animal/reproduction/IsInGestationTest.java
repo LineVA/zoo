@@ -50,7 +50,7 @@ public class IsInGestationTest {
                 terriAtt);
         // When
         ReproductionImpl reproduction = new ReproductionImpl();
-        boolean actual = reproduction.isGestation(animal);
+        boolean actual = reproduction.isInGestation(animal);
         // Then
         assertTrue(actual);
     }
@@ -68,7 +68,7 @@ public class IsInGestationTest {
                 terriAtt);
         // When
         ReproductionImpl reproduction = new ReproductionImpl();
-        boolean actual = reproduction.isGestation(animal);
+        boolean actual = reproduction.isInGestation(animal);
         // Then
         assertFalse(actual);
     }
