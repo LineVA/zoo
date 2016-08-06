@@ -2,6 +2,7 @@ package zoo.animal;
 
 import backup.save.SaveImpl;
 import exception.IncorrectDataException;
+import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import lombok.Getter;
@@ -26,7 +27,7 @@ import zoo.paddock.biome.BiomeAttributes;
 public class AnimalImpl implements Animal {
 
     private final Specie specie;
-    private  String name;
+    private String name;
     private final IPaddock paddock;
     private final Sex sex;
     @Getter
@@ -135,7 +136,7 @@ public class AnimalImpl implements Animal {
         this.optimalSocial = social;
         this.optimalTerritory = territory;
         this.age = age;
-         this.wB = new WellBeingImpl(spec.getConservation().getCoefficient(), spec.getConservation().getDiameter());
+        this.wB = new WellBeingImpl(spec.getConservation().getCoefficient(), spec.getConservation().getDiameter());
         this.wellBeing = 0;
     }
 
@@ -266,7 +267,7 @@ public class AnimalImpl implements Animal {
 
     @Override
     public double wellBeing() throws UnknownNameException {
-        AnimalsAttributes attributes = new AnimalsAttributes(this.optimalBiome, this.optimalFeeding, 
+        AnimalsAttributes attributes = new AnimalsAttributes(this.optimalBiome, this.optimalFeeding,
                 this.actualFeeding, this.diet, this.optimalSocial, this.optimalTerritory);
         this.wellBeing = wB.computeWellBeing(attributes, paddock, specie);
         return this.wellBeing;
@@ -305,24 +306,28 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public boolean isEnoughHappy(){
+    public boolean isEnoughHappy() {
         return this.wB.isCloseEnoughToMax(this.wellBeing);
     }
-    
+
     /////////////////
     @Override
     public String getName() {
         return this.name;
     }
-    
-      @Override
+
+    @Override
     public Sex getSex() {
         return this.sex;
     }
-    
+
     @Override
-    public void setName(String name) {
-       this.name = name;
+    public void setName(String name) throws EmptyNameException{
+        if (!name.equals("")) {
+            this.name = name;
+        } else {
+            throw new EmptyNameException("The name of this animal is empty.");
+        }
     }
 
     @Override

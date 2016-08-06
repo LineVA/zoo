@@ -39,7 +39,7 @@ public interface IZoo {
 
     public ArrayList<String> death() throws UnknownNameException;
 
-    public ArrayList<String> birth() throws AlreadyUsedNameException, IncorrectDataException;
+    public ArrayList<String> birth() throws AlreadyUsedNameException, IncorrectDataException, EmptyNameException;
 
     public IPaddock findPaddockByName(String paddockName) throws EmptyNameException, UnknownNameException;
 

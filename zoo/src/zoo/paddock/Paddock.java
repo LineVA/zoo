@@ -56,7 +56,7 @@ public class Paddock implements Cloneable, IPaddock {
 
     private ArrayList<IPaddock> neightbourhood;
 
-    BirthObservable obs = new BirthObservable();
+    private BirthObservable obs = new BirthObservable();
 
     /**
      * The main constructor of the class Because no biome is known, the fields
@@ -193,7 +193,7 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public ArrayList<String> birth() throws IncorrectDataException {
+    public ArrayList<String> birth() throws IncorrectDataException, EmptyNameException {
         ArrayList<String> info = new ArrayList<>();
         ArrayList<Animal> tmpAnimal = new ArrayList<>();
         Reproduction repro = new ReproductionImpl();
@@ -219,7 +219,8 @@ public class Paddock implements Cloneable, IPaddock {
         return info;
     }
 
-    private Animal specifieNameOfTheNewBorn(Animal newBorn, Animal mother, Animal father) {
+    private Animal specifieNameOfTheNewBorn(Animal newBorn, Animal mother, Animal father)
+            throws EmptyNameException {
         obs.askAndWait(mother.getName(), father.getName(), newBorn.getSex().toString());
         newBorn.setName(newComerName);
         return newBorn;

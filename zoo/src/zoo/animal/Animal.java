@@ -1,6 +1,7 @@
 package zoo.animal;
 
 import backup.save.SaveImpl;
+import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import zoo.animal.death.LifeSpanLightAttributes;
@@ -49,7 +50,7 @@ public interface Animal {
     
     public IPaddock getPaddock();
     
-    public void setName(String name);
+    public void setName(String name) throws EmptyNameException;
     
     public Sex getSex();
     

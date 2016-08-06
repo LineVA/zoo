@@ -266,7 +266,7 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<String> birth() throws IncorrectDataException {
+    public ArrayList<String> birth() throws IncorrectDataException, EmptyNameException {
         ArrayList<String> info = new ArrayList<>();
         for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
             info.addAll(padEntry.getValue().birth());
