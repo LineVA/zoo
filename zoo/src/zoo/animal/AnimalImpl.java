@@ -44,7 +44,7 @@ public class AnimalImpl implements Animal {
     // the second are determined by the player.
     @Getter
     @Setter
-    private int diet;
+    private int actualDiet;
     private final FeedingAttributes optimalFeeding;
     @Setter
     private FeedingAttributes actualFeeding;
@@ -80,7 +80,7 @@ public class AnimalImpl implements Animal {
         this.actualReproduction = drawActualReproduction(spec);
         this.actualLifeSpan = drawActualLifeSpan(spec);
         this.optimalBiome = null;
-        this.diet = Diet.NONE.getId();
+        this.actualDiet = Diet.NONE.getId();
         //   this.optimalFeeding = null;
         // this.actualFeeding = null;
         this.optimalSocial = drawOptimalSocial(spec);
@@ -101,7 +101,7 @@ public class AnimalImpl implements Animal {
         this.actualReproduction = drawActualReproduction(spec);
         this.actualLifeSpan = drawActualLifeSpan(spec);
         this.optimalBiome = null;
-        this.diet = Diet.NONE.getId();
+        this.actualDiet = Diet.NONE.getId();
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
         this.age = this.sex.isFemale()
@@ -129,7 +129,7 @@ public class AnimalImpl implements Animal {
         this.actualReproduction = reproduction;
         this.actualLifeSpan = life;
         this.optimalBiome = biome;
-        this.diet = diet;
+        this.actualDiet = diet;
         this.optimalFeeding = optimalFeeding;
         this.actualFeeding = actualFeeding;
         this.optimalSocial = social;
@@ -248,7 +248,7 @@ public class AnimalImpl implements Animal {
         info.add("Age : " + this.age);
         info.add("Sex : " + this.sex.toString());
         info.add("Well-being : " + this.wellBeing);
-        info.add("Diet : " + Diet.NONE.findDietById(diet).toString());
+        info.add("Diet : " + Diet.NONE.findDietById(actualDiet).toString());
         info.add("Reproduction attributes : " + this.actualReproduction);
         info.add("Life span attributes : " + this.actualLifeSpan.toString());
         info.add("Optimal group size : " + this.optimalSocial.getGroupSize());
@@ -267,7 +267,7 @@ public class AnimalImpl implements Animal {
     @Override
     public double wellBeing() throws UnknownNameException {
         AnimalsAttributes attributes = new AnimalsAttributes(this.optimalBiome, this.optimalFeeding,
-                this.actualFeeding, this.diet, this.optimalSocial, this.optimalTerritory);
+                this.actualFeeding, this.actualDiet, this.optimalSocial, this.optimalTerritory);
         this.wellBeing = wB.computeWellBeing(attributes, paddock, specie);
         return this.wellBeing;
     }
@@ -314,11 +314,11 @@ public class AnimalImpl implements Animal {
         try {
             int tmpDietInt = Integer.parseInt((String) obj);
             Diet.NONE.findDietById(tmpDietInt);
-            this.diet = tmpDietInt;
+            this.actualDiet = tmpDietInt;
         } catch (UnknownNameException | NumberFormatException ex) {
             String tmpDietStr = (String) obj;
             int tmpDiet = Diet.NONE.findDietByName(tmpDietStr).getId();
-            this.diet = tmpDiet;
+            this.actualDiet = tmpDiet;
         }
     }
 
@@ -409,6 +409,6 @@ public class AnimalImpl implements Animal {
 
     @Override
     public int getDiet(SaveImpl.FriendSave save) {
-        return this.diet;
+        return this.actualDiet;
     }
 }
