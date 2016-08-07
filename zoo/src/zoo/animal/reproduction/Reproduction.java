@@ -1,6 +1,7 @@
 package zoo.animal.reproduction;
 
 import exception.IncorrectDataException;
+import exception.name.EmptyNameException;
 import java.util.ArrayList;
 import zoo.animal.Animal;
 
@@ -9,6 +10,7 @@ import zoo.animal.Animal;
  * @author doyenm
  */
 public interface Reproduction {
-    public ArrayList<Animal> reproducte(Animal animal) throws IncorrectDataException;
+    public ArrayList<Animal> reproducte(Animal animal) 
+            throws IncorrectDataException, EmptyNameException;
     
 }

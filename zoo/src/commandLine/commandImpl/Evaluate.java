@@ -4,6 +4,7 @@ import basicGui.FormattingDisplay;
 import commandLine.Command;
 import exception.IncorrectDataException;
 import exception.name.AlreadyUsedNameException;
+import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import launch.play.Play;
@@ -41,7 +42,8 @@ public class Evaluate implements Command {
             info.addAll(this.play.getZoo().death());
             // Zoo evaluation
            zooEvaluation += this.play.getZoo().evaluate();
-        } catch (UnknownNameException | AlreadyUsedNameException | IncorrectDataException ex) {
+        } catch (UnknownNameException | AlreadyUsedNameException |
+                IncorrectDataException | EmptyNameException ex) {
             return ex.getMessage();
         }
         info.add("The evaluation of the zoo : " + zooEvaluation);

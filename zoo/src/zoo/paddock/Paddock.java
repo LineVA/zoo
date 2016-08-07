@@ -187,7 +187,7 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public ArrayList<String> birth() throws IncorrectDataException {
+    public ArrayList<String> birth() throws IncorrectDataException, EmptyNameException {
         ArrayList<String> info = new ArrayList<>();
         ArrayList<Animal> tmpAnimal = new ArrayList<>();
         Reproduction repro = new ReproductionImpl();

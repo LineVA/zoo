@@ -52,7 +52,7 @@ public class LoadImpl implements Load {
     }
 
     public void addFakePaddockToZoo(IZoo zoo, FakePaddock paddock)
-            throws IncorrectDimensionsException, AlreadyUsedNameException{
+            throws IncorrectDimensionsException, AlreadyUsedNameException, EmptyNameException{
         zoo.addPaddock(paddock.convertToPaddock());
     }
 }

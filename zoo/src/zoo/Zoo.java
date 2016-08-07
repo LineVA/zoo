@@ -112,7 +112,7 @@ public class Zoo implements IZoo {
      */
     @Override
     public void addPaddock(String paddockName, int x, int y, int width, int height)
-            throws AlreadyUsedNameException, IncorrectDimensionsException {
+            throws AlreadyUsedNameException, IncorrectDimensionsException, EmptyNameException {
         PaddockCoordinates coor = new PaddockCoordinates(x, y, width, height);
         checkEmplacement(coor);
         ArrayList<IPaddock> neightbourhood = new ArrayList<>();
@@ -266,7 +266,8 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<String> birth() throws IncorrectDataException {
+    public ArrayList<String> birth()
+            throws IncorrectDataException, EmptyNameException {
         ArrayList<String> info = new ArrayList<>();
         for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
             info.addAll(padEntry.getValue().birth());
