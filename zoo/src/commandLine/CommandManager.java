@@ -62,7 +62,7 @@ public class CommandManager {
                     return result;
                 }
             }
-            return "Unknown command";
+            return this.play.getBundle().getString("UNKNOWN_CMD");
         } else {
             for (Command command : initialCommands) {
                 if (command.canExecute(parse)) {

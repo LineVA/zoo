@@ -1,5 +1,6 @@
 package launch.play;
 
+import java.util.ResourceBundle;
 import zoo.IZoo;
 import zoo.Zoo;
 
@@ -8,6 +9,8 @@ import zoo.Zoo;
  * @author doyenm
  */
 public interface Play {
+    
+    public ResourceBundle getBundle();
 
     public IZoo getZoo();
     
