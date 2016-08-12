@@ -71,8 +71,7 @@ public class CommandManager {
                     return result;
                 }
             }
-            return "There is only two command to create a zoo : "
-                    + "see 'man zoo' and 'man load' for more information.";
+            return this.play.getBundle().getString("MUST_CREATE_ZOO");
         }
 
     }
