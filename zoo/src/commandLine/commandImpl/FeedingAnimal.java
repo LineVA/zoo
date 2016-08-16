@@ -39,7 +39,8 @@ public class FeedingAnimal implements Command {
             if (args[1] != null) {
                 animal.changeFoodQuantity(Double.parseDouble(args[1]));
             }
-            return "The animal " + animal.getName() + " has a new diet.";
+            return this.play.getOption().getGeneralCmdBundle()
+                    .getString("ANIMALS_DIET");
         } catch (EmptyNameException | UnknownNameException |
                 IncorrectDataException | NumberFormatException ex) {
             return ex.getMessage();
