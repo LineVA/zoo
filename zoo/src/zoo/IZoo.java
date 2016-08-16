@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import backup.save.SaveImpl;
 import java.util.Map;
+import launch.options.Option;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
@@ -22,6 +23,8 @@ public interface IZoo {
 
     public void initiateZoo(String name, int width, int height, Map<String, Specie> species, int age, int monthsPerEvaluation, int horizon)
             throws IncorrectDimensionsException, EmptyNameException, IOException;
+    
+    public void setOption(Option option);
 
     public void addPaddock(String paddockName, int x, int y, int width, int height)
             throws AlreadyUsedNameException, IncorrectDimensionsException, EmptyNameException;

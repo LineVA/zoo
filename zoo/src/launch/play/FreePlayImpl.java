@@ -23,6 +23,7 @@ public class FreePlayImpl implements Play{
 
     public FreePlayImpl(ResourceBundle bundle, Option opt) {
         this.zoo = new Zoo();
+        this.zoo.setOption(opt);
         this.bundle = bundle;
         this.option = opt;
     }
