@@ -1,4 +1,4 @@
-package launch;
+package launch.play;
 
 import java.util.ResourceBundle;
 import launch.options.Option;
