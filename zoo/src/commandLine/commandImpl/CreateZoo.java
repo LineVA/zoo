@@ -39,6 +39,10 @@ public class CreateZoo implements Command {
                     Integer.parseInt(cmd[4]), species, age, monthsPerEvaluation, horizon);
             this.previousHasBeenSuccessfull = true;
             return this.play.getBundle().getString("ZOO_CREATION_SUCESS");
+        } catch (EmptyNameException ex){
+            return this.play.getBundle().getString("EMPTY_NAME_EXCEPTION")
+                    +  this.play.getBundle().getString("SEE_MAN_BEGIN") + "zoo" 
+                    + this.play.getBundle().getString("SEE_MAN_END") ;
         } catch (JDOMException | IOException ex) {
             return ex.getMessage();
         }

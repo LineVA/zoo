@@ -3,7 +3,10 @@ package commandLine.commandImpl;
 import backup.load.Load;
 import backup.load.LoadImpl;
 import commandLine.Command;
+import exception.name.EmptyNameException;
+import java.io.IOException;
 import launch.play.Play;
+import org.jdom2.JDOMException;
 
 /**
  *
@@ -30,8 +33,8 @@ public class LoadZoo implements Command {
             Load load = new LoadImpl();
             this.play.setZoo(load.loadZoo("gameBackUps/" + cmd[1] + ".xml"));
             this.previousHasBeenSuccessfull = true;
-            return "You are now in your new zoo.";
-        } catch (Exception ex) {
+            return this.play.getBundle().getString("ZOO_CREATION_SUCESS");
+        } catch (IOException | JDOMException ex) {
             this.previousHasBeenSuccessfull = false;
             return ex.getMessage();
         }
