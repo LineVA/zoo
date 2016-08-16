@@ -46,6 +46,10 @@ public class ParserBackUp {
                 Integer.parseInt(zooEl.getChild("horizon").getText())
         );
     }
+    
+    public String parserLanguage(){
+        return zooEl.getChildText("language");
+    }
 
     public ArrayList<FakePaddock> parserPaddocks() throws IncorrectDimensionsException {
         Element paddocksEl = zooEl.getChild("paddocks");

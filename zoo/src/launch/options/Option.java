@@ -31,6 +31,11 @@ public class Option {
         this.zooBundle = ResourceBundle.getBundle("i18n.zoo.info");
     }
 
+    public Option(String str) {
+        locale = new Locale(str);
+        updateBundles();
+    }
+
     public void updateBundles() {
         this.zooBundle = ResourceBundle.getBundle("i18n.zoo.info", locale);
         this.generalCmdBundle = ResourceBundle.getBundle("i18n.info", locale);
@@ -40,7 +45,7 @@ public class Option {
     }
 
     public void setLanguage(String lang) {
-        if (lang.equals("en")) {
+        if (lang.equals("en") || lang.equals("")) {
             locale = new Locale("");
         } else if (lang.equals("fr")) {
             locale = new Locale("fr");
@@ -50,10 +55,10 @@ public class Option {
 
     /**
      * For save
+     *
      * @param friend
-     * @return 
+     * @return
      */
-    
     public String getLocale(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.locale.getLanguage();

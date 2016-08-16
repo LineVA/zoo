@@ -8,6 +8,7 @@ import exception.name.UnknownNameException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import launch.options.Option;
 import org.jdom2.JDOMException;
 import zoo.IZoo;
 import zoo.animal.FakeAnimal;
@@ -28,6 +29,7 @@ public class LoadImpl implements Load {
         ParserBackUp parser = new ParserBackUp(file);
         // Creation of the zoo
         IZoo zoo = parser.parserZoo().convertToZoo();
+        zoo.setOption(new Option(parser.parserLanguage()));
         // Creation of the paddocks
         ArrayList<FakePaddock> padList = parser.parserPaddocks();
         for (FakePaddock pad : padList) {
