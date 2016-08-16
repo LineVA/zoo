@@ -35,7 +35,9 @@ public class CreateAnimal implements Command {
     public String execute(String[] cmd) {
         try {
             this.play.getZoo().findAnimalByName(cmd[3]);
-            return "There is already an animal with this name in the zoo.";
+            return this.play.getOption().getGeneralCmdBundle()
+                    .getString("ALREADY_EXISTING_ANIMAL_NAME");
+//            return "There is already an animal with this name in the zoo.";
         } catch (UnknownNameException ex1) {
             try {
                 IPaddock pad = this.play.getZoo().findPaddockByName(cmd[2]);
@@ -43,8 +45,11 @@ public class CreateAnimal implements Command {
                 Sex sex = Sex.MALE.findByName(cmd[5]);
                 Animal animal = new AnimalImpl(specie, cmd[3], pad, sex);
                 pad.addAnimal(animal);
-                return "The animal has been created.";
-            } catch (EmptyNameException | UnknownNameException | AlreadyUsedNameException | IncorrectDataException ex) {
+//                return "The animal has been created.";
+                return this.play.getOption().getGeneralCmdBundle()
+                        .getString("ANIMAL_CREATION_SUCCESS");
+            } catch (EmptyNameException | UnknownNameException 
+                    | AlreadyUsedNameException | IncorrectDataException ex) {
                 return ex.getMessage();
             }
         } catch (EmptyNameException ex) {
