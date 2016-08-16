@@ -28,7 +28,9 @@ public class CreatePaddock implements Command {
         try {
             this.play.getZoo().addPaddock(cmd[2], Integer.parseInt(cmd[3]), Integer.parseInt(cmd[4]),
                     Integer.parseInt(cmd[5]), Integer.parseInt(cmd[6]));
-            return "Your paddock has been sucessfully created.";
+//            return "Your paddock has been sucessfully created.";
+            return this.play.getOption().getGeneralCmdBundle()
+                    .getString("PADDOCK_CREATION_SUCCESS");
         } catch (NameException | IncorrectDimensionsException ex) {
             return ex.getMessage();
         }
