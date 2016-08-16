@@ -25,7 +25,8 @@ public class Options implements Command{
     @Override
     public String execute(String[] cmd) {
         this.play.getOption().setLanguage(cmd[2]);
-        return "OK";
+        return this.play.getOption().getGeneralCmdBundle()
+                .getString("OPTION_CHANGE_SUCCESS");
     }
 
     @Override
