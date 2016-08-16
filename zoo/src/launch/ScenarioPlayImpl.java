@@ -1,6 +1,7 @@
 package launch;
 
 import java.util.ResourceBundle;
+import launch.options.Option;
 import launch.play.Play;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,6 +33,11 @@ public class ScenarioPlayImpl implements Play{
 
     @Override
     public void setZoo(IZoo zoo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Option getOption() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

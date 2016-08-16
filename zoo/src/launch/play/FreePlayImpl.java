@@ -1,7 +1,7 @@
 package launch.play;
 
 import java.util.ResourceBundle;
-import launch.play.Play;
+import launch.options.Option;
 import lombok.Getter;
 import lombok.Setter;
 import zoo.IZoo;
@@ -15,13 +15,16 @@ public class FreePlayImpl implements Play{
 
     @Getter
     public ResourceBundle bundle;
+     @Getter
+    public Option option;
     
     @Getter @Setter
     public IZoo zoo;
 
-    public FreePlayImpl(ResourceBundle bundle) {
+    public FreePlayImpl(ResourceBundle bundle, Option opt) {
         this.zoo = new Zoo();
         this.bundle = bundle;
+        this.option = opt;
     }
     
     
