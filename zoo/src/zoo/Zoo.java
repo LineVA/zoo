@@ -140,7 +140,7 @@ public class Zoo implements IZoo {
         } else {
             throw new AlreadyUsedNameException(
                     this.option.getPaddockBundle()
-                    .getString("ALREADY_EXISTING_NAME_PADDOCK"));
+                    .getString("ALREADY_USED_NAME"));
         }
     }
     
