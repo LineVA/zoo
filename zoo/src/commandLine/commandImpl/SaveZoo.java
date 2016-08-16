@@ -28,7 +28,8 @@ public class SaveZoo implements Command {
         Save saveProcess = new SaveImpl();
         try {
             saveProcess.saveZoo(this.play.getZoo(), cmd[1]);
-            return "Your zoo has been saved.";
+            return this.play.getOption().getGeneralCmdBundle()
+                    .getString("SAVE_SUCCESS");
         } catch (EmptyNameException ex) {
             return ex.getMessage();
             //  Logger.getLogger(SaveZoo.class.getName()).log(Level.SEVERE, null, ex);
