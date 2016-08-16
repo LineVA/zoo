@@ -1,5 +1,6 @@
 package launch.options;
 
+import backup.save.SaveImpl;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import lombok.Getter;
@@ -10,6 +11,7 @@ import lombok.Getter;
  */
 public class Option {
 
+    @Getter
     Locale locale;
 
     @Getter
@@ -46,4 +48,14 @@ public class Option {
         updateBundles();
     }
 
+    /**
+     * For save
+     * @param friend
+     * @return 
+     */
+    
+    public String getLocale(SaveImpl.FriendSave friend) {
+        friend.hashCode();
+        return this.locale.getLanguage();
+    }
 }

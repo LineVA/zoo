@@ -187,6 +187,7 @@ public class SaveImpl implements Save {
         zooEl.addContent(createElementWithText("age", Integer.toString(zoo.getAge(friendSave))));
         zooEl.addContent(createElementWithText("monthsPerEvaluation", Integer.toString(zoo.getMonthsPerEvaluation(friendSave))));
         zooEl.addContent(createElementWithText("horizon", Integer.toString(zoo.getHorizon(friendSave))));
+        zooEl.addContent(createElementWithText("language", zoo.getOption(friendSave).getLocale(friendSave)));
         return zooEl;
     }
 }

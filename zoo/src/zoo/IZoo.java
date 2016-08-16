@@ -23,7 +23,7 @@ public interface IZoo {
 
     public void initiateZoo(String name, int width, int height, Map<String, Specie> species, int age, int monthsPerEvaluation, int horizon)
             throws IncorrectDimensionsException, EmptyNameException, IOException;
-    
+
     public void setOption(Option option);
 
     public void addPaddock(String paddockName, int x, int y, int width, int height)
@@ -31,7 +31,7 @@ public interface IZoo {
 
     public void addPaddock(IPaddock paddock)
             throws AlreadyUsedNameException, IncorrectDimensionsException;
-    
+
     public void removePaddock(IPaddock paddock);
 
     public ArrayList<String> listPaddock(Specie specie);
@@ -82,4 +82,7 @@ public interface IZoo {
     public int getAge(SaveImpl.FriendSave friend);
 
     public int getHorizon(SaveImpl.FriendSave friend);
+
+    public Option getOption(SaveImpl.FriendSave friend);
+
 }

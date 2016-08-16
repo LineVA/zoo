@@ -432,4 +432,11 @@ public class Zoo implements IZoo {
         friend.hashCode();
         return this.horizon;
     }
+    
+     @Override
+    public Option getOption(SaveImpl.FriendSave friend) {
+        friend.hashCode();
+        return this.option;
+    }
 }
+
