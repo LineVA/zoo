@@ -1,6 +1,8 @@
 package zoo.animal.specie;
 
+import exception.name.UnknownNameException;
 import lombok.Getter;
+import zoo.animal.feeding.Diet;
 
 /**
  *
@@ -20,7 +22,8 @@ public enum Family {
     LEMURIDAE(10),
     INDRIIDAE(11),
     DAUBENTONIIDAE(12),
-    VHEIROGALEIDAE(13)
+    VHEIROGALEIDAE(13),
+    EQUIDAE(14),
 //    HERPESTIDAE(9),
 //    HYENIDAE(10),
 //    VIVERRIDAe(11),
@@ -49,6 +52,15 @@ public enum Family {
     
     Family(int id){
         this.id = id;
+    }
+    
+     public static Family findById(int id) throws UnknownNameException {
+        for (Family family : Family.values()) {
+            if (family.getId() == id) {
+                return family;
+            }
+        }
+        throw new UnknownNameException("No family has this identifier.");
     }
     
 }
