@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 import zoo.animal.Animal;
+import zoo.animal.specie.Family;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
 import zoo.paddock.Paddock;
@@ -256,10 +257,29 @@ public class Zoo implements IZoo {
         return kidsNb * 1 + presentedSpecies.size() * 1 + familyEvaluation(presentedSpecies);
     }
     
-    public int familyEvaluation(ArrayList<Specie> species){
+    private int familyEvaluation(ArrayList<Specie> species){
         int evaluation = 0;
-        
-        return evaluation;
+        int[] families = familiesArrayFilling(species);
+        int familiesNb = 0;
+        int byThree = 0;
+        for(int i = 1; i<families.length ; i++){
+            if(families[i] > 0){
+                familiesNb += 1;
+            }
+            if(families[i] >= 3){
+                byThree += 1;
+            }
+        }
+        return familiesNb / 3 + byThree ;
+    }
+    
+    private int[] familiesArrayFilling(ArrayList<Specie> species){
+        int[] families = new int[Family.values().length];
+        for(Specie spec : species){
+            int fam = spec.getFamily();
+            families[fam] += 1;
+        }
+        return families;
     }
 
     @Override
