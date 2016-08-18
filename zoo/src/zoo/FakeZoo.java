@@ -3,6 +3,7 @@ package zoo;
 import java.io.IOException;
 import java.util.Map;
 import launch.InstanciateSpecies;
+import lombok.Getter;
 import org.jdom2.JDOMException;
 import zoo.animal.specie.Specie;
 
@@ -11,11 +12,18 @@ import zoo.animal.specie.Specie;
  * @author doyenm
  */
 public class FakeZoo {
+
+    @Getter
     String name;
+    @Getter
     int width;
+    @Getter
     int height;
+    @Getter
     int age;
+    @Getter
     int monthsPerEvaluation;
+    @Getter
     int horizon;
 
     public FakeZoo(String name, int width, int height, int age,
@@ -27,12 +35,12 @@ public class FakeZoo {
         this.monthsPerEvaluation = monthsPerEvaluation;
         this.horizon = horizon;
     }
-    
-    public IZoo convertToZoo() throws IOException, JDOMException{
-         Map<String, Specie> spec = InstanciateSpecies.instanciateSpecies("resources/species");
-         IZoo zoo = new Zoo();
-         zoo.initiateZoo(this.name, this.width, this.height, spec, this.age, 
-                 this.monthsPerEvaluation, this.horizon);
-         return zoo;
+
+    public IZoo convertToZoo() throws IOException, JDOMException {
+        Map<String, Specie> spec = InstanciateSpecies.instanciateSpecies("resources/species");
+        IZoo zoo = new Zoo();
+        zoo.initiateZoo(this.name, this.width, this.height, spec, this.age,
+                this.monthsPerEvaluation, this.horizon);
+        return zoo;
     }
 }
