@@ -37,10 +37,10 @@ public interface IZoo {
 
     public int evaluate();
 
-    public ArrayList<String> death() throws UnknownNameException;
+//    public ArrayList<String> death() throws UnknownNameException;
 
-    public ArrayList<String> birth()
-            throws AlreadyUsedNameException, IncorrectDataException, EmptyNameException;
+//    public ArrayList<String> birth()
+//            throws AlreadyUsedNameException, IncorrectDataException, EmptyNameException;
 
     public IPaddock findPaddockByName(String paddockName) throws EmptyNameException, UnknownNameException;
 
@@ -54,7 +54,7 @@ public interface IZoo {
 
     public ArrayList<String> listSpecie(IPaddock paddock);
 
-    public void ageing();
+    public ArrayList<String> ageing() throws IncorrectDataException, EmptyNameException;
 
     public double grade() throws UnknownNameException;
 

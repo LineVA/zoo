@@ -35,14 +35,14 @@ public class Evaluate implements Command {
            zooEvaluation += this.play.getZoo().grade();
             // Special events :
             // ageing
-            this.play.getZoo().ageing();
+            info.addAll(this.play.getZoo().ageing());
             // birth
-            info.addAll(this.play.getZoo().birth());
+//            info.addAll(this.play.getZoo().birth());
             // death
-            info.addAll(this.play.getZoo().death());
+//            info.addAll(this.play.getZoo().death());
             // Zoo evaluation
            zooEvaluation += this.play.getZoo().evaluate();
-        } catch (UnknownNameException | AlreadyUsedNameException |
+        } catch (UnknownNameException | 
                 IncorrectDataException | EmptyNameException ex) {
             return ex.getMessage();
         }
