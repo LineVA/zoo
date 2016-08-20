@@ -17,8 +17,6 @@ import zoo.animal.specie.Specie;
  */
 public interface IPaddock {
 
-    public void setOption(Option option);
-
     public void instanciatePaddock();
 
     public void setBiome(String biomeName) throws UnknownNameException;

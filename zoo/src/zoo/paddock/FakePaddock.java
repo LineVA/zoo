@@ -26,7 +26,7 @@ public class FakePaddock {
     public IPaddock convertToPaddock() throws IncorrectDimensionsException, EmptyNameException{
 //        throw new UnsupportedOperationException("Management of neightbourhood in the mload of a zoo");
         return new Paddock(this.name, new PaddockCoordinates(this.x, this.y, 
-                this.width, this.height), new ArrayList<IPaddock>());
+                this.width, this.height), new ArrayList<IPaddock>(), null);
     }
     
     

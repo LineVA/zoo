@@ -33,10 +33,6 @@ public class Paddock implements Cloneable, IPaddock {
 
     private Option option;
 
-    public void setOption(Option option) {
-        this.option = option;
-    }
-
     /**
      * The name of the paddock
      */
@@ -67,10 +63,13 @@ public class Paddock implements Cloneable, IPaddock {
      * @param name the name of the paddock
      * @param coor the coordinates of the paddock
      */
-    public Paddock(String name, PaddockCoordinates coor, ArrayList<IPaddock> neightbourhood)
+    public Paddock(String name, PaddockCoordinates coor, 
+            ArrayList<IPaddock> neightbourhood, Option option)
             throws EmptyNameException {
+        this.option = option;
         if (name.trim().equals("")) {
-            throw new EmptyNameException("A paddock cannot have an empty name.");
+            throw new EmptyNameException(
+                    this.option.getPaddockBundle().getString("EMPTY_NAME"));
         } else {
             this.name = name;
         }
@@ -125,8 +124,8 @@ public class Paddock implements Cloneable, IPaddock {
     public void addAnimal(Animal animal) throws AlreadyUsedNameException {
         Animal success = this.animals.putIfAbsent(animal.getName(), animal);
         if (success != null) {
-            throw new AlreadyUsedNameException("There is already an animal with"
-                    + " this name is this paddock, please choose another one.");
+            throw new AlreadyUsedNameException(
+            this.option.getPaddockBundle().getString("ALREADY_USED_NAME"));
         }
     }
 

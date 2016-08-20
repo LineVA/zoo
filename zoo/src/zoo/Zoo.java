@@ -133,10 +133,9 @@ public class Zoo implements IZoo {
                 neightbourhood.add(tmp);
             }
         }
-        IPaddock paddock = new Paddock(paddockName, coor, neightbourhood);
+        IPaddock paddock = new Paddock(paddockName, coor, neightbourhood, option);
         IPaddock success = this.paddocks.putIfAbsent(paddockName, paddock);
         if (success == null) {
-            paddock.setOption(this.option);
             reactualizeNeightbourhoods(paddock, neightbourhood);
         } else {
             throw new AlreadyUsedNameException(
@@ -182,7 +181,6 @@ public class Zoo implements IZoo {
         }
         IPaddock success = this.paddocks.putIfAbsent(paddock.getName(), paddock);
         if (success == null) {
-            paddock.setOption(this.option);
             paddock.addAllInNeightbourhood(neightbourhood);
             reactualizeNeightbourhoods(paddock, neightbourhood);
         } else {
