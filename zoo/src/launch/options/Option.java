@@ -27,8 +27,7 @@ public class Option {
 
     public Option() {
         locale = Locale.getDefault();
-        this.generalCmdBundle = ResourceBundle.getBundle("i18n.info");
-        this.zooBundle = ResourceBundle.getBundle("i18n.zoo.info");
+      this.updateBundles();
     }
 
     public Option(String str) {
