@@ -14,6 +14,7 @@ import backup.save.SaveImpl;
 import exception.name.EmptyNameException;
 import java.util.Map;
 import java.util.TreeMap;
+import launch.options.Option;
 import zoo.animal.Animal;
 import zoo.animal.death.DieImpl;
 import zoo.animal.death.IDie;
@@ -29,6 +30,12 @@ import zoo.animal.specie.Specie;
 // "treeDensity", "treeHeight", "drop", "waterSalinity", "humidity"})
 @EqualsAndHashCode()
 public class Paddock implements Cloneable, IPaddock {
+
+    private Option option;
+
+    public void setOption(Option option) {
+        this.option = option;
+    }
 
     /**
      * The name of the paddock
@@ -60,7 +67,7 @@ public class Paddock implements Cloneable, IPaddock {
      * @param name the name of the paddock
      * @param coor the coordinates of the paddock
      */
-    public Paddock(String name, PaddockCoordinates coor, ArrayList<IPaddock> neightbourhood) 
+    public Paddock(String name, PaddockCoordinates coor, ArrayList<IPaddock> neightbourhood)
             throws EmptyNameException {
         if (name.trim().equals("")) {
             throw new EmptyNameException("A paddock cannot have an empty name.");
@@ -137,10 +144,10 @@ public class Paddock implements Cloneable, IPaddock {
         info.add("Biome's characteristics : " + this.attributes.toString());
         return info;
     }
-    
-    private String listNeightbourhood(){
+
+    private String listNeightbourhood() {
         String neightbours = "";
-        for(IPaddock pad : this.neightbourhood){
+        for (IPaddock pad : this.neightbourhood) {
             neightbours += pad.getName() + ", ";
         }
         return neightbours;
@@ -252,13 +259,13 @@ public class Paddock implements Cloneable, IPaddock {
         Animal animal;
         while (it.hasNext()) {
 //            animal = (Animal) it.next();
-       //     this.animals.remove(animal.getName());
+            //     this.animals.remove(animal.getName());
             it.remove();
         }
     }
-    
+
     @Override
-    public void removeAnimal(Animal animal){
+    public void removeAnimal(Animal animal) {
         this.animals.remove(animal.getName());
     }
 
@@ -363,31 +370,31 @@ public class Paddock implements Cloneable, IPaddock {
         }
         return presentedSpecies;
     }
-    
+
     /**
      *
      * @param paddock
      */
-    public void addInNeightbourhood(IPaddock paddock){
-         this.neightbourhood.add(paddock);
-     }
-     
+    public void addInNeightbourhood(IPaddock paddock) {
+        this.neightbourhood.add(paddock);
+    }
+
     @Override
-     public void addAllInNeightbourhood(ArrayList<IPaddock> neightbourhood){
-         this.neightbourhood.addAll(neightbourhood);
-     }
-     
-     @Override
-     public void removeFromNeightbourhood(){
-         for(IPaddock neightbour : this.neightbourhood){
-             neightbour.removeANeightbour(this);
-         }
-     }
-     
-     @Override
-     public void removeANeightbour(IPaddock paddock){
-         this.neightbourhood.remove(paddock);
-     }
+    public void addAllInNeightbourhood(ArrayList<IPaddock> neightbourhood) {
+        this.neightbourhood.addAll(neightbourhood);
+    }
+
+    @Override
+    public void removeFromNeightbourhood() {
+        for (IPaddock neightbour : this.neightbourhood) {
+            neightbour.removeANeightbour(this);
+        }
+    }
+
+    @Override
+    public void removeANeightbour(IPaddock paddock) {
+        this.neightbourhood.remove(paddock);
+    }
 
     @Override
     public ArrayList<Specie> listSpeciesInNeightbourhood() {

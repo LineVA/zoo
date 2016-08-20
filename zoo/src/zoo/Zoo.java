@@ -25,9 +25,9 @@ import zoo.paddock.Paddock;
  * @author doyenm
  */
 public class Zoo implements IZoo {
-    
+
     private Option option;
-    
+
     public void setOption(Option option) {
         this.option = option;
     }
@@ -66,7 +66,7 @@ public class Zoo implements IZoo {
      */
     private double grade;
     private int horizon;
-    
+
     public Zoo() {
         //  this.monthsPerEvaluation = 6;
     }
@@ -136,6 +136,7 @@ public class Zoo implements IZoo {
         IPaddock paddock = new Paddock(paddockName, coor, neightbourhood);
         IPaddock success = this.paddocks.putIfAbsent(paddockName, paddock);
         if (success == null) {
+            paddock.setOption(this.option);
             reactualizeNeightbourhoods(paddock, neightbourhood);
         } else {
             throw new AlreadyUsedNameException(
@@ -143,7 +144,7 @@ public class Zoo implements IZoo {
                     .getString("ALREADY_USED_NAME"));
         }
     }
-    
+
     private IPaddock checkNeightbourhood(Entry<String, IPaddock> entry,
             PaddockCoordinates coor, PaddockCoordinates coorNeightbourhood)
             throws IncorrectDimensionsException {
@@ -157,7 +158,7 @@ public class Zoo implements IZoo {
         }
         return neightbour;
     }
-    
+
     private boolean checkEmplacement(PaddockCoordinates coor) throws IncorrectDimensionsException {
         if (this.tooSmallforThisPaddock(coor)) {
             throw new IncorrectDimensionsException(
@@ -165,7 +166,7 @@ public class Zoo implements IZoo {
         }
         return true;
     }
-    
+
     public void addPaddock(IPaddock paddock)
             throws AlreadyUsedNameException, IncorrectDimensionsException {
         PaddockCoordinates coor = paddock.getCoordinates();
@@ -181,6 +182,7 @@ public class Zoo implements IZoo {
         }
         IPaddock success = this.paddocks.putIfAbsent(paddock.getName(), paddock);
         if (success == null) {
+            paddock.setOption(this.option);
             paddock.addAllInNeightbourhood(neightbourhood);
             reactualizeNeightbourhoods(paddock, neightbourhood);
         } else {
@@ -188,7 +190,7 @@ public class Zoo implements IZoo {
                     this.option.getPaddockBundle().getString("ALREADY_USED_NAME_PADDOCK"));
         }
     }
-    
+
     private void reactualizeNeightbourhoods(IPaddock paddock, ArrayList<IPaddock> neightbourhoods) {
         for (IPaddock neightbour : neightbourhoods) {
             neightbour.addInNeightbourhood(paddock);
@@ -237,7 +239,7 @@ public class Zoo implements IZoo {
         throw new UnknownNameException(
                 this.option.getPaddockBundle().getString("UNKNOWN_PADDOCK"));
     }
-    
+
     @Override
     public void removePaddock(IPaddock paddock) {
         this.paddocks.remove(paddock.getName());
@@ -255,7 +257,7 @@ public class Zoo implements IZoo {
         return ((coor.getX() + coor.getWidth() > this.width)
                 || (coor.getY() + coor.getHeight() > this.height));
     }
-    
+
     @Override
     public int evaluate() {
         ArrayList<String> presentedSpecies = new ArrayList<>();
@@ -267,7 +269,7 @@ public class Zoo implements IZoo {
         }
         return kidsNb * 5 + presentedSpecies.size();
     }
-    
+
     @Override
     public ArrayList<String> death() {
         ArrayList<String> info = new ArrayList<>();
@@ -276,7 +278,7 @@ public class Zoo implements IZoo {
         }
         return info;
     }
-    
+
     @Override
     public ArrayList<String> birth()
             throws IncorrectDataException, EmptyNameException {
@@ -286,7 +288,7 @@ public class Zoo implements IZoo {
         }
         return info;
     }
-    
+
     @Override
     public void ageing() {
         this.age += this.monthsPerEvaluation;
@@ -294,7 +296,7 @@ public class Zoo implements IZoo {
             padEntry.getValue().ageing(this.monthsPerEvaluation);
         }
     }
-    
+
     @Override
     public ArrayList<PaddockCoordinates> map() throws IncorrectDimensionsException {
         ArrayList<PaddockCoordinates> map = new ArrayList<>();
@@ -304,7 +306,7 @@ public class Zoo implements IZoo {
         }
         return map;
     }
-    
+
     @Override
     public Specie findSpeciebyName(String specieName) throws EmptyNameException, UnknownNameException {
         if (specieName.trim().equals("")) {
@@ -317,24 +319,24 @@ public class Zoo implements IZoo {
         throw new UnknownNameException(
                 this.option.getSpecieBundle().getString("UNKNOWN_NAME"));
     }
-    
+
     @Override
     public Animal findAnimalByName(String animalName) throws UnknownNameException, EmptyNameException {
         if (animalName.trim().equals("")) {
             throw new EmptyNameException(
-            this.option.getAnimalBundle().getString("EMPTY_NAME"));
+                    this.option.getAnimalBundle().getString("EMPTY_NAME"));
         }
         for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
             try {
                 return padEntry.getValue().findAnimalByName(animalName);
             } catch (UnknownNameException ex) {
-                
+
             }
         }
         throw new UnknownNameException(
-        this.option.getAnimalBundle().getString("UNKNOWN_NAME"));
+                this.option.getAnimalBundle().getString("UNKNOWN_NAME"));
     }
-    
+
     @Override
     public ArrayList<String> listAnimal(Specie specie, IPaddock paddock) {
         if (paddock == null) {
@@ -347,7 +349,7 @@ public class Zoo implements IZoo {
             return paddock.listAnimal(specie);
         }
     }
-    
+
     @Override
     public ArrayList<String> listSpecie(IPaddock paddock) {
         ArrayList<String> list = new ArrayList<>();
@@ -360,7 +362,7 @@ public class Zoo implements IZoo {
         }
         return list;
     }
-    
+
     @Override
     public double grade() throws UnknownNameException {
         this.grade = 0.0;
@@ -369,7 +371,7 @@ public class Zoo implements IZoo {
         }
         return this.grade;
     }
-    
+
     @Override
     public ArrayList<String> info() {
         ArrayList<String> info = new ArrayList<>();
@@ -378,7 +380,7 @@ public class Zoo implements IZoo {
         info.add(bundle.getString("MONTHS") + this.monthsPerEvaluation);
         info.add(bundle.getString("DIMENSIONS_WIDTH") + this.width
                 + bundle.getString("COMMA_HEIGHT") + this.height);
-        info.add(bundle.getString("HORIZON")+ this.horizon);
+        info.add(bundle.getString("HORIZON") + this.horizon);
         info.add(bundle.getString("AGE") + this.age);
         info.add(bundle.getString("GRADE") + this.grade);
         return info;
@@ -390,53 +392,52 @@ public class Zoo implements IZoo {
         friend.hashCode();
         return this.name;
     }
-    
+
     @Override
     public int getWidth(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.width;
     }
-    
+
     @Override
     public int getHeight(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.height;
     }
-    
+
     @Override
     public Map<String, IPaddock> getPaddocks(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.paddocks;
     }
-    
+
     @Override
     public Map<String, Specie> getSpecies(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.species;
     }
-    
+
     @Override
     public int getMonthsPerEvaluation(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.monthsPerEvaluation;
     }
-    
+
     @Override
     public int getAge(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.age;
     }
-    
+
     @Override
     public int getHorizon(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.horizon;
     }
-    
-     @Override
+
+    @Override
     public Option getOption(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.option;
     }
 }
-

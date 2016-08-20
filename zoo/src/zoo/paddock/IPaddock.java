@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import backup.save.SaveImpl;
 import exception.name.EmptyNameException;
 import java.util.Map;
+import launch.options.Option;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
 
@@ -16,12 +17,14 @@ import zoo.animal.specie.Specie;
  */
 public interface IPaddock {
 
+    public void setOption(Option option);
+
     public void instanciatePaddock();
 
     public void setBiome(String biomeName) throws UnknownNameException;
 
     public void addAnimal(Animal animal) throws AlreadyUsedNameException;
-    
+
     public void removeAnimal(Animal animal);
 
     public ArrayList<String> info();
@@ -31,7 +34,7 @@ public interface IPaddock {
 
     public ArrayList<String> listAnimal(Specie specie);
 
-    public ArrayList<String> birth() 
+    public ArrayList<String> birth()
             throws IncorrectDataException, EmptyNameException;
 
     public void ageing(int monthsPerEvaluation);
@@ -57,19 +60,19 @@ public interface IPaddock {
     public ArrayList<String> listSpeciesByName();
 
     public ArrayList<Specie> listSpecies(ArrayList<Specie> presentedSpecies);
-    
+
     public ArrayList<Specie> listSpecies();
-    
+
     public ArrayList<Specie> listSpeciesInNeightbourhood();
 
     public String getName();
-    
+
     public void addInNeightbourhood(IPaddock paddock);
-    
+
     public void addAllInNeightbourhood(ArrayList<IPaddock> neightbourhood);
-    
+
     public void removeFromNeightbourhood();
-    
+
     public void removeANeightbour(IPaddock paddock);
 
     /**
