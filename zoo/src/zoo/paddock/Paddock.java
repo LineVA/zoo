@@ -13,6 +13,7 @@ import lombok.Getter;
 import backup.save.SaveImpl;
 import exception.name.EmptyNameException;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.TreeMap;
 import launch.options.Option;
 import zoo.animal.Animal;
@@ -135,12 +136,13 @@ public class Paddock implements Cloneable, IPaddock {
 
     @Override
     public ArrayList<String> info() {
+        ResourceBundle bundle = this.option.getPaddockBundle();
         ArrayList<String> info = new ArrayList<>();
-        info.add("Name : " + this.name);
-        info.add("Coordinates : " + this.coordinates.toString());
-        info.add("Neightbours : " + this.listNeightbourhood());
-        info.add("Biome : " + this.biome);
-        info.add("Biome's characteristics : " + this.attributes.toString());
+        info.add(bundle.getString("NAME") + this.name);
+        info.add(bundle.getString("COORDINATES") + this.coordinates.toString());
+        info.add(bundle.getString("NEIGHTBOURS") + this.listNeightbourhood());
+        info.add(bundle.getString("BIOME") + this.biome);
+        info.add(bundle.getString("BIOMES_CHARACTERISTICS") + this.attributes.toString());
         return info;
     }
 
@@ -156,13 +158,12 @@ public class Paddock implements Cloneable, IPaddock {
     public Animal findAnimalByName(String animalName)
             throws UnknownNameException, EmptyNameException {
         if (name.trim().equals("")) {
-            throw new EmptyNameException("");
+            throw new EmptyNameException(this.option.getAnimalBundle().getString("EMPTY_NAME"));
         }
         if (animals.containsKey(animalName)) {
             return animals.get(animalName);
         }
-        throw new UnknownNameException("There is no animal in this paddock "
-                + "with this name.");
+        throw new UnknownNameException(this.option.getAnimalBundle().getString("UNKNOWN_NAME"));
     }
 
     public ArrayList<String> listAnimalWithSpecie(Specie specie) {
@@ -208,10 +209,10 @@ public class Paddock implements Cloneable, IPaddock {
                 for (int i = 2; i < newFamily.size(); i++) {
                     newComer = newFamily.get(i);
                     tmpAnimal.add(newComer);
-                    info.add("A newcomer : the baby of "
-                            + newFamily.get(0).getName() + " and "
+                    info.add(this.option.getAnimalBundle().getString("NEWCOMER")
+                            + newFamily.get(0).getName() + this.option.getAnimalBundle().getString("AND")
                             + newFamily.get(1).getName()
-                            + ", called " + newComer.getName());
+                            + this.option.getAnimalBundle().getString("CALLED") + newComer.getName());
                 }
             }
         }
@@ -245,7 +246,7 @@ public class Paddock implements Cloneable, IPaddock {
             // If the animal is dead
             dying = animalEntry.getValue();
             if (die.isDied(dying)) {
-                info.add("A dying animal : " + dying.getName());
+                info.add(this.option.getAnimalBundle().getString("DYING_ANIMAL") + dying.getName());
                 tmpAnimal.add(dying);
             }
         }
