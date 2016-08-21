@@ -92,9 +92,9 @@ public class TextPane extends JTextPane {
         // 2 : \n except first the very first line
         int caretInCurrent;
         if(lines.length == 1){
-            caretInCurrent = caret -countCharBeforeCurrentLine(lines);
+            caretInCurrent = caret - countCharBeforeCurrentLine(lines);
         } else {
-        caretInCurrent = caret - countCharBeforeCurrentLine(lines) - 2;
+        caretInCurrent = caret - countCharBeforeCurrentLine(lines) - 2*(lines.length-2);
         }
         return (caretInCurrent > this.cmdInvite.length());
     }
