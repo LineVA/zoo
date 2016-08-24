@@ -23,6 +23,7 @@ public class ScenarioPlayImpl implements Play {
     private CommandManager manager;
 
     public static final class FriendScenario {
+
         private FriendScenario() {
         }
     }
@@ -35,22 +36,32 @@ public class ScenarioPlayImpl implements Play {
 
     public ArrayList<Step> buildTutorial() {
         ArrayList<Step> steps = new ArrayList<>();
-        steps.add(new Step(zoo, "First, you need to create your zoo", "Your zoo is now created", 
+        steps.add(new Step(zoo, "First, you need to create your zoo", "Your zoo is now created",
                 "Use the command 'zoo create <name> <width> <height>' ; "
-                        + "see 'man zoo' for more information") {
-            @Override
-            public boolean check() {
-                return zoo.getName(friendScenario) != null;
-            }
-        });
-          steps.add(new Step(zoo, "Second, you need to create a paddock", "You have created a paddock", 
-          "Use the command '[pad|paddock] create <name> <x> <y> <width> <height>' ; "
-                  + "see 'man paddock' for more information") {
-            @Override
-            public boolean check() {
-                return zoo.getName(friendScenario) != null;
-            }
-        });
+                + "see 'man zoo' for more information") {
+                    @Override
+                    public boolean check() {
+                        return zoo.getName(friendScenario) != null;
+                    }
+                });
+        steps.add(new Step(zoo, "Second, you need to create a paddock", "You have created a paddock",
+                "Use the command '[pad|paddock] create <name> <x> <y> <width> <height>' ; "
+                + "see 'man paddock' for more information") {
+                    @Override
+                    public boolean check() {
+                        return zoo.getPaddocks(friendScenario).size() == 1;
+                    }
+                });
+        steps.add(new Step(zoo, "Third, you can install an animal in this paddock ;"
+                + " to see the list of available species, you can use the command '[specie|spec] ls'",
+                "You now have an animal in the paddock",
+                "Use the command 'animal create <name> <paddock> <specie> <sex>' ; "
+                + "see 'man paddock' for more information") {
+                    @Override
+                    public boolean check() {
+                        return zoo.getAnimals(friendScenario).size() == 1;
+                    }
+                });
         return steps;
     }
 }

@@ -59,10 +59,16 @@ public interface IZoo {
     public double grade() throws UnknownNameException;
 
     public ArrayList<String> info();
-
+    
+  /**
+     * Friend pattern : give access to each of the fields of Zoo only to the
+     * tutorial methods
+     */
     public String getName(ScenarioPlayImpl.FriendScenario friend);
 
     public Map<String, IPaddock> getPaddocks(ScenarioPlayImpl.FriendScenario friend);
+    
+     public ArrayList<String> getAnimals(ScenarioPlayImpl.FriendScenario friend);
 
     /**
      * Friend pattern : give access to each of the fields of Zoo only to the

@@ -380,6 +380,12 @@ public class Zoo implements IZoo {
     }
     
     @Override
+    public ArrayList<String> getAnimals(ScenarioPlayImpl.FriendScenario friend) {
+        friend.hashCode();
+        return this.listAnimal(null, null);
+    }
+    
+    @Override
     public String getName(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.name;
