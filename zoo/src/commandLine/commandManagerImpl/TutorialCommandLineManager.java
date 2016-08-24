@@ -25,7 +25,6 @@ import commandLine.commandImpl.RemovePaddock;
 import commandLine.commandImpl.SaveZoo;
 import java.util.ArrayList;
 import static java.util.Arrays.asList;
-import static java.util.logging.Level.parse;
 import launch.play.Play;
 import launch.play.Step;
 
@@ -63,10 +62,15 @@ public class TutorialCommandLineManager implements CommandManager {
         for (Command command : playCommands) {
             if (command.canExecute(parse)) {
                 String result = command.execute(parse);
+                // If the player uses the correct command line
+                // && no execution has been thrown 
                 if (steps.get(i).check() && command.isSuccess()) {
                     i += 1;
                     return steps.get(i-1).getSuccess() + "\n" + steps.get(i).getPrevious();
-                } 
+                    // If an exception has been thrown (expected or unexpected command line)
+                } else if (!command.isSuccess()){
+                    return result;
+                }
             }
         }
         return steps.get(i).getFail();
