@@ -40,7 +40,7 @@ public class TutorialCommandLineManager implements CommandManager {
     Iterable<Command> playCommands;
     int i = 0;
 
-    public TutorialCommandLineManager( Play play, ArrayList<Step> steps) {
+    public TutorialCommandLineManager(Play play, ArrayList<Step> steps) {
         this.steps = steps;
         this.play = play;
         // For Paddock and Animal : Ls must be before Detail
@@ -59,12 +59,14 @@ public class TutorialCommandLineManager implements CommandManager {
     @Override
     public String run(String cmd) {
         String[] parse = SplitDoubleQuotes.split(cmd);
+        System.out.println(steps.get(i).getPrevious());
         for (Command command : playCommands) {
             if (command.canExecute(parse)) {
                 String result = command.execute(parse);
                 if (steps.get(i).check()) {
                     i += 1;
-                    return steps.get(i).getAdvert();
+                    return steps.get(i-1).getNext() + "\n" + steps.get(i).getPrevious();
+
                 }
             }
         }

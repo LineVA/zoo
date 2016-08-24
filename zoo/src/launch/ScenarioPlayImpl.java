@@ -2,7 +2,9 @@ package launch;
 
 import commandLine.CommandManager;
 import commandLine.commandManagerImpl.TutorialCommandLineManager;
+import java.util.ArrayList;
 import launch.play.Play;
+import launch.play.Step;
 import lombok.Getter;
 import lombok.Setter;
 import zoo.IZoo;
@@ -20,8 +22,31 @@ public class ScenarioPlayImpl implements Play {
     @Getter
     private CommandManager manager;
 
+    public static final class FriendScenario {
+        private FriendScenario() {
+        }
+    }
+    private static final FriendScenario friendScenario = new FriendScenario();
+
     public ScenarioPlayImpl() {
         this.zoo = new Zoo();
-        this.manager = new TutorialCommandLineManager(this, null);
+        this.manager = new TutorialCommandLineManager(this, this.buildTutorial());
+    }
+
+    public ArrayList<Step> buildTutorial() {
+        ArrayList<Step> steps = new ArrayList<>();
+        steps.add(new Step(zoo, "First, you need to create your zoo", "Your zoo is now created") {
+            @Override
+            public boolean check() {
+                return zoo.getName(friendScenario) != null;
+            }
+        });
+          steps.add(new Step(zoo, "Second", "Your zoo is now created") {
+            @Override
+            public boolean check() {
+                return zoo.getName(friendScenario) != null;
+            }
+        });
+        return steps;
     }
 }

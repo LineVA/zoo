@@ -1,6 +1,7 @@
 package launch.play;
 
 import lombok.Getter;
+import zoo.IZoo;
 
 /**
  *
@@ -9,8 +10,19 @@ import lombok.Getter;
 public abstract class Step {
     
     @Getter
-    String advert;
+    String previous;
     
+    @Getter
+    String next;
+    
+    @Getter
+    IZoo zoo;
+    
+    public Step(IZoo zoo, String previous, String after){
+        this.zoo = zoo;
+        this.previous = previous;
+        this.next = after;
+    }
 
     public abstract boolean check();
 }
