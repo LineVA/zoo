@@ -43,7 +43,9 @@ public class ScenarioPlayImpl implements Play {
                 return zoo.getName(friendScenario) != null;
             }
         });
-          steps.add(new Step(zoo, "Second", "Your zoo is now created", "fail") {
+          steps.add(new Step(zoo, "Second, you need to create a paddock", "You have created a paddock", 
+          "Use the command '[pad|paddock] create <name> <x> <y> <width> <height>' ; "
+                  + "see 'man paddock' for more information") {
             @Override
             public boolean check() {
                 return zoo.getName(friendScenario) != null;

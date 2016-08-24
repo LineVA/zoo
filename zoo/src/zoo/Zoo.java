@@ -373,6 +373,12 @@ public class Zoo implements IZoo {
         return this.name;
     }
     
+      @Override
+    public Map<String, IPaddock> getPaddocks(ScenarioPlayImpl.FriendScenario friend) {
+        friend.hashCode();
+        return this.paddocks;
+    }
+    
     @Override
     public String getName(SaveImpl.FriendSave friend) {
         friend.hashCode();

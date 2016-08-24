@@ -29,7 +29,7 @@ public interface IZoo {
 
     public void addPaddock(IPaddock paddock)
             throws AlreadyUsedNameException, IncorrectDimensionsException;
-    
+
     public void removePaddock(IPaddock paddock);
 
     public ArrayList<String> listPaddock(Specie specie);
@@ -61,7 +61,9 @@ public interface IZoo {
     public ArrayList<String> info();
 
     public String getName(ScenarioPlayImpl.FriendScenario friend);
-    
+
+    public Map<String, IPaddock> getPaddocks(ScenarioPlayImpl.FriendScenario friend);
+
     /**
      * Friend pattern : give access to each of the fields of Zoo only to the
      * save methods
