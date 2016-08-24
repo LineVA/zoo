@@ -35,13 +35,15 @@ public class ScenarioPlayImpl implements Play {
 
     public ArrayList<Step> buildTutorial() {
         ArrayList<Step> steps = new ArrayList<>();
-        steps.add(new Step(zoo, "First, you need to create your zoo", "Your zoo is now created") {
+        steps.add(new Step(zoo, "First, you need to create your zoo", "Your zoo is now created", 
+                "Use the command 'zoo create <name> <width> <height>' ; "
+                        + "see 'man zoo' for more information") {
             @Override
             public boolean check() {
                 return zoo.getName(friendScenario) != null;
             }
         });
-          steps.add(new Step(zoo, "Second", "Your zoo is now created") {
+          steps.add(new Step(zoo, "Second", "Your zoo is now created", "fail") {
             @Override
             public boolean check() {
                 return zoo.getName(friendScenario) != null;

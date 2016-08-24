@@ -11,17 +11,19 @@ public abstract class Step {
     
     @Getter
     String previous;
-    
     @Getter
-    String next;
+    String success;
+    @Getter
+    String fail;
     
     @Getter
     IZoo zoo;
     
-    public Step(IZoo zoo, String previous, String after){
+    public Step(IZoo zoo, String previous, String success, String fail){
         this.zoo = zoo;
         this.previous = previous;
-        this.next = after;
+        this.success = success;
+        this.fail = fail;
     }
 
     public abstract boolean check();

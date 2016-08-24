@@ -65,12 +65,11 @@ public class TutorialCommandLineManager implements CommandManager {
                 String result = command.execute(parse);
                 if (steps.get(i).check()) {
                     i += 1;
-                    return steps.get(i-1).getNext() + "\n" + steps.get(i).getPrevious();
-
-                }
+                    return steps.get(i-1).getSuccess() + "\n" + steps.get(i).getPrevious();
+                } 
             }
         }
-        return "nulllll";
+        return steps.get(i).getFail();
     }
 
 }
