@@ -13,6 +13,7 @@ import backup.save.SaveImpl;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
+import launch.ScenarioPlayImpl;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
@@ -366,6 +367,12 @@ public class Zoo implements IZoo {
     }
 
     // Access to the fields only the the friend class
+     @Override
+    public String getName(ScenarioPlayImpl.FriendScenario friend) {
+        friend.hashCode();
+        return this.name;
+    }
+    
     @Override
     public String getName(SaveImpl.FriendSave friend) {
         friend.hashCode();
