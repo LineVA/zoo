@@ -1,7 +1,7 @@
 package launch.play;
 
+import commandLine.CommandManager;
 import zoo.IZoo;
-import zoo.Zoo;
 
 /**
  *
@@ -12,5 +12,7 @@ public interface Play {
     public IZoo getZoo();
     
     public void setZoo(IZoo zoo);
+    
+    public CommandManager getManager();
     
 }
