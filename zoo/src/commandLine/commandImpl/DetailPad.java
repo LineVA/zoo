@@ -24,10 +24,18 @@ public class DetailPad implements Command {
         return false;
     }
 
+    boolean success = false;
+    
+     @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
+    
     @Override
     public String execute(String[] cmd) {
         try {
             IPaddock pad = this.play.getZoo().findPaddockByName(cmd[1]);
+            this.success= true;
             return (FormattingDisplay.formattingArrayList(pad.info()));
         } catch (UnknownNameException ex) {
             return "No paddock has this name.";

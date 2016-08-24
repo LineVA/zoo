@@ -17,4 +17,6 @@ public interface Command {
     
     public boolean hasInitiateAZoo();
     
+    public boolean isSuccess();
+    
 }

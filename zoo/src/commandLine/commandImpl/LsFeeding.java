@@ -21,12 +21,20 @@ public class LsFeeding implements Command {
 
     @Override
     public String execute(String[] cmd) {
+        this.success = success;
         return FormattingDisplay.formattingArrayList(Diet.NONE.list());
     }
 
       @Override
     public boolean hasInitiateAZoo() {
         return false;
+    }
+    
+    boolean success = false;
+    
+     @Override
+    public boolean isSuccess() {
+        return this.success;
     }
     
     @Override

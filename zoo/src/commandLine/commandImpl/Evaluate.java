@@ -25,6 +25,13 @@ public class Evaluate implements Command {
         return false;
     }
     
+    boolean success = false;
+    
+     @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
+    
     @Override
     public String execute(String[] cmd) {
         ArrayList<String> info = new ArrayList<>();
@@ -41,6 +48,7 @@ public class Evaluate implements Command {
             info.addAll(this.play.getZoo().death());
             // Zoo evaluation
            zooEvaluation += this.play.getZoo().evaluate();
+           this.success = true;
         } catch (UnknownNameException | AlreadyUsedNameException | IncorrectDataException ex) {
             return ex.getMessage();
         }

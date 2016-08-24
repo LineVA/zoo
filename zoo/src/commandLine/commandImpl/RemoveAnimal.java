@@ -28,12 +28,20 @@ public class RemoveAnimal implements Command {
     public boolean hasInitiateAZoo() {
         return false;
     }
+    
+    boolean success = false;
+    
+     @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
 
     @Override
     public String execute(String[] cmd) {
         try {
             Animal animal = this.play.getZoo().findAnimalByName(cmd[2]);
              animal.getPaddock().removeAnimal(animal);
+             this.success = true;
             return "This animal has been removed.";
         } catch (EmptyNameException | UnknownNameException ex) {
             return ex.getMessage();

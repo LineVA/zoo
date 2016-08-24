@@ -23,11 +23,19 @@ public class DetailSpecie implements Command {
     public boolean hasInitiateAZoo() {
         return false;
     }
+    
+    boolean success = false;
+    
+     @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
 
     @Override
     public String execute(String[] cmd) {
         try {
             Specie spec = this.play.getZoo().findSpeciebyName(cmd[1]);
+            this.success = true;
             return (FormattingDisplay.formattingArrayList(spec.info()));
         } catch (UnknownNameException ex) {
             return "No paddock has this name.";

@@ -23,11 +23,19 @@ public class DetailAnimal implements Command {
     public boolean hasInitiateAZoo() {
         return false;
     }
+    
+    boolean success = false;
+    
+     @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
 
     @Override
     public String execute(String[] cmd) {
         try {
             Animal animal = this.play.getZoo().findAnimalByName(cmd[1]);
+            this.success = true;
             return (FormattingDisplay.formattingArrayList(animal.info()));
         } catch (UnknownNameException | EmptyNameException ex) {
             return ex.getMessage();

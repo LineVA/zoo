@@ -30,6 +30,13 @@ public class LsAnimal implements Command {
         return false;
     }
     
+    boolean success = false;
+    
+     @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
+    
     @Override
     public String execute(String[] cmd) {
         Specie spec = null;
@@ -41,6 +48,7 @@ public class LsAnimal implements Command {
             if (args[1] != null) {
                 pad = this.play.getZoo().findPaddockByName(args[1]);
             }
+            this.success = success;
             return FormattingDisplay.formattingArrayList(this.play.getZoo().listAnimal(spec, pad));
         } catch (EmptyNameException ex) {
             return ex.getMessage();

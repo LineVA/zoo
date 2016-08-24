@@ -11,23 +11,31 @@ import launch.play.Play;
  */
 public class CreatePaddock implements Command {
 
-            Play play;
-    
-    public CreatePaddock(Play play){
+    Play play;
+
+    public CreatePaddock(Play play) {
         this.play = play;
     }
-    
-      @Override
+
+    boolean success = false;
+
+    @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
+
+    @Override
     public boolean hasInitiateAZoo() {
         return false;
     }
-    
+
     @Override
     public String execute(String[] cmd) {
         // TO DO : if zoo has not been yet initiate
         try {
             this.play.getZoo().addPaddock(cmd[2], Integer.parseInt(cmd[3]), Integer.parseInt(cmd[4]),
                     Integer.parseInt(cmd[5]), Integer.parseInt(cmd[6]));
+            this.success = true;
             return "Your paddock has been sucessfully created.";
         } catch (NameException | IncorrectDimensionsException ex) {
             return ex.getMessage();

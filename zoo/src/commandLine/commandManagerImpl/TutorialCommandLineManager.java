@@ -63,7 +63,7 @@ public class TutorialCommandLineManager implements CommandManager {
         for (Command command : playCommands) {
             if (command.canExecute(parse)) {
                 String result = command.execute(parse);
-                if (steps.get(i).check()) {
+                if (steps.get(i).check() && command.isSuccess()) {
                     i += 1;
                     return steps.get(i-1).getSuccess() + "\n" + steps.get(i).getPrevious();
                 } 

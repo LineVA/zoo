@@ -24,11 +24,19 @@ public class RemovePaddock implements Command{
         return false;
     }
 
+    boolean success = false;
+    
+     @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
+    
     @Override
     public String execute(String[] cmd) {
         try {
             IPaddock pad = this.play.getZoo().findPaddockByName(cmd[2]);
             this.play.getZoo().removePaddock(pad);
+            this.success = true;
             return "This paddock has been removed.";
         } catch (EmptyNameException | UnknownNameException ex) {
             return ex.getMessage();

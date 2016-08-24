@@ -25,6 +25,13 @@ public class LsPaddock implements Command {
     public boolean hasInitiateAZoo() {
         return false;
     }
+    
+    boolean success = false;
+    
+     @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
 
     @Override
     public String execute(String[] cmd) {
@@ -32,6 +39,7 @@ public class LsPaddock implements Command {
         if (args[0] != null) {
             try {
                 spec = this.play.getZoo().findSpeciebyName(args[0]);
+                this.success = true;
             } catch (EmptyNameException | UnknownNameException ex) {
                 return ex.getMessage();
             }

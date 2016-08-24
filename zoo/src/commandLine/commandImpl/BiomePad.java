@@ -13,6 +13,12 @@ import zoo.paddock.IPaddock;
 public class BiomePad implements Command {
 
     Play play;
+    boolean success = false;
+    
+     @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
 
     public BiomePad(Play play) {
         this.play = play;
@@ -28,12 +34,11 @@ public class BiomePad implements Command {
         try {
             IPaddock pad = this.play.getZoo().findPaddockByName(cmd[1]);
             pad.setBiome(cmd[3]);
+            this.success = true;
             return "The biome of the paddock '" + cmd[1] + "' is now '" + cmd[3] + "'.";
-        } catch (UnknownNameException ex) {
+        } catch (UnknownNameException | EmptyNameException ex) {
             return ex.getMessage();
-        } catch (EmptyNameException ex) {
-            return ex.getMessage();
-        }
+        } 
     }
 
     @Override
@@ -47,5 +52,4 @@ public class BiomePad implements Command {
         }
         return false;
     }
-
 }

@@ -23,6 +23,13 @@ public class LoadTutorial implements Command{
     public LoadTutorial(Play play) {
         this.play = play;
     }
+    
+    boolean success = false;
+    
+     @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
 
     @Override
     public String execute(String[] cmd) {
@@ -30,6 +37,7 @@ public class LoadTutorial implements Command{
             Load load = new LoadImpl();
             this.play.setZoo(load.loadZoo("gameBackUps/" + cmd[1] + ".xml"));
             this.previousHasBeenSuccessfull = true;
+            this.success = true;
             return "You are now in your new zoo.";
         } catch (Exception ex) {
             this.previousHasBeenSuccessfull = false;

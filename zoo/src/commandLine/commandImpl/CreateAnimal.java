@@ -20,6 +20,13 @@ public class CreateAnimal implements Command {
 
     Play play;
 
+    boolean success = false;
+    
+     @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
+    
     public CreateAnimal(Play play) {
         this.play = play;
     }
@@ -37,6 +44,7 @@ public class CreateAnimal implements Command {
             Sex sex = Sex.MALE.findByName(cmd[5]);
             Animal animal = new AnimalImpl(specie, cmd[3], pad, sex);
             pad.addAnimal(animal);
+            this.success = true;
             return "The animal has been created.";
         } catch (EmptyNameException | UnknownNameException | AlreadyUsedNameException | IncorrectDataException ex) {
             return ex.getMessage();
