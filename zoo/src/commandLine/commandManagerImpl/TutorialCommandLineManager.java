@@ -34,14 +34,14 @@ import lombok.Getter;
  * @author doyenm
  */
 public class TutorialCommandLineManager implements CommandManager {
-    
+
     ArrayList<Step> steps;
     Play play;
     Iterable<Command> playCommands;
     int i = 0;
     @Getter
     private String firstLine;
-    
+
     public TutorialCommandLineManager(Play play, ArrayList<Step> steps) {
         this.steps = steps;
         this.firstLine = steps.get(0).getPrevious();
@@ -61,19 +61,24 @@ public class TutorialCommandLineManager implements CommandManager {
 
     @Override
     public String run(String cmd) {
-        String[] parse = SplitDoubleQuotes.split(cmd);
-        System.out.println(steps.get(i).getPrevious());
-        for (Command command : playCommands) {
-            if (command.canExecute(parse)) {
-                String result = command.execute(parse);
-                // If the player uses the correct command line
-                // && no execution has been thrown 
-                if (steps.get(i).check() && command.isSuccess()) {
-                    i += 1;
-                    return steps.get(i-1).getSuccess() + "\n" + steps.get(i).getPrevious();
-                    // If an exception has been thrown (expected or unexpected command line)
-                } else if (!command.isSuccess()){
-                    return result;
+        if (!steps.isEmpty() && i < steps.size()) {
+            String[] parse = SplitDoubleQuotes.split(cmd);
+            for (Command command : playCommands) {
+                if (command.canExecute(parse)) {
+                    String result = command.execute(parse);
+                    // If the player uses the correct command line
+                    // && no execution has been thrown 
+                    if (steps.get(i).check() && command.isSuccess()) {
+                        if (i < steps.size() - 1) {
+                            i += 1;
+                            return steps.get(i - 1).getSuccess() + "\n" + steps.get(i).getPrevious();
+                        } else {
+                            return steps.get(i - 1).getSuccess();
+                        }
+                        // If an exception has been thrown (expected or unexpected command line)
+                    } else if (!command.isSuccess()) {
+                        return result;
+                    }
                 }
             }
         }
