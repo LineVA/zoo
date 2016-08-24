@@ -73,7 +73,7 @@ public class TutorialCommandLineManager implements CommandManager {
                             i += 1;
                             return steps.get(i - 1).getSuccess() + "\n" + steps.get(i).getPrevious();
                         } else {
-                            return steps.get(i - 1).getSuccess();
+                            return steps.get(i).getSuccess();
                         }
                         // If an exception has been thrown (expected or unexpected command line)
                     } else if (!command.isSuccess()) {
