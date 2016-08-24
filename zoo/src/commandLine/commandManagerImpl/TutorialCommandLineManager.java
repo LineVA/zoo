@@ -27,20 +27,24 @@ import java.util.ArrayList;
 import static java.util.Arrays.asList;
 import launch.play.Play;
 import launch.play.Step;
+import lombok.Getter;
 
 /**
  *
  * @author doyenm
  */
 public class TutorialCommandLineManager implements CommandManager {
-
+    
     ArrayList<Step> steps;
     Play play;
     Iterable<Command> playCommands;
     int i = 0;
-
+    @Getter
+    private String firstLine;
+    
     public TutorialCommandLineManager(Play play, ArrayList<Step> steps) {
         this.steps = steps;
+        this.firstLine = steps.get(0).getPrevious();
         this.play = play;
         // For Paddock and Animal : Ls must be before Detail
         playCommands = asList(new CreateZoo(play), new DetailZoo(play),

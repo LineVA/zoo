@@ -6,6 +6,7 @@ package commandLine;
  */
 public interface CommandManager {
 
-
     public String run(String cmd);
+
+    public String getFirstLine();
 }

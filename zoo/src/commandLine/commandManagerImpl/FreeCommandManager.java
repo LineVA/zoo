@@ -25,6 +25,7 @@ import commandLine.commandImpl.RemovePaddock;
 import commandLine.commandImpl.SaveZoo;
 import static java.util.Arrays.asList;
 import launch.play.Play;
+import lombok.Getter;
 
 /**
  *
@@ -37,8 +38,12 @@ public class FreeCommandManager implements CommandManager{
 
     public boolean isInitiate = false;
 
+    @Getter
+    private String firstLine;
+    
     public FreeCommandManager(Play play) {
         this.play = play;
+        this.firstLine = "Welcome!";
         // For Paddock and Animal : Ls must be before Detail
         playCommands = asList(new CreateZoo(play), new DetailZoo(play),
                 new CreatePaddock(play),

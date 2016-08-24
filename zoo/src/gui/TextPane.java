@@ -28,8 +28,6 @@ public class TextPane extends JTextPane {
     AttributeSet aset;
     StyleContext sc;
     private final String cmdInvite = "> ";
-    
-    
 
     public TextPane(Play play, int columns, int line) {
         super();
@@ -37,11 +35,12 @@ public class TextPane extends JTextPane {
         this.setBackground(Color.BLACK);
         this.setForeground(EditorColors.CMD.getColor());
 //        manager = new FreeCommandManager(play);
-        this.manager =play.getManager();
+        this.manager = play.getManager();
         this.keyEventListener();
         this.mouseEventListener();
         sc = StyleContext.getDefaultStyleContext();
-        this.setText(this.cmdInvite);
+        this.setText(manager.getFirstLine());
+       this.append("", EditorColors.CMD.getColor());
         this.setCaretPosition(this.cmdInvite.length());
     }
 
@@ -81,10 +80,10 @@ public class TextPane extends JTextPane {
         };
         addKeyListener(l);
     }
-    
-    private int countCharBeforeCurrentLine(Object[] lines){
+
+    private int countCharBeforeCurrentLine(Object[] lines) {
         int count = 0;
-        for(int i=0 ; i<lines.length - 1 ; i++){
+        for (int i = 0; i < lines.length - 1; i++) {
             count += lines[i].toString().length();
         }
         return count;
@@ -95,10 +94,10 @@ public class TextPane extends JTextPane {
         int caret = this.getCaretPosition();
         // 2 : \n except first the very first line
         int caretInCurrent;
-        if(lines.length == 1){
-            caretInCurrent = caret -countCharBeforeCurrentLine(lines);
+        if (lines.length == 1) {
+            caretInCurrent = caret - countCharBeforeCurrentLine(lines);
         } else {
-        caretInCurrent = caret - countCharBeforeCurrentLine(lines) - 2;
+            caretInCurrent = caret - countCharBeforeCurrentLine(lines) - 2;
         }
         return (caretInCurrent > this.cmdInvite.length());
     }
