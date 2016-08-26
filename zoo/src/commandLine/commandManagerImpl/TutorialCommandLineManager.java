@@ -77,7 +77,7 @@ public class TutorialCommandLineManager implements CommandManager {
                         }
                         // If an exception has been thrown (expected or unexpected command line)
                     } else {
-                        return result;
+                        return result + steps.get(i).getFail();
                     }
                 }
             }
