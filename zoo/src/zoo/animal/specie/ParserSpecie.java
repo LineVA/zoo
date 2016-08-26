@@ -33,6 +33,7 @@ public class ParserSpecie {
         BiomeAttributes biome = biomeParser(root);
         int diet = dietParser(root);
         int region = ecoregionParser(root);
+        int family = familyParser(root);
         FeedingAttributes feeding = feedingParser(root);
         ReproductionAttributes repro = reproductionParser(root);
         LifeSpanAttributes lifeSpan = lifeSpanParser(root);
@@ -40,7 +41,7 @@ public class ParserSpecie {
         SocialAttributes social = socialParser(root);
         TerritoryAttributes territory = territoryParser(root);
         Specie spec = new Specie(names, biome, feeding, diet, repro, lifeSpan,
-                conservation, social, territory, region);
+                conservation, social, territory, region, family);
         return spec;
     }
 
@@ -82,6 +83,11 @@ public class ParserSpecie {
     private static int ecoregionParser(Element root) {
         Element genEl = root.getChild("general");
         return Integer.parseInt(genEl.getChildText("ecoregion"));
+    }
+   
+     private static int familyParser(Element root) {
+        Element genEl = root.getChild("general");
+        return Integer.parseInt(genEl.getChildText("family"));
     }
 
     private static SocialAttributes socialParser(Element root) {

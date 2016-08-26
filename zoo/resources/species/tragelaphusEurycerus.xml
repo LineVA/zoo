@@ -1,12 +1,12 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
-        <fr>Lion</fr>
+        <fr>Bongo</fr>
         <en>Lion</en>
         <scientific>Panthera leo</scientific>
     </names>
 <general>
     <uicn>3</uicn>
-    <family>8</family>
+    <family>3</family>
     <ecoregion>0</ecoregion>
 </general>
 <reproduction>

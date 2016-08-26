@@ -60,8 +60,13 @@ public class Paddock implements Cloneable, IPaddock {
      * @param name the name of the paddock
      * @param coor the coordinates of the paddock
      */
-    public Paddock(String name, PaddockCoordinates coor, ArrayList<IPaddock> neightbourhood) {
-        this.name = name;
+    public Paddock(String name, PaddockCoordinates coor, ArrayList<IPaddock> neightbourhood) 
+            throws EmptyNameException {
+        if (name.trim().equals("")) {
+            throw new EmptyNameException("A paddock cannot have an empty name.");
+        } else {
+            this.name = name;
+        }
         this.coordinates = coor;
         this.biome = Biome.NONE.getName();
         this.attributes = (BiomeAttributes) Biome.NONE.getAttributes().clone();
@@ -182,7 +187,7 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public ArrayList<String> birth() throws IncorrectDataException {
+    public ArrayList<String> birth() throws IncorrectDataException, EmptyNameException {
         ArrayList<String> info = new ArrayList<>();
         ArrayList<Animal> tmpAnimal = new ArrayList<>();
         Reproduction repro = new ReproductionImpl();

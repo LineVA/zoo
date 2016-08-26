@@ -25,7 +25,7 @@ public interface IZoo {
             throws IncorrectDimensionsException, EmptyNameException, IOException;
 
     public void addPaddock(String paddockName, int x, int y, int width, int height)
-            throws AlreadyUsedNameException, IncorrectDimensionsException;
+            throws AlreadyUsedNameException, IncorrectDimensionsException, EmptyNameException;
 
     public void addPaddock(IPaddock paddock)
             throws AlreadyUsedNameException, IncorrectDimensionsException;
@@ -38,9 +38,10 @@ public interface IZoo {
 
     public int evaluate();
 
-    public ArrayList<String> death() throws UnknownNameException;
+//    public ArrayList<String> death() throws UnknownNameException;
 
-    public ArrayList<String> birth() throws AlreadyUsedNameException, IncorrectDataException;
+//    public ArrayList<String> birth()
+//            throws AlreadyUsedNameException, IncorrectDataException, EmptyNameException;
 
     public IPaddock findPaddockByName(String paddockName) throws EmptyNameException, UnknownNameException;
 
@@ -54,7 +55,7 @@ public interface IZoo {
 
     public ArrayList<String> listSpecie(IPaddock paddock);
 
-    public void ageing();
+    public ArrayList<String> ageing() throws IncorrectDataException, EmptyNameException;
 
     public double grade() throws UnknownNameException;
 

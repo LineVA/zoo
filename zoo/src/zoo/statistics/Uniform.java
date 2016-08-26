@@ -9,7 +9,7 @@ import java.util.Random;
 public class Uniform extends Random {
 
     public int intAverage(int average) {
-        int max = 3 * average;
+        int max = 2 * average;
         int actual = super.nextInt(max);
         if (actual >= 1) {
             return actual;
@@ -20,6 +20,10 @@ public class Uniform extends Random {
 
     public boolean isGreaterOrEquals(double lim) {
         return super.nextDouble() >= lim;
+    }
+
+    public boolean isLowerOrEquals(double lim) {
+        return super.nextDouble() <= lim;
     }
 
 }

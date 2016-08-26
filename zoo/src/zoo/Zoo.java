@@ -16,6 +16,7 @@ import java.util.TreeMap;
 import launch.ScenarioPlayImpl;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
+import zoo.evaluation.Evaluation;
 import zoo.paddock.IPaddock;
 import zoo.paddock.Paddock;
 
@@ -80,7 +81,7 @@ public class Zoo implements IZoo {
             Map<String, Specie> species, int age, int monthsPerEvaluation, int horizon)
             throws IncorrectDimensionsException, EmptyNameException, IOException {
         if (name.trim().equals("")) {
-            throw new EmptyNameException("Please enter a no-empty name for the zoo.");
+            throw new EmptyNameException("A zoo cannot have an empty name.");
         } else {
             this.name = name;
         }
@@ -113,7 +114,7 @@ public class Zoo implements IZoo {
      */
     @Override
     public void addPaddock(String paddockName, int x, int y, int width, int height)
-            throws AlreadyUsedNameException, IncorrectDimensionsException {
+            throws AlreadyUsedNameException, IncorrectDimensionsException, EmptyNameException {
         PaddockCoordinates coor = new PaddockCoordinates(x, y, width, height);
         checkEmplacement(coor);
         ArrayList<IPaddock> neightbourhood = new ArrayList<>();
@@ -246,41 +247,33 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public int evaluate() {
-        ArrayList<String> presentedSpecies = new ArrayList<>();
-        ArrayList<String> localPresentedSpecies = new ArrayList<>();
-        int kidsNb = 0;
-        for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
-            kidsNb += padEntry.getValue().countNonMatureAnimals();
-            localPresentedSpecies = padEntry.getValue().listSpeciesByName(presentedSpecies);
-        }
-        return kidsNb * 5 + presentedSpecies.size();
+    public int evaluate(){
+        return new Evaluation().evaluate(this.paddocks);
     }
 
-    @Override
-    public ArrayList<String> death() {
-        ArrayList<String> info = new ArrayList<>();
-        for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
-            info.addAll(padEntry.getValue().death());
-        }
-        return info;
-    }
+//    @Override
+//    public ArrayList<String> death() {
+//        ArrayList<String> info = new ArrayList<>();
+//        for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
+//            info.addAll(padEntry.getValue().death());
+//        }
+//        return info;
+//    }
+
+//    @Override
+//    public ArrayList<String> birth()
+//            throws IncorrectDataException, EmptyNameException {
+//        ArrayList<String> info = new ArrayList<>();
+//        for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
+//            info.addAll(padEntry.getValue().birth());
+//        }
+//        return info;
+//    }
 
     @Override
-    public ArrayList<String> birth() throws IncorrectDataException {
-        ArrayList<String> info = new ArrayList<>();
-        for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
-            info.addAll(padEntry.getValue().birth());
-        }
-        return info;
-    }
-
-    @Override
-    public void ageing() {
+    public ArrayList<String> ageing() throws IncorrectDataException, EmptyNameException {
         this.age += this.monthsPerEvaluation;
-        for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
-            padEntry.getValue().ageing(this.monthsPerEvaluation);
-        }
+        return new Evaluation().ageing(this.paddocks, this.monthsPerEvaluation);
     }
 
     @Override

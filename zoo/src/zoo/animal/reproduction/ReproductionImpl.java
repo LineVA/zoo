@@ -1,6 +1,7 @@
 package zoo.animal.reproduction;
 
 import exception.IncorrectDataException;
+import exception.name.EmptyNameException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import zoo.statistics.Uniform;
@@ -29,7 +30,8 @@ public class ReproductionImpl implements Reproduction {
     }
 
     @Override
-    public ArrayList<Animal> reproducte(Animal animal) throws IncorrectDataException {
+    public ArrayList<Animal> reproducte(Animal animal)
+            throws IncorrectDataException, EmptyNameException {
         if (canFemaleReproducte(animal)) {
             Animal father = whichMale(animal.findRoommatesOfTheSameSpecie());
             if (father != null) {
@@ -47,7 +49,8 @@ public class ReproductionImpl implements Reproduction {
      * @return an ArrayList ; the first element is the fater, the following are
      * the babies
      */
-    public ArrayList<Animal> generateFamily(Animal mother, Animal father) throws IncorrectDataException {
+    public ArrayList<Animal> generateFamily(Animal mother, Animal father)
+            throws IncorrectDataException, EmptyNameException {
         ArrayList<Animal> family = new ArrayList<>();
         family.add(mother);
         family.add(father);
@@ -67,7 +70,7 @@ public class ReproductionImpl implements Reproduction {
      * @param pad its paddock
      * @return the baby
      */
-    public Animal generateAnimal(Specie spec, String name, IPaddock pad) throws IncorrectDataException {
+    public Animal generateAnimal(Specie spec, String name, IPaddock pad) throws IncorrectDataException, EmptyNameException {
         Sex sex;
         if (uniform.nextBoolean()) {
             sex = Sex.FEMALE;
@@ -84,7 +87,7 @@ public class ReproductionImpl implements Reproduction {
      * @return true if it can reproducte
      */
     public boolean canFemaleReproducte(Animal animal) {
-       return animal.canBePregnant() && isGestation(animal);
+       return animal.canBePregnant() && isInGestation(animal);
     }
 
     /**
@@ -93,8 +96,8 @@ public class ReproductionImpl implements Reproduction {
      * @param animal the animal we test
      * @return true if it can, false else
      */
-    public boolean isGestation(Animal animal) {
-        return uniform.isGreaterOrEquals(animal.getActualGestationFrequency());
+    public boolean isInGestation(Animal animal) {
+        return uniform.isLowerOrEquals(animal.getActualGestationFrequency());
     }
 
     /**

@@ -2,6 +2,7 @@ package zoo.animal;
 
 import backup.save.SaveImpl;
 import exception.IncorrectDataException;
+import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import lombok.Getter;
@@ -44,7 +45,7 @@ public class AnimalImpl implements Animal {
     // the second are determined by the player.
     @Getter
     @Setter
-    private int diet;
+    private int actualDiet;
     private final FeedingAttributes optimalFeeding;
     @Setter
     private FeedingAttributes actualFeeding;
@@ -64,9 +65,14 @@ public class AnimalImpl implements Animal {
     // actual is given by the number of animal is the paddock.
     private final TerritoryAttributes optimalTerritory;
 
-    public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex, int age) throws IncorrectDataException {
+    public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex, int age) 
+            throws IncorrectDataException, EmptyNameException {
         this.specie = spec;
-        this.name = name;
+       if (name.trim().equals("")) {
+            throw new EmptyNameException("An animal cannot have an empty name.");
+        } else {
+            this.name = name;
+        }
         this.paddock = paddock;
         this.sex = sex;
         if (age >= 0) {
@@ -80,7 +86,7 @@ public class AnimalImpl implements Animal {
         this.actualReproduction = drawActualReproduction(spec);
         this.actualLifeSpan = drawActualLifeSpan(spec);
         this.optimalBiome = null;
-        this.diet = Diet.NONE.getId();
+        this.actualDiet = Diet.NONE.getId();
         //   this.optimalFeeding = null;
         // this.actualFeeding = null;
         this.optimalSocial = drawOptimalSocial(spec);
@@ -90,9 +96,13 @@ public class AnimalImpl implements Animal {
     }
 
     public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex)
-            throws IncorrectDataException {
+            throws IncorrectDataException, EmptyNameException {
         this.specie = spec;
-        this.name = name;
+       if (name.trim().equals("")) {
+            throw new EmptyNameException("An animal cannot have an empty name.");
+        } else {
+            this.name = name;
+        }
         this.paddock = paddock;
         this.sex = sex;
 //        this.optimalBiome = drawOptimalBiome(spec);
@@ -101,7 +111,7 @@ public class AnimalImpl implements Animal {
         this.actualReproduction = drawActualReproduction(spec);
         this.actualLifeSpan = drawActualLifeSpan(spec);
         this.optimalBiome = null;
-        this.diet = Diet.NONE.getId();
+        this.actualDiet = Diet.NONE.getId();
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
         this.age = this.sex.isFemale()
@@ -121,21 +131,25 @@ public class AnimalImpl implements Animal {
             ReproductionAttributes reproduction,
             LifeSpanLightAttributes life, SocialAttributes social,
             TerritoryAttributes territory)
-            throws IncorrectDataException {
+            throws IncorrectDataException, EmptyNameException {
         this.specie = spec;
-        this.name = name;
+       if (name.trim().equals("")) {
+            throw new EmptyNameException("An animal cannot have an empty name.");
+        } else {
+            this.name = name;
+        }
         this.paddock = paddock;
         this.sex = sex;
         this.actualReproduction = reproduction;
         this.actualLifeSpan = life;
         this.optimalBiome = biome;
-        this.diet = diet;
+        this.actualDiet = diet;
         this.optimalFeeding = optimalFeeding;
         this.actualFeeding = actualFeeding;
         this.optimalSocial = social;
         this.optimalTerritory = territory;
         this.age = age;
-         this.wB = new WellBeingImpl(spec.getConservation().getCoefficient(), spec.getConservation().getDiameter());
+        this.wB = new WellBeingImpl(spec.getConservation().getCoefficient(), spec.getConservation().getDiameter());
         this.wellBeing = 0;
     }
 
@@ -248,7 +262,7 @@ public class AnimalImpl implements Animal {
         info.add("Age : " + this.age);
         info.add("Sex : " + this.sex.toString());
         info.add("Well-being : " + this.wellBeing);
-        info.add("Diet : " + Diet.NONE.findDietById(diet).toString());
+        info.add("Diet : " + Diet.NONE.findDietById(actualDiet).toString());
         info.add("Reproduction attributes : " + this.actualReproduction);
         info.add("Life span attributes : " + this.actualLifeSpan.toString());
         info.add("Optimal group size : " + this.optimalSocial.getGroupSize());
@@ -266,8 +280,8 @@ public class AnimalImpl implements Animal {
 
     @Override
     public double wellBeing() throws UnknownNameException {
-        AnimalsAttributes attributes = new AnimalsAttributes(this.optimalBiome, this.optimalFeeding, 
-                this.actualFeeding, this.diet, this.optimalSocial, this.optimalTerritory);
+        AnimalsAttributes attributes = new AnimalsAttributes(this.optimalBiome, this.optimalFeeding,
+                this.actualFeeding, this.actualDiet, this.optimalSocial, this.optimalTerritory);
         this.wellBeing = wB.computeWellBeing(attributes, paddock, specie);
         return this.wellBeing;
     }
@@ -305,10 +319,31 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public boolean isEnoughHappy(){
+    public boolean isEnoughHappy() {
         return this.wB.isCloseEnoughToMax(this.wellBeing);
     }
-    
+
+    @Override
+    public void changeDiet(Object obj) throws UnknownNameException {
+        try {
+            int tmpDietInt = Integer.parseInt((String) obj);
+            Diet.NONE.findDietById(tmpDietInt);
+            this.actualDiet = tmpDietInt;
+        } catch (UnknownNameException | NumberFormatException ex) {
+            String tmpDietStr = (String) obj;
+            int tmpDiet = Diet.NONE.findDietByName(tmpDietStr).getId();
+            this.actualDiet = tmpDiet;
+        }
+    }
+
+    public void changeFoodQuantity(Double quantity) throws IncorrectDataException {
+        if(quantity>0.0){
+            this.actualFeeding.setFoodQuantity(quantity);
+        } else {
+            throw new IncorrectDataException("The food quantity must be greater or equals than zero.");
+        } 
+    }
+
     /////////////////
     @Override
     public String getName() {
@@ -388,6 +423,6 @@ public class AnimalImpl implements Animal {
 
     @Override
     public int getDiet(SaveImpl.FriendSave save) {
-        return this.diet;
+        return this.actualDiet;
     }
 }
