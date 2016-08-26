@@ -320,9 +320,9 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<String> listAnimal(Specie specie, IPaddock paddock) {
+    public ArrayList<Animal> listAnimal(Specie specie, IPaddock paddock) {
         if (paddock == null) {
-            ArrayList<String> list = new ArrayList<>();
+            ArrayList<Animal> list = new ArrayList<>();
             for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
                 list.addAll(entry.getValue().listAnimal(specie));
             }
@@ -380,7 +380,7 @@ public class Zoo implements IZoo {
     }
     
     @Override
-    public ArrayList<String> getAnimals(ScenarioPlayImpl.FriendScenario friend) {
+    public ArrayList<Animal> getAnimals(ScenarioPlayImpl.FriendScenario friend) {
         friend.hashCode();
         return this.listAnimal(null, null);
     }

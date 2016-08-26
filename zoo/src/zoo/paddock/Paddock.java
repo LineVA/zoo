@@ -154,26 +154,26 @@ public class Paddock implements Cloneable, IPaddock {
                 + "with this name.");
     }
 
-    public ArrayList<String> listAnimalWithSpecie(Specie specie) {
-        ArrayList<String> list = new ArrayList<>();
+    public ArrayList<Animal> listAnimalWithSpecie(Specie specie) {
+        ArrayList<Animal> list = new ArrayList<>();
         for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
             if (entry.getValue().isFromTheSameSpecie(specie)) {
-                list.add(entry.getKey());
+                list.add(entry.getValue());
             }
         }
         return list;
     }
 
-    public ArrayList<String> listAnimalWithoutSpecie() {
-        ArrayList<String> list = new ArrayList<>();
+    public ArrayList<Animal> listAnimalWithoutSpecie() {
+        ArrayList<Animal> list = new ArrayList<>();
         for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
-            list.add(entry.getKey());
+            list.add(entry.getValue());
         }
         return list;
     }
 
     @Override
-    public ArrayList<String> listAnimal(Specie specie) {
+    public ArrayList<Animal> listAnimal(Specie specie) {
         if (specie != null) {
             return listAnimalWithSpecie(specie);
         } else {

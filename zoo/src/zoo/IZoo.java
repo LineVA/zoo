@@ -50,7 +50,7 @@ public interface IZoo {
 
     public Animal findAnimalByName(String animalName) throws UnknownNameException, EmptyNameException;
 
-    public ArrayList<String> listAnimal(Specie specie, IPaddock paddock);
+    public ArrayList<Animal> listAnimal(Specie specie, IPaddock paddock);
 
     public ArrayList<String> listSpecie(IPaddock paddock);
 
@@ -68,7 +68,7 @@ public interface IZoo {
 
     public Map<String, IPaddock> getPaddocks(ScenarioPlayImpl.FriendScenario friend);
     
-     public ArrayList<String> getAnimals(ScenarioPlayImpl.FriendScenario friend);
+     public ArrayList<Animal> getAnimals(ScenarioPlayImpl.FriendScenario friend);
 
     /**
      * Friend pattern : give access to each of the fields of Zoo only to the
