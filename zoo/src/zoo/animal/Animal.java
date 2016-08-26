@@ -47,6 +47,8 @@ public interface Animal {
 
     public Specie getSpecie();
 
+    public Sex getSex();
+
     public int getActualLitterSize();
 
     public double getActualGestationFrequency();

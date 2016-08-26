@@ -354,6 +354,11 @@ public class AnimalImpl implements Animal {
     public Specie getSpecie() {
         return this.specie;
     }
+    
+     @Override
+    public Sex getSex() {
+        return this.sex;
+    }
 
     @Override
     public int getActualLitterSize() {
