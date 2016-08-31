@@ -1,69 +1,71 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Start Page</title>
+        <title>Generator</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Species generator</h1>
         <form method="get"  action="CreationServlet">
 
             <fieldset>
-            English name : <input type="text" name="englishName">
-            French name : <input type="text" name="frenchName">
-            Scientific name : <input type="text" name="scientificName">
+                <legend>Names</legend>
+                English name : <input type="text" name="englishName">
+                French name : <input type="text" name="frenchName">
+                Scientific name : <input type="text" name="scientificName">
             </fieldset>
-            
+
             <fieldset>
-            UICN status : <select name="uicn">
-                <option value="0">Unknown</option>
-                <option value="1">Least concerned</option>
-                <option value="2">Near threatened</option>
-                <option value="3">Vulnerable</option>
-                <option value="4">Endangered</option>
-                <option value="5">Critically endangered</option>
-                <option value="6">Extinct in wild</option>
-                <option value="7">Extinct</option>
-            </select>
-            Family : <select name="family">
-                <option value="0">Unknown</option>
-                <option value="1">Canidae</option>
-                <option value="2">Mustelidae</option>
-                <option value="3">Odobenidae</option>
-                <option value="4">Otariidae</option>
-                <option value="5">Phocidae</option>
-                <option value="6">Procyonidae</option>
-                <option value="7">Ursidae</option>
-                <option value="8">Felidae</option>
-                <option value="9">Lepilemuridae</option>
-                <option value="10">Lemuridae</option>
-                <option value="11">Indriidae</option>
-                <option value="12">Daubentoniidae</option>
-                <option value="13">Vheirogaleidae</option>
-                <option value="14">Equidae</option>
-            </select>
-            Ecoregion: <select name="ecoregion">
-                <option value="0">Unknown</option>
-            </select>
+                <legend>General</legend>
+                UICN status : <select name="uicn">
+                    <option value="0">Unknown</option>
+                    <option value="1">Least concerned</option>
+                    <option value="2">Near threatened</option>
+                    <option value="3">Vulnerable</option>
+                    <option value="4">Endangered</option>
+                    <option value="5">Critically endangered</option>
+                    <option value="6">Extinct in wild</option>
+                    <option value="7">Extinct</option>
+                </select>
+                Family : <select name="family">
+                    <option value="0">Unknown</option>
+                    <option value="1">Canidae</option>
+                    <option value="2">Mustelidae</option>
+                    <option value="3">Odobenidae</option>
+                    <option value="4">Otariidae</option>
+                    <option value="5">Phocidae</option>
+                    <option value="6">Procyonidae</option>
+                    <option value="7">Ursidae</option>
+                    <option value="8">Felidae</option>
+                    <option value="9">Lepilemuridae</option>
+                    <option value="10">Lemuridae</option>
+                    <option value="11">Indriidae</option>
+                    <option value="12">Daubentoniidae</option>
+                    <option value="13">Vheirogaleidae</option>
+                    <option value="14">Equidae</option>
+                </select>
+                Ecoregion: <select name="ecoregion">
+                    <option value="0">Unknown</option>
+                </select>
             </fieldset>
-            
+
             <fieldset>
-                Reproduction 
+                <legend>Reproduction</legend>
                 Female maturity : <input type="text" name="femaleMaturity">
                 Male maturity : <input type="text" name="maleMaturity">
                 Gestation frequency : <input type="text" name="gestationFrequency">
                 Litter size : <input type="text" name="litterSize">
                 Leaving age : <input type="text" name="leavingAge">
             </fieldset>
-            
+
             <fieldset>
-                Life span
+                <legend>Life span</legend>
                 Female life span : <input type="text" name="femaleLifespan">
                 Male life span : <input type="text" name="maleLifespan">
             </fieldset>
-            
+
             <fieldset>
-                Territory 
+                <legend>Territory</legend>
                 Biome : <select name="biome">
                     <option value="0"> Unknown</option>
                     <option value="1"> Tropical rainforest</option> 
@@ -85,14 +87,14 @@
             </fieldset>
 
             <fieldset>
-                Feeding
+                <legend>Feeding</legend>
                 Diet : <select>
                     <option value="0">Unknown</option>
                 </select>
             </fieldset>
 
             <fieldset>
-                Social 
+                <legend>Social</legend>
                 Group size : <input type="text" name="groupSize">
             </fieldset>
             <input type="submit">
