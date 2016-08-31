@@ -1,5 +1,6 @@
 package launch;
 
+import launch.play.tutorials.TutorialPlayImpl_1;
 import launch.play.FreePlayImpl;
 import launch.play.Play;
 import basicGui.Scan;
@@ -15,7 +16,7 @@ import org.jdom2.JDOMException;
 public class Main {
 
     public static void main(String[] args) throws EmptyNameException, IOException, JDOMException {
-        Play play = new ScenarioPlayImpl();
+        Play play = new TutorialPlayImpl_1();
         MainGUI mainGUI = new MainGUI(play);
 //        Transmission transmission = new Transmission();
 //        CommandLineParser parser = new CommandLineParser(transmission);

@@ -1,4 +1,4 @@
-package launch;
+package launch.play.tutorials;
 
 import commandLine.CommandManager;
 import commandLine.commandManagerImpl.TutorialCommandLineManager;
@@ -15,7 +15,7 @@ import zoo.animal.Animal;
  *
  * @author doyenm
  */
-public class ScenarioPlayImpl implements Play {
+public class TutorialPlayImpl_1 implements Play {
 
     @Getter
     @Setter
@@ -30,7 +30,7 @@ public class ScenarioPlayImpl implements Play {
     }
     private static final FriendScenario friendScenario = new FriendScenario();
 
-    public ScenarioPlayImpl() {
+    public TutorialPlayImpl_1() {
         this.zoo = new Zoo();
         this.manager = new TutorialCommandLineManager(this, this.buildTutorial());
     }

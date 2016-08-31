@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import backup.save.SaveImpl;
 import java.util.Map;
-import launch.ScenarioPlayImpl;
+import launch.play.tutorials.TutorialPlayImpl_1;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
@@ -65,11 +65,11 @@ public interface IZoo {
      * Friend pattern : give access to each of the fields of Zoo only to the
      * tutorial methods
      */
-    public String getName(ScenarioPlayImpl.FriendScenario friend);
+    public String getName(TutorialPlayImpl_1.FriendScenario friend);
 
-    public Map<String, IPaddock> getPaddocks(ScenarioPlayImpl.FriendScenario friend);
+    public Map<String, IPaddock> getPaddocks(TutorialPlayImpl_1.FriendScenario friend);
     
-     public ArrayList<Animal> getAnimals(ScenarioPlayImpl.FriendScenario friend);
+     public ArrayList<Animal> getAnimals(TutorialPlayImpl_1.FriendScenario friend);
 
     /**
      * Friend pattern : give access to each of the fields of Zoo only to the
