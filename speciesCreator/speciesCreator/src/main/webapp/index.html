@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>Hello World!</h1>
+        <form method="get"  action="CreationServlet">
+
+            <fieldset>
+            English name : <input type="text" name="englishName">
+            French name : <input type="text" name="frenchName">
+            Scientific name : <input type="text" name="scientificName">
+            </fieldset>
+            
+            <fieldset>
+            UICN status : <select name="uicn">
+                <option value="0">Unknown</option>
+                <option value="1">Least concerned</option>
+                <option value="2">Near threatened</option>
+                <option value="3">Vulnerable</option>
+                <option value="4">Endangered</option>
+                <option value="5">Critically endangered</option>
+                <option value="6">Extinct in wild</option>
+                <option value="7">Extinct</option>
+            </select>
+            Family : <select name="family">
+                <option value="0">Unknown</option>
+                <option value="1">Canidae</option>
+                <option value="2">Mustelidae</option>
+                <option value="3">Odobenidae</option>
+                <option value="4">Otariidae</option>
+                <option value="5">Phocidae</option>
+                <option value="6">Procyonidae</option>
+                <option value="7">Ursidae</option>
+                <option value="8">Felidae</option>
+                <option value="9">Lepilemuridae</option>
+                <option value="10">Lemuridae</option>
+                <option value="11">Indriidae</option>
+                <option value="12">Daubentoniidae</option>
+                <option value="13">Vheirogaleidae</option>
+                <option value="14">Equidae</option>
+            </select>
+            Ecoregion: <select name="ecoregion">
+                <option value="0">Unknown</option>
+            </select>
+            </fieldset>
+            
+            <fieldset>
+                Reproduction 
+                Female maturity : <input type="number" name="femaleMaturity">
+                Male maturity : <input type="number" name="maleMaturity">
+                Gestation frequency : <input type="number" name="gestationFrequency">
+                Litter size : <input type="number" name="litterSize">
+                Leaving age : <input type="number" name="leavingAge">
+            </fieldset>
+            
+            <fieldset>
+                Life span
+                Female life span : <input type="number" name="femaleLifespan">
+                Male life span : <input type="number" name="maleLifespan">
+            </fieldset>
+            
+            <fieldset>
+                Territory 
+                Biome : <select name="biome">
+                    <option value="0"> Unknown</option>
+                    <option value="1"> Tropical rainforest</option> 
+                    <option value="2">Tropical and subtropical dry broadleaf forests</option> 
+                    <option value="3">Tropical and subtropical coniferous forests</option> 
+                    <option value="4">Temperate broadleaf and mixed forests</option> 
+                    <option value="5">Temperate coniferous forests</option> 
+                    <option value="6"> Taiga</option> 
+                    <option value="7">Tropical and subtropical grasslands, savannas and shrublands</option> 
+                    <option value="8">Temperate grasslands, savannas and shrublands</option> 
+                    <option value="9">Flooded grasslands and savannas</option> 
+                    <option value="10">Montane grasslands and savannas</option> 
+                    <option value="11">Tundra</option> 
+                    <option value="12">Mediterranean forests, woodlands and scrub</option> 
+                    <option value="13">Deserts and xeric shrublands</option> 
+                    <option value="14">Mangrove</option> 
+                </select>
+                Territory size (km2) : <input type="number" name="territorySize">
+            </fieldset>
+
+            <fieldset>
+                Feeding
+                Diet : <select>
+                    <option value="0">Unknown</option>
+                </select>
+            </fieldset>
+
+            <fieldset>
+                Social 
+                Group size : <input type="number" name="groupSize">
+            </fieldset>
+            <input type="submit">
+        </form>
+    </body>
+</html>
