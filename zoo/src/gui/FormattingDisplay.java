@@ -1,10 +1,9 @@
 package gui;
 
-import com.google.common.annotations.VisibleForTesting;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-import zoo.PaddockCoordinates;
+import zoo.paddock.PaddockCoordinates;
 
 /**
  *
