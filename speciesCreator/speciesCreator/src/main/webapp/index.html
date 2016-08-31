@@ -10,14 +10,17 @@
 
             <fieldset>
                 <legend>Names</legend>
-                English name : <input type="text" name="englishName">
-                French name : <input type="text" name="frenchName">
-                Scientific name : <input type="text" name="scientificName">
+                <label for="englishName">English name :</label>
+                <input type="text" name="englishName" id="englishName">
+                <label for="frenchName">French name :</label>
+                <input type="text" name="frenchName" id="frenchName">
+                <label for="scientificName">Scientific name :</label>
+                <input type="text" name="scientificName" id="scientificName">
             </fieldset>
 
             <fieldset>
                 <legend>General</legend>
-                UICN status : <select name="uicn">
+                UICN status : <select name="uicn" id="uicn">
                     <option value="0">Unknown</option>
                     <option value="1">Least concerned</option>
                     <option value="2">Near threatened</option>
@@ -27,7 +30,7 @@
                     <option value="6">Extinct in wild</option>
                     <option value="7">Extinct</option>
                 </select>
-                Family : <select name="family">
+                Family : <select name="family" id="family" >
                     <option value="0">Unknown</option>
                     <option value="1">Canidae</option>
                     <option value="2">Mustelidae</option>
@@ -44,29 +47,29 @@
                     <option value="13">Vheirogaleidae</option>
                     <option value="14">Equidae</option>
                 </select>
-                Ecoregion: <select name="ecoregion">
+                Ecoregion: <select name="ecoregion" id="ecoregion">
                     <option value="0">Unknown</option>
                 </select>
             </fieldset>
 
             <fieldset>
                 <legend>Reproduction</legend>
-                Female maturity : <input type="text" name="femaleMaturity">
+                Female maturity : <input type="text" name="femaleMaturity" id="femaleMaturity">
                 Male maturity : <input type="text" name="maleMaturity">
-                Gestation frequency : <input type="text" name="gestationFrequency">
-                Litter size : <input type="text" name="litterSize">
-                Leaving age : <input type="text" name="leavingAge">
+                Gestation frequency : <input type="text" name="gestationFrequency" id="maleMaturity">
+                Litter size : <input type="text" name="litterSize" id="litterSize">
+                Leaving age : <input type="text" name="leavingAge" id="leavingAge">
             </fieldset>
 
             <fieldset>
                 <legend>Life span</legend>
-                Female life span : <input type="text" name="femaleLifespan">
-                Male life span : <input type="text" name="maleLifespan">
+                Female life span : <input type="text" name="femaleLifespan" id="femaleLifespan">
+                Male life span : <input type="text" name="maleLifespan" id="maleLifespan">
             </fieldset>
 
             <fieldset>
                 <legend>Territory</legend>
-                Biome : <select name="biome">
+                Biome : <select name="biome" id="biome">
                     <option value="0"> Unknown</option>
                     <option value="1"> Tropical rainforest</option> 
                     <option value="2">Tropical and subtropical dry broadleaf forests</option> 
@@ -83,19 +86,19 @@
                     <option value="13">Deserts and xeric shrublands</option> 
                     <option value="14">Mangrove</option> 
                 </select>
-                Territory size (km2) : <input type="text" name="territorySize">
+                Territory size (km2) : <input type="text" name="territorySize" id="teritorySize">
             </fieldset>
 
             <fieldset>
                 <legend>Feeding</legend>
-                Diet : <select>
+                Diet : <select name="diet" id="diet">
                     <option value="0">Unknown</option>
                 </select>
             </fieldset>
 
             <fieldset>
                 <legend>Social</legend>
-                Group size : <input type="text" name="groupSize">
+                Group size : <input type="text" name="groupSize" id="gourpSize">
             </fieldset>
             <input type="submit">
         </form>
