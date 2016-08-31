@@ -260,15 +260,15 @@ public class Zoo implements IZoo {
 //        return info;
 //    }
 
-//    @Override
-//    public ArrayList<String> birth()
-//            throws IncorrectDataException, EmptyNameException {
-//        ArrayList<String> info = new ArrayList<>();
-//        for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
-//            info.addAll(padEntry.getValue().birth());
-//        }
-//        return info;
-//    }
+
+    @Override
+    public ArrayList<String> birth() throws IncorrectDataException, EmptyNameException {
+        ArrayList<String> info = new ArrayList<>();
+        for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
+            info.addAll(padEntry.getValue().birth());
+        }
+        return info;
+    }
 
     @Override
     public ArrayList<String> ageing() throws IncorrectDataException, EmptyNameException {

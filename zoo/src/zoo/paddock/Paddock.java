@@ -13,7 +13,10 @@ import lombok.Getter;
 import backup.save.SaveImpl;
 import exception.name.EmptyNameException;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.TreeMap;
+import zoo.BirthObservable;
 import zoo.animal.Animal;
 import zoo.animal.death.DieImpl;
 import zoo.animal.death.IDie;
@@ -53,6 +56,8 @@ public class Paddock implements Cloneable, IPaddock {
 
     private ArrayList<IPaddock> neightbourhood;
 
+    private BirthObservable obs = new BirthObservable();
+
     /**
      * The main constructor of the class Because no biome is known, the fields
      * take the values of the ones forme Biome.NONE
@@ -72,6 +77,12 @@ public class Paddock implements Cloneable, IPaddock {
         this.attributes = (BiomeAttributes) Biome.NONE.getAttributes().clone();
         this.animals = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         this.neightbourhood = neightbourhood;
+        obs.addObserver(new Observer() {
+            @Override
+            public void update(Observable o, Object arg) {
+                setNewComerName((String) arg);
+            }
+        });
     }
 
     /**
@@ -137,10 +148,10 @@ public class Paddock implements Cloneable, IPaddock {
         info.add("Biome's characteristics : " + this.attributes.toString());
         return info;
     }
-    
-    private String listNeightbourhood(){
+
+    private String listNeightbourhood() {
         String neightbours = "";
-        for(IPaddock pad : this.neightbourhood){
+        for (IPaddock pad : this.neightbourhood) {
             neightbours += pad.getName() + ", ";
         }
         return neightbours;
@@ -200,7 +211,7 @@ public class Paddock implements Cloneable, IPaddock {
                 // newFamily[0] = mother;
                 // new Family[1] = father;
                 for (int i = 2; i < newFamily.size(); i++) {
-                    newComer = newFamily.get(i);
+                    newComer = specifieNameOfTheNewBorn(newFamily.get(i), newFamily.get(0), newFamily.get(1));
                     tmpAnimal.add(newComer);
                     info.add("A newcomer : the baby of "
                             + newFamily.get(0).getName() + " and "
@@ -211,6 +222,19 @@ public class Paddock implements Cloneable, IPaddock {
         }
         incomingNewBorn(tmpAnimal);
         return info;
+    }
+
+    private Animal specifieNameOfTheNewBorn(Animal newBorn, Animal mother, Animal father)
+            throws EmptyNameException {
+        obs.askAndWait(mother.getName(), father.getName(), newBorn.getSex().toString());
+        newBorn.setName(newComerName);
+        return newBorn;
+    }
+
+    String newComerName = "";
+
+    public void setNewComerName(String name) {
+        this.newComerName = name;
     }
 
     private void incomingNewBorn(ArrayList<Animal> tmpAnimal) {
@@ -252,13 +276,13 @@ public class Paddock implements Cloneable, IPaddock {
         Animal animal;
         while (it.hasNext()) {
 //            animal = (Animal) it.next();
-       //     this.animals.remove(animal.getName());
+            //     this.animals.remove(animal.getName());
             it.remove();
         }
     }
-    
+
     @Override
-    public void removeAnimal(Animal animal){
+    public void removeAnimal(Animal animal) {
         this.animals.remove(animal.getName());
     }
 
@@ -363,31 +387,31 @@ public class Paddock implements Cloneable, IPaddock {
         }
         return presentedSpecies;
     }
-    
+
     /**
      *
      * @param paddock
      */
-    public void addInNeightbourhood(IPaddock paddock){
-         this.neightbourhood.add(paddock);
-     }
-     
+    public void addInNeightbourhood(IPaddock paddock) {
+        this.neightbourhood.add(paddock);
+    }
+
     @Override
-     public void addAllInNeightbourhood(ArrayList<IPaddock> neightbourhood){
-         this.neightbourhood.addAll(neightbourhood);
-     }
-     
-     @Override
-     public void removeFromNeightbourhood(){
-         for(IPaddock neightbour : this.neightbourhood){
-             neightbour.removeANeightbour(this);
-         }
-     }
-     
-     @Override
-     public void removeANeightbour(IPaddock paddock){
-         this.neightbourhood.remove(paddock);
-     }
+    public void addAllInNeightbourhood(ArrayList<IPaddock> neightbourhood) {
+        this.neightbourhood.addAll(neightbourhood);
+    }
+
+    @Override
+    public void removeFromNeightbourhood() {
+        for (IPaddock neightbour : this.neightbourhood) {
+            neightbour.removeANeightbour(this);
+        }
+    }
+
+    @Override
+    public void removeANeightbour(IPaddock paddock) {
+        this.neightbourhood.remove(paddock);
+    }
 
     @Override
     public ArrayList<Specie> listSpeciesInNeightbourhood() {

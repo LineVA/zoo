@@ -27,7 +27,7 @@ import zoo.paddock.biome.BiomeAttributes;
 public class AnimalImpl implements Animal {
 
     private final Specie specie;
-    private final String name;
+    private String name;
     private final IPaddock paddock;
     private final Sex sex;
     @Getter
@@ -305,7 +305,7 @@ public class AnimalImpl implements Animal {
     @Override
     public boolean canBePregnant() {
         if (sex != null) {
-            return isMature() && this.sex.isFemale() && isEnoughHappy();
+            return isMature() && this.sex.isFemale() /*&& isEnoughHappy()*/;
         }
         return false;
     }
@@ -313,7 +313,7 @@ public class AnimalImpl implements Animal {
     @Override
     public boolean canFecundateAFemale() {
         if (this.sex != null) {
-            return isMature() && this.sex.isMale() && isEnoughHappy();
+            return isMature() && this.sex.isMale() /*&& isEnoughHappy()*/;
         }
         return false;
     }
@@ -336,6 +336,7 @@ public class AnimalImpl implements Animal {
         }
     }
 
+    @Override
     public void changeFoodQuantity(Double quantity) throws IncorrectDataException {
         if(quantity>0.0){
             this.actualFeeding.setFoodQuantity(quantity);
@@ -351,15 +352,24 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public Specie getSpecie() {
-        return this.specie;
-    }
-    
-     @Override
     public Sex getSex() {
         return this.sex;
     }
 
+    @Override
+    public void setName(String name) throws EmptyNameException{
+        if (!name.equals("")) {
+            this.name = name;
+        } else {
+            throw new EmptyNameException("The name of this animal is empty.");
+        }
+    }
+
+    @Override
+    public Specie getSpecie() {
+        return this.specie;
+    }
+    
     @Override
     public int getActualLitterSize() {
         return this.actualReproduction.getLitterSize();

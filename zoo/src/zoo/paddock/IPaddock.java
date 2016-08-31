@@ -31,8 +31,7 @@ public interface IPaddock {
 
     public ArrayList<Animal> listAnimal(Specie specie);
 
-    public ArrayList<String> birth() 
-            throws IncorrectDataException, EmptyNameException;
+    public ArrayList<String> birth() throws IncorrectDataException, EmptyNameException;
 
     public void ageing(int monthsPerEvaluation);
 

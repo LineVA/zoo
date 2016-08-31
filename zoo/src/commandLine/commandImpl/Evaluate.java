@@ -50,7 +50,8 @@ public class Evaluate implements Command {
             // Zoo evaluation
            zooEvaluation += this.play.getZoo().evaluate();
            this.success = true;
-        } catch (UnknownNameException | EmptyNameException | IncorrectDataException ex) {
+        } catch (UnknownNameException | 
+                IncorrectDataException | EmptyNameException ex) {
             return ex.getMessage();
         }
         info.add("The evaluation of the zoo : " + zooEvaluation);
