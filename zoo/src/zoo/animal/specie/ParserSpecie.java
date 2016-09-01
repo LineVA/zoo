@@ -72,7 +72,7 @@ public class ParserSpecie {
     private static LifeSpanAttributes lifeSpanParser(Element root) {
         Element lifeEl = root.getChild("lifespan");
         return new LifeSpanAttributes(Integer.parseInt(lifeEl.getChildText("femaleLifespan")),
-                Integer.parseInt(lifeEl.getChildText("maleLifeSpan")));
+                Integer.parseInt(lifeEl.getChildText("maleLifespan")));
     }
 
     private static ConservationStatus conservationParser(Element root) throws UnknownNameException {
