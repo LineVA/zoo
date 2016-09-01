@@ -28,13 +28,24 @@ public class SpecieCreation {
         specieEl.addContent(this.createElementTerriory(biome, territory));
         specieEl.addContent(this.createElementFeeding(diet, foodQuantity));
         specieEl.addContent(this.createElementSocial(group));
-        saveInFile(doc, this.createFileName(english));
+        saveInFile(doc, this.createFileName(this.prepareNameForFile(english)));
     }
 
     private String prepareNameOfSpecie(String name){
         String goodTypo;
         String first = name.substring(0,1);
         goodTypo = first.toUpperCase() + name.substring(1).toLowerCase();
+        return goodTypo;
+    }
+    
+    
+    private String prepareNameForFile(String name){
+        String goodTypo = "";
+        String[] array = name.split(" ");
+        goodTypo += array[0].toLowerCase();
+        for (int i = 1 ; i<array.length ; i++){
+            goodTypo += array[i].substring(0, 1).toUpperCase() + array[i].substring(1).toLowerCase();
+        }
         return goodTypo;
     }
     
