@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CreationServlet extends HttpServlet {
 
     SpecieCreation creator = new SpecieCreation();
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -31,8 +31,27 @@ public class CreationServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String toto = request.getParameter("englishName");
-        creator.saveSpecie();
+        String english = request.getParameter("englishName");
+        String french = request.getParameter("frenchName");
+        String scientific = request.getParameter("scientificName");
+        String femaleMat = request.getParameter("femaleMaturity");
+        String maleMat = request.getParameter("maleMaturity");
+        String gestation = request.getParameter("gestationFrequency");
+        String litter = request.getParameter("litterSize");
+        String leaving = request.getParameter("leavingAge");
+        String femaleLife = request.getParameter("femaleLifespan");
+        String maleLife = request.getParameter("maleLifespan");
+        String territory = request.getParameter("territorySize");
+        String group = request.getParameter("groupSize");
+        String foodQuantity = request.getParameter("foodQuantity");
+        String uicn = request.getParameter("uicn");
+        String family = request.getParameter("family");
+        String ecoregion = request.getParameter("ecoregion");
+        String diet = request.getParameter("diet");
+        String biome = request.getParameter("biome");
+        creator.saveSpecie(english, french, scientific, uicn, family, ecoregion, 
+                femaleMat, maleMat, gestation, litter, leaving, femaleLife, maleLife,
+                biome, territory, diet, foodQuantity, group);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

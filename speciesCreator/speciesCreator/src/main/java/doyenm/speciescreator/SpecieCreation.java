@@ -13,13 +13,22 @@ import org.jdom2.output.XMLOutputter;
  */
 public class SpecieCreation {
 
-    public void saveSpecie() {
+    public void saveSpecie(String english, String french, String scientific,
+            String uicn, String family, String ecoregion,
+            String femaleMat, String maleMat, String gestation, String litter,
+            String leaving, String femaleLife, String maleLife,
+            String biome, String territory, String diet, String foodQuantity, String group) {
         Element specieEl = new Element("animal");
-        specieEl.setText("coco");
 //        specieEl.setAttribute(new Attribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"));
-//        specieEl.setAttribute(new Attribute("xsi:noNamespaceSchemaLocation", "ile:./resources/species/specie.xsd"));
+//        specieEl.setAttribute(new Attribute("xsi:noNamespaceSchemaLocation", "file:./resources/species/specie.xsd"));
         org.jdom2.Document doc = new Document(specieEl);
-
+        specieEl.addContent(this.createElementNames(english, french, scientific));
+        specieEl.addContent(this.createElementGeneral(uicn, family, ecoregion));
+        specieEl.addContent(this.createElementReproduction(femaleMat, maleMat, gestation, litter, leaving));
+        specieEl.addContent(this.createElementLifeSpan(femaleLife, maleLife));
+        specieEl.addContent(this.createElementTerriory(biome, territory));
+        specieEl.addContent(this.createElementFeeding(diet, foodQuantity));
+        specieEl.addContent(this.createElementSocial(group));
         saveInFile(doc);
     }
 
