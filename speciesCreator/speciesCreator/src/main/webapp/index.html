@@ -11,17 +11,17 @@
             <fieldset>
                 <legend>Names</legend>
                 <label for="englishName">English name :</label>
-                <input type="text" name="englishName" id="englishName">
+                <input type="text" name="englishName" id="englishName" required="">
                 <label for="frenchName">French name :</label>
-                <input type="text" name="frenchName" id="frenchName">
+                <input type="text" name="frenchName" id="frenchName" required="">
                 <label for="scientificName">Scientific name :</label>
-                <input type="text" name="scientificName" id="scientificName">
+                <input type="text" name="scientificName" id="scientificName" required="">
             </fieldset>
 
             <fieldset>
                 <legend>General</legend>
                 <label for="uicn">UICN status :</label>
-                <select name="uicn" id="uicn">
+                <select name="uicn" id="uicn" required="">
                     <option value="0">Unknown</option>
                     <option value="1">Least concerned</option>
                     <option value="2">Near threatened</option>
@@ -32,7 +32,7 @@
                     <option value="7">Extinct</option>
                 </select>
                 <label for="family">Family :</label>
-                <select name="family" id="family" >
+                <select name="family" id="family" required="">
                     <option value="0">Unknown</option>
                     <option value="1">Canidae</option>
                     <option value="2">Mustelidae</option>
@@ -50,7 +50,7 @@
                     <option value="14">Equidae</option>
                 </select>
                 <label for="ecoregion"> Ecoregion : </label> 
-                <select name="ecoregion" id="ecoregion">
+                <select name="ecoregion" id="ecoregion" required="">
                     <option value="0">Unknown</option>
                 </select>
             </fieldset>
@@ -58,29 +58,29 @@
             <fieldset>
                 <legend>Reproduction</legend>
                 <label for="femaleMaturity"> Female maturity : </label>
-                <input type="text" name="femaleMaturity" id="femaleMaturity">
+                <input type="text" name="femaleMaturity" id="femaleMaturity" required="">
                 <label for="maleMaturity"> Male maturity : </label>
-                <input type="text" name="maleMaturity" id="maleMaturity">
+                <input type="text" name="maleMaturity" id="maleMaturity" required="">
                 <label for="gestationFrequency"> Gestation frequency : </label>
-                <input type="text" name="gestationFrequency" id="gestationFrequency">
+                <input type="text" name="gestationFrequency" id="gestationFrequency" required="">
                 <label for="litterSize"> Litter size : </label>
-                <input type="text" name="litterSize" id="litterSize">
+                <input type="text" name="litterSize" id="litterSize" required="">
                 <label for="leavingAge"> Leaving age: </label>
-                <input type="text" name="leavingAge" id="leavingAge">
+                <input type="text" name="leavingAge" id="leavingAge" required="">
             </fieldset>
 
             <fieldset>
                 <legend>Life span</legend>
                 <label for="femaleLifespan"> Female life span : </label>
-                <input type="text" name="femaleLifespan" id="femaleLifespan">
+                <input type="text" name="femaleLifespan" id="femaleLifespan" required="">
                 <label for="maleLifespan"> Male life span : </label>
-                <input type="text" name="maleLifespan" id="maleLifespan">
+                <input type="text" name="maleLifespan" id="maleLifespan" required="">
             </fieldset>
 
             <fieldset>
                 <legend>Territory</legend>
                 <label for="biome"> Biome : </label>
-                <select name="biome" id="biome">
+                <select name="biome" id="biome" required="">
                     <option value="0"> Unknown</option>
                     <option value="1"> Tropical rainforest</option> 
                     <option value="2">Tropical and subtropical dry broadleaf forests</option> 
@@ -98,23 +98,23 @@
                     <option value="14">Mangrove</option> 
                 </select>
                 <label for="territorySize"> Territory size : </label>
-                <input type="text" name="territorySize" id="territorySize">
+                <input type="text" name="territorySize" id="territorySize" required="">
             </fieldset>
 
             <fieldset>
                 <legend>Feeding</legend>
                 <label for="diet"> Diet : </label>
-                <select name="diet" id="diet">
+                <select name="diet" id="diet" required="">
                     <option value="0">Unknown</option>
                 </select>
                   <label for="foodQuantity"> Food quantity : </label>
-                  <input type="text" name="foodQuantity" id ="foodQuantity">
+                  <input type="text" name="foodQuantity" id ="foodQuantity" required="">
             </fieldset>
 
             <fieldset>
                 <legend>Social</legend>
                 <label for="groupSize"> Group size : </label>
-          <input type="text" name="groupSize" id="groupSize">
+          <input type="text" name="groupSize" id="groupSize" required="">
             </fieldset>
             <input type="submit">
         </form>
