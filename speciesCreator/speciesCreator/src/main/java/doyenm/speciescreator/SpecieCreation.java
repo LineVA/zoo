@@ -20,7 +20,8 @@ public class SpecieCreation {
             String biome, String territory, String diet, String foodQuantity, String group) {
         Element specieEl = new Element("animal");
         org.jdom2.Document doc = new Document(specieEl);
-        specieEl.addContent(this.createElementNames(english, french, scientific));
+        specieEl.addContent(this.createElementNames(this.prepareNameOfSpecie(english), 
+                this.prepareNameOfSpecie(french), this.prepareNameOfSpecie(scientific)));
         specieEl.addContent(this.createElementGeneral(uicn, family, ecoregion));
         specieEl.addContent(this.createElementReproduction(femaleMat, maleMat, gestation, litter, leaving));
         specieEl.addContent(this.createElementLifeSpan(femaleLife, maleLife));
@@ -30,6 +31,13 @@ public class SpecieCreation {
         saveInFile(doc, this.createFileName(english));
     }
 
+    private String prepareNameOfSpecie(String name){
+        String goodTypo;
+        String first = name.substring(0,1);
+        goodTypo = first.toUpperCase() + name.substring(1).toLowerCase();
+        return goodTypo;
+    }
+    
     public Element createElement(String name, String value) {
         return new Element(name).setText(value);
     }
