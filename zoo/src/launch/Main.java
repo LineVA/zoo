@@ -16,7 +16,7 @@ import org.jdom2.JDOMException;
 public class Main {
 
     public static void main(String[] args) throws EmptyNameException, IOException, JDOMException {
-        Play play = new TutorialPlayImpl_1();
+        Play play = new FreePlayImpl();
         MainGUI mainGUI = new MainGUI(play);
 //        Transmission transmission = new Transmission();
 //        CommandLineParser parser = new CommandLineParser(transmission);
