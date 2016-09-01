@@ -20,7 +20,8 @@
 
             <fieldset>
                 <legend>General</legend>
-                UICN status : <select name="uicn" id="uicn">
+                <label for="uicn">UICN status :</label>
+                <select name="uicn" id="uicn">
                     <option value="0">Unknown</option>
                     <option value="1">Least concerned</option>
                     <option value="2">Near threatened</option>
@@ -30,7 +31,8 @@
                     <option value="6">Extinct in wild</option>
                     <option value="7">Extinct</option>
                 </select>
-                Family : <select name="family" id="family" >
+                <label for="family">Family :</label>
+                <select name="family" id="family" >
                     <option value="0">Unknown</option>
                     <option value="1">Canidae</option>
                     <option value="2">Mustelidae</option>
@@ -47,29 +49,38 @@
                     <option value="13">Vheirogaleidae</option>
                     <option value="14">Equidae</option>
                 </select>
-                Ecoregion: <select name="ecoregion" id="ecoregion">
+                <label for="ecoregion"> Ecoregion : </label> 
+                <select name="ecoregion" id="ecoregion">
                     <option value="0">Unknown</option>
                 </select>
             </fieldset>
 
             <fieldset>
                 <legend>Reproduction</legend>
-                Female maturity : <input type="text" name="femaleMaturity" id="femaleMaturity">
-                Male maturity : <input type="text" name="maleMaturity">
-                Gestation frequency : <input type="text" name="gestationFrequency" id="maleMaturity">
-                Litter size : <input type="text" name="litterSize" id="litterSize">
-                Leaving age : <input type="text" name="leavingAge" id="leavingAge">
+                <label for="femaleMaturity"> Female maturity : </label>
+                <input type="text" name="femaleMaturity" id="femaleMaturity">
+                <label for="maleMaturity"> Male maturity : </label>
+                <input type="text" name="maleMaturity" id="maleMaturity">
+                <label for="gestationFrequency"> Gestation frequency : </label>
+                <input type="text" name="gestationFrequency" id="gestationFrequency">
+                <label for="litterSize"> Litter size : </label>
+                <input type="text" name="litterSize" id="litterSize">
+                <label for="leavingAge"> Leaving age: </label>
+                <input type="text" name="leavingAge" id="leavingAge">
             </fieldset>
 
             <fieldset>
                 <legend>Life span</legend>
-                Female life span : <input type="text" name="femaleLifespan" id="femaleLifespan">
-                Male life span : <input type="text" name="maleLifespan" id="maleLifespan">
+                <label for="femaleLifespan"> Female life span : </label>
+                <input type="text" name="femaleLifespan" id="femaleLifespan">
+                <label for="maleLifespan"> Male life span : </label>
+                <input type="text" name="maleLifespan" id="maleLifespan">
             </fieldset>
 
             <fieldset>
                 <legend>Territory</legend>
-                Biome : <select name="biome" id="biome">
+                <label for="biome"> Biome : </label>
+                <select name="biome" id="biome">
                     <option value="0"> Unknown</option>
                     <option value="1"> Tropical rainforest</option> 
                     <option value="2">Tropical and subtropical dry broadleaf forests</option> 
@@ -86,19 +97,24 @@
                     <option value="13">Deserts and xeric shrublands</option> 
                     <option value="14">Mangrove</option> 
                 </select>
-                Territory size (km2) : <input type="text" name="territorySize" id="teritorySize">
+                <label for="territorySize"> Territory size : </label>
+                <input type="text" name="territorySize" id="territorySize">
             </fieldset>
 
             <fieldset>
                 <legend>Feeding</legend>
-                Diet : <select name="diet" id="diet">
+                <label for="diet"> Diet : </label>
+                <select name="diet" id="diet">
                     <option value="0">Unknown</option>
                 </select>
+                  <label for="foodQuantity"> Food quantity : </label>
+                  <input type="text" name="foodQuantity" id ="foodQuantity">
             </fieldset>
 
             <fieldset>
                 <legend>Social</legend>
-                Group size : <input type="text" name="groupSize" id="gourpSize">
+                <label for="groupSize"> Group size : </label>
+          <input type="text" name="groupSize" id="groupSize">
             </fieldset>
             <input type="submit">
         </form>
