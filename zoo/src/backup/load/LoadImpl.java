@@ -40,18 +40,18 @@ public class LoadImpl implements Load {
         ArrayList<FakeAnimal> animalList = parser.parserAnimals();
         IPaddock pad;
         for (FakeAnimal animal : animalList) {
-            addFakeAnimalToZoo(zoo, animal);
+            addFakeAnimalToZoo(zoo, animal, option);
         }
         return zoo;
     }
     
-    public void addFakeAnimalToZoo(IZoo zoo, FakeAnimal animal)
+    public void addFakeAnimalToZoo(IZoo zoo, FakeAnimal animal, Option option)
             throws EmptyNameException, UnknownNameException, IncorrectDataException,
                 AlreadyUsedNameException {
             Specie spec = zoo.findSpeciebyName(animal.getSpecie());
             IPaddock pad = zoo.findPaddockByName(animal.getPaddock());
             Sex sex = Sex.FEMALE.findByName(animal.getSex());
-            pad.addAnimal(animal.convertToAnimal(spec, pad, sex));
+            pad.addAnimal(animal.convertToAnimal(spec, pad, sex, option));
     }
 
     public void addFakePaddockToZoo(IZoo zoo, FakePaddock paddock, Option option)

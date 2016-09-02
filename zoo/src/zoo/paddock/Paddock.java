@@ -32,6 +32,7 @@ import zoo.animal.specie.Specie;
 @EqualsAndHashCode()
 public class Paddock implements Cloneable, IPaddock {
 
+    @Getter
     private Option option;
 
     /**

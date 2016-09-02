@@ -43,7 +43,8 @@ public class CreateAnimal implements Command {
                 IPaddock pad = this.play.getZoo().findPaddockByName(cmd[2]);
                 Specie specie = this.play.getZoo().findSpeciebyName(cmd[4]);
                 Sex sex = Sex.MALE.findByName(cmd[5]);
-                Animal animal = new AnimalImpl(specie, cmd[3], pad, sex);
+                Animal animal = new AnimalImpl(specie, cmd[3], pad, 
+                        sex, this.play.getOption());
                 pad.addAnimal(animal);
 //                return "The animal has been created.";
                 return this.play.getOption().getGeneralCmdBundle()

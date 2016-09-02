@@ -72,6 +72,8 @@ public interface IPaddock {
     public void removeFromNeightbourhood();
 
     public void removeANeightbour(IPaddock paddock);
+    
+    public Option getOption();
 
     /**
      * Friend pattern : give access to each of the fields of Zoo only to the

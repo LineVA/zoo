@@ -24,14 +24,16 @@ public class Option {
     ResourceBundle animalBundle;
     @Getter
     ResourceBundle specieBundle;
+    @Getter
+    ResourceBundle dietBundle;
 
     public Option() {
         locale = Locale.getDefault();
-      this.updateBundles();
+        this.updateBundles();
     }
 
     public Option(String str) {
-        if(str.equals("")){
+        if (str.equals("")) {
             str = "fr";
         }
         locale = new Locale(str);
@@ -44,6 +46,7 @@ public class Option {
         this.paddockBundle = ResourceBundle.getBundle("i18n.paddock.paddock", locale);
         this.animalBundle = ResourceBundle.getBundle("i18n.animal.animal", locale);
         this.specieBundle = ResourceBundle.getBundle("i18n.specie.specie", locale);
+        this.dietBundle = ResourceBundle.getBundle("i18n.animal.feeding.diet", locale);
     }
 
     public void setLanguage(String lang) {
