@@ -15,7 +15,7 @@ public class FreePlayImpl implements Play{
 
     @Getter
     public ResourceBundle bundle;
-     @Getter
+     @Getter @Setter
     public Option option;
     
     @Getter @Setter
@@ -27,6 +27,8 @@ public class FreePlayImpl implements Play{
         this.bundle = bundle;
         this.option = opt;
     }
+
+    
     
     
 }

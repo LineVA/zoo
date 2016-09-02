@@ -15,6 +15,8 @@ import java.util.Map.Entry;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 import launch.options.Option;
+import lombok.Getter;
+import lombok.Setter;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
@@ -26,11 +28,12 @@ import zoo.paddock.Paddock;
  */
 public class Zoo implements IZoo {
 
+    @Getter @Setter
     private Option option;
 
-    public void setOption(Option option) {
-        this.option = option;
-    }
+//    public void setOption(Option option) {
+//        this.option = option;
+//    }
 
     /**
      * The name of the zoo

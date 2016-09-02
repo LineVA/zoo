@@ -12,23 +12,23 @@ import zoo.Zoo;
  *
  * @author doyenm
  */
-public class ScenarioPlayImpl implements Play{
+public class ScenarioPlayImpl implements Play {
 
-@Getter @Setter
+    @Getter
+    @Setter
     public IZoo zoo;
+
+    @Getter
+    @Setter
+    public Option option;
 
     public ScenarioPlayImpl() {
         this.zoo = new Zoo();
-    }    
+    }
 
     @Override
     public ResourceBundle getBundle() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public Option getOption() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

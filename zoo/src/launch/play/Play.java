@@ -14,6 +14,8 @@ public interface Play {
     public ResourceBundle getBundle();
 
     public Option getOption();
+    
+    public void setOption(Option option);
 
     public IZoo getZoo();
 

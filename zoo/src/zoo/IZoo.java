@@ -26,6 +26,8 @@ public interface IZoo {
 
     public void setOption(Option option);
 
+    public Option getOption();
+
     public void addPaddock(String paddockName, int x, int y, int width, int height)
             throws AlreadyUsedNameException, IncorrectDimensionsException, EmptyNameException;
 

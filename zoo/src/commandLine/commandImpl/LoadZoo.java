@@ -33,7 +33,7 @@ public class LoadZoo implements Command {
             Load load = new LoadImpl();
             IZoo zoo = load.loadZoo("gameBackUps/" + cmd[1] + ".xml");
             this.play.setZoo(zoo);
-            this.play.getOption().setLanguage("en");
+            this.play.setOption(zoo.getOption());
             this.previousHasBeenSuccessfull = true;
             return this.play.getOption().getGeneralCmdBundle().getString("ZOO_CREATION_SUCESS");
         } catch (IOException | JDOMException ex) {
