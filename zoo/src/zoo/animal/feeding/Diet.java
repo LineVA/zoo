@@ -45,7 +45,8 @@ public enum Diet {
     int id;
     boolean[][] eatables;
 
-    private static ResourceBundle bundle;
+//    private static ResourceBundle bundle;
+    private Option option;
 
     Diet(int id) {
         this.id = id;
@@ -53,7 +54,7 @@ public enum Diet {
     }
 
     public void setOption(Option option) {
-        this.bundle = option.getDietBundle();
+        this.option = option;
     }
 
     public void fill() {
@@ -99,7 +100,7 @@ public enum Diet {
             }
         }
         throw new UnknownNameException(
-                this.bundle.getString("UNKNOWN_DIET_BY_ID"));
+                this.option.getDietBundle().getString("UNKNOWN_DIET_BY_ID"));
     }
 
     public boolean isCompatible(int diet) throws UnknownNameException {
@@ -122,8 +123,8 @@ public enum Diet {
     public ArrayList<String> list() {
         ArrayList<String> list = new ArrayList<>();
         for (Diet diet : Diet.values()) {
-            list.add(diet.id + " - " +this.bundle.getString(diet.toString().toUpperCase()) 
-                    + " : " + this.bundle.getString(diet.toString().toUpperCase()+"_DESCRIPTION"));
+            list.add(diet.id + " - " +this.option.getDietBundle().getString(diet.toString().toUpperCase()) 
+                    + " : " + this.option.getDietBundle().getString(diet.toString().toUpperCase()+"_DESCRIPTION"));
         }
         return list;
     }
