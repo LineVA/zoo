@@ -5,8 +5,6 @@ import exception.IncorrectDataException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import launch.play.Play;
 import zoo.animal.Animal;
 import zoo.animal.AnimalImpl;
@@ -22,6 +20,13 @@ public class CreateAnimal implements Command {
 
     Play play;
 
+    boolean success = false;
+
+    @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
+
     public CreateAnimal(Play play) {
         this.play = play;
     }
@@ -34,23 +39,21 @@ public class CreateAnimal implements Command {
     @Override
     public String execute(String[] cmd) {
         try {
-            this.play.getZoo().findAnimalByName(cmd[3]);
+            this.play.getZoo().findAnimalByName(cmd[2]);
             return this.play.getOption().getGeneralCmdBundle()
                     .getString("ALREADY_EXISTING_ANIMAL_NAME");
-//            return "There is already an animal with this name in the zoo.";
         } catch (UnknownNameException ex1) {
             try {
-                IPaddock pad = this.play.getZoo().findPaddockByName(cmd[2]);
+                IPaddock pad = this.play.getZoo().findPaddockByName(cmd[3]);
                 Specie specie = this.play.getZoo().findSpeciebyName(cmd[4]);
                 Sex sex = Sex.MALE.findByName(cmd[5]);
-                Animal animal = new AnimalImpl(specie, cmd[3], pad, 
+                Animal animal = new AnimalImpl(specie, cmd[2], pad,
                         sex, this.play.getOption());
                 pad.addAnimal(animal);
-//                return "The animal has been created.";
+                this.success = true;
                 return this.play.getOption().getGeneralCmdBundle()
                         .getString("ANIMAL_CREATION_SUCCESS");
-            } catch (EmptyNameException | UnknownNameException 
-                    | AlreadyUsedNameException | IncorrectDataException ex) {
+            } catch (EmptyNameException | UnknownNameException | AlreadyUsedNameException | IncorrectDataException ex) {
                 return ex.getMessage();
             }
         } catch (EmptyNameException ex) {

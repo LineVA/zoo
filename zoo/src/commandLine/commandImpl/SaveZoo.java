@@ -17,10 +17,17 @@ public class SaveZoo implements Command {
     public SaveZoo(Play play) {
         this.play = play;
     }
-    
-      @Override
+
+    @Override
     public boolean hasInitiateAZoo() {
         return false;
+    }
+
+    boolean success = false;
+
+    @Override
+    public boolean isSuccess() {
+        return this.success;
     }
 
     @Override
@@ -28,6 +35,7 @@ public class SaveZoo implements Command {
         Save saveProcess = new SaveImpl();
         try {
             saveProcess.saveZoo(this.play.getZoo(), cmd[1]);
+            this.success = true;
             return this.play.getOption().getGeneralCmdBundle()
                     .getString("SAVE_SUCCESS");
         } catch (EmptyNameException ex) {

@@ -2,6 +2,8 @@ package launch.play;
 
 import java.util.ResourceBundle;
 import launch.options.Option;
+import commandLine.CommandManager;
+import commandLine.commandManagerImpl.FreeCommandManager;
 import lombok.Getter;
 import lombok.Setter;
 import zoo.IZoo;
@@ -12,7 +14,7 @@ import zoo.animal.feeding.Diet;
  *
  * @author doyenm
  */
-public class FreePlayImpl implements Play{
+public class FreePlayImpl implements Play {
 
     @Getter
     public ResourceBundle bundle;
@@ -21,16 +23,15 @@ public class FreePlayImpl implements Play{
     
     @Getter @Setter
     public IZoo zoo;
+    @Getter
+    private CommandManager manager;
 
     public FreePlayImpl(ResourceBundle bundle, Option opt) {
         this.zoo = new Zoo();
+        this.manager = new FreeCommandManager(this);
         this.zoo.setOption(opt);
         Diet.NONE.setOption(opt);
         this.bundle = bundle;
         this.option = opt;
     }
-
-    
-    
-    
 }

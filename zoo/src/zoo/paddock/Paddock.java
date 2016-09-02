@@ -16,6 +16,10 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 import launch.options.Option;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.TreeMap;
+import zoo.BirthObservable;
 import zoo.animal.Animal;
 import zoo.animal.death.DieImpl;
 import zoo.animal.death.IDie;
@@ -58,6 +62,8 @@ public class Paddock implements Cloneable, IPaddock {
 
     private ArrayList<IPaddock> neightbourhood;
 
+    private BirthObservable obs = new BirthObservable();
+
     /**
      * The main constructor of the class Because no biome is known, the fields
      * take the values of the ones forme Biome.NONE
@@ -80,6 +86,12 @@ public class Paddock implements Cloneable, IPaddock {
         this.attributes = (BiomeAttributes) Biome.NONE.getAttributes().clone();
         this.animals = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         this.neightbourhood = neightbourhood;
+        obs.addObserver(new Observer() {
+            @Override
+            public void update(Observable o, Object arg) {
+                setNewComerName((String) arg);
+            }
+        });
     }
 
     /**
@@ -167,26 +179,26 @@ public class Paddock implements Cloneable, IPaddock {
         throw new UnknownNameException(this.option.getAnimalBundle().getString("UNKNOWN_NAME"));
     }
 
-    public ArrayList<String> listAnimalWithSpecie(Specie specie) {
-        ArrayList<String> list = new ArrayList<>();
+    public ArrayList<Animal> listAnimalWithSpecie(Specie specie) {
+        ArrayList<Animal> list = new ArrayList<>();
         for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
             if (entry.getValue().isFromTheSameSpecie(specie)) {
-                list.add(entry.getKey());
+                list.add(entry.getValue());
             }
         }
         return list;
     }
 
-    public ArrayList<String> listAnimalWithoutSpecie() {
-        ArrayList<String> list = new ArrayList<>();
+    public ArrayList<Animal> listAnimalWithoutSpecie() {
+        ArrayList<Animal> list = new ArrayList<>();
         for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
-            list.add(entry.getKey());
+            list.add(entry.getValue());
         }
         return list;
     }
 
     @Override
-    public ArrayList<String> listAnimal(Specie specie) {
+    public ArrayList<Animal> listAnimal(Specie specie) {
         if (specie != null) {
             return listAnimalWithSpecie(specie);
         } else {
@@ -208,7 +220,7 @@ public class Paddock implements Cloneable, IPaddock {
                 // newFamily[0] = mother;
                 // new Family[1] = father;
                 for (int i = 2; i < newFamily.size(); i++) {
-                    newComer = newFamily.get(i);
+                    newComer = specifieNameOfTheNewBorn(newFamily.get(i), newFamily.get(0), newFamily.get(1));
                     tmpAnimal.add(newComer);
                     info.add(this.option.getAnimalBundle().getString("NEWCOMER")
                             + newFamily.get(0).getName() + this.option.getAnimalBundle().getString("AND")
@@ -219,6 +231,19 @@ public class Paddock implements Cloneable, IPaddock {
         }
         incomingNewBorn(tmpAnimal);
         return info;
+    }
+
+    private Animal specifieNameOfTheNewBorn(Animal newBorn, Animal mother, Animal father)
+            throws EmptyNameException {
+        obs.askAndWait(mother.getName(), father.getName(), newBorn.getSex().toString());
+        newBorn.setName(newComerName);
+        return newBorn;
+    }
+
+    String newComerName = "";
+
+    public void setNewComerName(String name) {
+        this.newComerName = name;
     }
 
     private void incomingNewBorn(ArrayList<Animal> tmpAnimal) {

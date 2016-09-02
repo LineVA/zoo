@@ -1,10 +1,7 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
-import exception.name.EmptyNameException;
-import exception.name.UnknownNameException;
 import launch.play.Play;
-import zoo.animal.Animal;
 
 /**
  *
@@ -17,6 +14,8 @@ public class Options implements Command{
         this.play = play;
     }
     
+    boolean success = false;
+    
       @Override
     public boolean hasInitiateAZoo() {
         return false;
@@ -25,6 +24,7 @@ public class Options implements Command{
     @Override
     public String execute(String[] cmd) {
         this.play.getOption().setLanguage(cmd[2]);
+        this.success = true;
         return this.play.getOption().getGeneralCmdBundle()
                 .getString("OPTION_CHANGE_SUCCESS");
     }
@@ -37,5 +37,10 @@ public class Options implements Command{
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean isSuccess() {
+        return this.success;
     }
 }

@@ -26,6 +26,13 @@ public class LoadZoo implements Command {
     public LoadZoo(Play play) {
         this.play = play;
     }
+    
+    boolean success = false;
+    
+     @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
 
     @Override
     public String execute(String[] cmd) {
@@ -35,6 +42,7 @@ public class LoadZoo implements Command {
             this.play.setZoo(zoo);
             this.play.setOption(zoo.getOption());
             this.previousHasBeenSuccessfull = true;
+            this.success = true;
             return this.play.getOption().getGeneralCmdBundle().getString("ZOO_CREATION_SUCESS");
         } catch (IOException | JDOMException ex) {
             this.previousHasBeenSuccessfull = false;

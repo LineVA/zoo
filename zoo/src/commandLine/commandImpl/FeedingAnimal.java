@@ -28,6 +28,13 @@ public class FeedingAnimal implements Command {
         return false;
     }
     
+    boolean success = false;
+    
+     @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
+    
     @Override
     public String execute(String[] cmd) {
         try {

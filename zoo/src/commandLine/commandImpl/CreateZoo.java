@@ -24,6 +24,13 @@ public class CreateZoo implements Command {
         return this.previousHasBeenSuccessfull;
     }
 
+    boolean success = false;
+
+    @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
+
     public CreateZoo(Play play) {
         this.play = play;
     }
@@ -38,9 +45,10 @@ public class CreateZoo implements Command {
             this.play.getZoo().initiateZoo(cmd[2], Integer.parseInt(cmd[3]),
                     Integer.parseInt(cmd[4]), species, age, monthsPerEvaluation, horizon);
             this.previousHasBeenSuccessfull = true;
+            this.success = true;
             return this.play.getOption().getGeneralCmdBundle()
                     .getString("ZOO_CREATION_SUCESS");
-        } catch (EmptyNameException ex){
+        } catch (EmptyNameException ex) {
             return ex.getMessage();
         } catch (JDOMException | IOException ex) {
             return ex.getMessage();

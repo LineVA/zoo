@@ -2,6 +2,7 @@ package zoo.animal;
 
 import backup.save.SaveImpl;
 import exception.IncorrectDataException;
+import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import zoo.animal.death.LifeSpanLightAttributes;
@@ -47,12 +48,16 @@ public interface Animal {
 
     public Specie getSpecie();
 
+    public Sex getSex();
+
     public int getActualLitterSize();
 
     public double getActualGestationFrequency();
 
     public IPaddock getPaddock();
-
+    
+    public void setName(String name) throws EmptyNameException;
+    
     /**
      * Friend pattern : give access to each of the fields of Animal only to the
      * save methods

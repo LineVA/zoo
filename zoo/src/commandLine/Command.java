@@ -1,8 +1,5 @@
 package commandLine;
 
-import zoo.IZoo;
-import zoo.Zoo;
-
 /**
  *
  * @author doyenm
@@ -16,5 +13,7 @@ public interface Command {
     public boolean canExecute(String[] cmd);
     
     public boolean hasInitiateAZoo();
+    
+    public boolean isSuccess();
     
 }

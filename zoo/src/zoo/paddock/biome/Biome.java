@@ -29,18 +29,18 @@ public enum Biome implements Cloneable {
      */
 
     NONE(0, "No biome", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    RAINFOREST(1, "Tropical rainforest", 22.0, 27.5, 2400.0, 150.0, 40.0, 0.0, 0.0, 0.8),
+    RAINFOREST(1, "Tropical rainforests", 22.0, 27.5, 2400.0, 150.0, 40.0, 0.0, 0.0, 0.8),
     DRYBROADLEAF(2, "Tropical and subtropical dry broadleaf forests", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
     TROPICALCONIFEROUS(3, "Tropical and subtropical coniferous forests", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    TEMPERATEBROADLEAF(4, "Temperate broadleaf and mixed forest", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    TEMPERATECONIFEROUS(5, "Temperate coniferous forest", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    TEMPERATEBROADLEAF(4, "Temperate broadleaf and mixed forests", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    TEMPERATECONIFEROUS(5, "Temperate coniferous forests", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
     TAIGA(6, "Taiga", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
     TROPICALGRASSLAND(7, "Tropical and subtropical grasslands, savannas, and shrublands", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    TEMPERATEGRASSLAND(8, "Temperate grasslands, savannas, and shrublands", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    TEMPERATEGRASSLAND(8, "Temperate grasslands, savannas and shrublands", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
     FLOODEDGRASSLAND(9, "Flooded grasslands and savannas", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
     MONTANE(10, "Montane grasslands and shrublands ", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
     TUNDRA(11, "Tundra", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    MEDITERRANEAN(12, "Mediterranean forests, woodlands, and scrub", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    MEDITERRANEAN(12, "Mediterranean forests, woodlands, and scrubs", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
     DESERT(13, "Deserts and xeric shrublands", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
     MANGROVE(14, "Mangrove", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 

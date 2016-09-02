@@ -30,7 +30,7 @@ public interface IPaddock {
     public Animal findAnimalByName(String animalName)
             throws UnknownNameException, EmptyNameException;
 
-    public ArrayList<String> listAnimal(Specie specie);
+    public ArrayList<Animal> listAnimal(Specie specie);
 
     public ArrayList<String> birth()
             throws IncorrectDataException, EmptyNameException;
@@ -72,7 +72,7 @@ public interface IPaddock {
     public void removeFromNeightbourhood();
 
     public void removeANeightbour(IPaddock paddock);
-    
+
     public Option getOption();
 
     /**

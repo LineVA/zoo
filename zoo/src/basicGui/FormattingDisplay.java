@@ -94,7 +94,7 @@ public class FormattingDisplay {
             if (it.hasNext()) {
                 finalStr += str + "\n";
             } else {
-                finalStr += str;
+                finalStr += str + "\n";
             }
         }
         return finalStr;

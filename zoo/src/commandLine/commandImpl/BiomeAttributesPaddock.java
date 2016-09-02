@@ -9,9 +9,15 @@ import launch.play.Play;
  */
 public class BiomeAttributesPaddock implements Command {
 
-        Play play;
+    Play play;
+    boolean success = false;
     
-    public BiomeAttributesPaddock(Play play){
+     @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
+
+    public BiomeAttributesPaddock(Play play) {
         this.play = play;
     }
 
@@ -20,6 +26,8 @@ public class BiomeAttributesPaddock implements Command {
         return false;
     }
     
+    
+
     private Object[] attributesArray;
 
     @Override

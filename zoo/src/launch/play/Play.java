@@ -2,8 +2,8 @@ package launch.play;
 
 import java.util.ResourceBundle;
 import launch.options.Option;
+import commandLine.CommandManager;
 import zoo.IZoo;
-import zoo.Zoo;
 
 /**
  *
@@ -21,4 +21,6 @@ public interface Play {
 
     public void setZoo(IZoo zoo);
 
+    public CommandManager getManager();
+    
 }

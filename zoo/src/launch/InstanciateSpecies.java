@@ -6,11 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Stream;
 import org.jdom2.JDOMException;
-import zoo.Zoo;
 import zoo.animal.specie.ParserSpecie;
 import zoo.animal.specie.Specie;
 
@@ -31,11 +28,9 @@ public class InstanciateSpecies {
                 } else {
                     
                 }
-            } catch (IOException ex) {
-                Logger.getLogger(Zoo.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (JDOMException ex) {
-                Logger.getLogger(Zoo.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } catch (IOException | JDOMException ex) {
+                ex.printStackTrace();
+            } 
         });
 
         return species;

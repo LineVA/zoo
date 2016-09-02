@@ -35,7 +35,7 @@
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element type="xs:decimal" name="femaleLifespan"/>
-                            <xs:element type="xs:decimal" name="maleLifeSpan"/>
+                            <xs:element type="xs:decimal" name="maleLifespan"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>

@@ -1,6 +1,7 @@
 package basicGui;
 
 import commandLine.CommandManager;
+import commandLine.commandManagerImpl.FreeCommandManager;
 import java.util.Scanner;
 import launch.play.Play;
 
@@ -19,7 +20,7 @@ public class Scan {
     }
 
     public void read() {
-        CommandManager manager = new CommandManager(play);
+        CommandManager manager = new FreeCommandManager(play);
         while (true) {
             System.out.println(manager.run(scan.nextLine()));
         }

@@ -23,17 +23,25 @@ public class RemoveAnimal implements Command {
     public RemoveAnimal(Play play) {
         this.play = play;
     }
-    
-      @Override
+
+    @Override
     public boolean hasInitiateAZoo() {
         return false;
+    }
+
+    boolean success = false;
+
+    @Override
+    public boolean isSuccess() {
+        return this.success;
     }
 
     @Override
     public String execute(String[] cmd) {
         try {
             Animal animal = this.play.getZoo().findAnimalByName(cmd[2]);
-             animal.getPaddock().removeAnimal(animal);
+            animal.getPaddock().removeAnimal(animal);
+            this.success = true;
             return this.play.getOption().getGeneralCmdBundle()
                     .getString("ANIMAL_REMOVE_SUCCESS");
         } catch (EmptyNameException | UnknownNameException ex) {

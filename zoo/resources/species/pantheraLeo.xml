@@ -6,7 +6,7 @@
     </names>
 <general>
     <uicn>3</uicn>
-    <family>Felidae</family>
+    <family>8</family>
     <ecoregion>0</ecoregion>
 </general>
 <reproduction>
@@ -18,14 +18,14 @@
 </reproduction>
 <lifespan>
         <femaleLifespan>168</femaleLifespan>
-        <maleLifeSpan>168</maleLifeSpan>
+        <maleLifespan>168</maleLifespan>
 </lifespan>
 <territory>
     <biome>7</biome>
     <territorySize>210</territorySize>
 </territory>
 <feeding>
-        <diet>2</diet>
+        <diet>3</diet>
         <quantity>7</quantity>
     </feeding>
 <social>

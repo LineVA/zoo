@@ -1,5 +1,6 @@
 package launch;
 
+import launch.play.tutorials.TutorialPlayImpl_1;
 import launch.play.FreePlayImpl;
 import launch.play.Play;
 import exception.name.EmptyNameException;

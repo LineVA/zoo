@@ -24,8 +24,16 @@ public class DetailZoo implements Command {
         return false;
     }
     
+    boolean success = false;
+    
+     @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
+    
     @Override
     public String execute(String[] cmd) {
+        this.success = true;
         return (FormattingDisplay.formattingArrayList(this.play.getZoo().info()));
     }
 

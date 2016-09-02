@@ -32,6 +32,8 @@ public class Specie {
     @Getter
     private final int diet;
     @Getter
+    private final int family;
+    @Getter
     private final FeedingAttributes specieFeeding;
     @Getter
     private final ReproductionAttributes specieReproduction;
@@ -61,13 +63,14 @@ public class Specie {
     private GaussianTerritoryAttributes gaussianTerritoryAttributes;
 
     public Specie(Names names, BiomeAttributes biome, FeedingAttributes feeding,
-            int diet,
-            ReproductionAttributes repro, LifeSpanAttributes lifeSpan,
-            ConservationStatus conservation, SocialAttributes social,
-            TerritoryAttributes territory, int ecoregion) {
+            int diet, ReproductionAttributes repro, 
+            LifeSpanAttributes lifeSpan, ConservationStatus conservation, 
+            SocialAttributes social, TerritoryAttributes territory, 
+            int ecoregion, int family) {
         this.names = names;
         this.specieBiome = biome;
         this.diet = diet;
+        this.family = family;
         this.ecoregion = ecoregion;
         this.specieFeeding = feeding;
         this.specieReproduction = repro;
@@ -99,6 +102,7 @@ public class Specie {
         info.add("Scientific name : " + this.names.getScientificName());
         info.add("Conservation status : " + this.conservation.toString());
         info.add("Ecoregion : " + Ecoregion.findById(this.ecoregion).toString());
+        info.add("Family : " + Family.findById(this.family).toString());
         info.add("Diet : " + Diet.NONE.findDietById(diet).toString());
         info.add("Reproduction attributes : " + this.specieReproduction.toString());
         info.add("Life span attributes : " + this.specieLifeSpan.toString());

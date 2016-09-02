@@ -4,9 +4,9 @@ import basicGui.FormattingDisplay;
 import commandLine.Command;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 import launch.play.Play;
+import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
 
@@ -30,6 +30,13 @@ public class LsAnimal implements Command {
         return false;
     }
     
+    boolean success = false;
+    
+     @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
+    
     @Override
     public String execute(String[] cmd) {
         Specie spec = null;
@@ -41,10 +48,13 @@ public class LsAnimal implements Command {
             if (args[1] != null) {
                 pad = this.play.getZoo().findPaddockByName(args[1]);
             }
-            return FormattingDisplay.formattingArrayList(this.play.getZoo().listAnimal(spec, pad));
-        } catch (EmptyNameException ex) {
-            return ex.getMessage();
-        } catch (UnknownNameException ex) {
+            this.success = true;
+            ArrayList<String> names = new ArrayList<>();
+            for(Animal animal : this.play.getZoo().listAnimal(spec, pad)){
+                names.add(animal.getName());
+            }
+            return FormattingDisplay.formattingArrayList(names);
+        } catch (EmptyNameException | UnknownNameException ex) {
             return ex.getMessage();
         }
     }
