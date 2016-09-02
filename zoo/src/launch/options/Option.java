@@ -31,6 +31,9 @@ public class Option {
     }
 
     public Option(String str) {
+        if(str.equals("")){
+            str = "fr";
+        }
         locale = new Locale(str);
         updateBundles();
     }

@@ -29,11 +29,12 @@ public class LoadImpl implements Load {
         ParserBackUp parser = new ParserBackUp(file);
         // Creation of the zoo
         IZoo zoo = parser.parserZoo().convertToZoo();
-        zoo.setOption(new Option(parser.parserLanguage()));
+        Option option = new Option(parser.parserLanguage());
+        zoo.setOption(option);
         // Creation of the paddocks
         ArrayList<FakePaddock> padList = parser.parserPaddocks();
         for (FakePaddock pad : padList) {
-            addFakePaddockToZoo(zoo, pad);
+            addFakePaddockToZoo(zoo, pad, option);
         }
         // Creation of the animals
         ArrayList<FakeAnimal> animalList = parser.parserAnimals();
@@ -53,9 +54,10 @@ public class LoadImpl implements Load {
             pad.addAnimal(animal.convertToAnimal(spec, pad, sex));
     }
 
-    public void addFakePaddockToZoo(IZoo zoo, FakePaddock paddock)
-            throws IncorrectDimensionsException, AlreadyUsedNameException, EmptyNameException{
-        zoo.addPaddock(paddock.convertToPaddock());
+    public void addFakePaddockToZoo(IZoo zoo, FakePaddock paddock, Option option)
+            throws IncorrectDimensionsException,
+            AlreadyUsedNameException, EmptyNameException{
+        zoo.addPaddock(paddock.convertToPaddock(option));
     }
 }
 
