@@ -3,14 +3,15 @@ package zoo.animal.feeding;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import launch.options.Option;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
  * @author doyenm
  */
 public enum Diet {
-
     NONE(0, "does not eat"),
     APHIDIPHAGOUS(1, "feeds on aphids"),
     CARNIVOROUS(2, "feeds on raw meat"),
@@ -44,7 +45,9 @@ public enum Diet {
     @Getter
     String definition;
     boolean[][] eatables;
-
+    @Setter
+    private Option option;
+    
     Diet(int id, String text) {
         this.id = id;
         this.definition = text;
@@ -93,7 +96,8 @@ public enum Diet {
                 return diet;
             }
         }
-        throw new UnknownNameException("No diet has this identifier.");
+        throw new UnknownNameException(
+                this.option.getDietBundle().getString("UNKNOWN_DIET_BY_ID"));
     }
 
     public boolean isCompatible(int diet) throws UnknownNameException {
@@ -116,7 +120,7 @@ public enum Diet {
     public ArrayList<String> list() {
         ArrayList<String> list = new ArrayList<>();
         for (Diet diet : Diet.values()) {
-            list.add(diet.toString() + " : " + diet.definition);
+            list.add(diet.toString() + " : " + this.option.getDietBundle().getString(diet.toString().toUpperCase()));
         }
         return list;
     }

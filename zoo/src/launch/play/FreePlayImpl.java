@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import zoo.IZoo;
 import zoo.Zoo;
+import zoo.animal.feeding.Diet;
 
 /**
  *
@@ -24,6 +25,7 @@ public class FreePlayImpl implements Play{
     public FreePlayImpl(ResourceBundle bundle, Option opt) {
         this.zoo = new Zoo();
         this.zoo.setOption(opt);
+        Diet.NONE.setOption(opt);
         this.bundle = bundle;
         this.option = opt;
     }
