@@ -13,45 +13,42 @@ import lombok.Getter;
  */
 public enum Diet {
 
-    NONE(0, "Does not eat"),
-    APHIDIPHAGOUS(1, "feeds on aphids"),
-    BACCIVOROUS(2, "feeds on berries"),
-    CARNIVOROUS(3, "feeds on raw meat"),
-    EXSUDATIVOROUS(4, "feeds on exsudate of plants"),
-    FRUGIVOROUS(5, "feeds on fruits"),
-    GRANIVOROUS(6, "feeds on seeds"),
-    HEMATOPHAGOUS(7, "feeds on blood"),
-    HERBIVOROUS(8, "feeds on grass"),
-    INSECTIVOROUS(9, "feeds on insects"),
-    LEPIDOPHAGOUS(10, "feeds on fish scales"),
-    MELLIPHAGOUS(11, "feeds on honey"),
-    MOLLUSCIVOROUS(12, "feeds on mollucs"),
-    MYCOPHAGOUS(13, "feeds on mushrooms"),
-    MYRMECOPHAGOUS(14, "feeds on ants"),
-    NECROPHAGOUS(15, "feeds on carrions"),
-    NECTARIVOROUS(16, "feeds on nectar"),
-    OOPHAGOUS(17, "feeds on eggs"),
-    OPHIOPHAGOUS(18, "feeds on snakes"),
-    ORNITHOPHAGOUS(19, "feeds on birds"),
-    PHYLLOPHAGOUS(20, "feeds on leaves"),
-    PISCIVOROUS(21, "feeds on fishes"),
-    PLANKTONIVOROUS(22, "feeds on plankton"),
-    POLLINOVOROUS(23, "feeds on pollen"),
-    VERMIVOROUS(24, "feeds on worms"),
-    XYLOPHAGOUS(25, "feeds on wood"),
-    ZEOPHAGOUS(26, "feeds on corn");
+    NONE(0),
+    APHIDIPHAGOUS(1),
+    BACCIVOROUS(2),
+    CARNIVOROUS(3),
+    EXSUDATIVOROUS(4),
+    FRUGIVOROUS(5),
+    GRANIVOROUS(6),
+    HEMATOPHAGOUS(7),
+    HERBIVOROUS(8),
+    INSECTIVOROUS(9),
+    LEPIDOPHAGOUS(10),
+    MELLIPHAGOUS(11),
+    MOLLUSCIVOROUS(12),
+    MYCOPHAGOUS(13 ),
+    MYRMECOPHAGOUS(14),
+    NECROPHAGOUS(15),
+    NECTARIVOROUS(16),
+    OOPHAGOUS(17),
+    OPHIOPHAGOUS(18),
+    ORNITHOPHAGOUS(19),
+    PHYLLOPHAGOUS(20),
+    PISCIVOROUS(21),
+    PLANKTONIVOROUS(22),
+    POLLINOVOROUS(23),
+    VERMIVOROUS(24),
+    XYLOPHAGOUS(25),
+    ZEOPHAGOUS(26);
 
     @Getter
     int id;
-    @Getter
-    String definition;
     boolean[][] eatables;
 
     private static ResourceBundle bundle;
 
-    Diet(int id, String text) {
+    Diet(int id) {
         this.id = id;
-        this.definition = text;
         fill();
     }
 
@@ -125,7 +122,8 @@ public enum Diet {
     public ArrayList<String> list() {
         ArrayList<String> list = new ArrayList<>();
         for (Diet diet : Diet.values()) {
-            list.add(diet.toString() + " : " + this.bundle.getString(diet.toString().toUpperCase()));
+            list.add(diet.id + " - " +this.bundle.getString(diet.toString().toUpperCase()) 
+                    + " : " + this.bundle.getString(diet.toString().toUpperCase()+"_DESCRIPTION"));
         }
         return list;
     }
