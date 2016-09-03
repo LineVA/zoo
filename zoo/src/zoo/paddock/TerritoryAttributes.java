@@ -1,5 +1,6 @@
 package zoo.paddock;
 
+import launch.options.Option;
 import lombok.Getter;
 
 /**
@@ -15,8 +16,7 @@ public class TerritoryAttributes {
         this.territorySize = size;
     }
     
-    @Override 
-    public String toString(){
-        return "territory size = " + this.territorySize;
+    public String toStringByLanguage(Option option){
+        return option.getTerritoryBundle().getString("TERRITORY_SIZE") + this.territorySize;
     }
 }

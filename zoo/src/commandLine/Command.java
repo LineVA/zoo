@@ -1,8 +1,5 @@
 package commandLine;
 
-import zoo.IZoo;
-import zoo.Zoo;
-
 /**
  *
  * @author doyenm

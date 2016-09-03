@@ -37,11 +37,9 @@ public class DetailPad implements Command {
             IPaddock pad = this.play.getZoo().findPaddockByName(cmd[1]);
             this.success= true;
             return (FormattingDisplay.formattingArrayList(pad.info()));
-        } catch (UnknownNameException ex) {
-            return "No paddock has this name.";
-        } catch (EmptyNameException ex) {
-            return "please, select a name.";
-        }
+        } catch (UnknownNameException  | EmptyNameException ex) {
+            return ex.getMessage();
+        } 
     }
 
     @Override

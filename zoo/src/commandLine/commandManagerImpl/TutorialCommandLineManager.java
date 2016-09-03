@@ -20,6 +20,7 @@ import commandLine.commandImpl.LsFeeding;
 import commandLine.commandImpl.LsPaddock;
 import commandLine.commandImpl.LsSpecie;
 import commandLine.commandImpl.MapZoo;
+import commandLine.commandImpl.Options;
 import commandLine.commandImpl.RemoveAnimal;
 import commandLine.commandImpl.RemovePaddock;
 import commandLine.commandImpl.SaveZoo;
@@ -56,7 +57,7 @@ public class TutorialCommandLineManager implements CommandManager {
                 new RemoveAnimal(play), new RemovePaddock(play),
                 new LsSpecie(play), new DetailSpecie(play),
                 new LsFeeding(play),
-                new SaveZoo(play), new LoadZoo(play));
+                new SaveZoo(play), new LoadZoo(play), new Options(play));
     }
 
     @Override

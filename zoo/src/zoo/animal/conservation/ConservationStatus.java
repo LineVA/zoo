@@ -1,7 +1,9 @@
 package zoo.animal.conservation;
 
 import exception.name.UnknownNameException;
+import launch.options.Option;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
@@ -24,6 +26,8 @@ public enum ConservationStatus {
     double coefficient;
     @Getter
     double diameter;
+    @Setter
+    Option option;
 
     ConservationStatus(int id, double coef, double diam) {
         this.id = id;
@@ -37,6 +41,6 @@ public enum ConservationStatus {
                 return status;
             }
         }
-        throw new UnknownNameException("This conservation status does not exist.");
+        throw new UnknownNameException(this.option.getConservationBundle().getString("UNKNOWN_ID"));
     }
 }

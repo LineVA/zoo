@@ -5,6 +5,8 @@ import exception.IncorrectDataException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+import launch.options.Option;
 import lombok.Getter;
 import lombok.Setter;
 import zoo.animal.death.LifeSpanLightAttributes;
@@ -25,6 +27,8 @@ import zoo.paddock.biome.BiomeAttributes;
  * @author doyenm
  */
 public class AnimalImpl implements Animal {
+
+    private Option option;
 
     private final Specie specie;
     private String name;
@@ -65,11 +69,14 @@ public class AnimalImpl implements Animal {
     // actual is given by the number of animal is the paddock.
     private final TerritoryAttributes optimalTerritory;
 
-    public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex, int age) 
+    public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex,
+            int age, Option option)
             throws IncorrectDataException, EmptyNameException {
+        this.option = option;
         this.specie = spec;
-       if (name.trim().equals("")) {
-            throw new EmptyNameException("An animal cannot have an empty name.");
+        if (name.trim().equals("")) {
+            throw new EmptyNameException(
+                    this.option.getAnimalBundle().getString("EMPTY_NAME"));
         } else {
             this.name = name;
         }
@@ -78,7 +85,8 @@ public class AnimalImpl implements Animal {
         if (age >= 0) {
             this.age = age;
         } else {
-            throw new IncorrectDataException("An animal cannot be younger than 0 month...");
+            throw new IncorrectDataException(
+                    this.option.getAnimalBundle().getString("TOO_YOUNG"));
         }
 //        this.optimalBiome = drawOptimalBiome(spec);
         this.optimalFeeding = drawOptimalFeeding(spec);
@@ -91,15 +99,20 @@ public class AnimalImpl implements Animal {
         // this.actualFeeding = null;
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
-        this.wB = new WellBeingImpl(spec.getConservation().getCoefficient(), spec.getConservation().getDiameter());
+        this.wB = new WellBeingImpl(
+                spec.getConservation().getCoefficient(),
+                spec.getConservation().getDiameter());
         this.wellBeing = 0;
     }
 
-    public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex)
+    public AnimalImpl(Specie spec, String name,
+            IPaddock paddock, Sex sex, Option option)
             throws IncorrectDataException, EmptyNameException {
+        this.option = option;
         this.specie = spec;
-       if (name.trim().equals("")) {
-            throw new EmptyNameException("An animal cannot have an empty name.");
+        if (name.trim().equals("")) {
+            throw new EmptyNameException(
+                    this.option.getAnimalBundle().getString("EMPTY_NAME"));
         } else {
             this.name = name;
         }
@@ -117,7 +130,9 @@ public class AnimalImpl implements Animal {
         this.age = this.sex.isFemale()
                 ? this.actualReproduction.getFemaleMaturityAge()
                 : this.actualReproduction.getMaleMaturityAge();
-        this.wB = new WellBeingImpl(spec.getConservation().getCoefficient(), spec.getConservation().getDiameter());
+        this.wB = new WellBeingImpl(
+                spec.getConservation().getCoefficient(),
+                spec.getConservation().getDiameter());
         this.wellBeing = 0;
     }
 
@@ -125,16 +140,19 @@ public class AnimalImpl implements Animal {
 
     }
 
-    public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex, int age,
+    public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex,
+            int age,
             BiomeAttributes biome, FeedingAttributes optimalFeeding,
             FeedingAttributes actualFeeding, int diet,
             ReproductionAttributes reproduction,
             LifeSpanLightAttributes life, SocialAttributes social,
-            TerritoryAttributes territory)
+            TerritoryAttributes territory, Option option)
             throws IncorrectDataException, EmptyNameException {
+        this.option = option;
         this.specie = spec;
-       if (name.trim().equals("")) {
-            throw new EmptyNameException("An animal cannot have an empty name.");
+        if (name.trim().equals("")) {
+            throw new EmptyNameException(
+                    this.option.getAnimalBundle().getString("EMPTY_NAME"));
         } else {
             this.name = name;
         }
@@ -149,7 +167,9 @@ public class AnimalImpl implements Animal {
         this.optimalSocial = social;
         this.optimalTerritory = territory;
         this.age = age;
-        this.wB = new WellBeingImpl(spec.getConservation().getCoefficient(), spec.getConservation().getDiameter());
+        this.wB = new WellBeingImpl(
+                spec.getConservation().getCoefficient(),
+                spec.getConservation().getDiameter());
         this.wellBeing = 0;
     }
 
@@ -162,7 +182,8 @@ public class AnimalImpl implements Animal {
         double drop = spec.getGaussianBiome().getDrop().nextDouble();
         double water = spec.getGaussianBiome().getWaterSalinity().nextDouble();
         double humidity = spec.getGaussianBiome().getHumidity().nextDouble();
-        return new BiomeAttributes(night, day, pluvio, treeD, treeH, drop, water, humidity);
+        return new BiomeAttributes(night, day, pluvio, treeD,
+                treeH, drop, water, humidity);
     }
 
     /**
@@ -196,30 +217,38 @@ public class AnimalImpl implements Animal {
      * @return its actualReproductionAttributes
      */
     private ReproductionAttributes drawActualReproduction(Specie spec) {
-        int female = spec.getGaussianReproduction().getFemaleMaturityAge().gaussianInt();
-        int male = spec.getGaussianReproduction().getFemaleMaturityAge().gaussianInt();
-        double frequency = spec.getGaussianReproduction().getGestationFrequency().gaussianDouble();
-        int litter = spec.getGaussianReproduction().getLitterSize().gaussianInt();
+        int female = spec.getGaussianReproduction().
+                getFemaleMaturityAge().gaussianInt();
+        int male = spec.getGaussianReproduction().
+                getFemaleMaturityAge().gaussianInt();
+        double frequency = spec.getGaussianReproduction().
+                getGestationFrequency().gaussianDouble();
+        int litter = spec.getGaussianReproduction().
+                getLitterSize().gaussianInt();
         return new ReproductionAttributes(female, male, frequency, litter);
     }
 
     private LifeSpanLightAttributes drawActualLifeSpan(Specie spec) {
         int lifeSpan;
         if (this.sex.isFemale()) {
-            lifeSpan = spec.getGaussianLifeSpanAttributesSpan().getFemaleLifeSpan().gaussianInt();
+            lifeSpan = spec.getGaussianLifeSpanAttributesSpan().
+                    getFemaleLifeSpan().gaussianInt();
         } else {
-            lifeSpan = spec.getGaussianLifeSpanAttributesSpan().getMaleLifeSpan().gaussianInt();
+            lifeSpan = spec.getGaussianLifeSpanAttributesSpan().
+                    getMaleLifeSpan().gaussianInt();
         }
         return new LifeSpanLightAttributes(lifeSpan);
     }
 
     private SocialAttributes drawOptimalSocial(Specie spec) {
-        int groupSize = spec.getGaussianSocialAttributes().getGroupSize().gaussianInt();
+        int groupSize = spec.getGaussianSocialAttributes().
+                getGroupSize().gaussianInt();
         return new SocialAttributes(groupSize);
     }
 
     private TerritoryAttributes drawOptimalTerritory(Specie spec) {
-        return new TerritoryAttributes(spec.getGaussianTerritoryAttributes().getTerritorySize().gaussianDouble());
+        return new TerritoryAttributes(spec.getGaussianTerritoryAttributes().
+                getTerritorySize().gaussianDouble());
     }
 
     /**
@@ -256,20 +285,22 @@ public class AnimalImpl implements Animal {
     @Override
     public ArrayList<String> info() throws UnknownNameException {
         ArrayList<String> info = new ArrayList<>();
-        info.add("Name : " + this.name);
-        info.add("Paddock : " + this.paddock.getName());
-        info.add("Specie : " + this.specie.getNames().getEnglishName());
-        info.add("Age : " + this.age);
-        info.add("Sex : " + this.sex.toString());
-        info.add("Well-being : " + this.wellBeing);
-        info.add("Diet : " + Diet.NONE.findDietById(actualDiet).toString());
-        info.add("Reproduction attributes : " + this.actualReproduction);
-        info.add("Life span attributes : " + this.actualLifeSpan.toString());
-        info.add("Optimal group size : " + this.optimalSocial.getGroupSize());
-        info.add("Group size : " + this.paddock.countAnimalsOfTheSameSpecie(this.specie));
-        info.add("Optimal feeding attributes : " + this.optimalFeeding.toString());
-        info.add("Actual feeding attributes : " + this.actualFeeding.toString());
-        info.add("Territory size : " + this.paddock.computeSize());
+        ResourceBundle bundle = this.option.getAnimalBundle();
+        info.add(bundle.getString("NAME") + this.name);
+        info.add(bundle.getString("PADDOCK") + this.paddock.getName());
+        info.add(bundle.getString("SPECIE") + this.specie.getNameAccordingLanguage(option));
+        info.add(bundle.getString("AGE") + this.age);
+        info.add(bundle.getString("SEX") + this.sex.toString());
+        info.add(bundle.getString("WB") + this.wellBeing);
+        info.add(bundle.getString("DIET") + Diet.NONE.findDietById(actualDiet).toString());
+        info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.toStringByLanguage(option));
+        info.add(bundle.getString("LIFESPAN_ATT") + this.actualLifeSpan.toStringByLanguage(option));
+        info.add(bundle.getString("OPT_SOCIAL_ATT") + this.optimalSocial.toStringByLanguage(option));
+        info.add(bundle.getString("ACT_GROUP_SIZE") + this.paddock.countAnimalsOfTheSameSpecie(this.specie));
+        info.add(bundle.getString("OPT_FEEDING_ATT") + this.optimalFeeding.toStringByLanguage(option));
+        info.add(bundle.getString("ACT_FEEDING_ATT") + this.actualFeeding.toStringByLanguage(option));
+        info.add(bundle.getString("OPT_TERRITORY_ATT") + this.optimalTerritory.toStringByLanguage(option));
+        info.add(bundle.getString("TERRITORY_SIZE") + this.paddock.computeSize());
         return info;
     }
 
@@ -338,11 +369,11 @@ public class AnimalImpl implements Animal {
 
     @Override
     public void changeFoodQuantity(Double quantity) throws IncorrectDataException {
-        if(quantity>0.0){
+        if (quantity > 0.0) {
             this.actualFeeding.setFoodQuantity(quantity);
         } else {
             throw new IncorrectDataException("The food quantity must be greater or equals than zero.");
-        } 
+        }
     }
 
     /////////////////
@@ -357,7 +388,7 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public void setName(String name) throws EmptyNameException{
+    public void setName(String name) throws EmptyNameException {
         if (!name.equals("")) {
             this.name = name;
         } else {
@@ -369,7 +400,7 @@ public class AnimalImpl implements Animal {
     public Specie getSpecie() {
         return this.specie;
     }
-    
+
     @Override
     public int getActualLitterSize() {
         return this.actualReproduction.getLitterSize();

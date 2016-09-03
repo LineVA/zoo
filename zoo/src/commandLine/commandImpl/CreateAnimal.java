@@ -43,16 +43,19 @@ public class CreateAnimal implements Command {
         }
         try {
             this.play.getZoo().findAnimalByName(cmd[2]);
-            return "There is already an animal with this name in the zoo.";
+            return this.play.getOption().getGeneralCmdBundle()
+                    .getString("ALREADY_EXISTING_ANIMAL_NAME");
         } catch (UnknownNameException ex1) {
             try {
                 IPaddock pad = this.play.getZoo().findPaddockByName(cmd[3]);
                 Specie specie = this.play.getZoo().findSpeciebyName(cmd[4]);
                 Sex sex = Sex.MALE.findByName(cmd[5]);
-                Animal animal = new AnimalImpl(specie, cmd[2], pad, sex);
+                Animal animal = new AnimalImpl(specie, cmd[2], pad,
+                        sex, this.play.getOption());
                 pad.addAnimal(animal);
                 this.success = true;
-                return "The animal has been created.";
+                return this.play.getOption().getGeneralCmdBundle()
+                        .getString("ANIMAL_CREATION_SUCCESS");
             } catch (EmptyNameException | UnknownNameException | AlreadyUsedNameException | IncorrectDataException ex) {
                 return ex.getMessage();
             }

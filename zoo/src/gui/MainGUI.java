@@ -1,6 +1,5 @@
 package gui;
 
-import commandLine.CommandManager;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.WindowAdapter;
@@ -10,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import launch.play.Play;
 import lombok.Getter;
+import gui.TextPane;
 
 /**
  *

@@ -1,6 +1,9 @@
 package zoo.animal.reproduction;
 
+import java.util.ResourceBundle;
+import launch.options.Option;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
@@ -24,14 +27,13 @@ public class ReproductionAttributes {
         this.litterSize = litter;
     }
 
-    @Override
-    public String toString() {
+    public String toStringByLanguage(Option option) {
         String info = "";
-        info += "age of sexual maturity (female) = " + this.femaleMaturityAge + ", ";
-        info += "age of sexual maturity (male) = " + this.maleMaturityAge + ", ";
-        info += "gestation frequency = " + this.gestationFrequency +", ";
-        info += "size of the litter = " + this.litterSize;
-
+        ResourceBundle bundle = option.getReproductionBundle();
+        info += bundle.getString("AGE_FEMALE") + this.femaleMaturityAge + ", ";
+        info += bundle.getString("AGE_MALE") + this.maleMaturityAge + ", ";
+        info += bundle.getString("GESTATION_FREQUENCY") + this.gestationFrequency + ", ";
+        info += bundle.getString("LITTER_SIZE") + this.litterSize;
         return info;
     }
 }

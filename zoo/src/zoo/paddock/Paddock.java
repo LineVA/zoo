@@ -13,6 +13,9 @@ import lombok.Getter;
 import backup.save.SaveImpl;
 import exception.name.EmptyNameException;
 import java.util.Map;
+import java.util.ResourceBundle;
+import java.util.TreeMap;
+import launch.options.Option;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.TreeMap;
@@ -32,6 +35,9 @@ import zoo.animal.specie.Specie;
 // "treeDensity", "treeHeight", "drop", "waterSalinity", "humidity"})
 @EqualsAndHashCode()
 public class Paddock implements Cloneable, IPaddock {
+
+    @Getter
+    private Option option;
 
     /**
      * The name of the paddock
@@ -65,10 +71,13 @@ public class Paddock implements Cloneable, IPaddock {
      * @param name the name of the paddock
      * @param coor the coordinates of the paddock
      */
-    public Paddock(String name, PaddockCoordinates coor, ArrayList<IPaddock> neightbourhood) 
+    public Paddock(String name, PaddockCoordinates coor, 
+            ArrayList<IPaddock> neightbourhood, Option option)
             throws EmptyNameException {
+        this.option = option;
         if (name.trim().equals("")) {
-            throw new EmptyNameException("A paddock cannot have an empty name.");
+            throw new EmptyNameException(
+                    this.option.getPaddockBundle().getString("EMPTY_NAME"));
         } else {
             this.name = name;
         }
@@ -129,8 +138,8 @@ public class Paddock implements Cloneable, IPaddock {
     public void addAnimal(Animal animal) throws AlreadyUsedNameException {
         Animal success = this.animals.putIfAbsent(animal.getName(), animal);
         if (success != null) {
-            throw new AlreadyUsedNameException("There is already an animal with"
-                    + " this name is this paddock, please choose another one.");
+            throw new AlreadyUsedNameException(
+            this.option.getPaddockBundle().getString("ALREADY_USED_NAME"));
         }
     }
 
@@ -140,12 +149,13 @@ public class Paddock implements Cloneable, IPaddock {
 
     @Override
     public ArrayList<String> info() {
+        ResourceBundle bundle = this.option.getPaddockBundle();
         ArrayList<String> info = new ArrayList<>();
-        info.add("Name : " + this.name);
-        info.add("Coordinates : " + this.coordinates.toString());
-        info.add("Neightbours : " + this.listNeightbourhood());
-        info.add("Biome : " + this.biome);
-        info.add("Biome's characteristics : " + this.attributes.toString());
+        info.add(bundle.getString("NAME") + this.name);
+        info.add(bundle.getString("COORDINATES") + this.coordinates.toString());
+        info.add(bundle.getString("NEIGHTBOURS") + this.listNeightbourhood());
+        info.add(bundle.getString("BIOME") + this.biome);
+        info.add(bundle.getString("BIOMES_CHARACTERISTICS") + this.attributes.toString());
         return info;
     }
 
@@ -161,13 +171,12 @@ public class Paddock implements Cloneable, IPaddock {
     public Animal findAnimalByName(String animalName)
             throws UnknownNameException, EmptyNameException {
         if (name.trim().equals("")) {
-            throw new EmptyNameException("");
+            throw new EmptyNameException(this.option.getAnimalBundle().getString("EMPTY_NAME"));
         }
         if (animals.containsKey(animalName)) {
             return animals.get(animalName);
         }
-        throw new UnknownNameException("There is no animal in this paddock "
-                + "with this name.");
+        throw new UnknownNameException(this.option.getAnimalBundle().getString("UNKNOWN_NAME"));
     }
 
     public ArrayList<Animal> listAnimalWithSpecie(Specie specie) {
@@ -213,10 +222,10 @@ public class Paddock implements Cloneable, IPaddock {
                 for (int i = 2; i < newFamily.size(); i++) {
                     newComer = specifieNameOfTheNewBorn(newFamily.get(i), newFamily.get(0), newFamily.get(1));
                     tmpAnimal.add(newComer);
-                    info.add("A newcomer : the baby of "
-                            + newFamily.get(0).getName() + " and "
+                    info.add(this.option.getAnimalBundle().getString("NEWCOMER")
+                            + newFamily.get(0).getName() + this.option.getAnimalBundle().getString("AND")
                             + newFamily.get(1).getName()
-                            + ", called " + newComer.getName());
+                            + this.option.getAnimalBundle().getString("CALLED") + newComer.getName());
                 }
             }
         }
@@ -263,7 +272,7 @@ public class Paddock implements Cloneable, IPaddock {
             // If the animal is dead
             dying = animalEntry.getValue();
             if (die.isDied(dying)) {
-                info.add("A dying animal : " + dying.getName());
+                info.add(this.option.getAnimalBundle().getString("DYING_ANIMAL") + dying.getName());
                 tmpAnimal.add(dying);
             }
         }
@@ -351,7 +360,7 @@ public class Paddock implements Cloneable, IPaddock {
         ArrayList<String> listSpecie = new ArrayList<>();
         for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
             if (!listSpecie.contains(animalEntry.getValue().getSpecie())) {
-                listSpecie.add(animalEntry.getValue().getSpecie().getNames().getEnglishName());
+                listSpecie.add(animalEntry.getValue().getSpecie().getNameAccordingLanguage(option));
             }
         }
         return listSpecie;
@@ -360,7 +369,7 @@ public class Paddock implements Cloneable, IPaddock {
     @Override
     public ArrayList<String> listSpeciesByName(ArrayList<String> presentedSpecies) {
         for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
-            String name = animalEntry.getValue().getSpecie().getNames().getEnglishName();
+            String name = animalEntry.getValue().getSpecie().getNameAccordingLanguage(option);
             if (!presentedSpecies.contains(name)) {
                 presentedSpecies.add(name);
             }

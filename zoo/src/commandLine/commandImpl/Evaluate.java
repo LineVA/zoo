@@ -54,7 +54,8 @@ public class Evaluate implements Command {
                 IncorrectDataException | EmptyNameException ex) {
             return ex.getMessage();
         }
-        info.add("The evaluation of the zoo : " + zooEvaluation);
+        info.add(this.play.getOption().getGeneralCmdBundle()
+                .getString("ZOO_EVALUATION") + zooEvaluation);
         return FormattingDisplay.formattingArrayList(info);
     }
 

@@ -12,7 +12,11 @@ import java.util.HashMap;
 import backup.save.SaveImpl;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.ResourceBundle;
 import java.util.TreeMap;
+import launch.options.Option;
+import lombok.Getter;
+import lombok.Setter;
 import launch.play.tutorials.TutorialPlayImpl_1;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
@@ -25,6 +29,13 @@ import zoo.paddock.Paddock;
  * @author doyenm
  */
 public class Zoo implements IZoo {
+
+    @Getter @Setter
+    private Option option;
+    
+//    public void setOption(Option option) {
+//        this.option = option;
+//    }
 
     /**
      * The name of the zoo
@@ -45,6 +56,7 @@ public class Zoo implements IZoo {
     /**
      * The HashMap of the existing species
      */
+    @Setter
     private Map<String, Specie> species;
     /**
      * The number of months which flows when we evaluate the zoo
@@ -60,7 +72,7 @@ public class Zoo implements IZoo {
      */
     private double grade;
     private int horizon;
-    
+
     public Zoo() {
         //  this.monthsPerEvaluation = 6;
     }
@@ -81,13 +93,14 @@ public class Zoo implements IZoo {
             Map<String, Specie> species, int age, int monthsPerEvaluation, int horizon)
             throws IncorrectDimensionsException, EmptyNameException, IOException {
         if (name.trim().equals("")) {
-            throw new EmptyNameException("A zoo cannot have an empty name.");
+            throw new EmptyNameException(
+                    this.option.getZooBundle().getString("EMPTY_NAME"));
         } else {
             this.name = name;
         }
         if (width < 1 || height < 1) {
-            throw new IncorrectDimensionsException("A zoo must have a width and "
-                    + "an height greater or equals to 1 each.");
+            throw new IncorrectDimensionsException(
+                    this.option.getZooBundle().getString("INCORRECT_DIMENSIONS"));
         } else {
             this.width = width;
             this.height = height;
@@ -126,13 +139,14 @@ public class Zoo implements IZoo {
                 neightbourhood.add(tmp);
             }
         }
-        IPaddock paddock = new Paddock(paddockName, coor, neightbourhood);
+        IPaddock paddock = new Paddock(paddockName, coor, neightbourhood, option);
         IPaddock success = this.paddocks.putIfAbsent(paddockName, paddock);
         if (success == null) {
             reactualizeNeightbourhoods(paddock, neightbourhood);
         } else {
-            throw new AlreadyUsedNameException("A paddock with this name "
-                    + " already exists. Please choose another one.");
+            throw new AlreadyUsedNameException(
+                    this.option.getPaddockBundle()
+                    .getString("ALREADY_USED_NAME"));
         }
     }
 
@@ -141,8 +155,8 @@ public class Zoo implements IZoo {
             throws IncorrectDimensionsException {
         IPaddock neightbour = null;
         if (!entry.getValue().isNotCompetingForSpace(coor)) {
-            throw new IncorrectDimensionsException("This paddock cannot"
-                    + " be set here : there is already another one on this place.");
+            throw new IncorrectDimensionsException(
+                    this.option.getPaddockBundle().getString("ALREADY_PADDOCK_HERE"));
         }
         if (entry.getValue().isNotCompetingForSpace(coorNeightbourhood)) {
             neightbour = entry.getValue();
@@ -152,9 +166,9 @@ public class Zoo implements IZoo {
 
     private boolean checkEmplacement(PaddockCoordinates coor) throws IncorrectDimensionsException {
         if (this.tooSmallforThisPaddock(coor)) {
-            throw new IncorrectDimensionsException("This paddock cannot be "
-                    + "set here : the zoo is too small.");
-        } 
+            throw new IncorrectDimensionsException(
+                    this.option.getZooBundle().getString("ZOO_TOO_SMALL"));
+        }
         return true;
     }
 
@@ -176,8 +190,8 @@ public class Zoo implements IZoo {
             paddock.addAllInNeightbourhood(neightbourhood);
             reactualizeNeightbourhoods(paddock, neightbourhood);
         } else {
-            throw new AlreadyUsedNameException("A paddock with this name "
-                    + " already exists. Please choose another one.");
+            throw new AlreadyUsedNameException(
+                    this.option.getPaddockBundle().getString("ALREADY_USED_NAME_PADDOCK"));
         }
     }
 
@@ -220,20 +234,22 @@ public class Zoo implements IZoo {
     public IPaddock findPaddockByName(String name) throws UnknownNameException,
             EmptyNameException {
         if (name.trim().equals("")) {
-            throw new EmptyNameException("");
+            throw new EmptyNameException(
+                    this.option.getPaddockBundle().getString("EMPTY_NAME_PADDOCK"));
         }
         if (paddocks.containsKey(name)) {
             return paddocks.get(name);
         }
-        throw new UnknownNameException("This paddock does not exist.");
+        throw new UnknownNameException(
+                this.option.getPaddockBundle().getString("UNKNOWN_PADDOCK"));
     }
 
-    @Override 
-    public void removePaddock(IPaddock paddock){
+    @Override
+    public void removePaddock(IPaddock paddock) {
         this.paddocks.remove(paddock.getName());
         paddock.removeFromNeightbourhood();
     }
-    
+
     /**
      * Method used to know if a paddock can be placed into the zoo without
      * looking for the others paddocks
@@ -289,18 +305,21 @@ public class Zoo implements IZoo {
     @Override
     public Specie findSpeciebyName(String specieName) throws EmptyNameException, UnknownNameException {
         if (specieName.trim().equals("")) {
-            throw new EmptyNameException("This specie is unknown.");
+            throw new EmptyNameException(
+                    this.option.getSpecieBundle().getString("EMPTY_NAME"));
         }
         if (species.containsKey(specieName)) {
             return species.get(specieName);
         }
-        throw new UnknownNameException("No specie with this name exists.");
+        throw new UnknownNameException(
+                this.option.getSpecieBundle().getString("UNKNOWN_NAME"));
     }
 
     @Override
     public Animal findAnimalByName(String animalName) throws UnknownNameException, EmptyNameException {
         if (animalName.trim().equals("")) {
-            throw new EmptyNameException("The name of the animal is empty");
+            throw new EmptyNameException(
+                    this.option.getAnimalBundle().getString("EMPTY_NAME"));
         }
         for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
             try {
@@ -309,7 +328,8 @@ public class Zoo implements IZoo {
 
             }
         }
-        throw new UnknownNameException("There is no animal with this name in the zoo.");
+        throw new UnknownNameException(
+                this.option.getAnimalBundle().getString("UNKNOWN_NAME"));
     }
 
     @Override
@@ -330,14 +350,14 @@ public class Zoo implements IZoo {
         ArrayList<String> list = new ArrayList<>();
         if (paddock == null) {
             for (HashMap.Entry<String, Specie> entry : species.entrySet()) {
-                list.add(entry.getValue().getNames().getEnglishName());
+                list.add(entry.getValue().getNameAccordingLanguage(this.option));
             }
         } else {
             list.addAll(paddock.listSpeciesByName());
         }
         return list;
     }
-
+    
     @Override
     public double grade() throws UnknownNameException {
         this.grade = 0.0;
@@ -350,12 +370,14 @@ public class Zoo implements IZoo {
     @Override
     public ArrayList<String> info() {
         ArrayList<String> info = new ArrayList<>();
-        info.add("Name : " + this.name);
-        info.add("Months per evaluation : " + this.monthsPerEvaluation);
-        info.add("Dimensions : width = " + this.width + ", height = " + this.height);
-        info.add("Horizon : " + this.horizon);
-        info.add("Age : " + this.age);
-        info.add("Grade : " + this.grade);
+        ResourceBundle bundle = this.option.getZooBundle();
+        info.add(bundle.getString("NAME") + this.name);
+        info.add(bundle.getString("MONTHS") + this.monthsPerEvaluation);
+        info.add(bundle.getString("DIMENSIONS_WIDTH") + this.width
+                + bundle.getString("COMMA_HEIGHT") + this.height);
+        info.add(bundle.getString("HORIZON") + this.horizon);
+        info.add(bundle.getString("AGE") + this.age);
+        info.add(bundle.getString("GRADE") + this.grade);
         return info;
     }
 
@@ -419,10 +441,16 @@ public class Zoo implements IZoo {
         friend.hashCode();
         return this.age;
     }
-    
+
     @Override
     public int getHorizon(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.horizon;
+    }
+
+    @Override
+    public Option getOption(SaveImpl.FriendSave friend) {
+        friend.hashCode();
+        return this.option;
     }
 }

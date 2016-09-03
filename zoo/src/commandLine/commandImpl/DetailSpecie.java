@@ -36,11 +36,9 @@ public class DetailSpecie implements Command {
         try {
             Specie spec = this.play.getZoo().findSpeciebyName(cmd[1]);
             this.success = true;
-            return (FormattingDisplay.formattingArrayList(spec.info()));
-        } catch (UnknownNameException ex) {
-            return "No paddock has this name.";
-        } catch (EmptyNameException ex) {
-            return "Please, select a name.";
+            return (FormattingDisplay.formattingArrayList(spec.info(this.play.getOption())));
+        } catch (UnknownNameException | EmptyNameException ex) {
+          return ex.getMessage();
         }
     }
 

@@ -42,7 +42,7 @@ public enum Biome implements Cloneable {
     TUNDRA(11, "Tundra", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
     MEDITERRANEAN(12, "Mediterranean forests, woodlands, and scrubs", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
     DESERT(13, "Deserts and xeric shrublands", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    MANGROVE(14, "Mangrove", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+    MANGROVE(14, "Mangroves", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 
     @Getter 
     private int id;

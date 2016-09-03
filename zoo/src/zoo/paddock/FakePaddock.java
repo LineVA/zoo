@@ -3,6 +3,7 @@ package zoo.paddock;
 import exception.IncorrectDimensionsException;
 import exception.name.EmptyNameException;
 import java.util.ArrayList;
+import launch.options.Option;
 
 /**
  *
@@ -14,6 +15,7 @@ public class FakePaddock {
     int y;
     int width;
     int height;
+    Option option;
 
     public FakePaddock(String name, int x, int y, int width, int height) {
         this.name = name;
@@ -23,10 +25,10 @@ public class FakePaddock {
         this.height = height;
     }
     
-    public IPaddock convertToPaddock() throws IncorrectDimensionsException, EmptyNameException{
-//        throw new UnsupportedOperationException("Management of neightbourhood in the mload of a zoo");
+    public IPaddock convertToPaddock(Option option) 
+            throws IncorrectDimensionsException, EmptyNameException{
         return new Paddock(this.name, new PaddockCoordinates(this.x, this.y, 
-                this.width, this.height), new ArrayList<IPaddock>());
+                this.width, this.height), new ArrayList<IPaddock>(), option);
     }
     
     

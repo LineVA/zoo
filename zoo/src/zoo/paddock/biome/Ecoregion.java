@@ -1,47 +1,53 @@
 package zoo.paddock.biome;
 
 import exception.name.UnknownNameException;
+import launch.options.Option;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
  * @author doyenm
  */
 public enum Ecoregion {
+
     UNKNOWN(0, "Unknown"),
     UNKNOWN2(1, "Unknown2");
-    
-    @Getter 
+
+    @Getter
     private int id;
     @Getter
     private final String name;
+    @Setter
+    Option option;
 
     Ecoregion(int id, String name) {
         this.id = id;
         this.name = name;
     }
-    
-    public boolean equals(Ecoregion eco){
+
+    public boolean equals(Ecoregion eco) {
         return eco.equals(this);
     }
-    
-    public Ecoregion findByName(String name) throws UnknownNameException{
-        for(Ecoregion region : Ecoregion.values()){
-            if(region.getName().equalsIgnoreCase(name)){
+
+    public Ecoregion findByName(String name) throws UnknownNameException {
+        for (Ecoregion region : Ecoregion.values()) {
+            if (region.getName().equalsIgnoreCase(name)) {
                 return region;
             }
         }
-        throw new UnknownNameException("No ecoregion has this name.");
+        throw new UnknownNameException(
+                this.option.getEcoregionBundle().getString("UNKNOWN_NAME"));
     }
-    
-    static public Ecoregion findById(int id) throws UnknownNameException{
-          for(Ecoregion region : Ecoregion.values()){
-            if(region.getId() == id){
+
+     public Ecoregion findById(int id) throws UnknownNameException {
+        for (Ecoregion region : Ecoregion.values()) {
+            if (region.getId() == id) {
                 return region;
             }
         }
-        throw new UnknownNameException("No region has this identifier.");
+        throw new UnknownNameException(
+                this.option.getEcoregionBundle().getString("UNKNOWN_ID"));
     }
-    
-    
+
 }
