@@ -22,6 +22,8 @@ import zoo.paddock.PaddockCoordinates;
  */
 public interface IZoo {
 
+    public void setSpecies(Map<String, Specie> species);
+    
     public void initiateZoo(String name, int width, int height, Map<String, Specie> species, int age, int monthsPerEvaluation, int horizon)
             throws IncorrectDimensionsException, EmptyNameException, IOException;
 

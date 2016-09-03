@@ -56,6 +56,7 @@ public class Zoo implements IZoo {
     /**
      * The HashMap of the existing species
      */
+    @Setter
     private Map<String, Specie> species;
     /**
      * The number of months which flows when we evaluate the zoo

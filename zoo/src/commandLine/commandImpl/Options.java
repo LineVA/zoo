@@ -1,7 +1,10 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
+import java.io.IOException;
+import launch.InstanciateSpecies;
 import launch.play.Play;
+import org.jdom2.JDOMException;
 
 /**
  *
@@ -23,10 +26,15 @@ public class Options implements Command{
 
     @Override
     public String execute(String[] cmd) {
+        try { 
         this.play.getOption().setLanguage(cmd[2]);
+        this.play.getZoo().setSpecies(InstanciateSpecies.instanciateSpecies("resources/species", this.play.getOption()));
         this.success = true;
         return this.play.getOption().getGeneralCmdBundle()
                 .getString("OPTION_CHANGE_SUCCESS");
+         } catch (JDOMException | IOException ex) {
+            return ex.getMessage();
+        }
     }
 
     @Override
