@@ -6,7 +6,6 @@ import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import launch.play.Play;
 import zoo.animal.Animal;
-import zoo.animal.feeding.Diet;
 
 /**
  *
@@ -47,7 +46,7 @@ public class FeedingAnimal implements Command {
                 animal.changeFoodQuantity(Double.parseDouble(args[1]));
             }
             return this.play.getOption().getGeneralCmdBundle()
-                    .getString("ANIMALS_DIET");
+                    .getString("ANIMALS_DIET") + " " + args[0];
         } catch (EmptyNameException | UnknownNameException |
                 IncorrectDataException | NumberFormatException ex) {
             return ex.getMessage();
