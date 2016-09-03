@@ -4,6 +4,7 @@ import exception.IncorrectDataException;
 import exception.IncorrectDimensionsException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
+import exception.name.NameException;
 import exception.name.UnknownNameException;
 import java.io.File;
 import java.io.IOException;
@@ -47,7 +48,7 @@ public class LoadImpl implements Load {
 
     public void addFakeAnimalToZoo(IZoo zoo, FakeAnimal animal, Option option)
             throws EmptyNameException, UnknownNameException, IncorrectDataException,
-            AlreadyUsedNameException {
+            AlreadyUsedNameException, NameException {
         Specie spec = zoo.findSpeciebyName(animal.getSpecie());
         IPaddock pad = zoo.findPaddockByName(animal.getPaddock());
         Sex sex = Sex.FEMALE.findByName(animal.getSex());
@@ -56,7 +57,7 @@ public class LoadImpl implements Load {
 
     public void addFakePaddockToZoo(IZoo zoo, FakePaddock paddock, Option option)
             throws IncorrectDimensionsException,
-            AlreadyUsedNameException, EmptyNameException {
+            AlreadyUsedNameException, EmptyNameException, NameException {
         zoo.addPaddock(paddock.convertToPaddock(option));
     }
 }

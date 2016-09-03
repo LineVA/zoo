@@ -6,6 +6,7 @@ import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import backup.save.SaveImpl;
 import exception.name.EmptyNameException;
+import exception.name.NameException;
 import java.util.Map;
 import launch.options.Option;
 import zoo.animal.Animal;
@@ -33,7 +34,7 @@ public interface IPaddock {
     public ArrayList<Animal> listAnimal(Specie specie);
 
     public ArrayList<String> birth()
-            throws IncorrectDataException, EmptyNameException;
+            throws IncorrectDataException, NameException;
 
     public void ageing(int monthsPerEvaluation);
 

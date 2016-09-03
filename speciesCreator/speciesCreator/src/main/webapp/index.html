@@ -48,6 +48,17 @@
                     <option value="12">Daubentoniidae</option>
                     <option value="13">Vheirogaleidae</option>
                     <option value="14">Equidae</option>
+                    <option value="15">Macropodiae</option>
+                    <option value="16">Elephantidae</option>
+                    <option value="17">Giraffidae</option>
+                    <option value="18">Myrmecophagidae</option>
+                    <option value="19">Bovidae</option>
+                    <option value="20">Camelidae</option>
+                    <option value="21">Dasypodidae</option>
+                    <option value="22">Antilocapridae</option>
+                    <option value="23">Caviidae</option>
+                    <option value="24">Rheidae</option>
+                    <option value="25">Suidae</option>
                 </select>
                 <label for="ecoregion"> Ecoregion : </label> 
                 <select name="ecoregion" id="ecoregion" required="">
@@ -57,23 +68,23 @@
 
             <fieldset>
                 <legend>Reproduction</legend>
-                <label for="femaleMaturity"> Female maturity : </label>
+                <label for="femaleMaturity"> Female maturity (months) : </label>
                 <input type="text" name="femaleMaturity" id="femaleMaturity" required="">
-                <label for="maleMaturity"> Male maturity : </label>
+                <label for="maleMaturity"> Male maturity (months) : </label>
                 <input type="text" name="maleMaturity" id="maleMaturity" required="">
-                <label for="gestationFrequency"> Gestation frequency : </label>
+                <label for="gestationFrequency"> Gestation frequency (=<1.0): </label>
                 <input type="text" name="gestationFrequency" id="gestationFrequency" required="">
-                <label for="litterSize"> Litter size : </label>
+                <label for="litterSize"> Litter size (int) : </label>
                 <input type="text" name="litterSize" id="litterSize" required="">
-                <label for="leavingAge"> Leaving age: </label>
+                <label for="leavingAge"> Leaving age (months) : </label>
                 <input type="text" name="leavingAge" id="leavingAge" required="">
             </fieldset>
 
             <fieldset>
                 <legend>Life span</legend>
-                <label for="femaleLifespan"> Female life span : </label>
+                <label for="femaleLifespan"> Female life span (months) : </label>
                 <input type="text" name="femaleLifespan" id="femaleLifespan" required="">
-                <label for="maleLifespan"> Male life span : </label>
+                <label for="maleLifespan"> Male life span (months) : </label>
                 <input type="text" name="maleLifespan" id="maleLifespan" required="">
             </fieldset>
 
@@ -97,7 +108,7 @@
                     <option value="13">13 - Deserts and xeric shrublands</option> 
                     <option value="14">14 - Mangrove</option> 
                 </select>
-                <label for="territorySize"> Territory size : </label>
+                <label for="territorySize"> Territory size (km^2): </label>
                 <input type="text" name="territorySize" id="territorySize" required="">
             </fieldset>
 
@@ -107,39 +118,39 @@
                 <select name="diet" id="diet" required="">
                     <option value="0">Unknown - does not eat</option>                    
                     <option value="1">Aphidiphagous - feeds on aphids</option>
-                    <option value="2"> Carnivorous - feeds on raw meat</option>
-                    <option value="3">Hematophagous - feeds on blood</option>
-                    <option value="4">Insectivorous - feeds on insects</option>
-                    <option value="5">Lepidophagous - feeds on fish scales</option>
-                    <option value="6">Molluscovorous - feeds on mollucs </option>
-                    <option value="7">Myrmecophagous - feeds on ants</option>
-                    <option value="8">Necrophagous - feeds on carrions</option>
-                    <option value="9">Oophagous - feeds on eggs</option>
-                    <option value="10">Ophiophagous - feeds on snakes</option>
-                    <option value="11">Ornithophagous - feeds on birds</option>
-                    <option value="12">Piscivorous - feeds on fishes</option>
-                    <option value="13">Planktonivorous - feeds on plankton</option>
-                    <option value="14">Vermivorous - feeds on worms</option>
-                    <option value="15">Baccivorous - feeds on berries</option>
-                    <option value="16">Exsudativorous - feeds on exsudate of plants</option>
-                    <option value="17">Frugivorous - feeds on fruits</option>
-                    <option value="18">Granivorous - feeds on seeds</option>
-                    <option value="19">Herbuivorous - feeds on grass</option>
-                    <option value="20">Melliphagous - feeds on honey</option>
-                    <option value="21">Mycophagous - feeds on mushrooms</option>
-                    <option value="22">Nectarivorous - feeds on nectar</option>
-                    <option value="23">Phyllophagous - feeds on leaves</option>
-                    <option value="24">Pollinovorous - feeds on pollen</option>
+                    <option value="3"> Carnivorous - feeds on raw meat</option>
+                    <option value="7">Hematophagous - feeds on blood</option>
+                    <option value="9">Insectivorous - feeds on insects</option>
+                    <option value="10">Lepidophagous - feeds on fish scales</option>
+                    <option value="13">Molluscovorous - feeds on mollucs </option>
+                    <option value="14">Myrmecophagous - feeds on ants</option>
+                    <option value="15">Necrophagous - feeds on carrions</option>
+                    <option value="17">Oophagous - feeds on eggs</option>
+                    <option value="18">Ophiophagous - feeds on snakes</option>
+                    <option value="19">Ornithophagous - feeds on birds</option>
+                    <option value="21">Piscivorous - feeds on fishes</option>
+                    <option value="22">Planktonivorous - feeds on plankton</option>
+                    <option value="24">Vermivorous - feeds on worms</option>
+                    <option value="2">Baccivorous - feeds on berries</option>
+                    <option value="4">Exsudativorous - feeds on exsudate of plants</option>
+                    <option value="5">Frugivorous - feeds on fruits</option>
+                    <option value="6">Granivorous - feeds on seeds</option>
+                    <option value="8">Herbuivorous - feeds on grass</option>
+                    <option value="11">Melliphagous - feeds on honey</option>
+                    <option value="13">Mycophagous - feeds on mushrooms</option>
+                    <option value="16">Nectarivorous - feeds on nectar</option>
+                    <option value="20">Phyllophagous - feeds on leaves</option>
+                    <option value="23">Pollinovorous - feeds on pollen</option>
                     <option value="25">Xylophagous - feeds on wood</option>
                     <option value="26">Zeophagous - feeds on corn</option>
                 </select>
-                <label for="foodQuantity"> Food quantity : </label>
+                <label for="foodQuantity"> Food quantity (kg) : </label>
                 <input type="text" name="foodQuantity" id ="foodQuantity" required="">
             </fieldset>
 
             <fieldset>
                 <legend>Social</legend>
-                <label for="groupSize"> Group size : </label>
+                <label for="groupSize"> Group size (int) : </label>
                 <input type="text" name="groupSize" id="groupSize" required="">
             </fieldset>
             <input type="submit">

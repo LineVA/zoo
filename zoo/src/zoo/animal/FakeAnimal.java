@@ -2,6 +2,7 @@ package zoo.animal;
 
 import exception.IncorrectDataException;
 import exception.name.EmptyNameException;
+import exception.name.NameException;
 import launch.options.Option;
 import lombok.Getter;
 import zoo.animal.death.LifeSpanLightAttributes;
@@ -58,7 +59,7 @@ public class FakeAnimal {
     }
 
     public Animal convertToAnimal(Specie spec, IPaddock pad, Sex sex, Option option)
-            throws IncorrectDataException, EmptyNameException {
+            throws IncorrectDataException, EmptyNameException, NameException {
         return new AnimalImpl(spec, this.name, pad, sex, this.age, this.biome,
                 this.optFeed, this.actualFeed, this.diet, this.repro, this.life,
                 this.social, this.territory, option);

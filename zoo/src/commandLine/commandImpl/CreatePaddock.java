@@ -31,7 +31,6 @@ public class CreatePaddock implements Command {
 
     @Override
     public String execute(String[] cmd) {
-        // TO DO : if zoo has not been yet initiate
         try {
             this.play.getZoo().addPaddock(cmd[2], Integer.parseInt(cmd[3]), Integer.parseInt(cmd[4]),
                     Integer.parseInt(cmd[5]), Integer.parseInt(cmd[6]));

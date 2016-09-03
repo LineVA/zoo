@@ -8,6 +8,7 @@ import exception.name.UnknownNameException;
 import java.io.IOException;
 import java.util.ArrayList;
 import backup.save.SaveImpl;
+import exception.name.NameException;
 import java.util.Map;
 import launch.options.Option;
 import launch.play.tutorials.TutorialPlayImpl_1;
@@ -24,7 +25,8 @@ public interface IZoo {
 
     public void setSpecies(Map<String, Specie> species);
     
-    public void initiateZoo(String name, int width, int height, Map<String, Specie> species, int age, int monthsPerEvaluation, int horizon)
+    public void initiateZoo(String name, int width, int height, 
+            Map<String, Specie> species, int age, int monthsPerEvaluation, int horizon)
             throws IncorrectDimensionsException, EmptyNameException, IOException;
 
     public void setOption(Option option);
@@ -32,7 +34,8 @@ public interface IZoo {
     public Option getOption();
 
     public void addPaddock(String paddockName, int x, int y, int width, int height)
-            throws AlreadyUsedNameException, IncorrectDimensionsException, EmptyNameException;
+            throws AlreadyUsedNameException, IncorrectDimensionsException, 
+            EmptyNameException, NameException;
 
     public void addPaddock(IPaddock paddock)
             throws AlreadyUsedNameException, IncorrectDimensionsException;
@@ -47,7 +50,7 @@ public interface IZoo {
 
 //    public ArrayList<String> death() throws UnknownNameException;
 
-    public ArrayList<String> birth() throws AlreadyUsedNameException, IncorrectDataException, EmptyNameException;
+    public ArrayList<String> birth() throws AlreadyUsedNameException, IncorrectDataException, NameException;
 
     public IPaddock findPaddockByName(String paddockName) throws EmptyNameException, UnknownNameException;
 
@@ -61,7 +64,7 @@ public interface IZoo {
 
     public ArrayList<String> listSpecie(IPaddock paddock);
 
-    public ArrayList<String> ageing() throws IncorrectDataException, EmptyNameException;
+    public ArrayList<String> ageing() throws IncorrectDataException, NameException;
 
     public double grade() throws UnknownNameException;
 

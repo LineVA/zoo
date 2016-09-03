@@ -2,6 +2,7 @@ package zoo.evaluation;
 
 import exception.IncorrectDataException;
 import exception.name.EmptyNameException;
+import exception.name.NameException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,7 +58,7 @@ public class Evaluation {
     }
 
     public ArrayList<String> ageing(Map<String, IPaddock> paddocks, int monthsPerEvaluation)
-            throws IncorrectDataException, EmptyNameException {
+            throws IncorrectDataException, EmptyNameException, NameException {
         ArrayList<String> info = new ArrayList<>();
         for (HashMap.Entry<String, IPaddock> padEntry : paddocks.entrySet()) {
             padEntry.getValue().ageing(monthsPerEvaluation);
