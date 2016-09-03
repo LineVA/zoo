@@ -116,7 +116,8 @@ public enum Diet {
                 return diet;
             }
         }
-        throw new UnknownNameException("No diet has this identifier.");
+        throw new UnknownNameException(
+                this.option.getDietBundle().getString("UNKNOWN_DIET_BY_NAME"));
     }
 
     public ArrayList<String> list() {
