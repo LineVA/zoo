@@ -3,12 +3,14 @@ package zoo.animal;
 import backup.save.SaveImpl;
 import exception.IncorrectDataException;
 import exception.name.EmptyNameException;
+import exception.name.NameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import launch.options.Option;
 import lombok.Getter;
 import lombok.Setter;
+import zoo.NameVerifications;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.FeedingAttributes;
@@ -107,15 +109,16 @@ public class AnimalImpl implements Animal {
 
     public AnimalImpl(Specie spec, String name,
             IPaddock paddock, Sex sex, Option option)
-            throws IncorrectDataException, EmptyNameException {
+            throws IncorrectDataException, EmptyNameException, NameException {
         this.option = option;
         this.specie = spec;
-        if (name.trim().equals("")) {
-            throw new EmptyNameException(
-                    this.option.getAnimalBundle().getString("EMPTY_NAME"));
-        } else {
-            this.name = name;
-        }
+//        if (name.trim().equals("")) {
+//            throw new EmptyNameException(
+//                    this.option.getAnimalBundle().getString("EMPTY_NAME"));
+//        } else {
+//            this.name = name;
+//        }
+        NameVerifications.verify(name, this.option.getAnimalBundle());
         this.paddock = paddock;
         this.sex = sex;
 //        this.optimalBiome = drawOptimalBiome(spec);

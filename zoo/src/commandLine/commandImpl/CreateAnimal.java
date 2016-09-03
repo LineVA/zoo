@@ -4,6 +4,7 @@ import commandLine.Command;
 import exception.IncorrectDataException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
+import exception.name.NameException;
 import exception.name.UnknownNameException;
 import launch.play.Play;
 import zoo.animal.Animal;
@@ -38,9 +39,6 @@ public class CreateAnimal implements Command {
 
     @Override
     public String execute(String[] cmd) {
-        if(cmd[2].equalsIgnoreCase("ls")){
-            return this.play.getOption().getAnimalBundle().getString("ANIMAL_LS");
-        }
         try {
             this.play.getZoo().findAnimalByName(cmd[2]);
             return this.play.getOption().getGeneralCmdBundle()
@@ -56,7 +54,7 @@ public class CreateAnimal implements Command {
                 this.success = true;
                 return this.play.getOption().getGeneralCmdBundle()
                         .getString("ANIMAL_CREATION_SUCCESS");
-            } catch (EmptyNameException | UnknownNameException | AlreadyUsedNameException | IncorrectDataException ex) {
+            } catch (NameException | IncorrectDataException ex) {
                 return ex.getMessage();
             }
         } catch (EmptyNameException ex) {

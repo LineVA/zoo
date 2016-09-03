@@ -8,6 +8,7 @@ import exception.name.UnknownNameException;
 import java.io.IOException;
 import java.util.ArrayList;
 import backup.save.SaveImpl;
+import exception.name.NameException;
 import java.util.Map;
 import launch.options.Option;
 import launch.play.tutorials.TutorialPlayImpl_1;
@@ -47,7 +48,7 @@ public interface IZoo {
 
 //    public ArrayList<String> death() throws UnknownNameException;
 
-    public ArrayList<String> birth() throws AlreadyUsedNameException, IncorrectDataException, EmptyNameException;
+    public ArrayList<String> birth() throws AlreadyUsedNameException, IncorrectDataException, NameException;
 
     public IPaddock findPaddockByName(String paddockName) throws EmptyNameException, UnknownNameException;
 
@@ -61,7 +62,7 @@ public interface IZoo {
 
     public ArrayList<String> listSpecie(IPaddock paddock);
 
-    public ArrayList<String> ageing() throws IncorrectDataException, EmptyNameException;
+    public ArrayList<String> ageing() throws IncorrectDataException, NameException;
 
     public double grade() throws UnknownNameException;
 

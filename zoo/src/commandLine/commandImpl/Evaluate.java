@@ -3,8 +3,7 @@ package commandLine.commandImpl;
 import basicGui.FormattingDisplay;
 import commandLine.Command;
 import exception.IncorrectDataException;
-import exception.name.AlreadyUsedNameException;
-import exception.name.EmptyNameException;
+import exception.name.NameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import launch.play.Play;
@@ -50,8 +49,8 @@ public class Evaluate implements Command {
             // Zoo evaluation
            zooEvaluation += this.play.getZoo().evaluate();
            this.success = true;
-        } catch (UnknownNameException | 
-                IncorrectDataException | EmptyNameException ex) {
+        } catch (
+                IncorrectDataException | NameException ex) {
             return ex.getMessage();
         }
         info.add(this.play.getOption().getGeneralCmdBundle()

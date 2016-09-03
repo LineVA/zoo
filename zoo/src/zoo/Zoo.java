@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import backup.save.SaveImpl;
+import exception.name.NameException;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.ResourceBundle;
@@ -278,7 +279,7 @@ public class Zoo implements IZoo {
 
 
     @Override
-    public ArrayList<String> birth() throws IncorrectDataException, EmptyNameException {
+    public ArrayList<String> birth() throws IncorrectDataException, NameException {
         ArrayList<String> info = new ArrayList<>();
         for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
             info.addAll(padEntry.getValue().birth());
@@ -287,7 +288,7 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<String> ageing() throws IncorrectDataException, EmptyNameException {
+    public ArrayList<String> ageing() throws IncorrectDataException, NameException {
         this.age += this.monthsPerEvaluation;
         return new Evaluation().ageing(this.paddocks, this.monthsPerEvaluation);
     }

@@ -12,9 +12,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import backup.save.SaveImpl;
 import exception.name.EmptyNameException;
+import exception.name.NameException;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.TreeMap;
 import launch.options.Option;
 import java.util.Observable;
 import java.util.Observer;
@@ -207,7 +207,7 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public ArrayList<String> birth() throws IncorrectDataException, EmptyNameException {
+    public ArrayList<String> birth() throws IncorrectDataException, NameException {
         ArrayList<String> info = new ArrayList<>();
         ArrayList<Animal> tmpAnimal = new ArrayList<>();
         Reproduction repro = new ReproductionImpl();
