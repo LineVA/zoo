@@ -39,7 +39,7 @@ public class CreateAnimal implements Command {
     @Override
     public String execute(String[] cmd) {
         if(cmd[2].equalsIgnoreCase("ls")){
-            return "No animal can be called 'ls'";
+            return this.play.getOption().getAnimalBundle().getString("ANIMAL_LS");
         }
         try {
             this.play.getZoo().findAnimalByName(cmd[2]);
