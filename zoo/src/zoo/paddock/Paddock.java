@@ -14,7 +14,6 @@ import backup.save.SaveImpl;
 import exception.name.EmptyNameException;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.TreeMap;
 import launch.options.Option;
 import java.util.Observable;
 import java.util.Observer;
@@ -152,7 +151,7 @@ public class Paddock implements Cloneable, IPaddock {
         ResourceBundle bundle = this.option.getPaddockBundle();
         ArrayList<String> info = new ArrayList<>();
         info.add(bundle.getString("NAME") + this.name);
-        info.add(bundle.getString("COORDINATES") + this.coordinates.toString());
+        info.add(bundle.getString("COORDINATES") + this.coordinates.toStringByLanguage(bundle));
         info.add(bundle.getString("NEIGHTBOURS") + this.listNeightbourhood());
         info.add(bundle.getString("BIOME") + Biome.NONE.findByName(this.biome).toStringByLanguage());
         info.add(bundle.getString("BIOMES_CHARACTERISTICS") + this.attributes.toString());
