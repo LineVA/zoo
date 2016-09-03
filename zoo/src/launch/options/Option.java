@@ -26,8 +26,14 @@ public class Option {
     ResourceBundle specieBundle;
     @Getter
     ResourceBundle dietBundle;
-    @Getter 
+    @Getter
     ResourceBundle reproductionBundle;
+    @Getter
+    ResourceBundle lifespanBundle;
+    @Getter
+    ResourceBundle socialBundle;
+    @Getter
+    ResourceBundle territoryBundle;
 
     public Option() {
         locale = Locale.getDefault();
@@ -50,6 +56,9 @@ public class Option {
         this.specieBundle = ResourceBundle.getBundle("i18n.specie.specie", locale);
         this.dietBundle = ResourceBundle.getBundle("i18n.animal.feeding.diet", locale);
         this.reproductionBundle = ResourceBundle.getBundle("i18n.animal.reproduction.reproduction", locale);
+        this.lifespanBundle = ResourceBundle.getBundle("i18n.animal.lifespan.lifespan", locale);
+        this.socialBundle = ResourceBundle.getBundle("i18n.animal.social.social", locale);
+        this.territoryBundle = ResourceBundle.getBundle("i18n.animal.territory.territory", locale);
     }
 
     public void setLanguage(String lang) {
