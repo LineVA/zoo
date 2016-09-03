@@ -38,7 +38,8 @@ public class Option {
     ResourceBundle conservationBundle;
     @Getter
     ResourceBundle ecoregionBundle;
-
+    @Getter
+    ResourceBundle familyBundle;
 
     public Option() {
         locale = Locale.getDefault();
@@ -66,6 +67,7 @@ public class Option {
         this.territoryBundle = ResourceBundle.getBundle("i18n.animal.territory.territory", locale);
         this.conservationBundle = ResourceBundle.getBundle("i18n.animal.conservation.conservation", locale);
         this.ecoregionBundle = ResourceBundle.getBundle("i18n.paddock.ecoregion");
+        this.familyBundle = ResourceBundle.getBundle("i18n.specie.family");
     }
 
     public void setLanguage(String lang) {

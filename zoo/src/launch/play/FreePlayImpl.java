@@ -11,6 +11,7 @@ import zoo.Zoo;
 import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.feeding.Diet;
 import zoo.animal.reproduction.Sex;
+import zoo.animal.specie.Family;
 import zoo.paddock.biome.Ecoregion;
 
 /**
@@ -37,6 +38,7 @@ public class FreePlayImpl implements Play {
         Sex.UNKNOWN.setOption(opt);
         Ecoregion.UNKNOWN.setOption(opt);
         ConservationStatus.UNKNOWN.setOption(opt); 
+        Family.UNKNOWN.setOption(option);
         this.bundle = bundle;
         this.option = opt;
     }
