@@ -102,15 +102,16 @@ public class Specie {
         ArrayList<String> info = new ArrayList<>();
         ResourceBundle bundle = option.getSpecieBundle();
         info.add(bundle.getString("NAME") + this.names.getEnglishName());
-        info.add(bundle.getString("SCIENTIFIC_NAME")  + this.names.getScientificName());
-        info.add(bundle.getString("CONSERVATION")  + this.conservation.toString());
-        info.add(bundle.getString("ECOREGION")  + Ecoregion.findById(this.ecoregion).toString());
-        info.add(bundle.getString("FAMILY")  + Family.findById(this.family).toString());
-        info.add(bundle.getString("DIET")  + Diet.NONE.findDietById(diet).toString());
-        info.add(bundle.getString("REPRODUCTION_ATT")+ this.specieReproduction.toStringByLanguage(option));
+        info.add(bundle.getString("SCIENTIFIC_NAME") + this.names.getScientificName());
+        info.add(bundle.getString("CONSERVATION") + this.conservation.toString());
+        info.add(bundle.getString("ECOREGION") + Ecoregion.findById(this.ecoregion).toString());
+        info.add(bundle.getString("FAMILY") + Family.findById(this.family).toString());
+        info.add(bundle.getString("DIET") + Diet.NONE.findDietById(diet).toString());
+        info.add(bundle.getString("REPRODUCTION_ATT") + this.specieReproduction.toStringByLanguage(option));
         info.add(bundle.getString("LIFESPAN_ATT") + this.specieLifeSpan.toStringByLanguage(option));
-        info.add(bundle.getString("SOCIAL_ATT")  + this.specieSocial.toStringByLanguage(option));
-        info.add(bundle.getString("TERRITORY_ATT")  + this.specieTerritory.toStringByLanguage(option));
+        info.add(bundle.getString("SOCIAL_ATT") + this.specieSocial.toStringByLanguage(option));
+        info.add(bundle.getString("FEEDING_ATT") + this.specieFeeding.toStringByLanguage(option));
+        info.add(bundle.getString("TERRITORY_ATT") + this.specieTerritory.toStringByLanguage(option));
         return info;
     }
 
@@ -138,7 +139,7 @@ public class Specie {
 
     public String getNameAccordingLanguage(Option option) {
         if (option.getLocale().getLanguage().equals("fr")) {
-          return this.names.getFrenchName();
+            return this.names.getFrenchName();
         } else {
             return this.names.getEnglishName();
         }
