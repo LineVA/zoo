@@ -112,7 +112,7 @@ public enum Diet {
 
     public Diet findDietByName(String name) throws UnknownNameException {
         for (Diet diet : Diet.values()) {
-            if (diet.toString().equals(name)) {
+            if (diet.toString().equalsIgnoreCase(name)) {
                 return diet;
             }
         }
