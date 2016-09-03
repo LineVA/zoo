@@ -20,6 +20,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.TreeMap;
 import zoo.BirthObservable;
+import zoo.NameVerifications;
 import zoo.animal.Animal;
 import zoo.animal.death.DieImpl;
 import zoo.animal.death.IDie;
@@ -71,16 +72,18 @@ public class Paddock implements Cloneable, IPaddock {
      * @param name the name of the paddock
      * @param coor the coordinates of the paddock
      */
-    public Paddock(String name, PaddockCoordinates coor, 
+    public Paddock(String name, PaddockCoordinates coor,
             ArrayList<IPaddock> neightbourhood, Option option)
-            throws EmptyNameException {
+            throws EmptyNameException, NameException {
         this.option = option;
-        if (name.trim().equals("")) {
-            throw new EmptyNameException(
-                    this.option.getPaddockBundle().getString("EMPTY_NAME"));
-        } else {
-            this.name = name;
-        }
+//        if (name.trim().equals("")) {
+//            throw new EmptyNameException(
+//                    this.option.getPaddockBundle().getString("EMPTY_NAME"));
+//        } else {
+//            this.name = name;
+//        }
+        NameVerifications.verify(name, this.option.getPaddockBundle());
+        this.name = name;
         this.coordinates = coor;
         this.biome = Biome.NONE.getName();
         this.attributes = (BiomeAttributes) Biome.NONE.getAttributes().clone();
@@ -139,7 +142,7 @@ public class Paddock implements Cloneable, IPaddock {
         Animal success = this.animals.putIfAbsent(animal.getName(), animal);
         if (success != null) {
             throw new AlreadyUsedNameException(
-            this.option.getPaddockBundle().getString("ALREADY_USED_NAME"));
+                    this.option.getPaddockBundle().getString("ALREADY_USED_NAME"));
         }
     }
 

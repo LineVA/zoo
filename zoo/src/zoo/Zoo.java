@@ -128,7 +128,8 @@ public class Zoo implements IZoo {
      */
     @Override
     public void addPaddock(String paddockName, int x, int y, int width, int height)
-            throws AlreadyUsedNameException, IncorrectDimensionsException, EmptyNameException {
+            throws AlreadyUsedNameException, IncorrectDimensionsException, 
+            EmptyNameException, NameException {
         PaddockCoordinates coor = new PaddockCoordinates(x, y, width, height);
         checkEmplacement(coor);
         ArrayList<IPaddock> neightbourhood = new ArrayList<>();

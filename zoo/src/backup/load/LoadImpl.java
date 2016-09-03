@@ -57,7 +57,7 @@ public class LoadImpl implements Load {
 
     public void addFakePaddockToZoo(IZoo zoo, FakePaddock paddock, Option option)
             throws IncorrectDimensionsException,
-            AlreadyUsedNameException, EmptyNameException {
+            AlreadyUsedNameException, EmptyNameException, NameException {
         zoo.addPaddock(paddock.convertToPaddock(option));
     }
 }
