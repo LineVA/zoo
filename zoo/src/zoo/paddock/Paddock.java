@@ -148,13 +148,13 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public ArrayList<String> info() {
+    public ArrayList<String> info() throws UnknownNameException{
         ResourceBundle bundle = this.option.getPaddockBundle();
         ArrayList<String> info = new ArrayList<>();
         info.add(bundle.getString("NAME") + this.name);
         info.add(bundle.getString("COORDINATES") + this.coordinates.toString());
         info.add(bundle.getString("NEIGHTBOURS") + this.listNeightbourhood());
-        info.add(bundle.getString("BIOME") + this.biome);
+        info.add(bundle.getString("BIOME") + Biome.NONE.findByName(this.biome).toStringByLanguage());
         info.add(bundle.getString("BIOMES_CHARACTERISTICS") + this.attributes.toString());
         return info;
     }

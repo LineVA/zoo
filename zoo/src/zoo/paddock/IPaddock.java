@@ -25,7 +25,7 @@ public interface IPaddock {
 
     public void removeAnimal(Animal animal);
 
-    public ArrayList<String> info();
+    public ArrayList<String> info() throws UnknownNameException;
 
     public Animal findAnimalByName(String animalName)
             throws UnknownNameException, EmptyNameException;

@@ -105,4 +105,8 @@ public enum Biome implements Cloneable {
         }
         throw new UnknownNameException("No biome has this identifier.");
     }
+    
+     public String toStringByLanguage(){
+        return this.option.getPaddockBundle().getString(this.toString().toUpperCase());
+    }
 }   
