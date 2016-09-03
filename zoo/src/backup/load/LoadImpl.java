@@ -28,9 +28,9 @@ public class LoadImpl implements Load {
         File file = new File(fileName);
         ParserBackUp parser = new ParserBackUp(file);
         // Creation of the zoo
-        IZoo zoo = parser.parserZoo().convertToZoo();
         Option option = new Option(parser.parserLanguage());
-        zoo.setOption(option);
+        IZoo zoo = parser.parserZoo().convertToZoo(option);
+//        zoo.setOption(option);
         // Creation of the paddocks
         ArrayList<FakePaddock> padList = parser.parserPaddocks();
         for (FakePaddock pad : padList) {
@@ -44,21 +44,19 @@ public class LoadImpl implements Load {
         }
         return zoo;
     }
-    
+
     public void addFakeAnimalToZoo(IZoo zoo, FakeAnimal animal, Option option)
             throws EmptyNameException, UnknownNameException, IncorrectDataException,
-                AlreadyUsedNameException {
-            Specie spec = zoo.findSpeciebyName(animal.getSpecie());
-            IPaddock pad = zoo.findPaddockByName(animal.getPaddock());
-            Sex sex = Sex.FEMALE.findByName(animal.getSex());
-            pad.addAnimal(animal.convertToAnimal(spec, pad, sex, option));
+            AlreadyUsedNameException {
+        Specie spec = zoo.findSpeciebyName(animal.getSpecie());
+        IPaddock pad = zoo.findPaddockByName(animal.getPaddock());
+        Sex sex = Sex.FEMALE.findByName(animal.getSex());
+        pad.addAnimal(animal.convertToAnimal(spec, pad, sex, option));
     }
 
     public void addFakePaddockToZoo(IZoo zoo, FakePaddock paddock, Option option)
             throws IncorrectDimensionsException,
-            AlreadyUsedNameException, EmptyNameException{
+            AlreadyUsedNameException, EmptyNameException {
         zoo.addPaddock(paddock.convertToPaddock(option));
     }
 }
-
-

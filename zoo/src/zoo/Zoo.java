@@ -349,7 +349,7 @@ public class Zoo implements IZoo {
         ArrayList<String> list = new ArrayList<>();
         if (paddock == null) {
             for (HashMap.Entry<String, Specie> entry : species.entrySet()) {
-                list.add(entry.getValue().getNames().getEnglishName());
+                list.add(entry.getValue().getNames().getFrenchName());
             }
         } else {
             list.addAll(paddock.listSpeciesByName());
