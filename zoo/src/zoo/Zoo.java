@@ -349,14 +349,14 @@ public class Zoo implements IZoo {
         ArrayList<String> list = new ArrayList<>();
         if (paddock == null) {
             for (HashMap.Entry<String, Specie> entry : species.entrySet()) {
-                list.add(entry.getValue().getNames().getFrenchName());
+                list.add(entry.getValue().getNameAccordingLanguage(this.option));
             }
         } else {
             list.addAll(paddock.listSpeciesByName());
         }
         return list;
     }
-
+    
     @Override
     public double grade() throws UnknownNameException {
         this.grade = 0.0;

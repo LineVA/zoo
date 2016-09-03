@@ -360,7 +360,7 @@ public class Paddock implements Cloneable, IPaddock {
         ArrayList<String> listSpecie = new ArrayList<>();
         for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
             if (!listSpecie.contains(animalEntry.getValue().getSpecie())) {
-                listSpecie.add(animalEntry.getValue().getSpecie().getNames().getEnglishName());
+                listSpecie.add(animalEntry.getValue().getSpecie().getNameAccordingLanguage(option));
             }
         }
         return listSpecie;
@@ -369,7 +369,7 @@ public class Paddock implements Cloneable, IPaddock {
     @Override
     public ArrayList<String> listSpeciesByName(ArrayList<String> presentedSpecies) {
         for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
-            String name = animalEntry.getValue().getSpecie().getNames().getEnglishName();
+            String name = animalEntry.getValue().getSpecie().getNameAccordingLanguage(option);
             if (!presentedSpecies.contains(name)) {
                 presentedSpecies.add(name);
             }

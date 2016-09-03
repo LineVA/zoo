@@ -3,6 +3,7 @@ package zoo.animal.specie;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.Objects;
+import launch.options.Option;
 import lombok.Getter;
 import zoo.animal.Names;
 import zoo.animal.conservation.ConservationStatus;
@@ -63,9 +64,9 @@ public class Specie {
     private GaussianTerritoryAttributes gaussianTerritoryAttributes;
 
     public Specie(Names names, BiomeAttributes biome, FeedingAttributes feeding,
-            int diet, ReproductionAttributes repro, 
-            LifeSpanAttributes lifeSpan, ConservationStatus conservation, 
-            SocialAttributes social, TerritoryAttributes territory, 
+            int diet, ReproductionAttributes repro,
+            LifeSpanAttributes lifeSpan, ConservationStatus conservation,
+            SocialAttributes social, TerritoryAttributes territory,
             int ecoregion, int family) {
         this.names = names;
         this.specieBiome = biome;
@@ -86,16 +87,16 @@ public class Specie {
         this.gaussianTerritoryAttributes = new GaussianTerritoryAttributes(territory);
     }
 
-    public boolean canBeInTheSamePaddock(Specie specie) throws UnknownNameException{
+    public boolean canBeInTheSamePaddock(Specie specie) throws UnknownNameException {
         return Diet.NONE.findDietById(this.diet).isCompatible(specie.diet)
                 && Ecoregion.UNKNOWN.findById(this.ecoregion).equals(specie.ecoregion);
     }
-    
-    public boolean canBeAfraidOf(Specie specie) throws UnknownNameException{
+
+    public boolean canBeAfraidOf(Specie specie) throws UnknownNameException {
         return Diet.NONE.findDietById(this.diet).canBeEatenBy(specie.diet)
                 && this.ecoregion == specie.ecoregion;
     }
-    
+
     public ArrayList<String> info() throws UnknownNameException {
         ArrayList<String> info = new ArrayList<>();
         info.add("English name : " + this.names.getEnglishName());
@@ -132,6 +133,13 @@ public class Specie {
         }
         return true;
     }
-    
-    
+
+    public String getNameAccordingLanguage(Option option) {
+        if (option.getLocale().getLanguage().equals("fr")) {
+          return this.names.getFrenchName();
+        } else {
+            return this.names.getEnglishName();
+        }
+    }
+
 }
