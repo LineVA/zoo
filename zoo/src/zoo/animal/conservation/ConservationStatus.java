@@ -26,9 +26,14 @@ public enum ConservationStatus {
     double coefficient;
     @Getter
     double diameter;
-    @Setter
     Option option;
 
+    public void setOption(Option option){
+         for (ConservationStatus status : ConservationStatus.values()) {
+             status.option = option;
+         }
+    }
+    
     ConservationStatus(int id, double coef, double diam) {
         this.id = id;
         this.coefficient = coef;
@@ -42,5 +47,9 @@ public enum ConservationStatus {
             }
         }
         throw new UnknownNameException(this.option.getConservationBundle().getString("UNKNOWN_ID"));
+    }
+    
+    public String toStringByLanguage(){
+        return this.option.getConservationBundle().getString(this.toString().toUpperCase());
     }
 }
