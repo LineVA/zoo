@@ -108,7 +108,7 @@ public class Specie {
         info.add(bundle.getString("FAMILY")  + Family.findById(this.family).toString());
         info.add(bundle.getString("DIET")  + Diet.NONE.findDietById(diet).toString());
         info.add(bundle.getString("REPRODUCTION_ATT")+ this.specieReproduction.toStringByLanguage(option));
-        info.add(bundle.getString("LIFESPAN_ATT") + this.specieLifeSpan.toString());
+        info.add(bundle.getString("LIFESPAN_ATT") + this.specieLifeSpan.toStringByLanguage(option));
         info.add(bundle.getString("GROUP_SIZE")  + this.specieSocial.toString());
         info.add(bundle.getString("TERRITORY_SIZE")  + this.specieTerritory.toString());
         return info;
