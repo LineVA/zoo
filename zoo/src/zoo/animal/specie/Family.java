@@ -34,7 +34,7 @@ public enum Family {
     ANTILOCAPRIDAE(22),
     CAVIIDAE(23),
     RHEIDAE(24),
-    SUIDAE(24);
+    SUIDAE(25);
     
 //    HERPESTIDAE(9),
 //    HYENIDAE(10),
