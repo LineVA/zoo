@@ -293,7 +293,7 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("SEX") + this.sex.toString());
         info.add(bundle.getString("WB") + this.wellBeing);
         info.add(bundle.getString("DIET") + Diet.NONE.findDietById(actualDiet).toString());
-        info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction);
+        info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.toStringByLanguage(option));
         info.add(bundle.getString("LIFESPAN_ATT")+ this.actualLifeSpan.toString());
         info.add(bundle.getString("OPT_GROUP_SIZE") + this.optimalSocial.getGroupSize());
         info.add(bundle.getString("ACT_GROUP_SIZE") + this.paddock.countAnimalsOfTheSameSpecie(this.specie));

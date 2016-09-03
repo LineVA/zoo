@@ -26,6 +26,8 @@ public class Option {
     ResourceBundle specieBundle;
     @Getter
     ResourceBundle dietBundle;
+    @Getter 
+    ResourceBundle reproductionBundle;
 
     public Option() {
         locale = Locale.getDefault();
@@ -47,6 +49,7 @@ public class Option {
         this.animalBundle = ResourceBundle.getBundle("i18n.animal.animal", locale);
         this.specieBundle = ResourceBundle.getBundle("i18n.specie.specie", locale);
         this.dietBundle = ResourceBundle.getBundle("i18n.animal.feeding.diet", locale);
+        this.reproductionBundle = ResourceBundle.getBundle("i18n.animal.reproduction.reproduction", locale);
     }
 
     public void setLanguage(String lang) {
