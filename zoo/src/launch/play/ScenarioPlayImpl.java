@@ -3,11 +3,11 @@ package launch.play;
 import commandLine.CommandManager;
 import java.util.ResourceBundle;
 import launch.options.Option;
-import launch.play.Play;
 import lombok.Getter;
 import lombok.Setter;
 import zoo.IZoo;
 import zoo.Zoo;
+import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.feeding.Diet;
 import zoo.animal.reproduction.Sex;
 
@@ -32,6 +32,7 @@ public class ScenarioPlayImpl implements Play {
         this.zoo.setOption(opt);
         Diet.NONE.setOption(opt);
         Sex.UNKNOWN.setOption(opt);
+        ConservationStatus.UNKNOWN.setOption(opt);
         this.bundle = bundle;
         this.option = opt;
     }
