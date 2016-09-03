@@ -9,6 +9,7 @@ import lombok.Setter;
 import zoo.IZoo;
 import zoo.Zoo;
 import zoo.animal.feeding.Diet;
+import zoo.animal.reproduction.Sex;
 
 /**
  *
@@ -30,6 +31,7 @@ public class ScenarioPlayImpl implements Play {
         this.zoo = new Zoo();
         this.zoo.setOption(opt);
         Diet.NONE.setOption(opt);
+        Sex.UNKNOWN.setOption(opt);
         this.bundle = bundle;
         this.option = opt;
     }

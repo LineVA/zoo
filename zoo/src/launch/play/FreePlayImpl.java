@@ -9,6 +9,7 @@ import lombok.Setter;
 import zoo.IZoo;
 import zoo.Zoo;
 import zoo.animal.feeding.Diet;
+import zoo.animal.reproduction.Sex;
 
 /**
  *
@@ -31,6 +32,7 @@ public class FreePlayImpl implements Play {
         this.manager = new FreeCommandManager(this);
         this.zoo.setOption(opt);
         Diet.NONE.setOption(opt);
+        Sex.UNKNOWN.setOption(opt);
         this.bundle = bundle;
         this.option = opt;
     }
