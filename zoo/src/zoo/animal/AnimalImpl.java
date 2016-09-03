@@ -288,7 +288,7 @@ public class AnimalImpl implements Animal {
         ResourceBundle bundle = this.option.getAnimalBundle();
         info.add(bundle.getString("NAME") + this.name);
         info.add(bundle.getString("PADDOCK") + this.paddock.getName());
-        info.add(bundle.getString("SPECIE") + this.specie.getNames().getEnglishName());
+        info.add(bundle.getString("SPECIE") + this.specie.getNameAccordingLanguage(option));
         info.add(bundle.getString("AGE") + this.age);
         info.add(bundle.getString("SEX") + this.sex.toString());
         info.add(bundle.getString("WB") + this.wellBeing);

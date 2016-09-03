@@ -101,7 +101,7 @@ public class Specie {
     public ArrayList<String> info(Option option) throws UnknownNameException {
         ArrayList<String> info = new ArrayList<>();
         ResourceBundle bundle = option.getSpecieBundle();
-        info.add(bundle.getString("NAME") + this.names.getEnglishName());
+        info.add(bundle.getString("NAME") + this.names.getNameAccordingLanguage(option));
         info.add(bundle.getString("SCIENTIFIC_NAME") + this.names.getScientificName());
         info.add(bundle.getString("CONSERVATION") + this.conservation.toString());
         info.add(bundle.getString("ECOREGION") + Ecoregion.findById(this.ecoregion).toString());
@@ -138,11 +138,7 @@ public class Specie {
     }
 
     public String getNameAccordingLanguage(Option option) {
-        if (option.getLocale().getLanguage().equals("fr")) {
-            return this.names.getFrenchName();
-        } else {
-            return this.names.getEnglishName();
-        }
+      return this.names.getNameAccordingLanguage(option);
     }
-
+    
 }
