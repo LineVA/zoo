@@ -128,4 +128,8 @@ public enum Diet {
         }
         return list;
     }
+    
+    public String toStringByLanguage(){
+        return this.option.getDietBundle().getString(this.toString().toUpperCase());
+    }
 }
