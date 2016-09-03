@@ -289,16 +289,17 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("NAME") + this.name);
         info.add(bundle.getString("PADDOCK") + this.paddock.getName());
         info.add(bundle.getString("SPECIE") + this.specie.getNames().getEnglishName());
-        info.add(bundle.getString("AGE")+ this.age);
+        info.add(bundle.getString("AGE") + this.age);
         info.add(bundle.getString("SEX") + this.sex.toString());
         info.add(bundle.getString("WB") + this.wellBeing);
         info.add(bundle.getString("DIET") + Diet.NONE.findDietById(actualDiet).toString());
         info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.toStringByLanguage(option));
-        info.add(bundle.getString("LIFESPAN_ATT")+ this.actualLifeSpan.toStringByLanguage(option));
+        info.add(bundle.getString("LIFESPAN_ATT") + this.actualLifeSpan.toStringByLanguage(option));
         info.add(bundle.getString("OPT_SOCIAL_ATT") + this.optimalSocial.toStringByLanguage(option));
         info.add(bundle.getString("ACT_GROUP_SIZE") + this.paddock.countAnimalsOfTheSameSpecie(this.specie));
-        info.add(bundle.getString("OPT_FEEDING_ATT")+ this.optimalFeeding.toString());
-        info.add(bundle.getString("ACT_FEEDING_ATT")+ this.actualFeeding.toString());
+        info.add(bundle.getString("OPT_FEEDING_ATT") + this.optimalFeeding.toString());
+        info.add(bundle.getString("ACT_FEEDING_ATT") + this.actualFeeding.toString());
+        info.add(bundle.getString("OPT_TERRITORY_ATT") + this.optimalTerritory.toStringByLanguage(option));
         info.add(bundle.getString("TERRITORY_SIZE") + this.paddock.computeSize());
         return info;
     }
@@ -387,7 +388,7 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public void setName(String name) throws EmptyNameException{
+    public void setName(String name) throws EmptyNameException {
         if (!name.equals("")) {
             this.name = name;
         } else {
@@ -399,7 +400,7 @@ public class AnimalImpl implements Animal {
     public Specie getSpecie() {
         return this.specie;
     }
-    
+
     @Override
     public int getActualLitterSize() {
         return this.actualReproduction.getLitterSize();
