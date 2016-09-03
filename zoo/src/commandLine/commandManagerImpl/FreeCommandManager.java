@@ -84,9 +84,4 @@ public class FreeCommandManager implements CommandManager{
         }
 
     }
-
-    @Override
-    public String getFirstLine() {
-        return this.firstLine;
-    }
 }
