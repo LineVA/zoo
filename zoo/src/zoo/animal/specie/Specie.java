@@ -3,6 +3,7 @@ package zoo.animal.specie;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.ResourceBundle;
 import launch.options.Option;
 import lombok.Getter;
 import zoo.animal.Names;
@@ -97,18 +98,19 @@ public class Specie {
                 && this.ecoregion == specie.ecoregion;
     }
 
-    public ArrayList<String> info() throws UnknownNameException {
+    public ArrayList<String> info(Option option) throws UnknownNameException {
         ArrayList<String> info = new ArrayList<>();
-        info.add("English name : " + this.names.getEnglishName());
-        info.add("Scientific name : " + this.names.getScientificName());
-        info.add("Conservation status : " + this.conservation.toString());
-        info.add("Ecoregion : " + Ecoregion.findById(this.ecoregion).toString());
-        info.add("Family : " + Family.findById(this.family).toString());
-        info.add("Diet : " + Diet.NONE.findDietById(diet).toString());
-        info.add("Reproduction attributes : " + this.specieReproduction.toString());
-        info.add("Life span attributes : " + this.specieLifeSpan.toString());
-        info.add("Group size : " + this.specieSocial.toString());
-        info.add("Territory size : " + this.specieTerritory.toString());
+        ResourceBundle bundle = option.getSpecieBundle();
+        info.add(bundle.getString("NAME") + this.names.getEnglishName());
+        info.add(bundle.getString("SCIENTIFIC_NAME")  + this.names.getScientificName());
+        info.add(bundle.getString("CONSERVATION")  + this.conservation.toString());
+        info.add(bundle.getString("ECOREGION")  + Ecoregion.findById(this.ecoregion).toString());
+        info.add(bundle.getString("FAMILY")  + Family.findById(this.family).toString());
+        info.add(bundle.getString("DIET")  + Diet.NONE.findDietById(diet).toString());
+        info.add(bundle.getString("REPRODUCTION_ATT")+ this.specieReproduction.toString());
+        info.add(bundle.getString("LIFESPAN_ATT") + this.specieLifeSpan.toString());
+        info.add(bundle.getString("GROUP_SIZE")  + this.specieSocial.toString());
+        info.add(bundle.getString("TERRITORY_SIZE")  + this.specieTerritory.toString());
         return info;
     }
 
