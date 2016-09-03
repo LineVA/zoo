@@ -1,7 +1,9 @@
 package zoo.paddock.biome;
 
 import exception.name.UnknownNameException;
+import launch.options.Option;
 import lombok.Getter;
+import zoo.animal.feeding.Diet;
 
 /**
  *
@@ -50,6 +52,13 @@ public enum Biome implements Cloneable {
     private final String name;
     @Getter
     private BiomeAttributes attributes;
+    Option option;
+    
+     public void setOption(Option option) {
+        for (Biome biome : Biome.values()) {
+             biome.option = option;
+         }
+    }
 
     Biome(int id, String name, double night, double day, double pluvio, double treeD,
             double treeH, double drop, double water, double humidity) {
