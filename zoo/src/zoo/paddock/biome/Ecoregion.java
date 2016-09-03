@@ -18,8 +18,13 @@ public enum Ecoregion {
     private int id;
     @Getter
     private final String name;
-    @Setter
     Option option;
+    
+     public void setOption(Option option) {
+        for (Ecoregion region : Ecoregion.values()) {
+             region.option = option;
+         }
+    }
 
     Ecoregion(int id, String name) {
         this.id = id;
@@ -50,4 +55,8 @@ public enum Ecoregion {
                 this.option.getEcoregionBundle().getString("UNKNOWN_ID"));
     }
 
+      public String toStringByLanguage(){
+//        return this.option.getDietBundle().getString(this.toString().toUpperCase());
+          return this.toString();
+    }
 }
