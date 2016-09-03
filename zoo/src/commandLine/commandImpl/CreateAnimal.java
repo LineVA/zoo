@@ -38,6 +38,9 @@ public class CreateAnimal implements Command {
 
     @Override
     public String execute(String[] cmd) {
+        if(cmd[2].equalsIgnoreCase("ls")){
+            return "No animal can be called 'ls'";
+        }
         try {
             this.play.getZoo().findAnimalByName(cmd[2]);
             return "There is already an animal with this name in the zoo.";
