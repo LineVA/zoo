@@ -4,6 +4,7 @@ import exception.name.UnknownNameException;
 import launch.options.Option;
 import lombok.Getter;
 import lombok.Setter;
+import zoo.animal.feeding.Diet;
 
 /**
  *
@@ -49,9 +50,14 @@ public enum Family {
 
     @Getter
     private int id;
-    @Setter
     Option option;
 
+     public void setOption(Option option) {
+        for (Family family : Family.values()) {
+             family.option = option;
+         }
+    }
+    
     Family(int id) {
         this.id = id;
     }
@@ -64,6 +70,11 @@ public enum Family {
         }
         throw new UnknownNameException(
                 this.option.getFamilyBundle().getString("UNKNOWN_NAME"));
+    }
+    
+     public String toStringByLanguage(){
+         return this.toString();
+//        return this.option.getDietBundle().getString(this.toString().toUpperCase());
     }
 
 }
