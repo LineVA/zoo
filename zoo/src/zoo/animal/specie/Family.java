@@ -74,7 +74,7 @@ public enum Family {
     
      public String toStringByLanguage(){
          return this.toString();
-//        return this.option.getDietBundle().getString(this.toString().toUpperCase());
+//        return this.option.getFamilyBundle().getString(this.toString().toUpperCase());
     }
 
 }

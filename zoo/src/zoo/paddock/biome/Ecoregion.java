@@ -56,7 +56,7 @@ public enum Ecoregion {
     }
 
       public String toStringByLanguage(){
-//        return this.option.getDietBundle().getString(this.toString().toUpperCase());
+//        return this.option.getEcoregionBundle().getString(this.toString().toUpperCase());
           return this.toString();
     }
 }
