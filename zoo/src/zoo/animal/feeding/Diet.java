@@ -53,7 +53,9 @@ public enum Diet {
     }
 
     public void setOption(Option option) {
-        this.option = option;
+        for (Diet diet : Diet.values()) {
+             diet.option = option;
+         }
     }
 
     public void fill() {
