@@ -2,7 +2,6 @@ package zoo.animal.reproduction;
 
 import exception.name.UnknownNameException;
 import launch.options.Option;
-import lombok.Setter;
 
 /**
  * Enum of the sex
@@ -22,8 +21,13 @@ public enum Sex {
         return this == Sex.MALE;
     }
     
-    @Setter
     Option option;
+
+    public void setOption(Option option){
+         for (Sex sex : Sex.values()) {
+             sex.option = option;
+         }
+    }
     
     public Sex findByName(String name) throws UnknownNameException {
         for (Sex sex : Sex.values()) {
@@ -33,5 +37,9 @@ public enum Sex {
         }
         throw new UnknownNameException(
                 this.option.getReproductionBundle().getString("UNKNOWN_SEX"));
+    }
+    
+    public String toStringByLanguage(){
+        return this.option.getReproductionBundle().getString(this.toString().toUpperCase());
     }
 }

@@ -290,7 +290,7 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("PADDOCK") + this.paddock.getName());
         info.add(bundle.getString("SPECIE") + this.specie.getNameAccordingLanguage(option));
         info.add(bundle.getString("AGE") + this.age);
-        info.add(bundle.getString("SEX") + this.sex.toString());
+        info.add(bundle.getString("SEX") + this.sex.toStringByLanguage());
         info.add(bundle.getString("WB") + this.wellBeing);
         info.add(bundle.getString("DIET") + Diet.NONE.findDietById(actualDiet).toString());
         info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.toStringByLanguage(option));
