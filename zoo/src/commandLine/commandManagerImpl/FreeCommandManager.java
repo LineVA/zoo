@@ -38,50 +38,29 @@ import lombok.Getter;
  *
  * @author doyenm
  */
-public class FreeCommandManager implements CommandManager {
+public class FreeCommandManager extends CommandManager {
 
-    Play play;
-    private final Iterable<Command> playCommands;
     private final Iterable<Command> initialCommands;
 
     public boolean isInitiate = false;
 
-    @Getter
-    private String firstLine;
-    private Option option;
-
     public FreeCommandManager(Play play, Option option) {
-        this.play = play;
-        this.option = option;
-        this.firstLine = this.option.getGeneralCmdBundle().getString("WELCOME");
-        // For Paddock and Animal : Ls must be before Detail
-        playCommands = asList(new CreateZoo(play), new DetailZoo(play),
-                new CreatePaddock(play),
-                new LsPaddock(play), new MapZoo(play), new DetailPad(play),
-                new Evaluate(play), new BiomePad(play), new BiomeAttributesPaddock(play),
-                new CreateAnimal(play), new LsAnimal(play), new DetailAnimal(play),
-                new FeedingAnimal(play),
-                new LsSex(play), new LsConservation(play),
-                new RemoveAnimal(play), new RemovePaddock(play),
-                new LsBiome(play), new LsEcoregion(play),
-                new LsSpecie(play), new DetailSpecie(play), new LsFamily(play),
-                new LsFeeding(play),
-                new SaveZoo(play), new LoadZoo(play), new Options(play));
+        super(play, option);
+        super.setFirstLine(super.getOption().getGeneralCmdBundle().getString("WELCOME"));
         initialCommands = asList(new CreateZoo(play), new LoadZoo(play));
     }
 
     public String run(String cmd) {
-        // String[] parse = cmd.split(" ");
         String[] parse = SplitDoubleQuotes.split(cmd);
         if (isInitiate) {
-            for (Command command : playCommands) {
+            for (Command command : super.getPlayCommands()) {
                 if (command.canExecute(parse)) {
                     String result = command.execute(parse);
                     this.isInitiate |= command.hasInitiateAZoo();
                     return result;
                 }
             }
-            return this.option.getGeneralCmdBundle().getString("UNKNOWN_CMD");
+            return super.getOption().getGeneralCmdBundle().getString("UNKNOWN_CMD");
         } else {
             for (Command command : initialCommands) {
                 if (command.canExecute(parse)) {
@@ -90,7 +69,7 @@ public class FreeCommandManager implements CommandManager {
                     return result;
                 }
             }
-            return this.option.getGeneralCmdBundle().getString("BEGINNING_CMD");
+            return super.getOption().getGeneralCmdBundle().getString("BEGINNING_CMD");
         }
 
     }
