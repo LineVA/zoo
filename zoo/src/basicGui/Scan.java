@@ -20,7 +20,7 @@ public class Scan {
     }
 
     public void read() {
-        CommandManager manager = new FreeCommandManager(play);
+        CommandManager manager = new FreeCommandManager(play, null);
         while (true) {
             System.out.println(manager.run(scan.nextLine()));
         }
