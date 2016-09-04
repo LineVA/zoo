@@ -47,7 +47,7 @@ public class BiomePad implements Command {
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 4) {
             if (cmd[0].equals("pad") || cmd[0].equals("paddock")) {
-                if (cmd[2].equals("biome")) {
+                if (cmd[2].equals("--biome") || cmd[2].equals("-b")) {
                     return true;
                 }
             }
