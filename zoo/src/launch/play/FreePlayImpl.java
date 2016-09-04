@@ -33,7 +33,7 @@ public class FreePlayImpl implements Play {
 
     public FreePlayImpl(ResourceBundle bundle, Option opt) {
         this.zoo = new Zoo();
-        this.manager = new FreeCommandManager(this);
+        this.manager = new FreeCommandManager(this, opt);
         this.zoo.setOption(opt);
         Diet.NONE.setOption(opt);
         Sex.UNKNOWN.setOption(opt);

@@ -26,6 +26,7 @@ import commandLine.commandImpl.RemoveAnimal;
 import commandLine.commandImpl.RemovePaddock;
 import commandLine.commandImpl.SaveZoo;
 import static java.util.Arrays.asList;
+import launch.options.Option;
 import launch.play.Play;
 import lombok.Getter;
 
@@ -42,10 +43,12 @@ public class FreeCommandManager implements CommandManager{
 
     @Getter
     private String firstLine;
+    private Option option;
     
-    public FreeCommandManager(Play play) {
+    public FreeCommandManager(Play play, Option option) {
         this.play = play;
-        this.firstLine = "Welcome!";
+        this.option = option;
+        this.firstLine = this.option.getGeneralCmdBundle().getString("WELCOME");
         // For Paddock and Animal : Ls must be before Detail
         playCommands = asList(new CreateZoo(play), new DetailZoo(play),
                 new CreatePaddock(play),
@@ -71,7 +74,7 @@ public class FreeCommandManager implements CommandManager{
                     return result;
                 }
             }
-            return "Unknown command";
+            return this.option.getGeneralCmdBundle().getString("UNKNOWN_CMD");
         } else {
             for (Command command : initialCommands) {
                 if (command.canExecute(parse)) {
@@ -80,8 +83,7 @@ public class FreeCommandManager implements CommandManager{
                     return result;
                 }
             }
-            return "There is only two command to create a zoo : "
-                    + "see 'man zoo' and 'man load' for more information.";
+            return this.option.getGeneralCmdBundle().getString("BEGINNING_CMD");
         }
 
     }
