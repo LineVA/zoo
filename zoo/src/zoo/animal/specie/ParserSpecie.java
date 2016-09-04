@@ -30,18 +30,19 @@ public class ParserSpecie {
         document = sax.build(file);
         root = document.getRootElement();
         Names names = namesParser(root);
-        BiomeAttributes biome = biomeParser(root);
+        BiomeAttributes biomeAtt = biomeAttributesParser(root);
         int diet = dietParser(root);
         int region = ecoregionParser(root);
         int family = familyParser(root);
+        int biome = biomeParser(root);
         FeedingAttributes feeding = feedingParser(root);
         ReproductionAttributes repro = reproductionParser(root);
         LifeSpanAttributes lifeSpan = lifeSpanParser(root);
         ConservationStatus conservation = conservationParser(root);
         SocialAttributes social = socialParser(root);
         TerritoryAttributes territory = territoryParser(root);
-        Specie spec = new Specie(names, biome, feeding, diet, repro, lifeSpan,
-                conservation, social, territory, region, family);
+        Specie spec = new Specie(names, biomeAtt, feeding, diet, repro, lifeSpan,
+                conservation, social, territory, region, family, biome);
         return spec;
     }
 
@@ -51,9 +52,13 @@ public class ParserSpecie {
                 nameEl.getChildText("scientific"));
     }
 
-    private static BiomeAttributes biomeParser(Element root) {
+    private static BiomeAttributes biomeAttributesParser(Element root) {
         BiomeAttributes biome = new BiomeAttributes(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
         return biome;
+    }
+    
+    private static int biomeParser(Element root) {
+        return Integer.parseInt(root.getChild("territory").getChildText("biome"));
     }
 
     private static FeedingAttributes feedingParser(Element root) {

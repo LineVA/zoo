@@ -19,6 +19,7 @@ import zoo.animal.social.GaussianSocialAttributes;
 import zoo.animal.social.SocialAttributes;
 import zoo.paddock.GaussianTerritoryAttributes;
 import zoo.paddock.TerritoryAttributes;
+import zoo.paddock.biome.Biome;
 import zoo.paddock.biome.BiomeAttributes;
 import zoo.paddock.biome.Ecoregion;
 import zoo.paddock.biome.GaussianBiomeAttributes;
@@ -52,6 +53,8 @@ public class Specie {
     @Getter
     private final ConservationStatus conservation;
     @Getter
+    private final int biome;
+    @Getter
     private GaussianBiomeAttributes gaussianBiome;
     @Getter
     private GaussianFeedingAttributes gaussianFeeding;
@@ -64,13 +67,13 @@ public class Specie {
     @Getter
     private GaussianTerritoryAttributes gaussianTerritoryAttributes;
 
-    public Specie(Names names, BiomeAttributes biome, FeedingAttributes feeding,
+    public Specie(Names names, BiomeAttributes biomeAtt, FeedingAttributes feeding,
             int diet, ReproductionAttributes repro,
             LifeSpanAttributes lifeSpan, ConservationStatus conservation,
             SocialAttributes social, TerritoryAttributes territory,
-            int ecoregion, int family) {
+            int ecoregion, int family, int biome) {
         this.names = names;
-        this.specieBiome = biome;
+        this.specieBiome = biomeAtt;
         this.diet = diet;
         this.family = family;
         this.ecoregion = ecoregion;
@@ -80,7 +83,8 @@ public class Specie {
         this.specieSocial = social;
         this.specieTerritory = territory;
         this.conservation = conservation;
-        this.gaussianBiome = new GaussianBiomeAttributes(biome);
+        this.biome = biome;
+        this.gaussianBiome = new GaussianBiomeAttributes(biomeAtt);
         this.gaussianFeeding = new GaussianFeedingAttributes(feeding);
         this.gaussianReproduction = new GaussianReproductionAttributes(repro);
         this.gaussianLifeSpanAttributesSpan = new GaussianLifeSpanAttributes(lifeSpan);
