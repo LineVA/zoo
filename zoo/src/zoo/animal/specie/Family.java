@@ -1,10 +1,12 @@
 package zoo.animal.specie;
 
 import exception.name.UnknownNameException;
+import java.util.ArrayList;
 import launch.options.Option;
 import lombok.Getter;
 import lombok.Setter;
 import zoo.animal.feeding.Diet;
+import zoo.paddock.biome.Ecoregion;
 
 /**
  *
@@ -87,6 +89,15 @@ public enum Family {
      public String toStringByLanguage(){
          return this.toString();
 //        return this.option.getFamilyBundle().getString(this.toString().toUpperCase());
+    }
+     
+     public ArrayList<String> list() {
+        ArrayList<String> list = new ArrayList<>();
+        for (Family family : Family.values()) {
+            list.add(family.id + " - " +
+                    family.toString());
+        }
+        return list;
     }
 
 }
