@@ -35,7 +35,8 @@ public class WellBeingImpl implements WellBeing {
         wB += computeTerritoryWB(attributes.getOptimalTerritory(), pad);
         wB += computeFoodWB(attributes.getActualDiet(), attributes.getOptimalFeeding(),
                 attributes.getActualFeeding(), specie);
-        wB = (wB/3)*this.coefficient;
+        wB = (wB / 3) * this.coefficient;
+        wB += checkBiomeWB(pad, specie);
         wB += compatibilitiesWB(pad, specie);
         wB += fearWB(pad, specie);
         System.out.println("Total : " + wB);
@@ -58,13 +59,26 @@ public class WellBeingImpl implements WellBeing {
 
     public double computeFoodWB(int diet, FeedingAttributes optimalFeeding,
             FeedingAttributes actualFeeding, Specie spec) {
-        System.out.println("Diet : ");
+        System.out.println("Food quantity : ");
         if (diet == spec.getDiet()) {
+            System.out.println("Good diet");
             double a = Compare.compare(optimalFeeding.getFoodQuantity(), actualFeeding.getFoodQuantity(), this.diameter);
             System.out.println(a);
             return a;
         } else {
+            System.out.println("Bad diet");
+            System.out.println(Compare.returnMin());
             return Compare.returnMin();
+        }
+    }
+
+    public double checkBiomeWB(IPaddock paddock, Specie specie) {
+        if (paddock.getBiome() == specie.getBiome()) {
+            System.out.println("Good biome");
+            return Compare.returnPositivMean();
+        } else {
+            System.out.println("Bad biome");
+            return Compare.returnNegativMean();
         }
     }
 
@@ -108,8 +122,8 @@ public class WellBeingImpl implements WellBeing {
         return isAfraid;
     }
 
-    public boolean isCloseEnoughToMax(double compare){
-         return (compare >= (1-2*this.diameter)*Compare.getMax()*this.criteriaNumber);
+    public boolean isCloseEnoughToMax(double compare) {
+        return (compare >= (1 - 2 * this.diameter) * Compare.getMax() * this.criteriaNumber);
     }
-    
+
 }
