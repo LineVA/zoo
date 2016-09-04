@@ -1,7 +1,9 @@
 package zoo.animal.reproduction;
 
 import exception.name.UnknownNameException;
+import java.util.ArrayList;
 import launch.options.Option;
+import zoo.paddock.biome.Ecoregion;
 
 /**
  * Enum of the sex
@@ -41,5 +43,14 @@ public enum Sex {
     
     public String toStringByLanguage(){
         return this.option.getReproductionBundle().getString(this.toString().toUpperCase());
+    }
+    
+    public ArrayList<String> list(){
+         ArrayList<String> list = new ArrayList<>();
+        for (Sex sex : Sex.values()) {
+            list.add(
+                    this.option.getReproductionBundle().getString(sex.toString().toUpperCase()));
+        }
+        return list;
     }
 }
