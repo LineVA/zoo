@@ -1,7 +1,5 @@
 Liste des commandes :
 
-MANQUE : Recherches par espèce et enclos
-
 > load <name> : Chargement du zoo contenu dans le fichier './gameBackUps/name.xml'
 > save <name> : Sauvegarde du zoo dans le fichier './gameBackUps/name.xml' 
 
@@ -10,6 +8,8 @@ MANQUE : Recherches par espèce et enclos
 
 > paddock create <name> <x> <y> <width> <height> : Création d'un enclos nommé 'name' de coordonnées 'x' et 'y', de largueur 'width' et de hauteur 'height'
 > paddock ls : Liste des enclos
+ > paddock ls -s <name> : Liste des enclos contenant l'espèce 'name'
+    paddock ls specie <name>
 > paddock <name> : Affichage des détails de l'enclos 'name'
 > paddock <name> biome <id|name2> : 
     paddock <name> -b <id|name2> : Attribution du biome d'identifiant 'id' ou de nom 'name2' à l'enclos 'name'
@@ -17,7 +17,11 @@ MANQUE : Recherches par espèce et enclos
 
 > animal create <name> <enclos> <espece> <sexe> : Création d'un animal nommé 'name', de l'espèce 'espece' et de sexe 'sexe' dans l'enclos 'enclos'
 > animal remove <name> : Suppression de l'animal 'name'
-> animal ls : liste des animaux
+> animal ls : Liste des animaux
+> animal ls -p <name> : Liste des animaux dans l'enclos 'name'
+    animal ls paddock <name>
+> animal ls -s <name> : Liste des animaux de l'espèce 'name'
+    animal ls specie <name> 
 > animal <name> : Détails de l'animal 'name'
 > animal <name> -d <id|regime> : Attribution du régime d'identifiant 'id' ou de nom 'regime' à l'animal 'name'
     animal <name> diet <id|regime>
@@ -31,4 +35,8 @@ MANQUE : Recherches par espèce et enclos
 > ecoregion ls : Liste des écorégions
 
 > specie ls : Liste des espèces
+> specie ls -p <name> : liste des espèces dans l'enclos 'name'
+    specie ls paddock <name>
 > specie <name> : Détails de l'espèce 'name'
+
+> evaluate : Fin du tour, évaluation du zoo
