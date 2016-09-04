@@ -38,7 +38,7 @@ public class WellBeingImpl implements WellBeing {
         wB = (wB/3)*this.coefficient;
         wB += compatibilitiesWB(pad, specie);
         wB += fearWB(pad, specie);
-        System.out.println(wB);
+        System.out.println("Total : " + wB);
         return wB;
     }
 
@@ -64,9 +64,7 @@ public class WellBeingImpl implements WellBeing {
             System.out.println(a);
             return a;
         } else {
-            double a = Compare.compare(optimalFeeding.getFoodQuantity(), 0, this.diameter);
-            System.out.println(a);
-            return a;
+            return Compare.returnMin();
         }
     }
 
