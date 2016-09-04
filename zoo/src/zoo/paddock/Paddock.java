@@ -50,11 +50,11 @@ public class Paddock implements Cloneable, IPaddock {
     private final PaddockCoordinates coordinates;
 
     /**
-     * Its biome's name
+     * Its biome's id
      */
-    @Getter
-    private String biome;
-
+     @Getter
+     int biome;
+    
     @Getter
     BiomeAttributes attributes;
 
@@ -85,7 +85,7 @@ public class Paddock implements Cloneable, IPaddock {
         NameVerifications.verify(name, this.option.getPaddockBundle());
         this.name = name;
         this.coordinates = coor;
-        this.biome = Biome.NONE.getName();
+        this.biome = Biome.NONE.getId();
         this.attributes = (BiomeAttributes) Biome.NONE.getAttributes().clone();
         this.animals = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         this.neightbourhood = neightbourhood;
@@ -104,7 +104,7 @@ public class Paddock implements Cloneable, IPaddock {
      */
     public void setBiome(Biome biome) {
         if (biome != null) {
-            this.biome = biome.getName();
+            this.biome = biome.getId();
             this.attributes = (BiomeAttributes) biome.getAttributes().clone();
         } else {
             setBiome(Biome.NONE);
@@ -157,7 +157,7 @@ public class Paddock implements Cloneable, IPaddock {
         info.add(bundle.getString("NAME") + this.name);
         info.add(bundle.getString("COORDINATES") + this.coordinates.toStringByLanguage(bundle));
         info.add(bundle.getString("NEIGHTBOURS") + this.listNeightbourhood());
-        info.add(bundle.getString("BIOME") + Biome.NONE.findByName(this.biome).toStringByLanguage());
+        info.add(bundle.getString("BIOME") + Biome.NONE.findById(this.biome).toStringByLanguage());
         info.add(bundle.getString("BIOMES_CHARACTERISTICS") + this.attributes.toString());
         return info;
     }
