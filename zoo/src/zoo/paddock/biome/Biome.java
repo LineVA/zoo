@@ -108,7 +108,7 @@ public enum Biome implements Cloneable {
     }
     
      public String toStringByLanguage(){
-        return this.option.getPaddockBundle().getString(this.toString().toUpperCase());
+        return this.option.getPaddockBundle().getString(this.toString().toUpperCase() + "_DESCRIPTION");
     }
      
    public ArrayList<String> list() {
