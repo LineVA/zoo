@@ -1,9 +1,11 @@
 package zoo.animal.conservation;
 
 import exception.name.UnknownNameException;
+import java.util.ArrayList;
 import launch.options.Option;
 import lombok.Getter;
 import lombok.Setter;
+import zoo.paddock.biome.Ecoregion;
 
 /**
  *
@@ -51,5 +53,14 @@ public enum ConservationStatus {
     
     public String toStringByLanguage(){
         return this.option.getConservationBundle().getString(this.toString().toUpperCase());
+    }
+    
+    public ArrayList<String> list() {
+        ArrayList<String> list = new ArrayList<>();
+        for (ConservationStatus status : ConservationStatus.values()) {
+            list.add(status.id + " - " +
+                    this.option.getConservationBundle().getString(status.toString().toUpperCase()));
+        }
+        return list;
     }
 }

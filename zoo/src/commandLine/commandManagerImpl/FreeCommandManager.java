@@ -17,6 +17,7 @@ import commandLine.commandImpl.FeedingAnimal;
 import commandLine.commandImpl.LoadZoo;
 import commandLine.commandImpl.LsAnimal;
 import commandLine.commandImpl.LsBiome;
+import commandLine.commandImpl.LsConservation;
 import commandLine.commandImpl.LsEcoregion;
 import commandLine.commandImpl.LsFeeding;
 import commandLine.commandImpl.LsPaddock;
@@ -59,7 +60,7 @@ public class FreeCommandManager implements CommandManager {
                 new Evaluate(play), new BiomePad(play), new BiomeAttributesPaddock(play),
                 new CreateAnimal(play), new LsAnimal(play), new DetailAnimal(play),
                 new FeedingAnimal(play),
-                new LsSex(play),
+                new LsSex(play), new LsConservation(play),
                 new RemoveAnimal(play), new RemovePaddock(play),
                 new LsBiome(play), new LsEcoregion(play),
                 new LsSpecie(play), new DetailSpecie(play),
