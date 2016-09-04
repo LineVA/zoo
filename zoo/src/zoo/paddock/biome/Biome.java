@@ -1,6 +1,7 @@
 package zoo.paddock.biome;
 
 import exception.name.UnknownNameException;
+import java.util.ArrayList;
 import launch.options.Option;
 import lombok.Getter;
 import zoo.animal.feeding.Diet;
@@ -37,9 +38,9 @@ public enum Biome implements Cloneable {
     TEMPERATEBROADLEAF(4, "Temperate broadleaf and mixed forests", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
     TEMPERATECONIFEROUS(5, "Temperate coniferous forests", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
     TAIGA(6, "Taiga", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    TROPICALGRASSLAND(7, "Tropical and subtropical grasslands, savannas, and shrublands", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    TEMPERATEGRASSLAND(8, "Temperate grasslands, savannas and shrublands", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    FLOODEDGRASSLAND(9, "Flooded grasslands and savannas", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    TROPICALGRASSLANDS(7, "Tropical and subtropical grasslands, savannas, and shrublands", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    TEMPERATEGRASSLANDS(8, "Temperate grasslands, savannas and shrublands", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    FLOODEDGRASSLANDS(9, "Flooded grasslands and savannas", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
     MONTANE(10, "Montane grasslands and shrublands ", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
     TUNDRA(11, "Tundra", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
     MEDITERRANEAN(12, "Mediterranean forests, woodlands, and scrubs", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
@@ -108,5 +109,14 @@ public enum Biome implements Cloneable {
     
      public String toStringByLanguage(){
         return this.option.getPaddockBundle().getString(this.toString().toUpperCase());
+    }
+     
+   public ArrayList<String> list() {
+        ArrayList<String> list = new ArrayList<>();
+        for (Biome biome : Biome.values()) {
+            list.add(biome.id + " - " +
+                    this.option.getPaddockBundle().getString(biome.toString().toUpperCase() +"_DESCRIPTION"));
+        }
+        return list;
     }
 }   
