@@ -45,6 +45,10 @@ public class Compare {
         return -max2;
     }
     
+    public static double returnPositivMean(){
+        return max2;
+    }
+    
     public static double getMax(){
         return max5;
     }
