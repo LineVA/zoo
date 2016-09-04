@@ -1,0 +1,34 @@
+Liste des commandes :
+
+MANQUE : Recherches par espèce et enclos
+
+> load <name> : Chargement du zoo contenu dans le fichier './gameBackUps/name.xml'
+> save <name> : Sauvegarde du zoo dans le fichier './gameBackUps/name.xml' 
+
+> zoo create <name> <width> <height> : Création d'un zoo nommé 'name' de largeur 'width' et de hauteur 'height'
+> zoo map : Affichage de la carte du zoo
+
+> paddock create <name> <x> <y> <width> <height> : Création d'un enclos nommé 'name' de coordonnées 'x' et 'y', de largueur 'width' et de hauteur 'height'
+> paddock ls : Liste des enclos
+> paddock <name> : Affichage des détails de l'enclos 'name'
+> paddock <name> biome <id|name2> : 
+    paddock <name> -b <id|name2> : Attribution du biome d'identifiant 'id' ou de nom 'name2' à l'enclos 'name'
+> paddock remove <name> : Suppression du paddock 'name'
+
+> animal create <name> <enclos> <espece> <sexe> : Création d'un animal nommé 'name', de l'espèce 'espece' et de sexe 'sexe' dans l'enclos 'enclos'
+> animal remove <name> : Suppression de l'animal 'name'
+> animal ls : liste des animaux
+> animal <name> : Détails de l'animal 'name'
+> animal <name> -d <id|regime> : Attribution du régime d'identifiant 'id' ou de nom 'regime' à l'animal 'name'
+    animal <name> diet <id|regime>
+> animal <name> -fq <quantite> : Attribution de la quantité de nourriture 'quantite' à l'animal 'name'
+    animal <name> foodQuantity <quantite>
+
+> conservation ls : Liste des statuts de conservation
+> sex ls : Liste des sexes
+> family ls : Liste des familles
+> biome ls : Liste des biomes
+> ecoregion ls : Liste des écorégions
+
+> specie ls : Liste des espèces
+> specie <name> : Détails de l'espèce 'name'
