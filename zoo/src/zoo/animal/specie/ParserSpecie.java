@@ -57,8 +57,8 @@ public class ParserSpecie {
     }
 
     private static FeedingAttributes feedingParser(Element root) {
-        FeedingAttributes feeding = new FeedingAttributes(0.0);
-        return feeding;
+        Element feedingEl = root.getChild("feeding");
+        return new FeedingAttributes(Double.parseDouble(feedingEl.getChildText("quantity")));
     }
 
     private static ReproductionAttributes reproductionParser(Element root) {
