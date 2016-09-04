@@ -67,25 +67,25 @@ public class WellBeingImpl implements WellBeing {
             return a;
         } else {
             System.out.println("Bad diet");
-            System.out.println(Compare.returnMin());
-            return Compare.returnMin();
+            System.out.println(Compare.getMin());
+            return Compare.getMin();
         }
     }
 
     public double checkBiomeWB(IPaddock paddock, Specie specie) {
         if (paddock.getBiome() == specie.getBiome()) {
             System.out.println("Good biome");
-            return Compare.returnPositivMean();
+            return Compare.getPositivMean();
         } else {
             System.out.println("Bad biome");
-            return Compare.returnNegativMean();
+            return Compare.getNegativMean();
         }
     }
 
     public double compatibilitiesWB(IPaddock pad, Specie spec) throws UnknownNameException {
         if (isThereIncompatibleSpeciesInThePaddock(pad, spec)) {
             System.out.println("Inciompatibilities");
-            return Compare.returnMin() * this.coefficient;
+            return Compare.getMin() * this.coefficient;
         } else {
             return 0.0;
         }
@@ -94,7 +94,7 @@ public class WellBeingImpl implements WellBeing {
     public double fearWB(IPaddock pad, Specie spec) throws UnknownNameException {
         if (isAfraidBySpeciesInOtherPaddocks(pad, spec)) {
             System.out.println("Afraid");
-            return Compare.returnNegativMean() * this.coefficient;
+            return Compare.getNegativMean() * this.coefficient;
         } else {
             return 0.0;
         }

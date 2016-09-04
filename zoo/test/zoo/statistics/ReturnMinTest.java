@@ -13,7 +13,7 @@ public class ReturnMinTest {
     public void shouldReturnTheMinimumValue(){
         // Given
         // When
-        double actual = Compare.returnMin();
+        double actual = Compare.getMin();
         // Then 
         double expected = -5.0;
         assertEquals(expected, actual, 0.0);
