@@ -61,22 +61,32 @@ public class FeedingAnimal implements Command {
         }
         return false;
     }
+    
+    private boolean hasArgumentDiet(String cmd){
+        return cmd.equals("--diet") || cmd.equals("-d");
+    }
+    
+     private boolean hasArgumentFoodQuantity(String cmd){
+        return cmd.equals("--foodQuantity") || cmd.equals("-fq");
+    }
 
     @Override
     public boolean canExecute(String[] cmd) {
         this.args = new String[]{null, null};
         if (firstCmd(cmd)) {
-            if (cmd.length == 4 && cmd[2].equals("-d")) {
+            if (cmd.length == 4 && this.hasArgumentDiet(cmd[2])) {
                 args[0] = cmd[3];
                 return true;
-            } else if (cmd.length == 4 && cmd[2].equals("-fq")) {
+            } else if (cmd.length == 4 && this.hasArgumentFoodQuantity(cmd[2])) {
                 args[1] = cmd[3];
                 return true;
-            } else if (cmd.length == 6 && cmd[2].equals("-d") && cmd[4].equals("-fq")) {
+            } else if (cmd.length == 6 && this.hasArgumentDiet(cmd[2]) 
+                    && this.hasArgumentFoodQuantity(cmd[4])) {
                 args[0] = cmd[3];
                 args[1] = cmd[5];
                 return true;
-            } else if (cmd.length == 6 && cmd[4].equals("-fq") && cmd[2].equals("-d")) {
+            } else if (cmd.length == 6 && this.hasArgumentFoodQuantity(cmd[2]) 
+                    && this.hasArgumentDiet(cmd[4]) ) {
                 args[0] = cmd[5];
                 args[1] = cmd[3];
                 return true;
