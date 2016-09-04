@@ -63,7 +63,7 @@ public class LsSpecie implements Command {
         if (firstCmd(cmd)) {
             if (cmd.length == 2) {
                 return true;
-            } else if (cmd.length == 4 && cmd[2].equals("-p")) {
+            } else if (cmd.length == 4 && (cmd[2].equals("-p") || cmd[2].equals("--paddock"))) {
                 args[0] = cmd[3];
                 return true;
             }
