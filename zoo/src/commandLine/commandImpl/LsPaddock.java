@@ -64,7 +64,7 @@ public class LsPaddock implements Command {
         if (firstCmd(cmd)) {
             if (cmd.length == 2) {
                 return true;
-            } else if (cmd.length == 4 && cmd[2].equals("-s")) {
+            } else if (cmd.length == 4 && (cmd[2].equals("-s") || cmd[2].equals("--specie"))) {
                 args[0] = cmd[3];
                 return true;
             }
