@@ -17,6 +17,7 @@ import commandLine.commandImpl.FeedingAnimal;
 import commandLine.commandImpl.LoadZoo;
 import commandLine.commandImpl.LsAnimal;
 import commandLine.commandImpl.LsBiome;
+import commandLine.commandImpl.LsEcoregion;
 import commandLine.commandImpl.LsFeeding;
 import commandLine.commandImpl.LsPaddock;
 import commandLine.commandImpl.LsSpecie;
@@ -34,8 +35,9 @@ import lombok.Getter;
  *
  * @author doyenm
  */
-public class FreeCommandManager implements CommandManager{
-  Play play;
+public class FreeCommandManager implements CommandManager {
+
+    Play play;
     private final Iterable<Command> playCommands;
     private final Iterable<Command> initialCommands;
 
@@ -44,7 +46,7 @@ public class FreeCommandManager implements CommandManager{
     @Getter
     private String firstLine;
     private Option option;
-    
+
     public FreeCommandManager(Play play, Option option) {
         this.play = play;
         this.option = option;
@@ -56,7 +58,8 @@ public class FreeCommandManager implements CommandManager{
                 new Evaluate(play), new BiomePad(play), new BiomeAttributesPaddock(play),
                 new CreateAnimal(play), new LsAnimal(play), new DetailAnimal(play),
                 new FeedingAnimal(play),
-                new RemoveAnimal(play), new RemovePaddock(play), new LsBiome(play),
+                new RemoveAnimal(play), new RemovePaddock(play),
+                new LsBiome(play), new LsEcoregion(play),
                 new LsSpecie(play), new DetailSpecie(play),
                 new LsFeeding(play),
                 new SaveZoo(play), new LoadZoo(play), new Options(play));

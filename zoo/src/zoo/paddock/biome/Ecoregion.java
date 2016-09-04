@@ -1,6 +1,7 @@
 package zoo.paddock.biome;
 
 import exception.name.UnknownNameException;
+import java.util.ArrayList;
 import launch.options.Option;
 import lombok.Getter;
 import lombok.Setter;
@@ -57,5 +58,14 @@ public enum Ecoregion {
 
       public String toStringByLanguage(){
         return this.option.getEcoregionBundle().getString(this.toString().toUpperCase());
+    }
+      
+      public ArrayList<String> list() {
+        ArrayList<String> list = new ArrayList<>();
+        for (Ecoregion region : Ecoregion.values()) {
+            list.add(region.id + " - " +
+                    this.option.getEcoregionBundle().getString(region.toString().toUpperCase()));
+        }
+        return list;
     }
 }
