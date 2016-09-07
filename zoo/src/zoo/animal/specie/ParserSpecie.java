@@ -41,8 +41,9 @@ public class ParserSpecie {
         ConservationStatus conservation = conservationParser(root);
         SocialAttributes social = socialParser(root);
         TerritoryAttributes territory = territoryParser(root);
+        int size = sizeParser(root);
         Specie spec = new Specie(names, biomeAtt, feeding, diet, repro, lifeSpan,
-                conservation, social, territory, region, family, biome);
+                conservation, social, territory, region, family, biome, size);
         return spec;
     }
 

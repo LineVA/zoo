@@ -74,7 +74,7 @@ public class Specie {
             int diet, ReproductionAttributes repro,
             LifeSpanAttributes lifeSpan, ConservationStatus conservation,
             SocialAttributes social, TerritoryAttributes territory,
-            int ecoregion, int family, int biome) {
+            int ecoregion, int family, int biome, int size) {
         this.names = names;
         this.specieBiome = biomeAtt;
         this.diet = diet;
@@ -93,7 +93,7 @@ public class Specie {
         this.gaussianLifeSpanAttributesSpan = new GaussianLifeSpanAttributes(lifeSpan);
         this.gaussianSocialAttributes = new GaussianSocialAttributes(social);
         this.gaussianTerritoryAttributes = new GaussianTerritoryAttributes(territory);
-        this.size = 0;
+        this.size = size;
     }
 
     public boolean canBeInTheSamePaddock(Specie specie) throws UnknownNameException {
