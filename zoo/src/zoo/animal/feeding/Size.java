@@ -57,7 +57,6 @@ public enum Size {
     }
     
     public boolean areCloseEnough(int size){
-        return ((this.getId() - size >= 0) && (this.getId() - size<= 2)) || 
-                    ((size - this.getId() >= 0) && (size - this.getId() >= 2));
+        return ((this.getId() - size >= -1) && (this.getId() - size<= 2));
     }
 }
