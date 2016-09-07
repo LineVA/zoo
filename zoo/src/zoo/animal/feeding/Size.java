@@ -4,6 +4,7 @@ import exception.name.UnknownNameException;
 import launch.options.Option;
 import lombok.Getter;
 import lombok.Setter;
+import zoo.animal.specie.Family;
 
 /**
  *
@@ -30,6 +31,12 @@ public enum Size {
     
     @Setter
     private Option option;
+    
+    public void setOption(Option option) {
+        for (Size size : Size.values()) {
+             size.option = option;
+         }
+    }
     
     public String toStringByLanguage(){
         return this.option.getSizeBundle().getString(this.toString().toUpperCase());
