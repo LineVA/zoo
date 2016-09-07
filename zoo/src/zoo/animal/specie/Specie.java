@@ -102,8 +102,11 @@ public class Specie {
     }
 
     public boolean canBeAfraidOf(Specie specie) throws UnknownNameException {
-        return Diet.NONE.findDietById(this.diet).canBeEatenBy(specie.diet)
-                && this.ecoregion == specie.ecoregion;
+        if(Diet.NONE.findDietById(this.diet).canBeEatenBy(specie.diet)
+                && this.ecoregion == specie.ecoregion) {
+            return Size.UNKNOWN.findSizeById(this.size).areCloseEnough(specie.size);
+        } 
+        return false;
     }
 
     public ArrayList<String> info(Option option) throws UnknownNameException {
