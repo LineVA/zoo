@@ -7,17 +7,21 @@ import lombok.Getter;
  * @author doyenm
  */
 public enum Size {
+
     UNKNOWN(0),
-    EXTRASMALL(1),
-    SMALL(2),
-    MEDIUM(3),
-    LARGE(4),
-    EXTRALARGE(5);
-    
+    EXTRAEXTRASMALL(1),
+    EXTRASMALL(2),
+    SMALL(3),
+    MEDIUM(4),
+    LARGE(5),
+    EXTRALARGE(6),
+    EXTRAEXTRALARGE(7),
+    EXTRAEXTRAEXTRALARGE(8);
+
     @Getter
     int id;
-    
-    Size(int id){
+
+    Size(int id) {
         this.id = id;
     }
 }
