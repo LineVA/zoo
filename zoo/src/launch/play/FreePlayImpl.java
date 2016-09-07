@@ -10,6 +10,7 @@ import zoo.IZoo;
 import zoo.Zoo;
 import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.feeding.Diet;
+import zoo.animal.feeding.Size;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.Family;
 import zoo.paddock.biome.Biome;
@@ -23,10 +24,12 @@ public class FreePlayImpl implements Play {
 
     @Getter
     public ResourceBundle bundle;
-     @Getter @Setter
+    @Getter
+    @Setter
     public Option option;
-    
-    @Getter @Setter
+
+    @Getter
+    @Setter
     public IZoo zoo;
     @Getter
     private CommandManager manager;
@@ -38,9 +41,10 @@ public class FreePlayImpl implements Play {
         Diet.NONE.setOption(opt);
         Sex.UNKNOWN.setOption(opt);
         Ecoregion.UNKNOWN.setOption(opt);
-        ConservationStatus.UNKNOWN.setOption(opt); 
+        ConservationStatus.UNKNOWN.setOption(opt);
         Family.UNKNOWN.setOption(opt);
         Biome.NONE.setOption(opt);
+        Size.UNKNOWN.setOption(opt);
         this.bundle = bundle;
         this.option = opt;
     }

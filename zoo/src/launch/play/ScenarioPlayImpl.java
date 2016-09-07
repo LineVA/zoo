@@ -9,6 +9,7 @@ import zoo.IZoo;
 import zoo.Zoo;
 import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.feeding.Diet;
+import zoo.animal.feeding.Size;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.Family;
 import zoo.paddock.biome.Biome;
@@ -39,6 +40,7 @@ public class ScenarioPlayImpl implements Play {
         ConservationStatus.UNKNOWN.setOption(opt);
         Family.UNKNOWN.setOption(opt);
         Biome.NONE.setOption(opt);
+        Size.UNKNOWN.setOption(opt);
         this.bundle = bundle;
         this.option = opt;
     }

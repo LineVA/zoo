@@ -1,6 +1,8 @@
 package zoo.animal.feeding;
 
+import launch.options.Option;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
@@ -15,7 +17,7 @@ public enum Size {
     M(4),
     L(5),
     XL(6),
-    XXl(7),
+    XXL(7),
     XXXL(8);
 
     @Getter
@@ -23,5 +25,12 @@ public enum Size {
 
     Size(int id) {
         this.id = id;
+    }
+    
+    @Setter
+    private Option option;
+    
+    public String toStringByLanguage(){
+        return this.option.getDietBundle().getString(this.toString().toUpperCase());
     }
 }
