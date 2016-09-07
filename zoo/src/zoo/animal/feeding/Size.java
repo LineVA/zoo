@@ -51,4 +51,13 @@ public enum Size {
         throw new UnknownNameException(
                 this.option.getDietBundle().getString("UNKNOWN_SIZE_BY_ID"));
     }
+    
+    public boolean isEnoughNearFrom(int size){
+        return this.id >= size - 2 && this.id <= size + 2;
+    }
+    
+    public boolean areCloseEnough(int size){
+        return ((this.getId() - size >= 0) && (this.getId() - size<= 2)) || 
+                    ((size - this.getId() >= 0) && (size - this.getId() >= 2));
+    }
 }
