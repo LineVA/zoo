@@ -13,6 +13,7 @@ import zoo.animal.death.LifeSpanAttributes;
 import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.feeding.GaussianFeedingAttributes;
+import zoo.animal.feeding.Size;
 import zoo.animal.reproduction.GaussianReproductionAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.GaussianSocialAttributes;
@@ -115,6 +116,7 @@ public class Specie {
         info.add(bundle.getString("ECOREGION") + Ecoregion.UNKNOWN.findById(this.ecoregion).toStringByLanguage());
         info.add(bundle.getString("FAMILY") + Family.UNKNOWN.findById(this.family).toStringByLanguage());
         info.add(bundle.getString("DIET") + Diet.NONE.findDietById(diet).toStringByLanguage());
+        info.add(bundle.getString("SIZE") + Size.UNKNOWN.findSizeById(size).toStringByLanguage());
         info.add(bundle.getString("REPRODUCTION_ATT") + this.specieReproduction.toStringByLanguage(option));
         info.add(bundle.getString("LIFESPAN_ATT") + this.specieLifeSpan.toStringByLanguage(option));
         info.add(bundle.getString("SOCIAL_ATT") + this.specieSocial.toStringByLanguage(option));

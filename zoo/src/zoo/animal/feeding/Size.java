@@ -1,5 +1,6 @@
 package zoo.animal.feeding;
 
+import exception.name.UnknownNameException;
 import launch.options.Option;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,6 +32,16 @@ public enum Size {
     private Option option;
     
     public String toStringByLanguage(){
-        return this.option.getDietBundle().getString(this.toString().toUpperCase());
+        return this.option.getSizeBundle().getString(this.toString().toUpperCase());
+    }
+    
+    public Size findSizeById(int id) throws UnknownNameException {
+        for (Size size : Size.values()) {
+            if (size.getId() == id) {
+                return size;
+            }
+        }
+        throw new UnknownNameException(
+                this.option.getDietBundle().getString("UNKNOWN_SIZE_BY_ID"));
     }
 }
