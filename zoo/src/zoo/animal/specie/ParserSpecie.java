@@ -108,5 +108,9 @@ public class ParserSpecie {
     private static int dietParser(Element root) {
         return Integer.parseInt(root.getChild("feeding").getChildText("diet"));
     }
+    
+    private static int sizeParser(Element root) {
+        return Integer.parseInt(root.getChild("feeding").getChildText("size"));
+    }
 
 }
