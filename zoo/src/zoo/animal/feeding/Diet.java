@@ -88,10 +88,8 @@ public enum Diet {
         Arrays.fill(this.eatables[25], false);
         Arrays.fill(this.eatables[26], false);
         for (int i = 0; i < this.eatables.length; i++) {
-            this.eatables[i][2] = true;
-            this.eatables[i][8] = true;
+            this.eatables[3][i] = true;
         }
-
     }
 
     public Diet findDietById(int id) throws UnknownNameException {
@@ -109,7 +107,7 @@ public enum Diet {
     }
 
     public boolean canBeEatenBy(int diet) {
-        return this.eatables[this.id][diet];
+        return this.eatables[diet][this.id];
     }
 
     public Diet findDietByName(String name) throws UnknownNameException {

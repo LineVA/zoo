@@ -8,18 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import zoo.animal.AnimalImpl;
-import zoo.animal.Names;
-import zoo.animal.conservation.ConservationStatus;
-import zoo.animal.death.LifeSpanAttributes;
 import zoo.animal.feeding.Diet;
-import zoo.animal.feeding.FeedingAttributes;
-import zoo.animal.reproduction.ReproductionAttributes;
-import zoo.animal.reproduction.Sex;
-import zoo.animal.social.SocialAttributes;
-import zoo.animal.specie.Specie;
-import zoo.paddock.TerritoryAttributes;
-import zoo.paddock.biome.BiomeAttributes;
 
 /**
  *
@@ -39,13 +28,15 @@ public class CanBeEatenByTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void shouldReturnWhenACarnivorousAndAnAphigohagousTryToEatThemselves() throws IncorrectDataException {
+    public void shouldReturnAlwaysReturnTrueWhenWeCheckIfACarnivoreCanEatANOTHERAnimal() throws IncorrectDataException {
+        Diet carnivorous = Diet.CARNIVOROUS;
+        boolean result;
+        for (Diet diet : Diet.values()) {
         // Given
-        // When
-        boolean actualCarnivorousEatsAphidiphagous = Diet.APHIDIPHAGOUS.canBeEatenBy(Diet.CARNIVOROUS.getId());
-        boolean actualAphidiphagousEatsCarnivorous = Diet.CARNIVOROUS.canBeEatenBy(Diet.APHIDIPHAGOUS.getId());
-        // Then
-        assertFalse(actualAphidiphagousEatsCarnivorous);
-        assertTrue(actualCarnivorousEatsAphidiphagous);
+            // When
+            result = diet.canBeEatenBy(carnivorous.getId());
+            // Then
+            assertTrue(result);
+        }
     }
 }
