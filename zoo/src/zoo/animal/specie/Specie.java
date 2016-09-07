@@ -55,6 +55,8 @@ public class Specie {
     @Getter
     private final int biome;
     @Getter
+    private final int size;
+    @Getter
     private GaussianBiomeAttributes gaussianBiome;
     @Getter
     private GaussianFeedingAttributes gaussianFeeding;
@@ -90,6 +92,7 @@ public class Specie {
         this.gaussianLifeSpanAttributesSpan = new GaussianLifeSpanAttributes(lifeSpan);
         this.gaussianSocialAttributes = new GaussianSocialAttributes(social);
         this.gaussianTerritoryAttributes = new GaussianTerritoryAttributes(territory);
+        this.size = 0;
     }
 
     public boolean canBeInTheSamePaddock(Specie specie) throws UnknownNameException {
