@@ -9,14 +9,14 @@ import lombok.Getter;
 public enum Size {
 
     UNKNOWN(0),
-    EXTRAEXTRASMALL(1),
-    EXTRASMALL(2),
-    SMALL(3),
-    MEDIUM(4),
-    LARGE(5),
-    EXTRALARGE(6),
-    EXTRAEXTRALARGE(7),
-    EXTRAEXTRAEXTRALARGE(8);
+    XXS(1),
+    XS(2),
+    S(3),
+    M(4),
+    L(5),
+    XL(6),
+    XXl(7),
+    XXXL(8);
 
     @Getter
     int id;
