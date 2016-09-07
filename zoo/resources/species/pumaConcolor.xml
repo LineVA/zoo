@@ -27,6 +27,7 @@
 <feeding>
         <diet>3</diet>
         <quantity>1</quantity>
+        <size>5</size>
     </feeding>
 <social>
     <groupSize>1</groupSize>

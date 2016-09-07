@@ -4,31 +4,32 @@
         <en>Lion</en>
         <scientific>Panthera leo</scientific>
     </names>
-<general>
-    <uicn>3</uicn>
-    <family>8</family>
-    <ecoregion>0</ecoregion>
-</general>
-<reproduction>
+    <general>
+        <uicn>3</uicn>
+        <family>8</family>
+        <ecoregion>0</ecoregion>
+    </general>
+    <reproduction>
         <femaleMaturity>48</femaleMaturity>
         <maleMaturity>60</maleMaturity>
         <gestationFrequency>0.5</gestationFrequency>
         <litterSize>3</litterSize>
         <leavingAge>16</leavingAge>
-</reproduction>
-<lifespan>
+    </reproduction>
+    <lifespan>
         <femaleLifespan>168</femaleLifespan>
         <maleLifespan>168</maleLifespan>
-</lifespan>
-<territory>
-    <biome>7</biome>
-    <territorySize>210</territorySize>
-</territory>
-<feeding>
+    </lifespan>
+    <territory>
+        <biome>7</biome>
+        <territorySize>210</territorySize>
+    </territory>
+    <feeding>
         <diet>3</diet>
         <quantity>7</quantity>
+        <size>7</size>
     </feeding>
-<social>
-    <groupSize>20</groupSize>
-</social>
+    <social>
+        <groupSize>20</groupSize>
+    </social>
 </animal>

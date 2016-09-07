@@ -52,6 +52,7 @@
                         <xs:sequence>
                             <xs:element type="xs:int" name="diet"/>
                             <xs:element type="xs:decimal" name="quantity"/>
+                            <xs:element type="xs:int" name="size"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
