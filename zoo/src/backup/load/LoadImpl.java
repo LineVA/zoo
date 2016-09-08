@@ -49,7 +49,7 @@ public class LoadImpl implements Load {
     public void addFakeAnimalToZoo(IZoo zoo, FakeAnimal animal, Option option)
             throws EmptyNameException, UnknownNameException, IncorrectDataException,
             AlreadyUsedNameException, NameException {
-        Specie spec = zoo.findSpeciebyName(animal.getSpecie());
+        Specie spec = zoo.findSpeciebyScientificName(animal.getSpecie());
         IPaddock pad = zoo.findPaddockByName(animal.getPaddock());
         Sex sex = Sex.FEMALE.findByName(animal.getSex());
         pad.addAnimal(animal.convertToAnimal(spec, pad, sex, option));
