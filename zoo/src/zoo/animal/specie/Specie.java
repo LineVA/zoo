@@ -97,7 +97,7 @@ public class Specie {
     }
 
     public boolean canBeInTheSamePaddock(Specie specie) throws UnknownNameException {
-         if(Diet.NONE.findDietById(this.diet).areCompatible(specie.diet)
+         if(Diet.NONE.findDietById(this.diet).isCompatible(specie.diet)
                 && this.ecoregion == specie.ecoregion) {
             return Size.UNKNOWN.findSizeById(this.size).areCloseEnough(specie.size);
         } 
