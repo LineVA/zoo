@@ -303,7 +303,7 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public Specie findSpeciebyName(String specieName) throws EmptyNameException, UnknownNameException {
+    public Specie findSpecieByName(String specieName) throws EmptyNameException, UnknownNameException {
         if (specieName.trim().equals("")) {
             throw new EmptyNameException(
                     this.option.getSpecieBundle().getString("EMPTY_NAME"));
@@ -316,7 +316,7 @@ public class Zoo implements IZoo {
     }
     
      @Override
-    public Specie findSpeciebyScientificName(String specieName) 
+    public Specie findSpecieByScientificName(String specieName) 
             throws EmptyNameException, UnknownNameException {
         if (specieName.trim().equals("")) {
             throw new EmptyNameException(

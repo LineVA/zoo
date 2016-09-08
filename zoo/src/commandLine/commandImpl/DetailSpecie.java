@@ -34,7 +34,7 @@ public class DetailSpecie implements Command {
     @Override
     public String execute(String[] cmd) {
         try {
-            Specie spec = this.play.getZoo().findSpeciebyName(cmd[1]);
+            Specie spec = this.play.getZoo().findSpecieByName(cmd[1]);
             this.success = true;
             return (FormattingDisplay.formattingArrayList(spec.info(this.play.getOption())));
         } catch (UnknownNameException | EmptyNameException ex) {

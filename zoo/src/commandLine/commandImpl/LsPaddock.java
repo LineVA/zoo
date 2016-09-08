@@ -38,7 +38,7 @@ public class LsPaddock implements Command {
         Specie spec = null;
         if (args[0] != null) {
             try {
-                spec = this.play.getZoo().findSpeciebyName(args[0]);
+                spec = this.play.getZoo().findSpecieByName(args[0]);
                 this.success = true;
             } catch (EmptyNameException | UnknownNameException ex) {
                 return ex.getMessage();

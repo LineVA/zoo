@@ -53,9 +53,9 @@ public interface IZoo {
 
     public IPaddock findPaddockByName(String paddockName) throws EmptyNameException, UnknownNameException;
 
-    public Specie findSpeciebyScientificName(String specieName) throws EmptyNameException, UnknownNameException;
+    public Specie findSpecieByScientificName(String specieName) throws EmptyNameException, UnknownNameException;
 
-    public Specie findSpeciebyName(String specieName) throws EmptyNameException, UnknownNameException;
+    public Specie findSpecieByName(String specieName) throws EmptyNameException, UnknownNameException;
 //    public void setBiome(String paddockName, String biomeName)
 //            throws UnknownNameException, EmptyNameException;
 

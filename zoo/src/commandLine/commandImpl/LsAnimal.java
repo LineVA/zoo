@@ -43,7 +43,7 @@ public class LsAnimal implements Command {
         IPaddock pad = null;
         try {
             if (args[0] != null) {
-                spec = this.play.getZoo().findSpeciebyName(args[0]);
+                spec = this.play.getZoo().findSpecieByName(args[0]);
             }
             if (args[1] != null) {
                 pad = this.play.getZoo().findPaddockByName(args[1]);
