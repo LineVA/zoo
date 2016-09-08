@@ -19,30 +19,10 @@ import zoo.paddock.biome.Ecoregion;
  *
  * @author doyenm
  */
-public class ScenarioPlayImpl implements Play {
-
-     @Getter
-    public ResourceBundle bundle;
-     @Getter @Setter
-    public Option option;
-    
-    @Getter @Setter
-    public IZoo zoo;
-    @Getter
-    private CommandManager manager;
+public class ScenarioPlayImpl extends Play {
 
     public ScenarioPlayImpl(ResourceBundle bundle, Option opt) {
-        this.zoo = new Zoo();
-        this.zoo.setOption(opt);
-        Diet.NONE.setOption(opt);
-        Sex.UNKNOWN.setOption(opt);
-        Ecoregion.UNKNOWN.setOption(opt);
-        ConservationStatus.UNKNOWN.setOption(opt);
-        Family.UNKNOWN.setOption(opt);
-        Biome.NONE.setOption(opt);
-        Size.UNKNOWN.setOption(opt);
-        this.bundle = bundle;
-        this.option = opt;
+        super(bundle, opt);
     }
 
 }

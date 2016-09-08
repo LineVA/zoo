@@ -17,7 +17,7 @@ import zoo.animal.Animal;
  *
  * @author doyenm
  */
-public class TutorialPlayImpl_1 implements Play {
+public class TutorialPlayImpl_1 extends Play {
 
     @Getter
     @Setter
@@ -39,7 +39,7 @@ public class TutorialPlayImpl_1 implements Play {
     private static final FriendScenario friendScenario = new FriendScenario();
 
     public TutorialPlayImpl_1() {
-        this.zoo = new Zoo();
+        super(null, null);
         this.manager = new TutorialCommandLineManager(this, this.buildTutorial());
     }
 

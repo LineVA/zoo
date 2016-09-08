@@ -20,32 +20,22 @@ import zoo.paddock.biome.Ecoregion;
  *
  * @author doyenm
  */
-public class FreePlayImpl implements Play {
+public class FreePlayImpl extends Play {
 
-    @Getter
-    public ResourceBundle bundle;
-    @Getter
-    @Setter
-    public Option option;
-
-    @Getter
-    @Setter
-    public IZoo zoo;
-    @Getter
-    private CommandManager manager;
+//    @Getter
+//    public ResourceBundle bundle;
+//    @Getter
+//    @Setter
+//    public Option option;
+//
+//    @Getter
+//    @Setter
+//    public IZoo zoo;
+//    @Getter
+//    private CommandManager manager;
 
     public FreePlayImpl(ResourceBundle bundle, Option opt) {
-        this.zoo = new Zoo();
-        this.manager = new FreeCommandManager(this, opt);
-        this.zoo.setOption(opt);
-        Diet.NONE.setOption(opt);
-        Sex.UNKNOWN.setOption(opt);
-        Ecoregion.UNKNOWN.setOption(opt);
-        ConservationStatus.UNKNOWN.setOption(opt);
-        Family.UNKNOWN.setOption(opt);
-        Biome.NONE.setOption(opt);
-        Size.UNKNOWN.setOption(opt);
-        this.bundle = bundle;
-        this.option = opt;
+        super(bundle, opt);
+        super.setManager(new FreeCommandManager(this, opt));
     }
 }
