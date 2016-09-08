@@ -71,6 +71,8 @@ public interface IZoo {
 
     public void changeSpeed(int newSpeed) throws IncorrectDataException;
 
+    public void changeHorizon(int newHorizon) throws IncorrectDataException;
+
     /**
      * Friend pattern : give access to each of the fields of Zoo only to the
      * tutorial methods

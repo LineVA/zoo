@@ -376,7 +376,17 @@ public class Zoo implements IZoo {
             this.option.getZooBundle().getString("MONTHS_GREATER_THAN_ZERO"));
         }
     }
-
+    
+     @Override
+    public void changeHorizon(int newHorizon) throws IncorrectDataException {
+        if(newHorizon> 0){
+            this.horizon = newHorizon;
+        } else {
+            throw new IncorrectDataException(
+            this.option.getZooBundle().getString("HORIZON_GREATER_THAN_ZERO"));
+        }
+    }
+    
     @Override
     public ArrayList<String> info() {
         ArrayList<String> info = new ArrayList<>();
