@@ -33,6 +33,7 @@ Liste des commandes :
 > family ls : Liste des familles
 > biome ls : Liste des biomes
 > ecoregion ls : Liste des écorégions
+> size ls : Liste des tailles
 
 > specie ls : Liste des espèces
 > specie ls -p <name> : liste des espèces dans l'enclos 'name'
