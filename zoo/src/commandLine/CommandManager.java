@@ -27,6 +27,7 @@ import commandLine.commandImpl.Options;
 import commandLine.commandImpl.RemoveAnimal;
 import commandLine.commandImpl.RemovePaddock;
 import commandLine.commandImpl.SaveZoo;
+import commandLine.commandImpl.ZooCharacteristics;
 import static java.util.Arrays.asList;
 import launch.options.Option;
 import launch.play.Play;
@@ -63,7 +64,8 @@ public abstract class CommandManager {
                 new LsBiome(play), new LsEcoregion(play),
                 new LsSpecie(play), new DetailSpecie(play), new LsFamily(play),
                 new LsFeeding(play), new LsSize(play),
-                new SaveZoo(play), new LoadZoo(play), new Options(play));
+                new SaveZoo(play), new LoadZoo(play),
+                new Options(play), new ZooCharacteristics(play));
     }
 
     public abstract String run(String cmd);
