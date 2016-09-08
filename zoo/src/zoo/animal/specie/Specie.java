@@ -97,8 +97,11 @@ public class Specie {
     }
 
     public boolean canBeInTheSamePaddock(Specie specie) throws UnknownNameException {
-        return Diet.NONE.findDietById(this.diet).isCompatible(specie.diet)
-                && Ecoregion.UNKNOWN.findById(this.ecoregion).equals(specie.ecoregion);
+         if(Diet.NONE.findDietById(this.diet).areCompatible(specie.diet)
+                && this.ecoregion == specie.ecoregion) {
+            return Size.UNKNOWN.findSizeById(this.size).areCloseEnough(specie.size);
+        } 
+        return false;
     }
 
     public boolean canBeAfraidOf(Specie specie) throws UnknownNameException {
