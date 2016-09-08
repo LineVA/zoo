@@ -24,8 +24,8 @@ import zoo.paddock.PaddockCoordinates;
 public interface IZoo {
 
     public void setSpecies(Map<String, Specie> species);
-    
-    public void initiateZoo(String name, int width, int height, 
+
+    public void initiateZoo(String name, int width, int height,
             Map<String, Specie> species, int age, int monthsPerEvaluation, int horizon)
             throws IncorrectDimensionsException, EmptyNameException, IOException;
 
@@ -34,7 +34,7 @@ public interface IZoo {
     public Option getOption();
 
     public void addPaddock(String paddockName, int x, int y, int width, int height)
-            throws AlreadyUsedNameException, IncorrectDimensionsException, 
+            throws AlreadyUsedNameException, IncorrectDimensionsException,
             EmptyNameException, NameException;
 
     public void addPaddock(IPaddock paddock)
@@ -49,7 +49,6 @@ public interface IZoo {
     public int evaluate();
 
 //    public ArrayList<String> death() throws UnknownNameException;
-
     public ArrayList<String> birth() throws AlreadyUsedNameException, IncorrectDataException, NameException;
 
     public IPaddock findPaddockByName(String paddockName) throws EmptyNameException, UnknownNameException;
@@ -69,16 +68,18 @@ public interface IZoo {
     public double grade() throws UnknownNameException;
 
     public ArrayList<String> info();
-    
-  /**
+
+    public void changeSpeed(int newSpeed) throws IncorrectDataException;
+
+    /**
      * Friend pattern : give access to each of the fields of Zoo only to the
      * tutorial methods
      */
     public String getName(TutorialPlayImpl_1.FriendScenario friend);
 
     public Map<String, IPaddock> getPaddocks(TutorialPlayImpl_1.FriendScenario friend);
-    
-     public ArrayList<Animal> getAnimals(TutorialPlayImpl_1.FriendScenario friend);
+
+    public ArrayList<Animal> getAnimals(TutorialPlayImpl_1.FriendScenario friend);
 
     /**
      * Friend pattern : give access to each of the fields of Zoo only to the

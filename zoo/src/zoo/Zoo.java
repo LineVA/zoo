@@ -31,13 +31,13 @@ import zoo.paddock.Paddock;
  */
 public class Zoo implements IZoo {
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private Option option;
-    
+
 //    public void setOption(Option option) {
 //        this.option = option;
 //    }
-
     /**
      * The name of the zoo
      */
@@ -128,7 +128,7 @@ public class Zoo implements IZoo {
      */
     @Override
     public void addPaddock(String paddockName, int x, int y, int width, int height)
-            throws AlreadyUsedNameException, IncorrectDimensionsException, 
+            throws AlreadyUsedNameException, IncorrectDimensionsException,
             EmptyNameException, NameException {
         PaddockCoordinates coor = new PaddockCoordinates(x, y, width, height);
         checkEmplacement(coor);
@@ -265,7 +265,7 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public int evaluate(){
+    public int evaluate() {
         return new Evaluation().evaluate(this.paddocks);
     }
 
@@ -277,8 +277,6 @@ public class Zoo implements IZoo {
 //        }
 //        return info;
 //    }
-
-
     @Override
     public ArrayList<String> birth() throws IncorrectDataException, NameException {
         ArrayList<String> info = new ArrayList<>();
@@ -359,7 +357,7 @@ public class Zoo implements IZoo {
         }
         return list;
     }
-    
+
     @Override
     public double grade() throws UnknownNameException {
         this.grade = 0.0;
@@ -367,6 +365,16 @@ public class Zoo implements IZoo {
             this.grade += entry.getValue().wellBeing();
         }
         return this.grade;
+    }
+
+    @Override
+    public void changeSpeed(int newSpeed) throws IncorrectDataException {
+        if(newSpeed > 0){
+            this.monthsPerEvaluation = newSpeed;
+        } else {
+            throw new IncorrectDataException(
+            this.option.getZooBundle().getString("MONTHS_GREATER_THAN_ZERO"));
+        }
     }
 
     @Override
@@ -384,24 +392,24 @@ public class Zoo implements IZoo {
     }
 
     // Access to the fields only the the friend class
-     @Override
+    @Override
     public String getName(TutorialPlayImpl_1.FriendScenario friend) {
         friend.hashCode();
         return this.name;
     }
-    
-      @Override
+
+    @Override
     public Map<String, IPaddock> getPaddocks(TutorialPlayImpl_1.FriendScenario friend) {
         friend.hashCode();
         return this.paddocks;
     }
-    
+
     @Override
     public ArrayList<Animal> getAnimals(TutorialPlayImpl_1.FriendScenario friend) {
         friend.hashCode();
         return this.listAnimal(null, null);
     }
-    
+
     @Override
     public String getName(SaveImpl.FriendSave friend) {
         friend.hashCode();
