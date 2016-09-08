@@ -1,9 +1,11 @@
 package zoo.animal.feeding;
 
 import exception.name.UnknownNameException;
+import java.util.ArrayList;
 import launch.options.Option;
 import lombok.Getter;
 import lombok.Setter;
+import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.Family;
 
 /**
@@ -57,5 +59,14 @@ public enum Size {
     
     public boolean areCloseEnough(int size){
         return ((this.getId() - size >= -1) && (this.getId() - size<= 2));
+    }
+    
+      public ArrayList<String> list(){
+         ArrayList<String> list = new ArrayList<>();
+        for (Size size : Size.values()) {
+            list.add(
+                    this.option.getSizeBundle().getString(size.toString().toUpperCase()));
+        }
+        return list;
     }
 }
