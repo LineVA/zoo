@@ -1,16 +1,9 @@
 package launch.play.tutorials;
 
-import commandLine.CommandManager;
 import commandLine.commandManagerImpl.TutorialCommandLineManager;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
-import launch.options.Option;
 import launch.play.Play;
 import launch.play.Step;
-import lombok.Getter;
-import lombok.Setter;
-import zoo.IZoo;
-import zoo.Zoo;
 import zoo.animal.Animal;
 
 /**
@@ -18,18 +11,6 @@ import zoo.animal.Animal;
  * @author doyenm
  */
 public class TutorialPlayImpl_1 extends Play {
-
-    @Getter
-    @Setter
-    public Option option;
-    @Getter
-    public ResourceBundle bundle;
-
-    @Getter
-    @Setter
-    public IZoo zoo;
-    @Getter
-    private CommandManager manager;
 
     public static final class FriendScenario {
 
@@ -40,7 +21,7 @@ public class TutorialPlayImpl_1 extends Play {
 
     public TutorialPlayImpl_1() {
         super(null, null);
-        this.manager = new TutorialCommandLineManager(this, this.buildTutorial());
+        super.setManager(new TutorialCommandLineManager(this, this.buildTutorial()));
     }
 
     public ArrayList<Step> buildTutorial() {
