@@ -29,7 +29,6 @@ public enum Size {
         this.id = id;
     }
     
-    @Setter
     private Option option;
     
     public void setOption(Option option) {
