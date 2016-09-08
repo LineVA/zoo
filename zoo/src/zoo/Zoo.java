@@ -314,6 +314,22 @@ public class Zoo implements IZoo {
         throw new UnknownNameException(
                 this.option.getSpecieBundle().getString("UNKNOWN_NAME"));
     }
+    
+     @Override
+    public Specie findSpeciebyScientificName(String specieName) 
+            throws EmptyNameException, UnknownNameException {
+        if (specieName.trim().equals("")) {
+            throw new EmptyNameException(
+                    this.option.getSpecieBundle().getString("EMPTY_NAME"));
+        }
+        for(Entry<String, Specie> specie : this.species.entrySet()){
+            if(specie.getValue().getNames().getScientificName().equals(specieName)){
+                return specie.getValue();
+            }
+        }
+        throw new UnknownNameException(
+                this.option.getSpecieBundle().getString("UNKNOWN_NAME"));
+    }
 
     @Override
     public Animal findAnimalByName(String animalName) throws UnknownNameException, EmptyNameException {
