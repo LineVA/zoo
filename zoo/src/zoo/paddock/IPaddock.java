@@ -11,6 +11,7 @@ import java.util.Map;
 import launch.options.Option;
 import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
+import zoo.paddock.biome.Ecoregion;
 
 /**
  *
@@ -31,7 +32,7 @@ public interface IPaddock {
     public Animal findAnimalByName(String animalName)
             throws UnknownNameException, EmptyNameException;
 
-    public ArrayList<Animal> listAnimal(Specie specie);
+    public ArrayList<Animal> listAnimal(Specie specie, Ecoregion ecoregion);
 
     public ArrayList<String> birth()
             throws IncorrectDataException, NameException;

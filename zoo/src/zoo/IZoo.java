@@ -16,6 +16,7 @@ import zoo.animal.Animal;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
 import zoo.paddock.PaddockCoordinates;
+import zoo.paddock.biome.Ecoregion;
 
 /**
  *
@@ -61,7 +62,7 @@ public interface IZoo {
 
     public Animal findAnimalByName(String animalName) throws UnknownNameException, EmptyNameException;
 
-    public ArrayList<Animal> listAnimal(Specie specie, IPaddock paddock);
+    public ArrayList<Animal> listAnimal(IPaddock paddock, Specie specie, Ecoregion ecoregion);
 
     public ArrayList<String> listSpecie(IPaddock paddock);
 

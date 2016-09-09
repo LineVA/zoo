@@ -22,11 +22,13 @@ import java.util.TreeMap;
 import zoo.BirthObservable;
 import zoo.NameVerifications;
 import zoo.animal.Animal;
+import zoo.animal.AnimalImpl;
 import zoo.animal.death.DieImpl;
 import zoo.animal.death.IDie;
 import zoo.animal.reproduction.Reproduction;
 import zoo.animal.reproduction.ReproductionImpl;
 import zoo.animal.specie.Specie;
+import zoo.paddock.biome.Ecoregion;
 
 /**
  *
@@ -52,9 +54,9 @@ public class Paddock implements Cloneable, IPaddock {
     /**
      * Its biome's id
      */
-     @Getter
-     int biome;
-    
+    @Getter
+    int biome;
+
     @Getter
     BiomeAttributes attributes;
 
@@ -151,7 +153,7 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public ArrayList<String> info() throws UnknownNameException{
+    public ArrayList<String> info() throws UnknownNameException {
         ResourceBundle bundle = this.option.getPaddockBundle();
         ArrayList<String> info = new ArrayList<>();
         info.add(bundle.getString("NAME") + this.name);
@@ -182,17 +184,30 @@ public class Paddock implements Cloneable, IPaddock {
         throw new UnknownNameException(this.option.getAnimalBundle().getString("UNKNOWN_NAME"));
     }
 
-    public ArrayList<Animal> listAnimalWithSpecie(Specie specie) {
-        ArrayList<Animal> list = new ArrayList<>();
-        for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
-            if (entry.getValue().isFromTheSameSpecie(specie)) {
-                list.add(entry.getValue());
+    private ArrayList<Animal> listAnimalWithSpecie(ArrayList<Animal> animals, Specie specie) {
+        ArrayList<Animal> list = animals;
+        for (Animal animal : animals) {
+            if (!animal.isFromTheSameSpecie(specie)) {
+                list.remove(animal);
             }
         }
         return list;
     }
 
-    public ArrayList<Animal> listAnimalWithoutSpecie() {
+    private ArrayList<Animal> listAnimalWithEcoregion(ArrayList<Animal> animals, Ecoregion ecoregion) {
+        ArrayList<Animal> list = animals;
+        Iterator it = list.iterator();
+        Animal next;
+        while (it.hasNext()) {
+            next = (AnimalImpl) it.next();
+            if (!(next.getSpecie().getEcoregion() == ecoregion.getId())) {
+                it.remove();
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Animal> listAnimalWithoutCriteria() {
         ArrayList<Animal> list = new ArrayList<>();
         for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
             list.add(entry.getValue());
@@ -201,12 +216,12 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public ArrayList<Animal> listAnimal(Specie specie) {
-        if (specie != null) {
-            return listAnimalWithSpecie(specie);
-        } else {
-            return listAnimalWithoutSpecie();
+    public ArrayList<Animal> listAnimal(Specie specie, Ecoregion ecoregion) {
+        ArrayList<Animal> list = listAnimalWithoutCriteria();
+        if (ecoregion != null) {
+            list = listAnimalWithEcoregion(list, ecoregion);
         }
+        return list;
     }
 
     @Override

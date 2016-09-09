@@ -50,7 +50,7 @@ public class LsAnimal implements Command {
             }
             this.success = true;
             ArrayList<String> names = new ArrayList<>();
-            for(Animal animal : this.play.getZoo().listAnimal(spec, pad)){
+            for(Animal animal : this.play.getZoo().listAnimal(pad, spec, null)){
                 names.add(animal.getName());
             }
             return FormattingDisplay.formattingArrayList(names);

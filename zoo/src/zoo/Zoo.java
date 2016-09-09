@@ -24,6 +24,7 @@ import zoo.animal.specie.Specie;
 import zoo.evaluation.Evaluation;
 import zoo.paddock.IPaddock;
 import zoo.paddock.Paddock;
+import zoo.paddock.biome.Ecoregion;
 
 /**
  *
@@ -349,15 +350,15 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<Animal> listAnimal(Specie specie, IPaddock paddock) {
+    public ArrayList<Animal> listAnimal(IPaddock paddock, Specie specie, Ecoregion ecoregion) {
         if (paddock == null) {
             ArrayList<Animal> list = new ArrayList<>();
             for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-                list.addAll(entry.getValue().listAnimal(specie));
+                list.addAll(entry.getValue().listAnimal(specie, ecoregion));
             }
             return list;
         } else {
-            return paddock.listAnimal(specie);
+            return paddock.listAnimal(specie, ecoregion);
         }
     }
 
@@ -433,7 +434,7 @@ public class Zoo implements IZoo {
     @Override
     public ArrayList<Animal> getAnimals(TutorialPlayImpl_1.FriendScenario friend) {
         friend.hashCode();
-        return this.listAnimal(null, null);
+        return this.listAnimal(null, null, null);
     }
 
     @Override

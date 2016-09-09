@@ -1,0 +1,35 @@
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+    <names>
+        <fr>ZEBRE1_fr</fr>
+        <en>ZEBRE1_en</en>
+        <scientific>ZEBRE1</scientific>
+    </names>
+    <general>
+        <uicn>1</uicn>
+        <family>1</family>
+        <ecoregion>1</ecoregion>
+    </general>
+    <reproduction>
+        <femaleMaturity>66</femaleMaturity>
+        <maleMaturity>42</maleMaturity>
+        <gestationFrequency>0</gestationFrequency>
+        <litterSize>1</litterSize>
+        <leavingAge>22</leavingAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>240</femaleLifespan>
+        <maleLifespan>240</maleLifespan>
+    </lifespan>
+    <territory>
+        <biome>13</biome>
+        <territorySize>9.4</territorySize>
+    </territory>
+    <feeding>
+        <diet>1</diet>
+        <quantity>5.7</quantity>
+        <size>8</size>
+    </feeding>
+    <social>
+        <groupSize>10</groupSize>
+    </social>
+</animal>
