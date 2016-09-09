@@ -18,6 +18,7 @@ import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
+import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
 import zoo.animal.wellbeing.WellBeing;
 import zoo.animal.wellbeing.WellBeingImpl;
@@ -328,6 +329,14 @@ public class AnimalImpl implements Animal {
 
     @Override
     public boolean isFromTheSameSpecie(Specie specie) {
+        if (this.specie != null) {
+            return this.specie.equals(specie);
+        }
+        return false;
+    }
+    
+     @Override
+    public boolean isFromTheSameSpecie(LightSpecie specie) {
         if (this.specie != null) {
             return this.specie.equals(specie);
         }

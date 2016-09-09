@@ -97,18 +97,18 @@ public class Specie {
     }
 
     public boolean canBeInTheSamePaddock(Specie specie) throws UnknownNameException {
-         if(Diet.NONE.findDietById(this.diet).isCompatible(specie.diet)
+        if (Diet.NONE.findDietById(this.diet).isCompatible(specie.diet)
                 && this.ecoregion == specie.ecoregion) {
             return Size.UNKNOWN.findSizeById(this.size).areCloseEnough(specie.size);
-        } 
+        }
         return false;
     }
 
     public boolean canBeAfraidOf(Specie specie) throws UnknownNameException {
-        if(Diet.NONE.findDietById(this.diet).canBeEatenBy(specie.diet)
+        if (Diet.NONE.findDietById(this.diet).canBeEatenBy(specie.diet)
                 && this.ecoregion == specie.ecoregion) {
             return Size.UNKNOWN.findSizeById(this.size).areCloseEnough(specie.size);
-        } 
+        }
         return false;
     }
 
@@ -154,7 +154,14 @@ public class Specie {
     }
 
     public String getNameAccordingLanguage(Option option) {
-      return this.names.getNameAccordingLanguage(option);
+        return this.names.getNameAccordingLanguage(option);
     }
-    
+
+    public boolean equals(LightSpecie light) {
+        if (!Objects.equals(this.names, light.getNames())) {
+            return false;
+        }
+        return true;
+    }
+
 }

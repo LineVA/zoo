@@ -10,6 +10,7 @@ import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
+import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
 import zoo.paddock.TerritoryAttributes;
@@ -31,6 +32,8 @@ public interface Animal {
     public double wellBeing() throws UnknownNameException;
 
     public boolean isFromTheSameSpecie(Specie specie);
+
+    public boolean isFromTheSameSpecie(LightSpecie specie);
 
     public ArrayList<Animal> findRoommatesOfTheSameSpecie();
 
@@ -55,9 +58,9 @@ public interface Animal {
     public double getActualGestationFrequency();
 
     public IPaddock getPaddock();
-    
+
     public void setName(String name) throws EmptyNameException;
-    
+
     /**
      * Friend pattern : give access to each of the fields of Animal only to the
      * save methods
