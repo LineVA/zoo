@@ -20,6 +20,7 @@ import lombok.Getter;
 import lombok.Setter;
 import launch.play.tutorials.TutorialPlayImpl_1;
 import zoo.animal.Animal;
+import zoo.animal.specie.Family;
 import zoo.animal.specie.Specie;
 import zoo.evaluation.Evaluation;
 import zoo.paddock.IPaddock;
@@ -350,15 +351,15 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<Animal> listAnimal(IPaddock paddock, Specie specie, Ecoregion ecoregion) {
+    public ArrayList<Animal> listAnimal(IPaddock paddock, Specie specie, Ecoregion ecoregion, Family family) {
         if (paddock == null) {
             ArrayList<Animal> list = new ArrayList<>();
             for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-                list.addAll(entry.getValue().listAnimal(specie, ecoregion));
+                list.addAll(entry.getValue().listAnimal(specie, ecoregion, family));
             }
             return list;
         } else {
-            return paddock.listAnimal(specie, ecoregion);
+            return paddock.listAnimal(specie, ecoregion, family);
         }
     }
 
@@ -434,7 +435,7 @@ public class Zoo implements IZoo {
     @Override
     public ArrayList<Animal> getAnimals(TutorialPlayImpl_1.FriendScenario friend) {
         friend.hashCode();
-        return this.listAnimal(null, null, null);
+        return this.listAnimal(null, null, null, null);
     }
 
     @Override

@@ -13,6 +13,7 @@ import java.util.Map;
 import launch.options.Option;
 import launch.play.tutorials.TutorialPlayImpl_1;
 import zoo.animal.Animal;
+import zoo.animal.specie.Family;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
 import zoo.paddock.PaddockCoordinates;
@@ -62,7 +63,7 @@ public interface IZoo {
 
     public Animal findAnimalByName(String animalName) throws UnknownNameException, EmptyNameException;
 
-    public ArrayList<Animal> listAnimal(IPaddock paddock, Specie specie, Ecoregion ecoregion);
+    public ArrayList<Animal> listAnimal(IPaddock paddock, Specie specie, Ecoregion ecoregion, Family family);
 
     public ArrayList<String> listSpecie(IPaddock paddock);
 

@@ -27,6 +27,7 @@ import zoo.animal.death.DieImpl;
 import zoo.animal.death.IDie;
 import zoo.animal.reproduction.Reproduction;
 import zoo.animal.reproduction.ReproductionImpl;
+import zoo.animal.specie.Family;
 import zoo.animal.specie.Specie;
 import zoo.paddock.biome.Ecoregion;
 
@@ -207,6 +208,19 @@ public class Paddock implements Cloneable, IPaddock {
         return list;
     }
 
+    private ArrayList<Animal> listAnimalWithFamily(ArrayList<Animal> animals, Family family) {
+        ArrayList<Animal> list = animals;
+        Iterator it = list.iterator();
+        Animal next;
+        while (it.hasNext()) {
+            next = (AnimalImpl) it.next();
+            if (!(next.getSpecie().getFamily() == family.getId())) {
+                it.remove();
+            }
+        }
+        return list;
+    }
+
     public ArrayList<Animal> listAnimalWithoutCriteria() {
         ArrayList<Animal> list = new ArrayList<>();
         for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
@@ -216,10 +230,16 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public ArrayList<Animal> listAnimal(Specie specie, Ecoregion ecoregion) {
+    public ArrayList<Animal> listAnimal(Specie specie, Ecoregion ecoregion, Family family) {
         ArrayList<Animal> list = listAnimalWithoutCriteria();
         if (ecoregion != null) {
             list = listAnimalWithEcoregion(list, ecoregion);
+        }
+        if (specie != null) {
+            list = listAnimalWithSpecie(list, specie);
+        }
+        if (family != null) {
+            list = listAnimalWithFamily(list, family);
         }
         return list;
     }
