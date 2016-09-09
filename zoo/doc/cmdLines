@@ -5,6 +5,11 @@ Liste des commandes :
 
 > zoo create <name> <width> <height> : Création d'un zoo nommé 'name' de largeur 'width' et de hauteur 'height'
 > zoo map : Affichage de la carte du zoo
+> zoo : Détails du zoo
+> zoo -s <speed> : Modification du nombre de mois par tour à 'speed'
+    zoo --speed <speed>
+> zoo -h <horizon> : Modification du nombre de cases pour l'horizon à 'horizon' (calcul du voisinage d'un enclos)
+    zoo --horizon <horizon> 
 
 > paddock create <name> <x> <y> <width> <height> : Création d'un enclos nommé 'name' de coordonnées 'x' et 'y', de largueur 'width' et de hauteur 'height'
 > paddock ls : Liste des enclos
