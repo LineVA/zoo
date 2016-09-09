@@ -19,24 +19,32 @@ public class LsAnimal implements Command {
     Play play;
     // args[0] : the argument after '-s'
     // args[1] : the argument after '-p'
-    String[] args; 
+    // args[2] : the argument after '--ecoregion'
+    // args[3] : the argument after '--diet'
+    // args[4] : the argument after '--sex'
+    // args[5] : the argument after '--family'
+    // args[6] : the argument after '--conservation'
+    // args[7] : the argument after '--biome'
+    // args[8] : the argument after '---size'
+
+    String[] args;
 
     public LsAnimal(Play play) {
         this.play = play;
     }
 
-      @Override
+    @Override
     public boolean hasInitiateAZoo() {
         return false;
     }
-    
+
     boolean success = false;
-    
-     @Override
+
+    @Override
     public boolean isSuccess() {
         return this.success;
     }
-    
+
     @Override
     public String execute(String[] cmd) {
         Specie spec = null;
@@ -50,7 +58,7 @@ public class LsAnimal implements Command {
             }
             this.success = true;
             ArrayList<String> names = new ArrayList<>();
-            for(Animal animal : this.play.getZoo().listAnimal(pad, spec, null, null)){
+            for (Animal animal : this.play.getZoo().listAnimal(pad, spec, null, null)) {
                 names.add(animal.getName());
             }
             return FormattingDisplay.formattingArrayList(names);
@@ -70,19 +78,19 @@ public class LsAnimal implements Command {
         return false;
     }
 
-    private boolean hasArgumentSpecie(String cmd){
+    private boolean hasArgumentSpecie(String cmd) {
         return cmd.equals("--specie") || cmd.equals("-s");
     }
-    
-     private boolean hasArgumentPaddock(String cmd){
+
+    private boolean hasArgumentPaddock(String cmd) {
         return cmd.equals("--paddock") || cmd.equals("-p");
     }
-    
+
     @Override
     public boolean canExecute(String[] cmd) {
-        this.args = new String[] {null, null};
+        this.args = new String[]{null, null, null, null, null, null, null, null, null};
         if (firstCmd(cmd)) {
-            if(cmd.length == 2){
+            if (cmd.length == 2) {
                 return true;
             } else if (cmd.length == 4 && this.hasArgumentSpecie(cmd[2])) {
                 args[0] = cmd[3];
