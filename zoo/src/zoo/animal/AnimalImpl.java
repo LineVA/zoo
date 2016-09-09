@@ -11,6 +11,7 @@ import launch.options.Option;
 import lombok.Getter;
 import lombok.Setter;
 import zoo.NameVerifications;
+import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.FeedingAttributes;
@@ -103,9 +104,9 @@ public class AnimalImpl implements Animal {
         // this.actualFeeding = null;
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
-        this.wB = new WellBeingImpl(
-                spec.getConservation().getCoefficient(),
-                spec.getConservation().getDiameter());
+          this.wB = new WellBeingImpl(
+                ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
+                  ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
         this.wellBeing = 0;
     }
 
@@ -137,8 +138,8 @@ public class AnimalImpl implements Animal {
                 ? this.actualReproduction.getFemaleMaturityAge()
                 : this.actualReproduction.getMaleMaturityAge();
         this.wB = new WellBeingImpl(
-                spec.getConservation().getCoefficient(),
-                spec.getConservation().getDiameter());
+                ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
+                  ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
         this.wellBeing = 0;
     }
 
@@ -175,9 +176,9 @@ public class AnimalImpl implements Animal {
         this.optimalSocial = social;
         this.optimalTerritory = territory;
         this.age = age;
-        this.wB = new WellBeingImpl(
-                spec.getConservation().getCoefficient(),
-                spec.getConservation().getDiameter());
+         this.wB = new WellBeingImpl(
+                ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
+                  ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
         this.wellBeing = 0;
     }
 

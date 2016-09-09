@@ -52,7 +52,7 @@ public class Specie {
     @Getter
     private final int ecoregion;
     @Getter
-    private final ConservationStatus conservation;
+    private final int conservation;
     @Getter
     private final int biome;
     @Getter
@@ -72,7 +72,7 @@ public class Specie {
 
     public Specie(Names names, BiomeAttributes biomeAtt, FeedingAttributes feeding,
             int diet, ReproductionAttributes repro,
-            LifeSpanAttributes lifeSpan, ConservationStatus conservation,
+            LifeSpanAttributes lifeSpan, int conservation,
             SocialAttributes social, TerritoryAttributes territory,
             int ecoregion, int family, int biome, int size) {
         this.names = names;
@@ -117,7 +117,7 @@ public class Specie {
         ResourceBundle bundle = option.getSpecieBundle();
         info.add(bundle.getString("NAME") + this.names.getNameAccordingLanguage(option));
         info.add(bundle.getString("SCIENTIFIC_NAME") + this.names.getScientificName());
-        info.add(bundle.getString("CONSERVATION") + this.conservation.toStringByLanguage());
+        info.add(bundle.getString("CONSERVATION") + ConservationStatus.UNKNOWN.findById(this.conservation).toStringByLanguage());
         info.add(bundle.getString("BIOME") + Biome.NONE.findById(this.biome).toStringByLanguage());
         info.add(bundle.getString("ECOREGION") + Ecoregion.UNKNOWN.findById(this.ecoregion).toStringByLanguage());
         info.add(bundle.getString("FAMILY") + Family.UNKNOWN.findById(this.family).toStringByLanguage());

@@ -38,7 +38,7 @@ public class ParserSpecie {
         FeedingAttributes feeding = feedingParser(root);
         ReproductionAttributes repro = reproductionParser(root);
         LifeSpanAttributes lifeSpan = lifeSpanParser(root);
-        ConservationStatus conservation = conservationParser(root);
+        int conservation = conservationParser(root);
         SocialAttributes social = socialParser(root);
         TerritoryAttributes territory = territoryParser(root);
         int size = sizeParser(root);
@@ -81,9 +81,9 @@ public class ParserSpecie {
                 Integer.parseInt(lifeEl.getChildText("maleLifespan")));
     }
 
-    private static ConservationStatus conservationParser(Element root) throws UnknownNameException {
+    private static int conservationParser(Element root) throws UnknownNameException {
         Element consEl = root.getChild("general");
-        return ConservationStatus.UNKNOWN.findById(Integer.parseInt(consEl.getChildText("uicn")));
+        return Integer.parseInt(consEl.getChildText("uicn"));
     }
 
     private static int ecoregionParser(Element root) {
