@@ -90,18 +90,19 @@ public class listAnimalTest {
         assertTrue(results.contains(animal2));
     }
 
-//    @Test
-//    public void shouldReturnOneAnimalWhenFamilyIsSpecified()
-//            throws IncorrectDataException, NameException {
-//        // Given
-//        Animal animal1 = new AnimalImpl(specie1, "animal1", paddock, Sex.UNKNOWN, 0, opt);
-//        Animal animal2 = new AnimalImpl(specie2, "animal2", paddock, Sex.UNKNOWN, 0, opt);
-//        paddock.addAnimal(animal1);
-//        paddock.addAnimal(animal2);
-//        // When
-//        ArrayList<Animal> results = paddock.listAnimal(null, null, Family.MUSTELIDAE);
-//        // Then 
-//        assertEquals(1, results.size());
-//        assertTrue(results.contains(animal2));
-//    }
+    @Test
+    public void shouldReturnOneAnimalWhenFamilyIsSpecified()
+            throws IncorrectDataException, NameException {
+        // Given
+        Animal animal1 = new AnimalImpl(specie1, "animal1", paddock, Sex.UNKNOWN, 0, opt);
+        Animal animal2 = new AnimalImpl(specie2, "animal2", paddock, Sex.UNKNOWN, 0, opt);
+        paddock.addAnimal(animal1);
+        paddock.addAnimal(animal2);
+        // When
+        LightSpecie light = new LightSpecie(null, -1, -1, -1, 2, -1, -1);
+        ArrayList<Animal> results = paddock.listAnimal(light);
+        // Then 
+        assertEquals(1, results.size());
+        assertTrue(results.contains(animal2));
+    }
 }
