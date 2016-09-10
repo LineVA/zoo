@@ -4,16 +4,13 @@ import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import launch.options.Option;
 import lombok.Getter;
-import lombok.Setter;
-import zoo.animal.feeding.Diet;
-import zoo.paddock.biome.Ecoregion;
 
 /**
  *
  * @author doyenm
  */
 public enum Family {
-
+    NULL(-1),
     UNKNOWN(0),
     CANIDAE(1),
     MUSTELIDAE(2),
