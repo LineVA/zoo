@@ -28,6 +28,7 @@ import zoo.animal.death.IDie;
 import zoo.animal.reproduction.Reproduction;
 import zoo.animal.reproduction.ReproductionImpl;
 import zoo.animal.specie.Family;
+import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
 import zoo.paddock.biome.Ecoregion;
 
@@ -185,7 +186,7 @@ public class Paddock implements Cloneable, IPaddock {
         throw new UnknownNameException(this.option.getAnimalBundle().getString("UNKNOWN_NAME"));
     }
 
-    private ArrayList<Animal> listAnimalWithSpecie(ArrayList<Animal> animals, Specie specie) {
+    private ArrayList<Animal> listAnimalWithSpecie(ArrayList<Animal> animals, LightSpecie specie) {
         ArrayList<Animal> list = animals;
         for (Animal animal : animals) {
             if (!animal.isFromTheSameSpecie(specie)) {
@@ -230,16 +231,16 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public ArrayList<Animal> listAnimal(Specie specie, Ecoregion ecoregion, Family family) {
+    public ArrayList<Animal> listAnimal(LightSpecie specie) throws UnknownNameException{
         ArrayList<Animal> list = listAnimalWithoutCriteria();
-        if (ecoregion != null) {
-            list = listAnimalWithEcoregion(list, ecoregion);
+        if (specie.getEcoregion() != -1) {
+            list = listAnimalWithEcoregion(list, Ecoregion.UNKNOWN.findById(specie.getEcoregion()));
         }
-        if (specie != null) {
+        if (specie.getNames() != null) {
             list = listAnimalWithSpecie(list, specie);
         }
-        if (family != null) {
-            list = listAnimalWithFamily(list, family);
+          if (specie.getFamily()!= -1) {
+            list = listAnimalWithFamily(list, Family.UNKNOWN.findById(specie.getFamily()));
         }
         return list;
     }

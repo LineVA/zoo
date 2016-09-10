@@ -20,12 +20,11 @@ import lombok.Getter;
 import lombok.Setter;
 import launch.play.tutorials.TutorialPlayImpl_1;
 import zoo.animal.Animal;
-import zoo.animal.specie.Family;
+import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
 import zoo.evaluation.Evaluation;
 import zoo.paddock.IPaddock;
 import zoo.paddock.Paddock;
-import zoo.paddock.biome.Ecoregion;
 
 /**
  *
@@ -351,15 +350,16 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<Animal> listAnimal(IPaddock paddock, Specie specie, Ecoregion ecoregion, Family family) {
+    public ArrayList<Animal> listAnimal(IPaddock paddock, LightSpecie specie) 
+            throws UnknownNameException{
         if (paddock == null) {
             ArrayList<Animal> list = new ArrayList<>();
             for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-                list.addAll(entry.getValue().listAnimal(specie, ecoregion, family));
+                list.addAll(entry.getValue().listAnimal(specie));
             }
             return list;
         } else {
-            return paddock.listAnimal(specie, ecoregion, family);
+            return paddock.listAnimal(specie);
         }
     }
 
@@ -434,8 +434,13 @@ public class Zoo implements IZoo {
 
     @Override
     public ArrayList<Animal> getAnimals(TutorialPlayImpl_1.FriendScenario friend) {
+        try {
         friend.hashCode();
-        return this.listAnimal(null, null, null, null);
+        return this.listAnimal(null, null);
+        } catch(Exception ex){
+            System.out.println("ERROR  !!!!!!!!!!!!!!!!!");
+            return null;
+        }
     }
 
     @Override

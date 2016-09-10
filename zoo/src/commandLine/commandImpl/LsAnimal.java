@@ -7,7 +7,7 @@ import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import launch.play.Play;
 import zoo.animal.Animal;
-import zoo.animal.specie.Specie;
+import zoo.animal.specie.LightSpecie;
 import zoo.paddock.IPaddock;
 
 /**
@@ -47,18 +47,24 @@ public class LsAnimal implements Command {
 
     @Override
     public String execute(String[] cmd) {
-        Specie spec = null;
+        LightSpecie spec = null;
         IPaddock pad = null;
         try {
             if (args[0] != null) {
-                spec = this.play.getZoo().findSpecieByName(args[0]);
+                spec = new LightSpecie(this.play.getZoo().findSpecieByName(args[0]).getNames(),
+                        0,
+                        Integer.parseInt(args[6]),
+                        Integer.parseInt(args[2]),
+                        Integer.parseInt(args[5]),
+                        0,
+                        Integer.parseInt(args[8]));
             }
             if (args[1] != null) {
                 pad = this.play.getZoo().findPaddockByName(args[1]);
             }
             this.success = true;
             ArrayList<String> names = new ArrayList<>();
-            for (Animal animal : this.play.getZoo().listAnimal(pad, spec, null, null)) {
+            for (Animal animal : this.play.getZoo().listAnimal(pad, spec)) {
                 names.add(animal.getName());
             }
             return FormattingDisplay.formattingArrayList(names);
