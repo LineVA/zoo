@@ -6,6 +6,7 @@ import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import zoo.animal.death.LifeSpanLightAttributes;
+import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.reproduction.Sex;
@@ -34,6 +35,8 @@ public interface Animal {
     public boolean isFromTheSameSpecie(Specie specie);
 
     public boolean isFromTheSameSpecie(LightSpecie specie);
+    
+    public boolean hasTheSameDiet(Diet diet);
 
     public ArrayList<Animal> findRoommatesOfTheSameSpecie();
 

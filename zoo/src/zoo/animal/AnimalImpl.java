@@ -105,9 +105,9 @@ public class AnimalImpl implements Animal {
         // this.actualFeeding = null;
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
-          this.wB = new WellBeingImpl(
+        this.wB = new WellBeingImpl(
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
-                  ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
+                ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
         this.wellBeing = 0;
     }
 
@@ -140,7 +140,7 @@ public class AnimalImpl implements Animal {
                 : this.actualReproduction.getMaleMaturityAge();
         this.wB = new WellBeingImpl(
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
-                  ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
+                ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
         this.wellBeing = 0;
     }
 
@@ -177,9 +177,9 @@ public class AnimalImpl implements Animal {
         this.optimalSocial = social;
         this.optimalTerritory = territory;
         this.age = age;
-         this.wB = new WellBeingImpl(
+        this.wB = new WellBeingImpl(
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
-                  ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
+                ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
         this.wellBeing = 0;
     }
 
@@ -334,13 +334,18 @@ public class AnimalImpl implements Animal {
         }
         return false;
     }
-    
-     @Override
+
+    @Override
     public boolean isFromTheSameSpecie(LightSpecie specie) {
         if (this.specie != null) {
             return this.specie.equals(specie);
         }
         return false;
+    }
+
+    @Override
+    public boolean hasTheSameDiet(Diet diet) {
+        return this.actualDiet == diet.getId();
     }
 
     @Override

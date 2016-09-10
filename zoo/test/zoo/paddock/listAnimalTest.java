@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 import zoo.animal.Animal;
 import zoo.animal.AnimalImpl;
+import zoo.animal.feeding.Diet;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.ParserSpecie;
@@ -133,6 +134,24 @@ public class listAnimalTest {
         // When
         LightSpecie light = new LightSpecie(null, -1, 2, -1, -1, -1, 2);
         ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
+        // Then 
+        assertEquals(1, results.size());
+        assertTrue(results.contains(animal2));
+    }
+    
+     @Test
+    public void shouldReturnOneAnimalWhenDietIsSpecified()
+            throws IncorrectDataException, NameException {
+        // Given
+        Animal animal1 = new AnimalImpl(specie1, "animal1", paddock, Sex.UNKNOWN, 0, opt);
+        animal1.changeDiet("1");
+        Animal animal2 = new AnimalImpl(specie2, "animal2", paddock, Sex.UNKNOWN, 0, opt);
+        animal2.changeDiet("2");
+        paddock.addAnimal(animal1);
+        paddock.addAnimal(animal2);
+        // When
+        LightSpecie light = new LightSpecie(null, -1, 2, -1, -1, -1, 2);
+        ArrayList<Animal> results = paddock.listAnimal(light, null, Diet.BACCIVOROUS, null);
         // Then 
         assertEquals(1, results.size());
         assertTrue(results.contains(animal2));

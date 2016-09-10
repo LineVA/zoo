@@ -238,15 +238,27 @@ public class Paddock implements Cloneable, IPaddock {
         }
         return list;
     }
-    
-      private ArrayList<Animal> listAnimalWithConservation
-        (ArrayList<Animal> animals, ConservationStatus status) {
+
+    private ArrayList<Animal> listAnimalWithConservation(ArrayList<Animal> animals, ConservationStatus status) {
         ArrayList<Animal> list = animals;
         Iterator it = list.iterator();
         Animal next;
         while (it.hasNext()) {
             next = (AnimalImpl) it.next();
-            if (!(next.getSpecie().getConservation()== status.getId())) {
+            if (!(next.getSpecie().getConservation() == status.getId())) {
+                it.remove();
+            }
+        }
+        return list;
+    }
+
+    private ArrayList<Animal> listAnimalWithDiet(ArrayList<Animal> animals,  Diet diet) {
+        ArrayList<Animal> list = animals;
+        Iterator it = list.iterator();
+        Animal next;
+        while (it.hasNext()) {
+            next = (AnimalImpl) it.next();
+            if (!next.hasTheSameDiet(diet)) {
                 it.remove();
             }
         }
@@ -262,7 +274,7 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public ArrayList<Animal> listAnimal(LightSpecie specie, Sex sex, Diet diet, Biome biome) 
+    public ArrayList<Animal> listAnimal(LightSpecie specie, Sex sex, Diet diet, Biome biome)
             throws UnknownNameException {
         ArrayList<Animal> list = listAnimalWithoutCriteria();
         if (specie.getEcoregion() != -1) {
@@ -278,12 +290,15 @@ public class Paddock implements Cloneable, IPaddock {
             list = listAnimalWithSize(list, Size.UNKNOWN.findSizeById(specie.getSize()));
         }
         if (specie.getConservation() != -1) {
-            list = listAnimalWithConservation(list, 
+            list = listAnimalWithConservation(list,
                     ConservationStatus.UNKNOWN.findById(specie.getConservation()));
         }
         if (specie.getConservation() != -1) {
-            list = listAnimalWithConservation(list, 
+            list = listAnimalWithConservation(list,
                     ConservationStatus.UNKNOWN.findById(specie.getConservation()));
+        }
+        if (diet != null) {
+            list = listAnimalWithDiet(list, diet);
         }
         return list;
     }
