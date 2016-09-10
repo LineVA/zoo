@@ -26,9 +26,11 @@ import zoo.animal.AnimalImpl;
 import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.death.DieImpl;
 import zoo.animal.death.IDie;
+import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.Size;
 import zoo.animal.reproduction.Reproduction;
 import zoo.animal.reproduction.ReproductionImpl;
+import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.Family;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
@@ -260,7 +262,8 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public ArrayList<Animal> listAnimal(LightSpecie specie) throws UnknownNameException {
+    public ArrayList<Animal> listAnimal(LightSpecie specie, Sex sex, Diet diet, Biome biome) 
+            throws UnknownNameException {
         ArrayList<Animal> list = listAnimalWithoutCriteria();
         if (specie.getEcoregion() != -1) {
             list = listAnimalWithEcoregion(list, Ecoregion.UNKNOWN.findById(specie.getEcoregion()));
@@ -273,6 +276,10 @@ public class Paddock implements Cloneable, IPaddock {
         }
         if (specie.getSize() != -1) {
             list = listAnimalWithSize(list, Size.UNKNOWN.findSizeById(specie.getSize()));
+        }
+        if (specie.getConservation() != -1) {
+            list = listAnimalWithConservation(list, 
+                    ConservationStatus.UNKNOWN.findById(specie.getConservation()));
         }
         if (specie.getConservation() != -1) {
             list = listAnimalWithConservation(list, 

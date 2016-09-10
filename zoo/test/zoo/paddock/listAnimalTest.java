@@ -51,7 +51,7 @@ public class listAnimalTest {
         paddock.addAnimal(animal2);
         // When
         LightSpecie light = new LightSpecie(null, -1, -1, -1, -1, -1, -1);
-        ArrayList<Animal> results = paddock.listAnimal(light);
+        ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(2, results.size());
         assertTrue(results.contains(animal1));
@@ -68,7 +68,7 @@ public class listAnimalTest {
         paddock.addAnimal(animal2);
         // When
         LightSpecie light = new LightSpecie(null, -1, -1, 0, -1, -1, -1);
-        ArrayList<Animal> results = paddock.listAnimal(light);
+        ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(1, results.size());
         assertTrue(results.contains(animal2));
@@ -84,7 +84,7 @@ public class listAnimalTest {
         paddock.addAnimal(animal2);
         // When
         LightSpecie light = new LightSpecie(specie2.getNames(), -1, -1, -1, -1, -1, -1);
-        ArrayList<Animal> results = paddock.listAnimal(light);
+        ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(1, results.size());
         assertTrue(results.contains(animal2));
@@ -100,7 +100,7 @@ public class listAnimalTest {
         paddock.addAnimal(animal2);
         // When
         LightSpecie light = new LightSpecie(null, -1, -1, -1, 2, -1, -1);
-        ArrayList<Animal> results = paddock.listAnimal(light);
+        ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(1, results.size());
         assertTrue(results.contains(animal2));
@@ -116,7 +116,7 @@ public class listAnimalTest {
         paddock.addAnimal(animal2);
         // When
         LightSpecie light = new LightSpecie(null, -1, -1, -1, -1, -1, 2);
-        ArrayList<Animal> results = paddock.listAnimal(light);
+        ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(1, results.size());
         assertTrue(results.contains(animal2));
@@ -132,7 +132,7 @@ public class listAnimalTest {
         paddock.addAnimal(animal2);
         // When
         LightSpecie light = new LightSpecie(null, -1, 2, -1, -1, -1, 2);
-        ArrayList<Animal> results = paddock.listAnimal(light);
+        ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(1, results.size());
         assertTrue(results.contains(animal2));

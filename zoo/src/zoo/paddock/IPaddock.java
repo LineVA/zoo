@@ -10,8 +10,11 @@ import exception.name.NameException;
 import java.util.Map;
 import launch.options.Option;
 import zoo.animal.Animal;
+import zoo.animal.feeding.Diet;
+import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
+import zoo.paddock.biome.Biome;
 
 /**
  *
@@ -32,7 +35,8 @@ public interface IPaddock {
     public Animal findAnimalByName(String animalName)
             throws UnknownNameException, EmptyNameException;
 
-    public ArrayList<Animal> listAnimal(LightSpecie specie) throws UnknownNameException;
+    public ArrayList<Animal> listAnimal(LightSpecie specie, Sex sex, Diet diet, Biome biome) 
+            throws UnknownNameException;
 
     public ArrayList<String> birth()
             throws IncorrectDataException, NameException;
