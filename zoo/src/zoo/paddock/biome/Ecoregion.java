@@ -11,7 +11,7 @@ import lombok.Setter;
  * @author doyenm
  */
 public enum Ecoregion {
-
+    NULL(-1, "Null"),
     UNKNOWN(0, "Unknown"),
     UNKNOWN2(1, "Unknown2");
 
