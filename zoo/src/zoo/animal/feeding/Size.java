@@ -4,16 +4,13 @@ import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import launch.options.Option;
 import lombok.Getter;
-import lombok.Setter;
-import zoo.animal.reproduction.Sex;
-import zoo.animal.specie.Family;
 
 /**
  *
  * @author doyenm
  */
 public enum Size {
-
+    NULL(-1),
     UNKNOWN(0),
     XXS(1),
     XS(2),
