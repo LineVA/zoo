@@ -23,6 +23,7 @@ import zoo.BirthObservable;
 import zoo.NameVerifications;
 import zoo.animal.Animal;
 import zoo.animal.AnimalImpl;
+import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.death.DieImpl;
 import zoo.animal.death.IDie;
 import zoo.animal.feeding.Size;
@@ -222,7 +223,7 @@ public class Paddock implements Cloneable, IPaddock {
         }
         return list;
     }
-    
+
     private ArrayList<Animal> listAnimalWithSize(ArrayList<Animal> animals, Size size) {
         ArrayList<Animal> list = animals;
         Iterator it = list.iterator();
@@ -230,6 +231,20 @@ public class Paddock implements Cloneable, IPaddock {
         while (it.hasNext()) {
             next = (AnimalImpl) it.next();
             if (!(next.getSpecie().getSize() == size.getId())) {
+                it.remove();
+            }
+        }
+        return list;
+    }
+    
+      private ArrayList<Animal> listAnimalWithConservation
+        (ArrayList<Animal> animals, ConservationStatus status) {
+        ArrayList<Animal> list = animals;
+        Iterator it = list.iterator();
+        Animal next;
+        while (it.hasNext()) {
+            next = (AnimalImpl) it.next();
+            if (!(next.getSpecie().getConservation()== status.getId())) {
                 it.remove();
             }
         }
@@ -258,6 +273,10 @@ public class Paddock implements Cloneable, IPaddock {
         }
         if (specie.getSize() != -1) {
             list = listAnimalWithSize(list, Size.UNKNOWN.findSizeById(specie.getSize()));
+        }
+        if (specie.getConservation() != -1) {
+            list = listAnimalWithConservation(list, 
+                    ConservationStatus.UNKNOWN.findById(specie.getConservation()));
         }
         return list;
     }
