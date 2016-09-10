@@ -25,6 +25,7 @@ import zoo.animal.Animal;
 import zoo.animal.AnimalImpl;
 import zoo.animal.death.DieImpl;
 import zoo.animal.death.IDie;
+import zoo.animal.feeding.Size;
 import zoo.animal.reproduction.Reproduction;
 import zoo.animal.reproduction.ReproductionImpl;
 import zoo.animal.specie.Family;
@@ -221,6 +222,19 @@ public class Paddock implements Cloneable, IPaddock {
         }
         return list;
     }
+    
+    private ArrayList<Animal> listAnimalWithSize(ArrayList<Animal> animals, Size size) {
+        ArrayList<Animal> list = animals;
+        Iterator it = list.iterator();
+        Animal next;
+        while (it.hasNext()) {
+            next = (AnimalImpl) it.next();
+            if (!(next.getSpecie().getSize() == size.getId())) {
+                it.remove();
+            }
+        }
+        return list;
+    }
 
     public ArrayList<Animal> listAnimalWithoutCriteria() {
         ArrayList<Animal> list = new ArrayList<>();
@@ -231,7 +245,7 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public ArrayList<Animal> listAnimal(LightSpecie specie) throws UnknownNameException{
+    public ArrayList<Animal> listAnimal(LightSpecie specie) throws UnknownNameException {
         ArrayList<Animal> list = listAnimalWithoutCriteria();
         if (specie.getEcoregion() != -1) {
             list = listAnimalWithEcoregion(list, Ecoregion.UNKNOWN.findById(specie.getEcoregion()));
@@ -239,8 +253,11 @@ public class Paddock implements Cloneable, IPaddock {
         if (specie.getNames() != null) {
             list = listAnimalWithSpecie(list, specie);
         }
-          if (specie.getFamily()!= -1) {
+        if (specie.getFamily() != -1) {
             list = listAnimalWithFamily(list, Family.UNKNOWN.findById(specie.getFamily()));
+        }
+        if (specie.getSize() != -1) {
+            list = listAnimalWithSize(list, Size.UNKNOWN.findSizeById(specie.getSize()));
         }
         return list;
     }
