@@ -40,14 +40,10 @@ import zoo.paddock.biome.Ecoregion;
  *
  * @author doyenm
  */
-// @EqualsAndHashCode(exclude={"nightTemperature", "dayTemperature", "pluviometry",
-// "treeDensity", "treeHeight", "drop", "waterSalinity", "humidity"})
-@EqualsAndHashCode()
-public class Paddock implements Cloneable, IPaddock {
+public class Paddock implements IPaddock {
 
     @Getter
     private Option option;
-
     /**
      * The name of the paddock
      */
@@ -56,21 +52,16 @@ public class Paddock implements Cloneable, IPaddock {
      * Its coordinates
      */
     private final PaddockCoordinates coordinates;
-
     /**
      * Its biome's id
      */
     @Getter
     int biome;
-
     @Getter
     BiomeAttributes attributes;
-
     @Getter
     Map<String, Animal> animals;
-
     private ArrayList<IPaddock> neightbourhood;
-
     private BirthObservable obs = new BirthObservable();
 
     /**
@@ -84,12 +75,6 @@ public class Paddock implements Cloneable, IPaddock {
             ArrayList<IPaddock> neightbourhood, Option option)
             throws EmptyNameException, NameException {
         this.option = option;
-//        if (name.trim().equals("")) {
-//            throw new EmptyNameException(
-//                    this.option.getPaddockBundle().getString("EMPTY_NAME"));
-//        } else {
-//            this.name = name;
-//        }
         NameVerifications.verify(name, this.option.getPaddockBundle());
         this.name = name;
         this.coordinates = coor;
@@ -128,23 +113,6 @@ public class Paddock implements Cloneable, IPaddock {
         }
     }
 
-    public Object clone() {
-        Paddock pad = null;
-        try {
-            pad = (Paddock) super.clone();
-        } catch (CloneNotSupportedException cnse) {
-            // Ne devrait jamais arriver car nous implémentons 
-            // l'interface Cloneable
-            cnse.printStackTrace(System.err);
-        }
-
-        // On clone l'attribut de type Patronyme qui n'est pas immuable.
-        pad.attributes = (BiomeAttributes) attributes.clone();
-
-        // on renvoie le clone
-        return pad;
-    }
-
     @Override
     public void addAnimal(Animal animal) throws AlreadyUsedNameException {
         Animal success = this.animals.putIfAbsent(animal.getName(), animal);
@@ -172,9 +140,8 @@ public class Paddock implements Cloneable, IPaddock {
 
     private String listNeightbourhood() {
         String neightbours = "";
-        for (IPaddock pad : this.neightbourhood) {
-            neightbours += pad.getName() + ", ";
-        }
+        neightbours = this.neightbourhood.stream().map(
+                (pad) -> pad.getName() + ", ").reduce(neightbours, String::concat);
         return neightbours;
     }
 
@@ -291,9 +258,9 @@ public class Paddock implements Cloneable, IPaddock {
 
     public ArrayList<Animal> listAnimalWithoutCriteria() {
         ArrayList<Animal> list = new ArrayList<>();
-        for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
+        animals.entrySet().stream().forEach((entry) -> {
             list.add(entry.getValue());
-        }
+        });
         return list;
     }
 
@@ -380,9 +347,9 @@ public class Paddock implements Cloneable, IPaddock {
 
     @Override
     public void ageing(int monthsPerEvaluation) {
-        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
+        this.animals.entrySet().stream().forEach((animalEntry) -> {
             animalEntry.getValue().ageing(monthsPerEvaluation);
-        }
+        });
     }
 
     @Override
@@ -407,8 +374,6 @@ public class Paddock implements Cloneable, IPaddock {
         Iterator it = tmpAnimal.iterator();
         Animal animal;
         while (it.hasNext()) {
-//            animal = (Animal) it.next();
-            //     this.animals.remove(animal.getName());
             it.remove();
         }
     }
@@ -438,10 +403,6 @@ public class Paddock implements Cloneable, IPaddock {
     }
 
     @Override
-    public void instanciatePaddock() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public boolean isNotCompetingForSpace(PaddockCoordinates coordinates) {
         return this.coordinates.isNotCompeting(coordinates);
     }
@@ -449,11 +410,9 @@ public class Paddock implements Cloneable, IPaddock {
     @Override
     public int countNonMatureAnimals() {
         int count = 0;
-        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
-            if (!animalEntry.getValue().isMature()) {
-                count += 1;
-            }
-        }
+        count = this.animals.entrySet().stream().filter(
+                (animalEntry) -> 
+                        (!animalEntry.getValue().isMature())).map((_item) -> 1).reduce(count, Integer::sum);
         return count;
     }
 
@@ -470,60 +429,56 @@ public class Paddock implements Cloneable, IPaddock {
     @Override
     public ArrayList<Animal> animalsOfTheSameSpecie(Specie specie) {
         ArrayList<Animal> sameSpecieAnimals = new ArrayList<>();
-        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
-            if (animalEntry.getValue().isFromTheSameSpecie(specie)) {
-                sameSpecieAnimals.add(animalEntry.getValue());
-            }
-        }
+        this.animals.entrySet().stream().filter(
+                (animalEntry) -> 
+                        (animalEntry.getValue().isFromTheSameSpecie(specie))).forEach((animalEntry) -> {
+            sameSpecieAnimals.add(animalEntry.getValue());
+        });
         return sameSpecieAnimals;
     }
 
     @Override
     public ArrayList<String> listSpeciesByName() {
         ArrayList<String> listSpecie = new ArrayList<>();
-        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
-            if (!listSpecie.contains(animalEntry.getValue().getSpecie())) {
-                listSpecie.add(animalEntry.getValue().getSpecie().getNameAccordingLanguage(option));
-            }
-        }
+        this.animals.entrySet().stream().filter(
+                (animalEntry) ->
+                        (!listSpecie.contains(animalEntry.getValue().getSpecie()))).forEach((animalEntry) -> {
+            listSpecie.add(animalEntry.getValue().getSpecie().getNameAccordingLanguage(option));
+        });
         return listSpecie;
     }
 
     @Override
     public ArrayList<String> listSpeciesByName(ArrayList<String> presentedSpecies) {
-        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
-            String name = animalEntry.getValue().getSpecie().getNameAccordingLanguage(option);
-            if (!presentedSpecies.contains(name)) {
-                presentedSpecies.add(name);
-            }
-        }
+        this.animals.entrySet().stream().map(
+                (animalEntry) -> 
+                        animalEntry.getValue().getSpecie().getNameAccordingLanguage(option)).filter((name) -> 
+                                (!presentedSpecies.contains(name))).forEach((name) -> {
+            presentedSpecies.add(name);
+        });
         return presentedSpecies;
     }
 
     @Override
     public ArrayList<Specie> listSpecies() {
         ArrayList<Specie> listSpecie = new ArrayList<>();
-        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
-            if (!listSpecie.contains(animalEntry.getValue().getSpecie())) {
-                listSpecie.add(animalEntry.getValue().getSpecie());
-            }
-        }
+        this.animals.entrySet().stream().filter((animalEntry) ->
+                (!listSpecie.contains(animalEntry.getValue().getSpecie()))).forEach((animalEntry) -> {
+            listSpecie.add(animalEntry.getValue().getSpecie());
+        });
         return listSpecie;
     }
 
+    @Override
     public ArrayList<Specie> listSpecies(ArrayList<Specie> presentedSpecies) {
-        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
-            if (!presentedSpecies.contains(animalEntry.getValue().getSpecie())) {
-                presentedSpecies.add(animalEntry.getValue().getSpecie());
-            }
-        }
+        this.animals.entrySet().stream().filter((animalEntry) -> 
+                (!presentedSpecies.contains(animalEntry.getValue().getSpecie()))).forEach((animalEntry) -> {
+            presentedSpecies.add(animalEntry.getValue().getSpecie());
+        });
         return presentedSpecies;
     }
 
-    /**
-     *
-     * @param paddock
-     */
+    @Override
     public void addInNeightbourhood(IPaddock paddock) {
         this.neightbourhood.add(paddock);
     }
@@ -535,9 +490,9 @@ public class Paddock implements Cloneable, IPaddock {
 
     @Override
     public void removeFromNeightbourhood() {
-        for (IPaddock neightbour : this.neightbourhood) {
+        this.neightbourhood.stream().forEach((neightbour) -> {
             neightbour.removeANeightbour(this);
-        }
+        });
     }
 
     @Override

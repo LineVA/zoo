@@ -22,8 +22,6 @@ import zoo.paddock.biome.Biome;
  */
 public interface IPaddock {
 
-    public void instanciatePaddock();
-
     public void setBiome(String biomeName) throws UnknownNameException;
 
     public void addAnimal(Animal animal) throws AlreadyUsedNameException;

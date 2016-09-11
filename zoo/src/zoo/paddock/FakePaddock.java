@@ -29,7 +29,7 @@ public class FakePaddock {
     public IPaddock convertToPaddock(Option option) 
             throws IncorrectDimensionsException, EmptyNameException, NameException{
         return new Paddock(this.name, new PaddockCoordinates(this.x, this.y, 
-                this.width, this.height), new ArrayList<IPaddock>(), option);
+                this.width, this.height), new ArrayList<>(), option);
     }
     
     
