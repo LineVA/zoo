@@ -17,7 +17,7 @@ public enum Continent {
     
     
     @Getter 
-    private int id;
+    private final int id;
 
     Continent(int id) {
         this.id = id;

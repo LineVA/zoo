@@ -4,14 +4,11 @@ import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import launch.options.Option;
 import lombok.Getter;
-import zoo.animal.feeding.Diet;
 
 /**
  *
  * @author doyenm
  */
-//@EqualsAndHashCode(exclude={"nightTemperature", "dayTemperature", "pluviometry",
-//"treeDensity", "treeHeight", "drop", "waterSalinity", "humidity"})
 public enum Biome implements Cloneable {
     /*
      The 14 biomes according to the WWF
@@ -48,7 +45,7 @@ public enum Biome implements Cloneable {
     MANGROVE(14, "Mangroves", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 
     @Getter 
-    private int id;
+    private final int id;
     @Getter
     private final String name;
     @Getter
