@@ -18,7 +18,7 @@ import zoo.paddock.biome.Biome;
  * @author doyenm
  */
 public class LsAnimal implements Command {
-    
+
     Play play;
     // args[0] : the argument after '--specie'
     // args[1] : the argument after '--paddock'
@@ -31,23 +31,23 @@ public class LsAnimal implements Command {
     // args[8] : the argument after '--size'
 
     String[] args;
-    
+
     public LsAnimal(Play play) {
         this.play = play;
     }
-    
+
     @Override
     public boolean hasInitiateAZoo() {
         return false;
     }
-    
+
     boolean success = false;
-    
+
     @Override
     public boolean isSuccess() {
         return this.success;
     }
-    
+
     @Override
     public String execute(String[] cmd) {
         IPaddock pad = null;
@@ -74,8 +74,11 @@ public class LsAnimal implements Command {
             if (args[3] != null) {
                 diet = Diet.NONE.findDietById(Integer.parseInt(args[3]));
             }
-             if (args[4] != null) {
+            if (args[4] != null) {
                 sex = Sex.UNKNOWN.findById(Integer.parseInt(args[4]));
+            }
+            if (args[5] != null) {
+                spec.setFamily(Integer.parseInt(args[5]));
             }
             this.success = true;
             ArrayList<String> names = new ArrayList<>();
@@ -89,7 +92,7 @@ public class LsAnimal implements Command {
             return "Integer ERROR !!!!!!!!!!";
         }
     }
-    
+
     private boolean firstCmd(String[] cmd) {
         if (cmd.length >= 2) {
             if (cmd[0].equals("animal")) {
@@ -100,47 +103,47 @@ public class LsAnimal implements Command {
         }
         return false;
     }
-    
+
     private boolean checkLength(String[] cmd) {
         return cmd.length >= 2 && cmd.length <= 20 && cmd.length % 2 == 0;
     }
-    
+
     private boolean hasArgumentSpecie(String cmd) {
         return cmd.equals("--specie") || cmd.equals("-s");
     }
-    
+
     private boolean hasArgumentPaddock(String cmd) {
         return cmd.equals("--paddock") || cmd.equals("-p");
     }
-    
+
     private boolean hasArgumentEcoregion(String cmd) {
         return cmd.equals("--ecoregion") || cmd.equals("-e");
     }
-    
+
     private boolean hasArgumentDiet(String cmd) {
         return cmd.equals("--diet") || cmd.equals("-d");
     }
-    
+
     private boolean hasArgumentSex(String cmd) {
         return cmd.equals("--sex") || cmd.equals("-sex");
     }
-    
+
     private boolean hasArgumentFamily(String cmd) {
         return cmd.equals("--family") || cmd.equals("-f");
     }
-    
+
     private boolean hasArgumentConservation(String cmd) {
         return cmd.equals("--conservation") || cmd.equals("-c");
     }
-    
+
     private boolean hasArgumentBiome(String cmd) {
         return cmd.equals("--biome") || cmd.equals("-b");
     }
-    
+
     private boolean hasArgumentSize(String cmd) {
         return cmd.equals("--size") || cmd.equals("-size");
     }
-    
+
     private boolean saveArgument(String arg, String value) {
         if (this.hasArgumentBiome(arg)) {
             args[7] = value;
@@ -165,7 +168,7 @@ public class LsAnimal implements Command {
         }
         return true;
     }
-    
+
     @Override
     public boolean canExecute(String[] cmd) {
         this.args = new String[]{null, null, null, null, null, null, null, null, null};
@@ -181,5 +184,5 @@ public class LsAnimal implements Command {
         }
         return false;
     }
-    
+
 }
