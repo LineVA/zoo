@@ -3,7 +3,6 @@ package zoo.animal.reproduction;
 import java.util.ResourceBundle;
 import launch.options.Option;
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  *
