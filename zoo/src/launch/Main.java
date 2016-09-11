@@ -1,6 +1,5 @@
 package launch;
 
-import launch.play.tutorials.TutorialPlayImpl_1;
 import launch.play.FreePlayImpl;
 import launch.play.Play;
 import exception.name.EmptyNameException;
@@ -23,7 +22,5 @@ public class Main {
         Option options = new Option();
         Play play = new FreePlayImpl(bundle, options);
         MainGUI mainGUI = new MainGUI(play);
-//        Transmission transmission = new Transmission();
-//        CommandLineParser parser = new CommandLineParser(transmission);
     }
 }
