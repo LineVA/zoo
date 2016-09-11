@@ -17,8 +17,8 @@ import zoo.paddock.IPaddock;
 public class LsAnimal implements Command {
 
     Play play;
-    // args[0] : the argument after '-s'
-    // args[1] : the argument after '-p'
+    // args[0] : the argument after '--specie'
+    // args[1] : the argument after '--paddock'
     // args[2] : the argument after '--ecoregion'
     // args[3] : the argument after '--diet'
     // args[4] : the argument after '--sex'
@@ -47,17 +47,17 @@ public class LsAnimal implements Command {
 
     @Override
     public String execute(String[] cmd) {
-        LightSpecie spec = null;
         IPaddock pad = null;
+        LightSpecie spec = new LightSpecie(null,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1);;
         try {
             if (args[0] != null) {
-                spec = new LightSpecie(this.play.getZoo().findSpecieByName(args[0]).getNames(),
-                        0,
-                        Integer.parseInt(args[6]),
-                        Integer.parseInt(args[2]),
-                        Integer.parseInt(args[5]),
-                        0,
-                        Integer.parseInt(args[8]));
+                spec.setNames(this.play.zoo.findSpecieByName(args[0]).getNames());
             }
             if (args[1] != null) {
                 pad = this.play.getZoo().findPaddockByName(args[1]);

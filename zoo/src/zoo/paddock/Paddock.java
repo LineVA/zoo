@@ -192,9 +192,12 @@ public class Paddock implements Cloneable, IPaddock {
 
     private ArrayList<Animal> listAnimalWithSpecie(ArrayList<Animal> animals, LightSpecie specie) {
         ArrayList<Animal> list = animals;
-        for (Animal animal : animals) {
-            if (!animal.isFromTheSameSpecie(specie)) {
-                list.remove(animal);
+        Iterator it = list.iterator();
+        Animal next;
+        while (it.hasNext()) {
+            next = (AnimalImpl) it.next();
+            if (!next.isFromTheSameSpecie(specie)) {
+                it.remove();
             }
         }
         return list;
@@ -252,7 +255,7 @@ public class Paddock implements Cloneable, IPaddock {
         return list;
     }
 
-    private ArrayList<Animal> listAnimalWithDiet(ArrayList<Animal> animals,  Diet diet) {
+    private ArrayList<Animal> listAnimalWithDiet(ArrayList<Animal> animals, Diet diet) {
         ArrayList<Animal> list = animals;
         Iterator it = list.iterator();
         Animal next;
@@ -264,8 +267,8 @@ public class Paddock implements Cloneable, IPaddock {
         }
         return list;
     }
-    
-     private ArrayList<Animal> listAnimalWithSex(ArrayList<Animal> animals,  Sex sex) {
+
+    private ArrayList<Animal> listAnimalWithSex(ArrayList<Animal> animals, Sex sex) {
         ArrayList<Animal> list = animals;
         Iterator it = list.iterator();
         Animal next;
@@ -277,12 +280,12 @@ public class Paddock implements Cloneable, IPaddock {
         }
         return list;
     }
-     
-     private ArrayList<Animal> listAnimalWithBiome(ArrayList<Animal> animals,  Biome biome) {
+
+    private ArrayList<Animal> listAnimalWithBiome(ArrayList<Animal> animals, Biome biome) {
         ArrayList<Animal> list = animals;
-            if (this.biome != biome.getId()) {
-                list.removeAll(this.animals.values());
-            }
+        if (this.biome != biome.getId()) {
+            list.removeAll(this.animals.values());
+        }
         return list;
     }
 
@@ -314,13 +317,13 @@ public class Paddock implements Cloneable, IPaddock {
             list = listAnimalWithConservation(list,
                     ConservationStatus.UNKNOWN.findById(specie.getConservation()));
         }
-         if (sex != null) {
+        if (sex != null) {
             list = listAnimalWithSex(list, sex);
         }
         if (diet != null) {
             list = listAnimalWithDiet(list, diet);
         }
-         if (biome != null) {
+        if (biome != null) {
             list = listAnimalWithBiome(list, biome);
         }
         return list;

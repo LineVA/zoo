@@ -1,20 +1,8 @@
 package zoo.animal.specie;
 
 import lombok.Getter;
+import lombok.Setter;
 import zoo.animal.Names;
-import zoo.animal.conservation.ConservationStatus;
-import zoo.animal.death.GaussianLifeSpanAttributes;
-import zoo.animal.death.LifeSpanAttributes;
-import zoo.animal.feeding.FeedingAttributes;
-import zoo.animal.feeding.GaussianFeedingAttributes;
-import zoo.animal.reproduction.GaussianReproductionAttributes;
-import zoo.animal.reproduction.ReproductionAttributes;
-import zoo.animal.social.GaussianSocialAttributes;
-import zoo.animal.social.SocialAttributes;
-import zoo.paddock.GaussianTerritoryAttributes;
-import zoo.paddock.TerritoryAttributes;
-import zoo.paddock.biome.BiomeAttributes;
-import zoo.paddock.biome.GaussianBiomeAttributes;
 
 /**
  *
@@ -22,20 +10,20 @@ import zoo.paddock.biome.GaussianBiomeAttributes;
  */
 public class LightSpecie {
 
-    @Getter
-    private final int diet;
-    @Getter
-    private final int family;
-    @Getter
-    private final Names names;
-    @Getter
-    private final int ecoregion;
-    @Getter
-    private final int conservation;
-    @Getter
-    private final int biome;
-    @Getter
-    private final int size;
+    @Getter @Setter
+    private  int diet;
+    @Getter @Setter
+    private  int family;
+    @Getter @Setter
+    private  Names names;
+    @Getter @Setter
+    private  int ecoregion;
+    @Getter @Setter
+    private  int conservation;
+    @Getter @Setter
+    private  int biome;
+    @Getter @Setter
+    private  int size;
 
     public LightSpecie(Names names,
             int diet, int conservation,
