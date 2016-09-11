@@ -19,18 +19,26 @@ import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
 
 /**
- *
+ * the concrete class used to save a zoo inside a XML file
  * @author doyenm
  */
 public class SaveImpl implements Save {
 
+    /**
+     * The privateclass used to access to all the fields of zoo, paddocks and animals
+     */
     public static final class FriendSave {
-
         private FriendSave() {
         }
     }
     private static final FriendSave friendSave = new FriendSave();
 
+    /**
+     * The main method to create the expected file and save the zoo inside
+     * @param zoo
+     * @param fileName
+     * @throws EmptyNameException 
+     */
     @Override
     public void saveZoo(IZoo zoo, String fileName) throws EmptyNameException {
         Element zooEl = createElementZoo(zoo);
@@ -47,14 +55,14 @@ public class SaveImpl implements Save {
      * @return the name of the file with the extension ".xml"
      * @throws EmptyNameException throws if the name is empty
      */
-    public String createFileName(String name) throws EmptyNameException {
+    private String createFileName(String name) throws EmptyNameException {
         if (name.trim().equals("")) {
             throw new EmptyNameException("This name's zoo is the empty string");
         }
         return "./gameBackUps/" + name + ".xml";
     }
 
-    public void saveInFile(Document doc, String fichier) {
+    private void saveInFile(Document doc, String fichier) {
         try {
             //On utilise ici un affichage classique avec getPrettyFormat()
             XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
@@ -65,17 +73,17 @@ public class SaveImpl implements Save {
         }
     }
 
-    public Element createElementWithText(String name, String value) {
+    private Element createElementWithText(String name, String value) {
         Element el = new Element(name);
         el.setText(value);
         return el;
     }
 
-    public Attribute createAttribute(String name, String value) {
+    private Attribute createAttribute(String name, String value) {
         return new Attribute(name, value);
     }
 
-    public Element createElementPaddocks(IZoo zoo) {
+    private Element createElementPaddocks(IZoo zoo) {
         Element el = new Element("paddocks");
         zoo.getPaddocks(friendSave).entrySet().stream().forEach((pad) -> {
             el.addContent(createElementPaddock((IPaddock) pad.getValue()));
@@ -83,19 +91,18 @@ public class SaveImpl implements Save {
         return el;
     }
 
-    public Element createElementPaddock(IPaddock pad) {
+    private Element createElementPaddock(IPaddock pad) {
         Element el = new Element("paddock");
         el.setAttribute(createAttribute("name", pad.getName(friendSave)));
         el.addContent(createElementWithText("x", Integer.toString(pad.getCoordinates(friendSave).getX())));
         el.addContent(createElementWithText("y", Integer.toString(pad.getCoordinates(friendSave).getY())));
         el.addContent(createElementWithText("width", Integer.toString(pad.getCoordinates(friendSave).getWidth())));
         el.addContent(createElementWithText("height", Integer.toString(pad.getCoordinates(friendSave).getHeight())));
-        // el.addContent(createElementWithText("biome", pad.getBiome());
         el.addContent(createElementAnimals(pad));
         return el;
     }
 
-    public Element createElementAnimals(IPaddock pad) {
+    private Element createElementAnimals(IPaddock pad) {
         Element el = new Element("animals");
         for (HashMap.Entry<String, Animal> animal : pad.getAnimals(friendSave).entrySet()) {
             el.addContent(createElementAnimal((Animal) animal.getValue()));
@@ -103,14 +110,12 @@ public class SaveImpl implements Save {
         return el;
     }
 
-    public Element createElementAnimal(Animal animal) {
+    private Element createElementAnimal(Animal animal) {
         Element el = new Element("animal");
         el.setAttribute(createAttribute("name", animal.getName(friendSave)));
         el.addContent(createElementWithText("specie", animal.getSpecie(friendSave).getNames().getScientificName()));
         el.addContent(createElementWithText("sex", animal.getSex(friendSave).toString()));
         el.addContent(createElementWithText("age", String.valueOf(animal.getAge(friendSave))));
-        // el.addContent(createElementWithText("paddock", animal.getPaddock().getName(friendSave)));
-//        el.addContent(createElementBiomeAttributes(animal.getOptimalBiome()));
         el.addContent(createElementOptimalFeedingAttributes(animal.getOptimalFeeding(friendSave)));
         el.addContent(createElementActualFeedingAttributes(animal, animal.getActualFeeding(friendSave)));
         el.addContent(createElementReproductionAttributes(animal.getActualReproduction(friendSave)));
@@ -120,7 +125,7 @@ public class SaveImpl implements Save {
         return el;
     }
 
-    public Element createElementBiomeAttributes(BiomeAttributes att) {
+    private Element createElementBiomeAttributes(BiomeAttributes att) {
         Element el = new Element("optimalBiomeAttributes");
         el.addContent(createElementWithText("nightTemperature", String.valueOf(att.getNightTemperature())));
         el.addContent(createElementWithText("dayTemperature", String.valueOf(att.getDayTemperature())));
@@ -133,26 +138,26 @@ public class SaveImpl implements Save {
         return el;
     }
 
-    public Element createElementOptimalFeedingAttributes(FeedingAttributes att) {
+    private Element createElementOptimalFeedingAttributes(FeedingAttributes att) {
         Element el = new Element("optimalFeedingAttributes");
         el.addContent(createElementWithText("quantity", String.valueOf(att.getFoodQuantity())));
         return el;
     }
 
-    public Element createElementActualFeedingAttributes(Animal animal, FeedingAttributes att) {
+    private Element createElementActualFeedingAttributes(Animal animal, FeedingAttributes att) {
         Element el = new Element("actualFeedingAttributes");
         el.addContent(createElementWithText("diet", String.valueOf(animal.getDiet(friendSave))));
         el.addContent(createElementWithText("quantity", String.valueOf(att.getFoodQuantity())));
         return el;
     }
 
-    public Element createElementLifeSpanAttributes(LifeSpanLightAttributes att) {
+    private Element createElementLifeSpanAttributes(LifeSpanLightAttributes att) {
         Element el = new Element("actualLifeSpanAttributes");
         el.addContent(createElementWithText("lifeSpan", String.valueOf(att.getLifeSpan())));
         return el;
     }
 
-    public Element createElementReproductionAttributes(ReproductionAttributes att) {
+    private Element createElementReproductionAttributes(ReproductionAttributes att) {
         Element el = new Element("actualReproductionAttributes");
         el.addContent(createElementWithText("femaleMaturityAge", String.valueOf(att.getFemaleMaturityAge())));
         el.addContent(createElementWithText("maleMaturityAge", String.valueOf(att.getMaleMaturityAge())));
@@ -161,26 +166,26 @@ public class SaveImpl implements Save {
         return el;
     }
 
-    public Element createElementSocialAttributes(SocialAttributes att) {
+    private Element createElementSocialAttributes(SocialAttributes att) {
         Element el = new Element("optimalSocialAttributes");
         el.addContent(createElementWithText("groupSize", String.valueOf(att.getGroupSize())));
         return el;
     }
 
-    public Element createElementTeritoryAttributes(TerritoryAttributes att) {
+    private Element createElementTeritoryAttributes(TerritoryAttributes att) {
         Element el = new Element("optimalTerritoryAttributes");
         el.addContent(createElementWithText("territorySize", String.valueOf(att.getTerritorySize())));
         return el;
     }
 
-    public Element createElementDimensionsZoo(int width, int height) {
+    private Element createElementDimensionsZoo(int width, int height) {
         Element dimEl = new Element("dimensions");
         dimEl.addContent(createElementWithText("width", Integer.toString(width)));
         dimEl.addContent(createElementWithText("height", Integer.toString(height)));
         return dimEl;
     }
 
-    public Element createElementZoo(IZoo zoo) {
+    private Element createElementZoo(IZoo zoo) {
         Element zooEl = new Element("zoo");
         zooEl.setAttribute(createAttribute("name", zoo.getName(friendSave).trim()));
         zooEl.addContent(createElementDimensionsZoo(zoo.getWidth(friendSave), zoo.getHeight(friendSave)));
