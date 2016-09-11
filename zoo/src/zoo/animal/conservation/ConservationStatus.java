@@ -4,8 +4,6 @@ import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import launch.options.Option;
 import lombok.Getter;
-import lombok.Setter;
-import zoo.paddock.biome.Ecoregion;
 
 /**
  *
