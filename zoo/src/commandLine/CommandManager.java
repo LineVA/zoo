@@ -35,7 +35,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- *
+ * The abstract command manager : determine how the command lines are checked 
  * @author doyenm
  */
 public abstract class CommandManager {
