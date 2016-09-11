@@ -129,6 +129,7 @@ public class Zoo implements IZoo {
      * zoo with the same name
      * @throws IncorrectDimensionsException if the paddock is to big for the zoo
      * or its width and/or are smaller than 1 or its origins are sammler than 0
+     * @throws exception.name.EmptyNameException
      */
     @Override
     public void addPaddock(String paddockName, int x, int y, int width, int height)
@@ -178,6 +179,7 @@ public class Zoo implements IZoo {
         return true;
     }
 
+    @Override
     public void addPaddock(IPaddock paddock)
             throws AlreadyUsedNameException, IncorrectDimensionsException {
         PaddockCoordinates coor = paddock.getCoordinates();
@@ -202,29 +204,29 @@ public class Zoo implements IZoo {
     }
 
     private void reactualizeNeightbourhoods(IPaddock paddock, ArrayList<IPaddock> neightbourhoods) {
-        for (IPaddock neightbour : neightbourhoods) {
+        neightbourhoods.stream().forEach((neightbour) -> {
             neightbour.addInNeightbourhood(paddock);
-        }
+        });
     }
 
     /**
      * Method used to list the paddocks of the zoo
      *
+     * @param specie
      * @return ArrayList of their names
      */
     @Override
     public ArrayList<String> listPaddock(Specie specie) {
         ArrayList<String> list = new ArrayList<>();
         if (specie == null) {
-            for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
+            paddocks.entrySet().stream().forEach((entry) -> {
                 list.add(entry.getKey());
-            }
+            });
         } else {
-            for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-                if (entry.getValue().countAnimalsOfTheSameSpecie(specie) != 0) {
-                    list.add(entry.getKey());
-                }
-            }
+            paddocks.entrySet().stream().filter((entry) -> 
+                    (entry.getValue().countAnimalsOfTheSameSpecie(specie) != 0)).forEach((entry) -> {
+                list.add(entry.getKey());
+            });
         }
         return list;
     }
@@ -234,7 +236,8 @@ public class Zoo implements IZoo {
      *
      * @param name the name to search
      * @return the paddock if it exists
-     * @throws UnknownNameException if the paddock does not exist
+     * @throws UnknownNameException if the p
+     * @throws exception.name.EmptyNameExceptionaddock does not exist
      */
     @Override
     public IPaddock findPaddockByName(String name) throws UnknownNameException,
@@ -300,9 +303,9 @@ public class Zoo implements IZoo {
     public ArrayList<PaddockCoordinates> map() throws IncorrectDimensionsException {
         ArrayList<PaddockCoordinates> map = new ArrayList<>();
         map.add(new PaddockCoordinates(0, 0, width, height));
-        for (HashMap.Entry<String, IPaddock> padEntry : paddocks.entrySet()) {
+        paddocks.entrySet().stream().forEach((padEntry) -> {
             map.add(padEntry.getValue().getCoordinates());
-        }
+        });
         return map;
     }
 
@@ -336,7 +339,8 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public Animal findAnimalByName(String animalName) throws UnknownNameException, EmptyNameException {
+    public Animal findAnimalByName(String animalName) 
+            throws UnknownNameException, EmptyNameException {
         if (animalName.trim().equals("")) {
             throw new EmptyNameException(
                     this.option.getAnimalBundle().getString("EMPTY_NAME"));
@@ -353,7 +357,8 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<Animal> listAnimal(IPaddock paddock, LightSpecie specie, Sex sex, Diet diet, Biome biome) 
+    public ArrayList<Animal> listAnimal(IPaddock paddock, 
+            LightSpecie specie, Sex sex, Diet diet, Biome biome) 
             throws UnknownNameException{
         if (paddock == null) {
             ArrayList<Animal> list = new ArrayList<>();
@@ -370,9 +375,9 @@ public class Zoo implements IZoo {
     public ArrayList<String> listSpecie(IPaddock paddock) {
         ArrayList<String> list = new ArrayList<>();
         if (paddock == null) {
-            for (HashMap.Entry<String, Specie> entry : species.entrySet()) {
+            species.entrySet().stream().forEach((entry) -> {
                 list.add(entry.getValue().getNameAccordingLanguage(this.option));
-            }
+            });
         } else {
             list.addAll(paddock.listSpeciesByName());
         }

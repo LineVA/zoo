@@ -9,7 +9,6 @@ import java.util.Map;
 import zoo.animal.specie.Family;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
-import zoo.paddock.Paddock;
 
 /**
  *
@@ -33,7 +32,6 @@ public class Evaluation {
     }
 
     private int familyEvaluation(ArrayList<Specie> species) {
-        int evaluation = 0;
         int[] families = familiesArrayFilling(species);
         int familiesNb = 0;
         int byThree = 0;
@@ -50,10 +48,9 @@ public class Evaluation {
 
     private int[] familiesArrayFilling(ArrayList<Specie> species) {
         int[] families = new int[Family.values().length];
-        for (Specie spec : species) {
-            int fam = spec.getFamily();
+        species.stream().map((spec) -> spec.getFamily()).forEach((fam) -> {
             families[fam] += 1;
-        }
+        });
         return families;
     }
 
