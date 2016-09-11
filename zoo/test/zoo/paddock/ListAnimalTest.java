@@ -24,7 +24,7 @@ import zoo.paddock.biome.Biome;
  *
  * @author doyenm
  */
-public class listAnimalTest {
+public class ListAnimalTest {
 
     Option opt;
 
