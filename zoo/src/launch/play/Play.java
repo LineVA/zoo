@@ -44,5 +44,4 @@ abstract public class Play {
         this.bundle = bundle;
         this.option = opt;
     }
-    
 }
