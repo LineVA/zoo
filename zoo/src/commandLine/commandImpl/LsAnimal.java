@@ -7,15 +7,18 @@ import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import launch.play.Play;
 import zoo.animal.Animal;
+import zoo.animal.feeding.Diet;
+import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.LightSpecie;
 import zoo.paddock.IPaddock;
+import zoo.paddock.biome.Biome;
 
 /**
  *
  * @author doyenm
  */
 public class LsAnimal implements Command {
-
+    
     Play play;
     // args[0] : the argument after '--specie'
     // args[1] : the argument after '--paddock'
@@ -28,26 +31,29 @@ public class LsAnimal implements Command {
     // args[8] : the argument after '--size'
 
     String[] args;
-
+    
     public LsAnimal(Play play) {
         this.play = play;
     }
-
+    
     @Override
     public boolean hasInitiateAZoo() {
         return false;
     }
-
+    
     boolean success = false;
-
+    
     @Override
     public boolean isSuccess() {
         return this.success;
     }
-
+    
     @Override
     public String execute(String[] cmd) {
         IPaddock pad = null;
+        Diet diet = null;
+        Biome biome = null;
+        Sex sex = null;
         LightSpecie spec = new LightSpecie(null,
                 -1,
                 -1,
@@ -65,17 +71,22 @@ public class LsAnimal implements Command {
             if (args[2] != null) {
                 spec.setEcoregion(Integer.parseInt(args[2]));
             }
+            if (args[3] != null) {
+                diet = Diet.NONE.findDietById(Integer.parseInt(args[3]));
+            }
             this.success = true;
             ArrayList<String> names = new ArrayList<>();
-            for (Animal animal : this.play.getZoo().listAnimal(pad, spec, null, null, null)) {
+            for (Animal animal : this.play.getZoo().listAnimal(pad, spec, sex, diet, biome)) {
                 names.add(animal.getName());
             }
             return FormattingDisplay.formattingArrayList(names);
         } catch (EmptyNameException | UnknownNameException ex) {
             return ex.getMessage();
+        } catch (NumberFormatException ex) {
+            return "Integer ERROR !!!!!!!!!!";
         }
     }
-
+    
     private boolean firstCmd(String[] cmd) {
         if (cmd.length >= 2) {
             if (cmd[0].equals("animal")) {
@@ -86,47 +97,47 @@ public class LsAnimal implements Command {
         }
         return false;
     }
-
+    
     private boolean checkLength(String[] cmd) {
         return cmd.length >= 2 && cmd.length <= 20 && cmd.length % 2 == 0;
     }
-
+    
     private boolean hasArgumentSpecie(String cmd) {
         return cmd.equals("--specie") || cmd.equals("-s");
     }
-
+    
     private boolean hasArgumentPaddock(String cmd) {
         return cmd.equals("--paddock") || cmd.equals("-p");
     }
-
+    
     private boolean hasArgumentEcoregion(String cmd) {
         return cmd.equals("--ecoregion") || cmd.equals("-e");
     }
-
+    
     private boolean hasArgumentDiet(String cmd) {
         return cmd.equals("--diet") || cmd.equals("-d");
     }
-
+    
     private boolean hasArgumentSex(String cmd) {
         return cmd.equals("--sex") || cmd.equals("-sex");
     }
-
+    
     private boolean hasArgumentFamily(String cmd) {
         return cmd.equals("--family") || cmd.equals("-f");
     }
-
+    
     private boolean hasArgumentConservation(String cmd) {
         return cmd.equals("--conservation") || cmd.equals("-c");
     }
-
+    
     private boolean hasArgumentBiome(String cmd) {
         return cmd.equals("--biome") || cmd.equals("-b");
     }
-
+    
     private boolean hasArgumentSize(String cmd) {
         return cmd.equals("--size") || cmd.equals("-size");
     }
-
+    
     private boolean saveArgument(String arg, String value) {
         if (this.hasArgumentBiome(arg)) {
             args[7] = value;
@@ -151,38 +162,21 @@ public class LsAnimal implements Command {
         }
         return true;
     }
-
+    
     @Override
     public boolean canExecute(String[] cmd) {
         this.args = new String[]{null, null, null, null, null, null, null, null, null};
         if (firstCmd(cmd) && checkLength(cmd)) {
-//            if (cmd.length == 2) {
-//                return true;
-//            } else if (cmd.length == 4 && this.hasArgumentSpecie(cmd[2])) {
-//                args[0] = cmd[3];
-//                return true;
-//            } else if (cmd.length == 4 && this.hasArgumentPaddock(cmd[2])) {
-//                args[1] = cmd[3];
-//                return true;
-//            } else if (cmd.length == 6 && this.hasArgumentSpecie(cmd[2]) && this.hasArgumentPaddock(cmd[4])) {
-//                args[0] = cmd[3];
-//                args[1] = cmd[5];
-//                return true;
-//            } else if (cmd.length == 6 && this.hasArgumentSpecie(cmd[4]) && this.hasArgumentPaddock(cmd[2])) {
-//                args[0] = cmd[5];
-//                args[1] = cmd[3];
-//                return true;
-//            }
             int i = 2;
             while (i <= cmd.length - 2) {
                 if (!saveArgument(cmd[i], cmd[i + 1])) {
                     return false;
                 }
-                i+=2;
+                i += 2;
             }
             return true;
         }
         return false;
     }
-
+    
 }
