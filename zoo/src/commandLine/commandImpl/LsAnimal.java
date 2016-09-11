@@ -74,6 +74,9 @@ public class LsAnimal implements Command {
             if (args[3] != null) {
                 diet = Diet.NONE.findDietById(Integer.parseInt(args[3]));
             }
+             if (args[4] != null) {
+                sex = Sex.UNKNOWN.findById(Integer.parseInt(args[4]));
+            }
             this.success = true;
             ArrayList<String> names = new ArrayList<>();
             for (Animal animal : this.play.getZoo().listAnimal(pad, spec, sex, diet, biome)) {

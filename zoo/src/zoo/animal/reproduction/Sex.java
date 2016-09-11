@@ -3,7 +3,7 @@ package zoo.animal.reproduction;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import launch.options.Option;
-import zoo.paddock.biome.Ecoregion;
+import lombok.Getter;
 
 /**
  * Enum of the sex
@@ -11,9 +11,16 @@ import zoo.paddock.biome.Ecoregion;
  * @author doyenm
  */
 public enum Sex {
-    UNKNOWN,
-    FEMALE,
-    MALE;
+    UNKNOWN (0),
+    FEMALE (1),
+    MALE (2);
+    
+    @Getter
+    private int id;
+    
+    Sex(int id){
+        this.id = id;
+    }
     
     public boolean isFemale() {
         return this == Sex.FEMALE;
@@ -41,6 +48,16 @@ public enum Sex {
                 this.option.getReproductionBundle().getString("UNKNOWN_SEX"));
     }
     
+    public Sex findById(int id) throws UnknownNameException {
+        for (Sex sex : Sex.values()) {
+            if (sex.getId() == id) {
+                return sex;
+            }
+        }
+        throw new UnknownNameException(
+                this.option.getReproductionBundle().getString("UNKNOWN_SEX"));
+    }
+    
     public String toStringByLanguage(){
         return this.option.getReproductionBundle().getString(this.toString().toUpperCase());
     }
@@ -49,7 +66,7 @@ public enum Sex {
          ArrayList<String> list = new ArrayList<>();
         for (Sex sex : Sex.values()) {
             list.add(
-                    this.option.getReproductionBundle().getString(sex.toString().toUpperCase()));
+                   sex.getId() + " - " +  this.option.getReproductionBundle().getString(sex.toString().toUpperCase()));
         }
         return list;
     }
