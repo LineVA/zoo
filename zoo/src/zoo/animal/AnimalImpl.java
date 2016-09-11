@@ -47,7 +47,7 @@ public class AnimalImpl implements Animal {
 // There is both optimal and actual biome attributes :
     // the first are determined when the animal is created,
     // the second are the ones of its paddock.
-    private BiomeAttributes optimalBiome;
+    private final BiomeAttributes optimalBiome;
     // There is both optimal and actual feeding attributes : 
     // the first are computed when the animal is created,
     // the second are determined by the player.
@@ -78,12 +78,6 @@ public class AnimalImpl implements Animal {
             throws IncorrectDataException, EmptyNameException, NameException {
         this.option = option;
         this.specie = spec;
-//        if (name.trim().equals("")) {
-//            throw new EmptyNameException(
-//                    this.option.getAnimalBundle().getString("EMPTY_NAME"));
-//        } else {
-//            this.name = name;
-//        }
         NameVerifications.verify(name, this.option.getAnimalBundle());
         this.name = name;
         this.paddock = paddock;
@@ -94,15 +88,12 @@ public class AnimalImpl implements Animal {
             throw new IncorrectDataException(
                     this.option.getAnimalBundle().getString("TOO_YOUNG"));
         }
-//        this.optimalBiome = drawOptimalBiome(spec);
         this.optimalFeeding = drawOptimalFeeding(spec);
         this.actualFeeding = drawActualFeeding(spec);
         this.actualReproduction = drawActualReproduction(spec);
         this.actualLifeSpan = drawActualLifeSpan(spec);
         this.optimalBiome = null;
         this.actualDiet = Diet.NONE.getId();
-        //   this.optimalFeeding = null;
-        // this.actualFeeding = null;
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
         this.wB = new WellBeingImpl(
@@ -116,17 +107,10 @@ public class AnimalImpl implements Animal {
             throws IncorrectDataException, EmptyNameException, NameException {
         this.option = option;
         this.specie = spec;
-//        if (name.trim().equals("")) {
-//            throw new EmptyNameException(
-//                    this.option.getAnimalBundle().getString("EMPTY_NAME"));
-//        } else {
-//            this.name = name;
-//        }
         NameVerifications.verify(name, this.option.getAnimalBundle());
         this.name = name;
         this.paddock = paddock;
         this.sex = sex;
-//        this.optimalBiome = drawOptimalBiome(spec);
         this.optimalFeeding = drawOptimalFeeding(spec);
         this.actualFeeding = drawActualFeeding(spec);
         this.actualReproduction = drawActualReproduction(spec);
@@ -158,12 +142,6 @@ public class AnimalImpl implements Animal {
             throws IncorrectDataException, EmptyNameException, NameException {
         this.option = option;
         this.specie = spec;
-//        if (name.trim().equals("")) {
-//            throw new EmptyNameException(
-//                    this.option.getAnimalBundle().getString("EMPTY_NAME"));
-//        } else {
-//            this.name = name;
-//        }
         NameVerifications.verify(name, this.option.getAnimalBundle());
         this.name = name;
         this.paddock = paddock;
