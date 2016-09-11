@@ -1,7 +1,5 @@
 package backup.load;
 
-import exception.IncorrectDimensionsException;
-import exception.name.EmptyNameException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,13 +20,19 @@ import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
 
 /**
- *
+ * The parser of a zoo file
  * @author doyenm
  */
 public class ParserBackUp {
 
     Element zooEl;
 
+    /**
+     * The constructor of the parser
+     * @param file the file to parse
+     * @throws IOException
+     * @throws JDOMException 
+     */
     public ParserBackUp(File file) throws IOException, JDOMException {
         SAXBuilder sax = new SAXBuilder();
         Document document;
@@ -36,7 +40,13 @@ public class ParserBackUp {
         this.zooEl = document.getRootElement();
     }
 
-    public FakeZoo parserZoo() throws EmptyNameException, IOException, JDOMException {
+    /**
+     * Parse the characteristics of the zoo (not including paddocks and animals)
+     * @return The corresponding FakeZoo
+     * @throws IOException
+     * @throws JDOMException 
+     */
+    public FakeZoo parserZoo() throws IOException, JDOMException {
         Element dimEl = zooEl.getChild("dimensions");
         return new FakeZoo(zooEl.getAttributeValue("name"),
                 Integer.parseInt(dimEl.getChild("width").getText()),
@@ -47,11 +57,19 @@ public class ParserBackUp {
         );
     }
     
+    /**
+     * Parse the language of the save
+     * @return Code of the language
+     */
     public String parserLanguage(){
         return zooEl.getChildText("language");
     }
 
-    public ArrayList<FakePaddock> parserPaddocks() throws IncorrectDimensionsException {
+    /**
+     * Method used to parse paddocks
+     * @return The list of FakePaddocks
+     */
+    public ArrayList<FakePaddock> parserPaddocks() {
         Element paddocksEl = zooEl.getChild("paddocks");
         List<Element> paddocksElList = paddocksEl.getChildren("paddock");
         ArrayList<FakePaddock> paddocksList = new ArrayList<>();
@@ -77,6 +95,10 @@ public class ParserBackUp {
         return animalsEl;
     }
 
+    /**
+     * The method used to parse the animals element
+     * @return The list of FakeAnimal in the file
+     */
     public ArrayList<FakeAnimal> parserAnimals() {
         ArrayList<Element> animalsElList = findElementsAnimals();
         ArrayList<FakeAnimal> animalList = new ArrayList<>();
@@ -84,8 +106,7 @@ public class ParserBackUp {
         return animalList;
     }
 
-    public ArrayList<FakeAnimal> parserAnimal(Element animalsEl) {
-        //  Element animalsEl = zooEl.getChild("animals");
+    private ArrayList<FakeAnimal> parserAnimal(Element animalsEl) {
         List<Element> animalsElList = animalsEl.getChildren("animal");
         ArrayList<FakeAnimal> animalsList = new ArrayList<>();
         Iterator it = animalsElList.iterator();

@@ -19,11 +19,18 @@ import zoo.paddock.FakePaddock;
 import zoo.paddock.IPaddock;
 
 /**
- *
+ * The concrete class unsed to load a zoo
  * @author doyenm
  */
 public class LoadImpl implements Load {
 
+    /**
+     * The main method
+     * @param fileName
+     * @return
+     * @throws IOException
+     * @throws JDOMException 
+     */
     @Override
     public IZoo loadZoo(String fileName) throws IOException, JDOMException {
         File file = new File(fileName);
@@ -31,7 +38,6 @@ public class LoadImpl implements Load {
         // Creation of the zoo
         Option option = new Option(parser.parserLanguage());
         IZoo zoo = parser.parserZoo().convertToZoo(option);
-//        zoo.setOption(option);
         // Creation of the paddocks
         ArrayList<FakePaddock> padList = parser.parserPaddocks();
         for (FakePaddock pad : padList) {
@@ -46,7 +52,7 @@ public class LoadImpl implements Load {
         return zoo;
     }
 
-    public void addFakeAnimalToZoo(IZoo zoo, FakeAnimal animal, Option option)
+    private void addFakeAnimalToZoo(IZoo zoo, FakeAnimal animal, Option option)
             throws EmptyNameException, UnknownNameException, IncorrectDataException,
             AlreadyUsedNameException, NameException {
         Specie spec = zoo.findSpecieByScientificName(animal.getSpecie());
@@ -55,7 +61,7 @@ public class LoadImpl implements Load {
         pad.addAnimal(animal.convertToAnimal(spec, pad, sex, option));
     }
 
-    public void addFakePaddockToZoo(IZoo zoo, FakePaddock paddock, Option option)
+    private void addFakePaddockToZoo(IZoo zoo, FakePaddock paddock, Option option)
             throws IncorrectDimensionsException,
             AlreadyUsedNameException, EmptyNameException, NameException {
         zoo.addPaddock(paddock.convertToPaddock(option));
