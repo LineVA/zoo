@@ -12,14 +12,16 @@ import zoo.paddock.PaddockCoordinates;
  */
 public class FormattingDisplay {
 
+    /**
+     * Thickness of the contour of the map
+     */
     final static int thicknessContour = 1;
+    /**
+     * Characters used to symbolize the paddocks on the map
+     */
     final static char[] signArray = {'*', '&', '~', '-', '=', '@', '+', '?', '§', 'µ', '£',
         '$', 'a', 'z', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'q', 's', 'd',
         'f', 'g', 'h', 'j', 'k', 'l', 'm', 'w', 'x', 'c', 'v', 'b', 'n'};
-
-    public static String singleLine(String str) {
-        return str;
-    }
 
     private static char[][] d2ArrayCharInitialize(char[][] array) {
         for (int i = 0; i < array[0].length; i++) {
@@ -63,6 +65,11 @@ public class FormattingDisplay {
         return array;
     }
 
+    /**
+     * Formating of the map
+     * @param list List of PaddockCoordinates ; the first must represent the dimensions of the zoo
+     * @return 
+     */
     public static String zooMap(ArrayList<PaddockCoordinates> list) {
         char[][] array = new char[list.get(0).getWidth() + 2][list.get(0).getHeight() + 2];
         array = d2ArrayCharInitialize(array);
@@ -81,10 +88,11 @@ public class FormattingDisplay {
         return d2ArrayToString(array);
     }
 
-    public static String idDisplay(String name) {
-        return " coco";
-    }
-
+    /**
+     * Layout for a list of Strings
+     * @param list List of strings we wneed to display
+     * @return 
+     */
     public static String formattingArrayList(ArrayList<String> list) {
         Iterator it = list.iterator();
         String str = "";
