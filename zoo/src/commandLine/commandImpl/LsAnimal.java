@@ -25,7 +25,7 @@ public class LsAnimal implements Command {
     // args[5] : the argument after '--family'
     // args[6] : the argument after '--conservation'
     // args[7] : the argument after '--biome'
-    // args[8] : the argument after '---size'
+    // args[8] : the argument after '--size'
 
     String[] args;
 
@@ -62,6 +62,9 @@ public class LsAnimal implements Command {
             if (args[1] != null) {
                 pad = this.play.getZoo().findPaddockByName(args[1]);
             }
+            if (args[2] != null) {
+                spec.setEcoregion(Integer.parseInt(args[2]));
+            }
             this.success = true;
             ArrayList<String> names = new ArrayList<>();
             for (Animal animal : this.play.getZoo().listAnimal(pad, spec, null, null, null)) {
@@ -84,6 +87,10 @@ public class LsAnimal implements Command {
         return false;
     }
 
+    private boolean checkLength(String[] cmd) {
+        return cmd.length >= 2 && cmd.length <= 20 && cmd.length % 2 == 0;
+    }
+
     private boolean hasArgumentSpecie(String cmd) {
         return cmd.equals("--specie") || cmd.equals("-s");
     }
@@ -92,27 +99,88 @@ public class LsAnimal implements Command {
         return cmd.equals("--paddock") || cmd.equals("-p");
     }
 
+    private boolean hasArgumentEcoregion(String cmd) {
+        return cmd.equals("--ecoregion") || cmd.equals("-e");
+    }
+
+    private boolean hasArgumentDiet(String cmd) {
+        return cmd.equals("--diet") || cmd.equals("-d");
+    }
+
+    private boolean hasArgumentSex(String cmd) {
+        return cmd.equals("--sex") || cmd.equals("-sex");
+    }
+
+    private boolean hasArgumentFamily(String cmd) {
+        return cmd.equals("--family") || cmd.equals("-f");
+    }
+
+    private boolean hasArgumentConservation(String cmd) {
+        return cmd.equals("--conservation") || cmd.equals("-c");
+    }
+
+    private boolean hasArgumentBiome(String cmd) {
+        return cmd.equals("--biome") || cmd.equals("-b");
+    }
+
+    private boolean hasArgumentSize(String cmd) {
+        return cmd.equals("--size") || cmd.equals("-size");
+    }
+
+    private boolean saveArgument(String arg, String value) {
+        if (this.hasArgumentBiome(arg)) {
+            args[7] = value;
+        } else if (this.hasArgumentConservation(arg)) {
+            args[6] = value;
+        } else if (this.hasArgumentDiet(arg)) {
+            args[3] = value;
+        } else if (this.hasArgumentEcoregion(arg)) {
+            args[2] = value;
+        } else if (this.hasArgumentFamily(arg)) {
+            args[5] = value;
+        } else if (this.hasArgumentPaddock(arg)) {
+            args[1] = value;
+        } else if (this.hasArgumentSex(arg)) {
+            args[4] = value;
+        } else if (this.hasArgumentSize(arg)) {
+            args[8] = value;
+        } else if (this.hasArgumentSpecie(arg)) {
+            args[0] = value;
+        } else {
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public boolean canExecute(String[] cmd) {
         this.args = new String[]{null, null, null, null, null, null, null, null, null};
-        if (firstCmd(cmd)) {
-            if (cmd.length == 2) {
-                return true;
-            } else if (cmd.length == 4 && this.hasArgumentSpecie(cmd[2])) {
-                args[0] = cmd[3];
-                return true;
-            } else if (cmd.length == 4 && this.hasArgumentPaddock(cmd[2])) {
-                args[1] = cmd[3];
-                return true;
-            } else if (cmd.length == 6 && this.hasArgumentSpecie(cmd[2]) && this.hasArgumentPaddock(cmd[4])) {
-                args[0] = cmd[3];
-                args[1] = cmd[5];
-                return true;
-            } else if (cmd.length == 6 && this.hasArgumentSpecie(cmd[4]) && this.hasArgumentPaddock(cmd[2])) {
-                args[0] = cmd[5];
-                args[1] = cmd[3];
-                return true;
+        if (firstCmd(cmd) && checkLength(cmd)) {
+//            if (cmd.length == 2) {
+//                return true;
+//            } else if (cmd.length == 4 && this.hasArgumentSpecie(cmd[2])) {
+//                args[0] = cmd[3];
+//                return true;
+//            } else if (cmd.length == 4 && this.hasArgumentPaddock(cmd[2])) {
+//                args[1] = cmd[3];
+//                return true;
+//            } else if (cmd.length == 6 && this.hasArgumentSpecie(cmd[2]) && this.hasArgumentPaddock(cmd[4])) {
+//                args[0] = cmd[3];
+//                args[1] = cmd[5];
+//                return true;
+//            } else if (cmd.length == 6 && this.hasArgumentSpecie(cmd[4]) && this.hasArgumentPaddock(cmd[2])) {
+//                args[0] = cmd[5];
+//                args[1] = cmd[3];
+//                return true;
+//            }
+            int i = 2;
+            while (i <= cmd.length - 2) {
+                if (!saveArgument(cmd[i], cmd[i + 1])) {
+                    return false;
+                }
+                i+=2;
             }
+            return true;
         }
         return false;
     }
