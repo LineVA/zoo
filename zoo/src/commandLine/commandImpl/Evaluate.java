@@ -4,7 +4,6 @@ import basicGui.FormattingDisplay;
 import commandLine.Command;
 import exception.IncorrectDataException;
 import exception.name.NameException;
-import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import launch.play.Play;
 
@@ -40,12 +39,8 @@ public class Evaluate implements Command {
             // Well-beeing of each animal
            zooEvaluation += this.play.getZoo().grade();
             // Special events :
-            // ageing
+            // ageing, births and deaths
             info.addAll(this.play.getZoo().ageing());
-            // birth
-//            info.addAll(this.play.getZoo().birth());
-            // death
-//            info.addAll(this.play.getZoo().death());
             // Zoo evaluation
            zooEvaluation += this.play.getZoo().evaluate();
            this.success = true;

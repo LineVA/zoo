@@ -38,7 +38,7 @@ public class MapZoo implements Command {
             this.success = true;
             return FormattingDisplay.zooMap(map);
         } catch (IncorrectDimensionsException ex) {
-            return "Fail !";
+            return ex.getMessage();
         }
     }
 

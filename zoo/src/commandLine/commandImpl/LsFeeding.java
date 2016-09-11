@@ -21,7 +21,7 @@ public class LsFeeding implements Command {
 
     @Override
     public String execute(String[] cmd) {
-        this.success = success;
+        this.success = true;
         return FormattingDisplay.formattingArrayList(Diet.NONE.list());
     }
 

@@ -7,7 +7,7 @@ import launch.play.Play;
 import zoo.paddock.IPaddock;
 
 /**
- *
+ *Command line : 'pad <name> --biome <id>'
  * @author doyenm
  */
 public class BiomePad implements Command {

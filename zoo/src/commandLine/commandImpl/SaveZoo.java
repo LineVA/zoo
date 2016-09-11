@@ -40,17 +40,11 @@ public class SaveZoo implements Command {
                     .getString("SAVE_SUCCESS");
         } catch (EmptyNameException ex) {
             return ex.getMessage();
-            //  Logger.getLogger(SaveZoo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 2) {
-            if (cmd[0].equals("save")) {
-                return true;
-            }
-        }
-        return false;
+       return cmd.length==2 && "save".equals(cmd[0]);
     }
 }

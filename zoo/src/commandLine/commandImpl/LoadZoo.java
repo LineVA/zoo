@@ -22,14 +22,14 @@ public class LoadZoo implements Command {
     public boolean hasInitiateAZoo() {
         return this.previousHasBeenSuccessfull;
     }
-    
+
     public LoadZoo(Play play) {
         this.play = play;
     }
-    
+
     boolean success = false;
-    
-     @Override
+
+    @Override
     public boolean isSuccess() {
         return this.success;
     }

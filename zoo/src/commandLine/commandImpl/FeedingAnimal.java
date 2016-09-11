@@ -14,8 +14,8 @@ import zoo.animal.Animal;
 public class FeedingAnimal implements Command {
 
     Play play;
-    // args[0] : the argument after '-d'
-    // args[1] : the argument after '-fq'
+    // args[0] : the argument after '--diet'
+    // args[1] : the argument after '--foodQuantity'
     String[] args;
 
     public FeedingAnimal(Play play) {

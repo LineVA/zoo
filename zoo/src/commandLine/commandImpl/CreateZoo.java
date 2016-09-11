@@ -1,7 +1,6 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
-import exception.IncorrectDimensionsException;
 import exception.name.EmptyNameException;
 import java.io.IOException;
 import java.util.Map;

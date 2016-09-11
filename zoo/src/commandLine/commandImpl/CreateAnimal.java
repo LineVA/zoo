@@ -2,7 +2,6 @@ package commandLine.commandImpl;
 
 import commandLine.Command;
 import exception.IncorrectDataException;
-import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
 import exception.name.UnknownNameException;
@@ -14,7 +13,6 @@ import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
 
 /**
- *
  * @author doyenm
  */
 public class CreateAnimal implements Command {

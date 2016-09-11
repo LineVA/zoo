@@ -1,10 +1,8 @@
 package commandLine.commandImpl;
 
-import basicGui.FormattingDisplay;
 import commandLine.Command;
 import exception.IncorrectDataException;
 import launch.play.Play;
-import zoo.animal.feeding.Diet;
 
 /**
  *
@@ -41,7 +39,7 @@ public class ZooCharacteristics implements Command {
                     this.play.zoo.changeHorizon(horizon);
                     result += this.play.option.getGeneralCmdBundle().getString("HORIZON_CHANGE_SUCCESS") + cmd[2];
                 }
-                this.success = success;
+                this.success = true;
             } catch (IncorrectDataException ex) {
                 result += ex.getMessage();
             }
@@ -68,12 +66,15 @@ public class ZooCharacteristics implements Command {
     ) {
         if (cmd.length == 3) {
             if (cmd[0].equals("zoo")) {
-                if ((cmd[1].equals("-s") || cmd[1].equals("--speed"))) {
-                    args[0] = cmd[2];
-                    return true;
-                } else if ((cmd[1].equals("-h") || cmd[1].equals("--horizon"))) {
-                    args[1] = cmd[2];
-                    return true;
+                switch (cmd[1]) {
+                    case "-s":
+                    case "--speed":
+                        args[0] = cmd[2];
+                        return true;
+                    case "-h":
+                    case "--horizon":
+                        args[1] = cmd[2];
+                        return true;
                 }
             }
         }

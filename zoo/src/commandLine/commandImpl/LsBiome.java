@@ -31,15 +31,12 @@ public class LsBiome implements Command {
 
     @Override
     public String execute(String[] cmd) {
-        this.success = success;
+        this.success = true;
         return FormattingDisplay.formattingArrayList(Biome.NONE.list());
     }
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 2 && cmd[0].equals("biome") && cmd[1].equals("ls")) {
-            return true;
-        }
-        return false;
+        return cmd.length == 2 && cmd[0].equals("biome") && cmd[1].equals("ls");
     }
 }

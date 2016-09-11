@@ -30,15 +30,12 @@ public class LsSex implements Command{
 
     @Override
     public String execute(String[] cmd) {
-        this.success = success;
+        this.success = true;
         return FormattingDisplay.formattingArrayList(Sex.UNKNOWN.list());
     }
 
     @Override
     public boolean canExecute(String[] cmd) {
-        if (cmd.length == 2 && cmd[0].equals("sex") && cmd[1].equals("ls")) {
-            return true;
-        }
-        return false;
+        return cmd.length == 2 && cmd[0].equals("sex") && cmd[1].equals("ls");
     }
 }
