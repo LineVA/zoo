@@ -27,6 +27,20 @@ Liste des commandes :
     animal ls --paddock <name>
 > animal ls -s <name> : Liste des animaux de l'espèce 'name'
     animal ls --specie <name> 
+> animal ls -e 'id' : Liste des animaux selon l'écorégion d'identifiant 'id' dont est originaire l'espèce
+    animal ls --ecoregion 'id'
+> animal ls -f 'id' : Liste des animaux selon la famille d'identifiant 'id' de l'espèce
+    animal ls --family 'id'
+> animal ls -c 'id' : Liste des animaux selon le statut de conservation d'identifiant 'id' de l'espèce
+    animal ls --conservation 'id'
+> animal ls -size 'id' : Liste des animaux selon la taille d'identifiant 'id' de l'espèce
+    animal ls --size 'id'
+> aniaml ls -d 'id' : Liste des animaux selon le régime d'identifiant 'id' attribué à l'animal
+    animal ls --diet 'id'
+> aniaml ls -sex 'id' : Liste des animaux de sexe 'id'
+    animal ls --sex 'id'
+> aniaml ls -b 'id' : Liste des animaux présents dans des enclos ayant le biome 'id'
+    animal ls --biome 'id'
 > animal <name> : Détails de l'animal 'name'
 > animal <name> -d <id|regime> : Attribution du régime d'identifiant 'id' ou de nom 'regime' à l'animal 'name'
     animal <name> --diet <id|regime>
