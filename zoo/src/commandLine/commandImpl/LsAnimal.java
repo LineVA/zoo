@@ -80,6 +80,10 @@ public class LsAnimal implements Command {
             if (args[5] != null) {
                 spec.setFamily(Integer.parseInt(args[5]));
             }
+              if (args[6] != null) {
+                spec.setConservation(Integer.parseInt(args[6]));
+            }
+              
             this.success = true;
             ArrayList<String> names = new ArrayList<>();
             for (Animal animal : this.play.getZoo().listAnimal(pad, spec, sex, diet, biome)) {
