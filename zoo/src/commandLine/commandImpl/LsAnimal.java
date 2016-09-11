@@ -83,7 +83,9 @@ public class LsAnimal implements Command {
               if (args[6] != null) {
                 spec.setConservation(Integer.parseInt(args[6]));
             }
-              
+              if (args[7] != null) {
+               biome = Biome.NONE.findById(Integer.parseInt(args[7]));
+            }
             this.success = true;
             ArrayList<String> names = new ArrayList<>();
             for (Animal animal : this.play.getZoo().listAnimal(pad, spec, sex, diet, biome)) {
