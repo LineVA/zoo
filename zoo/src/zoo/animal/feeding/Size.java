@@ -10,7 +10,6 @@ import lombok.Getter;
  * @author doyenm
  */
 public enum Size {
-    NULL(-1),
     UNKNOWN(0),
     XXS(1),
     XS(2),

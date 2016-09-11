@@ -10,7 +10,6 @@ import lombok.Getter;
  * @author doyenm
  */
 public enum Family {
-    NULL(-1),
     UNKNOWN(0),
     CANIDAE(1),
     MUSTELIDAE(2),
