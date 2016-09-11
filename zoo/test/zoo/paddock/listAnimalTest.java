@@ -18,6 +18,7 @@ import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.ParserSpecie;
 import zoo.animal.specie.Specie;
+import zoo.paddock.biome.Biome;
 
 /**
  *
@@ -132,7 +133,7 @@ public class listAnimalTest {
         paddock.addAnimal(animal1);
         paddock.addAnimal(animal2);
         // When
-        LightSpecie light = new LightSpecie(null, -1, 2, -1, -1, -1, 2);
+        LightSpecie light = new LightSpecie(null, -1, 2, -1, -1, -1, -1);
         ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(1, results.size());
@@ -150,10 +151,42 @@ public class listAnimalTest {
         paddock.addAnimal(animal1);
         paddock.addAnimal(animal2);
         // When
-        LightSpecie light = new LightSpecie(null, -1, 2, -1, -1, -1, 2);
+        LightSpecie light = new LightSpecie(null, -1, -1, -1, -1, -1, -1);
         ArrayList<Animal> results = paddock.listAnimal(light, null, Diet.BACCIVOROUS, null);
         // Then 
         assertEquals(1, results.size());
         assertTrue(results.contains(animal2));
+    }
+    
+    @Test
+    public void shouldReturnOneAnimalWhenSexIsSpecified()
+            throws IncorrectDataException, NameException {
+        // Given
+        Animal animal1 = new AnimalImpl(specie1, "animal1", paddock, Sex.MALE, 0, opt);
+        Animal animal2 = new AnimalImpl(specie2, "animal2", paddock, Sex.FEMALE, 0, opt);
+        paddock.addAnimal(animal1);
+        paddock.addAnimal(animal2);
+        // When
+        LightSpecie light = new LightSpecie(null, -1, -1, -1, -1, -1, -1);
+        ArrayList<Animal> results = paddock.listAnimal(light, Sex.FEMALE, null, null);
+        // Then 
+        assertEquals(1, results.size());
+        assertTrue(results.contains(animal2));
+    }
+    
+    @Test
+    public void shouldReturnNoAnimalWhenBiomeIsSpecified()
+            throws IncorrectDataException, NameException {
+        // Given
+        Animal animal1 = new AnimalImpl(specie1, "animal1", paddock, Sex.UNKNOWN, 0, opt);
+        Animal animal2 = new AnimalImpl(specie2, "animal2", paddock, Sex.UNKNOWN, 0, opt);
+        paddock.addAnimal(animal1);
+        paddock.addAnimal(animal2);
+        paddock.setBiome("1");
+        // When
+        LightSpecie light = new LightSpecie(null, -1, -1, -1, -1, -1, -1);
+        ArrayList<Animal> results = paddock.listAnimal(light, null, null, Biome.DESERT);
+        // Then 
+        assertEquals(0, results.size());
     }
 }

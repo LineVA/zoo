@@ -264,6 +264,27 @@ public class Paddock implements Cloneable, IPaddock {
         }
         return list;
     }
+    
+     private ArrayList<Animal> listAnimalWithSex(ArrayList<Animal> animals,  Sex sex) {
+        ArrayList<Animal> list = animals;
+        Iterator it = list.iterator();
+        Animal next;
+        while (it.hasNext()) {
+            next = (AnimalImpl) it.next();
+            if (!next.getSex().equals(sex)) {
+                it.remove();
+            }
+        }
+        return list;
+    }
+     
+     private ArrayList<Animal> listAnimalWithBiome(ArrayList<Animal> animals,  Biome biome) {
+        ArrayList<Animal> list = animals;
+            if (this.biome != biome.getId()) {
+                list.removeAll(this.animals.values());
+            }
+        return list;
+    }
 
     public ArrayList<Animal> listAnimalWithoutCriteria() {
         ArrayList<Animal> list = new ArrayList<>();
@@ -293,12 +314,14 @@ public class Paddock implements Cloneable, IPaddock {
             list = listAnimalWithConservation(list,
                     ConservationStatus.UNKNOWN.findById(specie.getConservation()));
         }
-        if (specie.getConservation() != -1) {
-            list = listAnimalWithConservation(list,
-                    ConservationStatus.UNKNOWN.findById(specie.getConservation()));
+         if (sex != null) {
+            list = listAnimalWithSex(list, sex);
         }
         if (diet != null) {
             list = listAnimalWithDiet(list, diet);
+        }
+         if (biome != null) {
+            list = listAnimalWithBiome(list, biome);
         }
         return list;
     }
