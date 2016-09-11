@@ -147,10 +147,7 @@ public class Specie {
             return false;
         }
         final Specie other = (Specie) obj;
-        if (!Objects.equals(this.names, other.names)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.names, other.names);
     }
 
     public String getNameAccordingLanguage(Option option) {
@@ -158,10 +155,7 @@ public class Specie {
     }
 
     public boolean equals(LightSpecie light) {
-        if (!Objects.equals(this.names, light.getNames())) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.names, light.getNames());
     }
 
 }
