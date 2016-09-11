@@ -74,10 +74,14 @@ public class Option {
     }
 
     public void setLanguage(String lang) {
-        if (lang.equals("en") || lang.equals("")) {
-            locale = new Locale("");
-        } else if (lang.equals("fr")) {
-            locale = new Locale("fr");
+        switch (lang) {
+            case "en":
+            case "":
+                locale = new Locale("");
+                break;
+            case "fr":
+                locale = new Locale("fr");
+                break;
         }
         updateBundles();
     }
