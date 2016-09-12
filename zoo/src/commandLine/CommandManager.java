@@ -15,6 +15,7 @@ import commandLine.commandImpl.LoadZoo;
 import commandLine.commandImpl.LsAnimal;
 import commandLine.commandImpl.LsBiome;
 import commandLine.commandImpl.LsConservation;
+import commandLine.commandImpl.LsContinent;
 import commandLine.commandImpl.LsEcoregion;
 import commandLine.commandImpl.LsFamily;
 import commandLine.commandImpl.LsFeeding;
@@ -61,7 +62,7 @@ public abstract class CommandManager {
                 new FeedingAnimal(play),
                 new LsSex(play), new LsConservation(play),
                 new RemoveAnimal(play), new RemovePaddock(play), 
-                new LsBiome(play), new LsEcoregion(play),
+                new LsBiome(play), new LsEcoregion(play), new LsContinent(play),
                 new LsSpecie(play), new DetailSpecie(play), new LsFamily(play),
                 new LsFeeding(play), new LsSize(play),
                 new SaveZoo(play), new LoadZoo(play),
