@@ -1,6 +1,7 @@
 package zoo.paddock.biome;
 
 import exception.name.UnknownNameException;
+import java.util.ArrayList;
 import launch.options.Option;
 import lombok.Getter;
 
@@ -46,5 +47,14 @@ public enum Continent {
 
     public String toStringByLanguage() {
         return this.option.getConservationBundle().getString(this.toString().toUpperCase());
+    }
+    
+    public ArrayList<String> list() {
+        ArrayList<String> list = new ArrayList<>();
+        for (Continent continent : Continent.values()) {
+            list.add(continent.id + " - " +
+                    this.option.getContinentBundle().getString(continent.toString().toUpperCase()));
+        }
+        return list;
     }
 }
