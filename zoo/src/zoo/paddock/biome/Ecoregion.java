@@ -4,20 +4,17 @@ import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import launch.options.Option;
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  *
  * @author doyenm
  */
 public enum Ecoregion {
-    UNKNOWN(0, "Unknown"),
-    UNKNOWN2(1, "Unknown2");
+    UNKNOWN(0),
+    UNKNOWN2(1);
 
     @Getter
     private int id;
-    @Getter
-    private final String name;
     Option option;
     
      public void setOption(Option option) {
@@ -26,23 +23,12 @@ public enum Ecoregion {
          }
     }
 
-    Ecoregion(int id, String name) {
+    Ecoregion(int id) {
         this.id = id;
-        this.name = name;
     }
 
     public boolean equals(Ecoregion eco) {
         return eco.equals(this);
-    }
-
-    public Ecoregion findByName(String name) throws UnknownNameException {
-        for (Ecoregion region : Ecoregion.values()) {
-            if (region.getName().equalsIgnoreCase(name)) {
-                return region;
-            }
-        }
-        throw new UnknownNameException(
-                this.option.getEcoregionBundle().getString("UNKNOWN_NAME"));
     }
 
      public Ecoregion findById(int id) throws UnknownNameException {
