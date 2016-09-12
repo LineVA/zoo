@@ -106,11 +106,11 @@ public class Paddock implements IPaddock {
 
     @Override
     public void setBiome(String biomeName) throws UnknownNameException {
-        try {
+//        try {
             setBiome(Biome.NONE.findById(Integer.parseInt(biomeName)));
-        } catch (java.lang.NumberFormatException ex) {
-            setBiome(Biome.NONE.findByName(biomeName));
-        }
+//        } catch (java.lang.NumberFormatException ex) {
+//            setBiome(Biome.NONE.findByName(biomeName));
+//        }
     }
 
     @Override
