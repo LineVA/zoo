@@ -8,7 +8,6 @@ import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import backup.save.SaveImpl;
 import exception.name.EmptyNameException;
@@ -107,7 +106,7 @@ public class Paddock implements IPaddock {
     @Override
     public void setBiome(String biomeName) throws UnknownNameException {
 //        try {
-            setBiome(Biome.NONE.findById(Integer.parseInt(biomeName)));
+        setBiome(Biome.NONE.findById(Integer.parseInt(biomeName)));
 //        } catch (java.lang.NumberFormatException ex) {
 //            setBiome(Biome.NONE.findByName(biomeName));
 //        }
@@ -411,8 +410,8 @@ public class Paddock implements IPaddock {
     public int countNonMatureAnimals() {
         int count = 0;
         count = this.animals.entrySet().stream().filter(
-                (animalEntry) -> 
-                        (!animalEntry.getValue().isMature())).map((_item) -> 1).reduce(count, Integer::sum);
+                (animalEntry)
+                -> (!animalEntry.getValue().isMature())).map((_item) -> 1).reduce(count, Integer::sum);
         return count;
     }
 
@@ -430,10 +429,10 @@ public class Paddock implements IPaddock {
     public ArrayList<Animal> animalsOfTheSameSpecie(Specie specie) {
         ArrayList<Animal> sameSpecieAnimals = new ArrayList<>();
         this.animals.entrySet().stream().filter(
-                (animalEntry) -> 
-                        (animalEntry.getValue().isFromTheSameSpecie(specie))).forEach((animalEntry) -> {
-            sameSpecieAnimals.add(animalEntry.getValue());
-        });
+                (animalEntry)
+                -> (animalEntry.getValue().isFromTheSameSpecie(specie))).forEach((animalEntry) -> {
+                    sameSpecieAnimals.add(animalEntry.getValue());
+                });
         return sameSpecieAnimals;
     }
 
@@ -441,40 +440,40 @@ public class Paddock implements IPaddock {
     public ArrayList<String> listSpeciesByName() {
         ArrayList<String> listSpecie = new ArrayList<>();
         this.animals.entrySet().stream().filter(
-                (animalEntry) ->
-                        (!listSpecie.contains(animalEntry.getValue().getSpecie()))).forEach((animalEntry) -> {
-            listSpecie.add(animalEntry.getValue().getSpecie().getNameAccordingLanguage(option));
-        });
+                (animalEntry)
+                -> (!listSpecie.contains(animalEntry.getValue().getSpecie()))).forEach((animalEntry) -> {
+                    listSpecie.add(animalEntry.getValue().getSpecie().getNameAccordingLanguage(option));
+                });
         return listSpecie;
     }
 
     @Override
     public ArrayList<String> listSpeciesByName(ArrayList<String> presentedSpecies) {
         this.animals.entrySet().stream().map(
-                (animalEntry) -> 
-                        animalEntry.getValue().getSpecie().getNameAccordingLanguage(option)).filter((name) -> 
-                                (!presentedSpecies.contains(name))).forEach((name) -> {
-            presentedSpecies.add(name);
-        });
+                (animalEntry)
+                -> animalEntry.getValue().getSpecie().getNameAccordingLanguage(option)).filter((name)
+                        -> (!presentedSpecies.contains(name))).forEach((name) -> {
+                    presentedSpecies.add(name);
+                });
         return presentedSpecies;
     }
 
     @Override
     public ArrayList<Specie> listSpecies() {
         ArrayList<Specie> listSpecie = new ArrayList<>();
-        this.animals.entrySet().stream().filter((animalEntry) ->
-                (!listSpecie.contains(animalEntry.getValue().getSpecie()))).forEach((animalEntry) -> {
-            listSpecie.add(animalEntry.getValue().getSpecie());
-        });
+        this.animals.entrySet().stream().filter((animalEntry)
+                -> (!listSpecie.contains(animalEntry.getValue().getSpecie()))).forEach((animalEntry) -> {
+                    listSpecie.add(animalEntry.getValue().getSpecie());
+                });
         return listSpecie;
     }
 
     @Override
     public ArrayList<Specie> listSpecies(ArrayList<Specie> presentedSpecies) {
-        this.animals.entrySet().stream().filter((animalEntry) -> 
-                (!presentedSpecies.contains(animalEntry.getValue().getSpecie()))).forEach((animalEntry) -> {
-            presentedSpecies.add(animalEntry.getValue().getSpecie());
-        });
+        this.animals.entrySet().stream().filter((animalEntry)
+                -> (!presentedSpecies.contains(animalEntry.getValue().getSpecie()))).forEach((animalEntry) -> {
+                    presentedSpecies.add(animalEntry.getValue().getSpecie());
+                });
         return presentedSpecies;
     }
 
@@ -528,4 +527,11 @@ public class Paddock implements IPaddock {
         friend.hashCode();
         return this.coordinates;
     }
+
+    @Override
+    public int getBiome(SaveImpl.FriendSave friend) {
+        friend.hashCode();
+        return this.biome;
+    }
+
 }
