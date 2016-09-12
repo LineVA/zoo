@@ -16,20 +16,24 @@ public class FakePaddock {
     int y;
     int width;
     int height;
+    int biome;
     Option option;
 
-    public FakePaddock(String name, int x, int y, int width, int height) {
+    public FakePaddock(String name, int x, int y, int width, int height, int biome) {
         this.name = name;
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.biome = biome;
     }
     
     public IPaddock convertToPaddock(Option option) 
             throws IncorrectDimensionsException, EmptyNameException, NameException{
-        return new Paddock(this.name, new PaddockCoordinates(this.x, this.y, 
+        IPaddock tmpPad =  new Paddock(this.name, new PaddockCoordinates(this.x, this.y, 
                 this.width, this.height), new ArrayList<>(), option);
+        tmpPad.setBiome(Integer.toString(this.biome));
+        return tmpPad;
     }
     
     
