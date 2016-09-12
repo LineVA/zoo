@@ -23,10 +23,6 @@ public enum Continent {
         this.id = id;
     }
     
-    public boolean equals(Ecoregion eco){
-        return eco.equals(this);
-    }
-    
     static public Continent findById(int id) throws UnknownNameException{
           for(Continent continent : Continent.values()){
             if(continent.getId() == id){
