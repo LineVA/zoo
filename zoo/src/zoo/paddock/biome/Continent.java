@@ -9,7 +9,7 @@ import lombok.Getter;
  * @author doyenm
  */
 public enum Continent {
-    
+
     UNKNOWN(0),
     AFRICA(1),
     LATINAMERICA(2),
@@ -34,12 +34,17 @@ public enum Continent {
         }
     }
 
-    static public Continent findById(int id) throws UnknownNameException {
+    public Continent findById(int id) throws UnknownNameException {
         for (Continent continent : Continent.values()) {
             if (continent.getId() == id) {
                 return continent;
             }
         }
-        throw new UnknownNameException("No continent has this identifier.");
+        throw new UnknownNameException(
+                this.option.getContinentBundle().getString("UNKNOWN_CONTINENT"));
+    }
+
+    public String toStringByLanguage() {
+        return this.option.getConservationBundle().getString(this.toString().toUpperCase());
     }
 }
