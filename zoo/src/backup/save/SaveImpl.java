@@ -25,7 +25,7 @@ import zoo.paddock.biome.BiomeAttributes;
 public class SaveImpl implements Save {
 
     /**
-     * The privateclass used to access to all the fields of zoo, paddocks and animals
+     * The private class used to access to all the fields of zoo, paddocks and animals
      */
     public static final class FriendSave {
         private FriendSave() {
@@ -94,6 +94,7 @@ public class SaveImpl implements Save {
     private Element createElementPaddock(IPaddock pad) {
         Element el = new Element("paddock");
         el.setAttribute(createAttribute("name", pad.getName(friendSave)));
+        el.addContent(createElementWithText("biome", Integer.toString(pad.getBiome(friendSave))));
         el.addContent(createElementWithText("x", Integer.toString(pad.getCoordinates(friendSave).getX())));
         el.addContent(createElementWithText("y", Integer.toString(pad.getCoordinates(friendSave).getY())));
         el.addContent(createElementWithText("width", Integer.toString(pad.getCoordinates(friendSave).getWidth())));
