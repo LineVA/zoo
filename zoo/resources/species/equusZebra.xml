@@ -7,8 +7,8 @@
     <general>
         <uicn>3</uicn>
         <family>14</family>
-        <ecoregion>0</ecoregion>
         <continent>1</continent>
+        <ecoregion>0</ecoregion>
     </general>
     <reproduction>
         <femaleMaturity>66</femaleMaturity>

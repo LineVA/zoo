@@ -7,8 +7,8 @@
     <general>
         <uicn>1</uicn>
         <family>8</family>
+        <continent>1</continent>
         <ecoregion>1</ecoregion>
-        <continent>2</continent>
     </general>
     <reproduction>
         <femaleMaturity>24</femaleMaturity>
