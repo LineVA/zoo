@@ -22,6 +22,7 @@ import zoo.paddock.GaussianTerritoryAttributes;
 import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.Biome;
 import zoo.paddock.biome.BiomeAttributes;
+import zoo.paddock.biome.Continent;
 import zoo.paddock.biome.Ecoregion;
 import zoo.paddock.biome.GaussianBiomeAttributes;
 
@@ -58,6 +59,8 @@ public class Specie {
     @Getter
     private final int size;
     @Getter
+    private final int continent;
+    @Getter
     private GaussianBiomeAttributes gaussianBiome;
     @Getter
     private GaussianFeedingAttributes gaussianFeeding;
@@ -74,7 +77,7 @@ public class Specie {
             int diet, ReproductionAttributes repro,
             LifeSpanAttributes lifeSpan, int conservation,
             SocialAttributes social, TerritoryAttributes territory,
-            int ecoregion, int family, int biome, int size) {
+            int ecoregion, int family, int biome, int size, int continent) {
         this.names = names;
         this.specieBiome = biomeAtt;
         this.diet = diet;
@@ -87,6 +90,7 @@ public class Specie {
         this.specieTerritory = territory;
         this.conservation = conservation;
         this.biome = biome;
+        this.continent = continent;
         this.gaussianBiome = new GaussianBiomeAttributes(biomeAtt);
         this.gaussianFeeding = new GaussianFeedingAttributes(feeding);
         this.gaussianReproduction = new GaussianReproductionAttributes(repro);
@@ -118,6 +122,7 @@ public class Specie {
         info.add(bundle.getString("NAME") + this.names.getNameAccordingLanguage(option));
         info.add(bundle.getString("SCIENTIFIC_NAME") + this.names.getScientificName());
         info.add(bundle.getString("CONSERVATION") + ConservationStatus.UNKNOWN.findById(this.conservation).toStringByLanguage());
+        info.add(bundle.getString("CONTINENT") + Continent.OCEANIA.findById(this.continent).toStringByLanguage());
         info.add(bundle.getString("BIOME") + Biome.NONE.findById(this.biome).toStringByLanguage());
         info.add(bundle.getString("ECOREGION") + Ecoregion.UNKNOWN.findById(this.ecoregion).toStringByLanguage());
         info.add(bundle.getString("FAMILY") + Family.UNKNOWN.findById(this.family).toStringByLanguage());

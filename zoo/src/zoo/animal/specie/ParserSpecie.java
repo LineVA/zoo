@@ -41,8 +41,9 @@ public class ParserSpecie {
         SocialAttributes social = socialParser(root);
         TerritoryAttributes territory = territoryParser(root);
         int size = sizeParser(root);
+        int continent = continentParser(root);
         Specie spec = new Specie(names, biomeAtt, feeding, diet, repro, lifeSpan,
-                conservation, social, territory, region, family, biome, size);
+                conservation, social, territory, region, family, biome, size, continent);
         return spec;
     }
 
@@ -111,6 +112,10 @@ public class ParserSpecie {
     
     private static int sizeParser(Element root) {
         return Integer.parseInt(root.getChild("feeding").getChildText("size"));
+    }
+    
+     private static int continentParser(Element root) {
+        return Integer.parseInt(root.getChild("general").getChild("continent").getChildText("size"));
     }
 
 }
