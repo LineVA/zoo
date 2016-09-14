@@ -115,7 +115,7 @@ public class ParserSpecie {
     }
     
      private static int continentParser(Element root) {
-        return Integer.parseInt(root.getChild("general").getChild("continent").getChildText("size"));
+        return Integer.parseInt(root.getChild("general").getChildText("continent"));
     }
 
 }
