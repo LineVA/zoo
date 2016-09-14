@@ -122,7 +122,7 @@ public class Specie {
         info.add(bundle.getString("NAME") + this.names.getNameAccordingLanguage(option));
         info.add(bundle.getString("SCIENTIFIC_NAME") + this.names.getScientificName());
         info.add(bundle.getString("CONSERVATION") + ConservationStatus.UNKNOWN.findById(this.conservation).toStringByLanguage());
-        info.add(bundle.getString("CONTINENT") + Continent.OCEANIA.findById(this.continent).toStringByLanguage());
+        info.add(bundle.getString("CONTINENT") + Continent.UNKNOWN.findById(this.continent).toStringByLanguage());
         info.add(bundle.getString("BIOME") + Biome.NONE.findById(this.biome).toStringByLanguage());
         info.add(bundle.getString("ECOREGION") + Ecoregion.UNKNOWN.findById(this.ecoregion).toStringByLanguage());
         info.add(bundle.getString("FAMILY") + Family.UNKNOWN.findById(this.family).toStringByLanguage());
