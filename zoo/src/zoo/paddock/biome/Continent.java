@@ -46,7 +46,7 @@ public enum Continent {
     }
 
     public String toStringByLanguage() {
-        return this.option.getConservationBundle().getString(this.toString().toUpperCase());
+        return this.option.getContinentBundle().getString(this.toString().toUpperCase());
     }
     
     public ArrayList<String> list() {
