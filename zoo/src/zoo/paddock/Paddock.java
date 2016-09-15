@@ -33,6 +33,7 @@ import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.Family;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
+import zoo.paddock.biome.Continent;
 import zoo.paddock.biome.Ecoregion;
 
 /**
@@ -194,6 +195,19 @@ public class Paddock implements IPaddock {
         }
         return list;
     }
+    
+      private ArrayList<Animal> listAnimalWithContinent(ArrayList<Animal> animals, Continent continent) {
+        ArrayList<Animal> list = animals;
+        Iterator it = list.iterator();
+        Animal next;
+        while (it.hasNext()) {
+            next = (AnimalImpl) it.next();
+            if (!(next.getSpecie().getContinent() == continent.getId())) {
+                it.remove();
+            }
+        }
+        return list;
+    }
 
     private ArrayList<Animal> listAnimalWithSize(ArrayList<Animal> animals, Size size) {
         ArrayList<Animal> list = animals;
@@ -282,6 +296,10 @@ public class Paddock implements IPaddock {
         if (specie.getConservation() != -1) {
             list = listAnimalWithConservation(list,
                     ConservationStatus.UNKNOWN.findById(specie.getConservation()));
+        }
+        if (specie.getContinent()!= -1) {
+            list = listAnimalWithContinent(list,
+                    Continent.UNKNOWN.findById(specie.getContinent()));
         }
         if (sex != null) {
             list = listAnimalWithSex(list, sex);
