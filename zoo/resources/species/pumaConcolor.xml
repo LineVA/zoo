@@ -7,7 +7,10 @@
     <general>
         <uicn>1</uicn>
         <family>8</family>
-        <continent>1</continent>
+        <continents>
+            <continent>2</continent>
+            <continent>3</continent>
+        </continents>
         <ecoregion>1</ecoregion>
     </general>
     <reproduction>
