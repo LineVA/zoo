@@ -132,7 +132,7 @@ public class LsAnimal implements Command {
     }
 
     private boolean hasArgumentSex(String cmd) {
-        return cmd.equals("--sex") || cmd.equals("-sex");
+        return cmd.equals("--sex") || cmd.equals("-sx");
     }
 
     private boolean hasArgumentFamily(String cmd) {
@@ -140,7 +140,7 @@ public class LsAnimal implements Command {
     }
 
     private boolean hasArgumentConservation(String cmd) {
-        return cmd.equals("--conservation") || cmd.equals("-c");
+        return cmd.equals("--conservation") || cmd.equals("-cs");
     }
 
     private boolean hasArgumentBiome(String cmd) {
@@ -148,11 +148,11 @@ public class LsAnimal implements Command {
     }
 
     private boolean hasArgumentSize(String cmd) {
-        return cmd.equals("--size") || cmd.equals("-size");
+        return cmd.equals("--size") || cmd.equals("-sz");
     }
     
     private boolean hasArgumentContinent(String cmd) {
-        return cmd.equals("--continent") || cmd.equals("-continent");
+        return cmd.equals("--continent") || cmd.equals("-ct");
     }
 
     private boolean saveArgument(String arg, String value) {

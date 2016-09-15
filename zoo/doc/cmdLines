@@ -31,15 +31,15 @@ Liste des commandes :
     animal ls --ecoregion 'id'
 > animal ls -f 'id' : Liste des animaux selon la famille d'identifiant 'id' de l'espèce
     animal ls --family 'id'
-> animal ls -c 'id' : Liste des animaux selon le statut de conservation d'identifiant 'id' de l'espèce
+> animal ls -cs 'id' : Liste des animaux selon le statut de conservation d'identifiant 'id' de l'espèce
     animal ls --conservation 'id'
-> animal ls -size 'id' : Liste des animaux selon la taille d'identifiant 'id' de l'espèce
+> animal ls -sz 'id' : Liste des animaux selon la taille d'identifiant 'id' de l'espèce
     animal ls --size 'id'
-> animal ls -continent 'id' : Liste des animaux selon le continent d'origine d'identifiant 'id' de l'espèce
+> animal ls -ct 'id' : Liste des animaux selon le continent d'origine d'identifiant 'id' de l'espèce
     animal ls --continent 'id'
 > aniaml ls -d 'id' : Liste des animaux selon le régime d'identifiant 'id' attribué à l'animal
     animal ls --diet 'id'
-> aniaml ls -sex 'id' : Liste des animaux de sexe 'id'
+> aniaml ls -sx 'id' : Liste des animaux de sexe 'id'
     animal ls --sex 'id'
 > aniaml ls -b 'id' : Liste des animaux présents dans des enclos ayant le biome 'id'
     animal ls --biome 'id'
