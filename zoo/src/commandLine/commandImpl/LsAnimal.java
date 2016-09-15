@@ -29,6 +29,7 @@ public class LsAnimal implements Command {
     // args[6] : the argument after '--conservation'
     // args[7] : the argument after '--biome'
     // args[8] : the argument after '--size'
+    // args[9] : the argument after '--continent'
 
     String[] args;
 
@@ -82,6 +83,9 @@ public class LsAnimal implements Command {
             }
             if (args[8] != null) {
                 spec.setSize(Integer.parseInt(args[8]));
+            }
+            if (args[9] != null) {
+                spec.setContinent(Integer.parseInt(args[9]));
             }
             this.success = true;
             ArrayList<String> names = new ArrayList<>();
@@ -146,6 +150,10 @@ public class LsAnimal implements Command {
     private boolean hasArgumentSize(String cmd) {
         return cmd.equals("--size") || cmd.equals("-size");
     }
+    
+    private boolean hasArgumentContinent(String cmd) {
+        return cmd.equals("--continent") || cmd.equals("-continent");
+    }
 
     private boolean saveArgument(String arg, String value) {
         if (this.hasArgumentBiome(arg)) {
@@ -166,6 +174,8 @@ public class LsAnimal implements Command {
             args[8] = value;
         } else if (this.hasArgumentSpecie(arg)) {
             args[0] = value;
+        } else if (this.hasArgumentContinent(arg)) {
+            args[9] = value;
         } else {
             return false;
         }
@@ -174,7 +184,7 @@ public class LsAnimal implements Command {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        this.args = new String[]{null, null, null, null, null, null, null, null, null};
+        this.args = new String[]{null, null, null, null, null, null, null, null, null, null};
         if (firstCmd(cmd) && checkLength(cmd)) {
             int i = 2;
             while (i <= cmd.length - 2) {
