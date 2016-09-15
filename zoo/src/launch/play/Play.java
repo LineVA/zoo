@@ -46,4 +46,15 @@ abstract public class Play {
         this.bundle = bundle;
         this.option = opt;
     }
+    
+    public void updateOption(){
+         Diet.NONE.setOption(this.option);
+        Sex.UNKNOWN.setOption(this.option);
+        Ecoregion.UNKNOWN.setOption(this.option);
+        ConservationStatus.UNKNOWN.setOption(this.option);
+        Family.UNKNOWN.setOption(this.option);
+        Biome.NONE.setOption(this.option);
+        Size.UNKNOWN.setOption(this.option);
+        Continent.UNKNOWN.setOption(this.option);
+    }
 }

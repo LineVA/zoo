@@ -28,6 +28,7 @@ public class Options implements Command{
     public String execute(String[] cmd) {
         try { 
         this.play.getOption().setLanguage(cmd[2]);
+        this.play.updateOption();
         this.play.getZoo().setSpecies(InstanciateSpecies.instanciateSpecies("resources/species", this.play.getOption()));
         this.success = true;
         return this.play.getOption().getGeneralCmdBundle()
