@@ -52,7 +52,7 @@ public class ListAnimalTest {
         paddock.addAnimal(animal1);
         paddock.addAnimal(animal2);
         // When
-        LightSpecie light = new LightSpecie(null, -1, -1, -1, -1, -1, -1);
+        LightSpecie light = new LightSpecie(null, -1, -1, -1, -1, -1, -1, -1);
         ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(2, results.size());
@@ -69,7 +69,7 @@ public class ListAnimalTest {
         paddock.addAnimal(animal1);
         paddock.addAnimal(animal2);
         // When
-        LightSpecie light = new LightSpecie(null, -1, -1, 0, -1, -1, -1);
+        LightSpecie light = new LightSpecie(null, -1, -1, 0, -1, -1, -1, -1);
         ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(1, results.size());
@@ -85,7 +85,7 @@ public class ListAnimalTest {
         paddock.addAnimal(animal1);
         paddock.addAnimal(animal2);
         // When
-        LightSpecie light = new LightSpecie(specie2.getNames(), -1, -1, -1, -1, -1, -1);
+        LightSpecie light = new LightSpecie(specie2.getNames(), -1, -1, -1, -1, -1, -1, -1);
         ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(1, results.size());
@@ -101,7 +101,7 @@ public class ListAnimalTest {
         paddock.addAnimal(animal1);
         paddock.addAnimal(animal2);
         // When
-        LightSpecie light = new LightSpecie(null, -1, -1, -1, 2, -1, -1);
+        LightSpecie light = new LightSpecie(null, -1, -1, -1, 2, -1, -1, -1);
         ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(1, results.size());
@@ -117,7 +117,7 @@ public class ListAnimalTest {
         paddock.addAnimal(animal1);
         paddock.addAnimal(animal2);
         // When
-        LightSpecie light = new LightSpecie(null, -1, -1, -1, -1, -1, 2);
+        LightSpecie light = new LightSpecie(null, -1, -1, -1, -1, -1, 2, -1);
         ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(1, results.size());
@@ -133,7 +133,7 @@ public class ListAnimalTest {
         paddock.addAnimal(animal1);
         paddock.addAnimal(animal2);
         // When
-        LightSpecie light = new LightSpecie(null, -1, 2, -1, -1, -1, -1);
+        LightSpecie light = new LightSpecie(null, -1, 2, -1, -1, -1, -1, -1);
         ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(1, results.size());
@@ -151,7 +151,7 @@ public class ListAnimalTest {
         paddock.addAnimal(animal1);
         paddock.addAnimal(animal2);
         // When
-        LightSpecie light = new LightSpecie(null, -1, -1, -1, -1, -1, -1);
+        LightSpecie light = new LightSpecie(null, -1, -1, -1, -1, -1, -1, -1);
         ArrayList<Animal> results = paddock.listAnimal(light, null, Diet.BACCIVOROUS, null);
         // Then 
         assertEquals(1, results.size());
@@ -167,7 +167,7 @@ public class ListAnimalTest {
         paddock.addAnimal(animal1);
         paddock.addAnimal(animal2);
         // When
-        LightSpecie light = new LightSpecie(null, -1, -1, -1, -1, -1, -1);
+        LightSpecie light = new LightSpecie(null, -1, -1, -1, -1, -1, -1, -1);
         ArrayList<Animal> results = paddock.listAnimal(light, Sex.FEMALE, null, null);
         // Then 
         assertEquals(1, results.size());
@@ -184,7 +184,7 @@ public class ListAnimalTest {
         paddock.addAnimal(animal2);
         paddock.setBiome("1");
         // When
-        LightSpecie light = new LightSpecie(null, -1, -1, -1, -1, -1, -1);
+        LightSpecie light = new LightSpecie(null, -1, -1, -1, -1, -1, -1, -1);
         ArrayList<Animal> results = paddock.listAnimal(light, null, null, Biome.DESERT);
         // Then 
         assertEquals(0, results.size());

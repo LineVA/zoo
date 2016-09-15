@@ -24,10 +24,12 @@ public class LightSpecie {
     private  int biome;
     @Getter @Setter
     private  int size;
+    @Getter @Setter
+    private  int continent;
 
     public LightSpecie(Names names,
             int diet, int conservation,
-            int ecoregion, int family, int biome, int size) {
+            int ecoregion, int family, int biome, int size, int continent) {
         this.names = names;
         this.diet = diet;
         this.family = family;
@@ -35,5 +37,6 @@ public class LightSpecie {
         this.biome = biome;
         this.size = size;
         this.conservation = conservation;
+        this.continent = continent;
     }
 }
