@@ -3,6 +3,9 @@ package zoo.animal.specie;
 import exception.name.UnknownNameException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -41,9 +44,9 @@ public class ParserSpecie {
         SocialAttributes social = socialParser(root);
         TerritoryAttributes territory = territoryParser(root);
         int size = sizeParser(root);
-        int continent = continentParser(root);
+        ArrayList<Integer> continents = continentParser(root);
         Specie spec = new Specie(names, biomeAtt, feeding, diet, repro, lifeSpan,
-                conservation, social, territory, region, family, biome, size, continent);
+                conservation, social, territory, region, family, biome, size, continents);
         return spec;
     }
 
@@ -57,7 +60,7 @@ public class ParserSpecie {
         BiomeAttributes biome = new BiomeAttributes(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
         return biome;
     }
-    
+
     private static int biomeParser(Element root) {
         return Integer.parseInt(root.getChild("territory").getChildText("biome"));
     }
@@ -90,8 +93,8 @@ public class ParserSpecie {
         Element genEl = root.getChild("general");
         return Integer.parseInt(genEl.getChildText("ecoregion"));
     }
-   
-     private static int familyParser(Element root) {
+
+    private static int familyParser(Element root) {
         Element genEl = root.getChild("general");
         return Integer.parseInt(genEl.getChildText("family"));
     }
@@ -109,13 +112,22 @@ public class ParserSpecie {
     private static int dietParser(Element root) {
         return Integer.parseInt(root.getChild("feeding").getChildText("diet"));
     }
-    
+
     private static int sizeParser(Element root) {
         return Integer.parseInt(root.getChild("feeding").getChildText("size"));
     }
-    
-     private static int continentParser(Element root) {
-        return Integer.parseInt(root.getChild("general").getChildText("continent"));
+
+    private static ArrayList<Integer> continentParser(Element root) {
+        ArrayList<Integer> continents = new ArrayList<>();
+        Element continentsEl = root.getChild("general").getChild("continents");
+        List<Element> continent = continentsEl.getChildren("continent");
+        Iterator it = continent.iterator();
+        Element next;
+        while (it.hasNext()) {
+            next = (Element) it.next();
+            continents.add(Integer.parseInt(next.getText()));
+        }
+        return continents;
     }
 
 }
