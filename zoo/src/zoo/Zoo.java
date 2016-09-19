@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import backup.save.SaveImpl;
 import exception.name.NameException;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.ResourceBundle;
@@ -223,10 +224,10 @@ public class Zoo implements IZoo {
                 list.add(entry.getKey());
             });
         } else {
-            paddocks.entrySet().stream().filter((entry) -> 
-                    (entry.getValue().countAnimalsOfTheSameSpecie(specie) != 0)).forEach((entry) -> {
-                list.add(entry.getKey());
-            });
+            paddocks.entrySet().stream().filter((entry)
+                    -> (entry.getValue().countAnimalsOfTheSameSpecie(specie) != 0)).forEach((entry) -> {
+                        list.add(entry.getKey());
+                    });
         }
         return list;
     }
@@ -321,16 +322,16 @@ public class Zoo implements IZoo {
         throw new UnknownNameException(
                 this.option.getSpecieBundle().getString("UNKNOWN_NAME"));
     }
-    
-     @Override
-    public Specie findSpecieByScientificName(String specieName) 
+
+    @Override
+    public Specie findSpecieByScientificName(String specieName)
             throws EmptyNameException, UnknownNameException {
         if (specieName.trim().equals("")) {
             throw new EmptyNameException(
                     this.option.getSpecieBundle().getString("EMPTY_NAME"));
         }
-        for(Entry<String, Specie> specie : this.species.entrySet()){
-            if(specie.getValue().getNames().getScientificName().equals(specieName)){
+        for (Entry<String, Specie> specie : this.species.entrySet()) {
+            if (specie.getValue().getNames().getScientificName().equals(specieName)) {
                 return specie.getValue();
             }
         }
@@ -339,7 +340,7 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public Animal findAnimalByName(String animalName) 
+    public Animal findAnimalByName(String animalName)
             throws UnknownNameException, EmptyNameException {
         if (animalName.trim().equals("")) {
             throw new EmptyNameException(
@@ -357,9 +358,9 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<Animal> listAnimal(IPaddock paddock, 
-            LightSpecie specie, Sex sex, Diet diet, Biome biome) 
-            throws UnknownNameException{
+    public ArrayList<Animal> listAnimal(IPaddock paddock,
+            LightSpecie specie, Sex sex, Diet diet, Biome biome)
+            throws UnknownNameException {
         if (paddock == null) {
             ArrayList<Animal> list = new ArrayList<>();
             for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
@@ -372,16 +373,28 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<String> listSpecie(IPaddock paddock) {
-        ArrayList<String> list = new ArrayList<>();
+    public ArrayList<String> listSpecie(LightSpecie lightSpecie, IPaddock paddock) {
+        ArrayList<Specie> list = new ArrayList<>();
         if (paddock == null) {
             species.entrySet().stream().forEach((entry) -> {
-                list.add(entry.getValue().getNameAccordingLanguage(this.option));
+                list.add(entry.getValue());
             });
         } else {
-            list.addAll(paddock.listSpeciesByName());
+            list.addAll(paddock.listSpecies());
         }
-        return list;
+        Iterator it = list.iterator();
+        Specie next;
+        while (it.hasNext()) {
+            next = (Specie) it.next();
+            if (!next.compare(lightSpecie)) {
+                it.remove();
+            }
+        }
+        ArrayList<String> strList = new ArrayList<>();
+        for(Specie spec: list){
+            strList.add(spec.getNameAccordingLanguage(this.option));
+        }
+        return strList;
     }
 
     @Override
@@ -395,24 +408,24 @@ public class Zoo implements IZoo {
 
     @Override
     public void changeSpeed(int newSpeed) throws IncorrectDataException {
-        if(newSpeed > 0){
+        if (newSpeed > 0) {
             this.monthsPerEvaluation = newSpeed;
         } else {
             throw new IncorrectDataException(
-            this.option.getZooBundle().getString("MONTHS_GREATER_THAN_ZERO"));
+                    this.option.getZooBundle().getString("MONTHS_GREATER_THAN_ZERO"));
         }
     }
-    
-     @Override
+
+    @Override
     public void changeHorizon(int newHorizon) throws IncorrectDataException {
-        if(newHorizon> 0){
+        if (newHorizon > 0) {
             this.horizon = newHorizon;
         } else {
             throw new IncorrectDataException(
-            this.option.getZooBundle().getString("HORIZON_GREATER_THAN_ZERO"));
+                    this.option.getZooBundle().getString("HORIZON_GREATER_THAN_ZERO"));
         }
     }
-    
+
     @Override
     public ArrayList<String> info() {
         ArrayList<String> info = new ArrayList<>();
@@ -443,9 +456,9 @@ public class Zoo implements IZoo {
     @Override
     public ArrayList<Animal> getAnimals(TutorialPlayImpl_1.FriendScenario friend) {
         try {
-        friend.hashCode();
-        return this.listAnimal(null, null, null, null, null);
-        } catch(Exception ex){
+            friend.hashCode();
+            return this.listAnimal(null, null, null, null, null);
+        } catch (Exception ex) {
             System.out.println("ERROR  !!!!!!!!!!!!!!!!!");
             return null;
         }

@@ -68,7 +68,7 @@ public interface IZoo {
     public ArrayList<Animal> listAnimal(IPaddock paddock, LightSpecie specie,
             Sex sex, Diet diet, Biome biome) throws UnknownNameException;
 
-    public ArrayList<String> listSpecie(IPaddock paddock);
+    public ArrayList<String> listSpecie(LightSpecie lightSpecie, IPaddock paddock);
 
     public ArrayList<String> ageing() throws IncorrectDataException, NameException;
 
