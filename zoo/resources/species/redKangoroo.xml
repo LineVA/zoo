@@ -1,36 +1,38 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
-<names>
-    <fr>Kangourou roux</fr>
-    <en>Red kangoroo</en>
-    <scientific>Macropus rufus</scientific>
-  </names>
-  <general>
-    <uicn>1</uicn>
-    <family>15</family>
-        <continent>6</continent>
-    <ecoregion>0</ecoregion>
-  </general>
-  <reproduction>
-    <femaleMaturity>17</femaleMaturity>
-    <maleMaturity>27</maleMaturity>
-    <gestationFrequency>0.5</gestationFrequency>
-    <litterSize>1</litterSize>
-    <leavingAge>18</leavingAge>
-  </reproduction>
-  <lifespan>
-    <femaleLifespan>244</femaleLifespan>
-    <maleLifespan>244</maleLifespan>
-  </lifespan>
-  <territory>
-    <biome>13</biome>
-    <territorySize>0.5</territorySize>
-  </territory>
-  <feeding>
-    <diet>21</diet>
-    <quantity>1</quantity>
-    <size>4</size>
-  </feeding>
-  <social>
-    <groupSize>10</groupSize>
-  </social>
+    <names>
+        <fr>Kangourou roux</fr>
+        <en>Red kangoroo</en>
+        <scientific>Macropus rufus</scientific>
+    </names>
+    <general>
+        <uicn>1</uicn>
+        <family>15</family>
+        <continents>
+            <continent>6</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+    </general>
+    <reproduction>
+        <femaleMaturity>17</femaleMaturity>
+        <maleMaturity>27</maleMaturity>
+        <gestationFrequency>0.5</gestationFrequency>
+        <litterSize>1</litterSize>
+        <leavingAge>18</leavingAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>244</femaleLifespan>
+        <maleLifespan>244</maleLifespan>
+    </lifespan>
+    <territory>
+        <biome>13</biome>
+        <territorySize>0.5</territorySize>
+    </territory>
+    <feeding>
+        <diet>21</diet>
+        <quantity>1</quantity>
+        <size>4</size>
+    </feeding>
+    <social>
+        <groupSize>10</groupSize>
+    </social>
 </animal>
