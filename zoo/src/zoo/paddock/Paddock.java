@@ -202,7 +202,7 @@ public class Paddock implements IPaddock {
         Animal next;
         while (it.hasNext()) {
             next = (AnimalImpl) it.next();
-            if (!(next.getSpecie().getContinent() == continent.getId())) {
+            if (!(next.getSpecie().getContinents().contains(continent.getId()))) {
                 it.remove();
             }
         }
