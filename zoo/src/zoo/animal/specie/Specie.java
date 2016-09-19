@@ -137,20 +137,20 @@ public class Specie {
         return info;
     }
 
-    private String continentsToString() throws UnknownNameException{
+    private String continentsToString() throws UnknownNameException {
         String info = "";
         int next;
         Iterator it = this.continents.iterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             next = (Integer) it.next();
             info += Continent.UNKNOWN.findById(next).toStringByLanguage();
-            if(it.hasNext()){
+            if (it.hasNext()) {
                 info += ", ";
-            }        
+            }
         }
         return info;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -176,6 +176,33 @@ public class Specie {
 
     public boolean equals(LightSpecie light) {
         return Objects.equals(this.names, light.getNames());
+    }
+
+    public boolean compare(LightSpecie lightSpecie) {
+        boolean isCorresponding = true;
+        if (lightSpecie.getBiome() != -1) {
+            isCorresponding &= lightSpecie.getBiome() == this.biome;
+        }
+        if (lightSpecie.getEcoregion() != -1) {
+            isCorresponding &= lightSpecie.getEcoregion() == this.ecoregion;
+        }
+        if (lightSpecie.getDiet() != -1) {
+            isCorresponding &= lightSpecie.getDiet() == this.diet;
+        }
+        if (lightSpecie.getFamily()!= -1) {
+            isCorresponding &= lightSpecie.getFamily()== this.family;
+        }
+        if (lightSpecie.getConservation()!= -1) {
+            isCorresponding &= lightSpecie.getConservation()== this.conservation;
+        }
+        if (lightSpecie.getSize()!= -1) {
+            isCorresponding &= lightSpecie.getSize()== this.size;
+        }
+        if (lightSpecie.getContinent()!= -1) {
+            isCorresponding &= this.continents.contains(lightSpecie.getContinent());
+        }
+
+        return isCorresponding;
     }
 
 }
