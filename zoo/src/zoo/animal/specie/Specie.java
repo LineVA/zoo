@@ -2,6 +2,7 @@ package zoo.animal.specie;
 
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import launch.options.Option;
@@ -59,7 +60,7 @@ public class Specie {
     @Getter
     private final int size;
     @Getter
-    private final int continent;
+    private final ArrayList<Integer> continents;
     @Getter
     private GaussianBiomeAttributes gaussianBiome;
     @Getter
@@ -77,7 +78,7 @@ public class Specie {
             int diet, ReproductionAttributes repro,
             LifeSpanAttributes lifeSpan, int conservation,
             SocialAttributes social, TerritoryAttributes territory,
-            int ecoregion, int family, int biome, int size, int continent) {
+            int ecoregion, int family, int biome, int size, ArrayList<Integer> continents) {
         this.names = names;
         this.specieBiome = biomeAtt;
         this.diet = diet;
@@ -90,7 +91,7 @@ public class Specie {
         this.specieTerritory = territory;
         this.conservation = conservation;
         this.biome = biome;
-        this.continent = continent;
+        this.continents = continents;
         this.gaussianBiome = new GaussianBiomeAttributes(biomeAtt);
         this.gaussianFeeding = new GaussianFeedingAttributes(feeding);
         this.gaussianReproduction = new GaussianReproductionAttributes(repro);
@@ -122,7 +123,7 @@ public class Specie {
         info.add(bundle.getString("NAME") + this.names.getNameAccordingLanguage(option));
         info.add(bundle.getString("SCIENTIFIC_NAME") + this.names.getScientificName());
         info.add(bundle.getString("CONSERVATION") + ConservationStatus.UNKNOWN.findById(this.conservation).toStringByLanguage());
-        info.add(bundle.getString("CONTINENT") + Continent.UNKNOWN.findById(this.continent).toStringByLanguage());
+        info.add(bundle.getString("CONTINENT") + this.continentsToString());
         info.add(bundle.getString("BIOME") + Biome.NONE.findById(this.biome).toStringByLanguage());
         info.add(bundle.getString("ECOREGION") + Ecoregion.UNKNOWN.findById(this.ecoregion).toStringByLanguage());
         info.add(bundle.getString("FAMILY") + Family.UNKNOWN.findById(this.family).toStringByLanguage());
@@ -136,6 +137,20 @@ public class Specie {
         return info;
     }
 
+    private String continentsToString() throws UnknownNameException{
+        String info = "";
+        int next;
+        Iterator it = this.continents.iterator();
+        while(it.hasNext()){
+            next = (Integer) it.next();
+            info += Continent.UNKNOWN.findById(next).toStringByLanguage();
+            if(it.hasNext()){
+                info += ", ";
+            }        
+        }
+        return info;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
