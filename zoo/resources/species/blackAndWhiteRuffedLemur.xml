@@ -1,36 +1,38 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
-  <names>
-    <fr>Vari noir et blanc</fr>
-    <en>Black and white ruffed lemur</en>
-    <scientific>Varecia variegata</scientific>
-  </names>
-  <general>
-    <uicn>5</uicn>
-    <family>10</family>
-        <continent>1</continent>
-    <ecoregion>0</ecoregion>
-  </general>
-  <reproduction>
-    <femaleMaturity>20</femaleMaturity>
-    <maleMaturity>20</maleMaturity>
-    <gestationFrequency>1</gestationFrequency>
-    <litterSize>2</litterSize>
-    <leavingAge>6</leavingAge>
-  </reproduction>
-  <lifespan>
-    <femaleLifespan>228</femaleLifespan>
-    <maleLifespan>220</maleLifespan>
-  </lifespan>
-  <territory>
-    <biome>1</biome>
-    <territorySize>0.3</territorySize>
-  </territory>
-  <feeding>
-    <diet>5</diet>
-    <quantity>0.35</quantity>
-    <size>1</size>
-  </feeding>
-  <social>
-    <groupSize>4</groupSize>
-  </social>
+    <names>
+        <fr>Vari noir et blanc</fr>
+        <en>Black and white ruffed lemur</en>
+        <scientific>Varecia variegata</scientific>
+    </names>
+    <general>
+        <uicn>5</uicn>
+        <family>10</family>
+        <continents>
+            <continent>1</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+    </general>
+    <reproduction>
+        <femaleMaturity>20</femaleMaturity>
+        <maleMaturity>20</maleMaturity>
+        <gestationFrequency>1</gestationFrequency>
+        <litterSize>2</litterSize>
+        <leavingAge>6</leavingAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>228</femaleLifespan>
+        <maleLifespan>220</maleLifespan>
+    </lifespan>
+    <territory>
+        <biome>1</biome>
+        <territorySize>0.3</territorySize>
+    </territory>
+    <feeding>
+        <diet>5</diet>
+        <quantity>0.35</quantity>
+        <size>1</size>
+    </feeding>
+    <social>
+        <groupSize>4</groupSize>
+    </social>
 </animal>
