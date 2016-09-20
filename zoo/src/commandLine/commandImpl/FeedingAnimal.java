@@ -54,7 +54,7 @@ public class FeedingAnimal implements Command {
     }
 
     private boolean firstCmd(String[] cmd) {
-        if (cmd.length >= 4) {
+        if (cmd.length >= 4 && cmd.length <9 && cmd.length % 2 == 0) {
             if (cmd[0].equals("animal")) {
                 return true;
             }
