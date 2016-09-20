@@ -5,6 +5,7 @@ import commandLine.Command;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.Collections;
 import launch.play.Play;
 import utils.Constants;
 import zoo.animal.Animal;
@@ -82,7 +83,9 @@ public class LsSpecie implements Command {
         } catch (EmptyNameException | UnknownNameException ex) {
             return ex.getMessage();
         }
-        return FormattingDisplay.formattingArrayList(this.play.getZoo().listSpecie(light, pad));
+        ArrayList<String> list = this.play.getZoo().listSpecie(light, pad);
+        Collections.sort(list);
+        return FormattingDisplay.formattingArrayList(list);
     }
 
     public boolean firstCmd(String[] cmd) {

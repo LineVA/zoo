@@ -395,7 +395,6 @@ public class Zoo implements IZoo {
         for(Specie spec: list){
             strList.add(spec.getNameAccordingLanguage(this.option));
         }
-        Collections.sort(strList);
         return strList;
     }
 

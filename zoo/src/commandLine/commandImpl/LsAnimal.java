@@ -5,6 +5,7 @@ import commandLine.Command;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.Collections;
 import launch.play.Play;
 import utils.Constants;
 import zoo.animal.Animal;
@@ -56,8 +57,8 @@ public class LsAnimal implements Command {
         Diet diet = null;
         Biome biome = null;
         Sex sex = null;
-        LightSpecie spec = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, 
-                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, 
+        LightSpecie spec = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
+                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
         try {
             if (args[0] != null) {
@@ -95,6 +96,7 @@ public class LsAnimal implements Command {
             for (Animal animal : this.play.getZoo().listAnimal(pad, spec, sex, diet, biome)) {
                 names.add(animal.getName());
             }
+            Collections.sort(names);
             return FormattingDisplay.formattingArrayList(names);
         } catch (EmptyNameException | UnknownNameException ex) {
             return ex.getMessage();
@@ -153,7 +155,7 @@ public class LsAnimal implements Command {
     private boolean hasArgumentSize(String cmd) {
         return cmd.equals("--size") || cmd.equals("-sz");
     }
-    
+
     private boolean hasArgumentContinent(String cmd) {
         return cmd.equals("--continent") || cmd.equals("-ct");
     }

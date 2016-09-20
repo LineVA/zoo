@@ -4,6 +4,8 @@ import basicGui.FormattingDisplay;
 import commandLine.Command;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
+import java.util.ArrayList;
+import java.util.Collections;
 import launch.play.Play;
 import zoo.animal.specie.Specie;
 
@@ -20,15 +22,15 @@ public class LsPaddock implements Command {
     public LsPaddock(Play play) {
         this.play = play;
     }
-    
-      @Override
+
+    @Override
     public boolean hasInitiateAZoo() {
         return false;
     }
-    
+
     boolean success = false;
-    
-     @Override
+
+    @Override
     public boolean isSuccess() {
         return this.success;
     }
@@ -44,7 +46,9 @@ public class LsPaddock implements Command {
                 return ex.getMessage();
             }
         }
-        return FormattingDisplay.formattingArrayList(this.play.getZoo().listPaddock(spec));
+        ArrayList<String> list = this.play.getZoo().listPaddock(spec);
+        Collections.sort(list);
+        return FormattingDisplay.formattingArrayList(list);
     }
 
     public boolean firstCmd(String[] cmd) {
