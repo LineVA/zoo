@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import backup.save.SaveImpl;
 import exception.name.NameException;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -394,6 +395,7 @@ public class Zoo implements IZoo {
         for(Specie spec: list){
             strList.add(spec.getNameAccordingLanguage(this.option));
         }
+        Collections.sort(strList);
         return strList;
     }
 
