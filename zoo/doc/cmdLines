@@ -55,6 +55,7 @@ Liste des commandes :
 > biome ls : Liste des biomes
 > ecoregion ls : Liste des écorégions
 > size ls : Liste des tailles
+> diet ls : Liste des régimes
 
 > specie ls : Liste des espèces
 > specie ls -p <name> : liste des espèces dans l'enclos 'name'
