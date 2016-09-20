@@ -60,6 +60,21 @@ Liste des commandes :
 > specie ls : Liste des espèces
 > specie ls -p <name> : liste des espèces dans l'enclos 'name'
     specie ls --paddock <name>
+> specie ls -e 'id' : Liste des espèces selon l'écorégion d'identifiant 'id'
+    specie ls --ecoregion 'id'
+> specie ls -f 'id' : Liste des espèces selon la famille d'identifiant 'id' 
+    specie ls --family 'id'
+> specie ls -cs 'id' : Liste des espèces selon le statut de conservation d'identifiant 'id' 
+    specie ls --conservation 'id'
+> specie ls -sz 'id' : Liste des espèces selon la taille d'identifiant 'id' 
+    specie ls --size 'id'
+> specie ls -ct 'id' : Liste des espèces selon le continent d'origine d'identifiant 'id' 
+    specie ls --continent 'id'
+> specie ls -d 'id' : Liste des espèces selon le régime d'identifiant 'id' 
+    specie ls --diet 'id'
+> specie ls -b 'id' : Liste des espèces réclamant le biome 'id'
+    specie ls --biome 'id'
+
 > specie <name> : Détails de l'espèce 'name'
 
 > evaluate : Fin du tour, évaluation du zoo
