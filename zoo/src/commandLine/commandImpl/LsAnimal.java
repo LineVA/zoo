@@ -6,6 +6,7 @@ import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import launch.play.Play;
+import utils.Constants;
 import zoo.animal.Animal;
 import zoo.animal.feeding.Diet;
 import zoo.animal.reproduction.Sex;
@@ -55,7 +56,9 @@ public class LsAnimal implements Command {
         Diet diet = null;
         Biome biome = null;
         Sex sex = null;
-        LightSpecie spec = new LightSpecie(null, -1, -1, -1, -1, -1, -1, -1);
+        LightSpecie spec = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, 
+                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, 
+                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
         try {
             if (args[0] != null) {
                 spec.setNames(this.play.zoo.findSpecieByName(args[0]).getNames());

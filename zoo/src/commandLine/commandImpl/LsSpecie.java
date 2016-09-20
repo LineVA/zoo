@@ -6,6 +6,7 @@ import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import launch.play.Play;
+import utils.Constants;
 import zoo.animal.Animal;
 import zoo.animal.feeding.Diet;
 import zoo.animal.reproduction.Sex;
@@ -48,7 +49,9 @@ public class LsSpecie implements Command {
 
     @Override
     public String execute(String[] cmd) {
-        LightSpecie light = new LightSpecie(null, -1, -1, -1, -1, -1, -1, -1);
+        LightSpecie light = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
+                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
+                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
         IPaddock pad = null;
         try {
             if (args[0] != null) {
