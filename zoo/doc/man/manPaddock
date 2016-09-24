@@ -1,0 +1,31 @@
+Manuel d'aide pour les commandes 'paddock' : 
+Une commande faisant référence à un enclos peut commencer par le mot 'paddock' ou par le diminutif 'pad'.
+
+> paddock create name x y largeur hauteur : Crée un enclos de nom 'name', dont le coin supérieur gauche a pour coordonnées
+(x, y) et qui a 'largeur' pour largeur et 'hauteur' pour hauteur.
+Les distances sont mesurées en nombre de cases et doivent être strictement positives.
+Le coin supérieur gauche du zoo a (0,0) pour coordonnées ; le coin inférieur droit (largeur du zoo - 1, hauteur du zoo -1).
+A la création d'un enclos, différentes conditions sont vérifiées : 
+    - il n'existe pas d'enclos possédant déjà ce nom dans le zoo,
+    - l'enclos tout entier rentre dans les limites du zoo,
+    - il n'existe pas de case commune à un autre enclos.
+
+> paddock remove 'name' : Supprime l'enclos 'name' du zoo
+Si un biome était attribué à cet enclos et/ou si des animaux habitaient cet enclos, alors uls sont également supprimés.
+Un nouveau enclos peut être construit partiellement ou totalement à l'emplacement de celui qui vient d'être détruit.
+Si aucun enclos du zoo ne possédant le nom 'name', alors aucune action ne s'effectue et le joueur est prévenu.
+
+> paddock ls : affiche la liste, classée par ordre alphabétique, des différents enclos du zoo.
+Aucun tri n'est effectué quant aux différentes caractéristiques d'un enclos.
+
+> paddock 'name' : affiche les détails de l'enclos de nom 'name'
+Ces détails sont dans l'ordre les suivant s: 
+    - son nom, 
+    - ses coordonnées,
+    - le nom des enclos voisins ( ceux dont au moins une case est située à une distance inférieure ou égale à l'horizon d'une extréméité de l'enclos courant),
+    - le biome attribué à cet enclos
+Si aucun enclos ne possède ce nom, un message prévient le joueur.
+
+> paddock name --biome id : affecte le biome d'identifiant 'id' à l'enclos de nom 'name'
+Si aucun biome ne possède cet identifiant, aucune action n'est effectuée et un message d'erreur est affiché.
+Si aucun enclos ne possède ce nom, aucune action n'est effectuée et un message d'erreur est affiché.
