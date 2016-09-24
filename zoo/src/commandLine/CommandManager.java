@@ -23,6 +23,7 @@ import commandLine.commandImpl.LsPaddock;
 import commandLine.commandImpl.LsSex;
 import commandLine.commandImpl.LsSize;
 import commandLine.commandImpl.LsSpecie;
+import commandLine.commandImpl.Man;
 import commandLine.commandImpl.MapZoo;
 import commandLine.commandImpl.Options;
 import commandLine.commandImpl.RemoveAnimal;
@@ -66,7 +67,8 @@ public abstract class CommandManager {
                 new LsSpecie(play), new DetailSpecie(play), new LsFamily(play),
                 new LsFeeding(play), new LsSize(play),
                 new SaveZoo(play), new LoadZoo(play),
-                new Options(play), new ZooCharacteristics(play));
+                new Options(play), new ZooCharacteristics(play),
+                new Man(play));
     }
 
     public abstract String run(String cmd);
