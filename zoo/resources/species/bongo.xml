@@ -1,0 +1,39 @@
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+    <names>
+        <fr>Bongo</fr>
+        <en>Bongo</en>
+        <scientific>Tragelaphus eurycerus</scientific>
+    </names>
+    <general>
+        <uicn>2</uicn>
+        <family>19</family>
+        <continents>
+            <continent>1</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+    </general>
+    <reproduction>
+        <femaleMaturity>27</femaleMaturity>
+        <maleMaturity>30</maleMaturity>
+        <gestationFrequency>1</gestationFrequency>
+        <litterSize>1</litterSize>
+        <leavingAge>16</leavingAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>252</femaleLifespan>
+        <maleLifespan>252</maleLifespan>
+    </lifespan>
+    <territory>
+        <biome>1</biome>
+        <territorySize>4</territorySize>
+    </territory>
+    <feeding>
+        <diet>21</diet>
+        <quantity>20</quantity>
+        <size>7</size>
+    </feeding>
+    <social>
+        <groupSize>3</groupSize>
+    </social>
+</animal>
+
