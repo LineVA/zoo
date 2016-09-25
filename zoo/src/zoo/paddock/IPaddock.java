@@ -24,6 +24,8 @@ public interface IPaddock {
 
     public void setBiome(String biomeName) throws UnknownNameException;
 
+    public void setPaddockType(String paddockTypeId) throws UnknownNameException;
+
     public void addAnimal(Animal animal) throws AlreadyUsedNameException;
 
     public void removeAnimal(Animal animal);
@@ -33,7 +35,7 @@ public interface IPaddock {
     public Animal findAnimalByName(String animalName)
             throws UnknownNameException, EmptyNameException;
 
-    public ArrayList<Animal> listAnimal(LightSpecie specie, Sex sex, Diet diet, Biome biome) 
+    public ArrayList<Animal> listAnimal(LightSpecie specie, Sex sex, Diet diet, Biome biome)
             throws UnknownNameException;
 
     public ArrayList<String> birth()
@@ -78,7 +80,7 @@ public interface IPaddock {
     public void removeANeightbour(IPaddock paddock);
 
     public Option getOption();
-    
+
     public int getBiome();
 
     /**
@@ -90,6 +92,6 @@ public interface IPaddock {
     public Map<String, Animal> getAnimals(SaveImpl.FriendSave friend);
 
     public PaddockCoordinates getCoordinates(SaveImpl.FriendSave friend);
-    
+
     public int getBiome(SaveImpl.FriendSave friend);
 }

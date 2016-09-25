@@ -26,6 +26,7 @@ import commandLine.commandImpl.LsSize;
 import commandLine.commandImpl.LsSpecie;
 import commandLine.commandImpl.MapZoo;
 import commandLine.commandImpl.Options;
+import commandLine.commandImpl.PadTypePad;
 import commandLine.commandImpl.RemoveAnimal;
 import commandLine.commandImpl.RemovePaddock;
 import commandLine.commandImpl.SaveZoo;
@@ -64,7 +65,7 @@ public abstract class CommandManager {
                 new LsSex(play), new LsConservation(play),
                 new RemoveAnimal(play), new RemovePaddock(play), 
                 new LsBiome(play), new LsEcoregion(play), new LsContinent(play),
-                new LsPaddockType(play),
+                new LsPaddockType(play), new PadTypePad(play),
                 new LsSpecie(play), new DetailSpecie(play), new LsFamily(play),
                 new LsFeeding(play), new LsSize(play),
                 new SaveZoo(play), new LoadZoo(play),
