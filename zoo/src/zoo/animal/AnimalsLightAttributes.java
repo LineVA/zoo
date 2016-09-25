@@ -2,7 +2,6 @@ package zoo.animal;
 
 import lombok.Getter;
 import zoo.animal.feeding.FeedingAttributes;
-import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.paddock.biome.BiomeAttributes;
 
 /**

@@ -1,5 +1,6 @@
 package zoo.animal.death;
 
+import launch.options.Option;
 import lombok.Getter;
 
 /**
@@ -14,10 +15,9 @@ public class LifeSpanLightAttributes {
         this.lifeSpan = lifeSpan;
     }
 
-    @Override
-    public String toString() {
+    public String toStringByLanguage(Option option) {
         String info = "";
-        info += "life span = " + this.lifeSpan + ", ";
+        info += option.getLifespanBundle().getString("LIFESPAN") + this.lifeSpan;
         return info;
     }
 }

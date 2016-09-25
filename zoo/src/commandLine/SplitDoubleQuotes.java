@@ -3,7 +3,7 @@ package commandLine;
 import java.util.ArrayList;
 
 /**
- *
+ * Static class used to parse the cmd line into an array
  * @author doyenm
  */
 public class SplitDoubleQuotes {

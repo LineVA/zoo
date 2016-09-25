@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import launch.play.Play;
 import lombok.Getter;
+import gui.TextPane;
 
 /**
  *
@@ -24,7 +25,7 @@ public class MainGUI extends JFrame {
         this.setLayout(new FlowLayout());
         // To set the JFrame in fullscreen 
         Dimension dimension = new Dimension(600, 600);
-        TextPane editor = new TextPane(play, 700, 700);
+        TextPane editor =  new TextPane(play, 700, 700);
         JScrollPane scroll = new JScrollPane(editor);
         this.getContentPane().add(scroll);
         this.setSize(dimension);

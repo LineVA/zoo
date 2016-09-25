@@ -2,13 +2,16 @@ package zoo.animal;
 
 import backup.save.SaveImpl;
 import exception.IncorrectDataException;
+import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import zoo.animal.death.LifeSpanLightAttributes;
+import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
+import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
 import zoo.paddock.TerritoryAttributes;
@@ -31,6 +34,10 @@ public interface Animal {
 
     public boolean isFromTheSameSpecie(Specie specie);
 
+    public boolean isFromTheSameSpecie(LightSpecie specie);
+    
+    public boolean hasTheSameDiet(Diet diet);
+
     public ArrayList<Animal> findRoommatesOfTheSameSpecie();
 
     public boolean canBePregnant();
@@ -47,11 +54,15 @@ public interface Animal {
 
     public Specie getSpecie();
 
+    public Sex getSex();
+
     public int getActualLitterSize();
 
     public double getActualGestationFrequency();
 
     public IPaddock getPaddock();
+
+    public void setName(String name) throws EmptyNameException;
 
     /**
      * Friend pattern : give access to each of the fields of Animal only to the

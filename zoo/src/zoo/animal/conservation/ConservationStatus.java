@@ -1,6 +1,8 @@
 package zoo.animal.conservation;
 
 import exception.name.UnknownNameException;
+import java.util.ArrayList;
+import launch.options.Option;
 import lombok.Getter;
 
 /**
@@ -24,7 +26,14 @@ public enum ConservationStatus {
     double coefficient;
     @Getter
     double diameter;
+    Option option;
 
+    public void setOption(Option option){
+         for (ConservationStatus status : ConservationStatus.values()) {
+             status.option = option;
+         }
+    }
+    
     ConservationStatus(int id, double coef, double diam) {
         this.id = id;
         this.coefficient = coef;
@@ -37,6 +46,19 @@ public enum ConservationStatus {
                 return status;
             }
         }
-        throw new UnknownNameException("This conservation status does not exist.");
+        throw new UnknownNameException(this.option.getConservationBundle().getString("UNKNOWN_ID"));
+    }
+    
+    public String toStringByLanguage(){
+        return this.option.getConservationBundle().getString(this.toString().toUpperCase());
+    }
+    
+    public ArrayList<String> list() {
+        ArrayList<String> list = new ArrayList<>();
+        for (ConservationStatus status : ConservationStatus.values()) {
+            list.add(status.id + " - " +
+                    this.option.getConservationBundle().getString(status.toString().toUpperCase()));
+        }
+        return list;
     }
 }

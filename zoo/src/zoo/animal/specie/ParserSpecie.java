@@ -3,13 +3,15 @@ package zoo.animal.specie;
 import exception.name.UnknownNameException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.input.sax.XMLReaders;
 import zoo.animal.Names;
-import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.death.LifeSpanAttributes;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
@@ -30,18 +32,21 @@ public class ParserSpecie {
         document = sax.build(file);
         root = document.getRootElement();
         Names names = namesParser(root);
-        BiomeAttributes biome = biomeParser(root);
+        BiomeAttributes biomeAtt = biomeAttributesParser(root);
         int diet = dietParser(root);
         int region = ecoregionParser(root);
         int family = familyParser(root);
+        int biome = biomeParser(root);
         FeedingAttributes feeding = feedingParser(root);
         ReproductionAttributes repro = reproductionParser(root);
         LifeSpanAttributes lifeSpan = lifeSpanParser(root);
-        ConservationStatus conservation = conservationParser(root);
+        int conservation = conservationParser(root);
         SocialAttributes social = socialParser(root);
         TerritoryAttributes territory = territoryParser(root);
-        Specie spec = new Specie(names, biome, feeding, diet, repro, lifeSpan,
-                conservation, social, territory, region, family);
+        int size = sizeParser(root);
+        ArrayList<Integer> continents = continentParser(root);
+        Specie spec = new Specie(names, biomeAtt, feeding, diet, repro, lifeSpan,
+                conservation, social, territory, region, family, biome, size, continents);
         return spec;
     }
 
@@ -51,14 +56,18 @@ public class ParserSpecie {
                 nameEl.getChildText("scientific"));
     }
 
-    private static BiomeAttributes biomeParser(Element root) {
+    private static BiomeAttributes biomeAttributesParser(Element root) {
         BiomeAttributes biome = new BiomeAttributes(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
         return biome;
     }
 
+    private static int biomeParser(Element root) {
+        return Integer.parseInt(root.getChild("territory").getChildText("biome"));
+    }
+
     private static FeedingAttributes feedingParser(Element root) {
-        FeedingAttributes feeding = new FeedingAttributes(0.0);
-        return feeding;
+        Element feedingEl = root.getChild("feeding");
+        return new FeedingAttributes(Double.parseDouble(feedingEl.getChildText("quantity")));
     }
 
     private static ReproductionAttributes reproductionParser(Element root) {
@@ -72,20 +81,20 @@ public class ParserSpecie {
     private static LifeSpanAttributes lifeSpanParser(Element root) {
         Element lifeEl = root.getChild("lifespan");
         return new LifeSpanAttributes(Integer.parseInt(lifeEl.getChildText("femaleLifespan")),
-                Integer.parseInt(lifeEl.getChildText("maleLifeSpan")));
+                Integer.parseInt(lifeEl.getChildText("maleLifespan")));
     }
 
-    private static ConservationStatus conservationParser(Element root) throws UnknownNameException {
+    private static int conservationParser(Element root) throws UnknownNameException {
         Element consEl = root.getChild("general");
-        return ConservationStatus.UNKNOWN.findById(Integer.parseInt(consEl.getChildText("uicn")));
+        return Integer.parseInt(consEl.getChildText("uicn"));
     }
 
     private static int ecoregionParser(Element root) {
         Element genEl = root.getChild("general");
         return Integer.parseInt(genEl.getChildText("ecoregion"));
     }
-   
-     private static int familyParser(Element root) {
+
+    private static int familyParser(Element root) {
         Element genEl = root.getChild("general");
         return Integer.parseInt(genEl.getChildText("family"));
     }
@@ -102,6 +111,23 @@ public class ParserSpecie {
 
     private static int dietParser(Element root) {
         return Integer.parseInt(root.getChild("feeding").getChildText("diet"));
+    }
+
+    private static int sizeParser(Element root) {
+        return Integer.parseInt(root.getChild("feeding").getChildText("size"));
+    }
+
+    private static ArrayList<Integer> continentParser(Element root) {
+        ArrayList<Integer> continents = new ArrayList<>();
+        Element continentsEl = root.getChild("general").getChild("continents");
+        List<Element> continent = continentsEl.getChildren("continent");
+        Iterator it = continent.iterator();
+        Element next;
+        while (it.hasNext()) {
+            next = (Element) it.next();
+            continents.add(Integer.parseInt(next.getText()));
+        }
+        return continents;
     }
 
 }

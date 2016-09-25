@@ -2,7 +2,10 @@ package zoo.animal.specie;
 
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Objects;
+import java.util.ResourceBundle;
+import launch.options.Option;
 import lombok.Getter;
 import zoo.animal.Names;
 import zoo.animal.conservation.ConservationStatus;
@@ -11,13 +14,16 @@ import zoo.animal.death.LifeSpanAttributes;
 import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.feeding.GaussianFeedingAttributes;
+import zoo.animal.feeding.Size;
 import zoo.animal.reproduction.GaussianReproductionAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.GaussianSocialAttributes;
 import zoo.animal.social.SocialAttributes;
 import zoo.paddock.GaussianTerritoryAttributes;
 import zoo.paddock.TerritoryAttributes;
+import zoo.paddock.biome.Biome;
 import zoo.paddock.biome.BiomeAttributes;
+import zoo.paddock.biome.Continent;
 import zoo.paddock.biome.Ecoregion;
 import zoo.paddock.biome.GaussianBiomeAttributes;
 
@@ -48,7 +54,13 @@ public class Specie {
     @Getter
     private final int ecoregion;
     @Getter
-    private final ConservationStatus conservation;
+    private final int conservation;
+    @Getter
+    private final int biome;
+    @Getter
+    private final int size;
+    @Getter
+    private final ArrayList<Integer> continents;
     @Getter
     private GaussianBiomeAttributes gaussianBiome;
     @Getter
@@ -62,13 +74,13 @@ public class Specie {
     @Getter
     private GaussianTerritoryAttributes gaussianTerritoryAttributes;
 
-    public Specie(Names names, BiomeAttributes biome, FeedingAttributes feeding,
-            int diet, ReproductionAttributes repro, 
-            LifeSpanAttributes lifeSpan, ConservationStatus conservation, 
-            SocialAttributes social, TerritoryAttributes territory, 
-            int ecoregion, int family) {
+    public Specie(Names names, BiomeAttributes biomeAtt, FeedingAttributes feeding,
+            int diet, ReproductionAttributes repro,
+            LifeSpanAttributes lifeSpan, int conservation,
+            SocialAttributes social, TerritoryAttributes territory,
+            int ecoregion, int family, int biome, int size, ArrayList<Integer> continents) {
         this.names = names;
-        this.specieBiome = biome;
+        this.specieBiome = biomeAtt;
         this.diet = diet;
         this.family = family;
         this.ecoregion = ecoregion;
@@ -78,36 +90,64 @@ public class Specie {
         this.specieSocial = social;
         this.specieTerritory = territory;
         this.conservation = conservation;
-        this.gaussianBiome = new GaussianBiomeAttributes(biome);
+        this.biome = biome;
+        this.continents = continents;
+        this.gaussianBiome = new GaussianBiomeAttributes(biomeAtt);
         this.gaussianFeeding = new GaussianFeedingAttributes(feeding);
         this.gaussianReproduction = new GaussianReproductionAttributes(repro);
         this.gaussianLifeSpanAttributesSpan = new GaussianLifeSpanAttributes(lifeSpan);
         this.gaussianSocialAttributes = new GaussianSocialAttributes(social);
         this.gaussianTerritoryAttributes = new GaussianTerritoryAttributes(territory);
+        this.size = size;
     }
 
-    public boolean canBeInTheSamePaddock(Specie specie) throws UnknownNameException{
-        return Diet.NONE.findDietById(this.diet).isCompatible(specie.diet)
-                && Ecoregion.UNKNOWN.findById(this.ecoregion).equals(specie.ecoregion);
+    public boolean canBeInTheSamePaddock(Specie specie) throws UnknownNameException {
+        if (Diet.NONE.findDietById(this.diet).isCompatible(specie.diet)
+                && this.ecoregion == specie.ecoregion) {
+            return Size.UNKNOWN.findSizeById(this.size).areCloseEnough(specie.size);
+        }
+        return false;
     }
-    
-    public boolean canBeAfraidOf(Specie specie) throws UnknownNameException{
-        return Diet.NONE.findDietById(this.diet).canBeEatenBy(specie.diet)
-                && this.ecoregion == specie.ecoregion;
+
+    public boolean canBeAfraidOf(Specie specie) throws UnknownNameException {
+        if (Diet.NONE.findDietById(this.diet).canBeEatenBy(specie.diet)
+                && this.ecoregion == specie.ecoregion) {
+            return Size.UNKNOWN.findSizeById(this.size).areCloseEnough(specie.size);
+        }
+        return false;
     }
-    
-    public ArrayList<String> info() throws UnknownNameException {
+
+    public ArrayList<String> info(Option option) throws UnknownNameException {
         ArrayList<String> info = new ArrayList<>();
-        info.add("English name : " + this.names.getEnglishName());
-        info.add("Scientific name : " + this.names.getScientificName());
-        info.add("Conservation status : " + this.conservation.toString());
-        info.add("Ecoregion : " + Ecoregion.findById(this.ecoregion).toString());
-        info.add("Family : " + Family.findById(this.family).toString());
-        info.add("Diet : " + Diet.NONE.findDietById(diet).toString());
-        info.add("Reproduction attributes : " + this.specieReproduction.toString());
-        info.add("Life span attributes : " + this.specieLifeSpan.toString());
-        info.add("Group size : " + this.specieSocial.toString());
-        info.add("Territory size : " + this.specieTerritory.toString());
+        ResourceBundle bundle = option.getSpecieBundle();
+        info.add(bundle.getString("NAME") + this.names.getNameAccordingLanguage(option));
+        info.add(bundle.getString("SCIENTIFIC_NAME") + this.names.getScientificName());
+        info.add(bundle.getString("CONSERVATION") + ConservationStatus.UNKNOWN.findById(this.conservation).toStringByLanguage());
+        info.add(bundle.getString("CONTINENT") + this.continentsToString());
+        info.add(bundle.getString("BIOME") + Biome.NONE.findById(this.biome).toStringByLanguage());
+        info.add(bundle.getString("ECOREGION") + Ecoregion.UNKNOWN.findById(this.ecoregion).toStringByLanguage());
+        info.add(bundle.getString("FAMILY") + Family.UNKNOWN.findById(this.family).toStringByLanguage());
+        info.add(bundle.getString("DIET") + Diet.NONE.findDietById(diet).toStringByLanguage());
+        info.add(bundle.getString("SIZE") + Size.UNKNOWN.findSizeById(size).toStringByLanguage());
+        info.add(bundle.getString("REPRODUCTION_ATT") + this.specieReproduction.toStringByLanguage(option));
+        info.add(bundle.getString("LIFESPAN_ATT") + this.specieLifeSpan.toStringByLanguage(option));
+        info.add(bundle.getString("SOCIAL_ATT") + this.specieSocial.toStringByLanguage(option));
+        info.add(bundle.getString("FEEDING_ATT") + this.specieFeeding.toStringByLanguage(option));
+        info.add(bundle.getString("TERRITORY_ATT") + this.specieTerritory.toStringByLanguage(option));
+        return info;
+    }
+
+    private String continentsToString() throws UnknownNameException {
+        String info = "";
+        int next;
+        Iterator it = this.continents.iterator();
+        while (it.hasNext()) {
+            next = (Integer) it.next();
+            info += Continent.UNKNOWN.findById(next).toStringByLanguage();
+            if (it.hasNext()) {
+                info += ", ";
+            }
+        }
         return info;
     }
 
@@ -127,11 +167,42 @@ public class Specie {
             return false;
         }
         final Specie other = (Specie) obj;
-        if (!Objects.equals(this.names, other.names)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.names, other.names);
     }
-    
-    
+
+    public String getNameAccordingLanguage(Option option) {
+        return this.names.getNameAccordingLanguage(option);
+    }
+
+    public boolean equals(LightSpecie light) {
+        return Objects.equals(this.names, light.getNames());
+    }
+
+    public boolean compare(LightSpecie lightSpecie) {
+        boolean isCorresponding = true;
+        if (lightSpecie.getBiome() != -1) {
+            isCorresponding &= lightSpecie.getBiome() == this.biome;
+        }
+        if (lightSpecie.getEcoregion() != -1) {
+            isCorresponding &= lightSpecie.getEcoregion() == this.ecoregion;
+        }
+        if (lightSpecie.getDiet() != -1) {
+            isCorresponding &= lightSpecie.getDiet() == this.diet;
+        }
+        if (lightSpecie.getFamily()!= -1) {
+            isCorresponding &= lightSpecie.getFamily()== this.family;
+        }
+        if (lightSpecie.getConservation()!= -1) {
+            isCorresponding &= lightSpecie.getConservation()== this.conservation;
+        }
+        if (lightSpecie.getSize()!= -1) {
+            isCorresponding &= lightSpecie.getSize()== this.size;
+        }
+        if (lightSpecie.getContinent()!= -1) {
+            isCorresponding &= this.continents.contains(lightSpecie.getContinent());
+        }
+
+        return isCorresponding;
+    }
+
 }

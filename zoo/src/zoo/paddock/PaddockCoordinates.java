@@ -1,6 +1,7 @@
 package zoo.paddock;
 
 import exception.IncorrectDimensionsException;
+import java.util.ResourceBundle;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -70,10 +71,11 @@ public class PaddockCoordinates {
         return notCompeting;
     }
     
-    @Override
-    public String toString(){
-        return "x = " + this.x + ", y = " + this.y + 
-                ", width = " + this.width + ", height = " + this.height;
+    public String toStringByLanguage(ResourceBundle bundle){
+        return bundle.getString("X") + this.x + ", " 
+                + bundle.getString("Y") + this.y +  ", "
+                + bundle.getString("WIDTH") + this.width + ", " 
+                + bundle.getString("HEIGHT") + this.height;
     }
     
     public int computeSize(){

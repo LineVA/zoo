@@ -1,6 +1,7 @@
 package zoo.animal.feeding;
 
 import exception.IncorrectDataException;
+import launch.options.Option;
 import lombok.Getter;
 
 /**
@@ -24,8 +25,7 @@ public class FeedingAttributes {
         }
     }
     
-    @Override
-    public String toString(){
-        return "food quantity = " + this.foodQuantity;
+    public String toStringByLanguage(Option option){
+        return option.getDietBundle().getString("FOOD_QUANTITY") + this.foodQuantity;
     }
 }

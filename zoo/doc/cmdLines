@@ -1,0 +1,80 @@
+Liste des commandes :
+
+> load <name> : Chargement du zoo contenu dans le fichier './gameBackUps/name.xml'
+> save <name> : Sauvegarde du zoo dans le fichier './gameBackUps/name.xml' 
+
+> zoo create <name> <width> <height> : Création d'un zoo nommé 'name' de largeur 'width' et de hauteur 'height'
+> zoo map : Affichage de la carte du zoo
+> zoo : Détails du zoo
+> zoo -s <speed> : Modification du nombre de mois par tour à 'speed'
+    zoo --speed <speed>
+> zoo -h <horizon> : Modification du nombre de cases pour l'horizon à 'horizon' (calcul du voisinage d'un enclos)
+    zoo --horizon <horizon> 
+
+> paddock create <name> <x> <y> <width> <height> : Création d'un enclos nommé 'name' de coordonnées 'x' et 'y', de largueur 'width' et de hauteur 'height'
+> paddock ls : Liste des enclos
+ > paddock ls -s <name> : Liste des enclos contenant l'espèce 'name'
+    paddock ls --specie <name>
+> paddock <name> : Affichage des détails de l'enclos 'name'
+> paddock <name> --biome <id|name2> : 
+    paddock <name> -b <id|name2> : Attribution du biome d'identifiant 'id' ou de nom 'name2' à l'enclos 'name'
+> paddock remove <name> : Suppression du paddock 'name'
+
+> animal create <name> <enclos> <espece> <sexe> : Création d'un animal nommé 'name', de l'espèce 'espece' et de sexe 'sexe' dans l'enclos 'enclos'
+> animal remove <name> : Suppression de l'animal 'name'
+> animal ls : Liste des animaux
+> animal ls -p <name> : Liste des animaux dans l'enclos 'name'
+    animal ls --paddock <name>
+> animal ls -s <name> : Liste des animaux de l'espèce 'name'
+    animal ls --specie <name> 
+> animal ls -e 'id' : Liste des animaux selon l'écorégion d'identifiant 'id' dont est originaire l'espèce
+    animal ls --ecoregion 'id'
+> animal ls -f 'id' : Liste des animaux selon la famille d'identifiant 'id' de l'espèce
+    animal ls --family 'id'
+> animal ls -cs 'id' : Liste des animaux selon le statut de conservation d'identifiant 'id' de l'espèce
+    animal ls --conservation 'id'
+> animal ls -sz 'id' : Liste des animaux selon la taille d'identifiant 'id' de l'espèce
+    animal ls --size 'id'
+> animal ls -ct 'id' : Liste des animaux selon le continent d'origine d'identifiant 'id' de l'espèce
+    animal ls --continent 'id'
+> aniaml ls -d 'id' : Liste des animaux selon le régime d'identifiant 'id' attribué à l'animal
+    animal ls --diet 'id'
+> aniaml ls -sx 'id' : Liste des animaux de sexe 'id'
+    animal ls --sex 'id'
+> aniaml ls -b 'id' : Liste des animaux présents dans des enclos ayant le biome 'id'
+    animal ls --biome 'id'
+> animal <name> : Détails de l'animal 'name'
+> animal <name> -d <id|regime> : Attribution du régime d'identifiant 'id' ou de nom 'regime' à l'animal 'name'
+    animal <name> --diet <id|regime>
+> animal <name> -fq <quantite> : Attribution de la quantité de nourriture 'quantite' à l'animal 'name'
+    animal <name> --foodQuantity <quantite>
+
+> conservation ls : Liste des statuts de conservation
+> sex ls : Liste des sexes
+> family ls : Liste des familles
+> biome ls : Liste des biomes
+> ecoregion ls : Liste des écorégions
+> size ls : Liste des tailles
+> diet ls : Liste des régimes
+
+> specie ls : Liste des espèces
+> specie ls -p <name> : liste des espèces dans l'enclos 'name'
+    specie ls --paddock <name>
+> specie ls -e 'id' : Liste des espèces selon l'écorégion d'identifiant 'id'
+    specie ls --ecoregion 'id'
+> specie ls -f 'id' : Liste des espèces selon la famille d'identifiant 'id' 
+    specie ls --family 'id'
+> specie ls -cs 'id' : Liste des espèces selon le statut de conservation d'identifiant 'id' 
+    specie ls --conservation 'id'
+> specie ls -sz 'id' : Liste des espèces selon la taille d'identifiant 'id' 
+    specie ls --size 'id'
+> specie ls -ct 'id' : Liste des espèces selon le continent d'origine d'identifiant 'id' 
+    specie ls --continent 'id'
+> specie ls -d 'id' : Liste des espèces selon le régime d'identifiant 'id' 
+    specie ls --diet 'id'
+> specie ls -b 'id' : Liste des espèces réclamant qle biome 'id'
+    specie ls --biome 'id'
+
+> specie <name> : Détails de l'espèce 'name'
+
+> evaluate : Fin du tour, évaluation du zoo

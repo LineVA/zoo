@@ -23,14 +23,22 @@ public class MapZoo implements Command {
     public boolean hasInitiateAZoo() {
         return false;
     }
+    
+    boolean success = false;
+    
+     @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
 
     @Override
     public String execute(String[] cmd) {
         try {
             ArrayList<PaddockCoordinates> map = this.play.getZoo().map();
+            this.success = true;
             return FormattingDisplay.zooMap(map);
         } catch (IncorrectDimensionsException ex) {
-            return "Fail !";
+            return ex.getMessage();
         }
     }
 

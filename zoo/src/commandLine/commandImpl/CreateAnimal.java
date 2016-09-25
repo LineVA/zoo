@@ -2,11 +2,9 @@ package commandLine.commandImpl;
 
 import commandLine.Command;
 import exception.IncorrectDataException;
-import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
+import exception.name.NameException;
 import exception.name.UnknownNameException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import launch.play.Play;
 import zoo.animal.Animal;
 import zoo.animal.AnimalImpl;
@@ -15,12 +13,18 @@ import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
 
 /**
- *
  * @author doyenm
  */
 public class CreateAnimal implements Command {
 
     Play play;
+
+    boolean success = false;
+
+    @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
 
     public CreateAnimal(Play play) {
         this.play = play;
@@ -35,16 +39,20 @@ public class CreateAnimal implements Command {
     public String execute(String[] cmd) {
         try {
             this.play.getZoo().findAnimalByName(cmd[2]);
-            return "There is already an animal with this name in the zoo.";
+            return this.play.getOption().getGeneralCmdBundle()
+                    .getString("ALREADY_EXISTING_ANIMAL_NAME");
         } catch (UnknownNameException ex1) {
             try {
                 IPaddock pad = this.play.getZoo().findPaddockByName(cmd[3]);
-                Specie specie = this.play.getZoo().findSpeciebyName(cmd[4]);
+                Specie specie = this.play.getZoo().findSpecieByName(cmd[4]);
                 Sex sex = Sex.MALE.findByName(cmd[5]);
-                Animal animal = new AnimalImpl(specie, cmd[2], pad, sex);
+                Animal animal = new AnimalImpl(specie, cmd[2], pad,
+                        sex, this.play.getOption());
                 pad.addAnimal(animal);
-                return "The animal has been created.";
-            } catch (EmptyNameException | UnknownNameException | AlreadyUsedNameException | IncorrectDataException ex) {
+                this.success = true;
+                return this.play.getOption().getGeneralCmdBundle()
+                        .getString("ANIMAL_CREATION_SUCCESS");
+            } catch (NameException | IncorrectDataException ex) {
                 return ex.getMessage();
             }
         } catch (EmptyNameException ex) {

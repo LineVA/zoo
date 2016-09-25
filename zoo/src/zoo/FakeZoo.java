@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 import launch.InstanciateSpecies;
 import lombok.Getter;
+import launch.options.Option;
 import org.jdom2.JDOMException;
 import zoo.animal.specie.Specie;
 
@@ -35,12 +36,13 @@ public class FakeZoo {
         this.monthsPerEvaluation = monthsPerEvaluation;
         this.horizon = horizon;
     }
-
-    public IZoo convertToZoo() throws IOException, JDOMException {
-        Map<String, Specie> spec = InstanciateSpecies.instanciateSpecies("resources/species");
-        IZoo zoo = new Zoo();
-        zoo.initiateZoo(this.name, this.width, this.height, spec, this.age,
-                this.monthsPerEvaluation, this.horizon);
-        return zoo;
+    
+    public IZoo convertToZoo(Option option) throws IOException, JDOMException{
+         Map<String, Specie> spec = InstanciateSpecies.instanciateSpecies("resources/species", option);
+         IZoo zoo = new Zoo();
+         zoo.initiateZoo(this.name, this.width, this.height, spec, this.age, 
+                 this.monthsPerEvaluation, this.horizon);
+         zoo.setOption(option);
+         return zoo;
     }
 }

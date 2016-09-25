@@ -1,6 +1,8 @@
 
 package zoo.animal.death;
 
+import java.util.ResourceBundle;
+import launch.options.Option;
 import lombok.Getter;
 
 /**
@@ -18,11 +20,11 @@ public class LifeSpanAttributes {
         this.maleLifeSpan = maleLifeSpan;
     }
     
-     @Override
-    public String toString() {
+    public String toStringByLanguage(Option option) {
+         ResourceBundle bundle = option.getLifespanBundle();
         String info = "";
-        info += "life span (female) = " + this.femaleLifeSpan + ", ";
-        info += "life span (male) = " + this.maleLifeSpan;
+        info += bundle.getString("FEMALE_LIFESPAN") + this.femaleLifeSpan + ", ";
+        info += bundle.getString("MALE_LIFESPAN") + this.maleLifeSpan;
         return info;
     }
 }

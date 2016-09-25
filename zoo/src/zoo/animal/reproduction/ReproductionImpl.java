@@ -2,6 +2,7 @@ package zoo.animal.reproduction;
 
 import exception.IncorrectDataException;
 import exception.name.EmptyNameException;
+import exception.name.NameException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import zoo.statistics.Uniform;
@@ -31,7 +32,7 @@ public class ReproductionImpl implements Reproduction {
 
     @Override
     public ArrayList<Animal> reproducte(Animal animal)
-            throws IncorrectDataException, EmptyNameException {
+            throws IncorrectDataException, NameException {
         if (canFemaleReproducte(animal)) {
             Animal father = whichMale(animal.findRoommatesOfTheSameSpecie());
             if (father != null) {
@@ -50,14 +51,14 @@ public class ReproductionImpl implements Reproduction {
      * the babies
      */
     public ArrayList<Animal> generateFamily(Animal mother, Animal father)
-            throws IncorrectDataException, EmptyNameException {
+            throws IncorrectDataException, EmptyNameException, NameException {
         ArrayList<Animal> family = new ArrayList<>();
         family.add(mother);
         family.add(father);
         int litterSize = uniform.intAverage(mother.getActualLitterSize());
+        System.out.println(litterSize);
         for (int i = 0; i < litterSize; i++) {
-            family.add(generateAnimal(mother.getSpecie(), mother.getName()
-                    + father.getName() + i, mother.getPaddock()));
+            family.add(generateAnimal(mother.getSpecie(), "", mother.getPaddock()));
         }
         return family;
     }
@@ -70,14 +71,15 @@ public class ReproductionImpl implements Reproduction {
      * @param pad its paddock
      * @return the baby
      */
-    public Animal generateAnimal(Specie spec, String name, IPaddock pad) throws IncorrectDataException, EmptyNameException {
+    public Animal generateAnimal(Specie spec, String name, IPaddock pad)
+            throws IncorrectDataException, EmptyNameException, NameException {
         Sex sex;
         if (uniform.nextBoolean()) {
             sex = Sex.FEMALE;
         } else {
             sex = Sex.MALE;
         }
-        return new AnimalImpl(spec, name, pad, sex, 0);
+        return new AnimalImpl(spec, name, pad, sex, pad.getOption());
     }
 
     /**

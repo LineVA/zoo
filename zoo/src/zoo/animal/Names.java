@@ -1,6 +1,7 @@
 package zoo.animal;
 
 import java.util.Objects;
+import launch.options.Option;
 import lombok.Getter;
 
 /**
@@ -22,6 +23,14 @@ public class Names {
         this.scientificName = scientificName;
     }
 
+    public String getNameAccordingLanguage(Option option) {
+        if (option.getLocale().getLanguage().equals("fr")) {
+            return this.frenchName;
+        } else {
+            return this.englishName;
+        }
+    }
+    
     @Override
     public int hashCode() {
         int hash = 3;

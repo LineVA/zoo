@@ -10,14 +10,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import backup.save.SaveImpl;
+import exception.name.NameException;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.ResourceBundle;
 import java.util.TreeMap;
+import launch.options.Option;
+import lombok.Getter;
+import lombok.Setter;
+import launch.play.tutorials.TutorialPlayImpl_1;
 import zoo.animal.Animal;
+import zoo.animal.feeding.Diet;
+import zoo.animal.reproduction.Sex;
+import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
 import zoo.evaluation.Evaluation;
 import zoo.paddock.IPaddock;
 import zoo.paddock.Paddock;
+import zoo.paddock.PaddockBuilder;
+import zoo.paddock.biome.Biome;
 
 /**
  *
@@ -25,6 +38,13 @@ import zoo.paddock.Paddock;
  */
 public class Zoo implements IZoo {
 
+    @Getter
+    @Setter
+    private Option option;
+
+//    public void setOption(Option option) {
+//        this.option = option;
+//    }
     /**
      * The name of the zoo
      */
@@ -44,6 +64,7 @@ public class Zoo implements IZoo {
     /**
      * The HashMap of the existing species
      */
+    @Setter
     private Map<String, Specie> species;
     /**
      * The number of months which flows when we evaluate the zoo
@@ -59,7 +80,7 @@ public class Zoo implements IZoo {
      */
     private double grade;
     private int horizon;
-    
+
     public Zoo() {
         //  this.monthsPerEvaluation = 6;
     }
@@ -80,13 +101,14 @@ public class Zoo implements IZoo {
             Map<String, Specie> species, int age, int monthsPerEvaluation, int horizon)
             throws IncorrectDimensionsException, EmptyNameException, IOException {
         if (name.trim().equals("")) {
-            throw new EmptyNameException("A zoo cannot have an empty name.");
+            throw new EmptyNameException(
+                    this.option.getZooBundle().getString("EMPTY_NAME"));
         } else {
             this.name = name;
         }
         if (width < 1 || height < 1) {
-            throw new IncorrectDimensionsException("A zoo must have a width and "
-                    + "an height greater or equals to 1 each.");
+            throw new IncorrectDimensionsException(
+                    this.option.getZooBundle().getString("INCORRECT_DIMENSIONS"));
         } else {
             this.width = width;
             this.height = height;
@@ -110,10 +132,12 @@ public class Zoo implements IZoo {
      * zoo with the same name
      * @throws IncorrectDimensionsException if the paddock is to big for the zoo
      * or its width and/or are smaller than 1 or its origins are sammler than 0
+     * @throws exception.name.EmptyNameException
      */
     @Override
     public void addPaddock(String paddockName, int x, int y, int width, int height)
-            throws AlreadyUsedNameException, IncorrectDimensionsException, EmptyNameException {
+            throws AlreadyUsedNameException, IncorrectDimensionsException,
+            EmptyNameException, NameException {
         PaddockCoordinates coor = new PaddockCoordinates(x, y, width, height);
         checkEmplacement(coor);
         ArrayList<IPaddock> neightbourhood = new ArrayList<>();
@@ -125,13 +149,17 @@ public class Zoo implements IZoo {
                 neightbourhood.add(tmp);
             }
         }
-        IPaddock paddock = new Paddock(paddockName, coor, neightbourhood);
+        IPaddock paddock = new PaddockBuilder().name(paddockName)
+                .coordinates(coor)
+                .option(option)
+                .buildPaddock();
         IPaddock success = this.paddocks.putIfAbsent(paddockName, paddock);
         if (success == null) {
             reactualizeNeightbourhoods(paddock, neightbourhood);
         } else {
-            throw new AlreadyUsedNameException("A paddock with this name "
-                    + " already exists. Please choose another one.");
+            throw new AlreadyUsedNameException(
+                    this.option.getPaddockBundle()
+                    .getString("ALREADY_USED_NAME"));
         }
     }
 
@@ -140,8 +168,8 @@ public class Zoo implements IZoo {
             throws IncorrectDimensionsException {
         IPaddock neightbour = null;
         if (!entry.getValue().isNotCompetingForSpace(coor)) {
-            throw new IncorrectDimensionsException("This paddock cannot"
-                    + " be set here : there is already another one on this place.");
+            throw new IncorrectDimensionsException(
+                    this.option.getPaddockBundle().getString("ALREADY_PADDOCK_HERE"));
         }
         if (entry.getValue().isNotCompetingForSpace(coorNeightbourhood)) {
             neightbour = entry.getValue();
@@ -151,12 +179,13 @@ public class Zoo implements IZoo {
 
     private boolean checkEmplacement(PaddockCoordinates coor) throws IncorrectDimensionsException {
         if (this.tooSmallforThisPaddock(coor)) {
-            throw new IncorrectDimensionsException("This paddock cannot be "
-                    + "set here : the zoo is too small.");
-        } 
+            throw new IncorrectDimensionsException(
+                    this.option.getZooBundle().getString("ZOO_TOO_SMALL"));
+        }
         return true;
     }
 
+    @Override
     public void addPaddock(IPaddock paddock)
             throws AlreadyUsedNameException, IncorrectDimensionsException {
         PaddockCoordinates coor = paddock.getCoordinates();
@@ -175,35 +204,35 @@ public class Zoo implements IZoo {
             paddock.addAllInNeightbourhood(neightbourhood);
             reactualizeNeightbourhoods(paddock, neightbourhood);
         } else {
-            throw new AlreadyUsedNameException("A paddock with this name "
-                    + " already exists. Please choose another one.");
+            throw new AlreadyUsedNameException(
+                    this.option.getPaddockBundle().getString("ALREADY_USED_NAME_PADDOCK"));
         }
     }
 
     private void reactualizeNeightbourhoods(IPaddock paddock, ArrayList<IPaddock> neightbourhoods) {
-        for (IPaddock neightbour : neightbourhoods) {
+        neightbourhoods.stream().forEach((neightbour) -> {
             neightbour.addInNeightbourhood(paddock);
-        }
+        });
     }
 
     /**
      * Method used to list the paddocks of the zoo
      *
+     * @param specie
      * @return ArrayList of their names
      */
     @Override
     public ArrayList<String> listPaddock(Specie specie) {
         ArrayList<String> list = new ArrayList<>();
         if (specie == null) {
-            for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
+            paddocks.entrySet().stream().forEach((entry) -> {
                 list.add(entry.getKey());
-            }
+            });
         } else {
-            for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-                if (entry.getValue().countAnimalsOfTheSameSpecie(specie) != 0) {
-                    list.add(entry.getKey());
-                }
-            }
+            paddocks.entrySet().stream().filter((entry)
+                    -> (entry.getValue().countAnimalsOfTheSameSpecie(specie) != 0)).forEach((entry) -> {
+                        list.add(entry.getKey());
+                    });
         }
         return list;
     }
@@ -213,26 +242,29 @@ public class Zoo implements IZoo {
      *
      * @param name the name to search
      * @return the paddock if it exists
-     * @throws UnknownNameException if the paddock does not exist
+     * @throws UnknownNameException if the p
+     * @throws exception.name.EmptyNameExceptionaddock does not exist
      */
     @Override
     public IPaddock findPaddockByName(String name) throws UnknownNameException,
             EmptyNameException {
         if (name.trim().equals("")) {
-            throw new EmptyNameException("");
+            throw new EmptyNameException(
+                    this.option.getPaddockBundle().getString("EMPTY_NAME_PADDOCK"));
         }
         if (paddocks.containsKey(name)) {
             return paddocks.get(name);
         }
-        throw new UnknownNameException("This paddock does not exist.");
+        throw new UnknownNameException(
+                this.option.getPaddockBundle().getString("UNKNOWN_PADDOCK"));
     }
 
-    @Override 
-    public void removePaddock(IPaddock paddock){
+    @Override
+    public void removePaddock(IPaddock paddock) {
         this.paddocks.remove(paddock.getName());
         paddock.removeFromNeightbourhood();
     }
-    
+
     /**
      * Method used to know if a paddock can be placed into the zoo without
      * looking for the others paddocks
@@ -246,7 +278,7 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public int evaluate(){
+    public int evaluate() {
         return new Evaluation().evaluate(this.paddocks);
     }
 
@@ -258,19 +290,17 @@ public class Zoo implements IZoo {
 //        }
 //        return info;
 //    }
-
-//    @Override
-//    public ArrayList<String> birth()
-//            throws IncorrectDataException, EmptyNameException {
-//        ArrayList<String> info = new ArrayList<>();
-//        for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
-//            info.addAll(padEntry.getValue().birth());
-//        }
-//        return info;
-//    }
+    @Override
+    public ArrayList<String> birth() throws IncorrectDataException, NameException {
+        ArrayList<String> info = new ArrayList<>();
+        for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
+            info.addAll(padEntry.getValue().birth());
+        }
+        return info;
+    }
 
     @Override
-    public ArrayList<String> ageing() throws IncorrectDataException, EmptyNameException {
+    public ArrayList<String> ageing() throws IncorrectDataException, NameException {
         this.age += this.monthsPerEvaluation;
         return new Evaluation().ageing(this.paddocks, this.monthsPerEvaluation);
     }
@@ -279,27 +309,47 @@ public class Zoo implements IZoo {
     public ArrayList<PaddockCoordinates> map() throws IncorrectDimensionsException {
         ArrayList<PaddockCoordinates> map = new ArrayList<>();
         map.add(new PaddockCoordinates(0, 0, width, height));
-        for (HashMap.Entry<String, IPaddock> padEntry : paddocks.entrySet()) {
+        paddocks.entrySet().stream().forEach((padEntry) -> {
             map.add(padEntry.getValue().getCoordinates());
-        }
+        });
         return map;
     }
 
     @Override
-    public Specie findSpeciebyName(String specieName) throws EmptyNameException, UnknownNameException {
+    public Specie findSpecieByName(String specieName) throws EmptyNameException, UnknownNameException {
         if (specieName.trim().equals("")) {
-            throw new EmptyNameException("This specie is unknown.");
+            throw new EmptyNameException(
+                    this.option.getSpecieBundle().getString("EMPTY_NAME"));
         }
         if (species.containsKey(specieName)) {
             return species.get(specieName);
         }
-        throw new UnknownNameException("No specie with this name exists.");
+        throw new UnknownNameException(
+                this.option.getSpecieBundle().getString("UNKNOWN_NAME"));
     }
 
     @Override
-    public Animal findAnimalByName(String animalName) throws UnknownNameException, EmptyNameException {
+    public Specie findSpecieByScientificName(String specieName)
+            throws EmptyNameException, UnknownNameException {
+        if (specieName.trim().equals("")) {
+            throw new EmptyNameException(
+                    this.option.getSpecieBundle().getString("EMPTY_NAME"));
+        }
+        for (Entry<String, Specie> specie : this.species.entrySet()) {
+            if (specie.getValue().getNames().getScientificName().equals(specieName)) {
+                return specie.getValue();
+            }
+        }
+        throw new UnknownNameException(
+                this.option.getSpecieBundle().getString("UNKNOWN_NAME"));
+    }
+
+    @Override
+    public Animal findAnimalByName(String animalName)
+            throws UnknownNameException, EmptyNameException {
         if (animalName.trim().equals("")) {
-            throw new EmptyNameException("The name of the animal is empty");
+            throw new EmptyNameException(
+                    this.option.getAnimalBundle().getString("EMPTY_NAME"));
         }
         for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
             try {
@@ -308,33 +358,48 @@ public class Zoo implements IZoo {
 
             }
         }
-        throw new UnknownNameException("There is no animal with this name in the zoo.");
+        throw new UnknownNameException(
+                this.option.getAnimalBundle().getString("UNKNOWN_NAME"));
     }
 
     @Override
-    public ArrayList<String> listAnimal(Specie specie, IPaddock paddock) {
+    public ArrayList<Animal> listAnimal(IPaddock paddock,
+            LightSpecie specie, Sex sex, Diet diet, Biome biome)
+            throws UnknownNameException {
         if (paddock == null) {
-            ArrayList<String> list = new ArrayList<>();
+            ArrayList<Animal> list = new ArrayList<>();
             for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-                list.addAll(entry.getValue().listAnimal(specie));
+                list.addAll(entry.getValue().listAnimal(specie, sex, diet, biome));
             }
             return list;
         } else {
-            return paddock.listAnimal(specie);
+            return paddock.listAnimal(specie, sex, diet, biome);
         }
     }
 
     @Override
-    public ArrayList<String> listSpecie(IPaddock paddock) {
-        ArrayList<String> list = new ArrayList<>();
+    public ArrayList<String> listSpecie(LightSpecie lightSpecie, IPaddock paddock) {
+        ArrayList<Specie> list = new ArrayList<>();
         if (paddock == null) {
-            for (HashMap.Entry<String, Specie> entry : species.entrySet()) {
-                list.add(entry.getValue().getNames().getEnglishName());
-            }
+            species.entrySet().stream().forEach((entry) -> {
+                list.add(entry.getValue());
+            });
         } else {
-            list.addAll(paddock.listSpeciesByName());
+            list.addAll(paddock.listSpecies());
         }
-        return list;
+        Iterator it = list.iterator();
+        Specie next;
+        while (it.hasNext()) {
+            next = (Specie) it.next();
+            if (!next.compare(lightSpecie)) {
+                it.remove();
+            }
+        }
+        ArrayList<String> strList = new ArrayList<>();
+        for (Specie spec : list) {
+            strList.add(spec.getNameAccordingLanguage(this.option));
+        }
+        return strList;
     }
 
     @Override
@@ -347,18 +412,63 @@ public class Zoo implements IZoo {
     }
 
     @Override
+    public void changeSpeed(int newSpeed) throws IncorrectDataException {
+        if (newSpeed > 0) {
+            this.monthsPerEvaluation = newSpeed;
+        } else {
+            throw new IncorrectDataException(
+                    this.option.getZooBundle().getString("MONTHS_GREATER_THAN_ZERO"));
+        }
+    }
+
+    @Override
+    public void changeHorizon(int newHorizon) throws IncorrectDataException {
+        if (newHorizon > 0) {
+            this.horizon = newHorizon;
+        } else {
+            throw new IncorrectDataException(
+                    this.option.getZooBundle().getString("HORIZON_GREATER_THAN_ZERO"));
+        }
+    }
+
+    @Override
     public ArrayList<String> info() {
         ArrayList<String> info = new ArrayList<>();
-        info.add("Name : " + this.name);
-        info.add("Months per evaluation : " + this.monthsPerEvaluation);
-        info.add("Dimensions : width = " + this.width + ", height = " + this.height);
-        info.add("Horizon : " + this.horizon);
-        info.add("Age : " + this.age);
-        info.add("Grade : " + this.grade);
+        ResourceBundle bundle = this.option.getZooBundle();
+        info.add(bundle.getString("NAME") + this.name);
+        info.add(bundle.getString("AGE") + this.age);
+        info.add(bundle.getString("DIMENSIONS_WIDTH") + this.width
+                + bundle.getString("COMMA_HEIGHT") + this.height);
+        info.add(bundle.getString("HORIZON") + this.horizon);
+        info.add(bundle.getString("MONTHS") + this.monthsPerEvaluation);
+        info.add(bundle.getString("GRADE") + this.grade);
         return info;
     }
 
     // Access to the fields only the the friend class
+    @Override
+    public String getName(TutorialPlayImpl_1.FriendScenario friend) {
+        friend.hashCode();
+        return this.name;
+    }
+
+    @Override
+    public Map<String, IPaddock> getPaddocks(TutorialPlayImpl_1.FriendScenario friend) {
+        friend.hashCode();
+        return this.paddocks;
+    }
+
+    @Override
+    public ArrayList<Animal> getAnimals(TutorialPlayImpl_1.FriendScenario friend) {
+        try {
+            friend.hashCode();
+            return this.listAnimal(null, null, null, null, null);
+        } catch (Exception ex) {
+            System.out.println("ERROR  !!!!!!!!!!!!!!!!!");
+            return null;
+        }
+    }
+
     @Override
     public String getName(SaveImpl.FriendSave friend) {
         friend.hashCode();
@@ -400,10 +510,16 @@ public class Zoo implements IZoo {
         friend.hashCode();
         return this.age;
     }
-    
+
     @Override
     public int getHorizon(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.horizon;
+    }
+
+    @Override
+    public Option getOption(SaveImpl.FriendSave friend) {
+        friend.hashCode();
+        return this.option;
     }
 }

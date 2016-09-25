@@ -4,31 +4,36 @@
         <en>Cougar</en>
         <scientific>Puma concolor</scientific>
     </names>
-<general>
-    <uicn>1</uicn>
-    <family>8</family>
-    <ecoregion>1</ecoregion>
-</general>
-<reproduction>
+    <general>
+        <uicn>1</uicn>
+        <family>8</family>
+        <continents>
+            <continent>2</continent>
+            <continent>3</continent>
+        </continents>
+        <ecoregion>1</ecoregion>
+    </general>
+    <reproduction>
         <femaleMaturity>24</femaleMaturity>
         <maleMaturity>30</maleMaturity>
         <gestationFrequency>0.5</gestationFrequency>
         <litterSize>3</litterSize>
         <leavingAge>12</leavingAge>
-</reproduction>
-<lifespan>
+    </reproduction>
+    <lifespan>
         <femaleLifespan>228</femaleLifespan>
-        <maleLifeSpan>228</maleLifeSpan>
-</lifespan>
-<territory>
-    <biome>1</biome>
-    <territorySize>175</territorySize>
-</territory>
-<feeding>
-        <diet>2</diet>
+        <maleLifespan>228</maleLifespan>
+    </lifespan>
+    <territory>
+        <biome>1</biome>
+        <territorySize>175</territorySize>
+    </territory>
+    <feeding>
+        <diet>3</diet>
         <quantity>1</quantity>
+        <size>5</size>
     </feeding>
-<social>
-    <groupSize>1</groupSize>
-</social>
+    <social>
+        <groupSize>1</groupSize>
+    </social>
 </animal>

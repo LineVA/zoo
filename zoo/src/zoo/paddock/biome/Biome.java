@@ -1,14 +1,14 @@
 package zoo.paddock.biome;
 
 import exception.name.UnknownNameException;
+import java.util.ArrayList;
+import launch.options.Option;
 import lombok.Getter;
 
 /**
  *
  * @author doyenm
  */
-//@EqualsAndHashCode(exclude={"nightTemperature", "dayTemperature", "pluviometry",
-//"treeDensity", "treeHeight", "drop", "waterSalinity", "humidity"})
 public enum Biome implements Cloneable {
     /*
      The 14 biomes according to the WWF
@@ -28,37 +28,41 @@ public enum Biome implements Cloneable {
      MANGROVE - Mangroves   - Mangrove 
      */
 
-    NONE(0, "No biome", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    RAINFOREST(1, "Tropical rainforest", 22.0, 27.5, 2400.0, 150.0, 40.0, 0.0, 0.0, 0.8),
-    DRYBROADLEAF(2, "Tropical and subtropical dry broadleaf forests", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    TROPICALCONIFEROUS(3, "Tropical and subtropical coniferous forests", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    TEMPERATEBROADLEAF(4, "Temperate broadleaf and mixed forest", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    TEMPERATECONIFEROUS(5, "Temperate coniferous forest", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    TAIGA(6, "Taiga", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    TROPICALGRASSLAND(7, "Tropical and subtropical grasslands, savannas, and shrublands", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    TEMPERATEGRASSLAND(8, "Temperate grasslands, savannas, and shrublands", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    FLOODEDGRASSLAND(9, "Flooded grasslands and savannas", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    MONTANE(10, "Montane grasslands and shrublands ", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    TUNDRA(11, "Tundra", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    MEDITERRANEAN(12, "Mediterranean forests, woodlands, and scrub", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    DESERT(13, "Deserts and xeric shrublands", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-    MANGROVE(14, "Mangrove", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+    NONE(0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    RAINFOREST(1, 22.0, 27.5, 2400.0, 150.0, 40.0, 0.0, 0.0, 0.8),
+    DRYBROADLEAF(2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    TROPICALCONIFEROUS (3,  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    TEMPERATEBROADLEAF(4,  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    TEMPERATECONIFEROUS(5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    TAIGA(6, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    TROPICALGRASSLANDS(7, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    TEMPERATEGRASSLANDS(8, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    FLOODEDGRASSLANDS(9,  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    MONTANE(10, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    TUNDRA(11,  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    MEDITERRANEAN(12, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    DESERT(13,  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    MANGROVE(14, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 
-    @Getter 
-    private int id;
     @Getter
-    private final String name;
+        private final int id;
     @Getter
-    private BiomeAttributes attributes;
+        private BiomeAttributes attributes;
+    Option option;
+    
+     public void setOption(Option option) {
+        for (Biome biome : Biome.values()) {
+             biome.option = option;
+         }
+    }
 
-    Biome(int id, String name, double night, double day, double pluvio, double treeD,
+    Biome(int id, double night, double day, double pluvio, double treeD,
             double treeH, double drop, double water, double humidity) {
         this.id = id;
         if (isPositivOrZero(pluvio) && isPositivOrZero(treeD)
                 && isPositivOrZero(treeH) && isPositivOrZero(drop)
                 && isPositivOrZero(water) && isPositivOrZero(water)
                 && isPositivOrZero(humidity) && isLowerOrEqualsThanOne(humidity)) {
-            this.name = name;
             this.attributes = new BiomeAttributes(night, water, pluvio, treeD,
                     treeH, drop, water, humidity);
         } else {
@@ -76,17 +80,18 @@ public enum Biome implements Cloneable {
     }
 
     public boolean equals(Biome second) {
-        return this.getName().equals(second.getName());
+        return second.getId() == this.id;
+//        return this.getName().equals(second.getName());
     }
     
-    public Biome findByName(String name) throws UnknownNameException{
-        for(Biome biome : Biome.values()){
-            if(biome.getName().equalsIgnoreCase(name)){
-                return biome;
-            }
-        }
-        throw new UnknownNameException("No biome has this name.");
-    }
+//    public Biome findByName(String name) throws UnknownNameException{
+//        for(Biome biome : Biome.values()){
+//            if(biome.getName().equalsIgnoreCase(name)){
+//                return biome;
+//            }
+//        }
+//        throw new UnknownNameException("No biome has this name.");
+//    }
     
     public Biome findById(int id) throws UnknownNameException{
           for(Biome biome : Biome.values()){
@@ -96,4 +101,17 @@ public enum Biome implements Cloneable {
         }
         throw new UnknownNameException("No biome has this identifier.");
     }
-}   
+    
+     public String toStringByLanguage(){
+        return this.option.getPaddockBundle().getString(this.toString().toUpperCase() + "_DESCRIPTION");
+    }
+     
+   public ArrayList<String> list() {
+        ArrayList<String> list = new ArrayList<>();
+        for (Biome biome : Biome.values()) {
+            list.add(biome.id + " - " +
+                    this.option.getPaddockBundle().getString(biome.toString().toUpperCase() +"_DESCRIPTION"));
+        }
+        return list;
+    }
+}

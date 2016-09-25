@@ -1,23 +1,17 @@
 package launch.play;
 
-import launch.play.Play;
-import lombok.Getter;
-import lombok.Setter;
-import zoo.IZoo;
-import zoo.Zoo;
+import java.util.ResourceBundle;
+import launch.options.Option;
+import commandLine.commandManagerImpl.FreeCommandManager;
 
 /**
  *
  * @author doyenm
  */
-public class FreePlayImpl implements Play{
+public class FreePlayImpl extends Play {
 
-    @Getter @Setter
-    public IZoo zoo;
-
-    public FreePlayImpl() {
-        this.zoo = new Zoo();
+    public FreePlayImpl(ResourceBundle bundle, Option opt) {
+        super(bundle, opt);
+        super.setManager(new FreeCommandManager(this, opt));
     }
-    
-    
 }

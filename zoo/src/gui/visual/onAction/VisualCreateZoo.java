@@ -22,7 +22,7 @@ public class VisualCreateZoo implements CommandVisual {
     @Override
     public void execute(String[] cmd) {
         try {
-            Map<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species");
+            Map<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species", null);
             int monthsPerEvaluation = 6;
             int horizon = 5;
             int age = 0;

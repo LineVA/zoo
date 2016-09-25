@@ -1,5 +1,6 @@
 package zoo.animal.social;
 
+import launch.options.Option;
 import lombok.Getter;
 
 /**
@@ -19,10 +20,9 @@ public class SocialAttributes {
         }
     }
     
-    @Override
-    public String toString(){
+    public String toStringByLanguage(Option option){
         String toStr = "";
-        toStr += "group size = " + this.groupSize;
+        toStr += option.getSocialBundle().getString("GROUP_SIZE") + this.groupSize;
         return toStr;
     }
 }

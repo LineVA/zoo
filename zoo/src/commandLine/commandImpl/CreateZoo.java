@@ -1,7 +1,6 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
-import exception.IncorrectDimensionsException;
 import exception.name.EmptyNameException;
 import java.io.IOException;
 import java.util.Map;
@@ -24,6 +23,13 @@ public class CreateZoo implements Command {
         return this.previousHasBeenSuccessfull;
     }
 
+    boolean success = false;
+
+    @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
+
     public CreateZoo(Play play) {
         this.play = play;
     }
@@ -34,11 +40,15 @@ public class CreateZoo implements Command {
             int monthsPerEvaluation = 6;
             int horizon = 5;
             int age = 0;
-            Map<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species");
+            Map<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species", this.play.getOption());
             this.play.getZoo().initiateZoo(cmd[2], Integer.parseInt(cmd[3]),
                     Integer.parseInt(cmd[4]), species, age, monthsPerEvaluation, horizon);
             this.previousHasBeenSuccessfull = true;
-            return "Your zoo has been sucessfully created";
+            this.success = true;
+            return this.play.getOption().getGeneralCmdBundle()
+                    .getString("ZOO_CREATION_SUCESS");
+        } catch (EmptyNameException ex) {
+            return ex.getMessage();
         } catch (JDOMException | IOException ex) {
             return ex.getMessage();
         }

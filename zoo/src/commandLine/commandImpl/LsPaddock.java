@@ -4,6 +4,8 @@ import basicGui.FormattingDisplay;
 import commandLine.Command;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
+import java.util.ArrayList;
+import java.util.Collections;
 import launch.play.Play;
 import zoo.animal.specie.Specie;
 
@@ -20,10 +22,17 @@ public class LsPaddock implements Command {
     public LsPaddock(Play play) {
         this.play = play;
     }
-    
-      @Override
+
+    @Override
     public boolean hasInitiateAZoo() {
         return false;
+    }
+
+    boolean success = false;
+
+    @Override
+    public boolean isSuccess() {
+        return this.success;
     }
 
     @Override
@@ -31,12 +40,15 @@ public class LsPaddock implements Command {
         Specie spec = null;
         if (args[0] != null) {
             try {
-                spec = this.play.getZoo().findSpeciebyName(args[0]);
+                spec = this.play.getZoo().findSpecieByName(args[0]);
+                this.success = true;
             } catch (EmptyNameException | UnknownNameException ex) {
                 return ex.getMessage();
             }
         }
-        return FormattingDisplay.formattingArrayList(this.play.getZoo().listPaddock(spec));
+        ArrayList<String> list = this.play.getZoo().listPaddock(spec);
+        Collections.sort(list);
+        return FormattingDisplay.formattingArrayList(list);
     }
 
     public boolean firstCmd(String[] cmd) {
@@ -56,7 +68,7 @@ public class LsPaddock implements Command {
         if (firstCmd(cmd)) {
             if (cmd.length == 2) {
                 return true;
-            } else if (cmd.length == 4 && cmd[2].equals("-s")) {
+            } else if (cmd.length == 4 && (cmd[2].equals("-s") || cmd[2].equals("--specie"))) {
                 args[0] = cmd[3];
                 return true;
             }

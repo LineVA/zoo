@@ -1,6 +1,7 @@
 package gui;
 
 import commandLine.CommandManager;
+import commandLine.commandManagerImpl.TutorialCommandLineManager;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -33,12 +34,15 @@ public class TextPane extends JTextPane {
         this.setPreferredSize(new Dimension(line, columns));
         this.setBackground(Color.BLACK);
         this.setForeground(EditorColors.CMD.getColor());
-        manager = new CommandManager(play);
+//        manager = new FreeCommandManager(play);
+        this.manager = play.getManager();
         this.keyEventListener();
         this.mouseEventListener();
         sc = StyleContext.getDefaultStyleContext();
-        this.setText(this.cmdInvite);
+        this.setText(manager.getFirstLine());
+       this.append("", EditorColors.CMD.getColor());
         this.setCaretPosition(this.cmdInvite.length());
+        this.goEndOfTheText();
     }
 
     private void keyEventListener() {
@@ -77,10 +81,10 @@ public class TextPane extends JTextPane {
         };
         addKeyListener(l);
     }
-    
-    private int countCharBeforeCurrentLine(Object[] lines){
+
+    private int countCharBeforeCurrentLine(Object[] lines) {
         int count = 0;
-        for(int i=0 ; i<lines.length - 1 ; i++){
+        for (int i = 0; i < lines.length - 1; i++) {
             count += lines[i].toString().length();
         }
         return count;
@@ -91,10 +95,10 @@ public class TextPane extends JTextPane {
         int caret = this.getCaretPosition();
         // 2 : \n except first the very first line
         int caretInCurrent;
-        if(lines.length == 1){
-            caretInCurrent = caret -countCharBeforeCurrentLine(lines);
+        if (lines.length == 1) {
+            caretInCurrent = caret - countCharBeforeCurrentLine(lines);
         } else {
-        caretInCurrent = caret - countCharBeforeCurrentLine(lines) - 2;
+            caretInCurrent = caret - countCharBeforeCurrentLine(lines) - 2;
         }
         return (caretInCurrent > this.cmdInvite.length());
     }

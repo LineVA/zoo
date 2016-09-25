@@ -2,13 +2,13 @@ package zoo.evaluation;
 
 import exception.IncorrectDataException;
 import exception.name.EmptyNameException;
+import exception.name.NameException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import zoo.animal.specie.Family;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
-import zoo.paddock.Paddock;
 
 /**
  *
@@ -32,7 +32,6 @@ public class Evaluation {
     }
 
     private int familyEvaluation(ArrayList<Specie> species) {
-        int evaluation = 0;
         int[] families = familiesArrayFilling(species);
         int familiesNb = 0;
         int byThree = 0;
@@ -49,15 +48,14 @@ public class Evaluation {
 
     private int[] familiesArrayFilling(ArrayList<Specie> species) {
         int[] families = new int[Family.values().length];
-        for (Specie spec : species) {
-            int fam = spec.getFamily();
+        species.stream().map((spec) -> spec.getFamily()).forEach((fam) -> {
             families[fam] += 1;
-        }
+        });
         return families;
     }
 
     public ArrayList<String> ageing(Map<String, IPaddock> paddocks, int monthsPerEvaluation)
-            throws IncorrectDataException, EmptyNameException {
+            throws IncorrectDataException, EmptyNameException, NameException {
         ArrayList<String> info = new ArrayList<>();
         for (HashMap.Entry<String, IPaddock> padEntry : paddocks.entrySet()) {
             padEntry.getValue().ageing(monthsPerEvaluation);

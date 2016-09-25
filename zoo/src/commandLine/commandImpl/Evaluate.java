@@ -3,9 +3,7 @@ package commandLine.commandImpl;
 import basicGui.FormattingDisplay;
 import commandLine.Command;
 import exception.IncorrectDataException;
-import exception.name.AlreadyUsedNameException;
-import exception.name.EmptyNameException;
-import exception.name.UnknownNameException;
+import exception.name.NameException;
 import java.util.ArrayList;
 import launch.play.Play;
 
@@ -26,6 +24,13 @@ public class Evaluate implements Command {
         return false;
     }
     
+    boolean success = false;
+    
+     @Override
+    public boolean isSuccess() {
+        return this.success;
+    }
+    
     @Override
     public String execute(String[] cmd) {
         ArrayList<String> info = new ArrayList<>();
@@ -34,19 +39,17 @@ public class Evaluate implements Command {
             // Well-beeing of each animal
            zooEvaluation += this.play.getZoo().grade();
             // Special events :
-            // ageing
+            // ageing, births and deaths
             info.addAll(this.play.getZoo().ageing());
-            // birth
-//            info.addAll(this.play.getZoo().birth());
-            // death
-//            info.addAll(this.play.getZoo().death());
             // Zoo evaluation
            zooEvaluation += this.play.getZoo().evaluate();
-        } catch (UnknownNameException | 
-                IncorrectDataException | EmptyNameException ex) {
+           this.success = true;
+        } catch (
+                IncorrectDataException | NameException ex) {
             return ex.getMessage();
         }
-        info.add("The evaluation of the zoo : " + zooEvaluation);
+        info.add(this.play.getOption().getGeneralCmdBundle()
+                .getString("ZOO_EVALUATION") + zooEvaluation);
         return FormattingDisplay.formattingArrayList(info);
     }
 

@@ -8,72 +8,70 @@ import commandLine.commandImpl.CreateZoo;
 import commandLine.commandImpl.DetailAnimal;
 import commandLine.commandImpl.DetailPad;
 import commandLine.commandImpl.DetailSpecie;
+import commandLine.commandImpl.DetailZoo;
 import commandLine.commandImpl.Evaluate;
+import commandLine.commandImpl.FeedingAnimal;
 import commandLine.commandImpl.LoadZoo;
 import commandLine.commandImpl.LsAnimal;
+import commandLine.commandImpl.LsBiome;
+import commandLine.commandImpl.LsConservation;
+import commandLine.commandImpl.LsContinent;
+import commandLine.commandImpl.LsEcoregion;
+import commandLine.commandImpl.LsFamily;
+import commandLine.commandImpl.LsFeeding;
 import commandLine.commandImpl.LsPaddock;
+import commandLine.commandImpl.LsPaddockType;
+import commandLine.commandImpl.LsSex;
+import commandLine.commandImpl.LsSize;
 import commandLine.commandImpl.LsSpecie;
 import commandLine.commandImpl.MapZoo;
-import commandLine.commandImpl.SaveZoo;
-import commandLine.commandImpl.DetailZoo;
-import commandLine.commandImpl.FeedingAnimal;
-import commandLine.commandImpl.LsFeeding;
+import commandLine.commandImpl.Options;
+import commandLine.commandImpl.PadTypePad;
 import commandLine.commandImpl.RemoveAnimal;
 import commandLine.commandImpl.RemovePaddock;
+import commandLine.commandImpl.SaveZoo;
+import commandLine.commandImpl.ZooCharacteristics;
 import static java.util.Arrays.asList;
+import launch.options.Option;
 import launch.play.Play;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
- *
+ * The abstract command manager : determine how the command lines are checked 
  * @author doyenm
  */
-public class CommandManager {
+public abstract class CommandManager {
 
     Play play;
-    private final Iterable<Command> playCommands;
-    private final Iterable<Command> initialCommands;
-
-    public boolean isInitiate = false;
-
-    public CommandManager(Play play) {
-        this.play = play;
-        // For Paddock and Animal : Ls must be before Detail
+    @Getter
+    Iterable<Command> playCommands;
+      @Getter
+      @Setter
+    private String firstLine;
+      @Getter
+      private Option option;
+    
+    public CommandManager(Play play, Option option){
+        this.option = option;
+          this.play = play;
+            // For Paddock and Animal : Ls must be before Detail
         playCommands = asList(new CreateZoo(play), new DetailZoo(play),
                 new CreatePaddock(play),
                 new LsPaddock(play), new MapZoo(play), new DetailPad(play),
                 new Evaluate(play), new BiomePad(play), new BiomeAttributesPaddock(play),
                 new CreateAnimal(play), new LsAnimal(play), new DetailAnimal(play),
                 new FeedingAnimal(play),
-                new RemoveAnimal(play), new RemovePaddock(play),
-                new LsSpecie(play), new DetailSpecie(play),
-                new LsFeeding(play),
-                new SaveZoo(play), new LoadZoo(play));
-        initialCommands = asList(new CreateZoo(play), new LoadZoo(play));
+                new LsSex(play), new LsConservation(play),
+                new RemoveAnimal(play), new RemovePaddock(play), 
+                new LsBiome(play), new LsEcoregion(play), new LsContinent(play),
+                new LsPaddockType(play), new PadTypePad(play),
+                new LsSpecie(play), new DetailSpecie(play), new LsFamily(play),
+                new LsFeeding(play), new LsSize(play),
+                new SaveZoo(play), new LoadZoo(play),
+                new Options(play), new ZooCharacteristics(play));
     }
 
-    public String run(String cmd) {
-        // String[] parse = cmd.split(" ");
-        String[] parse = SplitDoubleQuotes.split(cmd);
-        if (isInitiate) {
-            for (Command command : playCommands) {
-                if (command.canExecute(parse)) {
-                    String result = command.execute(parse);
-                    this.isInitiate |= command.hasInitiateAZoo();
-                    return result;
-                }
-            }
-            return "Unknown command";
-        } else {
-            for (Command command : initialCommands) {
-                if (command.canExecute(parse)) {
-                    String result = command.execute(parse);
-                    this.isInitiate = command.hasInitiateAZoo();
-                    return result;
-                }
-            }
-            return "There is only two command to create a zoo : "
-                    + "see 'man zoo' and 'man load' for more information.";
-        }
+    public abstract String run(String cmd);
 
-    }
 }

@@ -4,13 +4,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
+import launch.options.Option;
 import org.jdom2.JDOMException;
-import zoo.Zoo;
 import zoo.animal.specie.ParserSpecie;
 import zoo.animal.specie.Specie;
 
@@ -20,24 +19,24 @@ import zoo.animal.specie.Specie;
  */
 public class InstanciateSpecies {
 
-    public static Map<String, Specie> instanciateSpecies(String resource) throws IOException, JDOMException {
+    public static Map<String, Specie> instanciateSpecies(String resource, Option option)
+            throws IOException, JDOMException {
         Map<String, Specie> species = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
-        Stream<Path> files = Files.list(Paths.get(resource));
-        files.forEach((Path file) -> {
-            try{ 
+        List<Path> files = Files.list(Paths.get(resource)).collect(Collectors.toList());
+        files.stream().forEach((file) -> {
+            try {
                 if (file.toString().endsWith(".xml")) {
                     Specie tmpSpec = ParserSpecie.mainParserSpecie(file.toFile());
-                    species.put(tmpSpec.getNames().getEnglishName(), tmpSpec);
-                } else {
-                    
+                    if (option.getLocale().getLanguage().equals("fr")) {
+                        species.put(tmpSpec.getNames().getFrenchName(), tmpSpec);
+                    } else {
+                        species.put(tmpSpec.getNames().getEnglishName(), tmpSpec);
+                    }
                 }
-            } catch (IOException ex) {
-                Logger.getLogger(Zoo.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (JDOMException ex) {
-                Logger.getLogger(Zoo.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException | JDOMException ex) {
+                ex.getMessage();
             }
         });
-
         return species;
     }
 }

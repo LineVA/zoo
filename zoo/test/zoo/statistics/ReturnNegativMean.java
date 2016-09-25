@@ -12,7 +12,7 @@ public class ReturnNegativMean {
     public void shouldReturnTheNegativMeanValue(){
         // Given
         // When
-        double actual = Compare.returnNegativMean();
+        double actual = Compare.getNegativMean();
         // Then 
         double expected = -2.0;
         assertEquals(expected, actual, 0.0);

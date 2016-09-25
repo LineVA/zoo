@@ -16,7 +16,14 @@
                         <xs:sequence>
                             <xs:element type="xs:integer" name="uicn"/>
                             <xs:element type="xs:string" name="family"/>
-                             <xs:element type="xs:integer" name="ecoregion"/>
+                            <xs:element name="continents">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:integer" name="continent" maxOccurs="unbounded" minOccurs="1"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element type="xs:integer" name="ecoregion"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -35,7 +42,7 @@
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element type="xs:decimal" name="femaleLifespan"/>
-                            <xs:element type="xs:decimal" name="maleLifeSpan"/>
+                            <xs:element type="xs:decimal" name="maleLifespan"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -52,6 +59,7 @@
                         <xs:sequence>
                             <xs:element type="xs:int" name="diet"/>
                             <xs:element type="xs:decimal" name="quantity"/>
+                            <xs:element type="xs:int" name="size"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>

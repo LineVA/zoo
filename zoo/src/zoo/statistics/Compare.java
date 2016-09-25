@@ -37,12 +37,16 @@ public class Compare {
         }
     }
 
-    public static double returnMin() {
+    public static double getMin() {
         return -max5;
     }
 
-    public static double returnNegativMean() {
+    public static double getNegativMean() {
         return -max2;
+    }
+    
+    public static double getPositivMean(){
+        return max2;
     }
     
     public static double getMax(){

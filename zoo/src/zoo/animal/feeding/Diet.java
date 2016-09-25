@@ -3,6 +3,7 @@ package zoo.animal.feeding;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import launch.options.Option;
 import lombok.Getter;
 
 /**
@@ -11,44 +12,51 @@ import lombok.Getter;
  */
 public enum Diet {
 
-    NONE(0, "does not eat"),
-    APHIDIPHAGOUS(1, "feeds on aphids"),
-    CARNIVOROUS(2, "feeds on raw meat"),
-    HEMATOPHAGOUS(3, "feeds on blood"),
-    INSECTIVOROUS(4, "feeds on insects"),
-    LEPIDOPHAGOUS(5, "feeds on fish scales"),
-    MOLLUSCIVOROUS(6, "feeds on mollucs"),
-    MYRMECOPHAGOUS(7, "feeds on ants"),
-    NECROPHAGOUS(8, "feeds on carrions"),
-    OOPHAGOUS(9, "feeds on eggs"),
-    OPHIOPHAGOUS(10, "feeds on snakes"),
-    ORNITHOPHAGOUS(11, "feeds on birds"),
-    PISCIVOROUS(12, "feeds on fishes"),
-    PLANCTONIVOROUS(13, "feeds on plankton"),
-    VERMIVOROUS(14, "feeds on worms"),
-    BACCIVOROUS(15, "feeds on berries"),
-    EXSUDATIVOROUS(16, "feeds on exudate of plants"),
-    FRUGIVOROUS(17, "feeds on fruits"),
-    GRANIVOROUS(18, "feeds on seeds"),
-    HERBIVOROUS(19, "feeds on grass"),
-    MELLIPHAGOUS(20, "feeds on honey"),
-    MYCOPHAGOUS(21, "feeds on mushrooms"),
-    NECTARIVOROUS(22, "feeds on nectar"),
-    PHYLLOPHAGOUS(23, "feeds on leaves"),
-    POLLINOVOROUS(24, "feeds on pollen"),
-    XYLOPHAGOUS(25, "feeds on wood"),
-    ZEOPHAGOUS(26, "feeds on corn");
+    NONE(0),
+    APHIDIPHAGOUS(1),
+    BACCIVOROUS(2),
+    CARNIVOROUS(3),
+    EXSUDATIVOROUS(4),
+    FRUGIVOROUS(5),
+    GRANIVOROUS(6),
+    HEMATOPHAGOUS(7),
+    HERBIVOROUS(8),
+    INSECTIVOROUS(9),
+    LEPIDOPHAGOUS(10),
+    MELLIPHAGOUS(11),
+    MOLLUSCIVOROUS(12),
+    MYCOPHAGOUS(13 ),
+    MYRMECOPHAGOUS(14),
+    NECROPHAGOUS(15),
+    NECTARIVOROUS(16),
+    OMNIVOROUS(17),
+    OOPHAGOUS(18),
+    OPHIOPHAGOUS(19),
+    ORNITHOPHAGOUS(20),
+    PHYLLOPHAGOUS(21),
+    PISCIVOROUS(22),
+    PLANKTONIVOROUS(23),
+    POLLINOVOROUS(24),
+    VERMIVOROUS(25),
+    XYLOPHAGOUS(26),
+    ZEOPHAGOUS(27);
 
     @Getter
     int id;
-    @Getter
-    String definition;
     boolean[][] eatables;
 
-    Diet(int id, String text) {
+//    private static ResourceBundle bundle;
+    private Option option;
+
+    Diet(int id) {
         this.id = id;
-        this.definition = text;
         fill();
+    }
+
+    public void setOption(Option option) {
+        for (Diet diet : Diet.values()) {
+             diet.option = option;
+         }
     }
 
     public void fill() {
@@ -81,10 +89,8 @@ public enum Diet {
         Arrays.fill(this.eatables[25], false);
         Arrays.fill(this.eatables[26], false);
         for (int i = 0; i < this.eatables.length; i++) {
-            this.eatables[i][2] = true;
-            this.eatables[i][8] = true;
+            this.eatables[3][i] = true;
         }
-
     }
 
     public Diet findDietById(int id) throws UnknownNameException {
@@ -93,7 +99,8 @@ public enum Diet {
                 return diet;
             }
         }
-        throw new UnknownNameException("No diet has this identifier.");
+        throw new UnknownNameException(
+                this.option.getDietBundle().getString("UNKNOWN_DIET_BY_ID"));
     }
 
     public boolean isCompatible(int diet) throws UnknownNameException {
@@ -101,23 +108,29 @@ public enum Diet {
     }
 
     public boolean canBeEatenBy(int diet) {
-        return this.eatables[this.id][diet];
+        return this.eatables[diet][this.id];
     }
 
     public Diet findDietByName(String name) throws UnknownNameException {
         for (Diet diet : Diet.values()) {
-            if (diet.toString().equals(name)) {
+            if (diet.toString().equalsIgnoreCase(name)) {
                 return diet;
             }
         }
-        throw new UnknownNameException("No diet has this identifier.");
+        throw new UnknownNameException(
+                this.option.getDietBundle().getString("UNKNOWN_DIET_BY_NAME"));
     }
 
     public ArrayList<String> list() {
         ArrayList<String> list = new ArrayList<>();
         for (Diet diet : Diet.values()) {
-            list.add(diet.toString() + " : " + diet.definition);
+            list.add(diet.id + " - " +this.option.getDietBundle().getString(diet.toString().toUpperCase()) 
+                    + " : " + this.option.getDietBundle().getString(diet.toString().toUpperCase()+"_DESCRIPTION"));
         }
         return list;
+    }
+    
+    public String toStringByLanguage(){
+        return this.option.getDietBundle().getString(this.toString().toUpperCase());
     }
 }

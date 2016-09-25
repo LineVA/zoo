@@ -2,8 +2,10 @@ package zoo.paddock;
 
 import exception.IncorrectDimensionsException;
 import exception.name.EmptyNameException;
+import exception.name.NameException;
 import java.util.ArrayList;
 import lombok.Getter;
+import launch.options.Option;
 
 /**
  *
@@ -21,19 +23,32 @@ public class FakePaddock {
     int width;
     @Getter
     int height;
+    int biome;
+    int paddockType;
+    Option option;
 
-    public FakePaddock(String name, int x, int y, int width, int height) {
+    public FakePaddock(String name, int x, int y, int width, int height, int biome, int paddockType) {
         this.name = name;
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.biome = biome;
+        this.paddockType = paddockType;
     }
-
-    public IPaddock convertToPaddock() throws IncorrectDimensionsException, EmptyNameException {
-//        throw new UnsupportedOperationException("Management of neightbourhood in the mload of a zoo");
-        return new Paddock(this.name, new PaddockCoordinates(this.x, this.y,
-                this.width, this.height), new ArrayList<IPaddock>());
+    
+    public IPaddock convertToPaddock(Option option) 
+            throws IncorrectDimensionsException, EmptyNameException, NameException{
+//        IPaddock tmpPad =  new Paddock(this.name, new PaddockCoordinates(this.x, this.y, 
+//                this.width, this.height), new ArrayList<>(), this.paddockType, option);
+//        tmpPad.setBiome(Integer.toString(this.biome));
+//        return tmpPad;
+        return new PaddockBuilder().name(this.name)
+                .coordinates(new  PaddockCoordinates(this.x, this.y, this.width, this.height))
+                        .paddockType(this.paddockType)
+                        .option(option)
+                        .biome(this.biome)
+                        .buildPaddock();
     }
 
 }
