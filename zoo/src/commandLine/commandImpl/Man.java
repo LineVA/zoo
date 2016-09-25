@@ -29,7 +29,7 @@ public class Man implements Command {
     @Override
     public String execute(String[] cmd) {
         try {
-            if (this.arg.equals("zoo")) {
+            if ("zoo".equals(this.arg)) {
                 this.success = true;
                 return ReadingMan.load(new File("doc/man/manZoo"));
             } else if("pad".equals(arg) || "paddock".equals(arg)){
@@ -38,7 +38,7 @@ public class Man implements Command {
             }           
             return "";
         } catch (IOException ex) {
-            return ex.getMessage();
+            return ex.getMessage();s
         }
     }
     
