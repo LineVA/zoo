@@ -1,12 +1,16 @@
 Manuel d'aide pour les commandes 'zoo' :
 
-> zoo create nomDuZoo largeur hauteur : crée un zoo de nom nomDuZoo, mesurant largeurDuZoo cases de largeur et hauteurDuZoo cases de hauteur. 
-Le nom du zoo ne doit pas être vide ; s'il est composé de plusieurs mots, le nom doit être entouré par des guillemets doubles.
+> zoo create nomDuZoo largeur hauteur : crée un zoo de nom nomDuZoo, 
+        mesurant largeurDuZoo cases de largeur et hauteurDuZoo cases de hauteur. 
+Le nom du zoo ne doit pas être vide ; 
+        s'il est composé de plusieurs mots, le nom doit être entouré par des guillemets doubles.
 La largeur et la hauteur du zoo se mesurent avec des nombres entiers strictement plus grands que zéro.
 
 > zoo map : affiche la carte du zoo courant.
 Les bords du zoo sont représentés par des '#'.
-Les enclos sont représentés par différents caractères. Il existe 39 caractères distincts ; si le zoo comporte au plus 39 enclos, chacun est repéré par un caractère distincts.
+Les enclos sont représentés par différents caractères.
+         Il existe 39 caractères distincts ; 
+        si le zoo comporte au plus 39 enclos, chacun est repéré par un caractère distincts.
 Sinon, un même caractère peut correspondre à plus d'un enclos.
 
 > zoo : affiche les informations du zoo courant.
