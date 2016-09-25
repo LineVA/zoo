@@ -432,11 +432,11 @@ public class Zoo implements IZoo {
         ArrayList<String> info = new ArrayList<>();
         ResourceBundle bundle = this.option.getZooBundle();
         info.add(bundle.getString("NAME") + this.name);
-        info.add(bundle.getString("MONTHS") + this.monthsPerEvaluation);
+        info.add(bundle.getString("AGE") + this.age);
         info.add(bundle.getString("DIMENSIONS_WIDTH") + this.width
                 + bundle.getString("COMMA_HEIGHT") + this.height);
         info.add(bundle.getString("HORIZON") + this.horizon);
-        info.add(bundle.getString("AGE") + this.age);
+        info.add(bundle.getString("MONTHS") + this.monthsPerEvaluation);
         info.add(bundle.getString("GRADE") + this.grade);
         return info;
     }
