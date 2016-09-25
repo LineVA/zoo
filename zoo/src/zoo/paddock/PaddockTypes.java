@@ -2,6 +2,7 @@ package zoo.paddock;
 
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import launch.options.Option;
 import lombok.Getter;
 
 /**
@@ -26,23 +27,31 @@ public enum PaddockTypes {
         this.id = id;
     }
     
+    private Option option;
+
+    public void setOption(Option option){
+         for (PaddockTypes type : PaddockTypes.values()) {
+             type.option = option;
+         }
+    }
+    
     public PaddockTypes findById(int id) throws UnknownNameException {
         for (PaddockTypes pad : PaddockTypes.values()) {
             if (pad.getId() == id) {
                 return pad;
             }
         }
-        throw new UnknownNameException("POUET");
+        throw new UnknownNameException(this.option.getPaddockBundle().getString("PT_UNKNOWN_ID"));
     }
     
       public String toStringByLanguage(){
-        return "LIST";
-    }
+           return this.option.getPaddockBundle().getString("PT_" + this.toString().toUpperCase());
+      }
     
     public ArrayList<String> list(){
          ArrayList<String> list = new ArrayList<>();
-        for (PaddockTypes pad : PaddockTypes.values()) {
-            list.add("POUET");
+        for (PaddockTypes type : PaddockTypes.values()) {
+            list.add(type.getId() + " - " + this.option.getPaddockBundle().getString(type.toStringByLanguage()));
         }
         return list;
     }

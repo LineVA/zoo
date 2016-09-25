@@ -12,6 +12,7 @@ import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.Size;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.Family;
+import zoo.paddock.PaddockTypes;
 import zoo.paddock.biome.Biome;
 import zoo.paddock.biome.Continent;
 import zoo.paddock.biome.Ecoregion;
@@ -43,6 +44,7 @@ abstract public class Play {
         Biome.NONE.setOption(opt);
         Size.UNKNOWN.setOption(opt);
         Continent.UNKNOWN.setOption(opt);
+        PaddockTypes.UNKNOWN.setOption(opt);
         this.bundle = bundle;
         this.option = opt;
     }
@@ -56,5 +58,6 @@ abstract public class Play {
         Biome.NONE.setOption(this.option);
         Size.UNKNOWN.setOption(this.option);
         Continent.UNKNOWN.setOption(this.option);
+        PaddockTypes.UNKNOWN.setOption(this.option);
     }
 }
