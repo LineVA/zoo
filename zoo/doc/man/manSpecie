@@ -39,7 +39,4 @@ Si aucun continent ne porte cet identifiant, un message d'erreur s'affiche.
     - [--diet|-d] 'id' : Liste des espèces selon le régime d'identifiant 'id' 
 Si aucun régime alimentaire ne porte cet identifiant, un message d'erreur s'affiche.
     - [--biome|-b] 'id' : Liste des espèces réclamant qle biome 'id'
-Si aucun biome ne porte cet identifiant, un message d'erreur s'affiche.
-    
-
-       
+Si aucun biome ne porte cet identifiant, un message d'erreur s'affiche.      

@@ -35,10 +35,13 @@ public class Man implements Command {
             } else if("pad".equals(arg) || "paddock".equals(arg)){
                    this.success = true;
                 return ReadingMan.load(new File("doc/man/manPaddock"));
-            } else if("cmd".equals(arg)){
+            } else if("cmd".equals(arg) || "command".equals(arg)){
                    this.success = true;
                 return ReadingMan.load(new File("doc/man/cmdLines"));
-            }                     
+            } else if("specie".equals(arg) || "spec".equals(arg)){
+                   this.success = true;
+                return ReadingMan.load(new File("doc/man/manSpecie"));
+            }                       
             return "";
         } catch (IOException ex) {
             return ex.getMessage();
@@ -48,7 +51,8 @@ public class Man implements Command {
     private boolean checkSecondArg(String cmd) {
         if ("zoo".equals(cmd) || 
                 "paddock".equals(cmd) || "pad".equals(cmd) || 
-                "cmd".equals(cmd) || "command".equals(cmd)) {
+                "cmd".equals(cmd) || "command".equals(cmd) ||
+                "specie".equals(cmd) || "spec".equals(cmd)) {
             this.arg = cmd;
             return true;            
         }
