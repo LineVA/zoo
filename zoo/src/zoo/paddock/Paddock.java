@@ -135,6 +135,7 @@ public class Paddock implements IPaddock {
         info.add(bundle.getString("NAME") + this.name);
         info.add(bundle.getString("COORDINATES") + this.coordinates.toStringByLanguage(bundle));
         info.add(bundle.getString("NEIGHTBOURS") + this.listNeightbourhood());
+        info.add(bundle.getString("TYPE") + PaddockTypes.UNKNOWN.findById(this.paddockType).toStringByLanguage());
         info.add(bundle.getString("BIOME") + Biome.NONE.findById(this.biome).toStringByLanguage());
         info.add(bundle.getString("BIOMES_CHARACTERISTICS") + this.attributes.toString());
         return info;
