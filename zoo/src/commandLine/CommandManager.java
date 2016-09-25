@@ -20,6 +20,7 @@ import commandLine.commandImpl.LsEcoregion;
 import commandLine.commandImpl.LsFamily;
 import commandLine.commandImpl.LsFeeding;
 import commandLine.commandImpl.LsPaddock;
+import commandLine.commandImpl.LsPaddockType;
 import commandLine.commandImpl.LsSex;
 import commandLine.commandImpl.LsSize;
 import commandLine.commandImpl.LsSpecie;
@@ -63,6 +64,7 @@ public abstract class CommandManager {
                 new LsSex(play), new LsConservation(play),
                 new RemoveAnimal(play), new RemovePaddock(play), 
                 new LsBiome(play), new LsEcoregion(play), new LsContinent(play),
+                new LsPaddockType(play),
                 new LsSpecie(play), new DetailSpecie(play), new LsFamily(play),
                 new LsFeeding(play), new LsSize(play),
                 new SaveZoo(play), new LoadZoo(play),

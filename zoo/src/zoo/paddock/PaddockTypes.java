@@ -51,7 +51,7 @@ public enum PaddockTypes {
     public ArrayList<String> list(){
          ArrayList<String> list = new ArrayList<>();
         for (PaddockTypes type : PaddockTypes.values()) {
-            list.add(type.getId() + " - " + this.option.getPaddockBundle().getString(type.toStringByLanguage()));
+            list.add(type.getId() + " - " + type.toStringByLanguage());
         }
         return list;
     }
