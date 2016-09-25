@@ -20,14 +20,17 @@ import zoo.paddock.biome.BiomeAttributes;
 
 /**
  * the concrete class used to save a zoo inside a XML file
+ *
  * @author doyenm
  */
 public class SaveImpl implements Save {
 
     /**
-     * The private class used to access to all the fields of zoo, paddocks and animals
+     * The private class used to access to all the fields of zoo, paddocks and
+     * animals
      */
     public static final class FriendSave {
+
         private FriendSave() {
         }
     }
@@ -35,9 +38,10 @@ public class SaveImpl implements Save {
 
     /**
      * The main method to create the expected file and save the zoo inside
+     *
      * @param zoo
      * @param fileName
-     * @throws EmptyNameException 
+     * @throws EmptyNameException
      */
     @Override
     public void saveZoo(IZoo zoo, String fileName) throws EmptyNameException {
@@ -95,6 +99,7 @@ public class SaveImpl implements Save {
         Element el = new Element("paddock");
         el.setAttribute(createAttribute("name", pad.getName(friendSave)));
         el.addContent(createElementWithText("biome", Integer.toString(pad.getBiome(friendSave))));
+        el.addContent(createElementWithText("paddockType", Integer.toString(pad.getPaddockType(friendSave))));
         el.addContent(createElementWithText("x", Integer.toString(pad.getCoordinates(friendSave).getX())));
         el.addContent(createElementWithText("y", Integer.toString(pad.getCoordinates(friendSave).getY())));
         el.addContent(createElementWithText("width", Integer.toString(pad.getCoordinates(friendSave).getWidth())));
