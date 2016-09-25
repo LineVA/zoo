@@ -35,15 +35,20 @@ public class Man implements Command {
             } else if("pad".equals(arg) || "paddock".equals(arg)){
                    this.success = true;
                 return ReadingMan.load(new File("doc/man/manPaddock"));
-            }           
+            } else if("cmd".equals(arg)){
+                   this.success = true;
+                return ReadingMan.load(new File("doc/man/cmdLines"));
+            }                     
             return "";
         } catch (IOException ex) {
-            return ex.getMessage();s
+            return ex.getMessage();
         }
     }
     
     private boolean checkSecondArg(String cmd) {
-        if ("zoo".equals(cmd) || "paddock".equals(cmd) || "pad".equals(cmd)) {
+        if ("zoo".equals(cmd) || 
+                "paddock".equals(cmd) || "pad".equals(cmd) || 
+                "cmd".equals(cmd) || "command".equals(cmd)) {
             this.arg = cmd;
             return true;            
         }
