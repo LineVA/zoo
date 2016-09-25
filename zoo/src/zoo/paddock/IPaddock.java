@@ -94,4 +94,7 @@ public interface IPaddock {
     public PaddockCoordinates getCoordinates(SaveImpl.FriendSave friend);
 
     public int getBiome(SaveImpl.FriendSave friend);
+
+    public int getPaddockType(SaveImpl.FriendSave friend);
+
 }

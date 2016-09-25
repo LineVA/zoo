@@ -567,5 +567,11 @@ public class Paddock implements IPaddock {
         friend.hashCode();
         return this.biome;
     }
+    
+      @Override
+     public int getPaddockType(SaveImpl.FriendSave friend) {
+        friend.hashCode();
+        return this.paddockType;
+    }
 
 }
