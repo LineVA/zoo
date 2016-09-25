@@ -13,7 +13,7 @@ public enum PaddockTypes {
     UNKNOWN(0),
     AQUARIUM(1),
     AVIARY(2),
-    CONTACTPEN(3),
+    CONTACT(3),
     ISLAND(4),
     LOWLAND(5),
     PIT(6),
