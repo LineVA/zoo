@@ -4,6 +4,7 @@ Liste des commandes :
 > man [paddock|pad] : Affichage des informations concerant toutes les commandes 
         commençant par 'paddock'
 > man [command|cmd] : Affichage de la liste des commandes disponibles
+> man [specie|spec] : Affiche des informations concernant toutes les commandes commençant par 'specie':wq
 
 > load <name> : Chargement du zoo contenu dans le fichier './gameBackUps/name.xml'
 > save <name> : Sauvegarde du zoo dans le fichier './gameBackUps/name.xml' 
