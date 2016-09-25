@@ -41,7 +41,7 @@ public class ListAnimalTest {
         opt = new Option();
         specie1 = parser.mainParserSpecie(new File("./test/zoo/paddock/speciesForListAnimalTest/zebre1.xml"));
         specie2 = parser.mainParserSpecie(new File("./test/zoo/paddock/speciesForListAnimalTest/zebre2.xml"));
-        paddock = new Paddock("name", null, null, opt);
+        paddock = new Paddock("name", null, null, PaddockTypes.UNKNOWN.getId(), opt);
     }
 
     @Test
