@@ -25,7 +25,7 @@ Si aucun enclos du zoo ne possédant le nom 'name',
 Aucun tri n'est effectué quant aux différentes caractéristiques d'un enclos.
 
 > paddock 'name' : affiche les détails de l'enclos de nom 'name'
-Ces détails sont dans l'ordre les suivant s: 
+Ces détails sont dans l'ordre les suivants: 
     - son nom, 
     - ses coordonnées,
     - le nom des enclos voisins 
