@@ -1,5 +1,11 @@
 Liste des commandes :
 
+> man zoo : Affichage des informations concernant toutes les commandes commençant par 'zoo'
+> man paddock : Affichage des informations concerant toutes les commandes commençant par 'paddock'
+    man pad
+> man command : Affichage de la liste des commandes disponibles
+    man cmd
+
 > load <name> : Chargement du zoo contenu dans le fichier './gameBackUps/name.xml'
 > save <name> : Sauvegarde du zoo dans le fichier './gameBackUps/name.xml' 
 
