@@ -29,6 +29,7 @@ import zoo.animal.specie.Specie;
 import zoo.evaluation.Evaluation;
 import zoo.paddock.IPaddock;
 import zoo.paddock.Paddock;
+import zoo.paddock.PaddockBuilder;
 import zoo.paddock.biome.Biome;
 
 /**
@@ -148,7 +149,10 @@ public class Zoo implements IZoo {
                 neightbourhood.add(tmp);
             }
         }
-        IPaddock paddock = new Paddock(paddockName, coor, neightbourhood, 0,option);
+        IPaddock paddock = new PaddockBuilder().name(paddockName)
+                .coordinates(coor)
+                .option(option)
+                .buildPaddock();
         IPaddock success = this.paddocks.putIfAbsent(paddockName, paddock);
         if (success == null) {
             reactualizeNeightbourhoods(paddock, neightbourhood);
@@ -392,7 +396,7 @@ public class Zoo implements IZoo {
             }
         }
         ArrayList<String> strList = new ArrayList<>();
-        for(Specie spec: list){
+        for (Specie spec : list) {
             strList.add(spec.getNameAccordingLanguage(this.option));
         }
         return strList;

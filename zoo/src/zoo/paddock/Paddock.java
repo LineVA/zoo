@@ -73,7 +73,7 @@ public class Paddock implements IPaddock {
      * @param coor the coordinates of the paddock
      */
     public Paddock(String name, PaddockCoordinates coor,
-            ArrayList<IPaddock> neightbourhood, int paddockType, Option option)
+            ArrayList<IPaddock> neightbourhood, int biome, int paddockType, Option option)
             throws EmptyNameException, NameException {
         this.option = option;
         NameVerifications.verify(name, this.option.getPaddockBundle());
