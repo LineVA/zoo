@@ -148,7 +148,7 @@ public class Zoo implements IZoo {
                 neightbourhood.add(tmp);
             }
         }
-        IPaddock paddock = new Paddock(paddockName, coor, neightbourhood, option);
+        IPaddock paddock = new Paddock(paddockName, coor, neightbourhood, 0,option);
         IPaddock success = this.paddocks.putIfAbsent(paddockName, paddock);
         if (success == null) {
             reactualizeNeightbourhoods(paddock, neightbourhood);

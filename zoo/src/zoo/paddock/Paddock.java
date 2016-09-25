@@ -61,6 +61,7 @@ public class Paddock implements IPaddock {
     BiomeAttributes attributes;
     @Getter
     Map<String, Animal> animals;
+    private int paddockType;
     private ArrayList<IPaddock> neightbourhood;
     private BirthObservable obs = new BirthObservable();
 
@@ -72,7 +73,7 @@ public class Paddock implements IPaddock {
      * @param coor the coordinates of the paddock
      */
     public Paddock(String name, PaddockCoordinates coor,
-            ArrayList<IPaddock> neightbourhood, Option option)
+            ArrayList<IPaddock> neightbourhood, int paddockType, Option option)
             throws EmptyNameException, NameException {
         this.option = option;
         NameVerifications.verify(name, this.option.getPaddockBundle());
@@ -82,6 +83,7 @@ public class Paddock implements IPaddock {
         this.attributes = (BiomeAttributes) Biome.NONE.getAttributes().clone();
         this.animals = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         this.neightbourhood = neightbourhood;
+        this.paddockType = paddockType;
         obs.addObserver(new Observer() {
             @Override
             public void update(Observable o, Object arg) {

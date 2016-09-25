@@ -31,7 +31,7 @@ public class FakePaddock {
     public IPaddock convertToPaddock(Option option) 
             throws IncorrectDimensionsException, EmptyNameException, NameException{
         IPaddock tmpPad =  new Paddock(this.name, new PaddockCoordinates(this.x, this.y, 
-                this.width, this.height), new ArrayList<>(), option);
+                this.width, this.height), new ArrayList<>(), 0, option);
         tmpPad.setBiome(Integer.toString(this.biome));
         return tmpPad;
     }
