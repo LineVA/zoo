@@ -12,7 +12,7 @@ import zoo.paddock.IPaddock;
 public class AnimalKeeperBuilder {
 
     private String _name;
-    private ArrayList<IPaddock> _managedPaddocks = new ArrayList<>();
+    private Map<IPaddock, Double> _managedPaddocks = new HashMap<>();
     private Map<Integer, Double> _managedFamilies = new HashMap<>();
     private Map<Integer, Double> _managedTasks = new HashMap<>();
 
@@ -26,7 +26,7 @@ public class AnimalKeeperBuilder {
         return this;
     }
     
-    public AnimalKeeperBuilder managedPaddocks(ArrayList<IPaddock> paddocks){
+    public AnimalKeeperBuilder managedPaddocks(HashMap<IPaddock, Double> paddocks){
         this._managedPaddocks = paddocks;
         return this;
     }
