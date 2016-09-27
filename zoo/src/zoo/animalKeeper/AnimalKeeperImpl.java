@@ -13,16 +13,19 @@ import zoo.paddock.IPaddock;
 public class AnimalKeeperImpl implements AnimalKeeper {
 
     private final String name;
-    private Map<IPaddock, Double> managedPaddocks;
+    private Map<IPaddock, Double> timedPaddocks;
+    private Map<TaskPaddock, Double> timedTaskPerPaddock;
     private Map<Integer, Double> managedFamilies;
     private Map<Integer, Double> managedTasks;
 
-    public AnimalKeeperImpl(String name, Map<IPaddock, Double> managedPaddocks,
+    public AnimalKeeperImpl(String name, Map<IPaddock, Double> timedPaddocks,
+            Map<TaskPaddock, Double> timedTaskPerPaddock,
             Map<Integer, Double> managedFamilies, Map<Integer, Double> managedTasks) {
         this.name = name;
-        this.managedPaddocks = managedPaddocks;
+        this.timedPaddocks = timedPaddocks;
         this.managedFamilies = managedFamilies;
         this.managedTasks = managedTasks;
+        this.timedTaskPerPaddock = timedTaskPerPaddock;
     }
 
     private boolean checkIndiviualTime(Double time) {
@@ -47,12 +50,12 @@ public class AnimalKeeperImpl implements AnimalKeeper {
 
     public void addAPaddock(IPaddock pad, Double time) throws IncorrectDataException {
         if (checkIndiviualTime(time)) {
-            Double previousTime = this.managedPaddocks.putIfAbsent(pad, time);
-            if (this.checkCumulativeTime(extractTimes(this.managedPaddocks))) {
+            Double previousTime = this.timedPaddocks.putIfAbsent(pad, time);
+            if (this.checkCumulativeTime(extractTimes(this.timedPaddocks))) {
                 if (previousTime != null) {
-                    this.managedPaddocks.put(pad, previousTime);
+                    this.timedPaddocks.put(pad, previousTime);
                 } else {
-                    this.managedPaddocks.remove(pad);
+                    this.timedPaddocks.remove(pad);
                 }
             } else {
                 throw new IncorrectDataException("La durée cumulative doit être comprise entre 0 et 100");

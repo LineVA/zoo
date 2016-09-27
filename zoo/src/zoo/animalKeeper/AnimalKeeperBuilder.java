@@ -12,33 +12,39 @@ import zoo.paddock.IPaddock;
 public class AnimalKeeperBuilder {
 
     private String _name;
-    private Map<IPaddock, Double> _managedPaddocks = new HashMap<>();
+    private Map<IPaddock, Double> _timedPaddocks = new HashMap<>();
+    private Map<TaskPaddock, Double> _timedTaskPerPaddock = new HashMap<>();
     private Map<Integer, Double> _managedFamilies = new HashMap<>();
     private Map<Integer, Double> _managedTasks = new HashMap<>();
 
     public AnimalKeeper buildAnimalKeeper() {
-        return new AnimalKeeperImpl(_name, _managedPaddocks,
+        return new AnimalKeeperImpl(_name, _timedPaddocks, _timedTaskPerPaddock,
                 _managedFamilies, _managedTasks);
     }
 
-    public AnimalKeeperBuilder name(String _name){
+    public AnimalKeeperBuilder name(String _name) {
         this._name = _name;
         return this;
     }
-    
-    public AnimalKeeperBuilder managedPaddocks(HashMap<IPaddock, Double> paddocks){
-        this._managedPaddocks = paddocks;
+
+    public AnimalKeeperBuilder timedPaddocks(HashMap<IPaddock, Double> paddocks) {
+        this._timedPaddocks = paddocks;
         return this;
     }
     
-    public AnimalKeeperBuilder managedFamilies(HashMap<Integer, Double> families){
+    public AnimalKeeperBuilder timedTaskPerPaddock(HashMap<TaskPaddock, Double> paddocks) {
+        this._timedTaskPerPaddock = paddocks;
+        return this;
+    }
+
+    public AnimalKeeperBuilder managedFamilies(HashMap<Integer, Double> families) {
         this._managedFamilies = families;
         return this;
     }
-    
-     public AnimalKeeperBuilder managedTasks(HashMap<Integer, Double> tasks){
+
+    public AnimalKeeperBuilder managedTasks(HashMap<Integer, Double> tasks) {
         this._managedTasks = tasks;
         return this;
     }
-    
+
 }
