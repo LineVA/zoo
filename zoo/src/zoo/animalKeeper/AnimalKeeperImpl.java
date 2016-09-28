@@ -1,6 +1,7 @@
 package zoo.animalKeeper;
 
 import exception.IncorrectDataException;
+import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -77,11 +78,25 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         }
     }
 
-    public void addTaskToAPaddock(IPaddock paddock, HashMap<Task, Double> timedTasks) throws IncorrectDataException {
+    private ArrayList<Double> defineNewRepartitionForGivenPaddock
+        (IPaddock paddock, HashMap<Task, Double> timedTasks) throws UnknownNameException{
+        ArrayList<Double> times = new ArrayList<>();
+        for(HashMap.Entry<TaskPaddock, Double> entry : this.timedTaskPerPaddock.entrySet()){
+            if(timedTasks.containsKey(Task.UNKNOWN.findById(entry.getKey().getTask())) && entry.getKey().getPaddock().equals(paddock)){
+                times.add(timedTasks.get(entry.getKey()));
+            } else if(!timedTasks.containsKey(Task.UNKNOWN.findById(entry.getKey().getTask())) && entry.getKey().getPaddock().equals(paddock)) {
+                times.add(entry.getValue());
+            }
+        }
+        return times;
+    }
+    
+    public void addTaskToAPaddock(IPaddock paddock, HashMap<Task, Double> timedTasks)
+            throws IncorrectDataException, UnknownNameException {
         // Check if this animal keeper is associated to pad
         if (this.timedPaddocks.containsKey(paddock)) {
             // check if we can attribute this new collections of timed tasks to the paddock
-            if (checkCumulativeTime(timedTasks.values()))  {
+            if (checkCumulativeTime(defineNewRepartitionForGivenPaddock(paddock, timedTasks)))  {
                 for (HashMap.Entry<Task, Double> entry : timedTasks.entrySet()) {
                     this.timedTaskPerPaddock.put(new TaskPaddock(paddock, entry.getKey().getId()), entry.getValue());
                 }
@@ -89,7 +104,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
                 throw new IncorrectDataException("La durée cumulative doit être comprise entre 0 et 100");
             }
         } else {
-            throw new IncorrectDataException("Une durée doit être comprise entre 0 et 100");
+           throw new IncorrectDataException("Il vous faut d'abord consacrer un temps à cet enclos");
         }
     }
 }
