@@ -1,6 +1,7 @@
 
 package zoo.animalKeeper;
 
+import exception.name.UnknownNameException;
 import lombok.Getter;
 
 /**
@@ -21,5 +22,13 @@ public enum Task {
         this.id = id;
     }
     
+     public Task findById(int id) throws UnknownNameException {
+        for (Task status : Task.values()) {
+            if (status.getId() == id) {
+                return status;
+            }
+        }
+        throw new UnknownNameException("Unknown id");
+    }
     
 }
