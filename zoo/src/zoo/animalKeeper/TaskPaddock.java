@@ -1,6 +1,7 @@
 package zoo.animalKeeper;
 
 import java.util.Objects;
+import lombok.Getter;
 import zoo.paddock.IPaddock;
 
 /**
@@ -9,7 +10,9 @@ import zoo.paddock.IPaddock;
  */
 public class TaskPaddock {
 
+    @Getter
     private IPaddock paddock;
+    @Getter
     private int task;
     
     public TaskPaddock(IPaddock paddock, int task){
