@@ -2,6 +2,7 @@ package zoo.animalKeeper;
 
 import exception.IncorrectDataException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import zoo.paddock.IPaddock;
@@ -47,6 +48,17 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         }
         return timesList;
     }
+    
+    private boolean checkCumulativeTime(Collection<Double> times){
+        Double result = 0.0;
+        for(Double time : times){
+           if(!checkIndiviualTime(time)){
+               return false;
+           } 
+           result += time;
+        }
+        return result <= 100.0;
+    }
 
     public void addAPaddock(IPaddock pad, Double time) throws IncorrectDataException {
         if (checkIndiviualTime(time)) {
@@ -65,4 +77,19 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         }
     }
 
+    public void addTaskToAPaddock(IPaddock paddock, HashMap<Task, Double> timedTasks) throws IncorrectDataException {
+        // Check if this animal keeper is associated to pad
+        if (this.timedPaddocks.containsKey(paddock)) {
+            // check if we can attribute this new collections of timed tasks to the paddock
+            if (checkCumulativeTime(timedTasks.values()))  {
+                for (HashMap.Entry<Task, Double> entry : timedTasks.entrySet()) {
+                    this.timedTaskPerPaddock.put(new TaskPaddock(paddock, entry.getKey().getId()), entry.getValue());
+                }
+            } else {
+                throw new IncorrectDataException("La durée cumulative doit être comprise entre 0 et 100");
+            }
+        } else {
+            throw new IncorrectDataException("Une durée doit être comprise entre 0 et 100");
+        }
+    }
 }
