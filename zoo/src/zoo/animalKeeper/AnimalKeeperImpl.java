@@ -61,6 +61,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return result <= 100.0;
     }
 
+    @Override
     public void addAPaddock(IPaddock pad, Double time) throws IncorrectDataException {
         if (checkIndiviualTime(time)) {
             Double previousTime = this.timedPaddocks.putIfAbsent(pad, time);
@@ -91,6 +92,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return times;
     }
     
+        @Override
     public void addTaskToAPaddock(IPaddock paddock, HashMap<Task, Double> timedTasks)
             throws IncorrectDataException, UnknownNameException {
         // Check if this animal keeper is associated to pad
