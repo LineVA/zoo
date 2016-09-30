@@ -26,11 +26,11 @@
     </lifespan>
     <territory>
         <biome>1</biome>
-        <territorySize>175</territorySize>
+        <territorySize>120</territorySize>
     </territory>
     <feeding>
         <diet>3</diet>
-        <quantity>1</quantity>
+        <quantity>2.1</quantity>
         <size>5</size>
     </feeding>
     <social>

@@ -25,14 +25,14 @@
     </lifespan>
     <territory>
         <biome>7</biome>
-        <territorySize>210</territorySize>
+        <territorySize>1000</territorySize>
     </territory>
     <feeding>
         <diet>3</diet>
-        <quantity>7</quantity>
+        <quantity>3.5</quantity>
         <size>7</size>
     </feeding>
     <social>
-        <groupSize>20</groupSize>
+        <groupSize>10</groupSize>
     </social>
 </animal>
