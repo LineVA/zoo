@@ -39,9 +39,9 @@ Liste des commandes :
         d'identifiant 'id' de l'espèce
 > animal ls [--size|-sz] 'id' : Liste des animaux selon la taille d'identifiant 'id' de l'espèce
 > animal ls [--continent|-ct] 'id' : Liste des animaux selon le continent d'origine d'identifiant 'id' de l'espèce
-> aniaml ls [--diet|-d] 'id' : Liste des animaux selon le régime d'identifiant 'id' attribué à l'animal
-> aniaml ls [--sex--sx] 'id' : Liste des animaux de sexe 'id'
-> aniaml ls [--biome|-b] 'id' : Liste des animaux présents dans des enclos ayant le biome 'id'
+> animal ls [--diet|-d] 'id' : Liste des animaux selon le régime d'identifiant 'id' attribué à l'animal
+> animal ls [--sex--sx] 'id' : Liste des animaux de sexe 'id'
+> animal ls [--biome|-b] 'id' : Liste des animaux présents dans des enclos ayant le biome 'id'
 > animal <name> : Détails de l'animal 'name'
 > animal <name> [--diet|-d] <id|regime> : Attribution du régime d'identifiant 'id' 
         ou de nom 'regime' à l'animal 'name'
@@ -65,6 +65,7 @@ Liste des commandes :
 > specie ls [--continent|-ct] 'id' : Liste des espèces selon le continent d'origine d'identifiant 'id' 
 > specie ls [--diet|-d] 'id' : Liste des espèces selon le régime d'identifiant 'id' 
 > specie ls [--biome|-b] 'id' : Liste des espèces réclamant qle biome 'id'
-> specie <name> : Détails de l'espèce 'name'
+> specie <name> : Détails de l'espèce 'name
+> [doc|documentation] [wiki|wikipedia] 'name' : Ouverture de la page wikipedia de l'espèce de nom 'name'
 
 > evaluate : Fin du tour, évaluation du zoo
