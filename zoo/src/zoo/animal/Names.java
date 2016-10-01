@@ -1,9 +1,12 @@
 package zoo.animal;
 
+import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Objects;
 import launch.options.Option;
 import lombok.Getter;
+import zoo.paddock.biome.Continent;
 
 /**
  *
@@ -39,11 +42,11 @@ public class Names {
         }
     }
     
-     public ArrayList<String> getAdditionalNamesAccordingLanguage(Option option) {
+     public String getAdditionalNamesAccordingLanguage(Option option) {
         if (option.getLocale().getLanguage().equals("fr")) {
-            return this.additionalFrenchNames;
+            return this.additionalNamesToString(this.additionalFrenchNames);
         } else {
-            return this.additionalEnglishNames;
+            return this.additionalNamesToString(this.additionalEnglishNames);
         }
     }
 
@@ -69,4 +72,18 @@ public class Names {
         return true;
     }
 
+     private String additionalNamesToString(ArrayList<String> names) {
+        String info = "";
+        String next;
+        Iterator it = names.iterator();
+        while (it.hasNext()) {
+            next = (String) it.next();
+            info += next;
+            if (it.hasNext()) {
+                info += ", ";
+            }
+        }
+        return info;
+    }
+    
 }
