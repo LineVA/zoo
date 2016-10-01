@@ -45,7 +45,9 @@ public class ParserSpecie {
         TerritoryAttributes territory = territoryParser(root);
         int size = sizeParser(root);
         ArrayList<Integer> continents = continentParser(root);
-        Specie spec = new Specie(names, biomeAtt, feeding, diet, repro, lifeSpan,
+//        DocumentationURI docu = documentationParser(root);
+        DocumentationURI docu = null;
+        Specie spec = new Specie(names, docu, biomeAtt, feeding, diet, repro, lifeSpan,
                 conservation, social, territory, region, family, biome, size, continents);
         return spec;
     }
@@ -140,4 +142,9 @@ public class ParserSpecie {
         return continents;
     }
 
+      private static DocumentationURI documentationParser(Element root) {
+        Element docEl = root.getChild("documentation");
+        return new DocumentationURI(docEl.getChildText("frenchWikipedia"), 
+                docEl.getChildText("englishWikipedia"), docEl.getChildText("animalDiversity"));
+    }
 }
