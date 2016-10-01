@@ -25,7 +25,7 @@
     </lifespan>
     <territory>
         <biome>7</biome>
-        <territorySize>16</territorySize>
+        <territorySize>100</territorySize>
     </territory>
     <feeding>
         <diet>3</diet>

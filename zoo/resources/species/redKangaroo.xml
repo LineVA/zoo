@@ -1,7 +1,7 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
         <fr>Kangourou roux</fr>
-        <en>Red kangoroo</en>
+        <en>Red kangaroo</en>
         <scientific>Macropus rufus</scientific>
     </names>
     <general>
@@ -25,7 +25,7 @@
     </lifespan>
     <territory>
         <biome>13</biome>
-        <territorySize>0.5</territorySize>
+        <territorySize>1280</territorySize>
     </territory>
     <feeding>
         <diet>21</diet>
