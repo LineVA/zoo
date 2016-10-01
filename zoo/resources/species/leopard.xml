@@ -2,9 +2,11 @@
     <names>
         <fr>Léopard</fr>
          <additionalFrenchNames>
+             <name>Panthère</name>
         </additionalFrenchNames>
         <en>Leopard</en>  
         <additionalEnglishNames>
+            <name>Panther</name>
         </additionalEnglishNames>
         <scientific>Panthera pardus</scientific>
     </names>

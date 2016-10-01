@@ -2,9 +2,15 @@
     <names>
         <fr>Puma</fr>
          <additionalFrenchNames>
+             <name>Lion de montagne</name>
+             <name> Cougar</name>
         </additionalFrenchNames>
         <en>Cougar</en>
           <additionalEnglishNames>
+              <name>Mountain lion</name>
+              <name>Catamount</name>
+              <name>Puma</name>
+              <name>Panther</name>
         </additionalEnglishNames>
         <scientific>Puma concolor</scientific>
     </names>
