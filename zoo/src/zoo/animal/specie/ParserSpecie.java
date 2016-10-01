@@ -53,7 +53,7 @@ public class ParserSpecie {
     private static Names namesParser(Element root) {
         Element nameEl = root.getChild("names");
         return new Names(nameEl.getChildText("fr"), nameEl.getChildText("en"),
-                nameEl.getChildText("scientific"));
+                nameEl.getChildText("scientific"), null, null);
     }
 
     private static BiomeAttributes biomeAttributesParser(Element root) {
