@@ -50,10 +50,20 @@ public class ParserSpecie {
         return spec;
     }
 
+    private static ArrayList<String> additionalNames(Element root) {
+        ArrayList<String> additional = new ArrayList<>();
+        List<Element> names = root.getChildren("name");
+        for (Element name : names) {
+            additional.add(name.getText());
+        }
+        return additional;
+    }
+
     private static Names namesParser(Element root) {
         Element nameEl = root.getChild("names");
         return new Names(nameEl.getChildText("fr"), nameEl.getChildText("en"),
-                nameEl.getChildText("scientific"), null, null);
+                nameEl.getChildText("scientific"), additionalNames(nameEl.getChild("additionalFrenchNames")),
+                additionalNames(nameEl.getChild("additionalEnglishNames")));
     }
 
     private static BiomeAttributes biomeAttributesParser(Element root) {
