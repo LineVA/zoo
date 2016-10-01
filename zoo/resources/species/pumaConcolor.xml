@@ -24,8 +24,8 @@
         <ecoregion>1</ecoregion>
     </general>
      <documentation>
-        <frenchWikipedia></frenchWikipedia>
-        <englishWikipedia></englishWikipedia>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Puma</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Cougar</englishWikipedia>
         <animalDiversity></animalDiversity>
     </documentation>
     <reproduction>

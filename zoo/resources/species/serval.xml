@@ -18,8 +18,8 @@
         <ecoregion>0</ecoregion>
     </general>
      <documentation>
-        <frenchWikipedia></frenchWikipedia>
-        <englishWikipedia></englishWikipedia>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Serval</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Serval</englishWikipedia>
         <animalDiversity></animalDiversity>
     </documentation>
     <reproduction>

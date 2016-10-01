@@ -8,6 +8,7 @@
               <name>Geoffroy's tufted-ear marmoset</name>
               <name>White-fronted marmoset</name>
               <name> White-faced marmoset</name>
+              <name> White-headed marmoset</name>
           </additionalEnglishNames>
         <scientific>Callithrix geoffroyi</scientific>
     </names>
@@ -20,8 +21,8 @@
         <ecoregion>0</ecoregion>
     </general>
      <documentation>
-        <frenchWikipedia></frenchWikipedia>
-        <englishWikipedia></englishWikipedia>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Ouistiti_de_Geoffroy</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/White-headed_marmoset</englishWikipedia>
         <animalDiversity></animalDiversity>
     </documentation>
     <reproduction>

@@ -2,6 +2,8 @@
     <names>
         <fr>Tamarin de Goeldi</fr>
          <additionalFrenchNames>
+             <name>Callimico</name>
+             <name>Tamarin sauteur</name>
         </additionalFrenchNames>
         <en>Goeldi's marmoset</en>
           <additionalEnglishNames>
@@ -21,8 +23,8 @@
         <ecoregion>0</ecoregion>
     </general>
      <documentation>
-        <frenchWikipedia></frenchWikipedia>
-        <englishWikipedia></englishWikipedia>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Tamarin_de_Goeldi</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Goeldi%27s_marmoset</englishWikipedia>
         <animalDiversity></animalDiversity>
     </documentation>
     <reproduction>
