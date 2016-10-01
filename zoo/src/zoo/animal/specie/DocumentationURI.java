@@ -1,5 +1,6 @@
 package zoo.animal.specie;
 
+import launch.options.Option;
 import lombok.Getter;
 
 /**
@@ -19,5 +20,13 @@ public class DocumentationURI {
         this.frenchWikipedia = frenchWikipedia;
         this.englishWikipedia = englishWikipedia;
         this.animalDiversity = animalDiversity;
+    }
+    
+    public String getWikipediaAccordingLanguage(Option option){
+        if (option.getLocale().getLanguage().equals("fr")) {
+            return this.frenchWikipedia;
+        } else {
+            return this.englishWikipedia;
+        }
     }
 }
