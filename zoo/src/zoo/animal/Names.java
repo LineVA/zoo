@@ -1,5 +1,6 @@
 package zoo.animal;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import launch.options.Option;
 import lombok.Getter;
@@ -13,14 +14,21 @@ public class Names {
     @Getter
     private final String frenchName;
     @Getter
+    private final ArrayList<String> additionalFrenchNames;
+    @Getter
     private final String englishName;
+    @Getter
+    private final ArrayList<String> additionalEnglishNames;
     @Getter
     private final String scientificName;
 
-    public Names(String frenchName, String englishName, String scientificName) {
+    public Names(String frenchName, String englishName, String scientificName,
+            ArrayList<String> additionalFrenchNames, ArrayList<String> additionalEnglishNames) {
         this.frenchName = frenchName;
         this.englishName = englishName;
         this.scientificName = scientificName;
+        this.additionalEnglishNames = additionalEnglishNames;
+        this.additionalFrenchNames = additionalFrenchNames;
     }
 
     public String getNameAccordingLanguage(Option option) {
@@ -31,6 +39,14 @@ public class Names {
         }
     }
     
+     public ArrayList<String> getAdditionalNamesAccordingLanguage(Option option) {
+        if (option.getLocale().getLanguage().equals("fr")) {
+            return this.additionalFrenchNames;
+        } else {
+            return this.additionalEnglishNames;
+        }
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -52,6 +68,5 @@ public class Names {
         }
         return true;
     }
-    
-    
+
 }
