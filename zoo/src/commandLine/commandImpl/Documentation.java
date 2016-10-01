@@ -2,8 +2,6 @@ package commandLine.commandImpl;
 
 import commandLine.Command;
 import documentation.DocumentationGeneration;
-import exception.name.EmptyNameException;
-import exception.name.UnknownNameException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import launch.play.Play;
@@ -37,9 +35,13 @@ public class Documentation implements Command {
     public String execute(String[] cmd) {
         try {
             Specie spec = this.play.getZoo().findSpecieByName(cmd[2]);
-            if ("-wiki".equals(cmd[1]) || "--wikipedia".equals(cmd[1]) || "wiki".equals(cmd[1])) {
-                DocumentationGeneration.displayWikipedia(
+            if ("wiki".equals(cmd[1]) || "wikipedia".equals(cmd[1])) {
+                DocumentationGeneration.display(
                         spec.getDocumentation().getWikipediaAccordingLanguage(this.play.getOption()));
+            }
+              if ("ad".equals(cmd[1]) || "animalDiversity".equals(cmd[1])) {
+                DocumentationGeneration.display(
+                        spec.getDocumentation().getAnimalDiversity());
             }
             return "";
         } catch (IOException | URISyntaxException ex) {
@@ -51,7 +53,8 @@ public class Documentation implements Command {
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 3) {
             if ((cmd[0].equals("doc") || "documentation".equals(cmd[0])) 
-                    && ("-wiki".equals(cmd[1]) || "--wikipedia".equals(cmd[1]) || "wiki".equals(cmd[1]))) {
+                    && (("wiki".equals(cmd[1]) || "wikipedia".equals(cmd[1])) 
+                    ||("animalDiversity".equals(cmd[1]) || "aD".equals(cmd[1])))) {
                 return true;
             }
         }

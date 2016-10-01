@@ -15,7 +15,7 @@ public class DocumentationGeneration {
         desk.browse(uri);
     }
     
-    public static void displayWikipedia(String url) throws IOException, URISyntaxException{
+    public static void display(String url) throws IOException, URISyntaxException{
         display(new URI(url));
     }
 }
