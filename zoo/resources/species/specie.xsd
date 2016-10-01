@@ -41,6 +41,15 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
+                 <xs:element name="documentation">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="frenchWikipedia"/>
+                            <xs:element type="xs:string" name="englishWikipedia"/>
+                            <xs:element type="xs:string" name="animalDiversity"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element name="reproduction">
                     <xs:complexType>
                         <xs:sequence>

@@ -20,6 +20,11 @@
         </continents>
         <ecoregion>0</ecoregion>
     </general>
+     <documentation>
+        <frenchWikipedia></frenchWikipedia>
+        <englishWikipedia></englishWikipedia>
+        <animalDiversity></animalDiversity>
+    </documentation>
     <reproduction>
         <femaleMaturity>14</femaleMaturity>
         <maleMaturity>14</maleMaturity>

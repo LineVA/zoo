@@ -1,12 +1,12 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
         <fr>Vari noir et blanc</fr>
-         <additionalFrenchNames>
-             <name>Lémur vari</name>
+        <additionalFrenchNames>
+            <name>Lémur vari</name>
         </additionalFrenchNames>
         <en>Black and white ruffed lemur</en>
-          <additionalEnglishNames>
-              <name>Black and white lemur</name>
+        <additionalEnglishNames>
+            <name>Black and white lemur</name>
         </additionalEnglishNames>
         <scientific>Varecia variegata</scientific>
     </names>
@@ -18,6 +18,11 @@
         </continents>
         <ecoregion>0</ecoregion>
     </general>
+    <documentation>
+        <frenchWikipedia></frenchWikipedia>
+        <englishWikipedia></englishWikipedia>
+        <animalDiversity></animalDiversity>
+    </documentation>
     <reproduction>
         <femaleMaturity>20</femaleMaturity>
         <maleMaturity>20</maleMaturity>

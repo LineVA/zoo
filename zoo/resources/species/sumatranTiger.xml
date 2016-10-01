@@ -1,7 +1,7 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
         <fr>Tigre de Sumatra</fr>
-         <additionalFrenchNames>
+        <additionalFrenchNames>
         </additionalFrenchNames>
         <en>Sumatran tiger</en>
         <additionalEnglishNames>
@@ -16,6 +16,11 @@
         </continents>
         <ecoregion>0</ecoregion>
     </general>
+    <documentation>
+        <frenchWikipedia></frenchWikipedia>
+        <englishWikipedia></englishWikipedia>
+        <animalDiversity></animalDiversity>
+    </documentation>
     <reproduction>
         <femaleMaturity>30</femaleMaturity>
         <maleMaturity>42</maleMaturity>

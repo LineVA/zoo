@@ -45,8 +45,7 @@ public class ParserSpecie {
         TerritoryAttributes territory = territoryParser(root);
         int size = sizeParser(root);
         ArrayList<Integer> continents = continentParser(root);
-//        DocumentationURI docu = documentationParser(root);
-        DocumentationURI docu = null;
+        DocumentationURI docu = documentationParser(root);
         Specie spec = new Specie(names, docu, biomeAtt, feeding, diet, repro, lifeSpan,
                 conservation, social, territory, region, family, biome, size, continents);
         return spec;
