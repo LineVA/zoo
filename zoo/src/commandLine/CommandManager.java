@@ -9,6 +9,7 @@ import commandLine.commandImpl.DetailAnimal;
 import commandLine.commandImpl.DetailPad;
 import commandLine.commandImpl.DetailSpecie;
 import commandLine.commandImpl.DetailZoo;
+import commandLine.commandImpl.Documentation;
 import commandLine.commandImpl.Evaluate;
 import commandLine.commandImpl.FeedingAnimal;
 import commandLine.commandImpl.LoadZoo;
@@ -69,7 +70,8 @@ public abstract class CommandManager {
                 new LsSpecie(play), new DetailSpecie(play), new LsFamily(play),
                 new LsFeeding(play), new LsSize(play),
                 new SaveZoo(play), new LoadZoo(play),
-                new Options(play), new ZooCharacteristics(play));
+                new Options(play), new ZooCharacteristics(play),
+                new Documentation(play));
     }
 
     public abstract String run(String cmd);
