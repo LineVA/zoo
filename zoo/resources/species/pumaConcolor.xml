@@ -1,7 +1,11 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
         <fr>Puma</fr>
+         <additionalFrenchNames>
+        </additionalFrenchNames>
         <en>Cougar</en>
+          <additionalEnglishNames>
+        </additionalEnglishNames>
         <scientific>Puma concolor</scientific>
     </names>
     <general>

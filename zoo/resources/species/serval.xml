@@ -1,7 +1,11 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
         <fr>Serval</fr>
+         <additionalFrenchNames>
+        </additionalFrenchNames>
         <en>Serval</en>
+          <additionalEnglishNames>
+        </additionalEnglishNames>
         <scientific>Leptailurus serval</scientific>
     </names>
     <general>

@@ -1,7 +1,11 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
         <fr>Lion</fr>
+         <additionalFrenchNames>
+        </additionalFrenchNames>
         <en>Lion</en>
+          <additionalEnglishNames>
+        </additionalEnglishNames>
         <scientific>Panthera leo</scientific>
     </names>
     <general>

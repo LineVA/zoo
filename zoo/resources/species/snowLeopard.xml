@@ -1,7 +1,15 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
         <fr>Panthère des neiges</fr>
+        <additionalFrenchNames>
+            <name>Léopard des neiges</name>
+            <name>Once</name>
+            <name>Irbis</name>
+        </additionalFrenchNames>
         <en>Snow leopard</en>
+        <additionalEnglishNames>
+            <name>Ounce</name>
+        </additionalEnglishNames>
         <scientific>Uncia uncia</scientific>
     </names>
     <general>

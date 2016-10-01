@@ -6,7 +6,21 @@
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element type="xs:string" name="fr"/>
+                            <xs:element name="additionalFrenchNames">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:string" name="name" maxOccurs="unbounded" minOccurs="0"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
                             <xs:element type="xs:string" name="en"/>
+                             <xs:element name="additionalEnglishNames">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:string" name="name" maxOccurs="unbounded" minOccurs="0"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
                             <xs:element type="xs:string" name="scientific"/>
                         </xs:sequence>
                     </xs:complexType>

@@ -1,7 +1,11 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
         <fr>Panthère nébuleuse</fr>
+         <additionalFrenchNames>
+        </additionalFrenchNames>
         <en>Clouded leopard</en>
+          <additionalEnglishNames>
+        </additionalEnglishNames>
         <scientific>Neofelis nebulosa</scientific>
     </names>
     <general>

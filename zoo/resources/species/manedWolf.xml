@@ -1,7 +1,11 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
         <fr>Loup à crinière</fr>
+         <additionalFrenchNames>
+        </additionalFrenchNames>
         <en>Maned wolf</en>
+          <additionalEnglishNames>
+        </additionalEnglishNames>
         <scientific>Chrysocyon brachyurus</scientific>
     </names>
     <general>

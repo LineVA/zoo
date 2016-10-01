@@ -1,7 +1,11 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
         <fr>Vari noir et blanc</fr>
+         <additionalFrenchNames>
+        </additionalFrenchNames>
         <en>Black and white ruffed lemur</en>
+          <additionalEnglishNames>
+        </additionalEnglishNames>
         <scientific>Varecia variegata</scientific>
     </names>
     <general>

@@ -1,7 +1,11 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
         <fr>Kangourou roux</fr>
+         <additionalFrenchNames>
+        </additionalFrenchNames>
         <en>Red kangaroo</en>
+          <additionalEnglishNames>
+        </additionalEnglishNames>
         <scientific>Macropus rufus</scientific>
     </names>
     <general>

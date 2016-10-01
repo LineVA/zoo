@@ -1,7 +1,11 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
         <fr>Zèbre de montagne</fr>
+         <additionalFrenchNames>
+        </additionalFrenchNames>
         <en>Mountain zebra</en>
+          <additionalEnglishNames>
+        </additionalEnglishNames>
         <scientific>Equus zebra</scientific>
     </names>
     <general>

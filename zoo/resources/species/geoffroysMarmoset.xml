@@ -1,7 +1,11 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
         <fr>Ouistiti de Geoffroy</fr>
+         <additionalFrenchNames>
+        </additionalFrenchNames>
         <en>Geoffroy's marmoset</en>
+          <additionalEnglishNames>
+        </additionalEnglishNames>
         <scientific>Callithrix geoffroyi</scientific>
     </names>
     <general>

@@ -1,7 +1,11 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
         <fr>Léopard</fr>
-        <en>Leopard</en>
+         <additionalFrenchNames>
+        </additionalFrenchNames>
+        <en>Leopard</en>  
+        <additionalEnglishNames>
+        </additionalEnglishNames>
         <scientific>Panthera pardus</scientific>
     </names>
     <general>

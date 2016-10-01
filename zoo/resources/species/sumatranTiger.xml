@@ -1,7 +1,11 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
         <fr>Tigre de Sumatra</fr>
+         <additionalFrenchNames>
+        </additionalFrenchNames>
         <en>Sumatran tiger</en>
+        <additionalEnglishNames>
+        </additionalEnglishNames>
         <scientific>Panthera tigris sumatrae</scientific>
     </names>
     <general>

@@ -1,7 +1,11 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
         <fr>Tamarin empereur</fr>
+         <additionalFrenchNames>
+        </additionalFrenchNames>
         <en>Emperor tamarin</en>
+          <additionalEnglishNames>
+        </additionalEnglishNames>
         <scientific>Sanguinus imperator</scientific>
     </names>
     <general>
