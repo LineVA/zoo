@@ -16,6 +16,6 @@ public class DocumentationGeneration {
     }
     
     public static void displayWikipedia(String url) throws IOException, URISyntaxException{
-        display(new URI("https://www.google.fr/"));
+        display(new URI(url));
     }
 }
