@@ -121,6 +121,7 @@ public class Specie {
         ArrayList<String> info = new ArrayList<>();
         ResourceBundle bundle = option.getSpecieBundle();
         info.add(bundle.getString("NAME") + this.names.getNameAccordingLanguage(option));
+        info.add(bundle.getString("OTHER_NAME") + this.names.getAdditionalNamesAccordingLanguage(option));
         info.add(bundle.getString("SCIENTIFIC_NAME") + this.names.getScientificName());
         info.add(bundle.getString("CONSERVATION") + ConservationStatus.UNKNOWN.findById(this.conservation).toStringByLanguage());
         info.add(bundle.getString("CONTINENT") + this.continentsToString());
@@ -189,16 +190,16 @@ public class Specie {
         if (lightSpecie.getDiet() != -1) {
             isCorresponding &= lightSpecie.getDiet() == this.diet;
         }
-        if (lightSpecie.getFamily()!= -1) {
-            isCorresponding &= lightSpecie.getFamily()== this.family;
+        if (lightSpecie.getFamily() != -1) {
+            isCorresponding &= lightSpecie.getFamily() == this.family;
         }
-        if (lightSpecie.getConservation()!= -1) {
-            isCorresponding &= lightSpecie.getConservation()== this.conservation;
+        if (lightSpecie.getConservation() != -1) {
+            isCorresponding &= lightSpecie.getConservation() == this.conservation;
         }
-        if (lightSpecie.getSize()!= -1) {
-            isCorresponding &= lightSpecie.getSize()== this.size;
+        if (lightSpecie.getSize() != -1) {
+            isCorresponding &= lightSpecie.getSize() == this.size;
         }
-        if (lightSpecie.getContinent()!= -1) {
+        if (lightSpecie.getContinent() != -1) {
             isCorresponding &= this.continents.contains(lightSpecie.getContinent());
         }
 
