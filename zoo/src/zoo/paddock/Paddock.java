@@ -79,7 +79,7 @@ public class Paddock implements IPaddock {
         NameVerifications.verify(name, this.option.getPaddockBundle());
         this.name = name;
         this.coordinates = coor;
-        this.biome = Biome.NONE.getId();
+        this.biome = biome;
         this.attributes = (BiomeAttributes) Biome.NONE.getAttributes().clone();
         this.animals = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         this.neightbourhood = neightbourhood;
