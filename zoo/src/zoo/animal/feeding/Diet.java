@@ -111,9 +111,9 @@ public enum Diet {
         return this.eatables[diet][this.id];
     }
 
-    public Diet findDietByName(String name) throws UnknownNameException {
+    public Diet findDietByNameAccordingToLanguage(String name) throws UnknownNameException {
         for (Diet diet : Diet.values()) {
-            if (diet.toString().equalsIgnoreCase(name)) {
+            if (diet.toStringByLanguage().equalsIgnoreCase(name)) {
                 return diet;
             }
         }

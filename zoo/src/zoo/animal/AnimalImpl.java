@@ -363,7 +363,7 @@ public class AnimalImpl implements Animal {
             this.actualDiet = tmpDietInt;
         } catch (UnknownNameException | NumberFormatException ex) {
             String tmpDietStr = (String) obj;
-            int tmpDiet = Diet.NONE.findDietByName(tmpDietStr).getId();
+            int tmpDiet = Diet.NONE.findDietByNameAccordingToLanguage(tmpDietStr).getId();
             this.actualDiet = tmpDiet;
         }
     }
