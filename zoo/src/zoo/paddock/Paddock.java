@@ -92,11 +92,20 @@ public class Paddock implements IPaddock {
         });
     }
 
-    public void setPaddockType(PaddockTypes paddockTypes) {
+    private void setPaddockType(PaddockTypes paddockTypes) {
         if (paddockTypes != null) {
             this.paddockType = paddockTypes.getId();
         } else {
             setPaddockType(paddockTypes.UNKNOWN);
+        }
+    }
+
+    @Override
+    public void setPaddockType(String paddockTypeId) throws UnknownNameException {
+        try {
+            setPaddockType(PaddockTypes.UNKNOWN.findById(Integer.parseInt(paddockTypeId)));
+        } catch (java.lang.NumberFormatException ex) {
+            setPaddockType(PaddockTypes.UNKNOWN.findByNameAccordingToLanguage(paddockTypeId));
         }
     }
 
@@ -116,11 +125,6 @@ public class Paddock implements IPaddock {
         } catch (java.lang.NumberFormatException ex) {
             setBiome(Biome.NONE.findByNameAccordingToLanguage(biomeName));
         }
-    }
-
-    @Override
-    public void setPaddockType(String paddockTypeId) throws UnknownNameException {
-        setPaddockType(PaddockTypes.UNKNOWN.findById(Integer.parseInt(paddockTypeId)));
     }
 
     @Override

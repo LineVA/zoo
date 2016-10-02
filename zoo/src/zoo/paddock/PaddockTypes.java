@@ -44,6 +44,15 @@ public enum PaddockTypes {
         throw new UnknownNameException(this.option.getPaddockBundle().getString("PT_UNKNOWN_ID"));
     }
     
+    public PaddockTypes findByNameAccordingToLanguage(String name) throws UnknownNameException {
+        for (PaddockTypes pad : PaddockTypes.values()) {
+            if (pad.toStringByLanguage().equalsIgnoreCase(name)) {
+                return pad;
+            }
+        }
+        throw new UnknownNameException(this.option.getPaddockBundle().getString("PT_UNKNOWN_NAME"));
+    }
+    
       public String toStringByLanguage(){
            return this.option.getPaddockBundle().getString("PT_" + this.toString().toUpperCase());
       }
