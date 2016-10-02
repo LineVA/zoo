@@ -115,7 +115,7 @@ public class ParserBackUp {
         Element tmpAnimalEl;
         String spec;
         String pad = animalsEl.getParentElement().getAttributeValue("name");
-        String sex;
+        int sex;
         int age;
         BiomeAttributes biome;
         FeedingAttributes optFeed;
@@ -128,7 +128,7 @@ public class ParserBackUp {
         while (it.hasNext()) {
             tmpAnimalEl = (Element) it.next();
             spec = tmpAnimalEl.getChildText("specie");
-            sex = tmpAnimalEl.getChildText("sex");
+            sex = Integer.parseInt(tmpAnimalEl.getChildText("sex"));
             age = Integer.parseInt(tmpAnimalEl.getChildText("age"));
             biome = parserBiomeAttributes(tmpAnimalEl);
             optFeed = parserOptimalFeedingAttributes(tmpAnimalEl);

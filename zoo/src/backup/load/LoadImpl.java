@@ -57,7 +57,7 @@ public class LoadImpl implements Load {
             AlreadyUsedNameException, NameException {
         Specie spec = zoo.findSpecieByScientificName(animal.getSpecie());
         IPaddock pad = zoo.findPaddockByName(animal.getPaddock());
-        Sex sex = Sex.FEMALE.findByName(animal.getSex());
+        Sex sex = Sex.UNKNOWN.findById(animal.getSex());
         pad.addAnimal(animal.convertToAnimal(spec, pad, sex, option));
     }
 

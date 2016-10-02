@@ -45,7 +45,12 @@ public class CreateAnimal implements Command {
             try {
                 IPaddock pad = this.play.getZoo().findPaddockByName(cmd[3]);
                 Specie specie = this.play.getZoo().findSpecieByName(cmd[4]);
-                Sex sex = Sex.MALE.findByName(cmd[5]);
+                Sex sex;
+                try {
+                    sex = Sex.UNKNOWN.findById(Integer.parseInt(cmd[5]));
+                } catch (java.lang.NumberFormatException ex2) {
+                    sex = Sex.UNKNOWN.findByNameAccordingToLanguage(cmd[5]);
+                }
                 Animal animal = new AnimalImpl(specie, cmd[2], pad,
                         sex, this.play.getOption());
                 pad.addAnimal(animal);

@@ -27,7 +27,7 @@ public class FakeAnimal {
     @Getter
     String paddock;
     @Getter
-    String sex;
+    int sex;
     int age;
     BiomeAttributes biome;
     FeedingAttributes optFeed;
@@ -38,7 +38,7 @@ public class FakeAnimal {
     SocialAttributes social;
     TerritoryAttributes territory;
 
-    public FakeAnimal(String specie, String name, String paddock, String sex, int age,
+    public FakeAnimal(String specie, String name, String paddock, int sex, int age,
             BiomeAttributes biome, FeedingAttributes optFeed,
             FeedingAttributes actualFeed, int diet,
             ReproductionAttributes repro, LifeSpanLightAttributes life,

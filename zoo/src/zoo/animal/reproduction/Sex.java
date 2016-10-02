@@ -38,9 +38,9 @@ public enum Sex {
          }
     }
     
-    public Sex findByName(String name) throws UnknownNameException {
+    public Sex findByNameAccordingToLanguage(String name) throws UnknownNameException {
         for (Sex sex : Sex.values()) {
-            if (sex.name().equalsIgnoreCase(name)) {
+            if (sex.toStringByLanguage().equalsIgnoreCase(name)) {
                 return sex;
             }
         }
