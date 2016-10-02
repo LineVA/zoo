@@ -84,14 +84,14 @@ public enum Biome implements Cloneable {
 //        return this.getName().equals(second.getName());
     }
     
-//    public Biome findByName(String name) throws UnknownNameException{
-//        for(Biome biome : Biome.values()){
-//            if(biome.getName().equalsIgnoreCase(name)){
-//                return biome;
-//            }
-//        }
-//        throw new UnknownNameException("No biome has this name.");
-//    }
+    public Biome findByNameAccordingToLanguage(String name) throws UnknownNameException{
+        for(Biome biome : Biome.values()){
+            if(biome.toStringByLanguage().equalsIgnoreCase(name)){
+                return biome;
+            }
+        }
+        throw new UnknownNameException("No biome has this name.");
+    }
     
     public Biome findById(int id) throws UnknownNameException{
           for(Biome biome : Biome.values()){
