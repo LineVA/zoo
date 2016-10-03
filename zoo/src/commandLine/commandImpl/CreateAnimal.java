@@ -1,6 +1,8 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import exception.IncorrectDataException;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
@@ -36,11 +38,11 @@ public class CreateAnimal implements Command {
     }
 
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         try {
             this.play.getZoo().findAnimalByName(cmd[2]);
-            return this.play.getOption().getGeneralCmdBundle()
-                    .getString("ALREADY_EXISTING_ANIMAL_NAME");
+            return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
+                    .getString("ALREADY_EXISTING_ANIMAL_NAME"), TypeReturn.SUCCESS);
         } catch (UnknownNameException ex1) {
             try {
                 IPaddock pad = this.play.getZoo().findPaddockByName(cmd[3]);
@@ -55,13 +57,13 @@ public class CreateAnimal implements Command {
                         sex, this.play.getOption());
                 pad.addAnimal(animal);
                 this.success = true;
-                return this.play.getOption().getGeneralCmdBundle()
-                        .getString("ANIMAL_CREATION_SUCCESS");
+                return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
+                        .getString("ANIMAL_CREATION_SUCCESS"), TypeReturn.SUCCESS);
             } catch (NameException | IncorrectDataException ex) {
-                return ex.getMessage();
+                return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
             }
         } catch (EmptyNameException ex) {
-            return ex.getMessage();
+            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
     }
 

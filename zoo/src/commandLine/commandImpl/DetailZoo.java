@@ -2,6 +2,8 @@ package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import launch.play.Play;
 
 /**
@@ -29,9 +31,9 @@ public class DetailZoo implements Command {
     }
     
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         this.success = true;
-        return (FormattingDisplay.formattingArrayList(this.play.getZoo().info()));
+        return new ReturnExec(FormattingDisplay.formattingArrayList(this.play.getZoo().info()), TypeReturn.SUCCESS);
     }
 
     @Override

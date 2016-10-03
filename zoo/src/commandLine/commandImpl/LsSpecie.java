@@ -2,6 +2,8 @@ package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.LightSpecie;
 import zoo.paddock.IPaddock;
 import zoo.paddock.biome.Biome;
+import zoo.paddock.biome.Continent;
 
 /**
  *
@@ -49,7 +52,7 @@ public class LsSpecie implements Command {
     }
 
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         LightSpecie light = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
@@ -76,16 +79,16 @@ public class LsSpecie implements Command {
             if (args[6] != null) {
                 light.setSize(Integer.parseInt(args[6]));
             }
-              if (args[7] != null) {
+            if (args[7] != null) {
                 light.setContinent(Integer.parseInt(args[7]));
             }
             this.success = true;
         } catch (EmptyNameException | UnknownNameException ex) {
-            return ex.getMessage();
+            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
         ArrayList<String> list = this.play.getZoo().listSpecie(light, pad);
         Collections.sort(list);
-        return FormattingDisplay.formattingArrayList(list);
+        return new ReturnExec(FormattingDisplay.formattingArrayList(list), TypeReturn.SUCCESS);
     }
 
     public boolean firstCmd(String[] cmd) {

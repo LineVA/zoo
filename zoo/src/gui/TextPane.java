@@ -1,7 +1,7 @@
 package gui;
 
 import commandLine.CommandManager;
-import commandLine.commandManagerImpl.TutorialCommandLineManager;
+import commandLine.ReturnExec;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -40,7 +40,7 @@ public class TextPane extends JTextPane {
         this.mouseEventListener();
         sc = StyleContext.getDefaultStyleContext();
         this.setText(manager.getFirstLine());
-       this.append("", EditorColors.CMD.getColor());
+        this.append("", EditorColors.CMD.getColor());
         this.setCaretPosition(this.cmdInvite.length());
         this.goEndOfTheText();
     }
@@ -109,10 +109,17 @@ public class TextPane extends JTextPane {
         return stream.toArray();
     }
 
+//    private void enterPressed() {
+//        Object[] cmdLinesArray = recoverCmdLinesArray();
+//        String currentCmdLineWithCdInvite = cmdLinesArray[cmdLinesArray.length - 1].toString();
+//        append(manager.run(currentCmdLineWithCdInvite.substring(this.cmdInvite.length())), EditorColors.INFO.getColor());
+//    }
+
     private void enterPressed() {
         Object[] cmdLinesArray = recoverCmdLinesArray();
-        String currentCmdLineWithCdInvite = cmdLinesArray[cmdLinesArray.length - 1].toString();
-        append(manager.run(currentCmdLineWithCdInvite.substring(this.cmdInvite.length())), EditorColors.INFO.getColor());
+        String currentCmdLineWithCmdInvite = cmdLinesArray[cmdLinesArray.length - 1].toString();
+        ReturnExec exec = manager.run(currentCmdLineWithCmdInvite.substring(this.cmdInvite.length()));
+        append(exec.getMessage(), EditorColors.CMD.getCorrespondingColor(exec.getTypeReturn()));
     }
 
     private void enterReleased() {

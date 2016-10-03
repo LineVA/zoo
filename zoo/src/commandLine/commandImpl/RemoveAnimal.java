@@ -1,6 +1,8 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import launch.play.Play;
@@ -31,15 +33,15 @@ public class RemoveAnimal implements Command {
     }
 
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         try {
             Animal animal = this.play.getZoo().findAnimalByName(cmd[2]);
             animal.getPaddock().removeAnimal(animal);
             this.success = true;
-            return this.play.getOption().getGeneralCmdBundle()
-                    .getString("ANIMAL_REMOVE_SUCCESS");
+            return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
+                    .getString("ANIMAL_REMOVE_SUCCESS"), TypeReturn.SUCCESS);
         } catch (EmptyNameException | UnknownNameException ex) {
-            return ex.getMessage();
+            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
     }
 

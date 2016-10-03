@@ -1,6 +1,8 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import java.io.IOException;
 import launch.InstanciateSpecies;
 import launch.play.Play;
@@ -25,16 +27,16 @@ public class Options implements Command{
     }
 
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         try { 
         this.play.getOption().setLanguage(cmd[2]);
         this.play.updateOption();
         this.play.getZoo().setSpecies(InstanciateSpecies.instanciateSpecies("resources/species", this.play.getOption()));
         this.success = true;
-        return this.play.getOption().getGeneralCmdBundle()
-                .getString("OPTION_CHANGE_SUCCESS");
+        return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
+                .getString("OPTION_CHANGE_SUCCESS"), TypeReturn.SUCCESS);
          } catch (JDOMException | IOException ex) {
-            return ex.getMessage();
+            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
     }
 

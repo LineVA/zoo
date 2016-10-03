@@ -2,6 +2,8 @@ package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import launch.play.Play;
 import zoo.paddock.biome.Biome;
 
@@ -30,9 +32,9 @@ public class LsBiome implements Command {
     }
 
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         this.success = true;
-        return FormattingDisplay.formattingArrayList(Biome.NONE.list());
+            return new ReturnExec(FormattingDisplay.formattingArrayList(Biome.NONE.list()), TypeReturn.SUCCESS);
     }
 
     @Override

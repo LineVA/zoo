@@ -2,6 +2,8 @@ package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import launch.play.Play;
 import zoo.paddock.biome.Continent;
 
@@ -9,7 +11,7 @@ import zoo.paddock.biome.Continent;
  *
  * @author doyenm
  */
-public class LsContinent implements Command{
+public class LsContinent implements Command {
 
     Play play;
 
@@ -30,9 +32,9 @@ public class LsContinent implements Command{
     }
 
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         this.success = true;
-        return FormattingDisplay.formattingArrayList(Continent.UNKNOWN.list());
+        return new ReturnExec(FormattingDisplay.formattingArrayList(Continent.UNKNOWN.list()), TypeReturn.SUCCESS);
     }
 
     @Override

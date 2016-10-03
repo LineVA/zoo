@@ -2,6 +2,8 @@ package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
@@ -52,7 +54,7 @@ public class LsAnimal implements Command {
     }
 
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         IPaddock pad = null;
         Diet diet = null;
         Biome biome = null;
@@ -97,11 +99,11 @@ public class LsAnimal implements Command {
                 names.add(animal.getName());
             }
             Collections.sort(names);
-            return FormattingDisplay.formattingArrayList(names);
+            return new ReturnExec(FormattingDisplay.formattingArrayList(names), TypeReturn.SUCCESS);
         } catch (EmptyNameException | UnknownNameException ex) {
-            return ex.getMessage();
+            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         } catch (NumberFormatException ex) {
-            return "Integer ERROR !!!!!!!!!!";
+            return new ReturnExec("INTEGER ERROR", TypeReturn.ERROR);
         }
     }
 

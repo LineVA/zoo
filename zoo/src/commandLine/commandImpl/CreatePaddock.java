@@ -1,6 +1,8 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import exception.IncorrectDimensionsException;
 import exception.name.NameException;
 import launch.play.Play;
@@ -30,15 +32,15 @@ public class CreatePaddock implements Command {
     }
 
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         try {
             this.play.getZoo().addPaddock(cmd[2], Integer.parseInt(cmd[3]), Integer.parseInt(cmd[4]),
                     Integer.parseInt(cmd[5]), Integer.parseInt(cmd[6]));
             this.success = true;
-            return this.play.getOption().getGeneralCmdBundle()
-                    .getString("PADDOCK_CREATION_SUCCESS");
+            return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
+                    .getString("PADDOCK_CREATION_SUCCESS"), TypeReturn.SUCCESS);
         } catch (NameException | IncorrectDimensionsException ex) {
-            return ex.getMessage();
+                return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
     }
 

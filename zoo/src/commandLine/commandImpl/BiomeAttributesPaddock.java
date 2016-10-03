@@ -1,6 +1,7 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
+import commandLine.ReturnExec;
 import launch.play.Play;
 
 /**
@@ -27,7 +28,7 @@ public class BiomeAttributesPaddock implements Command {
     }
 
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         throw new UnsupportedOperationException();
     }
 

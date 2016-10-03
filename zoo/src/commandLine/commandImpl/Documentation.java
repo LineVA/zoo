@@ -1,6 +1,8 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import documentation.DocumentationGeneration;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -32,7 +34,7 @@ public class Documentation implements Command {
     }
 
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         try {
             Specie spec = this.play.getZoo().findSpecieByName(cmd[2]);
             if ("wiki".equals(cmd[1]) || "wikipedia".equals(cmd[1])) {
@@ -43,9 +45,10 @@ public class Documentation implements Command {
                 DocumentationGeneration.display(
                         spec.getDocumentation().getAnimalDiversity());
             }
-            return "";
+              this.success = true;
+            return new ReturnExec("", TypeReturn.SUCCESS);
         } catch (IOException | URISyntaxException ex) {
-            return ex.getMessage();
+            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
     }
 

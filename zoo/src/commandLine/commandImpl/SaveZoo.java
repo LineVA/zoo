@@ -4,6 +4,8 @@ import commandLine.Command;
 import exception.name.EmptyNameException;
 import backup.save.Save;
 import backup.save.SaveImpl;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import launch.play.Play;
 
 /**
@@ -31,15 +33,15 @@ public class SaveZoo implements Command {
     }
 
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         Save saveProcess = new SaveImpl();
         try {
             saveProcess.saveZoo(this.play.getZoo(), cmd[1]);
             this.success = true;
-            return this.play.getOption().getGeneralCmdBundle()
-                    .getString("SAVE_SUCCESS");
+            return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
+                    .getString("SAVE_SUCCESS"), TypeReturn.SUCCESS);
         } catch (EmptyNameException ex) {
-            return ex.getMessage();
+            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
     }
 

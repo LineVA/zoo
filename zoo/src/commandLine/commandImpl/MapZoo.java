@@ -2,10 +2,13 @@ package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import exception.IncorrectDimensionsException;
 import java.util.ArrayList;
 import launch.play.Play;
 import zoo.paddock.PaddockCoordinates;
+import zoo.paddock.biome.Continent;
 
 /**
  *
@@ -18,27 +21,27 @@ public class MapZoo implements Command {
     public MapZoo(Play play) {
         this.play = play;
     }
-    
-      @Override
+
+    @Override
     public boolean hasInitiateAZoo() {
         return false;
     }
-    
+
     boolean success = false;
-    
-     @Override
+
+    @Override
     public boolean isSuccess() {
         return this.success;
     }
 
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         try {
             ArrayList<PaddockCoordinates> map = this.play.getZoo().map();
             this.success = true;
-            return FormattingDisplay.zooMap(map);
+            return new ReturnExec(FormattingDisplay.zooMap(map), TypeReturn.SUCCESS);
         } catch (IncorrectDimensionsException ex) {
-            return ex.getMessage();
+            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
     }
 

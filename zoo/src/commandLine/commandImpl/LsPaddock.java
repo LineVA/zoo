@@ -2,12 +2,15 @@ package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.Collections;
 import launch.play.Play;
 import zoo.animal.specie.Specie;
+import zoo.paddock.biome.Continent;
 
 /**
  *
@@ -36,19 +39,19 @@ public class LsPaddock implements Command {
     }
 
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         Specie spec = null;
         if (args[0] != null) {
             try {
                 spec = this.play.getZoo().findSpecieByName(args[0]);
                 this.success = true;
             } catch (EmptyNameException | UnknownNameException ex) {
-                return ex.getMessage();
+                return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
             }
         }
         ArrayList<String> list = this.play.getZoo().listPaddock(spec);
         Collections.sort(list);
-        return FormattingDisplay.formattingArrayList(list);
+        return new ReturnExec(FormattingDisplay.formattingArrayList(list), TypeReturn.SUCCESS);
     }
 
     public boolean firstCmd(String[] cmd) {

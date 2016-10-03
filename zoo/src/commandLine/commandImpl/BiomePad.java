@@ -1,6 +1,8 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import launch.play.Play;
@@ -30,17 +32,15 @@ public class BiomePad implements Command {
     }
 
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         try {
             IPaddock pad = this.play.getZoo().findPaddockByName(cmd[1]);
             pad.setBiome(cmd[3]);
             this.success = true;
-            return this.play.getOption().getGeneralCmdBundle().getString("BIOMES_PADDOCK") + cmd[3];
-        } catch (UnknownNameException ex) {
-            return ex.getMessage();
-        } catch (EmptyNameException ex) {
-            return ex.getMessage();
-        }
+            return new ReturnExec(this.play.getOption().getGeneralCmdBundle().getString("BIOMES_PADDOCK") + cmd[3], TypeReturn.SUCCESS);
+        } catch (UnknownNameException | EmptyNameException ex) {
+            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
+        } 
     }
 
     @Override

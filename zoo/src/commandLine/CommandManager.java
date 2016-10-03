@@ -74,6 +74,6 @@ public abstract class CommandManager {
                 new Documentation(play));
     }
 
-    public abstract String run(String cmd);
+    public abstract ReturnExec run(String cmd);
 
 }

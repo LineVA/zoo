@@ -2,15 +2,19 @@ package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import launch.play.Play;
+import zoo.paddock.biome.Continent;
 import zoo.paddock.biome.Ecoregion;
 
 /**
  *
  * @author doyenm
  */
-public class LsEcoregion implements Command{
- Play play;
+public class LsEcoregion implements Command {
+
+    Play play;
 
     public LsEcoregion(Play play) {
         this.play = play;
@@ -29,9 +33,9 @@ public class LsEcoregion implements Command{
     }
 
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         this.success = true;
-        return FormattingDisplay.formattingArrayList(Ecoregion.UNKNOWN.list());
+        return new ReturnExec(FormattingDisplay.formattingArrayList(Ecoregion.UNKNOWN.list()), TypeReturn.SUCCESS);
     }
 
     @Override

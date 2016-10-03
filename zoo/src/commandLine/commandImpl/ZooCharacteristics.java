@@ -1,6 +1,8 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import exception.IncorrectDataException;
 import launch.play.Play;
 
@@ -19,7 +21,7 @@ public class ZooCharacteristics implements Command {
     }
 
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         int speed = -1;
         int horizon = -1;
         String result = "";
@@ -44,9 +46,11 @@ public class ZooCharacteristics implements Command {
                 result += ex.getMessage();
             }
         } catch (NumberFormatException ex) {
-            return this.play.option.getGeneralCmdBundle().getString("SPEED_HORIZON_NUMBER");
+            return new ReturnExec(
+                    this.play.option.getGeneralCmdBundle().getString("SPEED_HORIZON_NUMBER"),
+                    TypeReturn.SUCCESS);
         }
-        return result;
+        return new ReturnExec(result, TypeReturn.SUCCESS);
     }
 
     @Override

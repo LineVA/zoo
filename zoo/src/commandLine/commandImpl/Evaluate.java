@@ -2,6 +2,8 @@ package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import exception.IncorrectDataException;
 import exception.name.NameException;
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ public class Evaluate implements Command {
     }
     
     @Override
-    public String execute(String[] cmd) {
+    public  ReturnExec execute(String[] cmd) {
         ArrayList<String> info = new ArrayList<>();
         int zooEvaluation = 0;
         try {
@@ -46,11 +48,11 @@ public class Evaluate implements Command {
            this.success = true;
         } catch (
                 IncorrectDataException | NameException ex) {
-            return ex.getMessage();
+            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
         info.add(this.play.getOption().getGeneralCmdBundle()
                 .getString("ZOO_EVALUATION") + zooEvaluation);
-        return FormattingDisplay.formattingArrayList(info);
+        return new ReturnExec(FormattingDisplay.formattingArrayList(info), TypeReturn.SUCCESS);
     }
 
     @Override

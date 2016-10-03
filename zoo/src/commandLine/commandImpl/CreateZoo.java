@@ -1,6 +1,8 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import java.io.IOException;
 import java.util.Map;
@@ -35,7 +37,7 @@ public class CreateZoo implements Command {
     }
 
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         try {
             int monthsPerEvaluation = 6;
             int horizon = 5;
@@ -45,12 +47,10 @@ public class CreateZoo implements Command {
                     Integer.parseInt(cmd[4]), species, age, monthsPerEvaluation, horizon);
             this.previousHasBeenSuccessfull = true;
             this.success = true;
-            return this.play.getOption().getGeneralCmdBundle()
-                    .getString("ZOO_CREATION_SUCESS");
-        } catch (EmptyNameException ex) {
-            return ex.getMessage();
-        } catch (JDOMException | IOException ex) {
-            return ex.getMessage();
+            return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
+                    .getString("ZOO_CREATION_SUCESS"), TypeReturn.SUCCESS);
+        } catch (JDOMException |  IOException ex) {
+            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
     }
 

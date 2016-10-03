@@ -10,10 +10,10 @@ public class ReturnExec {
     @Getter
     private final String message;
     @Getter
-    private final TypeReturn type;
+    private final TypeReturn typeReturn;
 
     public ReturnExec(String msg, TypeReturn type){
         this.message = msg;
-        this.type = type;
+        this.typeReturn = type;
     }
 }

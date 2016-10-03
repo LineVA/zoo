@@ -2,6 +2,8 @@ package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import launch.play.Play;
@@ -32,13 +34,13 @@ public class DetailAnimal implements Command {
     }
 
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         try {
             Animal animal = this.play.getZoo().findAnimalByName(cmd[1]);
             this.success = true;
-            return (FormattingDisplay.formattingArrayList(animal.info()));
+            return new ReturnExec(FormattingDisplay.formattingArrayList(animal.info()),TypeReturn.SUCCESS);
         } catch (UnknownNameException | EmptyNameException ex) {
-            return ex.getMessage();
+            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
     }
 

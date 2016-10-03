@@ -2,7 +2,9 @@ package commandLine.commandManagerImpl;
 
 import commandLine.Command;
 import commandLine.CommandManager;
+import commandLine.ReturnExec;
 import commandLine.SplitDoubleQuotes;
+import commandLine.TypeReturn;
 import java.util.ArrayList;
 import launch.play.Play;
 import launch.play.Step;
@@ -23,29 +25,29 @@ public class TutorialCommandLineManager extends CommandManager {
     }
 
     @Override
-    public String run(String cmd) {
+    public ReturnExec run(String cmd) {
         if (!steps.isEmpty() && i < steps.size()) {
             String[] parse = SplitDoubleQuotes.split(cmd);
             for (Command command : super.getPlayCommands()) {
                 if (command.canExecute(parse)) {
-                    String result = command.execute(parse);
+                    ReturnExec result = command.execute(parse);
                     // If the player uses the correct command line
                     // && no execution has been thrown 
                     if (steps.get(i).check() && command.isSuccess()) {
                         if (i < steps.size() - 1) {
                             i += 1;
-                            return result + "\n" + steps.get(i).getPrevious();
+                            return new ReturnExec(result + "\n" + steps.get(i).getPrevious(), TypeReturn.SUCCESS);
                         } else {
-                            return result + steps.get(i).getSuccess();
+                            return new ReturnExec(result + steps.get(i).getSuccess(), TypeReturn.SUCCESS);
                         }
                         // If an exception has been thrown (expected or unexpected command line)
                     } else {
-                        return result + steps.get(i).getFail();
+                        return new ReturnExec(result + steps.get(i).getFail(), TypeReturn.ERROR);
                     }
                 }
             }
         }
-        return steps.get(i).getFail();
+        return new ReturnExec(steps.get(i).getFail(), TypeReturn.ERROR);
     }
 
 }

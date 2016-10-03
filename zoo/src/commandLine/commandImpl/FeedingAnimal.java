@@ -1,6 +1,8 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
+import commandLine.ReturnExec;
+import commandLine.TypeReturn;
 import exception.IncorrectDataException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
@@ -35,7 +37,7 @@ public class FeedingAnimal implements Command {
     }
     
     @Override
-    public String execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         try {
             Animal animal = this.play.getZoo().findAnimalByName(cmd[1]);
             Boolean changeDiet = false;
@@ -45,11 +47,11 @@ public class FeedingAnimal implements Command {
             if (args[1] != null) {
                 animal.changeFoodQuantity(Double.parseDouble(args[1]));
             }
-            return this.play.getOption().getGeneralCmdBundle()
-                    .getString("ANIMALS_DIET") + " " + args[0];
+            return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
+                    .getString("ANIMALS_DIET") + " " + args[0], TypeReturn.SUCCESS);
         } catch (EmptyNameException | UnknownNameException |
                 IncorrectDataException | NumberFormatException ex) {
-            return ex.getMessage();
+            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
     }
 

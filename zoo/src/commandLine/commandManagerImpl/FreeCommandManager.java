@@ -2,7 +2,9 @@ package commandLine.commandManagerImpl;
 
 import commandLine.Command;
 import commandLine.CommandManager;
+import commandLine.ReturnExec;
 import commandLine.SplitDoubleQuotes;
+import commandLine.TypeReturn;
 import commandLine.commandImpl.CreateZoo;
 import commandLine.commandImpl.LoadZoo;
 import static java.util.Arrays.asList;
@@ -26,26 +28,26 @@ public class FreeCommandManager extends CommandManager {
     }
 
     @Override
-    public String run(String cmd) {
+    public ReturnExec run(String cmd) {
         String[] parse = SplitDoubleQuotes.split(cmd);
         if (isInitiate) {
             for (Command command : super.getPlayCommands()) {
                 if (command.canExecute(parse)) {
-                    String result = command.execute(parse);
+                    ReturnExec result = command.execute(parse);
                     this.isInitiate |= command.hasInitiateAZoo();
                     return result;
                 }
             }
-            return super.getOption().getGeneralCmdBundle().getString("UNKNOWN_CMD");
+            return new ReturnExec(super.getOption().getGeneralCmdBundle().getString("UNKNOWN_CMD"), TypeReturn.ERROR);
         } else {
             for (Command command : initialCommands) {
                 if (command.canExecute(parse)) {
-                    String result = command.execute(parse);
+                    ReturnExec result = command.execute(parse);
                     this.isInitiate = command.hasInitiateAZoo();
                     return result;
                 }
             }
-            return super.getOption().getGeneralCmdBundle().getString("BEGINNING_CMD");
+            return new ReturnExec(super.getOption().getGeneralCmdBundle().getString("BEGINNING_CMD"), TypeReturn.ERROR);
         }
 
     }

@@ -12,7 +12,7 @@ public interface Command {
      * must have been parse before in order to place each string into the array without space
      * @return A message indicating if the command has been successfull or not
      */
-    public String execute(String[] cmd);
+    public ReturnExec execute(String[] cmd);
     
     /**
      * State if the command line correspond to a well-known format
