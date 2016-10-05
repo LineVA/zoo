@@ -34,6 +34,7 @@ public class InstanciateSpecies {
                     }
                 }
             } catch (IOException | JDOMException ex) {
+                System.out.println(ex.getMessage());
                 ex.getMessage();
             }
         });
