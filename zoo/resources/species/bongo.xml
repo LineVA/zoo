@@ -33,7 +33,9 @@
         <maleLifespan>252</maleLifespan>
     </lifespan>
     <territory>
-        <biome>1</biome>
+      <biomes>
+            <biome>1</biome>
+        </biomes>
         <territorySize>4</territorySize>
     </territory>
     <feeding>
