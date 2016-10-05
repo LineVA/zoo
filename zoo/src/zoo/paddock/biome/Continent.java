@@ -17,7 +17,9 @@ public enum Continent {
     NORTHENAMERICA(3),
     EUROPE(4),
     ASIA(5),
-    OCEANIA(6);
+    OCEANIA(6),
+    ARCTIC(7),
+    ANTARTIC(8);
 
     @Getter
     private final int id;
