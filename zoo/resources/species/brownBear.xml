@@ -1,46 +1,47 @@
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
-        <fr>Ours blanc</fr>
+        <fr>Ours brun</fr>
         <additionalFrenchNames>
-            <name>Ours polaire</name>
         </additionalFrenchNames>
-        <en>Polar bear</en>
+        <en>Brown bear</en>
         <additionalEnglishNames>
         </additionalEnglishNames>
-        <scientific>Ursus maritimus</scientific>
+        <scientific>Ursus arctos</scientific>
     </names>
     <general>
-        <uicn>3</uicn>
+        <uicn>1</uicn>
         <family>7</family>
         <continents>
-            <continent>7</continent>
+            <continent>3</continent>
+            <continent>4</continent>
+            <continent>5</continent>
         </continents>
         <ecoregion>0</ecoregion>
     </general>
     <documentation>
-        <frenchWikipedia>https://fr.wikipedia.org/wiki/Ours_blanc</frenchWikipedia>
-        <englishWikipedia>https://en.wikipedia.org/wiki/Polar_bear</englishWikipedia>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Ours_brun</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Brown_bear</englishWikipedia>
         <animalDiversity></animalDiversity>
     </documentation>
     <reproduction>
-        <femaleMaturity>66</femaleMaturity>
-        <maleMaturity>66</maleMaturity>
-        <gestationFrequency>1</gestationFrequency>
+        <femaleMaturity>60</femaleMaturity>
+        <maleMaturity>60</maleMaturity>
+        <gestationFrequency>0.33</gestationFrequency>
         <litterSize>2</litterSize>
         <leavingAge>0</leavingAge>
     </reproduction>
     <lifespan>
-        <femaleLifespan>330</femaleLifespan>
-        <maleLifespan>330</maleLifespan>
+        <femaleLifespan>375</femaleLifespan>
+        <maleLifespan>375</maleLifespan>
     </lifespan>
     <territory>
-        <biome>11</biome>
-        <territorySize>240</territorySize>
+        <biome>6</biome>
+        <territorySize>340</territorySize>
     </territory>
     <feeding>
         <diet>3</diet>
-        <quantity>13</quantity>
-        <size>8</size>
+        <quantity>9.5</quantity>
+        <size>7</size>
     </feeding>
     <social>
         <groupSize>1</groupSize>

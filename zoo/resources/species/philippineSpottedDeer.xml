@@ -1,0 +1,48 @@
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+    <names>
+        <fr>Cerf du Prince Alfred</fr>
+        <additionalFrenchNames>
+        </additionalFrenchNames>
+        <en>Philippine spotted deer</en>
+        <additionalEnglishNames>
+            <name>Visayan spotted deer</name>
+        </additionalEnglishNames>
+        <scientific>Cervus alfredi</scientific>
+    </names>
+    <general>
+        <uicn>4</uicn>
+        <family>28</family>
+        <continents>
+            <continent>5</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+    </general>
+    <documentation>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Cerf_du_Prince_Alfred</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Visayan_spotted_deer</englishWikipedia>
+        <animalDiversity></animalDiversity>
+    </documentation>
+    <reproduction>
+        <femaleMaturity>12</femaleMaturity>
+        <maleMaturity>18</maleMaturity>
+        <gestationFrequency>1</gestationFrequency>
+        <litterSize>1</litterSize>
+        <leavingAge>0</leavingAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>225</femaleLifespan>
+        <maleLifespan>225</maleLifespan>
+    </lifespan>
+    <territory>
+        <biome>1</biome>
+        <territorySize>1040</territorySize>
+    </territory>
+    <feeding>
+        <diet>8</diet>
+        <quantity>1.8</quantity>
+        <size>4</size>
+    </feeding>
+    <social>
+        <groupSize>5</groupSize>
+    </social>
+</animal>

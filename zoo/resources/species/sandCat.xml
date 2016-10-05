@@ -1,0 +1,52 @@
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+    <names>
+        <fr>Chat des sables</fr>
+        <additionalFrenchNames>
+            <name>Chat du désert</name>
+            <name>Chat du Général Margueritte</name>
+            <name>Chat de Margeritte</name>
+        </additionalFrenchNames>
+        <en>Sand cat</en>
+        <additionalEnglishNames>
+            <name>Sand dune cat</name>
+        </additionalEnglishNames>
+        <scientific>Felis margarita</scientific>
+    </names>
+    <general>
+        <uicn>2</uicn>
+        <family>8</family>
+        <continents>
+            <continent>1</continent>
+            <continent>5</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+    </general>
+    <documentation>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Chat_des_sables</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Sand_cat</englishWikipedia>
+        <animalDiversity></animalDiversity>
+    </documentation>
+    <reproduction>
+        <femaleMaturity>12</femaleMaturity>
+        <maleMaturity>12</maleMaturity>
+        <gestationFrequency>1</gestationFrequency>
+        <litterSize>4</litterSize>
+        <leavingAge>0</leavingAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>120</femaleLifespan>
+        <maleLifespan>120</maleLifespan>
+    </lifespan>
+    <territory>
+        <biome>13</biome>
+        <territorySize>40</territorySize>
+    </territory>
+    <feeding>
+        <diet>3</diet>
+        <quantity>220</quantity>
+        <size>1</size>
+    </feeding>
+    <social>
+        <groupSize>1</groupSize>
+    </social>
+</animal>
