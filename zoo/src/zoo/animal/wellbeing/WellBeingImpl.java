@@ -73,7 +73,7 @@ public class WellBeingImpl implements WellBeing {
     }
 
     public double checkBiomeWB(IPaddock paddock, Specie specie) {
-        if (paddock.getBiome() == specie.getBiome()) {
+        if (specie.getBiomes().contains(paddock.getBiome())) {
             System.out.println("Good biome");
             return Compare.getPositivMean();
         } else {

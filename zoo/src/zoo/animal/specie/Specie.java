@@ -56,7 +56,7 @@ public class Specie {
     @Getter
     private final int conservation;
     @Getter
-    private final int biome;
+    private final ArrayList<Integer> biomes;
     @Getter
     private final int size;
     @Getter
@@ -80,7 +80,7 @@ public class Specie {
             int diet, ReproductionAttributes repro,
             LifeSpanAttributes lifeSpan, int conservation,
             SocialAttributes social, TerritoryAttributes territory,
-            int ecoregion, int family, int biome, int size, ArrayList<Integer> continents) {
+            int ecoregion, int family, ArrayList<Integer> biomes, int size, ArrayList<Integer> continents) {
         this.names = names;
         this.specieBiome = biomeAtt;
         this.diet = diet;
@@ -92,7 +92,7 @@ public class Specie {
         this.specieSocial = social;
         this.specieTerritory = territory;
         this.conservation = conservation;
-        this.biome = biome;
+        this.biomes= biomes;
         this.continents = continents;
         this.gaussianBiome = new GaussianBiomeAttributes(biomeAtt);
         this.gaussianFeeding = new GaussianFeedingAttributes(feeding);
@@ -128,7 +128,7 @@ public class Specie {
         info.add(bundle.getString("SCIENTIFIC_NAME") + this.names.getScientificName());
         info.add(bundle.getString("CONSERVATION") + ConservationStatus.UNKNOWN.findById(this.conservation).toStringByLanguage());
         info.add(bundle.getString("CONTINENT") + this.continentsToString());
-        info.add(bundle.getString("BIOME") + Biome.NONE.findById(this.biome).toStringByLanguage());
+        info.add(bundle.getString("BIOME") + this.biomesToString());
         info.add(bundle.getString("ECOREGION") + Ecoregion.UNKNOWN.findById(this.ecoregion).toStringByLanguage());
         info.add(bundle.getString("FAMILY") + Family.UNKNOWN.findById(this.family).toStringByLanguage());
         info.add(bundle.getString("DIET") + Diet.NONE.findDietById(diet).toStringByLanguage());
@@ -149,6 +149,20 @@ public class Specie {
         while (it.hasNext()) {
             next = (Integer) it.next();
             info += Continent.UNKNOWN.findById(next).toStringByLanguage();
+            if (it.hasNext()) {
+                info += ", ";
+            }
+        }
+        return info;
+    }
+    
+    private String biomesToString() throws UnknownNameException {
+        String info = "";
+        int next;
+        Iterator it = this.biomes.iterator();
+        while (it.hasNext()) {
+            next = (Integer) it.next();
+            info += Biome.NONE.findById(next).toStringByLanguage();
             if (it.hasNext()) {
                 info += ", ";
             }
@@ -186,7 +200,7 @@ public class Specie {
     public boolean compare(LightSpecie lightSpecie) {
         boolean isCorresponding = true;
         if (lightSpecie.getBiome() != -1) {
-            isCorresponding &= lightSpecie.getBiome() == this.biome;
+            isCorresponding &= this.biomes.contains((lightSpecie.getBiome()));
         }
         if (lightSpecie.getEcoregion() != -1) {
             isCorresponding &= lightSpecie.getEcoregion() == this.ecoregion;

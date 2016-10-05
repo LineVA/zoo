@@ -72,7 +72,13 @@
                 <xs:element name="territory">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element type="xs:integer" name="biome"/>
+                          <xs:element name="biomes">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:integer" name="biome" maxOccurs="unbounded" minOccurs="1"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
                             <xs:element type="xs:decimal" name="territorySize"/>
                         </xs:sequence>
                     </xs:complexType>

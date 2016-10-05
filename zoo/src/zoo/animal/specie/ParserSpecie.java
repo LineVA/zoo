@@ -36,7 +36,7 @@ public class ParserSpecie {
         int diet = dietParser(root);
         int region = ecoregionParser(root);
         int family = familyParser(root);
-        int biome = biomeParser(root);
+        ArrayList<Integer> biomes = biomeParser(root);
         FeedingAttributes feeding = feedingParser(root);
         ReproductionAttributes repro = reproductionParser(root);
         LifeSpanAttributes lifeSpan = lifeSpanParser(root);
@@ -47,7 +47,7 @@ public class ParserSpecie {
         ArrayList<Integer> continents = continentParser(root);
         DocumentationURI docu = documentationParser(root);
         Specie spec = new Specie(names, docu, biomeAtt, feeding, diet, repro, lifeSpan,
-                conservation, social, territory, region, family, biome, size, continents);
+                conservation, social, territory, region, family, biomes, size, continents);
         return spec;
     }
 
@@ -72,8 +72,30 @@ public class ParserSpecie {
         return biome;
     }
 
-    private static int biomeParser(Element root) {
-        return Integer.parseInt(root.getChild("territory").getChildText("biome"));
+    private static ArrayList<Integer> biomeParser(Element root) {
+        ArrayList<Integer> biomes = new ArrayList<>();
+        Element continentsEl = root.getChild("territory").getChild("biomes");
+        List<Element> continentEl = continentsEl.getChildren("biome");
+        for (Element cont : continentEl) {
+            biomes.add(Integer.parseInt(cont.getText()));
+        }
+        return biomes;
+    }
+
+    private static ArrayList<Integer> continentParser(Element root) {
+        ArrayList<Integer> continents = new ArrayList<>();
+        Element continentsEl = root.getChild("general").getChild("continents");
+        List<Element> continentEl = continentsEl.getChildren("continent");
+//        Iterator it = continent.iterator();
+//        Element next;
+//        while (it.hasNext()) {
+//            next = (Element) it.next();
+//            continents.add(Integer.parseInt(next.getText()));
+//        }
+        for (Element cont : continentEl) {
+            continents.add(Integer.parseInt(cont.getText()));
+        }
+        return continents;
     }
 
     private static FeedingAttributes feedingParser(Element root) {
@@ -128,22 +150,9 @@ public class ParserSpecie {
         return Integer.parseInt(root.getChild("feeding").getChildText("size"));
     }
 
-    private static ArrayList<Integer> continentParser(Element root) {
-        ArrayList<Integer> continents = new ArrayList<>();
-        Element continentsEl = root.getChild("general").getChild("continents");
-        List<Element> continent = continentsEl.getChildren("continent");
-        Iterator it = continent.iterator();
-        Element next;
-        while (it.hasNext()) {
-            next = (Element) it.next();
-            continents.add(Integer.parseInt(next.getText()));
-        }
-        return continents;
-    }
-
-      private static DocumentationURI documentationParser(Element root) {
+    private static DocumentationURI documentationParser(Element root) {
         Element docEl = root.getChild("documentation");
-        return new DocumentationURI(docEl.getChildText("frenchWikipedia"), 
+        return new DocumentationURI(docEl.getChildText("frenchWikipedia"),
                 docEl.getChildText("englishWikipedia"), docEl.getChildText("animalDiversity"));
     }
 }
