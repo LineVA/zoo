@@ -36,7 +36,9 @@ public enum Family {
     CAVIIDAE(23),
     RHEIDAE(24),
     SUIDAE(25),
-    CEBIDAE(26);
+    CEBIDAE(26),
+    TAPIRIDAE(27),
+    CERVIDAE(28);
     
 //    HERPESTIDAE(9),
 //    HYENIDAE(10),
