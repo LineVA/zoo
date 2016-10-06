@@ -39,7 +39,8 @@ public enum Diet {
     POLLINOVOROUS(24),
     VERMIVOROUS(25),
     XYLOPHAGOUS(26),
-    ZEOPHAGOUS(27);
+    ZEOPHAGOUS(27),
+    LIGNIVOROUS(28);
 
     @Getter
     int id;

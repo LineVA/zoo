@@ -38,7 +38,8 @@ public enum Family {
     SUIDAE(25),
     CEBIDAE(26),
     TAPIRIDAE(27),
-    CERVIDAE(28);
+    CERVIDAE(28),
+    CASTORIDAE(29);
     
 //    HERPESTIDAE(9),
 //    HYENIDAE(10),
