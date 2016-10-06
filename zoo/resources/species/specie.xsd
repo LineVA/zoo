@@ -14,7 +14,7 @@
                                 </xs:complexType>
                             </xs:element>
                             <xs:element type="xs:string" name="en"/>
-                             <xs:element name="additionalEnglishNames">
+                            <xs:element name="additionalEnglishNames">
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element type="xs:string" name="name" maxOccurs="unbounded" minOccurs="0"/>
@@ -41,7 +41,7 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                 <xs:element name="documentation">
+                <xs:element name="documentation">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element type="xs:string" name="frenchWikipedia"/>
@@ -72,14 +72,14 @@
                 <xs:element name="territory">
                     <xs:complexType>
                         <xs:sequence>
-                          <xs:element name="biomes">
+                            <xs:element type="xs:decimal" name="territorySize"/>
+                            <xs:element name="biomes">
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element type="xs:integer" name="biome" maxOccurs="unbounded" minOccurs="1"/>
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element type="xs:decimal" name="territorySize"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>

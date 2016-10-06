@@ -18,7 +18,7 @@
         </continents>
         <ecoregion>0</ecoregion>
     </general>
-     <documentation>
+    <documentation>
         <frenchWikipedia>https://fr.wikipedia.org/wiki/Gu%C3%A9pard</frenchWikipedia>
         <englishWikipedia>https://en.wikipedia.org/wiki/Cheetah</englishWikipedia>
         <animalDiversity></animalDiversity>
@@ -35,10 +35,10 @@
         <maleLifespan>84</maleLifespan>
     </lifespan>
     <territory>
-       <biomes>
+        <territorySize>400</territorySize>
+        <biomes>
             <biome>7</biome>
         </biomes>
-        <territorySize>400</territorySize>
     </territory>
     <feeding>
         <diet>3</diet>

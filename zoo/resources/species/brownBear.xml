@@ -35,13 +35,13 @@
         <maleLifespan>375</maleLifespan>
     </lifespan>
     <territory>
+        <territorySize>340</territorySize>
         <biomes>
             <biome>4</biome>
             <biome>5</biome>
             <biome>6</biome>
             <biome>10</biome>
         </biomes>
-        <territorySize>340</territorySize>
     </territory>
     <feeding>
         <diet>3</diet>
