@@ -36,7 +36,7 @@ public class Specie {
     @Getter
     private final BiomeAttributes specieBiome;
     @Getter
-    private final int diet;
+    private final ArrayList<Integer> diets;
     @Getter
     private final int family;
     @Getter
@@ -77,13 +77,13 @@ public class Specie {
     private DocumentationURI documentation;
 
     public Specie(Names names, DocumentationURI docu, BiomeAttributes biomeAtt, FeedingAttributes feeding,
-            int diet, ReproductionAttributes repro,
+            ArrayList<Integer> diets, ReproductionAttributes repro,
             LifeSpanAttributes lifeSpan, int conservation,
             SocialAttributes social, TerritoryAttributes territory,
             int ecoregion, int family, ArrayList<Integer> biomes, int size, ArrayList<Integer> continents) {
         this.names = names;
         this.specieBiome = biomeAtt;
-        this.diet = diet;
+        this.diets = diets;
         this.family = family;
         this.ecoregion = ecoregion;
         this.specieFeeding = feeding;
@@ -92,7 +92,7 @@ public class Specie {
         this.specieSocial = social;
         this.specieTerritory = territory;
         this.conservation = conservation;
-        this.biomes= biomes;
+        this.biomes = biomes;
         this.continents = continents;
         this.gaussianBiome = new GaussianBiomeAttributes(biomeAtt);
         this.gaussianFeeding = new GaussianFeedingAttributes(feeding);
@@ -105,17 +105,23 @@ public class Specie {
     }
 
     public boolean canBeInTheSamePaddock(Specie specie) throws UnknownNameException {
-        if (Diet.NONE.findDietById(this.diet).isCompatible(specie.diet)
-                && this.ecoregion == specie.ecoregion) {
-            return Size.UNKNOWN.findSizeById(this.size).areCloseEnough(specie.size);
+        for (Integer diet : this.diets) {
+            if (Diet.NONE.findDietById(diet).isCompatible(specie.diets)
+                    && this.ecoregion == specie.ecoregion) {
+                return Size.UNKNOWN.findSizeById(this.size).areCloseEnough(specie.size);
+            }
         }
         return false;
     }
 
     public boolean canBeAfraidOf(Specie specie) throws UnknownNameException {
-        if (Diet.NONE.findDietById(this.diet).canBeEatenBy(specie.diet)
-                && this.ecoregion == specie.ecoregion) {
-            return Size.UNKNOWN.findSizeById(this.size).areCloseEnough(specie.size);
+        for (Integer diet : this.diets) {
+            for (Integer specDiet : specie.getDiets()) {
+                if (Diet.NONE.findDietById(diet).canBeEatenBy(specDiet)
+                        && this.ecoregion == specie.ecoregion) {
+                    return Size.UNKNOWN.findSizeById(this.size).areCloseEnough(specie.size);
+                }
+            }
         }
         return false;
     }
@@ -131,7 +137,7 @@ public class Specie {
         info.add(bundle.getString("BIOME") + this.biomesToString());
         info.add(bundle.getString("ECOREGION") + Ecoregion.UNKNOWN.findById(this.ecoregion).toStringByLanguage());
         info.add(bundle.getString("FAMILY") + Family.UNKNOWN.findById(this.family).toStringByLanguage());
-        info.add(bundle.getString("DIET") + Diet.NONE.findDietById(diet).toStringByLanguage());
+        info.add(bundle.getString("DIET") + this.dietsToString());
         info.add(bundle.getString("SIZE") + Size.UNKNOWN.findSizeById(size).toStringByLanguage());
         info.add(bundle.getString("REPRODUCTION_ATT") + this.specieReproduction.toStringByLanguage(option));
         info.add(bundle.getString("LIFESPAN_ATT") + this.specieLifeSpan.toStringByLanguage(option));
@@ -139,6 +145,20 @@ public class Specie {
         info.add(bundle.getString("FEEDING_ATT") + this.specieFeeding.toStringByLanguage(option));
         info.add(bundle.getString("TERRITORY_ATT") + this.specieTerritory.toStringByLanguage(option));
         info.add(bundle.getString("ADD_INFO"));
+        return info;
+    }
+
+    private String dietsToString() throws UnknownNameException {
+        String info = "";
+        int next;
+        Iterator it = this.diets.iterator();
+        while (it.hasNext()) {
+            next = (Integer) it.next();
+            info += Diet.NONE.findDietById(next).toStringByLanguage();
+            if (it.hasNext()) {
+                info += ", ";
+            }
+        }
         return info;
     }
 
@@ -155,7 +175,7 @@ public class Specie {
         }
         return info;
     }
-    
+
     private String biomesToString() throws UnknownNameException {
         String info = "";
         int next;
@@ -206,7 +226,7 @@ public class Specie {
             isCorresponding &= lightSpecie.getEcoregion() == this.ecoregion;
         }
         if (lightSpecie.getDiet() != -1) {
-            isCorresponding &= lightSpecie.getDiet() == this.diet;
+            isCorresponding &= this.diets.contains(lightSpecie.getDiet());
         }
         if (lightSpecie.getFamily() != -1) {
             isCorresponding &= lightSpecie.getFamily() == this.family;

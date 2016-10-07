@@ -1,49 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
-    <names>
-        <fr>Lémur à ventre roux</fr>
-        <additionalFrenchNames>
-        </additionalFrenchNames>
-        <en>Red-bellied lemur</en>
-        <additionalEnglishNames>
-        </additionalEnglishNames>
-        <scientific>Eulemur rubriventer</scientific>
-    </names>
-    <general>
-        <uicn>3</uicn>
-        <family>10</family>
-        <continents>
-            <continent>1</continent>
-        </continents>
-        <ecoregion>0</ecoregion>
-    </general>
-    <documentation>
-        <frenchWikipedia>https://fr.wikipedia.org/wiki/Lémur_à_ventre_roux</frenchWikipedia>
-        <englishWikipedia>https://en.wikipedia.org/wiki/Black-and-white_ruffed_lemur</englishWikipedia>
-        <animalDiversity></animalDiversity>
-    </documentation>
-    <reproduction>
-        <femaleMaturity>24</femaleMaturity>
-        <maleMaturity>24</maleMaturity>
-        <gestationFrequency>1</gestationFrequency>
-        <litterSize>1</litterSize>
-        <leavingAge>5</leavingAge>
-    </reproduction>
-    <lifespan>
-        <femaleLifespan>264</femaleLifespan>
-        <maleLifespan>264</maleLifespan>
-    </lifespan>
-    <territory>
-        <territorySize>40</territorySize>
-        <biomes>
-            <biome>1</biome>
-        </biomes>
-    </territory>
-    <feeding>
-        <diet>5</diet>
-        <quantity>225</quantity>
-        <size>1</size>
-    </feeding>
-    <social>
-        <groupSize>4</groupSize>
-    </social>
+  <names>
+    <fr>Lémur à ventre roux</fr>
+    <additionalFrenchNames />
+    <en>Red-bellied lemur</en>
+    <additionalEnglishNames />
+    <scientific>Eulemur rubriventer</scientific>
+  </names>
+  <general>
+    <uicn>3</uicn>
+    <family>10</family>
+    <continents>
+      <continent>1</continent>
+    </continents>
+    <ecoregion>0</ecoregion>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Lémur_à_ventre_roux</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Black-and-white_ruffed_lemur</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>24</femaleMaturity>
+    <maleMaturity>24</maleMaturity>
+    <gestationFrequency>1</gestationFrequency>
+    <litterSize>1</litterSize>
+    <leavingAge>5</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>264</femaleLifespan>
+    <maleLifespan>264</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>40</territorySize>
+    <biomes>
+      <biome>1</biome>
+    </biomes>
+  </territory>
+  <feeding>
+    <quantity>225</quantity>
+    <size>1</size>
+    <diets>
+      <diet>5</diet>
+    </diets>
+  </feeding>
+  <social>
+    <groupSize>4</groupSize>
+  </social>
 </animal>

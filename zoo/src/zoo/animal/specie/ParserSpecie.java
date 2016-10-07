@@ -33,7 +33,7 @@ public class ParserSpecie {
         root = document.getRootElement();
         Names names = namesParser(root);
         BiomeAttributes biomeAtt = biomeAttributesParser(root);
-        int diet = dietParser(root);
+        ArrayList<Integer> diet = dietParser(root);
         int region = ecoregionParser(root);
         int family = familyParser(root);
         ArrayList<Integer> biomes = biomeParser(root);
@@ -81,6 +81,17 @@ public class ParserSpecie {
         }
         return biomes;
     }
+    
+     private static ArrayList<Integer> dietParser(Element root) {
+        ArrayList<Integer> diets = new ArrayList<>();
+        Element dietsEl = root.getChild("feeding").getChild("diets");
+        List<Element> dietEl = dietsEl.getChildren("diet");
+        for (Element cont : dietEl) {
+            diets.add(Integer.parseInt(cont.getText()));
+        }
+        return diets;
+    }
+
 
     private static ArrayList<Integer> continentParser(Element root) {
         ArrayList<Integer> continents = new ArrayList<>();
@@ -140,10 +151,6 @@ public class ParserSpecie {
     private static TerritoryAttributes territoryParser(Element root) {
         Element terriEl = root.getChild("territory");
         return new TerritoryAttributes(Double.parseDouble(terriEl.getChildText("territorySize")));
-    }
-
-    private static int dietParser(Element root) {
-        return Integer.parseInt(root.getChild("feeding").getChildText("diet"));
     }
 
     private static int sizeParser(Element root) {

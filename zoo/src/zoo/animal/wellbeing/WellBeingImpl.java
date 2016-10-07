@@ -60,7 +60,7 @@ public class WellBeingImpl implements WellBeing {
     public double computeFoodWB(int diet, FeedingAttributes optimalFeeding,
             FeedingAttributes actualFeeding, Specie spec) {
         System.out.println("Food quantity : ");
-        if (diet == spec.getDiet()) {
+        if (spec.getDiets().contains(diet)) {
             System.out.println("Good diet");
             double a = Compare.compare(optimalFeeding.getFoodQuantity(), actualFeeding.getFoodQuantity(), this.diameter);
             System.out.println(a);

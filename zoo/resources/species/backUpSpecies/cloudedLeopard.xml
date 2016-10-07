@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+  <names>
+    <fr>Panthère nébuleuse</fr>
+    <additionalFrenchNames>
+      <name>Panthère longibande</name>
+    </additionalFrenchNames>
+    <en>Clouded leopard</en>
+    <additionalEnglishNames />
+    <scientific>Neofelis nebulosa</scientific>
+  </names>
+  <general>
+    <uicn>3</uicn>
+    <family>8</family>
+    <continents>
+      <continent>5</continent>
+    </continents>
+    <ecoregion>0</ecoregion>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Panth%C3%A8re_n%C3%A9buleuse</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Clouded_leopard</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>25</femaleMaturity>
+    <maleMaturity>25</maleMaturity>
+    <gestationFrequency>0.75</gestationFrequency>
+    <litterSize>3</litterSize>
+    <leavingAge>0</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>132</femaleLifespan>
+    <maleLifespan>132</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>100</territorySize>
+    <biomes>
+      <biome>1</biome>
+    </biomes>
+  </territory>
+  <feeding>
+    <diet>3</diet>
+    <quantity>1.6</quantity>
+    <size>4</size>
+  </feeding>
+  <social>
+    <groupSize>1</groupSize>
+  </social>
+</animal>

@@ -1,0 +1,49 @@
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+    <names>
+        <fr>Lémur couronné</fr>
+        <additionalFrenchNames>
+        </additionalFrenchNames>
+        <en>Crowned lemur</en>
+        <additionalEnglishNames>
+        </additionalEnglishNames>
+        <scientific>Eulemur coronatus</scientific>
+    </names>
+    <general>
+        <uicn>4</uicn>
+        <family>10</family>
+        <continents>
+            <continent>1</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+    </general>
+    <documentation>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Lémur_couronné</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Crowned_lemur</englishWikipedia>
+        <animalDiversity></animalDiversity>
+    </documentation>
+    <reproduction>
+        <femaleMaturity>20</femaleMaturity>
+        <maleMaturity>20</maleMaturity>
+        <gestationFrequency>1</gestationFrequency>
+        <litterSize>2</litterSize>
+        <leavingAge>6</leavingAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>240</femaleLifespan>
+        <maleLifespan>240</maleLifespan>
+    </lifespan>
+    <territory>
+        <territorySize>80</territorySize>
+        <biomes>
+            <biome>2</biome>
+        </biomes>
+    </territory>
+    <feeding>
+        <diet>5</diet>
+        <quantity>140</quantity>
+        <size>1</size>
+    </feeding>
+    <social>
+        <groupSize>10</groupSize>
+    </social>
+</animal>

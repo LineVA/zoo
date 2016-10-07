@@ -25,7 +25,7 @@ public enum Diet {
     LEPIDOPHAGOUS(10),
     MELLIPHAGOUS(11),
     MOLLUSCIVOROUS(12),
-    MYCOPHAGOUS(13 ),
+    MYCOPHAGOUS(13),
     MYRMECOPHAGOUS(14),
     NECROPHAGOUS(15),
     NECTARIVOROUS(16),
@@ -56,8 +56,8 @@ public enum Diet {
 
     public void setOption(Option option) {
         for (Diet diet : Diet.values()) {
-             diet.option = option;
-         }
+            diet.option = option;
+        }
     }
 
     public void fill() {
@@ -104,8 +104,12 @@ public enum Diet {
                 this.option.getDietBundle().getString("UNKNOWN_DIET_BY_ID"));
     }
 
-    public boolean isCompatible(int diet) throws UnknownNameException {
-        return !this.canBeEatenBy(diet) && !Diet.NONE.findDietById(diet).canBeEatenBy(this.id);
+    public boolean isCompatible(ArrayList<Integer> diets) throws UnknownNameException {
+        boolean result = false;
+        for (Integer diet : diets) {
+            result = result || (!this.canBeEatenBy(diet) && !Diet.NONE.findDietById(diet).canBeEatenBy(this.id));
+        }
+        return result;
     }
 
     public boolean canBeEatenBy(int diet) {
@@ -125,13 +129,13 @@ public enum Diet {
     public ArrayList<String> list() {
         ArrayList<String> list = new ArrayList<>();
         for (Diet diet : Diet.values()) {
-            list.add(diet.id + " - " +this.option.getDietBundle().getString(diet.toString().toUpperCase()) 
-                    + " : " + this.option.getDietBundle().getString(diet.toString().toUpperCase()+"_DESCRIPTION"));
+            list.add(diet.id + " - " + this.option.getDietBundle().getString(diet.toString().toUpperCase())
+                    + " : " + this.option.getDietBundle().getString(diet.toString().toUpperCase() + "_DESCRIPTION"));
         }
         return list;
     }
-    
-    public String toStringByLanguage(){
+
+    public String toStringByLanguage() {
         return this.option.getDietBundle().getString(this.toString().toUpperCase());
     }
 }

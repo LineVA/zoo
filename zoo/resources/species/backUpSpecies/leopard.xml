@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+  <names>
+    <fr>Léopard</fr>
+    <additionalFrenchNames>
+      <name>Panthère</name>
+    </additionalFrenchNames>
+    <en>Leopard</en>
+    <additionalEnglishNames>
+      <name>Panther</name>
+    </additionalEnglishNames>
+    <scientific>Panthera pardus</scientific>
+  </names>
+  <general>
+    <uicn>3</uicn>
+    <family>8</family>
+    <continents>
+      <continent>1</continent>
+      <continent>5</continent>
+    </continents>
+    <ecoregion>0</ecoregion>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/L%C3%A9opard</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Leopard</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>31</femaleMaturity>
+    <maleMaturity>25</maleMaturity>
+    <gestationFrequency>0.5</gestationFrequency>
+    <litterSize>2</litterSize>
+    <leavingAge>0</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>132</femaleLifespan>
+    <maleLifespan>132</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>150</territorySize>
+    <biomes>
+      <biome>13</biome>
+    </biomes>
+  </territory>
+  <feeding>
+    <diet>3</diet>
+    <quantity>1.4</quantity>
+    <size>4</size>
+  </feeding>
+  <social>
+    <groupSize>1</groupSize>
+  </social>
+</animal>
