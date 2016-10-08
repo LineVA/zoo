@@ -49,16 +49,6 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return timesList;
     }
 
-//    private boolean checkCumulativeTime(Collection<Double> times) {
-//        Double result = 0.0;
-//        for (Double time : times) {
-//            if (!checkIndiviualTime(time)) {
-//                return false;
-//            }
-//            result += time;
-//        }
-//        return result <= 100.0;
-//    }
     @Override
     public void addAPaddock(IPaddock pad, Double time) throws IncorrectDataException {
         if (checkIndiviualTime(time)) {
@@ -77,58 +67,6 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         }
     }
 
-//    private HashMap<Task, Boolean> initializeBooleans(HashMap<Task, Double> timedTask) {
-//        HashMap<Task, Boolean> booleans = new HashMap<>();
-//        for(HashMap.Entry<Task, Double> entry : timedTask.entrySet()){
-//            booleans.put(entry.getKey(), false);
-//        }
-//        return booleans;
-//    }
-//    private ArrayList<Double> defineNewRepartitionForGivenPaddock
-//        (IPaddock paddock, HashMap<Task, Double> timedTasks)
-//            throws UnknownNameException {
-//        ArrayList<Double> times = new ArrayList<>();
-//        HashMap<Task, Boolean> booleans = initializeBooleans(timedTasks);
-//        if (!this.timedTaskPerPaddock.isEmpty()) {
-//            for (HashMap.Entry<TaskPaddock, Double> entry : this.timedTaskPerPaddock.entrySet()) {
-//                if (timedTasks.containsKey(Task.UNKNOWN.findById(entry.getKey().getTask()))
-//                        && entry.getKey().getPaddock().equals(paddock)) {
-//                    times.add(timedTasks.get(entry.getKey()));
-//                    booleans.put(Task.UNKNOWN.findById(entry.getKey().getTask()), true);
-//                } else if (!timedTasks.containsKey(Task.UNKNOWN.findById(entry.getKey().getTask()))
-//                        && entry.getKey().getPaddock().equals(paddock)) {
-//                    times.add(entry.getValue());
-//                }
-//            }
-//            for(HashMap.Entry<Task, Boolean> entry : booleans.entrySet()){
-//                if(!entry.getValue()){
-//                    times.add(timedTasks.get(entry.getKey()));
-//                }
-//            }
-//        } else {
-//            for (HashMap.Entry<Task, Double> entry : timedTasks.entrySet()) {
-//                times.add(entry.getValue());
-//            }
-//        }
-//        return times;
-//    }
-//    @Override
-//    public void addTaskToAPaddock(IPaddock paddock, HashMap<Task, Double> timedTasks)
-//            throws IncorrectDataException, UnknownNameException {
-//        // Check if this animal keeper is associated to pad
-//        if (this.timedPaddocks.containsKey(paddock)) {
-//            // check if we can attribute this new collections of timed tasks to the paddock
-//            if (checkCumulativeTime(defineNewRepartitionForGivenPaddock(paddock, timedTasks))) {
-//                for (HashMap.Entry<Task, Double> entry : timedTasks.entrySet()) {
-//                    this.timedTaskPerPaddock.put(new TaskPaddock(paddock, entry.getKey().getId()), entry.getValue());
-//                }
-//            } else {
-//                throw new IncorrectDataException("La durée cumulative doit être comprise entre 0 et 100");
-//            }
-//        } else {
-//            throw new IncorrectDataException("Il vous faut d'abord consacrer un temps à cet enclos");
-//        }
-//    }
     private HashMap<Integer, Double> findTimedTasksByPaddock(IPaddock paddock) {
         HashMap<Integer, Double> timedTasks = new HashMap<>();
         for (HashMap.Entry<TaskPaddock, Double> entry : this.timedTaskPerPaddock.entrySet()) {
