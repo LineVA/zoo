@@ -17,4 +17,6 @@ public interface AnimalKeeper {
     public void addAPaddock(IPaddock pad, Double time) throws IncorrectDataException;
 
     public void evaluateByFamily(IPaddock paddock);
+    
+    public void evaluateByTask();
 }

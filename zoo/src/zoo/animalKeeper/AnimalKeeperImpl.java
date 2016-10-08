@@ -157,4 +157,20 @@ public class AnimalKeeperImpl implements AnimalKeeper {
             }
         }
     }
+    
+    private Double computeTasks(TaskPaddock taskPaddock){
+        return this.timedPaddocks.get(taskPaddock.getPaddock()) /100
+                * this.timedTaskPerPaddock.get(taskPaddock) / 100;
+    }
+    
+    @Override
+    public void evaluateByTask() {
+        double init = 0.0;
+        for (HashMap.Entry<TaskPaddock, Double> entry : this.timedTaskPerPaddock.entrySet()) {
+         if(this.managedTasks.containsKey(entry.getKey().getTask())){
+             init = this.managedTasks.get(entry.getKey().getTask());
+             this.managedTasks.put(entry.getKey().getTask(), init + computeTasks(entry.getKey()));
+         }
+        }
+    }
 }
