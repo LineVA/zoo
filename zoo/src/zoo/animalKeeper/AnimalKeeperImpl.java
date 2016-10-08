@@ -1,5 +1,6 @@
 package zoo.animalKeeper;
 
+import backup.save.SaveImpl;
 import exception.IncorrectDataException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
@@ -173,4 +174,39 @@ public class AnimalKeeperImpl implements AnimalKeeper {
          }
         }
     }
+    
+    
+    /**
+     * Getters
+     */
+    @Override
+    public String getName(SaveImpl.FriendSave friend){
+        friend.hashCode();
+        return this.name;
+    }
+    
+    @Override
+    public Map<IPaddock, Double> getTimedPaddocks(SaveImpl.FriendSave friend){
+        friend.hashCode();
+        return this.timedPaddocks;
+    }
+    
+    @Override
+    public Map<TaskPaddock, Double> getTimedTaskPerPaddock(SaveImpl.FriendSave friend){
+        friend.hashCode();
+        return this.timedTaskPerPaddock;
+    }
+    
+    @Override
+    public Map<Integer, Double> getManagedFamilies(SaveImpl.FriendSave friend){
+        friend.hashCode();
+        return this.managedFamilies;
+    }
+    
+    @Override
+    public Map<Integer, Double> getManagedTasks(SaveImpl.FriendSave friend){
+        friend.hashCode();
+        return this.managedTasks;
+    }
+    
 }
