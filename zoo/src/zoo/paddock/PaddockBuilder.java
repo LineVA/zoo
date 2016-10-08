@@ -3,6 +3,7 @@ package zoo.paddock;
 import exception.name.NameException;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.TreeMap;
 import launch.options.Option;
 import zoo.animal.Animal;
 
@@ -14,14 +15,14 @@ public class PaddockBuilder {
 
     private String _name;
     private PaddockCoordinates _coordinates;
-    private Map<String, Animal> _animals;
+    private Map<String, Animal> _animals = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     private int _paddockType = 0;
     private ArrayList<IPaddock> _neightbourhood = new ArrayList<>();
     private Option _option;
     private int _biome = 0;
 
     public IPaddock buildPaddock() throws NameException {
-        return new Paddock(_name, _coordinates, _neightbourhood,
+        return new Paddock(_name, _coordinates, _neightbourhood, _animals,
                 _biome, _paddockType, _option);
     }
 

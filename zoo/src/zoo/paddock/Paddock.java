@@ -73,7 +73,7 @@ public class Paddock implements IPaddock {
      * @param coor the coordinates of the paddock
      */
     public Paddock(String name, PaddockCoordinates coor,
-            ArrayList<IPaddock> neightbourhood, int biome, int paddockType, Option option)
+            ArrayList<IPaddock> neightbourhood, Map<String, Animal> animals, int biome, int paddockType, Option option)
             throws EmptyNameException, NameException {
         this.option = option;
         NameVerifications.verify(name, this.option.getPaddockBundle());
@@ -81,7 +81,7 @@ public class Paddock implements IPaddock {
         this.coordinates = coor;
         this.biome = Biome.NONE.getId();
         this.attributes = (BiomeAttributes) Biome.NONE.getAttributes().clone();
-        this.animals = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        this.animals = animals;
         this.neightbourhood = neightbourhood;
         this.paddockType = paddockType;
         obs.addObserver(new Observer() {
@@ -105,8 +105,8 @@ public class Paddock implements IPaddock {
             setBiome(Biome.NONE);
         }
     }
-    
-       public void setPaddockType(PaddockTypes paddockTypes) {
+
+    public void setPaddockType(PaddockTypes paddockTypes) {
         if (paddockTypes != null) {
             this.paddockType = paddockTypes.getId();
         } else {
@@ -122,8 +122,8 @@ public class Paddock implements IPaddock {
 //            setBiome(Biome.NONE.findByName(biomeName));
 //        }
     }
-    
-       @Override
+
+    @Override
     public void setPaddockType(String paddockTypeId) throws UnknownNameException {
         setPaddockType(PaddockTypes.UNKNOWN.findById(Integer.parseInt(paddockTypeId)));
     }
@@ -211,8 +211,8 @@ public class Paddock implements IPaddock {
         }
         return list;
     }
-    
-      private ArrayList<Animal> listAnimalWithContinent(ArrayList<Animal> animals, Continent continent) {
+
+    private ArrayList<Animal> listAnimalWithContinent(ArrayList<Animal> animals, Continent continent) {
         ArrayList<Animal> list = animals;
         Iterator it = list.iterator();
         Animal next;
@@ -313,7 +313,7 @@ public class Paddock implements IPaddock {
             list = listAnimalWithConservation(list,
                     ConservationStatus.UNKNOWN.findById(specie.getConservation()));
         }
-        if (specie.getContinent()!= -1) {
+        if (specie.getContinent() != -1) {
             list = listAnimalWithContinent(list,
                     Continent.UNKNOWN.findById(specie.getContinent()));
         }
@@ -512,6 +512,15 @@ public class Paddock implements IPaddock {
     }
 
     @Override
+    public ArrayList<Integer> listFamiliesById() {
+        ArrayList<Integer> listFamily = new ArrayList<>();
+        for(Specie specie : this.listSpecies()){
+            listFamily.add(specie.getFamily());
+        }
+        return listFamily;
+    }
+
+    @Override
     public void addInNeightbourhood(IPaddock paddock) {
         this.neightbourhood.add(paddock);
     }
@@ -567,9 +576,9 @@ public class Paddock implements IPaddock {
         friend.hashCode();
         return this.biome;
     }
-    
-      @Override
-     public int getPaddockType(SaveImpl.FriendSave friend) {
+
+    @Override
+    public int getPaddockType(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.paddockType;
     }

@@ -5,6 +5,7 @@ import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.Getter;
 import zoo.paddock.IPaddock;
 
 /**
@@ -16,6 +17,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     private final String name;
     private Map<IPaddock, Double> timedPaddocks;
     private Map<TaskPaddock, Double> timedTaskPerPaddock;
+    @Getter
     private Map<Integer, Double> managedFamilies;
     private Map<Integer, Double> managedTasks;
 
@@ -80,17 +82,17 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     private HashMap<Integer, Double> expectTimedTasks(
             HashMap<Integer, Double> oldTimedTasks, HashMap<Task, Double> askedTimedTasks) {
         HashMap<Integer, Double> actualTimedTasks = new HashMap<>();
-       for (Task task : Task.values()) {
-            if(askedTimedTasks.containsKey(task)){
+        for (Task task : Task.values()) {
+            if (askedTimedTasks.containsKey(task)) {
                 actualTimedTasks.put(task.getId(), askedTimedTasks.get(task));
-            } else if(oldTimedTasks.containsKey(task.getId())){
+            } else if (oldTimedTasks.containsKey(task.getId())) {
                 actualTimedTasks.put(task.getId(), oldTimedTasks.get(task.getId()));
             }
         }
         return actualTimedTasks;
     }
-    
-     private ArrayList<Double> extractTimesFromTimedTasks(Map<Integer, Double> timedTasks) {
+
+    private ArrayList<Double> extractTimesFromTimedTasks(Map<Integer, Double> timedTasks) {
         Object[] times = timedTasks.values().toArray();
         ArrayList<Double> timesList = new ArrayList<>();
         for (Object time : times) {
@@ -98,24 +100,23 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         }
         return timesList;
     }
-     
-     private boolean checkTimes(ArrayList<Double> times){
-         for(Double time : times){
-             if(!this.checkIndiviualTime(time)){
-                 return false;
-             }
-         }
-         return this.checkCumulativeTime(times);
-     }
-     
-     private HashMap<TaskPaddock, Double> reconstructTimedTasksPerPaddock
-        (IPaddock paddock, HashMap<Integer, Double> timedTasks){
+
+    private boolean checkTimes(ArrayList<Double> times) {
+        for (Double time : times) {
+            if (!this.checkIndiviualTime(time)) {
+                return false;
+            }
+        }
+        return this.checkCumulativeTime(times);
+    }
+
+    private HashMap<TaskPaddock, Double> reconstructTimedTasksPerPaddock(IPaddock paddock, HashMap<Integer, Double> timedTasks) {
         HashMap<TaskPaddock, Double> timedTasksPerPaddock = new HashMap<>();
         for (HashMap.Entry<Integer, Double> entry : timedTasks.entrySet()) {
             timedTasksPerPaddock.put(new TaskPaddock(paddock, entry.getKey()), entry.getValue());
         }
         return timedTasksPerPaddock;
-     }
+    }
 
     @Override
     public void addTaskToAPaddock(IPaddock paddock, HashMap<Task, Double> newTimedTasks)
@@ -128,13 +129,32 @@ public class AnimalKeeperImpl implements AnimalKeeper {
             HashMap<Integer, Double> askedTimedTasks = expectTimedTasks(oldTimedTasks, newTimedTasks);
             // We check if the timer are consistent or not
             ArrayList<Double> times = extractTimesFromTimedTasks(askedTimedTasks);
-            if(checkTimes(times)){
+            if (checkTimes(times)) {
                 this.timedTaskPerPaddock = reconstructTimedTasksPerPaddock(paddock, askedTimedTasks);
             } else {
-                    throw new IncorrectDataException("ITemps incorrects");
+                throw new IncorrectDataException("ITemps incorrects");
             }
-              } else {
+        } else {
             throw new IncorrectDataException("Il vous faut d'abord consacrer un temps à cet enclos");
+        }
+    }
+
+    private double computeFamilies(IPaddock paddock) {
+        return this.timedPaddocks.get(paddock) / 100.0;
+    }
+
+    @Override
+    public void evaluateByFamily(IPaddock paddock) {
+        if (this.timedPaddocks.containsKey(paddock)) {
+            ArrayList<Integer> familiesList = paddock.listFamiliesById();
+            for (Integer family : familiesList) {
+                double init = 0.0;
+                if (this.managedFamilies.containsKey(family)) {
+                    init = this.managedFamilies.get(family);
+                }
+                init += computeFamilies(paddock);
+                this.managedFamilies.put(family, init);
+            }
         }
     }
 }

@@ -66,6 +66,13 @@ public interface IPaddock {
     public ArrayList<Specie> listSpecies(ArrayList<Specie> presentedSpecies);
 
     public ArrayList<Specie> listSpecies();
+    
+    /**
+     * Can contain doubles if two or more species of the same family
+     * are in this paddock
+     * @return 
+     */
+    public ArrayList<Integer> listFamiliesById();
 
     public ArrayList<Specie> listSpeciesInNeightbourhood();
 
