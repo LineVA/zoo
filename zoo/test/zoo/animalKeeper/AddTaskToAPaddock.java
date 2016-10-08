@@ -110,26 +110,26 @@ public class AddTaskToAPaddock {
         HashMap<Task, Double> timedTasks2 = new HashMap<>();
         timedTasks1.put(Task.CLEANING, 10.0);
         keeper.addTaskToAPaddock(pad1, timedTasks1);
-        timedTasks2.put(Task.ENRICHMENT, 91.0);
+        timedTasks2.put(Task.CLEANING, 91.0);
         keeper.addTaskToAPaddock(pad1, timedTasks2);
         // Then
     }
     
-//     @Test
-//    public void shouldNotThrowAExceptionWhenTheCumulativeTimesAreGreaterThan100WithTwoPaddocks()
-//            throws IncorrectDataException, UnknownNameException {
-//        // Given
-//        keeper = new AnimalKeeperBuilder().name("keeper1")
-//                .timedPaddocks(timedPaddocks)
-//                .buildAnimalKeeper();
-//        // When
-//        thrown.expect(IncorrectDataException.class);
-//        HashMap<Task, Double> timedTasks1 = new HashMap<>();
-//        HashMap<Task, Double> timedTasks2 = new HashMap<>();
-//        timedTasks1.put(Task.CLEANING, 10.0);
-//        keeper.addTaskToAPaddock(pad1, timedTasks1);
-//        timedTasks2.put(Task.CLEANING, 91.0);
-//        keeper.addTaskToAPaddock(pad2, timedTasks2);
-//        // Then
-//    }
+     @Test
+    public void shouldNotThrowAExceptionWhenTheCumulativeTimesAreGreaterThan100WithTwoPaddocks()
+            throws IncorrectDataException, UnknownNameException {
+        // Given
+        keeper = new AnimalKeeperBuilder().name("keeper1")
+                .timedPaddocks(timedPaddocks)
+                .buildAnimalKeeper();
+        // When
+        thrown.expect(IncorrectDataException.class);
+        HashMap<Task, Double> timedTasks1 = new HashMap<>();
+        HashMap<Task, Double> timedTasks2 = new HashMap<>();
+        timedTasks1.put(Task.CLEANING, 10.0);
+        keeper.addTaskToAPaddock(pad1, timedTasks1);
+        timedTasks2.put(Task.CLEANING, 91.0);
+        keeper.addTaskToAPaddock(pad2, timedTasks2);
+        // Then
+    }
 }
