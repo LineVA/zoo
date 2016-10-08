@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import backup.save.SaveImpl;
 import exception.name.NameException;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -26,9 +25,10 @@ import zoo.animal.feeding.Diet;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
+import zoo.animalKeeper.AnimalKeeper;
+import zoo.animalKeeper.AnimalKeeperBuilder;
 import zoo.evaluation.Evaluation;
 import zoo.paddock.IPaddock;
-import zoo.paddock.Paddock;
 import zoo.paddock.PaddockBuilder;
 import zoo.paddock.biome.Biome;
 
@@ -61,6 +61,10 @@ public class Zoo implements IZoo {
      * The hashmap of the paddocks it contains
      */
     private Map<String, IPaddock> paddocks;
+    /**
+     * The hashmap of the animal keepers it contains
+     */
+    private Map<String, AnimalKeeper> keepers;
     /**
      * The HashMap of the existing species
      */
@@ -114,6 +118,7 @@ public class Zoo implements IZoo {
             this.height = height;
         }
         paddocks = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        keepers = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         this.species = species;
         this.age = age;
         this.monthsPerEvaluation = monthsPerEvaluation;
@@ -263,6 +268,18 @@ public class Zoo implements IZoo {
     public void removePaddock(IPaddock paddock) {
         this.paddocks.remove(paddock.getName());
         paddock.removeFromNeightbourhood();
+    }
+
+    public void addKeeper(String name) throws AlreadyUsedNameException, EmptyNameException {
+        if (name.trim().equals("")) {
+            throw new EmptyNameException(
+                    this.option.getPaddockBundle().getString("EMPTY_NAME_KEEPER"));
+        }
+        if (this.keepers.containsKey(name)) {
+            throw new AlreadyUsedNameException(
+                    this.option.getPaddockBundle().getString("ALREADY_USED_NAME_KEEPER"));
+        }
+        this.keepers.put(name, new AnimalKeeperBuilder().name(name).buildAnimalKeeper());
     }
 
     /**
@@ -497,6 +514,12 @@ public class Zoo implements IZoo {
     public Map<String, Specie> getSpecies(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.species;
+    }
+    
+    @Override 
+    public Map<String, AnimalKeeper> getAnimalKeepers(SaveImpl.FriendSave friend){
+        friend.hashCode();
+        return this.keepers;
     }
 
     @Override

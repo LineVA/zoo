@@ -17,6 +17,7 @@ import zoo.animal.feeding.Diet;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
+import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.IPaddock;
 import zoo.paddock.PaddockCoordinates;
 import zoo.paddock.biome.Biome;
@@ -101,6 +102,8 @@ public interface IZoo {
     public int getHeight(SaveImpl.FriendSave friend);
 
     public Map<String, IPaddock> getPaddocks(SaveImpl.FriendSave friend);
+    
+     public Map<String, AnimalKeeper> getAnimalKeepers(SaveImpl.FriendSave friend);
 
     public Map<String, Specie> getSpecies(SaveImpl.FriendSave friend);
 
