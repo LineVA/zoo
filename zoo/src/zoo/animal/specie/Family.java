@@ -39,7 +39,8 @@ public enum Family {
     CEBIDAE(26),
     TAPIRIDAE(27),
     CERVIDAE(28),
-    CASTORIDAE(29);
+    CASTORIDAE(29),
+    HYLOBATIDAE(30);
     
 //    HERPESTIDAE(9),
 //    HYENIDAE(10),
