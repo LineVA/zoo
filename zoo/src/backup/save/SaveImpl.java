@@ -16,6 +16,7 @@ import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
 import zoo.animalKeeper.AnimalKeeper;
+import zoo.animalKeeper.TaskPaddock;
 import zoo.paddock.IPaddock;
 import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
@@ -102,7 +103,7 @@ public class SaveImpl implements Save {
         Element el = new Element("animalKeeper");
         el.setAttribute(createAttribute("name", keeper.getName(friendSave)));
         el.addContent(createElementTimedPaddocks(keeper.getTimedPaddocks(friendSave)));
-//        el.addContent(createElementTimedTaskPerPaddocks(keeper));
+       el.addContent(createElementTimedTasksPerPaddock(keeper.getTimedTaskPerPaddock(friendSave)));
 //        el.addContent(createElementManagedFamilies(keeper));
 //        el.addContent(createElementManagedTasks(keeper));
         return el;
@@ -116,9 +117,28 @@ public class SaveImpl implements Save {
         return el;
     }
     
+     private Element createElementTimedTasksPerPaddock(Map<TaskPaddock, Double> timedTasksPerPaddock) {
+        Element el = new Element("timedTasksPerPaddock");
+           for (HashMap.Entry<TaskPaddock, Double> entry : timedTasksPerPaddock.entrySet()) {
+                el.addContent(createElementTimedTaskPerPaddock(
+                        entry.getKey().getPaddock().getName(friendSave),
+                        entry.getKey().getTask(),
+                        entry.getValue()));
+        }
+        return el;
+    }
+    
     private Element createElementTimedPaddock(String name, Double time){
         Element el = new Element("timedPaddock");
         el.addContent(createElementWithText("paddock", name));
+        el.addContent(createElementWithText("time", Double.toString(time)));
+        return el;
+    }
+    
+        private Element createElementTimedTaskPerPaddock(String name, int task, Double time){
+        Element el = new Element("timedTaskPerPaddock");
+        el.addContent(createElementWithText("paddock", name));
+        el.addContent(createElementWithText("task", Integer.toString(task)));
         el.addContent(createElementWithText("time", Double.toString(time)));
         return el;
     }
