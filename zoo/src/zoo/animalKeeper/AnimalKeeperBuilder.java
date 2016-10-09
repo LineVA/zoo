@@ -27,22 +27,22 @@ public class AnimalKeeperBuilder {
         return this;
     }
 
-    public AnimalKeeperBuilder timedPaddocks(HashMap<IPaddock, Double> paddocks) {
+    public AnimalKeeperBuilder timedPaddocks(Map<IPaddock, Double> paddocks) {
         this._timedPaddocks = paddocks;
         return this;
     }
     
-    public AnimalKeeperBuilder timedTaskPerPaddock(HashMap<TaskPaddock, Double> paddocks) {
+    public AnimalKeeperBuilder timedTaskPerPaddock(Map<TaskPaddock, Double> paddocks) {
         this._timedTaskPerPaddock = paddocks;
         return this;
     }
 
-    public AnimalKeeperBuilder managedFamilies(HashMap<Integer, Double> families) {
+    public AnimalKeeperBuilder managedFamilies(Map<Integer, Double> families) {
         this._managedFamilies = families;
         return this;
     }
 
-    public AnimalKeeperBuilder managedTasks(HashMap<Integer, Double> tasks) {
+    public AnimalKeeperBuilder managedTasks(Map<Integer, Double> tasks) {
         this._managedTasks = tasks;
         return this;
     }
