@@ -105,7 +105,7 @@ public class SaveImpl implements Save {
         el.addContent(createElementTimedPaddocks(keeper.getTimedPaddocks(friendSave)));
         el.addContent(createElementTimedTasksPerPaddock(keeper.getTimedTaskPerPaddock(friendSave)));
         el.addContent(createElementManagedFamilies(keeper.getManagedFamilies(friendSave)));
-//        el.addContent(createElementManagedTasks(keeper));
+        el.addContent(createElementManagedTasks(keeper.getManagedTasks(friendSave)));
         return el;
     }
 
@@ -136,6 +136,15 @@ public class SaveImpl implements Save {
         }
         return el;
     }
+    
+     private Element createElementManagedTasks(Map<Integer, Double> managedTasks) {
+        Element el = new Element("managedTasks");
+        for (HashMap.Entry<Integer, Double> entry : managedTasks.entrySet()) {
+            el.addContent(createElementManagedTask(
+                    entry.getKey(), entry.getValue()));
+        }
+        return el;
+    }
 
     private Element createElementTimedPaddock(String name, Double time) {
         Element el = new Element("timedPaddock");
@@ -152,12 +161,20 @@ public class SaveImpl implements Save {
         return el;
     }
 
-    private Element createElementManagedFamily(int task, Double time) {
+    private Element createElementManagedFamily(int family, Double time) {
         Element el = new Element("managedFamily");
+        el.addContent(createElementWithText("family", Integer.toString(family)));
+        el.addContent(createElementWithText("time", Double.toString(time)));
+        return el;
+    }
+    
+      private Element createElementManagedTask(int task, Double time) {
+        Element el = new Element("managedTask");
         el.addContent(createElementWithText("task", Integer.toString(task)));
         el.addContent(createElementWithText("time", Double.toString(time)));
         return el;
     }
+
 
     private Element createElementPaddocks(IZoo zoo) {
         Element el = new Element("paddocks");

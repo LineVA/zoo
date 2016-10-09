@@ -43,7 +43,10 @@ public class CreateElementKeeperMain {
         Map<Integer, Double> managedFamilies = new HashMap<>();
         managedFamilies.put(1, 111.0);
         managedFamilies.put(2, 112.0);
-        AnimalKeeper keeper = new AnimalKeeperImpl("keeper1", timedPaddocks, timedTasksPerPaddock, managedFamilies, null);
+        Map<Integer, Double> managedTasks = new HashMap<>();
+        managedTasks.put(1, 1111.0);
+        managedTasks.put(2, 1112.0);
+        AnimalKeeper keeper = new AnimalKeeperImpl("keeper1", timedPaddocks, timedTasksPerPaddock, managedFamilies, managedTasks);
 
         zoo.addPaddock(pad1);
         zoo.addPaddock(pad2);
