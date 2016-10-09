@@ -216,7 +216,7 @@ public class AnimalImpl implements Animal {
         return new ReproductionAttributes(female, male, frequency, litter);
     }
 
-    private LifeSpanLightAttributes drawActualLifeSpan(Specie spec) {
+    private LifeSpanLightAttributes drawActualLifeSpan(Specie spec) throws IncorrectDataException {
         int lifeSpan;
         if (this.sex.isFemale()) {
             lifeSpan = spec.getGaussianLifeSpanAttributesSpan().

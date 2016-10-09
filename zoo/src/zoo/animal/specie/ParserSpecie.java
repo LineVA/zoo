@@ -1,5 +1,6 @@
 package zoo.animal.specie;
 
+import exception.IncorrectDataException;
 import exception.name.UnknownNameException;
 import java.io.File;
 import java.io.IOException;
@@ -122,7 +123,7 @@ public class ParserSpecie {
                 Integer.parseInt(reproEl.getChildText("litterSize")));
     }
 
-    private static LifeSpanAttributes lifeSpanParser(Element root) {
+    private static LifeSpanAttributes lifeSpanParser(Element root) throws IncorrectDataException {
         Element lifeEl = root.getChild("lifespan");
         return new LifeSpanAttributes(Integer.parseInt(lifeEl.getChildText("femaleLifespan")),
                 Integer.parseInt(lifeEl.getChildText("maleLifespan")));

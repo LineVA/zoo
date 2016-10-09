@@ -1,5 +1,6 @@
 package backup.load;
 
+import exception.IncorrectDataException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -101,14 +102,16 @@ public class ParserBackUp {
      * The method used to parse the animals element
      * @return The list of FakeAnimal in the file
      */
-    public ArrayList<FakeAnimal> parserAnimals() {
+    public ArrayList<FakeAnimal> parserAnimals() throws IncorrectDataException{
         ArrayList<Element> animalsElList = findElementsAnimals();
         ArrayList<FakeAnimal> animalList = new ArrayList<>();
-        animalsElList.stream().forEach((Element el) -> animalList.addAll(parserAnimal(el)));
+        for(Element el : animalsElList){
+            animalList.addAll(parserAnimal(el));
+        }
         return animalList;
     }
 
-    private ArrayList<FakeAnimal> parserAnimal(Element animalsEl) {
+    private ArrayList<FakeAnimal> parserAnimal(Element animalsEl) throws IncorrectDataException {
         List<Element> animalsElList = animalsEl.getChildren("animal");
         ArrayList<FakeAnimal> animalsList = new ArrayList<>();
         Iterator it = animalsElList.iterator();
@@ -179,7 +182,8 @@ public class ParserBackUp {
         return repro;
     }
 
-    private LifeSpanLightAttributes parserLifeSpanAttributes(Element tmpAnimalEl) {
+    private LifeSpanLightAttributes parserLifeSpanAttributes(Element tmpAnimalEl) 
+            throws IncorrectDataException {
         Element lifeEl = tmpAnimalEl.getChild("actualLifeSpanAttributes");
         LifeSpanLightAttributes life = new LifeSpanLightAttributes(
                 Integer.parseInt(lifeEl.getChildText("lifeSpan")));

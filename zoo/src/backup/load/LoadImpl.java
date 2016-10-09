@@ -17,6 +17,8 @@ import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.Specie;
 import zoo.paddock.FakePaddock;
 import zoo.paddock.IPaddock;
+import zoo.paddock.PaddockTypes;
+import zoo.paddock.biome.Biome;
 
 /**
  * The concrete class unsed to load a zoo
@@ -64,6 +66,8 @@ public class LoadImpl implements Load {
     private void addFakePaddockToZoo(IZoo zoo, FakePaddock paddock, Option option)
             throws IncorrectDimensionsException,
             AlreadyUsedNameException, EmptyNameException, NameException {
+       Biome.NONE.findById(paddock.getBiome());
+       PaddockTypes.UNKNOWN.findById(paddock.getPaddockType());
         zoo.addPaddock(paddock.convertToPaddock(option));
     }
 }

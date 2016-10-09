@@ -5,6 +5,7 @@ import backup.load.LoadImpl;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
+import exception.IncorrectDataException;
 import java.io.IOException;
 import launch.play.Play;
 import org.jdom2.JDOMException;
@@ -45,10 +46,16 @@ public class LoadZoo implements Command {
             this.play.setOption(zoo.getOption());
             this.previousHasBeenSuccessfull = true;
             this.success = true;
-            return new ReturnExec(this.play.getOption().getGeneralCmdBundle().getString("ZOO_CREATION_SUCESS"), TypeReturn.SUCCESS);
+            return new ReturnExec(
+                    this.play.getOption().getGeneralCmdBundle().getString("ZOO_CREATION_SUCESS"), TypeReturn.SUCCESS);
+        } catch (IncorrectDataException ex) {
+            this.previousHasBeenSuccessfull = false;
+            return new ReturnExec(
+                    this.play.getOption().getGeneralCmdBundle().getString("FAIL_LOAD"), TypeReturn.ERROR);
         } catch (IOException | JDOMException ex) {
             this.previousHasBeenSuccessfull = false;
-            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
+            return new ReturnExec(
+                    this.play.getOption().getGeneralCmdBundle().getString("FAIL_LOAD"), TypeReturn.ERROR);
         }
     }
 

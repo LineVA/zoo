@@ -3,7 +3,6 @@ package zoo.paddock;
 import exception.IncorrectDimensionsException;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
-import java.util.ArrayList;
 import lombok.Getter;
 import launch.options.Option;
 
@@ -23,7 +22,9 @@ public class FakePaddock {
     int width;
     @Getter
     int height;
+    @Getter
     int biome;
+    @Getter
     int paddockType;
     Option option;
 
