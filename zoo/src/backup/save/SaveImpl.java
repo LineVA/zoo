@@ -103,41 +103,57 @@ public class SaveImpl implements Save {
         Element el = new Element("animalKeeper");
         el.setAttribute(createAttribute("name", keeper.getName(friendSave)));
         el.addContent(createElementTimedPaddocks(keeper.getTimedPaddocks(friendSave)));
-       el.addContent(createElementTimedTasksPerPaddock(keeper.getTimedTaskPerPaddock(friendSave)));
-//        el.addContent(createElementManagedFamilies(keeper));
+        el.addContent(createElementTimedTasksPerPaddock(keeper.getTimedTaskPerPaddock(friendSave)));
+        el.addContent(createElementManagedFamilies(keeper.getManagedFamilies(friendSave)));
 //        el.addContent(createElementManagedTasks(keeper));
         return el;
     }
 
     private Element createElementTimedPaddocks(Map<IPaddock, Double> timedPaddocks) {
         Element el = new Element("timedPaddocks");
-           for (HashMap.Entry<IPaddock, Double> entry : timedPaddocks.entrySet()) {
-                el.addContent(createElementTimedPaddock(entry.getKey().getName(friendSave), entry.getValue()));
+        for (HashMap.Entry<IPaddock, Double> entry : timedPaddocks.entrySet()) {
+            el.addContent(createElementTimedPaddock(entry.getKey().getName(friendSave), entry.getValue()));
         }
         return el;
     }
-    
-     private Element createElementTimedTasksPerPaddock(Map<TaskPaddock, Double> timedTasksPerPaddock) {
+
+    private Element createElementTimedTasksPerPaddock(Map<TaskPaddock, Double> timedTasksPerPaddock) {
         Element el = new Element("timedTasksPerPaddock");
-           for (HashMap.Entry<TaskPaddock, Double> entry : timedTasksPerPaddock.entrySet()) {
-                el.addContent(createElementTimedTaskPerPaddock(
-                        entry.getKey().getPaddock().getName(friendSave),
-                        entry.getKey().getTask(),
-                        entry.getValue()));
+        for (HashMap.Entry<TaskPaddock, Double> entry : timedTasksPerPaddock.entrySet()) {
+            el.addContent(createElementTimedTaskPerPaddock(
+                    entry.getKey().getPaddock().getName(friendSave),
+                    entry.getKey().getTask(),
+                    entry.getValue()));
         }
         return el;
     }
-    
-    private Element createElementTimedPaddock(String name, Double time){
+
+    private Element createElementManagedFamilies(Map<Integer, Double> managedFamilies) {
+        Element el = new Element("managedFamilies");
+        for (HashMap.Entry<Integer, Double> entry : managedFamilies.entrySet()) {
+            el.addContent(createElementManagedFamily(
+                    entry.getKey(), entry.getValue()));
+        }
+        return el;
+    }
+
+    private Element createElementTimedPaddock(String name, Double time) {
         Element el = new Element("timedPaddock");
         el.addContent(createElementWithText("paddock", name));
         el.addContent(createElementWithText("time", Double.toString(time)));
         return el;
     }
-    
-        private Element createElementTimedTaskPerPaddock(String name, int task, Double time){
+
+    private Element createElementTimedTaskPerPaddock(String name, int task, Double time) {
         Element el = new Element("timedTaskPerPaddock");
         el.addContent(createElementWithText("paddock", name));
+        el.addContent(createElementWithText("task", Integer.toString(task)));
+        el.addContent(createElementWithText("time", Double.toString(time)));
+        return el;
+    }
+
+    private Element createElementManagedFamily(int task, Double time) {
+        Element el = new Element("managedFamily");
         el.addContent(createElementWithText("task", Integer.toString(task)));
         el.addContent(createElementWithText("time", Double.toString(time)));
         return el;
