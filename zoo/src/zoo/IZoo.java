@@ -48,6 +48,10 @@ public interface IZoo {
     public void removePaddock(IPaddock paddock);
 
     public ArrayList<String> listPaddock(Specie specie);
+    
+    public void addKeeper(String name) throws AlreadyUsedNameException, EmptyNameException;
+    
+    public void addKeeper(AnimalKeeper keeper);
 
     public ArrayList<PaddockCoordinates> map() throws IncorrectDimensionsException;
 

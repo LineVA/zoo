@@ -270,6 +270,7 @@ public class Zoo implements IZoo {
         paddock.removeFromNeightbourhood();
     }
 
+    @Override
     public void addKeeper(String name) throws AlreadyUsedNameException, EmptyNameException {
         if (name.trim().equals("")) {
             throw new EmptyNameException(
@@ -280,6 +281,11 @@ public class Zoo implements IZoo {
                     this.option.getPaddockBundle().getString("ALREADY_USED_NAME_KEEPER"));
         }
         this.keepers.put(name, new AnimalKeeperBuilder().name(name).buildAnimalKeeper());
+    }
+
+    @Override
+    public void addKeeper(AnimalKeeper keeper) {
+        keepers.put(keeper.getName(), keeper);
     }
 
     /**
@@ -515,9 +521,9 @@ public class Zoo implements IZoo {
         friend.hashCode();
         return this.species;
     }
-    
-    @Override 
-    public Map<String, AnimalKeeper> getAnimalKeepers(SaveImpl.FriendSave friend){
+
+    @Override
+    public Map<String, AnimalKeeper> getAnimalKeepers(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.keepers;
     }

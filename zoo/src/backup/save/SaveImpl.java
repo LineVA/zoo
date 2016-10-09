@@ -3,6 +3,7 @@ package backup.save;
 import exception.name.EmptyNameException;
 import java.io.FileOutputStream;
 import java.util.HashMap;
+import java.util.Map;
 import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -14,6 +15,7 @@ import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
+import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.IPaddock;
 import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
@@ -48,6 +50,7 @@ public class SaveImpl implements Save {
         Element zooEl = createElementZoo(zoo);
         org.jdom2.Document doc = new Document(zooEl);
         zooEl.addContent(createElementPaddocks(zoo));
+        zooEl.addContent(createElementKeepers(zoo));
         //  zooEl.addContent(createElementAnimals(zoo));
         saveInFile(doc, createFileName(fileName));
     }
@@ -85,6 +88,39 @@ public class SaveImpl implements Save {
 
     private Attribute createAttribute(String name, String value) {
         return new Attribute(name, value);
+    }
+
+    private Element createElementKeepers(IZoo zoo) {
+        Element el = new Element("animalKeepers");
+        zoo.getAnimalKeepers(friendSave).entrySet().stream().forEach((keeper) -> {
+            el.addContent(createElementKeeper((AnimalKeeper) keeper.getValue()));
+        });
+        return el;
+    }
+
+    private Element createElementKeeper(AnimalKeeper keeper) {
+        Element el = new Element("animalKeeper");
+        el.setAttribute(createAttribute("name", keeper.getName(friendSave)));
+        el.addContent(createElementTimedPaddocks(keeper.getTimedPaddocks(friendSave)));
+//        el.addContent(createElementTimedTaskPerPaddocks(keeper));
+//        el.addContent(createElementManagedFamilies(keeper));
+//        el.addContent(createElementManagedTasks(keeper));
+        return el;
+    }
+
+    private Element createElementTimedPaddocks(Map<IPaddock, Double> timedPaddocks) {
+        Element el = new Element("timedPaddocks");
+           for (HashMap.Entry<IPaddock, Double> entry : timedPaddocks.entrySet()) {
+                el.addContent(createElementTimedPaddock(entry.getKey().getName(friendSave), entry.getValue()));
+        }
+        return el;
+    }
+    
+    private Element createElementTimedPaddock(String name, Double time){
+        Element el = new Element("timedPaddock");
+        el.addContent(createElementWithText("paddock", name));
+        el.addContent(createElementWithText("time", Double.toString(time)));
+        return el;
     }
 
     private Element createElementPaddocks(IZoo zoo) {

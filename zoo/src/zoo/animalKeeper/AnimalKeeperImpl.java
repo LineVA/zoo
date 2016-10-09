@@ -15,6 +15,7 @@ import zoo.paddock.IPaddock;
  */
 public class AnimalKeeperImpl implements AnimalKeeper {
 
+    @Getter
     private final String name;
     private Map<IPaddock, Double> timedPaddocks;
     private Map<TaskPaddock, Double> timedTaskPerPaddock;

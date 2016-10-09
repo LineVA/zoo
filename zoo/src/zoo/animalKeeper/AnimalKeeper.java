@@ -21,6 +21,8 @@ public interface AnimalKeeper {
     public void evaluateByFamily(IPaddock paddock);
 
     public void evaluateByTask();
+    
+    public String getName();
 
     /**
      * Getters for the back up
