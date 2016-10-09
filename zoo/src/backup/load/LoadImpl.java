@@ -15,6 +15,7 @@ import zoo.IZoo;
 import zoo.animal.FakeAnimal;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.Specie;
+import zoo.animalKeeper.FakeAnimalKeeper;
 import zoo.paddock.FakePaddock;
 import zoo.paddock.IPaddock;
 
@@ -49,6 +50,11 @@ public class LoadImpl implements Load {
         for (FakeAnimal animal : animalList) {
             addFakeAnimalToZoo(zoo, animal, option);
         }
+        // Creation of the animal keepers
+//        ArrayList<FakeAnimalKeeper> keeperList = parser.parserAnimalKeepers();
+//        for(FakeAnimalKeeper keeper : keeperList){
+//            addFakeKeeperToZoo(zoo, keeper, option);
+//        }
         return zoo;
     }
 
@@ -65,5 +71,9 @@ public class LoadImpl implements Load {
             throws IncorrectDimensionsException,
             AlreadyUsedNameException, EmptyNameException, NameException {
         zoo.addPaddock(paddock.convertToPaddock(option));
+    }
+
+    private void addFakeKeeperToZoo(IZoo zoo, FakeAnimalKeeper keeper, Option option){
+        
     }
 }
