@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
   <names>
-    <fr>Cercopithèque diane</fr>
+    <fr>Cercopithèque de L'Hoest</fr>
     <additionalFrenchNames />
-    <en>Diana monkey</en>
+    <en>L'Hoest's monkey</en>
     <additionalEnglishNames>
+        <name>Mountain monkey</name>
     </additionalEnglishNames>
-    <scientific>Cercopithecus diana</scientific>
+    <scientific>Cercopithecus lhoesti</scientific>
   </names>
   <general>
     <uicn>3</uicn>
@@ -17,8 +18,8 @@
     <ecoregion>0</ecoregion>
   </general>
   <documentation>
-    <frenchWikipedia>https://fr.wikipedia.org/wiki/Cercopithèque_diane</frenchWikipedia>
-    <englishWikipedia>https://en.wikipedia.org/wiki/Diana_monkey</englishWikipedia>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Cercopithèque_de_L'Hœst</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/L'Hoest's_monkey</englishWikipedia>
     <animalDiversity />
   </documentation>
   <reproduction>
@@ -26,26 +27,26 @@
     <maleMaturity>36</maleMaturity>
     <gestationFrequency>1</gestationFrequency>
     <litterSize>1</litterSize>
-    <leavingAge>6</leavingAge>
+    <leavingAge>24</leavingAge>
   </reproduction>
   <lifespan>
     <femaleLifespan>240</femaleLifespan>
     <maleLifespan>240</maleLifespan>
   </lifespan>
   <territory>
-    <territorySize>120</territorySize>
+    <territorySize>80</territorySize>
     <biomes>
       <biome>1</biome>
     </biomes>
   </territory>
   <feeding>
-    <quantity>0.786</quantity>
+    <quantity>0.871</quantity>
     <size>1</size>
     <diets>
       <diet>17</diet>
     </diets>
   </feeding>
   <social>
-    <groupSize>15</groupSize>
+    <groupSize>10</groupSize>
   </social>
 </animal>
