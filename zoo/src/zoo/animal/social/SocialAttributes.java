@@ -1,5 +1,6 @@
 package zoo.animal.social;
 
+import exception.IncorrectLoadException;
 import launch.options.Option;
 import lombok.Getter;
 
@@ -12,11 +13,13 @@ public class SocialAttributes {
     @Getter
     private final int groupSize;
 
-    public SocialAttributes(int group) {
+    public SocialAttributes(int group) throws IncorrectLoadException{
         if (group > 0) {
             this.groupSize = group;
-        } else {
+        } else if(group == 0){
             this.groupSize = 1;
+        } else {
+            throw new IncorrectLoadException("");
         }
     }
     

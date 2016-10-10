@@ -144,7 +144,7 @@ public class ParserSpecie {
         return Integer.parseInt(genEl.getChildText("family"));
     }
 
-    private static SocialAttributes socialParser(Element root) {
+    private static SocialAttributes socialParser(Element root) throws IncorrectLoadException {
         Element socialEl = root.getChild("social");
         return new SocialAttributes(Integer.parseInt(socialEl.getChildText("groupSize")));
     }

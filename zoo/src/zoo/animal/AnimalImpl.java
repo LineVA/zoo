@@ -229,7 +229,7 @@ public class AnimalImpl implements Animal {
         return new LifeSpanLightAttributes(lifeSpan);
     }
 
-    private SocialAttributes drawOptimalSocial(Specie spec) {
+    private SocialAttributes drawOptimalSocial(Specie spec) throws IncorrectLoadException  {
         int groupSize = spec.getGaussianSocialAttributes().
                 getGroupSize().gaussianInt();
         return new SocialAttributes(groupSize);
