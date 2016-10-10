@@ -13,6 +13,7 @@ import launch.options.Option;
 import org.jdom2.JDOMException;
 import zoo.IZoo;
 import zoo.animal.FakeAnimal;
+import zoo.animal.feeding.Diet;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.Specie;
 import zoo.paddock.FakePaddock;
@@ -60,6 +61,7 @@ public class LoadImpl implements Load {
         Specie spec = zoo.findSpecieByScientificName(animal.getSpecie());
         IPaddock pad = zoo.findPaddockByName(animal.getPaddock());
         Sex sex = Sex.UNKNOWN.findById(animal.getSex());
+        Diet diet = Diet.NONE.findDietById(animal.getDiet());
         pad.addAnimal(animal.convertToAnimal(spec, pad, sex, option));
     }
 

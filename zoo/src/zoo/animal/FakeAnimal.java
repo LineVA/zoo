@@ -32,6 +32,7 @@ public class FakeAnimal {
     BiomeAttributes biome;
     FeedingAttributes optFeed;
     FeedingAttributes actualFeed;
+    @Getter
     int diet;
     ReproductionAttributes repro;
     LifeSpanLightAttributes life;
