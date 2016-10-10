@@ -2,6 +2,7 @@ package zoo.animal;
 
 import backup.save.SaveImpl;
 import exception.IncorrectDataException;
+import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public interface Animal {
 
     public void changeDiet(Object obj) throws UnknownNameException;
 
-    public void changeFoodQuantity(Double quantity) throws IncorrectDataException;
+    public void changeFoodQuantity(Double quantity) throws IncorrectLoadException;
 
     public String getName();
 

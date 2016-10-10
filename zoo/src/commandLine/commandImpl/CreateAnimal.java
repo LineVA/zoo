@@ -4,6 +4,7 @@ import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.IncorrectDataException;
+import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
 import exception.name.UnknownNameException;
@@ -59,7 +60,7 @@ public class CreateAnimal implements Command {
                 this.success = true;
                 return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
                         .getString("ANIMAL_CREATION_SUCCESS"), TypeReturn.SUCCESS);
-            } catch (NameException | IncorrectDataException ex) {
+            } catch (NameException | IncorrectLoadException ex) {
                 return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
             }
         } catch (EmptyNameException ex) {

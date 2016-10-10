@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import backup.save.SaveImpl;
+import exception.IncorrectLoadException;
 import exception.name.NameException;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -28,7 +28,6 @@ import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
 import zoo.evaluation.Evaluation;
 import zoo.paddock.IPaddock;
-import zoo.paddock.Paddock;
 import zoo.paddock.PaddockBuilder;
 import zoo.paddock.biome.Biome;
 
@@ -291,7 +290,7 @@ public class Zoo implements IZoo {
 //        return info;
 //    }
     @Override
-    public ArrayList<String> birth() throws IncorrectDataException, NameException {
+    public ArrayList<String> birth() throws IncorrectDataException, NameException, IncorrectLoadException {
         ArrayList<String> info = new ArrayList<>();
         for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
             info.addAll(padEntry.getValue().birth());
@@ -300,7 +299,8 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<String> ageing() throws IncorrectDataException, NameException {
+    public ArrayList<String> ageing() 
+            throws IncorrectDataException, NameException, EmptyNameException, IncorrectLoadException {
         this.age += this.monthsPerEvaluation;
         return new Evaluation().ageing(this.paddocks, this.monthsPerEvaluation);
     }

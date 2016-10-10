@@ -4,6 +4,7 @@ import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.IncorrectDataException;
+import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import launch.play.Play;
@@ -50,7 +51,7 @@ public class FeedingAnimal implements Command {
             return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
                     .getString("ANIMALS_DIET") + " " + args[0], TypeReturn.SUCCESS);
         } catch (EmptyNameException | UnknownNameException |
-                IncorrectDataException | NumberFormatException ex) {
+               IncorrectLoadException | NumberFormatException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
     }

@@ -1,6 +1,6 @@
 package zoo.animal.death;
 
-import exception.IncorrectDataException;
+import exception.IncorrectLoadException;
 import java.util.ResourceBundle;
 import launch.options.Option;
 import lombok.Getter;
@@ -17,16 +17,16 @@ public class LifeSpanAttributes {
     @Getter
     private final int maleLifeSpan;
 
-    public LifeSpanAttributes(int femaleLifeSpan, int maleLifeSpan) throws IncorrectDataException {
+    public LifeSpanAttributes(int femaleLifeSpan, int maleLifeSpan) throws IncorrectLoadException {
         if (Utils.isPositivOrNull(femaleLifeSpan)) {
             this.femaleLifeSpan = femaleLifeSpan;
         } else {
-            throw new IncorrectDataException("");
+            throw new IncorrectLoadException("");
         }
         if (Utils.isPositivOrNull(maleLifeSpan)) {
             this.maleLifeSpan = maleLifeSpan;
         } else {
-            throw new IncorrectDataException("");
+            throw new IncorrectLoadException("");
         }
     }
 

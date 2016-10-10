@@ -1,6 +1,7 @@
 package zoo.animal.reproduction;
 
 import exception.IncorrectDataException;
+import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class ReproductionImpl implements Reproduction {
 
     @Override
     public ArrayList<Animal> reproducte(Animal animal)
-            throws IncorrectDataException, NameException {
+            throws IncorrectDataException, NameException, EmptyNameException, IncorrectLoadException {
         if (canFemaleReproducte(animal)) {
             Animal father = whichMale(animal.findRoommatesOfTheSameSpecie());
             if (father != null) {
@@ -51,7 +52,7 @@ public class ReproductionImpl implements Reproduction {
      * the babies
      */
     public ArrayList<Animal> generateFamily(Animal mother, Animal father)
-            throws IncorrectDataException, EmptyNameException, NameException {
+            throws IncorrectDataException, EmptyNameException, NameException, IncorrectLoadException {
         ArrayList<Animal> family = new ArrayList<>();
         family.add(mother);
         family.add(father);
@@ -72,7 +73,7 @@ public class ReproductionImpl implements Reproduction {
      * @return the baby
      */
     public Animal generateAnimal(Specie spec, String name, IPaddock pad)
-            throws IncorrectDataException, EmptyNameException, NameException {
+            throws IncorrectDataException, EmptyNameException, NameException, IncorrectLoadException {
         Sex sex;
         if (uniform.nextBoolean()) {
             sex = Sex.FEMALE;

@@ -1,6 +1,7 @@
 package backup.load;
 
 import exception.IncorrectDataException;
+import exception.IncorrectLoadException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -102,7 +103,7 @@ public class ParserBackUp {
      * The method used to parse the animals element
      * @return The list of FakeAnimal in the file
      */
-    public ArrayList<FakeAnimal> parserAnimals() throws IncorrectDataException{
+    public ArrayList<FakeAnimal> parserAnimals() throws IncorrectLoadException{
         ArrayList<Element> animalsElList = findElementsAnimals();
         ArrayList<FakeAnimal> animalList = new ArrayList<>();
         for(Element el : animalsElList){
@@ -111,7 +112,7 @@ public class ParserBackUp {
         return animalList;
     }
 
-    private ArrayList<FakeAnimal> parserAnimal(Element animalsEl) throws IncorrectDataException {
+    private ArrayList<FakeAnimal> parserAnimal(Element animalsEl) throws IncorrectLoadException {
         List<Element> animalsElList = animalsEl.getChildren("animal");
         ArrayList<FakeAnimal> animalsList = new ArrayList<>();
         Iterator it = animalsElList.iterator();
@@ -154,13 +155,15 @@ public class ParserBackUp {
         return biome;
     }
 
-    private FeedingAttributes parserOptimalFeedingAttributes(Element tmpAnimalEl) {
+    private FeedingAttributes parserOptimalFeedingAttributes(Element tmpAnimalEl) 
+            throws IncorrectLoadException {
         Element feedEl = tmpAnimalEl.getChild("optimalFeedingAttributes");
         return new FeedingAttributes(
                 Double.parseDouble(feedEl.getChildText("quantity")));
     }
 
-    private FeedingAttributes parserActualFeedingAttributes(Element tmpAnimalEl) {
+    private FeedingAttributes parserActualFeedingAttributes(Element tmpAnimalEl) 
+            throws IncorrectLoadException {
         Element feedEl = tmpAnimalEl.getChild("actualFeedingAttributes");
         return new FeedingAttributes(
                 Double.parseDouble(feedEl.getChildText("quantity")));
@@ -183,7 +186,7 @@ public class ParserBackUp {
     }
 
     private LifeSpanLightAttributes parserLifeSpanAttributes(Element tmpAnimalEl) 
-            throws IncorrectDataException {
+            throws IncorrectLoadException {
         Element lifeEl = tmpAnimalEl.getChild("actualLifeSpanAttributes");
         LifeSpanLightAttributes life = new LifeSpanLightAttributes(
                 Integer.parseInt(lifeEl.getChildText("lifeSpan")));

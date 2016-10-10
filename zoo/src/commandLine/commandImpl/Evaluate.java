@@ -5,6 +5,7 @@ import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.IncorrectDataException;
+import exception.IncorrectLoadException;
 import exception.name.NameException;
 import java.util.ArrayList;
 import launch.play.Play;
@@ -47,7 +48,7 @@ public class Evaluate implements Command {
            zooEvaluation += this.play.getZoo().evaluate();
            this.success = true;
         } catch (
-                IncorrectDataException | NameException ex) {
+                IncorrectDataException | NameException | IncorrectLoadException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
         info.add(this.play.getOption().getGeneralCmdBundle()

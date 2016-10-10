@@ -1,11 +1,11 @@
 package zoo.animal.specie;
 
 import exception.IncorrectDataException;
+import exception.IncorrectLoadException;
 import exception.name.UnknownNameException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -110,7 +110,7 @@ public class ParserSpecie {
         return continents;
     }
 
-    private static FeedingAttributes feedingParser(Element root) {
+    private static FeedingAttributes feedingParser(Element root) throws IncorrectLoadException {
         Element feedingEl = root.getChild("feeding");
         return new FeedingAttributes(Double.parseDouble(feedingEl.getChildText("quantity")));
     }
@@ -123,7 +123,7 @@ public class ParserSpecie {
                 Integer.parseInt(reproEl.getChildText("litterSize")));
     }
 
-    private static LifeSpanAttributes lifeSpanParser(Element root) throws IncorrectDataException {
+    private static LifeSpanAttributes lifeSpanParser(Element root) throws IncorrectDataException, IncorrectLoadException {
         Element lifeEl = root.getChild("lifespan");
         return new LifeSpanAttributes(Integer.parseInt(lifeEl.getChildText("femaleLifespan")),
                 Integer.parseInt(lifeEl.getChildText("maleLifespan")));

@@ -2,6 +2,7 @@ package zoo.animal;
 
 import backup.save.SaveImpl;
 import exception.IncorrectDataException;
+import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
 import exception.name.UnknownNameException;
@@ -75,7 +76,7 @@ public class AnimalImpl implements Animal {
 
     public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex,
             int age, Option option)
-            throws IncorrectDataException, EmptyNameException, NameException {
+            throws IncorrectDataException, EmptyNameException, NameException, IncorrectLoadException {
         this.option = option;
         this.specie = spec;
         NameVerifications.verify(name, this.option.getAnimalBundle());
@@ -104,7 +105,7 @@ public class AnimalImpl implements Animal {
 
     public AnimalImpl(Specie spec, String name,
             IPaddock paddock, Sex sex, Option option)
-            throws IncorrectDataException, EmptyNameException, NameException {
+            throws IncorrectLoadException, EmptyNameException, NameException {
         this.option = option;
         this.specie = spec;
         NameVerifications.verify(name, this.option.getAnimalBundle());
@@ -181,7 +182,7 @@ public class AnimalImpl implements Animal {
      * @param spec the Specie of the animal
      * @return its optimalFeedingAttributes
      */
-    private FeedingAttributes drawOptimalFeeding(Specie spec) {
+    private FeedingAttributes drawOptimalFeeding(Specie spec) throws IncorrectLoadException {
         double quantity = spec.getGaussianFeeding().getFoodQuantity().nextDouble();
         return new FeedingAttributes(quantity);
     }
@@ -216,7 +217,7 @@ public class AnimalImpl implements Animal {
         return new ReproductionAttributes(female, male, frequency, litter);
     }
 
-    private LifeSpanLightAttributes drawActualLifeSpan(Specie spec) throws IncorrectDataException {
+    private LifeSpanLightAttributes drawActualLifeSpan(Specie spec) throws IncorrectLoadException {
         int lifeSpan;
         if (this.sex.isFemale()) {
             lifeSpan = spec.getGaussianLifeSpanAttributesSpan().
@@ -369,11 +370,11 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public void changeFoodQuantity(Double quantity) throws IncorrectDataException {
+    public void changeFoodQuantity(Double quantity) throws IncorrectLoadException {
         if (quantity > 0.0) {
             this.actualFeeding.setFoodQuantity(quantity);
         } else {
-            throw new IncorrectDataException("The food quantity must be greater or equals than zero.");
+            throw new IncorrectLoadException("The food quantity must be greater or equals than zero.");
         }
     }
 

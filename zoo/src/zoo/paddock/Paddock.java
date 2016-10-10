@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import lombok.Getter;
 import backup.save.SaveImpl;
+import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
 import java.util.Map;
@@ -329,7 +330,7 @@ public class Paddock implements IPaddock {
     }
 
     @Override
-    public ArrayList<String> birth() throws IncorrectDataException, NameException {
+    public ArrayList<String> birth() throws IncorrectDataException, NameException, IncorrectLoadException {
         ArrayList<String> info = new ArrayList<>();
         ArrayList<Animal> tmpAnimal = new ArrayList<>();
         Reproduction repro = new ReproductionImpl();

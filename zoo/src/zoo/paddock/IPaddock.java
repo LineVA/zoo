@@ -5,6 +5,7 @@ import exception.name.AlreadyUsedNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import backup.save.SaveImpl;
+import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
 import java.util.Map;
@@ -39,7 +40,7 @@ public interface IPaddock {
             throws UnknownNameException;
 
     public ArrayList<String> birth()
-            throws IncorrectDataException, NameException;
+            throws IncorrectDataException, NameException, IncorrectLoadException;
 
     public void ageing(int monthsPerEvaluation);
 
