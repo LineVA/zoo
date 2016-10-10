@@ -3,6 +3,7 @@ package zoo.animalKeeper;
 import backup.save.SaveImpl;
 import exception.IncorrectDataException;
 import exception.name.UnknownNameException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import zoo.paddock.IPaddock;
@@ -23,6 +24,8 @@ public interface AnimalKeeper {
     public void evaluateByTask();
     
     public String getName();
+    
+    public ArrayList<String> info();
 
     /**
      * Getters for the back up

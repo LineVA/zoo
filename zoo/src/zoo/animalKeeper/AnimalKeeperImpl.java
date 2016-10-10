@@ -159,55 +159,79 @@ public class AnimalKeeperImpl implements AnimalKeeper {
             }
         }
     }
-    
-    private Double computeTasks(TaskPaddock taskPaddock){
-        return this.timedPaddocks.get(taskPaddock.getPaddock()) /100
+
+    private Double computeTasks(TaskPaddock taskPaddock) {
+        return this.timedPaddocks.get(taskPaddock.getPaddock()) / 100
                 * this.timedTaskPerPaddock.get(taskPaddock) / 100;
     }
-    
+
     @Override
     public void evaluateByTask() {
         double init = 0.0;
         for (HashMap.Entry<TaskPaddock, Double> entry : this.timedTaskPerPaddock.entrySet()) {
-         if(this.managedTasks.containsKey(entry.getKey().getTask())){
-             init = this.managedTasks.get(entry.getKey().getTask());
-             this.managedTasks.put(entry.getKey().getTask(), init + computeTasks(entry.getKey()));
-         }
+            if (this.managedTasks.containsKey(entry.getKey().getTask())) {
+                init = this.managedTasks.get(entry.getKey().getTask());
+                this.managedTasks.put(entry.getKey().getTask(), init + computeTasks(entry.getKey()));
+            }
         }
     }
-    
-    
+
+    @Override
+    public ArrayList<String> info() {
+        ArrayList<String> info = new ArrayList<>();
+        info.add(name);
+        info.add(this.formattingPaddocks());
+        return info;
+    }
+
+    private String formattingPaddocks() {
+        String info = "";
+        String subsInfo = "";
+        for (HashMap.Entry<IPaddock, Double> entry : this.timedPaddocks.entrySet()) {
+            subsInfo = "Enclos " + entry.getKey().getName();
+            subsInfo += " (" + entry.getValue() + "%)";
+            subsInfo += " : ";
+            for (HashMap.Entry<TaskPaddock, Double> entry2 : this.timedTaskPerPaddock.entrySet()) {
+                if (entry2.getKey().getPaddock().equals(entry.getKey())) {
+                    subsInfo += "tâche " + entry2.getKey().getTask() + " : " + entry2.getValue() + " ; ";
+                }
+            }
+            info += subsInfo + "\n";
+        }
+        return info;
+    }
+
     /**
      * Getters
      */
     @Override
-    public String getName(SaveImpl.FriendSave friend){
+    public String getName(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.name;
     }
-    
+
     @Override
-    public Map<IPaddock, Double> getTimedPaddocks(SaveImpl.FriendSave friend){
+    public Map<IPaddock, Double> getTimedPaddocks(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.timedPaddocks;
     }
-    
+
     @Override
-    public Map<TaskPaddock, Double> getTimedTaskPerPaddock(SaveImpl.FriendSave friend){
+    public Map<TaskPaddock, Double> getTimedTaskPerPaddock(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.timedTaskPerPaddock;
     }
-    
+
     @Override
-    public Map<Integer, Double> getManagedFamilies(SaveImpl.FriendSave friend){
+    public Map<Integer, Double> getManagedFamilies(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.managedFamilies;
     }
-    
+
     @Override
-    public Map<Integer, Double> getManagedTasks(SaveImpl.FriendSave friend){
+    public Map<Integer, Double> getManagedTasks(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.managedTasks;
     }
-    
+
 }
