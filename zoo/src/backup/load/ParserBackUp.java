@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -15,7 +16,10 @@ import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
+import zoo.animalKeeper.FakeAnimalKeeper;
+import zoo.animalKeeper.TaskPaddock;
 import zoo.paddock.FakePaddock;
+import zoo.paddock.IPaddock;
 import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
 
@@ -198,5 +202,39 @@ public class ParserBackUp {
         TerritoryAttributes territory = new TerritoryAttributes(
                 Double.parseDouble(territoryEl.getChildText("territorySize")));
         return territory;
+    }
+    
+    public ArrayList<FakeAnimalKeeper> parserAnimalKeepers(){
+        ArrayList<FakeAnimalKeeper> keepers = new ArrayList<>();
+        Element keepersEl = new Element("animalKeepers");
+        List<Element> keeperListEl = keepersEl.getChildren("animalKeeper");
+        for(Element el : keeperListEl){
+            keepers.add(parserAnimalKeeper(el));
+        }
+        return keepers;
+    }
+    
+    private FakeAnimalKeeper parserAnimalKeeper(Element el){
+        return new FakeAnimalKeeper(el.getAttributeValue("name"), 
+                this.parserTimedPaddocks(el), 
+                this.parserTimedTasksPerPaddock(el), 
+                this.parserManagedFamilies(el),
+                this.parserManagedTasks(el));
+    }
+    
+    private Map<IPaddock, Double> parserTimedPaddocks(Element el){
+        return null;
+    }
+    
+     private Map<TaskPaddock, Double> parserTimedTasksPerPaddock(Element el){
+        return null;
+    }
+     
+      private Map<Integer, Double> parserManagedFamilies(Element el){
+        return null;
+    }
+      
+       private Map<Integer, Double> parserManagedTasks(Element el){
+        return null;
     }
 }

@@ -51,10 +51,10 @@ public class LoadImpl implements Load {
             addFakeAnimalToZoo(zoo, animal, option);
         }
         // Creation of the animal keepers
-//        ArrayList<FakeAnimalKeeper> keeperList = parser.parserAnimalKeepers();
-//        for(FakeAnimalKeeper keeper : keeperList){
-//            addFakeKeeperToZoo(zoo, keeper, option);
-//        }
+        ArrayList<FakeAnimalKeeper> keeperList = parser.parserAnimalKeepers();
+        for(FakeAnimalKeeper keeper : keeperList){
+            addFakeKeeperToZoo(zoo, keeper, option);
+        }
         return zoo;
     }
 
