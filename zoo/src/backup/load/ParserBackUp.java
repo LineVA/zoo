@@ -193,7 +193,7 @@ public class ParserBackUp {
         return life;
     }
 
-    private SocialAttributes parserSocialAttributes(Element tmpAnimalEl) {
+    private SocialAttributes parserSocialAttributes(Element tmpAnimalEl) throws IncorrectLoadException {
         Element socialEl = tmpAnimalEl.getChild("optimalSocialAttributes");
         SocialAttributes social = new SocialAttributes(
                 Integer.parseInt(socialEl.getChildText("groupSize")));
