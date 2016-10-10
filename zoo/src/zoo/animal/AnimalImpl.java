@@ -235,7 +235,7 @@ public class AnimalImpl implements Animal {
         return new SocialAttributes(groupSize);
     }
 
-    private TerritoryAttributes drawOptimalTerritory(Specie spec) {
+    private TerritoryAttributes drawOptimalTerritory(Specie spec) throws IncorrectLoadException {
         return new TerritoryAttributes(spec.getGaussianTerritoryAttributes().
                 getTerritorySize().gaussianDouble());
     }

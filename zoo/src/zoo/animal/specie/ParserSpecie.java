@@ -149,7 +149,7 @@ public class ParserSpecie {
         return new SocialAttributes(Integer.parseInt(socialEl.getChildText("groupSize")));
     }
 
-    private static TerritoryAttributes territoryParser(Element root) {
+    private static TerritoryAttributes territoryParser(Element root) throws IncorrectLoadException {
         Element terriEl = root.getChild("territory");
         return new TerritoryAttributes(Double.parseDouble(terriEl.getChildText("territorySize")));
     }

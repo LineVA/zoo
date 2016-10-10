@@ -200,7 +200,7 @@ public class ParserBackUp {
         return social;
     }
 
-    private TerritoryAttributes parserTerritoryAttributes(Element tmpAnimalEl) {
+    private TerritoryAttributes parserTerritoryAttributes(Element tmpAnimalEl) throws IncorrectLoadException {
         Element territoryEl = tmpAnimalEl.getChild("optimalTerritoryAttributes");
         TerritoryAttributes territory = new TerritoryAttributes(
                 Double.parseDouble(territoryEl.getChildText("territorySize")));
