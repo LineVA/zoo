@@ -54,5 +54,7 @@ public class CreateElementKeeperMain {
 
         Save save = new SaveImpl();
         save.saveZoo(zoo, "keeper");
+        
+        keeper.info();
     }
 }
