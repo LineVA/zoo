@@ -155,7 +155,12 @@ public class AnimalImpl implements Animal {
         this.actualFeeding = actualFeeding;
         this.optimalSocial = social;
         this.optimalTerritory = territory;
-        this.age = age;
+         if (age >= 0) {
+            this.age = age;
+        } else {
+            throw new IncorrectDataException(
+                    this.option.getAnimalBundle().getString("TOO_YOUNG"));
+        }
         this.wB = new WellBeingImpl(
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
