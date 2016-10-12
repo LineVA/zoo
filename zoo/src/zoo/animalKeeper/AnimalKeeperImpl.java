@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;
+import zoo.animal.specie.Family;
 import zoo.paddock.IPaddock;
 
 /**
@@ -177,10 +178,12 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     }
 
     @Override
-    public ArrayList<String> info() {
+    public ArrayList<String> info() throws UnknownNameException {
         ArrayList<String> info = new ArrayList<>();
         info.add(name);
         info.add(this.formattingPaddocks());
+        info.add(this.formattingManagedFamilies());
+        info.add(this.formattingManagedTasks());
         return info;
     }
 
@@ -193,12 +196,36 @@ public class AnimalKeeperImpl implements AnimalKeeper {
             subsInfo += " : ";
             for (HashMap.Entry<TaskPaddock, Double> entry2 : this.timedTaskPerPaddock.entrySet()) {
                 if (entry2.getKey().getPaddock().equals(entry.getKey())) {
-                    subsInfo += "tâche " + entry2.getKey().getTask() + " : " + entry2.getValue() + " ; ";
+                    subsInfo += "tâche " + entry2.getKey().getTask() + " : " + entry2.getValue() + "% ; ";
                 }
             }
             info += subsInfo + "\n";
         }
         return info;
+    }
+
+    private String formattingManagedFamilies() throws UnknownNameException {
+        String info = "";
+        String subsInfo;
+        for (HashMap.Entry<Integer, Double> entry : this.managedFamilies.entrySet()) {
+            subsInfo = Family.UNKNOWN.findById(entry.getKey()).toStringByLanguage();
+            subsInfo += " : ";
+            subsInfo += entry.getValue() + " ; ";
+            info += subsInfo;
+        }
+        return "Familles gérées : " + info;
+    }
+
+    private String formattingManagedTasks() throws UnknownNameException {
+        String info = "";
+        String subsInfo;
+        for (HashMap.Entry<Integer, Double> entry : this.managedTasks.entrySet()) {
+            subsInfo = Task.UNKNOWN.findById(entry.getKey()).toString();
+            subsInfo += " : ";
+            subsInfo += entry.getValue() + " ; ";
+            info += subsInfo;
+        }
+        return "Taches gérées : " + info;
     }
 
     /**

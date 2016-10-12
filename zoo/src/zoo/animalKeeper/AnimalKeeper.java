@@ -25,7 +25,7 @@ public interface AnimalKeeper {
     
     public String getName();
     
-    public ArrayList<String> info();
+    public ArrayList<String> info() throws UnknownNameException;
 
     /**
      * Getters for the back up
