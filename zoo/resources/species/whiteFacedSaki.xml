@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+    <names>
+        <fr>Saki à face blanche</fr>
+        <additionalFrenchNames>
+            <name>Saki à face pâle</name>
+        </additionalFrenchNames>
+        <en>White-faced saki</en>
+        <additionalEnglishNames>
+            <name>Guianan saki</name>
+            <name>Golden-faced saki</name>
+        </additionalEnglishNames>
+        <scientific>Pithecia pithecia</scientific>
+    </names>
+    <general>
+        <uicn>1</uicn>
+        <family>32</family>
+        <continents>
+            <continent>2</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+    </general>
+    <documentation>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Pithecia_pithecia</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/White-faced saki</englishWikipedia>
+        <animalDiversity />
+    </documentation>
+    <reproduction>
+        <femaleMaturity>20</femaleMaturity>
+        <maleMaturity>20</maleMaturity>
+        <gestationFrequency>1</gestationFrequency>
+        <litterSize>2</litterSize>
+        <leavingAge>6</leavingAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>228</femaleLifespan>
+        <maleLifespan>220</maleLifespan>
+    </lifespan>
+    <territory>
+        <territorySize>40</territorySize>
+        <biomes>
+            <biome>1</biome>
+        </biomes>
+    </territory>
+    <feeding>
+        <quantity>0.230</quantity>
+        <size>1</size>
+        <diets>
+            <diet>5</diet>
+        </diets>
+    </feeding>
+    <social>
+        <groupSize>4</groupSize>
+    </social>
+</animal>

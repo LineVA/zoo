@@ -42,7 +42,7 @@
     </biomes>
   </territory>
   <feeding>
-    <quantity>350</quantity>
+    <quantity>0.350</quantity>
     <size>1</size>
     <diets>
       <diet>5</diet>
