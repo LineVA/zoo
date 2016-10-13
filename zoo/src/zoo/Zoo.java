@@ -245,8 +245,9 @@ public class Zoo implements IZoo {
     @Override
     public ArrayList<String> listAnimalKeeper() {
         ArrayList<String> list = new ArrayList<>();
-         keepers.entrySet().stream().filter((entry)
-                    -> (list.add(entry.getKey())));
+        for (HashMap.Entry<String, AnimalKeeper> entry : this.keepers.entrySet()) {
+            list.add(entry.getKey());
+        }
         return list;
     }
 
