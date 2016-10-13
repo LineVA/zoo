@@ -269,13 +269,13 @@ public class Zoo implements IZoo {
             EmptyNameException {
         if (name.trim().equals("")) {
             throw new EmptyNameException(
-                    this.option.getPaddockBundle().getString("EMPTY_NAME_PADDOCK"));
+                    this.option.getKeeperBundle().getString("EMPTY_NAME_KEEPER"));
         }
         if (keepers.containsKey(name)) {
             return keepers.get(name);
         }
         throw new UnknownNameException(
-                this.option.getPaddockBundle().getString("UNKNOWN_PADDOCK"));
+                this.option.getKeeperBundle().getString("UNKNOWN_KEEPER"));
     }
 
     @Override
