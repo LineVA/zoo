@@ -13,16 +13,16 @@ public class FakeAnimalKeeper {
     @Getter
     String name;
     @Getter
-    Map<IPaddock, Double> timedPaddocks;
+    Map<String, Double> timedPaddocks;
     @Getter
-    Map<TaskPaddock, Double> timedTasksPerPaddock;
+    Map<FakeTaskPaddock, Double> timedTasksPerPaddock;
     @Getter
     Map<Integer, Double> managedFamilies;
     @Getter
     Map<Integer, Double> managedTasks;
 
-    public FakeAnimalKeeper(String name, Map<IPaddock, Double> timedPaddocks, 
-            Map<TaskPaddock, Double> timedTasksPerPaddock, Map<Integer, Double> managedFamilies, 
+    public FakeAnimalKeeper(String name, Map<String, Double> timedPaddocks, 
+            Map<FakeTaskPaddock, Double> timedTasksPerPaddock, Map<Integer, Double> managedFamilies, 
             Map<Integer, Double> managedTasks) {
         this.name = name;
         this.timedPaddocks = timedPaddocks;
@@ -31,10 +31,11 @@ public class FakeAnimalKeeper {
         this.managedTasks = managedTasks;
     }
     
-    public AnimalKeeper convertToAnimalKeeper(Option option){
+    public AnimalKeeper convertToAnimalKeeper(Map<IPaddock, Double> timedPads, 
+            Map<TaskPaddock, Double> timedTasks, Option option){
         return new AnimalKeeperBuilder().name(this.name)
-                .timedPaddocks(this.timedPaddocks)
-                .timedTaskPerPaddock(this.timedTasksPerPaddock)
+                .timedPaddocks(timedPads)
+                .timedTaskPerPaddock(timedTasks)
                 .managedFamilies(this.managedFamilies)
                 .managedTasks(this.managedTasks)
                 .buildAnimalKeeper();
