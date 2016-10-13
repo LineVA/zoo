@@ -209,8 +209,8 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         String subsInfo;
         for (HashMap.Entry<Integer, Double> entry : this.managedFamilies.entrySet()) {
             subsInfo = Family.UNKNOWN.findById(entry.getKey()).toStringByLanguage();
-            subsInfo += " : ";
-            subsInfo += entry.getValue() + " ; ";
+            subsInfo += " (";
+            subsInfo += entry.getValue() + ") ; ";
             info += subsInfo;
         }
         return "Familles gérées : " + info;
@@ -221,11 +221,11 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         String subsInfo;
         for (HashMap.Entry<Integer, Double> entry : this.managedTasks.entrySet()) {
             subsInfo = Task.UNKNOWN.findById(entry.getKey()).toString();
-            subsInfo += " : ";
-            subsInfo += entry.getValue() + " ; ";
+            subsInfo += " (";
+            subsInfo += entry.getValue() + ") ; ";
             info += subsInfo;
         }
-        return "Taches gérées : " + info;
+        return "Tâches gérées : " + info;
     }
 
     /**
