@@ -242,6 +242,14 @@ public class Zoo implements IZoo {
         return list;
     }
 
+    @Override
+    public ArrayList<String> listAnimalKeeper() {
+        ArrayList<String> list = new ArrayList<>();
+         keepers.entrySet().stream().filter((entry)
+                    -> (list.add(entry.getKey())));
+        return list;
+    }
+
     /**
      * Method used to find a paddock by its name
      *
@@ -263,7 +271,7 @@ public class Zoo implements IZoo {
         throw new UnknownNameException(
                 this.option.getPaddockBundle().getString("UNKNOWN_PADDOCK"));
     }
-    
+
     @Override
     public AnimalKeeper findAnimalKeeperByName(String name) throws UnknownNameException,
             EmptyNameException {

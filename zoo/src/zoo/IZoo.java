@@ -48,31 +48,33 @@ public interface IZoo {
     public void removePaddock(IPaddock paddock);
 
     public ArrayList<String> listPaddock(Specie specie);
-    
+
+    public ArrayList<String> listAnimalKeeper();
+
     public void addKeeper(String name) throws AlreadyUsedNameException, EmptyNameException;
-    
+
     public void addKeeper(AnimalKeeper keeper);
 
     public ArrayList<PaddockCoordinates> map() throws IncorrectDimensionsException;
 
     public int evaluate();
 
-    public ArrayList<String> birth() 
+    public ArrayList<String> birth()
             throws AlreadyUsedNameException, IncorrectDataException, NameException;
 
     public IPaddock findPaddockByName(String paddockName)
             throws EmptyNameException, UnknownNameException;
-    
-     public AnimalKeeper findAnimalKeeperByName(String keeperName)
+
+    public AnimalKeeper findAnimalKeeperByName(String keeperName)
             throws EmptyNameException, UnknownNameException;
 
-    public Specie findSpecieByScientificName(String specieName) 
+    public Specie findSpecieByScientificName(String specieName)
             throws EmptyNameException, UnknownNameException;
 
     public Specie findSpecieByName(String specieName)
             throws EmptyNameException, UnknownNameException;
 
-    public Animal findAnimalByName(String animalName) 
+    public Animal findAnimalByName(String animalName)
             throws UnknownNameException, EmptyNameException;
 
     public ArrayList<Animal> listAnimal(IPaddock paddock, LightSpecie specie,
@@ -111,8 +113,8 @@ public interface IZoo {
     public int getHeight(SaveImpl.FriendSave friend);
 
     public Map<String, IPaddock> getPaddocks(SaveImpl.FriendSave friend);
-    
-     public Map<String, AnimalKeeper> getAnimalKeepers(SaveImpl.FriendSave friend);
+
+    public Map<String, AnimalKeeper> getAnimalKeepers(SaveImpl.FriendSave friend);
 
     public Map<String, Specie> getSpecies(SaveImpl.FriendSave friend);
 
