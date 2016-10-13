@@ -57,18 +57,23 @@ public interface IZoo {
 
     public int evaluate();
 
-//    public ArrayList<String> death() throws UnknownNameException;
-    public ArrayList<String> birth() throws AlreadyUsedNameException, IncorrectDataException, NameException;
+    public ArrayList<String> birth() 
+            throws AlreadyUsedNameException, IncorrectDataException, NameException;
 
-    public IPaddock findPaddockByName(String paddockName) throws EmptyNameException, UnknownNameException;
+    public IPaddock findPaddockByName(String paddockName)
+            throws EmptyNameException, UnknownNameException;
+    
+     public AnimalKeeper findAnimalKeeperByName(String keeperName)
+            throws EmptyNameException, UnknownNameException;
 
-    public Specie findSpecieByScientificName(String specieName) throws EmptyNameException, UnknownNameException;
+    public Specie findSpecieByScientificName(String specieName) 
+            throws EmptyNameException, UnknownNameException;
 
-    public Specie findSpecieByName(String specieName) throws EmptyNameException, UnknownNameException;
-//    public void setBiome(String paddockName, String biomeName)
-//            throws UnknownNameException, EmptyNameException;
+    public Specie findSpecieByName(String specieName)
+            throws EmptyNameException, UnknownNameException;
 
-    public Animal findAnimalByName(String animalName) throws UnknownNameException, EmptyNameException;
+    public Animal findAnimalByName(String animalName) 
+            throws UnknownNameException, EmptyNameException;
 
     public ArrayList<Animal> listAnimal(IPaddock paddock, LightSpecie specie,
             Sex sex, Diet diet, Biome biome) throws UnknownNameException;

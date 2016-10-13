@@ -263,6 +263,20 @@ public class Zoo implements IZoo {
         throw new UnknownNameException(
                 this.option.getPaddockBundle().getString("UNKNOWN_PADDOCK"));
     }
+    
+    @Override
+    public AnimalKeeper findAnimalKeeperByName(String name) throws UnknownNameException,
+            EmptyNameException {
+        if (name.trim().equals("")) {
+            throw new EmptyNameException(
+                    this.option.getPaddockBundle().getString("EMPTY_NAME_PADDOCK"));
+        }
+        if (keepers.containsKey(name)) {
+            return keepers.get(name);
+        }
+        throw new UnknownNameException(
+                this.option.getPaddockBundle().getString("UNKNOWN_PADDOCK"));
+    }
 
     @Override
     public void removePaddock(IPaddock paddock) {
