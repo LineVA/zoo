@@ -14,6 +14,7 @@ import commandLine.commandImpl.Evaluate;
 import commandLine.commandImpl.FeedingAnimal;
 import commandLine.commandImpl.LoadZoo;
 import commandLine.commandImpl.LsAnimal;
+import commandLine.commandImpl.LsAnimalKeeper;
 import commandLine.commandImpl.LsBiome;
 import commandLine.commandImpl.LsConservation;
 import commandLine.commandImpl.LsContinent;
@@ -56,7 +57,7 @@ public abstract class CommandManager {
     public CommandManager(Play play, Option option){
         this.option = option;
           this.play = play;
-            // For Paddock and Animal : Ls must be before Detail
+            // For Paddock, Animal, Specie and Animal Keeper : Ls must be before Detail
         playCommands = asList(new CreateZoo(play), new DetailZoo(play),
                 new CreatePaddock(play),
                 new LsPaddock(play), new MapZoo(play), new DetailPad(play),
@@ -71,7 +72,7 @@ public abstract class CommandManager {
                 new LsFeeding(play), new LsSize(play),
                 new SaveZoo(play), new LoadZoo(play),
                 new Options(play), new ZooCharacteristics(play),
-                new DetailAnimalKeeper(play));
+                new LsAnimalKeeper(play), new DetailAnimalKeeper(play));
     }
 
     public abstract String run(String cmd);
