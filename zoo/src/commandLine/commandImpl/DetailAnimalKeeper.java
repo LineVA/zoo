@@ -45,7 +45,7 @@ public class DetailAnimalKeeper implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
-            if (cmd[0].equals("animalKeeper") || "aK".equals(cmd[0])) {
+            if (cmd[0].equals("animalKeeper") || "aK".equals(cmd[0]) || "ak".equals(cmd[0])) {
                 return true;
             }
         }
