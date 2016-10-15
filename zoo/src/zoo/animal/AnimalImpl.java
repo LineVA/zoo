@@ -316,7 +316,7 @@ public class AnimalImpl implements Animal {
     @Override
     public double wellBeing() throws UnknownNameException {
         AnimalsAttributes attributes = new AnimalsAttributes(this.optimalBiome, this.optimalFeeding,
-                this.actualFeeding, this.actualDiet, this.optimalSocial, this.optimalTerritory);
+                this.actualFeeding, this.actualDiet, this.optimalSocial, this.optimalTerritory, this.personality);
         this.wellBeing = wB.computeWellBeing(attributes, paddock, specie);
         return this.wellBeing;
     }
