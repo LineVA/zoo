@@ -7,6 +7,7 @@ import launch.options.Option;
 import lombok.Getter;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.FeedingAttributes;
+import zoo.animal.personality.PersonalityAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
@@ -37,12 +38,13 @@ public class FakeAnimal {
     LifeSpanLightAttributes life;
     SocialAttributes social;
     TerritoryAttributes territory;
+    PersonalityAttributes personality;
 
     public FakeAnimal(String specie, String name, String paddock, String sex, int age,
             BiomeAttributes biome, FeedingAttributes optFeed,
             FeedingAttributes actualFeed, int diet,
             ReproductionAttributes repro, LifeSpanLightAttributes life,
-            SocialAttributes social, TerritoryAttributes territory) {
+            SocialAttributes social, TerritoryAttributes territory, PersonalityAttributes personality) {
         this.specie = specie;
         this.name = name;
         this.paddock = paddock;
@@ -56,13 +58,14 @@ public class FakeAnimal {
         this.life = life;
         this.social = social;
         this.territory = territory;
+        this.personality = personality;
     }
 
     public Animal convertToAnimal(Specie spec, IPaddock pad, Sex sex, Option option)
             throws IncorrectDataException, EmptyNameException, NameException {
         return new AnimalImpl(spec, this.name, pad, sex, this.age, this.biome,
                 this.optFeed, this.actualFeed, this.diet, this.repro, this.life,
-                this.social, this.territory, null, option);
+                this.social, this.territory, this.personality, option);
     }
 
 }

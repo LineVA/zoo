@@ -15,6 +15,7 @@ import zoo.FakeZoo;
 import zoo.animal.FakeAnimal;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.FeedingAttributes;
+import zoo.animal.personality.PersonalityAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
 import zoo.animalKeeper.FakeAnimalKeeper;
@@ -135,6 +136,7 @@ public class ParserBackUp {
         LifeSpanLightAttributes life;
         SocialAttributes social;
         TerritoryAttributes territory;
+        PersonalityAttributes personality;
         while (it.hasNext()) {
             tmpAnimalEl = (Element) it.next();
             spec = tmpAnimalEl.getChildText("specie");
@@ -148,10 +150,11 @@ public class ParserBackUp {
             life = parserLifeSpanAttributes(tmpAnimalEl);
             social = parserSocialAttributes(tmpAnimalEl);
             territory = parserTerritoryAttributes(tmpAnimalEl);
+            personality = parserPersonalityAttributes(tmpAnimalEl);
             animalsList.add(new FakeAnimal(spec,
                     tmpAnimalEl.getAttributeValue("name"),
                     pad, sex, age, biome, optFeed, actualFeed, diet, repro,
-                    life, social, territory));
+                    life, social, territory, personality));
         }
         return animalsList;
     }
@@ -208,6 +211,12 @@ public class ParserBackUp {
         TerritoryAttributes territory = new TerritoryAttributes(
                 Double.parseDouble(territoryEl.getChildText("territorySize")));
         return territory;
+    }
+
+    private PersonalityAttributes parserPersonalityAttributes(Element tmpAnimalEl) {
+        Element persoEl = tmpAnimalEl.getChild("personality");
+        return new PersonalityAttributes(
+                Double.parseDouble(persoEl.getChildText("bravery")));
     }
 
     public ArrayList<FakeAnimalKeeper> parserAnimalKeepers() {
