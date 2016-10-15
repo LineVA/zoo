@@ -6,6 +6,7 @@ import exception.name.EmptyNameException;
 import exception.name.NameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 import launch.options.Option;
 import lombok.Getter;
@@ -15,6 +16,7 @@ import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.FeedingAttributes;
+import zoo.animal.personality.PersonalityAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
@@ -73,6 +75,11 @@ public class AnimalImpl implements Animal {
     // actual is given by the number of animal is the paddock.
     private final TerritoryAttributes optimalTerritory;
 
+    /**
+     * There is no notion of optimal in personality
+     */
+    private final PersonalityAttributes personality;
+
     public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex,
             int age, Option option)
             throws IncorrectDataException, EmptyNameException, NameException {
@@ -96,6 +103,7 @@ public class AnimalImpl implements Animal {
         this.actualDiet = Diet.NONE.getId();
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
+        this.personality = drawPersonality();
         this.wB = new WellBeingImpl(
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
@@ -119,6 +127,7 @@ public class AnimalImpl implements Animal {
         this.actualDiet = Diet.NONE.getId();
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
+        this.personality = drawPersonality();
         this.age = this.sex.isFemale()
                 ? this.actualReproduction.getFemaleMaturityAge()
                 : this.actualReproduction.getMaleMaturityAge();
@@ -138,7 +147,7 @@ public class AnimalImpl implements Animal {
             FeedingAttributes actualFeeding, int diet,
             ReproductionAttributes reproduction,
             LifeSpanLightAttributes life, SocialAttributes social,
-            TerritoryAttributes territory, Option option)
+            TerritoryAttributes territory, PersonalityAttributes personality, Option option)
             throws IncorrectDataException, EmptyNameException, NameException {
         this.option = option;
         this.specie = spec;
@@ -155,6 +164,7 @@ public class AnimalImpl implements Animal {
         this.optimalSocial = social;
         this.optimalTerritory = territory;
         this.age = age;
+        this.personality = personality;
         this.wB = new WellBeingImpl(
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
@@ -239,6 +249,11 @@ public class AnimalImpl implements Animal {
                 getTerritorySize().gaussianDouble());
     }
 
+    private PersonalityAttributes drawPersonality(){
+        Random rand = new Random();
+        return new PersonalityAttributes(rand.nextDouble());
+    }
+    
     /**
      * Compute if the animal is mature by comparing its age and the age age of
      * sexual maturity for its sex
