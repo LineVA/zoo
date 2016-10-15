@@ -19,9 +19,9 @@ public interface AnimalKeeper {
 
     public void addAPaddock(IPaddock pad, Double time) throws IncorrectDataException;
 
-    public void evaluateByFamily(IPaddock paddock);
-
-    public void evaluateByTask();
+//    public void evaluateByFamily(IPaddock paddock);
+//
+//    public void evaluateByTask();
     
     public String getName();
     
@@ -39,5 +39,7 @@ public interface AnimalKeeper {
     public Map<Integer, Double> getManagedFamilies(SaveImpl.FriendSave friend);
 
     public Map<Integer, Double> getManagedTasks(SaveImpl.FriendSave friend);
+
+    public void evolve();
 
 }

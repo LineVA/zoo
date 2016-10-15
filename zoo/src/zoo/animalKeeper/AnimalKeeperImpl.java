@@ -146,16 +146,15 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return this.timedPaddocks.get(paddock) / 100.0;
     }
 
-    @Override
-    public void evaluateByFamily(IPaddock paddock) {
-        if (this.timedPaddocks.containsKey(paddock)) {
-            ArrayList<Integer> familiesList = paddock.listFamiliesById();
+    private void evaluateByFamily() {
+        for (HashMap.Entry<IPaddock, Double> paddock : this.timedPaddocks.entrySet()) {
+            ArrayList<Integer> familiesList = paddock.getKey().listFamiliesById();
             for (Integer family : familiesList) {
                 double init = 0.0;
                 if (this.managedFamilies.containsKey(family)) {
                     init = this.managedFamilies.get(family);
                 }
-                init += computeFamilies(paddock);
+                init += computeFamilies(paddock.getKey());
                 this.managedFamilies.put(family, init);
             }
         }
@@ -166,8 +165,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
                 * this.timedTaskPerPaddock.get(taskPaddock) / 100;
     }
 
-    @Override
-    public void evaluateByTask() {
+    private void evaluateByTask() {
         double init = 0.0;
         for (HashMap.Entry<TaskPaddock, Double> entry : this.timedTaskPerPaddock.entrySet()) {
             if (this.managedTasks.containsKey(entry.getKey().getTask())) {
@@ -226,6 +224,12 @@ public class AnimalKeeperImpl implements AnimalKeeper {
             info += subsInfo;
         }
         return "Tâches gérées : " + info;
+    }
+
+    @Override
+    public void evolve() {
+        this.evaluateByFamily();
+        this.evaluateByTask();
     }
 
     /**

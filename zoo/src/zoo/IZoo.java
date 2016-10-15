@@ -126,4 +126,6 @@ public interface IZoo {
 
     public Option getOption(SaveImpl.FriendSave friend);
 
+    public void evolveAnimalKeepers();
+
 }

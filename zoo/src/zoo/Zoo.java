@@ -305,6 +305,13 @@ public class Zoo implements IZoo {
         }
         this.keepers.put(name, new AnimalKeeperBuilder().name(name).buildAnimalKeeper());
     }
+    
+     @Override
+    public void evolveAnimalKeepers() {
+          for (HashMap.Entry<String, AnimalKeeper> entry : this.keepers.entrySet()) {
+           entry.getValue().evolve();
+        }
+    }
 
     @Override
     public void addKeeper(AnimalKeeper keeper) {
