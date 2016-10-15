@@ -304,6 +304,7 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("ACT_FEEDING_ATT") + this.actualFeeding.toStringByLanguage(option));
         info.add(bundle.getString("OPT_TERRITORY_ATT") + this.optimalTerritory.toStringByLanguage(option));
         info.add(bundle.getString("TERRITORY_SIZE") + this.paddock.computeSize());
+        info.add(bundle.getString("PERSONALITY_ATT") + this.personality.toStringByLanguage(option));
         return info;
     }
 

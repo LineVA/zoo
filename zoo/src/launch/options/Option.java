@@ -46,6 +46,8 @@ public class Option {
     ResourceBundle continentBundle;
     @Getter
     ResourceBundle keeperBundle;
+    @Getter
+    ResourceBundle personalityBundle;
 
     public Option() {
         locale = Locale.getDefault();
@@ -77,6 +79,7 @@ public class Option {
         this.sizeBundle = ResourceBundle.getBundle("i18n.animal.feeding.size", locale);
         this.continentBundle = ResourceBundle.getBundle("i18n.paddock.continent", locale);
         this.keeperBundle = ResourceBundle.getBundle("i18n.animalKeeper.keeper", locale);
+        this.personalityBundle = ResourceBundle.getBundle("i18n.animal.personality", locale);
     }
 
     public void setLanguage(String lang) {
