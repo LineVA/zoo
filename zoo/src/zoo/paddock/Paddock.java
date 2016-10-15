@@ -33,6 +33,7 @@ import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.Family;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
+import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.biome.Continent;
 import zoo.paddock.biome.Ecoregion;
 
@@ -422,10 +423,10 @@ public class Paddock implements IPaddock {
     }
 
     @Override
-    public double wellBeing() throws UnknownNameException {
+    public double wellBeing(ArrayList<AnimalKeeper> keepers) throws UnknownNameException {
         int wB = 0;
         for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
-            wB += entry.getValue().wellBeing();
+            wB += entry.getValue().wellBeing(keepers);
         }
         return wB;
     }

@@ -14,6 +14,7 @@ import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
+import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.IPaddock;
 import zoo.paddock.TerritoryAttributes;
 
@@ -31,7 +32,7 @@ public interface Animal {
 
     public void ageing(int monthsPerEvaluation);
 
-    public double wellBeing() throws UnknownNameException;
+    public double wellBeing(ArrayList<AnimalKeeper> keepers) throws UnknownNameException;
 
     public boolean isFromTheSameSpecie(Specie specie);
 

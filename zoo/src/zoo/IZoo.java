@@ -84,7 +84,7 @@ public interface IZoo {
 
     public ArrayList<String> ageing() throws IncorrectDataException, NameException;
 
-    public double grade() throws UnknownNameException;
+    public double grade() throws UnknownNameException, EmptyNameException;
 
     public ArrayList<String> info();
 

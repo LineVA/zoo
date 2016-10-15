@@ -14,6 +14,7 @@ import zoo.animal.feeding.Diet;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
+import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.biome.Biome;
 
 /**
@@ -49,7 +50,7 @@ public interface IPaddock {
 
     public int countAnimalsOfTheSameSpecie(Specie specie);
 
-    public double wellBeing() throws UnknownNameException;
+    public double wellBeing(ArrayList<AnimalKeeper> keepers) throws UnknownNameException;
 
     public int computeSize();
 

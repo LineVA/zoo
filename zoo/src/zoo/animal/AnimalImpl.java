@@ -24,6 +24,7 @@ import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
 import zoo.animal.wellbeing.WellBeing;
 import zoo.animal.wellbeing.WellBeingImpl;
+import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.IPaddock;
 import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
@@ -314,10 +315,10 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public double wellBeing() throws UnknownNameException {
+    public double wellBeing(ArrayList<AnimalKeeper> keepers) throws UnknownNameException {
         AnimalsAttributes attributes = new AnimalsAttributes(this.optimalBiome, this.optimalFeeding,
                 this.actualFeeding, this.actualDiet, this.optimalSocial, this.optimalTerritory, this.personality);
-        this.wellBeing = wB.computeWellBeing(attributes, paddock, specie);
+        this.wellBeing = wB.computeWellBeing(attributes, paddock, specie, keepers);
         return this.wellBeing;
     }
 

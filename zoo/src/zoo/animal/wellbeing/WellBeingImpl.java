@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import lombok.Getter;
 import zoo.animal.AnimalsAttributes;
 import zoo.animal.feeding.FeedingAttributes;
+import zoo.animal.personality.PersonalityAttributes;
 import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.Specie;
+import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.IPaddock;
 import zoo.paddock.TerritoryAttributes;
 import zoo.statistics.Compare;
@@ -28,7 +30,8 @@ public class WellBeingImpl implements WellBeing {
     }
 
     @Override
-    public double computeWellBeing(AnimalsAttributes attributes, IPaddock pad, Specie specie)
+    public double computeWellBeing(AnimalsAttributes attributes, IPaddock pad,
+            Specie specie, ArrayList<AnimalKeeper> keepers)
             throws UnknownNameException {
         double wB = 0.0;
         wB += computeSocialWB(attributes.getOptimalSocial(), pad, specie);
@@ -39,8 +42,30 @@ public class WellBeingImpl implements WellBeing {
         wB += checkBiomeWB(pad, specie);
         wB += compatibilitiesWB(pad, specie);
         wB += fearWB(pad, specie);
+        wB += computeKeepersInfluence(attributes.getPersonality(), keepers, pad);
         System.out.println("Total : " + wB);
         return wB;
+    }
+
+    private double computeKeepersInfluence(PersonalityAttributes personality,
+            ArrayList<AnimalKeeper> keepers, IPaddock paddock) {
+        System.out.println("Personality");
+        double wB = 0.0;
+        for (AnimalKeeper keeper : keepers) {
+            if (personality.getBravery() >= 0.5) {
+                System.out.println("if");
+                wB += computeInfluenceBravery(personality.getBravery() - 0.5, keeper.getTimedPaddocks().get(paddock));
+            } else {
+                System.out.println("else");
+                wB -= computeInfluenceBravery(personality.getBravery(), keeper.getTimedPaddocks().get(paddock));
+            }
+        }          
+        System.out.println(wB);
+        return wB;
+    }
+
+    private double computeInfluenceBravery(double bravery, double time) {
+        return bravery * time;
     }
 
     public double computeSocialWB(SocialAttributes social, IPaddock pad, Specie spec) {

@@ -287,6 +287,17 @@ public class Zoo implements IZoo {
                 this.option.getKeeperBundle().getString("UNKNOWN_KEEPER"));
     }
 
+    private ArrayList<AnimalKeeper> findAnimalKeeperByPaddock(IPaddock paddock) throws UnknownNameException,
+            EmptyNameException {
+        ArrayList<AnimalKeeper> list = new ArrayList<>();
+        for (HashMap.Entry<String, AnimalKeeper> keeper : this.keepers.entrySet()) {
+            if (keeper.getValue().getTimedPaddocks().containsKey(paddock)) {
+                list.add(keeper.getValue());
+            }
+        }
+        return list;
+    }
+
     @Override
     public void removePaddock(IPaddock paddock) {
         this.paddocks.remove(paddock.getName());
@@ -305,11 +316,11 @@ public class Zoo implements IZoo {
         }
         this.keepers.put(name, new AnimalKeeperBuilder().name(name).buildAnimalKeeper());
     }
-    
-     @Override
+
+    @Override
     public void evolveAnimalKeepers() {
-          for (HashMap.Entry<String, AnimalKeeper> entry : this.keepers.entrySet()) {
-           entry.getValue().evolve();
+        for (HashMap.Entry<String, AnimalKeeper> entry : this.keepers.entrySet()) {
+            entry.getValue().evolve();
         }
     }
 
@@ -456,10 +467,10 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public double grade() throws UnknownNameException {
+    public double grade() throws UnknownNameException, EmptyNameException {
         this.grade = 0.0;
         for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-            this.grade += entry.getValue().wellBeing();
+            this.grade += entry.getValue().wellBeing(findAnimalKeeperByPaddock(entry.getValue()));
         }
         return this.grade;
     }

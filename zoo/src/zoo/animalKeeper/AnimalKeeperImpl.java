@@ -18,6 +18,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
 
     @Getter
     private final String name;
+    @Getter
     private Map<IPaddock, Double> timedPaddocks;
     private Map<TaskPaddock, Double> timedTaskPerPaddock;
     @Getter

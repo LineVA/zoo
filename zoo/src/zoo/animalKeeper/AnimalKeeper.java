@@ -25,6 +25,8 @@ public interface AnimalKeeper {
     
     public String getName();
     
+    public Map<IPaddock, Double> getTimedPaddocks();
+    
     public ArrayList<String> info() throws UnknownNameException;
 
     /**
