@@ -488,4 +488,9 @@ public class AnimalImpl implements Animal {
     public int getDiet(SaveImpl.FriendSave save) {
         return this.actualDiet;
     }
+    
+    @Override 
+    public PersonalityAttributes getPersonality(SaveImpl.FriendSave save){
+        return this.personality;
+    }
 }

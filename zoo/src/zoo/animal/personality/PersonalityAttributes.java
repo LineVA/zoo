@@ -1,6 +1,7 @@
 package zoo.animal.personality;
 
 import launch.options.Option;
+import lombok.Getter;
 
 /**
  *
@@ -8,6 +9,7 @@ import launch.options.Option;
  */
 public class PersonalityAttributes {
     
+    @Getter
     Double bravery;
     
     public PersonalityAttributes(Double bravery){

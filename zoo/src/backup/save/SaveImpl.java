@@ -13,6 +13,7 @@ import zoo.IZoo;
 import zoo.animal.Animal;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.FeedingAttributes;
+import zoo.animal.personality.PersonalityAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
 import zoo.animalKeeper.AnimalKeeper;
@@ -136,8 +137,8 @@ public class SaveImpl implements Save {
         }
         return el;
     }
-    
-     private Element createElementManagedTasks(Map<Integer, Double> managedTasks) {
+
+    private Element createElementManagedTasks(Map<Integer, Double> managedTasks) {
         Element el = new Element("managedTasks");
         for (HashMap.Entry<Integer, Double> entry : managedTasks.entrySet()) {
             el.addContent(createElementManagedTask(
@@ -167,14 +168,13 @@ public class SaveImpl implements Save {
         el.addContent(createElementWithText("time", Double.toString(time)));
         return el;
     }
-    
-      private Element createElementManagedTask(int task, Double time) {
+
+    private Element createElementManagedTask(int task, Double time) {
         Element el = new Element("managedTask");
         el.addContent(createElementWithText("task", Integer.toString(task)));
         el.addContent(createElementWithText("time", Double.toString(time)));
         return el;
     }
-
 
     private Element createElementPaddocks(IZoo zoo) {
         Element el = new Element("paddocks");
@@ -211,12 +211,19 @@ public class SaveImpl implements Save {
         el.addContent(createElementWithText("specie", animal.getSpecie(friendSave).getNames().getScientificName()));
         el.addContent(createElementWithText("sex", animal.getSex(friendSave).toString()));
         el.addContent(createElementWithText("age", String.valueOf(animal.getAge(friendSave))));
+        el.addContent(createElementPersonalityAttributes(animal.getPersonality(friendSave)));
         el.addContent(createElementOptimalFeedingAttributes(animal.getOptimalFeeding(friendSave)));
         el.addContent(createElementActualFeedingAttributes(animal, animal.getActualFeeding(friendSave)));
         el.addContent(createElementReproductionAttributes(animal.getActualReproduction(friendSave)));
         el.addContent(createElementLifeSpanAttributes(animal.getActualLifeSpan(friendSave)));
         el.addContent(createElementSocialAttributes(animal.getOptimalSocial(friendSave)));
         el.addContent(createElementTeritoryAttributes(animal.getOptimalTerritory(friendSave)));
+        return el;
+    }
+    
+    private Element createElementPersonalityAttributes(PersonalityAttributes att) {
+        Element el = new Element("personality");
+        el.addContent(createElementWithText("bravery", String.valueOf(att.getBravery())));
         return el;
     }
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.FeedingAttributes;
+import zoo.animal.personality.PersonalityAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
@@ -35,7 +36,7 @@ public interface Animal {
     public boolean isFromTheSameSpecie(Specie specie);
 
     public boolean isFromTheSameSpecie(LightSpecie specie);
-    
+
     public boolean hasTheSameDiet(Diet diet);
 
     public ArrayList<Animal> findRoommatesOfTheSameSpecie();
@@ -89,5 +90,7 @@ public interface Animal {
     public TerritoryAttributes getOptimalTerritory(SaveImpl.FriendSave save);
 
     public int getDiet(SaveImpl.FriendSave friend);
+
+    public PersonalityAttributes getPersonality(SaveImpl.FriendSave friend);
 
 }
