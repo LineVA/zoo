@@ -193,14 +193,14 @@ public class AnimalImpl implements Animal {
     }
 
     /**
-     * Compute the actual values of the biome attributes for this animal
-     * according to its specie : there are the ones of the specie
+     * Compute the actual values of the feedings attributes for this animal
+     * they are initially null
      *
      * @param spec the Specie of the animal
      * @return its actualFeedingAttributes
      */
-    private FeedingAttributes drawActualFeeding(Specie spec) {
-        return spec.getSpecieFeeding();
+    private FeedingAttributes drawActualFeeding(Specie spec) throws IncorrectLoadException {
+        return new FeedingAttributes(0.0);
     }
 
     /**
