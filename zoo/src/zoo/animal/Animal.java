@@ -1,7 +1,6 @@
 package zoo.animal;
 
 import backup.save.SaveImpl;
-import exception.IncorrectDataException;
 import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
@@ -69,7 +68,7 @@ public interface Animal {
      * Friend pattern : give access to each of the fields of Animal only to the
      * save methods
      */
-    public String getName(SaveImpl.FriendSave friend);
+    public String getName(SaveImpl.FriendSave save);
 
     public Specie getSpecie(SaveImpl.FriendSave save);
 

@@ -155,7 +155,7 @@ public class AnimalImpl implements Animal {
         this.actualFeeding = actualFeeding;
         this.optimalSocial = social;
         this.optimalTerritory = territory;
-         if (age >= 0) {
+        if (age >= 0) {
             this.age = age;
         } else {
             throw new IncorrectDataException(
@@ -234,7 +234,7 @@ public class AnimalImpl implements Animal {
         return new LifeSpanLightAttributes(lifeSpan);
     }
 
-    private SocialAttributes drawOptimalSocial(Specie spec) throws IncorrectLoadException  {
+    private SocialAttributes drawOptimalSocial(Specie spec) throws IncorrectLoadException {
         int groupSize = spec.getGaussianSocialAttributes().
                 getGroupSize().gaussianInt();
         return new SocialAttributes(groupSize);
@@ -425,57 +425,68 @@ public class AnimalImpl implements Animal {
 
     /////////////////////
     @Override
-    public String getName(SaveImpl.FriendSave friend) {
+    public String getName(SaveImpl.FriendSave save) {
+        save.hashCode();
         return this.name;
     }
 
     @Override
     public Specie getSpecie(SaveImpl.FriendSave save) {
+        save.hashCode();
         return this.specie;
     }
 
     @Override
     public Sex getSex(SaveImpl.FriendSave save) {
+        save.hashCode();
         return this.sex;
     }
 
     @Override
     public int getAge(SaveImpl.FriendSave save) {
+        save.hashCode();
         return this.age;
     }
 
     @Override
     public FeedingAttributes getOptimalFeeding(SaveImpl.FriendSave save) {
+        save.hashCode();
         return this.optimalFeeding;
     }
 
     @Override
     public FeedingAttributes getActualFeeding(SaveImpl.FriendSave save) {
+        save.hashCode();
         return this.actualFeeding;
     }
 
     @Override
     public ReproductionAttributes getActualReproduction(SaveImpl.FriendSave save) {
+        save.hashCode();
         return this.actualReproduction;
     }
 
     @Override
     public LifeSpanLightAttributes getActualLifeSpan(SaveImpl.FriendSave save) {
+        save.hashCode();
         return this.actualLifeSpan;
     }
 
     @Override
     public SocialAttributes getOptimalSocial(SaveImpl.FriendSave save) {
+        save.hashCode();
         return this.optimalSocial;
     }
 
     @Override
     public TerritoryAttributes getOptimalTerritory(SaveImpl.FriendSave save) {
+        save.hashCode();
         return this.optimalTerritory;
     }
 
     @Override
     public int getDiet(SaveImpl.FriendSave save) {
+        save.hashCode();
         return this.actualDiet;
     }
 }
