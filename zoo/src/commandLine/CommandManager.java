@@ -4,6 +4,7 @@ import commandLine.commandImpl.AddTimedPaddocks;
 import commandLine.commandImpl.BiomeAttributesPaddock;
 import commandLine.commandImpl.BiomePad;
 import commandLine.commandImpl.CreateAnimal;
+import commandLine.commandImpl.CreateAnimalKeeper;
 import commandLine.commandImpl.CreatePaddock;
 import commandLine.commandImpl.CreateZoo;
 import commandLine.commandImpl.DetailAnimal;
@@ -74,7 +75,7 @@ public abstract class CommandManager {
                 new SaveZoo(play), new LoadZoo(play),
                 new Options(play), new ZooCharacteristics(play),
                 new LsAnimalKeeper(play), new DetailAnimalKeeper(play),
-                new AddTimedPaddocks(play));
+                new AddTimedPaddocks(play), new CreateAnimalKeeper(play));
     }
 
     public abstract String run(String cmd);
