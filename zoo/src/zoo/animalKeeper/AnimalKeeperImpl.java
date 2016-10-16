@@ -56,16 +56,24 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     }
 
     @Override
-    public void addAPaddock(IPaddock pad, Double time) throws IncorrectDataException {
-        if (checkIndiviualTime(time)) {
-            Double previousTime = this.timedPaddocks.putIfAbsent(pad, time);
-            if (this.checkCumulativeTime(extractTimes(this.timedPaddocks))) {
-                if (previousTime != null) {
-                    this.timedPaddocks.put(pad, previousTime);
-                } else {
-                    this.timedPaddocks.remove(pad);
+    public void addTimedPaddocks(ArrayList<IPaddock> paddocks, ArrayList<Double> times) throws IncorrectDataException {
+        Map<IPaddock, Double> oldTimedPaddocks = new HashMap<>();
+        oldTimedPaddocks.putAll(this.timedPaddocks);
+        try {
+            if (paddocks.size() == times.size()) {
+                for (int i = 0; i < paddocks.size(); i++) {
+                    addAPaddock(paddocks.get(i), times.get(i));
                 }
-            } else {
+            }
+        } catch (IncorrectDataException ex) {
+            this.timedPaddocks = oldTimedPaddocks;
+            throw ex;
+        }
+    }
+
+    private void addAPaddock(IPaddock pad, Double time) throws IncorrectDataException {
+        if (checkIndiviualTime(time)) {
+            if (!this.checkCumulativeTime(extractTimes(this.timedPaddocks))) {
                 throw new IncorrectDataException("La durée cumulative doit être comprise entre 0 et 100");
             }
         } else {

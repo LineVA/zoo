@@ -17,12 +17,9 @@ public interface AnimalKeeper {
     public void addTaskToAPaddock(IPaddock paddock, HashMap<Task, Double> newTimedTasks)
             throws IncorrectDataException, UnknownNameException;
 
-    public void addAPaddock(IPaddock pad, Double time) throws IncorrectDataException;
+    public void addTimedPaddocks(ArrayList<IPaddock> paddocks, ArrayList<Double> times)
+            throws IncorrectDataException;
 
-//    public void evaluateByFamily(IPaddock paddock);
-//
-//    public void evaluateByTask();
-    
     public String getName();
     
     public Map<IPaddock, Double> getTimedPaddocks();
