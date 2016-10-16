@@ -1,11 +1,9 @@
 package backup.load;
 
-import exception.IncorrectDataException;
 import exception.IncorrectLoadException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -23,6 +21,7 @@ import zoo.paddock.biome.BiomeAttributes;
 
 /**
  * The parser of a zoo file
+ *
  * @author doyenm
  */
 public class ParserBackUp {
@@ -31,9 +30,10 @@ public class ParserBackUp {
 
     /**
      * The constructor of the parser
+     *
      * @param file the file to parse
      * @throws IOException
-     * @throws JDOMException 
+     * @throws JDOMException
      */
     public ParserBackUp(File file) throws IOException, JDOMException {
         SAXBuilder sax = new SAXBuilder();
@@ -44,9 +44,10 @@ public class ParserBackUp {
 
     /**
      * Parse the characteristics of the zoo (not including paddocks and animals)
+     *
      * @return The corresponding FakeZoo
      * @throws IOException
-     * @throws JDOMException 
+     * @throws JDOMException
      */
     public FakeZoo parserZoo() throws IOException, JDOMException {
         Element dimEl = zooEl.getChild("dimensions");
@@ -58,35 +59,33 @@ public class ParserBackUp {
                 Integer.parseInt(zooEl.getChild("horizon").getText())
         );
     }
-    
+
     /**
      * Parse the language of the save
+     *
      * @return Code of the language
      */
-    public String parserLanguage(){
+    public String parserLanguage() {
         return zooEl.getChildText("language");
     }
 
     /**
      * Method used to parse paddocks
+     *
      * @return The list of FakePaddocks
      */
     public ArrayList<FakePaddock> parserPaddocks() {
         Element paddocksEl = zooEl.getChild("paddocks");
         List<Element> paddocksElList = paddocksEl.getChildren("paddock");
         ArrayList<FakePaddock> paddocksList = new ArrayList<>();
-        Iterator it = paddocksElList.iterator();
-        Element tmpPadEl;
-        while (it.hasNext()) {
-            tmpPadEl = (Element) it.next();
+        for (Element tmpPadEl : paddocksElList) {
             paddocksList.add(new FakePaddock(tmpPadEl.getAttributeValue("name"),
                     Integer.parseInt(tmpPadEl.getChildText("x")),
                     Integer.parseInt(tmpPadEl.getChildText("y")),
                     Integer.parseInt(tmpPadEl.getChildText("width")),
                     Integer.parseInt(tmpPadEl.getChildText("height")),
                     Integer.parseInt(tmpPadEl.getChildText("biome")),
-                    Integer.parseInt(tmpPadEl.getChildText("paddockType"))
-            ));
+                    Integer.parseInt(tmpPadEl.getChildText("paddockType"))));
         }
         return paddocksList;
     }
@@ -101,12 +100,13 @@ public class ParserBackUp {
 
     /**
      * The method used to parse the animals element
+     *
      * @return The list of FakeAnimal in the file
      */
-    public ArrayList<FakeAnimal> parserAnimals() throws IncorrectLoadException{
+    public ArrayList<FakeAnimal> parserAnimals() throws IncorrectLoadException {
         ArrayList<Element> animalsElList = findElementsAnimals();
         ArrayList<FakeAnimal> animalList = new ArrayList<>();
-        for(Element el : animalsElList){
+        for (Element el : animalsElList) {
             animalList.addAll(parserAnimal(el));
         }
         return animalList;
@@ -115,8 +115,6 @@ public class ParserBackUp {
     private ArrayList<FakeAnimal> parserAnimal(Element animalsEl) throws IncorrectLoadException {
         List<Element> animalsElList = animalsEl.getChildren("animal");
         ArrayList<FakeAnimal> animalsList = new ArrayList<>();
-        Iterator it = animalsElList.iterator();
-        Element tmpAnimalEl;
         String spec;
         String pad = animalsEl.getParentElement().getAttributeValue("name");
         int sex;
@@ -129,8 +127,7 @@ public class ParserBackUp {
         LifeSpanLightAttributes life;
         SocialAttributes social;
         TerritoryAttributes territory;
-        while (it.hasNext()) {
-            tmpAnimalEl = (Element) it.next();
+        for(Element tmpAnimalEl : animalsElList){
             spec = tmpAnimalEl.getChildText("specie");
             sex = Integer.parseInt(tmpAnimalEl.getChildText("sex"));
             age = Integer.parseInt(tmpAnimalEl.getChildText("age"));
@@ -155,14 +152,14 @@ public class ParserBackUp {
         return biome;
     }
 
-    private FeedingAttributes parserOptimalFeedingAttributes(Element tmpAnimalEl) 
+    private FeedingAttributes parserOptimalFeedingAttributes(Element tmpAnimalEl)
             throws IncorrectLoadException {
         Element feedEl = tmpAnimalEl.getChild("optimalFeedingAttributes");
         return new FeedingAttributes(
                 Double.parseDouble(feedEl.getChildText("quantity")));
     }
 
-    private FeedingAttributes parserActualFeedingAttributes(Element tmpAnimalEl) 
+    private FeedingAttributes parserActualFeedingAttributes(Element tmpAnimalEl)
             throws IncorrectLoadException {
         Element feedEl = tmpAnimalEl.getChild("actualFeedingAttributes");
         return new FeedingAttributes(
@@ -185,7 +182,7 @@ public class ParserBackUp {
         return repro;
     }
 
-    private LifeSpanLightAttributes parserLifeSpanAttributes(Element tmpAnimalEl) 
+    private LifeSpanLightAttributes parserLifeSpanAttributes(Element tmpAnimalEl)
             throws IncorrectLoadException {
         Element lifeEl = tmpAnimalEl.getChild("actualLifeSpanAttributes");
         LifeSpanLightAttributes life = new LifeSpanLightAttributes(
