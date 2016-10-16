@@ -43,21 +43,21 @@ public class WellBeingImpl implements WellBeing {
         return wB;
     }
 
-    public double computeSocialWB(SocialAttributes social, IPaddock pad, Specie spec) {
+    private double computeSocialWB(SocialAttributes social, IPaddock pad, Specie spec) {
         System.out.println("Social : ");
         double a = Compare.compare(social.getGroupSize(), pad.countAnimalsOfTheSameSpecie(spec), this.diameter);
         System.out.println(a);
         return a;
     }
 
-    public double computeTerritoryWB(TerritoryAttributes territory, IPaddock pad) {
+    private double computeTerritoryWB(TerritoryAttributes territory, IPaddock pad) {
         System.out.println("Territory : ");
         double a = Compare.compare(territory.getTerritorySize(), pad.computeSize(), this.diameter);
         System.out.println(a);
         return a;
     }
 
-    public double computeFoodWB(int diet, FeedingAttributes optimalFeeding,
+    private double computeFoodWB(int diet, FeedingAttributes optimalFeeding,
             FeedingAttributes actualFeeding, Specie spec) {
         System.out.println("Food quantity : ");
         if (spec.getDiets().contains(diet)) {
@@ -72,7 +72,7 @@ public class WellBeingImpl implements WellBeing {
         }
     }
 
-    public double checkBiomeWB(IPaddock paddock, Specie specie) {
+    private double checkBiomeWB(IPaddock paddock, Specie specie) {
         if (specie.getBiomes().contains(paddock.getBiome())) {
             System.out.println("Good biome");
             return Compare.getPositivMean();
@@ -82,7 +82,7 @@ public class WellBeingImpl implements WellBeing {
         }
     }
 
-    public double compatibilitiesWB(IPaddock pad, Specie spec) throws UnknownNameException {
+    private double compatibilitiesWB(IPaddock pad, Specie spec) throws UnknownNameException {
         if (isThereIncompatibleSpeciesInThePaddock(pad, spec)) {
             System.out.println("Inciompatibilities");
             return Compare.getMin() * this.coefficient;
@@ -91,7 +91,7 @@ public class WellBeingImpl implements WellBeing {
         }
     }
 
-    public double fearWB(IPaddock pad, Specie spec) throws UnknownNameException {
+    private double fearWB(IPaddock pad, Specie spec) throws UnknownNameException {
         if (isAfraidBySpeciesInOtherPaddocks(pad, spec)) {
             System.out.println("Afraid");
             return Compare.getNegativMean() * this.coefficient;
@@ -100,7 +100,7 @@ public class WellBeingImpl implements WellBeing {
         }
     }
 
-    public boolean isThereIncompatibleSpeciesInThePaddock(IPaddock pad, Specie currentSpec)
+    private boolean isThereIncompatibleSpeciesInThePaddock(IPaddock pad, Specie currentSpec)
             throws UnknownNameException {
         boolean absenceOfIncompabilities = true;
         ArrayList<Specie> species = pad.listSpecies();
@@ -112,7 +112,7 @@ public class WellBeingImpl implements WellBeing {
         return !absenceOfIncompabilities;
     }
 
-    public boolean isAfraidBySpeciesInOtherPaddocks(IPaddock pad, Specie currentSpec)
+    private boolean isAfraidBySpeciesInOtherPaddocks(IPaddock pad, Specie currentSpec)
             throws UnknownNameException {
         boolean isAfraid = false;
         ArrayList<Specie> species = pad.listSpeciesInNeightbourhood();
@@ -122,6 +122,7 @@ public class WellBeingImpl implements WellBeing {
         return isAfraid;
     }
 
+    @Override
     public boolean isCloseEnoughToMax(double compare) {
         return (compare >= (1 - 2 * this.diameter) * Compare.getMax() * this.criteriaNumber);
     }
