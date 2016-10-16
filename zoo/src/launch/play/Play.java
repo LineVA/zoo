@@ -22,19 +22,20 @@ import zoo.paddock.biome.Ecoregion;
  * @author doyenm
  */
 abstract public class Play {
-    
-        @Getter
-    public ResourceBundle bundle;
-     @Getter @Setter
-    public Option option;
-    
-    @Getter @Setter
-    public IZoo zoo;
-    @Getter @Setter
+
+    @Getter
+    @Setter
+    private Option option;
+
+    @Getter
+    @Setter
+    private IZoo zoo;
+    @Getter
+    @Setter
     private CommandManager manager;
 
-    public Play(ResourceBundle bundle, Option opt){
-          this.zoo = new Zoo();
+    public Play(ResourceBundle bundle, Option opt) {
+        this.zoo = new Zoo();
         this.zoo.setOption(opt);
         Diet.NONE.setOption(opt);
         Sex.UNKNOWN.setOption(opt);
@@ -45,12 +46,11 @@ abstract public class Play {
         Size.UNKNOWN.setOption(opt);
         Continent.UNKNOWN.setOption(opt);
         PaddockTypes.UNKNOWN.setOption(opt);
-        this.bundle = bundle;
         this.option = opt;
     }
-    
-    public void updateOption(){
-         Diet.NONE.setOption(this.option);
+
+    public void updateOption() {
+        Diet.NONE.setOption(this.option);
         Sex.UNKNOWN.setOption(this.option);
         Ecoregion.UNKNOWN.setOption(this.option);
         ConservationStatus.UNKNOWN.setOption(this.option);

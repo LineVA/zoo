@@ -64,7 +64,7 @@ public class LsAnimal implements Command {
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
         try {
             if (args[0] != null) {
-                spec.setNames(this.play.zoo.findSpecieByName(args[0]).getNames());
+                spec.setNames(this.play.getZoo().findSpecieByName(args[0]).getNames());
             }
             if (args[1] != null) {
                 pad = this.play.getZoo().findPaddockByName(args[1]);

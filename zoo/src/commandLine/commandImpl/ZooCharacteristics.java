@@ -34,12 +34,12 @@ public class ZooCharacteristics implements Command {
             }
             try {
                 if (args[0] != null) {
-                    this.play.zoo.changeSpeed(speed);
-                    result += this.play.option.getGeneralCmdBundle().getString("SPEED_CHANGE_SUCCESS") + cmd[2];
+                    this.play.getZoo().changeSpeed(speed);
+                    result += this.play.getOption().getGeneralCmdBundle().getString("SPEED_CHANGE_SUCCESS") + cmd[2];
                 }
                 if (args[1] != null) {
-                    this.play.zoo.changeHorizon(horizon);
-                    result += this.play.option.getGeneralCmdBundle().getString("HORIZON_CHANGE_SUCCESS") + cmd[2];
+                    this.play.getZoo().changeHorizon(horizon);
+                    result += this.play.getOption().getGeneralCmdBundle().getString("HORIZON_CHANGE_SUCCESS") + cmd[2];
                 }
                 this.success = true;
             } catch (IncorrectDataException ex) {
@@ -47,7 +47,7 @@ public class ZooCharacteristics implements Command {
             }
         } catch (NumberFormatException ex) {
             return new ReturnExec(
-                    this.play.option.getGeneralCmdBundle().getString("SPEED_HORIZON_NUMBER"),
+                    this.play.getOption().getGeneralCmdBundle().getString("SPEED_HORIZON_NUMBER"),
                     TypeReturn.SUCCESS);
         }
         return new ReturnExec(result, TypeReturn.SUCCESS);
