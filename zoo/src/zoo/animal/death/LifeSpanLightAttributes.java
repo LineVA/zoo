@@ -1,6 +1,5 @@
 package zoo.animal.death;
 
-import exception.IncorrectDataException;
 import exception.IncorrectLoadException;
 import launch.options.Option;
 import lombok.Getter;
@@ -24,8 +23,6 @@ public class LifeSpanLightAttributes {
     }
 
     public String toStringByLanguage(Option option) {
-        String info = "";
-        info += option.getLifespanBundle().getString("LIFESPAN") + this.lifeSpan;
-        return info;
+        return option.getLifespanBundle().getString("LIFESPAN") + this.lifeSpan;
     }
 }
