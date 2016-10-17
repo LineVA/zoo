@@ -43,7 +43,8 @@ public abstract class CommandManager {
                 new Options(play), new ZooCharacteristics(play),
                 new LsTask(play),
                 new LsAnimalKeeper(play), new DetailAnimalKeeper(play),
-                new AddTimedPaddocks(play), new CreateAnimalKeeper(play));
+                new AddTimedPaddocks(play), new CreateAnimalKeeper(play), 
+                new AddTimedTasksPerPaddock(play));
     }
 
     public abstract String run(String cmd);

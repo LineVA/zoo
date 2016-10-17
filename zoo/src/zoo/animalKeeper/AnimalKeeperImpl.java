@@ -56,7 +56,8 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     }
 
     @Override
-    public void addTimedPaddocks(ArrayList<IPaddock> paddocks, ArrayList<Double> times) throws IncorrectDataException {
+    public void addTimedPaddocks(ArrayList<IPaddock> paddocks, ArrayList<Double> times)
+            throws IncorrectDataException {
         Map<IPaddock, Double> oldTimedPaddocks = new HashMap<>();
         oldTimedPaddocks.putAll(this.timedPaddocks);
         try {
@@ -122,7 +123,8 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return this.checkCumulativeTime(times);
     }
 
-    private HashMap<TaskPaddock, Double> reconstructTimedTasksPerPaddock(IPaddock paddock, HashMap<Integer, Double> timedTasks) {
+    private HashMap<TaskPaddock, Double>
+            reconstructTimedTasksPerPaddock(IPaddock paddock, HashMap<Integer, Double> timedTasks) {
         HashMap<TaskPaddock, Double> timedTasksPerPaddock = new HashMap<>();
         for (HashMap.Entry<Integer, Double> entry : timedTasks.entrySet()) {
             timedTasksPerPaddock.put(new TaskPaddock(paddock, entry.getKey()), entry.getValue());
@@ -130,18 +132,28 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return timedTasksPerPaddock;
     }
 
+    private HashMap<Task, Double> prepareHashMap(ArrayList<Task> tasks, ArrayList<Double> times) {
+        HashMap<Task, Double> timedTasks = new HashMap<>();
+        for(int i = 0; i<tasks.size() ; i++){
+            timedTasks.put(tasks.get(i), times.get(i));
+        }
+        return timedTasks;
+    }
+
     @Override
-    public void addTaskToAPaddock(IPaddock paddock, HashMap<Task, Double> newTimedTasks)
+    public void addTaskToAPaddock(IPaddock paddock, ArrayList<Task> tasks, ArrayList<Double> times)
             throws IncorrectDataException, UnknownNameException {
         // Check if this animal keeper is associated to pad
         if (this.timedPaddocks.containsKey(paddock)) {
             // We retrieve all the timed tasks associated to this paddock
             HashMap<Integer, Double> oldTimedTasks = findTimedTasksByPaddock(paddock);
+            // Prepare HashMap of the new TimedTasks
+            HashMap<Task, Double> newTimedTasks = prepareHashMap(tasks, times);
             // We remplace the old tasks by the new ones
             HashMap<Integer, Double> askedTimedTasks = expectTimedTasks(oldTimedTasks, newTimedTasks);
             // We check if the timer are consistent or not
-            ArrayList<Double> times = extractTimesFromTimedTasks(askedTimedTasks);
-            if (checkTimes(times)) {
+            ArrayList<Double> askedTimes = extractTimesFromTimedTasks(askedTimedTasks);
+            if (checkTimes(askedTimes)) {
                 this.timedTaskPerPaddock = reconstructTimedTasksPerPaddock(paddock, askedTimedTasks);
             } else {
                 throw new IncorrectDataException("ITemps incorrects");
