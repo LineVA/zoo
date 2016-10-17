@@ -1,5 +1,6 @@
 package zoo.animalKeeper;
 
+import exception.name.NameException;
 import java.util.Map;
 import launch.options.Option;
 import lombok.Getter;
@@ -32,7 +33,7 @@ public class FakeAnimalKeeper {
     }
     
     public AnimalKeeper convertToAnimalKeeper(Map<IPaddock, Double> timedPads, 
-            Map<TaskPaddock, Double> timedTasks, Option option){
+            Map<TaskPaddock, Double> timedTasks, Option option) throws NameException{
         return new AnimalKeeperBuilder().name(this.name)
                 .timedPaddocks(timedPads)
                 .timedTaskPerPaddock(timedTasks)

@@ -305,11 +305,9 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public void addKeeper(String name) throws AlreadyUsedNameException, EmptyNameException {
-        if (name.trim().equals("")) {
-            throw new EmptyNameException(
-                    this.option.getPaddockBundle().getString("EMPTY_NAME_KEEPER"));
-        }
+    public void addKeeper(String name) 
+            throws AlreadyUsedNameException, EmptyNameException, NameException {
+        NameVerifications.verify(name, this.option.getKeeperBundle());
         if (this.keepers.containsKey(name)) {
             throw new AlreadyUsedNameException(
                     this.option.getPaddockBundle().getString("ALREADY_USED_NAME_KEEPER"));

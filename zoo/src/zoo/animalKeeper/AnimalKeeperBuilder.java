@@ -1,5 +1,6 @@
 package zoo.animalKeeper;
 
+import exception.name.NameException;
 import java.util.HashMap;
 import java.util.Map;
 import launch.options.Option;
@@ -18,7 +19,7 @@ public class AnimalKeeperBuilder {
     private Map<Integer, Double> _managedTasks = new HashMap<>();
     private Option _option;
 
-    public AnimalKeeper buildAnimalKeeper() {
+    public AnimalKeeper buildAnimalKeeper() throws NameException {
         return new AnimalKeeperImpl(_name, _timedPaddocks, _timedTaskPerPaddock,
                 _managedFamilies, _managedTasks, _option);
     }

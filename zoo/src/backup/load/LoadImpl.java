@@ -81,7 +81,7 @@ public class LoadImpl implements Load {
     }
 
     private void addFakeKeeperToZoo(IZoo zoo, FakeAnimalKeeper keeper, Option option)
-            throws EmptyNameException, UnknownNameException {
+            throws EmptyNameException, UnknownNameException, NameException {
         this.verifyManagedFamilies(keeper.getManagedFamilies());
         this.verifyManagedTasks(keeper.getManagedTasks());
         zoo.addKeeper(keeper.convertToAnimalKeeper(

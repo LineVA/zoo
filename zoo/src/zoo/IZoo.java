@@ -51,7 +51,8 @@ public interface IZoo {
 
     public ArrayList<String> listAnimalKeeper();
 
-    public void addKeeper(String name) throws AlreadyUsedNameException, EmptyNameException;
+    public void addKeeper(String name) 
+            throws AlreadyUsedNameException, EmptyNameException, NameException;
 
     public void addKeeper(AnimalKeeper keeper);
     

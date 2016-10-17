@@ -2,12 +2,14 @@ package zoo.animalKeeper;
 
 import backup.save.SaveImpl;
 import exception.IncorrectDataException;
+import exception.name.NameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import launch.options.Option;
 import lombok.Getter;
+import zoo.NameVerifications;
 import zoo.animal.specie.Family;
 import zoo.paddock.IPaddock;
 
@@ -27,12 +29,13 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     private Map<Integer, Double> managedTasks;
 
     private Option option;
-    
+
     public AnimalKeeperImpl(String name, Map<IPaddock, Double> timedPaddocks,
             Map<TaskPaddock, Double> timedTaskPerPaddock,
-            Map<Integer, Double> managedFamilies, Map<Integer, Double> managedTasks, 
-            Option option) {
+            Map<Integer, Double> managedFamilies, Map<Integer, Double> managedTasks,
+            Option option) throws NameException {
         this.option = option;
+        NameVerifications.verify(name, this.option.getKeeperBundle());
         this.name = name;
         this.timedPaddocks = timedPaddocks;
         this.managedFamilies = managedFamilies;
@@ -86,7 +89,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
             }
         } else {
             throw new IncorrectDataException(
-            this.option.getKeeperBundle().getString("ERROR_INDIVIDUAL_TIME"));
+                    this.option.getKeeperBundle().getString("ERROR_INDIVIDUAL_TIME"));
         }
     }
 
@@ -142,7 +145,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
 
     private HashMap<Task, Double> prepareHashMap(ArrayList<Task> tasks, ArrayList<Double> times) {
         HashMap<Task, Double> timedTasks = new HashMap<>();
-        for(int i = 0; i<tasks.size() ; i++){
+        for (int i = 0; i < tasks.size(); i++) {
             timedTasks.put(tasks.get(i), times.get(i));
         }
         return timedTasks;
@@ -165,11 +168,11 @@ public class AnimalKeeperImpl implements AnimalKeeper {
                 this.timedTaskPerPaddock = reconstructTimedTasksPerPaddock(paddock, askedTimedTasks);
             } else {
                 throw new IncorrectDataException(
-                this.option.getKeeperBundle().getString("ERROR_CUMULATIVE_TIMES"));
+                        this.option.getKeeperBundle().getString("ERROR_CUMULATIVE_TIMES"));
             }
         } else {
             throw new IncorrectDataException(
-            this.option.getKeeperBundle().getString("ERROR_PADDOCK_NO_TIME"));
+                    this.option.getKeeperBundle().getString("ERROR_PADDOCK_NO_TIME"));
         }
     }
 
