@@ -330,6 +330,11 @@ public class Zoo implements IZoo {
         keepers.put(keeper.getName(), keeper);
     }
 
+    @Override
+    public void removeKeeper(AnimalKeeper keeper) {
+        this.keepers.remove(keeper.getName());
+    }
+
     /**
      * Method used to know if a paddock can be placed into the zoo without
      * looking for the others paddocks

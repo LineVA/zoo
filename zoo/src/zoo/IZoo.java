@@ -54,6 +54,8 @@ public interface IZoo {
     public void addKeeper(String name) throws AlreadyUsedNameException, EmptyNameException;
 
     public void addKeeper(AnimalKeeper keeper);
+    
+    public void removeKeeper(AnimalKeeper keeper);
 
     public ArrayList<PaddockCoordinates> map() throws IncorrectDimensionsException;
 
