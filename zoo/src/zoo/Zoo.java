@@ -310,7 +310,7 @@ public class Zoo implements IZoo {
         NameVerifications.verify(name, this.option.getKeeperBundle());
         if (this.keepers.containsKey(name)) {
             throw new AlreadyUsedNameException(
-                    this.option.getPaddockBundle().getString("ALREADY_USED_NAME_KEEPER"));
+                    this.option.getKeeperBundle().getString("ALREADY_USED_NAME_KEEPER"));
         }
         this.keepers.put(name, new AnimalKeeperBuilder()
                 .name(name).option(this.option).buildAnimalKeeper());
@@ -324,7 +324,11 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public void addKeeper(AnimalKeeper keeper) {
+    public void addKeeper(AnimalKeeper keeper) throws AlreadyUsedNameException{
+          if (this.keepers.containsKey(name)) {
+            throw new AlreadyUsedNameException(
+                    this.option.getKeeperBundle().getString("ALREADY_USED_NAME_KEEPER"));
+        }
         keepers.put(keeper.getName(), keeper);
     }
 

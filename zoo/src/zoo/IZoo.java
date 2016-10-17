@@ -54,7 +54,7 @@ public interface IZoo {
     public void addKeeper(String name) 
             throws AlreadyUsedNameException, EmptyNameException, NameException;
 
-    public void addKeeper(AnimalKeeper keeper);
+    public void addKeeper(AnimalKeeper keeper) throws AlreadyUsedNameException;
     
     public void removeKeeper(AnimalKeeper keeper);
 
