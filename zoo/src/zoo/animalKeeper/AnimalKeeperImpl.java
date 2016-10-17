@@ -68,7 +68,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         try {
             if (paddocks.size() == times.size()) {
                 for (int i = 0; i < paddocks.size(); i++) {
-                    addAPaddock(times.get(i));
+                    addAPaddock(paddocks.get(i), times.get(i));
                 }
             }
         } catch (IncorrectDataException ex) {
@@ -77,8 +77,9 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         }
     }
 
-    private void addAPaddock(Double time) throws IncorrectDataException {
+    private void addAPaddock(IPaddock paddock, Double time) throws IncorrectDataException {
         if (checkIndiviualTime(time)) {
+            this.timedPaddocks.put(paddock, time);
             if (!this.checkCumulativeTime(extractTimes(this.timedPaddocks))) {
                 throw new IncorrectDataException(
                         this.option.getKeeperBundle().getString("ERROR_CUMULATIVE_TIMES"));
