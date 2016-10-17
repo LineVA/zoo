@@ -6,6 +6,7 @@ import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import launch.options.Option;
 import lombok.Getter;
 import zoo.animal.specie.Family;
 import zoo.paddock.IPaddock;
@@ -25,9 +26,13 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     private Map<Integer, Double> managedFamilies;
     private Map<Integer, Double> managedTasks;
 
+    private Option option;
+    
     public AnimalKeeperImpl(String name, Map<IPaddock, Double> timedPaddocks,
             Map<TaskPaddock, Double> timedTaskPerPaddock,
-            Map<Integer, Double> managedFamilies, Map<Integer, Double> managedTasks) {
+            Map<Integer, Double> managedFamilies, Map<Integer, Double> managedTasks, 
+            Option option) {
+        this.option = option;
         this.name = name;
         this.timedPaddocks = timedPaddocks;
         this.managedFamilies = managedFamilies;
@@ -75,10 +80,12 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     private void addAPaddock(Double time) throws IncorrectDataException {
         if (checkIndiviualTime(time)) {
             if (!this.checkCumulativeTime(extractTimes(this.timedPaddocks))) {
-                throw new IncorrectDataException("La durée cumulative doit être comprise entre 0 et 100");
+                throw new IncorrectDataException(
+                        this.option.getKeeperBundle().getString("ERROR_CUMULATIVE_TIMES"));
             }
         } else {
-            throw new IncorrectDataException("Une durée doit être comprise entre 0 et 100");
+            throw new IncorrectDataException(
+            this.option.getKeeperBundle().getString("ERROR_INDIVIDUAL_TIME"));
         }
     }
 
@@ -156,10 +163,12 @@ public class AnimalKeeperImpl implements AnimalKeeper {
             if (checkTimes(askedTimes)) {
                 this.timedTaskPerPaddock = reconstructTimedTasksPerPaddock(paddock, askedTimedTasks);
             } else {
-                throw new IncorrectDataException("ITemps incorrects");
+                throw new IncorrectDataException(
+                this.option.getKeeperBundle().getString("ERROR_CUMULATIVE_TIMES"));
             }
         } else {
-            throw new IncorrectDataException("Il vous faut d'abord consacrer un temps à cet enclos");
+            throw new IncorrectDataException(
+            this.option.getKeeperBundle().getString("ERROR_PADDOCK_NO_TIME"));
         }
     }
 

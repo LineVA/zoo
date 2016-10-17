@@ -38,6 +38,7 @@ public class FakeAnimalKeeper {
                 .timedTaskPerPaddock(timedTasks)
                 .managedFamilies(this.managedFamilies)
                 .managedTasks(this.managedTasks)
+                .option(option)
                 .buildAnimalKeeper();
     }
 }

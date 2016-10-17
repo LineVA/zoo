@@ -1,8 +1,8 @@
 package zoo.animalKeeper;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import launch.options.Option;
 import zoo.paddock.IPaddock;
 
 /**
@@ -16,12 +16,18 @@ public class AnimalKeeperBuilder {
     private Map<TaskPaddock, Double> _timedTaskPerPaddock = new HashMap<>();
     private Map<Integer, Double> _managedFamilies = new HashMap<>();
     private Map<Integer, Double> _managedTasks = new HashMap<>();
+    private Option _option;
 
     public AnimalKeeper buildAnimalKeeper() {
         return new AnimalKeeperImpl(_name, _timedPaddocks, _timedTaskPerPaddock,
-                _managedFamilies, _managedTasks);
+                _managedFamilies, _managedTasks, _option);
     }
 
+    public AnimalKeeperBuilder option(Option option){
+        this._option = option;
+        return this;
+    }
+    
     public AnimalKeeperBuilder name(String _name) {
         this._name = _name;
         return this;

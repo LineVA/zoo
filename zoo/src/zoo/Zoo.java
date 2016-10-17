@@ -314,7 +314,8 @@ public class Zoo implements IZoo {
             throw new AlreadyUsedNameException(
                     this.option.getPaddockBundle().getString("ALREADY_USED_NAME_KEEPER"));
         }
-        this.keepers.put(name, new AnimalKeeperBuilder().name(name).buildAnimalKeeper());
+        this.keepers.put(name, new AnimalKeeperBuilder()
+                .name(name).option(this.option).buildAnimalKeeper());
     }
 
     @Override
