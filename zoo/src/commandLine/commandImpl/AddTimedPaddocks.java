@@ -5,10 +5,7 @@ import exception.IncorrectDataException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import launch.play.Play;
-import static org.mockito.Mockito.times;
 import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.IPaddock;
 
