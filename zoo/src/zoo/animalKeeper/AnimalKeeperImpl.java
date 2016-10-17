@@ -63,7 +63,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         try {
             if (paddocks.size() == times.size()) {
                 for (int i = 0; i < paddocks.size(); i++) {
-                    addAPaddock(paddocks.get(i), times.get(i));
+                    addAPaddock(times.get(i));
                 }
             }
         } catch (IncorrectDataException ex) {
@@ -72,7 +72,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         }
     }
 
-    private void addAPaddock(IPaddock pad, Double time) throws IncorrectDataException {
+    private void addAPaddock(Double time) throws IncorrectDataException {
         if (checkIndiviualTime(time)) {
             if (!this.checkCumulativeTime(extractTimes(this.timedPaddocks))) {
                 throw new IncorrectDataException("La durée cumulative doit être comprise entre 0 et 100");
