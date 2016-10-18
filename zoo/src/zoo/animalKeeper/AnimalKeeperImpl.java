@@ -44,7 +44,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     }
 
     private boolean checkIndiviualTime(Double time) {
-        return time >= 0.0 && time <= 100.0;
+        return time > 0.0 && time <= 100.0;
     }
 
     private boolean checkCumulativeTime(ArrayList<Double> times) {
