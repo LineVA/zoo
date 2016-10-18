@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import backup.save.SaveImpl;
 import exception.name.NameException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -298,12 +300,21 @@ public class Zoo implements IZoo {
         return list;
     }
 
+    public void removePaddockFromKeepers(IPaddock paddock){
+        ArrayList<IPaddock> padList = new ArrayList<>();
+        padList.add(paddock);
+        for(HashMap.Entry<String, AnimalKeeper> keeper : this.keepers.entrySet()){
+            keeper.getValue().removeTimedPaddocks(padList);
+        }
+    }
+    
     @Override
     public void removePaddock(IPaddock paddock) {
         this.paddocks.remove(paddock.getName());
         paddock.removeFromNeightbourhood();
+        this.removePaddockFromKeepers(paddock);
     }
-
+    
     @Override
     public void addKeeper(String name) 
             throws AlreadyUsedNameException, EmptyNameException, NameException {
