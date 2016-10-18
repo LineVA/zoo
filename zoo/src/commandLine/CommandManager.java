@@ -1,37 +1,6 @@
 package commandLine;
 
-import commandLine.commandImpl.BiomeAttributesPaddock;
-import commandLine.commandImpl.BiomePad;
-import commandLine.commandImpl.CreateAnimal;
-import commandLine.commandImpl.CreatePaddock;
-import commandLine.commandImpl.CreateZoo;
-import commandLine.commandImpl.DetailAnimal;
-import commandLine.commandImpl.DetailPad;
-import commandLine.commandImpl.DetailSpecie;
-import commandLine.commandImpl.DetailZoo;
-import commandLine.commandImpl.Documentation;
-import commandLine.commandImpl.Evaluate;
-import commandLine.commandImpl.FeedingAnimal;
-import commandLine.commandImpl.LoadZoo;
-import commandLine.commandImpl.LsAnimal;
-import commandLine.commandImpl.LsBiome;
-import commandLine.commandImpl.LsConservation;
-import commandLine.commandImpl.LsContinent;
-import commandLine.commandImpl.LsEcoregion;
-import commandLine.commandImpl.LsFamily;
-import commandLine.commandImpl.LsFeeding;
-import commandLine.commandImpl.LsPaddock;
-import commandLine.commandImpl.LsPaddockType;
-import commandLine.commandImpl.LsSex;
-import commandLine.commandImpl.LsSize;
-import commandLine.commandImpl.LsSpecie;
-import commandLine.commandImpl.MapZoo;
-import commandLine.commandImpl.Options;
-import commandLine.commandImpl.PadTypePad;
-import commandLine.commandImpl.RemoveAnimal;
-import commandLine.commandImpl.RemovePaddock;
-import commandLine.commandImpl.SaveZoo;
-import commandLine.commandImpl.ZooCharacteristics;
+import commandLine.commandImpl.*;
 import static java.util.Arrays.asList;
 import launch.options.Option;
 import launch.play.Play;
@@ -56,22 +25,28 @@ public abstract class CommandManager {
     public CommandManager(Play play, Option option){
         this.option = option;
           this.play = play;
-            // For Paddock and Animal : Ls must be before Detail
+            // For Paddock, Animal, Specie and Animal Keeper : Ls must be before Detail
+          // and Create & remove before Ls
         playCommands = asList(new CreateZoo(play), new DetailZoo(play),
-                new CreatePaddock(play),
+                new CreatePaddock(play), new RemovePaddock(play), 
                 new LsPaddock(play), new MapZoo(play), new DetailPad(play),
                 new Evaluate(play), new BiomePad(play), new BiomeAttributesPaddock(play),
-                new CreateAnimal(play), new LsAnimal(play), new DetailAnimal(play),
+                new CreateAnimal(play),  new RemoveAnimal(play), 
+                new LsAnimal(play), new DetailAnimal(play),
                 new FeedingAnimal(play),
                 new LsSex(play), new LsConservation(play),
-                new RemoveAnimal(play), new RemovePaddock(play), 
                 new LsBiome(play), new LsEcoregion(play), new LsContinent(play),
                 new LsPaddockType(play), new PadTypePad(play),
                 new LsSpecie(play), new DetailSpecie(play), new LsFamily(play),
                 new LsFeeding(play), new LsSize(play),
                 new SaveZoo(play), new LoadZoo(play),
                 new Options(play), new ZooCharacteristics(play),
-                new Documentation(play));
+                new Documentation(play),
+                new LsTask(play),
+                new LsAnimalKeeper(play), new DetailAnimalKeeper(play),
+                new AddTimedPaddocks(play), new CreateAnimalKeeper(play), 
+                new AddTimedTasksPerPaddock(play), new RemoveAnimalKeeper(play),
+                new RemoveTimedPaddocks(play), new RemoveTimedTasksPerPaddock(play));
     }
 
     public abstract ReturnExec run(String cmd);

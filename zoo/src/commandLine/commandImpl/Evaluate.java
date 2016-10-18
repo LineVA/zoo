@@ -39,6 +39,8 @@ public class Evaluate implements Command {
         ArrayList<String> info = new ArrayList<>();
         int zooEvaluation = 0;
         try {
+            // Evolution of the animalKeepers 
+            this.play.getZoo().evolveAnimalKeepers();
             // Well-beeing of each animal
            zooEvaluation += this.play.getZoo().grade();
             // Special events :

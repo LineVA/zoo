@@ -4,7 +4,10 @@ import exception.IncorrectLoadException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -13,8 +16,11 @@ import zoo.FakeZoo;
 import zoo.animal.FakeAnimal;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.FeedingAttributes;
+import zoo.animal.personality.PersonalityAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
+import zoo.animalKeeper.FakeAnimalKeeper;
+import zoo.animalKeeper.FakeTaskPaddock;
 import zoo.paddock.FakePaddock;
 import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
@@ -128,6 +134,7 @@ public class ParserBackUp {
         SocialAttributes social;
         TerritoryAttributes territory;
         for(Element tmpAnimalEl : animalsElList){
+        PersonalityAttributes personality;
             spec = tmpAnimalEl.getChildText("specie");
             sex = Integer.parseInt(tmpAnimalEl.getChildText("sex"));
             age = Integer.parseInt(tmpAnimalEl.getChildText("age"));
@@ -139,10 +146,11 @@ public class ParserBackUp {
             life = parserLifeSpanAttributes(tmpAnimalEl);
             social = parserSocialAttributes(tmpAnimalEl);
             territory = parserTerritoryAttributes(tmpAnimalEl);
+            personality = parserPersonalityAttributes(tmpAnimalEl);
             animalsList.add(new FakeAnimal(spec,
                     tmpAnimalEl.getAttributeValue("name"),
                     pad, sex, age, biome, optFeed, actualFeed, diet, repro,
-                    life, social, territory));
+                    life, social, territory, personality));
         }
         return animalsList;
     }
@@ -202,5 +210,65 @@ public class ParserBackUp {
         TerritoryAttributes territory = new TerritoryAttributes(
                 Double.parseDouble(territoryEl.getChildText("territorySize")));
         return territory;
+    }
+
+    private PersonalityAttributes parserPersonalityAttributes(Element tmpAnimalEl) {
+        Element persoEl = tmpAnimalEl.getChild("personality");
+        return new PersonalityAttributes(
+                Double.parseDouble(persoEl.getChildText("bravery")));
+    }
+
+    public ArrayList<FakeAnimalKeeper> parserAnimalKeepers() {
+        ArrayList<FakeAnimalKeeper> keepers = new ArrayList<>();
+        Element keepersEl = this.zooEl.getChild("animalKeepers");
+        List<Element> keeperListEl = keepersEl.getChildren("animalKeeper");
+        for (Element el : keeperListEl) {
+            keepers.add(parserAnimalKeeper(el));
+        }
+        return keepers;
+    }
+
+    private FakeAnimalKeeper parserAnimalKeeper(Element el) {
+        return new FakeAnimalKeeper(el.getAttributeValue("name"),
+                this.parserTimedPaddocks(el),
+                this.parserTimedTasksPerPaddock(el),
+                this.parserManagedFamilies(el),
+                this.parserManagedTasks(el));
+    }
+
+    private Map<String, Double> parserTimedPaddocks(Element el) {
+        HashMap<String, Double> timedPaddocks = new HashMap<>();
+        for (Element padEl : el.getChild("timedPaddocks").getChildren("timedPaddock")) {
+            timedPaddocks.put(padEl.getChildText("paddock"), Double.parseDouble(padEl.getChildText("time")));
+        }
+        return timedPaddocks;
+    }
+
+    private Map<FakeTaskPaddock, Double> parserTimedTasksPerPaddock(Element el) {
+        HashMap<FakeTaskPaddock, Double> timedPaddocks = new HashMap<>();
+        for (Element padEl : el.getChild("timedTasksPerPaddock").getChildren("timedTaskPerPaddock")) {
+            timedPaddocks.put(
+                    new FakeTaskPaddock(padEl.getChildText("paddock"), Integer.parseInt(padEl.getChildText("task"))),
+                    Double.parseDouble(padEl.getChildText("time")));
+        }
+        return timedPaddocks;
+    }
+
+    private Map<Integer, Double> parserManagedFamilies(Element el) {
+        HashMap<Integer, Double> managed = new HashMap<>();
+        for (Element managedEl : el.getChild("managedFamilies").getChildren("managedFamily")) {
+            managed.put(Integer.parseInt(managedEl.getChildText("family")),
+                    Double.parseDouble(managedEl.getChildText("time")));
+        }
+        return managed;
+    }
+
+    private Map<Integer, Double> parserManagedTasks(Element el) {
+        HashMap<Integer, Double> managed = new HashMap<>();
+        for (Element managedEl : el.getChild("managedTasks").getChildren("managedTask")) {
+            managed.put(Integer.parseInt(managedEl.getChildText("task")),
+                    Double.parseDouble(managedEl.getChildText("time")));
+        }
+        return managed;
     }
 }

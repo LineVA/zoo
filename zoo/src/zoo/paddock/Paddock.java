@@ -18,7 +18,6 @@ import java.util.ResourceBundle;
 import launch.options.Option;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.TreeMap;
 import zoo.BirthObservable;
 import zoo.NameVerifications;
 import zoo.animal.Animal;
@@ -34,6 +33,7 @@ import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.Family;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
+import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.biome.Continent;
 import zoo.paddock.biome.Ecoregion;
 
@@ -74,7 +74,7 @@ public class Paddock implements IPaddock {
      * @param coor the coordinates of the paddock
      */
     public Paddock(String name, PaddockCoordinates coor,
-            ArrayList<IPaddock> neightbourhood, int biome, int paddockType, Option option)
+            ArrayList<IPaddock> neightbourhood, Map<String, Animal> animals, int biome, int paddockType, Option option)
             throws EmptyNameException, NameException {
         this.option = option;
         NameVerifications.verify(name, this.option.getPaddockBundle());
@@ -82,7 +82,7 @@ public class Paddock implements IPaddock {
         this.coordinates = coor;
         this.biome = biome;
         this.attributes = (BiomeAttributes) Biome.NONE.getAttributes().clone();
-        this.animals = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        this.animals = animals;
         this.neightbourhood = neightbourhood;
         this.paddockType = paddockType;
         obs.addObserver(new Observer() {
@@ -422,10 +422,10 @@ public class Paddock implements IPaddock {
     }
 
     @Override
-    public double wellBeing() throws UnknownNameException {
+    public double wellBeing(ArrayList<AnimalKeeper> keepers) throws UnknownNameException {
         int wB = 0;
         for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
-            wB += entry.getValue().wellBeing();
+            wB += entry.getValue().wellBeing(keepers);
         }
         return wB;
     }
@@ -509,6 +509,15 @@ public class Paddock implements IPaddock {
                     presentedSpecies.add(animalEntry.getValue().getSpecie());
                 });
         return presentedSpecies;
+    }
+
+    @Override
+    public ArrayList<Integer> listFamiliesById() {
+        ArrayList<Integer> listFamily = new ArrayList<>();
+        for(Specie specie : this.listSpecies()){
+            listFamily.add(specie.getFamily());
+        }
+        return listFamily;
     }
 
     @Override

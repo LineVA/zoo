@@ -26,6 +26,8 @@ import zoo.animal.feeding.Diet;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
+import zoo.animalKeeper.AnimalKeeper;
+import zoo.animalKeeper.AnimalKeeperBuilder;
 import zoo.evaluation.Evaluation;
 import zoo.paddock.IPaddock;
 import zoo.paddock.PaddockBuilder;
@@ -60,6 +62,10 @@ public class Zoo implements IZoo {
      * The hashmap of the paddocks it contains
      */
     private Map<String, IPaddock> paddocks;
+    /**
+     * The hashmap of the animal keepers it contains
+     */
+    private Map<String, AnimalKeeper> keepers;
     /**
      * The HashMap of the existing species
      */
@@ -113,6 +119,7 @@ public class Zoo implements IZoo {
             this.height = height;
         }
         paddocks = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        keepers = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         this.species = species;
         this.age = age;
         this.monthsPerEvaluation = monthsPerEvaluation;
@@ -236,6 +243,15 @@ public class Zoo implements IZoo {
         return list;
     }
 
+    @Override
+    public ArrayList<String> listAnimalKeeper() {
+        ArrayList<String> list = new ArrayList<>();
+        for (HashMap.Entry<String, AnimalKeeper> entry : this.keepers.entrySet()) {
+            list.add(entry.getKey());
+        }
+        return list;
+    }
+
     /**
      * Method used to find a paddock by its name
      *
@@ -259,9 +275,76 @@ public class Zoo implements IZoo {
     }
 
     @Override
+    public AnimalKeeper findAnimalKeeperByName(String name) throws UnknownNameException,
+            EmptyNameException {
+        if (name.trim().equals("")) {
+            throw new EmptyNameException(
+                    this.option.getKeeperBundle().getString("EMPTY_NAME_KEEPER"));
+        }
+        if (keepers.containsKey(name)) {
+            return keepers.get(name);
+        }
+        throw new UnknownNameException(
+                this.option.getKeeperBundle().getString("UNKNOWN_KEEPER"));
+    }
+
+    private ArrayList<AnimalKeeper> findAnimalKeeperByPaddock(IPaddock paddock) throws UnknownNameException,
+            EmptyNameException {
+        ArrayList<AnimalKeeper> list = new ArrayList<>();
+        for (HashMap.Entry<String, AnimalKeeper> keeper : this.keepers.entrySet()) {
+            if (keeper.getValue().getTimedPaddocks().containsKey(paddock)) {
+                list.add(keeper.getValue());
+            }
+        }
+        return list;
+    }
+
+    public void removePaddockFromKeepers(IPaddock paddock){
+        ArrayList<IPaddock> padList = new ArrayList<>();
+        padList.add(paddock);
+        for(HashMap.Entry<String, AnimalKeeper> keeper : this.keepers.entrySet()){
+            keeper.getValue().removeTimedPaddocks(padList);
+        }
+    }
+    
+    @Override
     public void removePaddock(IPaddock paddock) {
         this.paddocks.remove(paddock.getName());
         paddock.removeFromNeightbourhood();
+        this.removePaddockFromKeepers(paddock);
+    }
+    
+    @Override
+    public void addKeeper(String name) 
+            throws AlreadyUsedNameException, EmptyNameException, NameException {
+        NameVerifications.verify(name, this.option.getKeeperBundle());
+        if (this.keepers.containsKey(name)) {
+            throw new AlreadyUsedNameException(
+                    this.option.getKeeperBundle().getString("ALREADY_USED_NAME_KEEPER"));
+        }
+        this.keepers.put(name, new AnimalKeeperBuilder()
+                .name(name).option(this.option).buildAnimalKeeper());
+    }
+
+    @Override
+    public void evolveAnimalKeepers() {
+        for (HashMap.Entry<String, AnimalKeeper> entry : this.keepers.entrySet()) {
+            entry.getValue().evolve();
+        }
+    }
+
+    @Override
+    public void addKeeper(AnimalKeeper keeper) throws AlreadyUsedNameException{
+          if (this.keepers.containsKey(name)) {
+            throw new AlreadyUsedNameException(
+                    this.option.getKeeperBundle().getString("ALREADY_USED_NAME_KEEPER"));
+        }
+        keepers.put(keeper.getName(), keeper);
+    }
+
+    @Override
+    public void removeKeeper(AnimalKeeper keeper) {
+        this.keepers.remove(keeper.getName());
     }
 
     /**
@@ -403,10 +486,10 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public double grade() throws UnknownNameException {
+    public double grade() throws UnknownNameException, EmptyNameException {
         this.grade = 0.0;
         for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-            this.grade += entry.getValue().wellBeing();
+            this.grade += entry.getValue().wellBeing(findAnimalKeeperByPaddock(entry.getValue()));
         }
         return this.grade;
     }
@@ -497,6 +580,12 @@ public class Zoo implements IZoo {
     public Map<String, Specie> getSpecies(SaveImpl.FriendSave friend) {
         friend.hashCode();
         return this.species;
+    }
+
+    @Override
+    public Map<String, AnimalKeeper> getAnimalKeepers(SaveImpl.FriendSave friend) {
+        friend.hashCode();
+        return this.keepers;
     }
 
     @Override

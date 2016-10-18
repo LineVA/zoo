@@ -7,6 +7,7 @@ import exception.name.EmptyNameException;
 import exception.name.NameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 import launch.options.Option;
 import lombok.Getter;
@@ -16,6 +17,7 @@ import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.FeedingAttributes;
+import zoo.animal.personality.PersonalityAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
@@ -23,6 +25,7 @@ import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
 import zoo.animal.wellbeing.WellBeing;
 import zoo.animal.wellbeing.WellBeingImpl;
+import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.IPaddock;
 import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
@@ -74,6 +77,11 @@ public class AnimalImpl implements Animal {
     // actual is given by the number of animal is the paddock.
     private final TerritoryAttributes optimalTerritory;
 
+    /**
+     * There is no notion of optimal in personality
+     */
+    private final PersonalityAttributes personality;
+
     public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex,
             int age, Option option)
             throws IncorrectDataException, EmptyNameException, NameException, IncorrectLoadException {
@@ -97,6 +105,7 @@ public class AnimalImpl implements Animal {
         this.actualDiet = Diet.NONE.getId();
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
+        this.personality = drawPersonality();
         this.wB = new WellBeingImpl(
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
@@ -120,6 +129,7 @@ public class AnimalImpl implements Animal {
         this.actualDiet = Diet.NONE.getId();
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
+        this.personality = drawPersonality();
         this.age = this.sex.isFemale()
                 ? this.actualReproduction.getFemaleMaturityAge()
                 : this.actualReproduction.getMaleMaturityAge();
@@ -139,7 +149,7 @@ public class AnimalImpl implements Animal {
             FeedingAttributes actualFeeding, int diet,
             ReproductionAttributes reproduction,
             LifeSpanLightAttributes life, SocialAttributes social,
-            TerritoryAttributes territory, Option option)
+            TerritoryAttributes territory, PersonalityAttributes personality, Option option)
             throws IncorrectDataException, EmptyNameException, NameException {
         this.option = option;
         this.specie = spec;
@@ -161,6 +171,7 @@ public class AnimalImpl implements Animal {
             throw new IncorrectDataException(
                     this.option.getAnimalBundle().getString("TOO_YOUNG"));
         }
+        this.personality = personality;
         this.wB = new WellBeingImpl(
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
@@ -245,6 +256,11 @@ public class AnimalImpl implements Animal {
                 getTerritorySize().gaussianDouble());
     }
 
+    private PersonalityAttributes drawPersonality(){
+        Random rand = new Random();
+        return new PersonalityAttributes(rand.nextDouble());
+    }
+    
     /**
      * Compute if the animal is mature by comparing its age and the age age of
      * sexual maturity for its sex
@@ -295,6 +311,7 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("ACT_FEEDING_ATT") + this.actualFeeding.toStringByLanguage(option));
         info.add(bundle.getString("OPT_TERRITORY_ATT") + this.optimalTerritory.toStringByLanguage(option));
         info.add(bundle.getString("TERRITORY_SIZE") + this.paddock.computeSize());
+        info.add(bundle.getString("PERSONALITY_ATT") + this.personality.toStringByLanguage(option));
         return info;
     }
 
@@ -304,10 +321,10 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public double wellBeing() throws UnknownNameException {
+    public double wellBeing(ArrayList<AnimalKeeper> keepers) throws UnknownNameException {
         AnimalsAttributes attributes = new AnimalsAttributes(this.optimalBiome, this.optimalFeeding,
-                this.actualFeeding, this.actualDiet, this.optimalSocial, this.optimalTerritory);
-        this.wellBeing = wB.computeWellBeing(attributes, paddock, specie);
+                this.actualFeeding, this.actualDiet, this.optimalSocial, this.optimalTerritory, this.personality);
+        this.wellBeing = wB.computeWellBeing(attributes, paddock, specie, keepers);
         return this.wellBeing;
     }
 
@@ -488,5 +505,10 @@ public class AnimalImpl implements Animal {
     public int getDiet(SaveImpl.FriendSave save) {
         save.hashCode();
         return this.actualDiet;
+    }
+    
+    @Override 
+    public PersonalityAttributes getPersonality(SaveImpl.FriendSave save){
+        return this.personality;
     }
 }

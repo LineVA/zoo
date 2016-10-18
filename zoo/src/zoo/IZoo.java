@@ -18,6 +18,7 @@ import zoo.animal.feeding.Diet;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
+import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.IPaddock;
 import zoo.paddock.PaddockCoordinates;
 import zoo.paddock.biome.Biome;
@@ -49,23 +50,37 @@ public interface IZoo {
 
     public ArrayList<String> listPaddock(Specie specie);
 
+    public ArrayList<String> listAnimalKeeper();
+
+    public void addKeeper(String name) 
+            throws AlreadyUsedNameException, EmptyNameException, NameException;
+
+    public void addKeeper(AnimalKeeper keeper) throws AlreadyUsedNameException;
+    
+    public void removeKeeper(AnimalKeeper keeper);
+
     public ArrayList<PaddockCoordinates> map() throws IncorrectDimensionsException;
 
     public int evaluate();
 
-//    public ArrayList<String> death() throws UnknownNameException;
     public ArrayList<String> birth() 
             throws AlreadyUsedNameException, IncorrectDataException, NameException, IncorrectLoadException;
 
-    public IPaddock findPaddockByName(String paddockName) throws EmptyNameException, UnknownNameException;
 
-    public Specie findSpecieByScientificName(String specieName) throws EmptyNameException, UnknownNameException;
+    public IPaddock findPaddockByName(String paddockName)
+            throws EmptyNameException, UnknownNameException;
 
-    public Specie findSpecieByName(String specieName) throws EmptyNameException, UnknownNameException;
-//    public void setBiome(String paddockName, String biomeName)
-//            throws UnknownNameException, EmptyNameException;
+    public AnimalKeeper findAnimalKeeperByName(String keeperName)
+            throws EmptyNameException, UnknownNameException;
 
-    public Animal findAnimalByName(String animalName) throws UnknownNameException, EmptyNameException;
+    public Specie findSpecieByScientificName(String specieName)
+            throws EmptyNameException, UnknownNameException;
+
+    public Specie findSpecieByName(String specieName)
+            throws EmptyNameException, UnknownNameException;
+
+    public Animal findAnimalByName(String animalName)
+            throws UnknownNameException, EmptyNameException;
 
     public ArrayList<Animal> listAnimal(IPaddock paddock, LightSpecie specie,
             Sex sex, Diet diet, Biome biome) throws UnknownNameException;
@@ -74,7 +89,7 @@ public interface IZoo {
 
     public ArrayList<String> ageing() throws IncorrectDataException, NameException, IncorrectLoadException;
 
-    public double grade() throws UnknownNameException;
+    public double grade() throws UnknownNameException, EmptyNameException;
 
     public ArrayList<String> info();
 
@@ -104,6 +119,8 @@ public interface IZoo {
 
     public Map<String, IPaddock> getPaddocks(SaveImpl.FriendSave friend);
 
+    public Map<String, AnimalKeeper> getAnimalKeepers(SaveImpl.FriendSave friend);
+
     public Map<String, Specie> getSpecies(SaveImpl.FriendSave friend);
 
     public int getMonthsPerEvaluation(SaveImpl.FriendSave friend);
@@ -113,5 +130,7 @@ public interface IZoo {
     public int getHorizon(SaveImpl.FriendSave friend);
 
     public Option getOption(SaveImpl.FriendSave friend);
+
+    public void evolveAnimalKeepers();
 
 }

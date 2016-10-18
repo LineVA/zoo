@@ -3,6 +3,7 @@ package backup.save;
 import exception.name.EmptyNameException;
 import java.io.FileOutputStream;
 import java.util.HashMap;
+import java.util.Map;
 import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -12,8 +13,11 @@ import zoo.IZoo;
 import zoo.animal.Animal;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.FeedingAttributes;
+import zoo.animal.personality.PersonalityAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
+import zoo.animalKeeper.AnimalKeeper;
+import zoo.animalKeeper.TaskPaddock;
 import zoo.paddock.IPaddock;
 import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
@@ -48,6 +52,7 @@ public class SaveImpl implements Save {
         Element zooEl = createElementZoo(zoo);
         org.jdom2.Document doc = new Document(zooEl);
         zooEl.addContent(createElementPaddocks(zoo));
+        zooEl.addContent(createElementKeepers(zoo));
         //  zooEl.addContent(createElementAnimals(zoo));
         saveInFile(doc, createFileName(fileName));
     }
@@ -87,6 +92,90 @@ public class SaveImpl implements Save {
         return new Attribute(name, value);
     }
 
+    private Element createElementKeepers(IZoo zoo) {
+        Element el = new Element("animalKeepers");
+        zoo.getAnimalKeepers(friendSave).entrySet().stream().forEach((keeper) -> {
+            el.addContent(createElementKeeper((AnimalKeeper) keeper.getValue()));
+        });
+        return el;
+    }
+
+    private Element createElementKeeper(AnimalKeeper keeper) {
+        Element el = new Element("animalKeeper");
+        el.setAttribute(createAttribute("name", keeper.getName(friendSave)));
+        el.addContent(createElementTimedPaddocks(keeper.getTimedPaddocks(friendSave)));
+        el.addContent(createElementTimedTasksPerPaddock(keeper.getTimedTaskPerPaddock(friendSave)));
+        el.addContent(createElementManagedFamilies(keeper.getManagedFamilies(friendSave)));
+        el.addContent(createElementManagedTasks(keeper.getManagedTasks(friendSave)));
+        return el;
+    }
+
+    private Element createElementTimedPaddocks(Map<IPaddock, Double> timedPaddocks) {
+        Element el = new Element("timedPaddocks");
+        for (HashMap.Entry<IPaddock, Double> entry : timedPaddocks.entrySet()) {
+            el.addContent(createElementTimedPaddock(entry.getKey().getName(friendSave), entry.getValue()));
+        }
+        return el;
+    }
+
+    private Element createElementTimedTasksPerPaddock(Map<TaskPaddock, Double> timedTasksPerPaddock) {
+        Element el = new Element("timedTasksPerPaddock");
+        for (HashMap.Entry<TaskPaddock, Double> entry : timedTasksPerPaddock.entrySet()) {
+            el.addContent(createElementTimedTaskPerPaddock(
+                    entry.getKey().getPaddock().getName(friendSave),
+                    entry.getKey().getTask(),
+                    entry.getValue()));
+        }
+        return el;
+    }
+
+    private Element createElementManagedFamilies(Map<Integer, Double> managedFamilies) {
+        Element el = new Element("managedFamilies");
+        for (HashMap.Entry<Integer, Double> entry : managedFamilies.entrySet()) {
+            el.addContent(createElementManagedFamily(
+                    entry.getKey(), entry.getValue()));
+        }
+        return el;
+    }
+
+    private Element createElementManagedTasks(Map<Integer, Double> managedTasks) {
+        Element el = new Element("managedTasks");
+        for (HashMap.Entry<Integer, Double> entry : managedTasks.entrySet()) {
+            el.addContent(createElementManagedTask(
+                    entry.getKey(), entry.getValue()));
+        }
+        return el;
+    }
+
+    private Element createElementTimedPaddock(String name, Double time) {
+        Element el = new Element("timedPaddock");
+        el.addContent(createElementWithText("paddock", name));
+        el.addContent(createElementWithText("time", Double.toString(time)));
+        return el;
+    }
+
+    private Element createElementTimedTaskPerPaddock(String name, int task, Double time) {
+        Element el = new Element("timedTaskPerPaddock");
+        el.addContent(createElementWithText("paddock", name));
+        el.addContent(createElementWithText("task", Integer.toString(task)));
+        el.addContent(createElementWithText("time", Double.toString(time)));
+        return el;
+    }
+
+    private Element createElementManagedFamily(int family, Double time) {
+        Element el = new Element("managedFamily");
+        el.addContent(createElementWithText("family", Integer.toString(family)));
+        el.addContent(createElementWithText("time", Double.toString(time)));
+        return el;
+    }
+
+    private Element createElementManagedTask(int task, Double time) {
+        Element el = new Element("managedTask");
+        el.addContent(createElementWithText("task", Integer.toString(task)));
+        el.addContent(createElementWithText("time", Double.toString(time)));
+        return el;
+    }
+
     private Element createElementPaddocks(IZoo zoo) {
         Element el = new Element("paddocks");
         zoo.getPaddocks(friendSave).entrySet().stream().forEach((pad) -> {
@@ -122,12 +211,19 @@ public class SaveImpl implements Save {
         el.addContent(createElementWithText("specie", animal.getSpecie(friendSave).getNames().getScientificName()));
         el.addContent(createElementWithText("sex", Integer.toString(animal.getSex(friendSave).getId())));
         el.addContent(createElementWithText("age", String.valueOf(animal.getAge(friendSave))));
+        el.addContent(createElementPersonalityAttributes(animal.getPersonality(friendSave)));
         el.addContent(createElementOptimalFeedingAttributes(animal.getOptimalFeeding(friendSave)));
         el.addContent(createElementActualFeedingAttributes(animal, animal.getActualFeeding(friendSave)));
         el.addContent(createElementReproductionAttributes(animal.getActualReproduction(friendSave)));
         el.addContent(createElementLifeSpanAttributes(animal.getActualLifeSpan(friendSave)));
         el.addContent(createElementSocialAttributes(animal.getOptimalSocial(friendSave)));
         el.addContent(createElementTeritoryAttributes(animal.getOptimalTerritory(friendSave)));
+        return el;
+    }
+    
+    private Element createElementPersonalityAttributes(PersonalityAttributes att) {
+        Element el = new Element("personality");
+        el.addContent(createElementWithText("bravery", String.valueOf(att.getBravery())));
         return el;
     }
 

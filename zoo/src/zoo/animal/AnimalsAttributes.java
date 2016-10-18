@@ -2,6 +2,7 @@ package zoo.animal;
 
 import zoo.animal.feeding.FeedingAttributes;
 import lombok.Getter;
+import zoo.animal.personality.PersonalityAttributes;
 import zoo.animal.social.SocialAttributes;
 import zoo.paddock.TerritoryAttributes;
 import zoo.paddock.biome.BiomeAttributes;
@@ -29,15 +30,20 @@ public class AnimalsAttributes implements Cloneable {
 
     @Getter
     private final TerritoryAttributes optimalTerritory;
+    
+    @Getter
+    private final PersonalityAttributes personality;
 
     public AnimalsAttributes(BiomeAttributes biome, FeedingAttributes optimalFeeding,
-            FeedingAttributes actualFeeding, int diet, SocialAttributes social, TerritoryAttributes territory) {
+            FeedingAttributes actualFeeding, int diet, SocialAttributes social, TerritoryAttributes territory,
+            PersonalityAttributes personality) {
         this.optimalBiome = biome;
         this.optimalFeeding = optimalFeeding;
         this.actualFeeding = actualFeeding;
         this.optimalSocial = social;
         this.optimalTerritory = territory;
         this.actualDiet = diet;
+        this.personality = personality;
     }
 
     @Override

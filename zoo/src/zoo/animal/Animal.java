@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.FeedingAttributes;
+import zoo.animal.personality.PersonalityAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
+import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.IPaddock;
 import zoo.paddock.TerritoryAttributes;
 
@@ -30,12 +32,12 @@ public interface Animal {
 
     public void ageing(int monthsPerEvaluation);
 
-    public double wellBeing() throws UnknownNameException;
+    public double wellBeing(ArrayList<AnimalKeeper> keepers) throws UnknownNameException;
 
     public boolean isFromTheSameSpecie(Specie specie);
 
     public boolean isFromTheSameSpecie(LightSpecie specie);
-    
+
     public boolean hasTheSameDiet(Diet diet);
 
     public ArrayList<Animal> findRoommatesOfTheSameSpecie();
@@ -89,5 +91,7 @@ public interface Animal {
     public TerritoryAttributes getOptimalTerritory(SaveImpl.FriendSave save);
 
     public int getDiet(SaveImpl.FriendSave friend);
+
+    public PersonalityAttributes getPersonality(SaveImpl.FriendSave friend);
 
 }
