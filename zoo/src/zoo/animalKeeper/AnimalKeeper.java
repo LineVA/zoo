@@ -20,10 +20,14 @@ public interface AnimalKeeper {
             throws IncorrectDataException;
 
     public String getName();
-    
+
     public Map<IPaddock, Double> getTimedPaddocks();
-    
+
     public ArrayList<String> info() throws UnknownNameException;
+
+    public void removeTimedTasksPerPaddock(ArrayList<TaskPaddock> tasksPaddock);
+
+    public void removeTimedPaddocks(ArrayList<IPaddock> paddocks);
 
     /**
      * Getters for the back up
