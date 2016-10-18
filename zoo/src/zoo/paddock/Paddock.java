@@ -17,7 +17,6 @@ import java.util.ResourceBundle;
 import launch.options.Option;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.TreeMap;
 import zoo.BirthObservable;
 import zoo.NameVerifications;
 import zoo.animal.Animal;
