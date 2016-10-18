@@ -44,7 +44,8 @@ public abstract class CommandManager {
                 new LsTask(play),
                 new LsAnimalKeeper(play), new DetailAnimalKeeper(play),
                 new AddTimedPaddocks(play), new CreateAnimalKeeper(play), 
-                new AddTimedTasksPerPaddock(play), new RemoveAnimalKeeper(play));
+                new AddTimedTasksPerPaddock(play), new RemoveAnimalKeeper(play),
+                new RemoveTimedPaddocks(play));
     }
 
     public abstract String run(String cmd);
