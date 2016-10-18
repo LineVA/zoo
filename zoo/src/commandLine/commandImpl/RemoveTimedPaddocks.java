@@ -1,12 +1,9 @@
 package commandLine.commandImpl;
 
 import commandLine.Command;
-import exception.IncorrectDataException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import launch.play.Play;
 import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.IPaddock;
