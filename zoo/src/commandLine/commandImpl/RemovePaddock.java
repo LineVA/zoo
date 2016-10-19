@@ -39,7 +39,7 @@ public class RemovePaddock implements Command {
             this.play.getZoo().removePaddock(pad);
             this.success = true;
             return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
-                    .getString("ANIMAL_REMOVE_SUCCESS"), TypeReturn.SUCCESS);
+                    .getString("PADDOCK_REMOVE_SUCCESS"), TypeReturn.SUCCESS);
         } catch (EmptyNameException | UnknownNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
