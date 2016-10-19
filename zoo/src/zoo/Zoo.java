@@ -243,17 +243,6 @@ public class Zoo implements IZoo {
         return list;
     }
 
-    @Override
-    public ArrayList<String> listAnimalKeeper(IPaddock paddock) {
-        ArrayList<String> list = new ArrayList<>();
-        for (HashMap.Entry<String, AnimalKeeper> entry : this.keepers.entrySet()) {
-            if (paddock != null && entry.getValue().workInGivenPaddock(paddock)) {
-                list.add(entry.getKey());
-            }
-        }
-        return list;
-    }
-
     /**
      * Method used to find a paddock by its name
      *
@@ -294,9 +283,25 @@ public class Zoo implements IZoo {
             EmptyNameException {
         ArrayList<AnimalKeeper> list = new ArrayList<>();
         for (HashMap.Entry<String, AnimalKeeper> keeper : this.keepers.entrySet()) {
-            if (keeper.getValue().getTimedPaddocks().containsKey(paddock)) {
+            if (keeper.getValue().workInGivenPaddock(paddock)) {
                 list.add(keeper.getValue());
             }
+        }
+        return list;
+    }
+
+    @Override
+    public ArrayList<String> listAnimalKeeper(IPaddock paddock)
+            throws UnknownNameException, EmptyNameException{
+        ArrayList<String> list = new ArrayList<>();
+        if (paddock == null) {
+            for (HashMap.Entry<String, AnimalKeeper> entry : this.keepers.entrySet()) {
+                list.add(entry.getKey());
+            }
+        } else {
+            this.findAnimalKeeperByPaddock(paddock).forEach(item ->{
+                list.add(item.getName());
+            });
         }
         return list;
     }

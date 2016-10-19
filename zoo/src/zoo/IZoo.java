@@ -50,7 +50,8 @@ public interface IZoo {
 
     public ArrayList<String> listPaddock(Specie specie);
 
-    public ArrayList<String> listAnimalKeeper(IPaddock paddock);
+    public ArrayList<String> listAnimalKeeper(IPaddock paddock) 
+              throws UnknownNameException, EmptyNameException;
 
     public void addKeeper(String name) 
             throws AlreadyUsedNameException, EmptyNameException, NameException;
