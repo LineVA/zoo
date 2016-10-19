@@ -7,6 +7,7 @@ import commandLine.SplitDoubleQuotes;
 import commandLine.TypeReturn;
 import commandLine.commandImpl.CreateZoo;
 import commandLine.commandImpl.LoadZoo;
+import commandLine.commandImpl.Options;
 import static java.util.Arrays.asList;
 import launch.options.Option;
 import launch.play.Play;
@@ -24,7 +25,7 @@ public class FreeCommandManager extends CommandManager {
     public FreeCommandManager(Play play, Option option) {
         super(play, option);
         super.setFirstLine(super.getOption().getGeneralCmdBundle().getString("WELCOME"));
-        initialCommands = asList(new CreateZoo(play), new LoadZoo(play));
+        initialCommands = asList(new CreateZoo(play), new LoadZoo(play), new Options(play));
     }
 
     @Override
