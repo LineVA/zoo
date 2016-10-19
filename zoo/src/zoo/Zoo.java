@@ -244,10 +244,12 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<String> listAnimalKeeper() {
+    public ArrayList<String> listAnimalKeeper(IPaddock paddock) {
         ArrayList<String> list = new ArrayList<>();
         for (HashMap.Entry<String, AnimalKeeper> entry : this.keepers.entrySet()) {
-            list.add(entry.getKey());
+            if (paddock != null && entry.getValue().workInGivenPaddock(paddock)) {
+                list.add(entry.getKey());
+            }
         }
         return list;
     }
@@ -299,23 +301,23 @@ public class Zoo implements IZoo {
         return list;
     }
 
-    public void removePaddockFromKeepers(IPaddock paddock){
+    public void removePaddockFromKeepers(IPaddock paddock) {
         ArrayList<IPaddock> padList = new ArrayList<>();
         padList.add(paddock);
-        for(HashMap.Entry<String, AnimalKeeper> keeper : this.keepers.entrySet()){
+        for (HashMap.Entry<String, AnimalKeeper> keeper : this.keepers.entrySet()) {
             keeper.getValue().removeTimedPaddocks(padList);
         }
     }
-    
+
     @Override
     public void removePaddock(IPaddock paddock) {
         this.paddocks.remove(paddock.getName());
         paddock.removeFromNeightbourhood();
         this.removePaddockFromKeepers(paddock);
     }
-    
+
     @Override
-    public void addKeeper(String name) 
+    public void addKeeper(String name)
             throws AlreadyUsedNameException, EmptyNameException, NameException {
         NameVerifications.verify(name, this.option.getKeeperBundle());
         if (this.keepers.containsKey(name)) {
@@ -334,8 +336,8 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public void addKeeper(AnimalKeeper keeper) throws AlreadyUsedNameException{
-          if (this.keepers.containsKey(name)) {
+    public void addKeeper(AnimalKeeper keeper) throws AlreadyUsedNameException {
+        if (this.keepers.containsKey(name)) {
             throw new AlreadyUsedNameException(
                     this.option.getKeeperBundle().getString("ALREADY_USED_NAME_KEEPER"));
         }
@@ -382,7 +384,7 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<String> ageing() 
+    public ArrayList<String> ageing()
             throws IncorrectDataException, NameException, EmptyNameException, IncorrectLoadException {
         this.age += this.monthsPerEvaluation;
         return new Evaluation().ageing(this.paddocks, this.monthsPerEvaluation);
