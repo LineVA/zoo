@@ -72,6 +72,7 @@ Liste des commandes :
 > animalKeeper <name> [--remove|-r] [--timedTaskPerPaddock|-tTP|-tT] <paddock> <task1> ... <taskX> : 
         Suppression des affectations du soigneur <name> aux tâches 'task1' ... 'taskX' dans l'enclos 'paddock'
 > animalKeeper ls : Liste des soigneurs
+> animalKeeper ls [--paddock|-p]  <name> : Liste des soigneurs affectés à l'enclos 'name'
 > animalKeeper <name> : Détails du soigneur 'name' 
 
 > evaluate : Fin du tour, évaluation du zoo
