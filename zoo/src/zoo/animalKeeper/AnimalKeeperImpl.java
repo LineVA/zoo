@@ -195,8 +195,8 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     }
 
     private Double computeTasks(TaskPaddock taskPaddock) {
-        return this.timedPaddocks.get(taskPaddock.getPaddock()) / 100
-                * this.timedTaskPerPaddock.get(taskPaddock) / 100;
+        return this.timedPaddocks.get(taskPaddock.getPaddock()) / 100.0
+                * this.timedTaskPerPaddock.get(taskPaddock) / 100.0;
     }
 
     private void evaluateByTask() {
@@ -271,6 +271,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         for (IPaddock pad : paddocks) {
             if (this.timedPaddocks.containsKey(pad)) {
                 this.timedPaddocks.remove(pad);
+                this.removeAllTimedTaskForAPaddock(pad);
             }
         }
     }
