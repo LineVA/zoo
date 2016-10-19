@@ -29,6 +29,15 @@ public class WellBeingImpl implements WellBeing {
         this.diameter = diameter;
     }
 
+    /**
+     * @param attributes
+     * @param pad
+     * @param specie
+     * @param keepers
+     * @return keepers : the keepers who work in the paddock of the current
+     * animal
+     * @throws UnknownNameException
+     */
     @Override
     public double computeWellBeing(AnimalsAttributes attributes, IPaddock pad,
             Specie specie, ArrayList<AnimalKeeper> keepers)
@@ -37,7 +46,7 @@ public class WellBeingImpl implements WellBeing {
         wB += computeSocialWB(attributes.getOptimalSocial(), pad, specie);
         wB += computeTerritoryWB(attributes.getOptimalTerritory(), pad);
         wB += computeFoodWB(attributes.getActualDiet(), attributes.getOptimalFeeding(),
-                attributes.getActualFeeding(), specie);
+                attributes.getActualFeeding(), specie, keepers);
         wB = (wB / 3) * this.coefficient;
         wB += checkBiomeWB(pad, specie);
         wB += compatibilitiesWB(pad, specie);
@@ -59,7 +68,7 @@ public class WellBeingImpl implements WellBeing {
                 System.out.println("else");
                 wB -= computeInfluenceBravery(personality.getBravery(), keeper.getTimedPaddocks().get(paddock));
             }
-        }          
+        }
         System.out.println(wB);
         return wB;
     }
@@ -83,17 +92,17 @@ public class WellBeingImpl implements WellBeing {
     }
 
     private double computeFoodWB(int diet, FeedingAttributes optimalFeeding,
-            FeedingAttributes actualFeeding, Specie spec) {
+            FeedingAttributes actualFeeding, Specie spec, ArrayList<AnimalKeeper> keepers) {
         System.out.println("Food quantity : ");
-        if (spec.getDiets().contains(diet)) {
+        if (keepers.size() == 0 || !spec.getDiets().contains(diet)) {
+            System.out.println("Bad diet");
+            System.out.println(Compare.getMin());
+            return Compare.getMin();
+        } else {
             System.out.println("Good diet");
             double a = Compare.compare(optimalFeeding.getFoodQuantity(), actualFeeding.getFoodQuantity(), this.diameter);
             System.out.println(a);
             return a;
-        } else {
-            System.out.println("Bad diet");
-            System.out.println(Compare.getMin());
-            return Compare.getMin();
         }
     }
 
