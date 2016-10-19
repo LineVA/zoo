@@ -48,14 +48,6 @@ Liste des commandes :
 > animal <name> [--foodQuantity|-fq] <quantite> : Attribution de la quantité de nourriture 'quantite'
          à l'animal 'name'
 
-> conservation ls : Liste des statuts de conservation
-> sex ls : Liste des sexes
-> family ls : Liste des familles
-> biome ls : Liste des biomes
-> ecoregion ls : Liste des écorégions
-> size ls : Liste des tailles
-> diet ls : Liste des régimes
-
 > specie ls : Liste des espèces
 > specie ls [--paddock|-p] <name> : liste des espèces dans l'enclos 'name'
 > specie ls [--ecoregion|-e] 'id' : Liste des espèces selon l'écorégion d'identifiant 'id'
@@ -68,4 +60,27 @@ Liste des commandes :
 > specie <name> : Détails de l'espèce 'name
 > [doc|documentation] [wiki|wikipedia] 'name' : Ouverture de la page wikipedia de l'espèce de nom 'name'
 
+> animalKeeper create <name> : Création d'un soigneur de nom 'name' sans affectation
+> animalKeeper remove <name> : Suppression du soigneur 'name'
+> animalKeeper <name> [--timedPaddock|-tP] <paddock1> <time1> ... <paddockX> <timeX> : 
+        Affectation du soigneur <name> aux enclos 'paddock1' ... 'paddockX' avec les durées 'time1' ... 'timeX' 
+> animalKeeper <name> [--remove|-r] [--timedPaddock|-tP] <paddock1> ... <paddockX> : 
+        Suppression des affectations du soigneur <name> aux enclos 'paddock1' ... 'paddockX' 
+> animalKeeper <name> [--timedTaskPerPaddock|-tTP|-tT] <paddock> <task1> <time1> ... <taskX> <timeX> : 
+        Affectation du soigneur <name> aux tâches 'task1' ... 'taskX' avec les durées 'time1' ... 'timeX' 
+        dans l'enclos 'paddock'
+> animalKeeper <name> [--remove|-r] [--timedTaskPerPaddock|-tTP|-tT] <paddock> <task1> ... <taskX> : 
+        Suppression des affectations du soigneur <name> aux tâches 'task1' ... 'taskX' dans l'enclos 'paddock'
+> animalKeeper ls : Liste des soigneurs
+> animalKeeper <name> : Détails du soigneur 'name' 
+
 > evaluate : Fin du tour, évaluation du zoo
+
+> conservation ls : Liste des statuts de conservation
+> sex ls : Liste des sexes
+> family ls : Liste des familles
+> biome ls : Liste des biomes
+> ecoregion ls : Liste des écorégions
+> size ls : Liste des tailles
+> diet ls : Liste des régimes
+> task ls : Liste des tâches attribuables à un soigneur
