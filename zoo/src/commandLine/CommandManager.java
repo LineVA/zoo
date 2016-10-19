@@ -46,7 +46,8 @@ public abstract class CommandManager {
                 new LsAnimalKeeper(play), new DetailAnimalKeeper(play),
                 new AddTimedPaddocks(play), new CreateAnimalKeeper(play), 
                 new AddTimedTasksPerPaddock(play), new RemoveAnimalKeeper(play),
-                new RemoveTimedPaddocks(play), new RemoveTimedTasksPerPaddock(play));
+                new RemoveTimedPaddocks(play), new RemoveTimedTasksPerPaddock(play),
+                new Man(play));
     }
 
     public abstract ReturnExec run(String cmd);
