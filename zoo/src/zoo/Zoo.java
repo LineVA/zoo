@@ -301,7 +301,7 @@ public class Zoo implements IZoo {
         return list;
     }
 
-    public void removePaddockFromKeepers(IPaddock paddock) {
+    private void removePaddockFromKeepers(IPaddock paddock) {
         ArrayList<IPaddock> padList = new ArrayList<>();
         padList.add(paddock);
         for (HashMap.Entry<String, AnimalKeeper> keeper : this.keepers.entrySet()) {
