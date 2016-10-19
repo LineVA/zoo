@@ -267,31 +267,36 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     }
 
     @Override
-    public void removeTimedPaddocks(ArrayList<IPaddock> paddocks){
-        for(IPaddock pad : paddocks){
-            if(this.timedPaddocks.containsKey(pad)){
+    public void removeTimedPaddocks(ArrayList<IPaddock> paddocks) {
+        for (IPaddock pad : paddocks) {
+            if (this.timedPaddocks.containsKey(pad)) {
                 this.timedPaddocks.remove(pad);
             }
         }
     }
-    
-    private void removeAllTimedTaskForAPaddock(IPaddock paddock){
+
+    private void removeAllTimedTaskForAPaddock(IPaddock paddock) {
         ArrayList<TaskPaddock> tasksPaddockList = new ArrayList<>();
-        for(Task task : Task.values()){
+        for (Task task : Task.values()) {
             tasksPaddockList.add(new TaskPaddock(paddock, task.getId()));
         }
         removeTimedTasksPerPaddock(tasksPaddockList);
     }
-    
+
     @Override
-    public void removeTimedTasksPerPaddock(ArrayList<TaskPaddock> tasksPaddock){
-         for(TaskPaddock taskPad : tasksPaddock){
-            if(this.timedTaskPerPaddock.containsKey(taskPad)){
+    public void removeTimedTasksPerPaddock(ArrayList<TaskPaddock> tasksPaddock) {
+        for (TaskPaddock taskPad : tasksPaddock) {
+            if (this.timedTaskPerPaddock.containsKey(taskPad)) {
                 this.timedTaskPerPaddock.remove(taskPad);
             }
         }
     }
-    
+
+    @Override
+    public boolean workInGivenPaddock(IPaddock paddock) {
+        return this.timedPaddocks.containsKey(paddock);
+    }
+
     /**
      * Getters
      */

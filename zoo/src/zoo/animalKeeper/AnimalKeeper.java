@@ -28,6 +28,8 @@ public interface AnimalKeeper {
     public void removeTimedTasksPerPaddock(ArrayList<TaskPaddock> tasksPaddock);
 
     public void removeTimedPaddocks(ArrayList<IPaddock> paddocks);
+    
+    public boolean workInGivenPaddock(IPaddock paddock);
 
     /**
      * Getters for the back up
