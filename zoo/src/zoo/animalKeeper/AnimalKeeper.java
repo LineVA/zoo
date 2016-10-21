@@ -28,12 +28,21 @@ public interface AnimalKeeper {
     public void removeTimedTasksPerPaddock(ArrayList<TaskPaddock> tasksPaddock);
 
     public void removeTimedPaddocks(ArrayList<IPaddock> paddocks);
-    
+
     public boolean workInGivenPaddock(IPaddock paddock);
 
+    public boolean isMakingCleaningInThePaddock(IPaddock paddock);
+
+    public boolean isMakingFeedingInThePaddock(IPaddock paddock);
+
+    public boolean isMakingMedicalTrainingInThePaddock(IPaddock paddock);
+
+    public boolean isMakingEnrichmentInThePaddock(IPaddock paddock);
+    
     /**
      * Getters for the back up
      */
+
     public String getName(SaveImpl.FriendSave friend);
 
     public Map<IPaddock, Double> getTimedPaddocks(SaveImpl.FriendSave friend);

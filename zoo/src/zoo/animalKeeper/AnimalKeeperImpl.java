@@ -298,6 +298,26 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return this.timedPaddocks.containsKey(paddock);
     }
 
+    @Override
+    public boolean isMakingCleaningInThePaddock(IPaddock paddock) {
+        return this.timedTaskPerPaddock.containsKey(new TaskPaddock(paddock, Task.CLEANING.getId()));
+    }
+
+    @Override
+    public boolean isMakingFeedingInThePaddock(IPaddock paddock) {
+        return this.timedTaskPerPaddock.containsKey(new TaskPaddock(paddock, Task.FEEDING.getId()));
+    }
+
+    @Override
+    public boolean isMakingMedicalTrainingInThePaddock(IPaddock paddock) {
+        return this.timedTaskPerPaddock.containsKey(new TaskPaddock(paddock, Task.MEDICALTRAINING.getId()));
+    }
+
+    @Override
+    public boolean isMakingEnrichmentInThePaddock(IPaddock paddock) {
+        return this.timedTaskPerPaddock.containsKey(new TaskPaddock(paddock, Task.ENRICHMENT.getId()));
+    }
+
     /**
      * Getters
      */
