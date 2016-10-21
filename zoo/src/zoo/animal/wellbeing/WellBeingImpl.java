@@ -46,7 +46,7 @@ public class WellBeingImpl implements WellBeing {
         wB += computeSocialWB(attributes.getOptimalSocial(), pad, specie);
         wB += computeTerritoryWB(attributes.getOptimalTerritory(), pad);
         wB += computeFoodWB(attributes.getActualDiet(), attributes.getOptimalFeeding(),
-                attributes.getActualFeeding(), specie, keepers);
+                attributes.getActualFeeding(), specie, keepers, pad);
         wB = (wB / 3) * this.coefficient;
         wB += checkBiomeWB(pad, specie);
         wB += compatibilitiesWB(pad, specie);
@@ -91,18 +91,28 @@ public class WellBeingImpl implements WellBeing {
         return a;
     }
 
+    private boolean isAKeeperForFeeding(IPaddock paddock, ArrayList<AnimalKeeper> keepers) {
+        for (AnimalKeeper keeper : keepers) {
+            if (keeper.isMakingFeedingInThePaddock(paddock)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private double computeFoodWB(int diet, FeedingAttributes optimalFeeding,
-            FeedingAttributes actualFeeding, Specie spec, ArrayList<AnimalKeeper> keepers) {
+            FeedingAttributes actualFeeding, Specie spec,
+            ArrayList<AnimalKeeper> keepers, IPaddock paddock) {
         System.out.println("Food quantity : ");
-        if (keepers.size() == 0 || !spec.getDiets().contains(diet)) {
-            System.out.println("Bad diet");
-            System.out.println(Compare.getMin());
-            return Compare.getMin();
-        } else {
+        if (isAKeeperForFeeding(paddock, keepers) && spec.getDiets().contains(diet)) {
             System.out.println("Good diet");
             double a = Compare.compare(optimalFeeding.getFoodQuantity(), actualFeeding.getFoodQuantity(), this.diameter);
             System.out.println(a);
             return a;
+        } else {
+            System.out.println("Bad diet");
+            System.out.println(Compare.getMin());
+            return Compare.getMin();
         }
     }
 
