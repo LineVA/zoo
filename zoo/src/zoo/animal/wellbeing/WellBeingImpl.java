@@ -46,7 +46,8 @@ public class WellBeingImpl implements WellBeing {
         wB += computeSocialWB(attributes.getOptimalSocial(), pad, specie);
         wB += computeTerritoryWB(attributes.getOptimalTerritory(), pad);
         wB += computeFoodWB(attributes.getActualDiet(), attributes.getOptimalFeeding(),
-                attributes.getActualFeeding(), specie, keepers, pad);
+                attributes.getActualFeeding(), specie, keepers, pad
+        );
         wB = (wB / 3) * this.coefficient;
         wB += checkBiomeWB(pad, specie);
         wB += compatibilitiesWB(pad, specie);
