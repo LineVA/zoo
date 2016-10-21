@@ -2,6 +2,7 @@ package backup.load;
 
 import exception.IncorrectDataException;
 import exception.IncorrectDimensionsException;
+import exception.IncorrectLoadException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
@@ -87,12 +88,12 @@ public class LoadImpl implements Load {
     }
 
     private void addFakeKeeperToZoo(IZoo zoo, FakeAnimalKeeper keeper, Option option)
-            throws EmptyNameException, UnknownNameException, NameException {
+            throws EmptyNameException, UnknownNameException, NameException, IncorrectLoadException {
         this.verifyManagedFamilies(keeper.getManagedFamilies());
         this.verifyManagedTasks(keeper.getManagedTasks());
         zoo.addKeeper(keeper.convertToAnimalKeeper(
                 verifyPaddock(zoo, keeper.getTimedPaddocks()),
-                verifyTaskPaddock(zoo, keeper.getTimedTasksPerPaddock()), option));
+                verifyTaskPaddock(zoo, keeper.getTimedTasksPerPaddock(), keeper.getTimedPaddocks()), option));
     }
 
     private Map<IPaddock, Double> verifyPaddock(IZoo zoo, Map<String, Double> timedPaddocks)
@@ -106,12 +107,16 @@ public class LoadImpl implements Load {
     }
 
     private Map<TaskPaddock, Double> verifyTaskPaddock(
-            IZoo zoo, Map<FakeTaskPaddock, Double> timedTasksPerPaddock)
-            throws UnknownNameException, EmptyNameException {
+            IZoo zoo, Map<FakeTaskPaddock, Double> timedTasksPerPaddock,
+            Map<String, Double> timedPaddocks)
+            throws UnknownNameException, EmptyNameException, IncorrectLoadException {
         HashMap<TaskPaddock, Double> realMap = new HashMap<>();
         for (HashMap.Entry<FakeTaskPaddock, Double> entry : timedTasksPerPaddock.entrySet()) {
             IPaddock pad = zoo.findPaddockByName(entry.getKey().getPaddock());
             Task.UNKNOWN.findById(entry.getKey().getTask());
+             if(!timedPaddocks.containsKey(pad.getName())){
+                throw new IncorrectLoadException("");
+            }
             realMap.put(new TaskPaddock(pad, entry.getKey().getTask()), entry.getValue());
         }
         return realMap;
