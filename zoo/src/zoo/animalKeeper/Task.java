@@ -18,7 +18,7 @@ public enum Task {
     MEDICALTRAINING(4);
     
     @Getter 
-    int id;
+    private int id;
     
     Task(int id){
         this.id = id;
