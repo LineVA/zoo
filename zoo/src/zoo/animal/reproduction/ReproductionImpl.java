@@ -118,7 +118,6 @@ public class ReproductionImpl implements Reproduction {
      * same paddock as the female Now : the first mature male of the same specie
      * is selected
      *
-     * @param spec the expected specie of the male
      * @param animals the animals in the paddock
      * @return the male if one has been found, null else.
      */

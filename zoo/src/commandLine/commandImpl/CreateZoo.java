@@ -55,7 +55,7 @@ public class CreateZoo implements Command {
     }
 
     /**
-     * zoo create <name> <width> <height>
+     * zoo create 
      *
      * @param cmd
      * @return

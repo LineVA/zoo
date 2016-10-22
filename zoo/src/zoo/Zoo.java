@@ -249,7 +249,7 @@ public class Zoo implements IZoo {
      * @param name the name to search
      * @return the paddock if it exists
      * @throws UnknownNameException if the p
-     * @throws exception.name.EmptyNameExceptionaddock does not exist
+     * @throws EmptyNameException
      */
     @Override
     public IPaddock findPaddockByName(String name) throws UnknownNameException,
