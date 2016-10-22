@@ -3,6 +3,7 @@ package zoo.animal.reproduction;
 import java.util.ResourceBundle;
 import launch.options.Option;
 import lombok.Getter;
+import utils.Utils;
 
 /**
  *
@@ -31,7 +32,7 @@ public class ReproductionAttributes {
         ResourceBundle bundle = option.getReproductionBundle();
         info += bundle.getString("AGE_FEMALE") + this.femaleMaturityAge + ", ";
         info += bundle.getString("AGE_MALE") + this.maleMaturityAge + ", ";
-        info += bundle.getString("GESTATION_FREQUENCY") + this.gestationFrequency + ", ";
+        info += bundle.getString("GESTATION_FREQUENCY") + Utils.truncate(this.gestationFrequency) + ", ";
         info += bundle.getString("LITTER_SIZE") + this.litterSize;
         return info;
     }

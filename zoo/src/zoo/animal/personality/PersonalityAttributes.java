@@ -2,6 +2,7 @@ package zoo.animal.personality;
 
 import launch.options.Option;
 import lombok.Getter;
+import utils.Utils;
 
 /**
  *
@@ -18,7 +19,7 @@ public class PersonalityAttributes {
     
      public String toStringByLanguage(Option option){
         String toStr = "";
-        toStr += option.getPersonalityBundle().getString("BRAVERY") + this.bravery;
+        toStr += option.getPersonalityBundle().getString("BRAVERY") + Utils.truncate(this.bravery);
         return toStr;
     }
 }

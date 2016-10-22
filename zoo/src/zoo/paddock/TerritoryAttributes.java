@@ -23,6 +23,6 @@ public class TerritoryAttributes {
     }
 
     public String toStringByLanguage(Option option) {
-        return option.getTerritoryBundle().getString("TERRITORY_SIZE") + this.territorySize;
+        return option.getTerritoryBundle().getString("TERRITORY_SIZE") + Utils.truncate(this.territorySize);
     }
 }
