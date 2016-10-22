@@ -1,6 +1,8 @@
 package zoo.paddock;
 
-import exception.name.NameException;
+import exception.name.EmptyNameException;
+import exception.name.UnauthorizedNameException;
+import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
@@ -21,7 +23,8 @@ public class PaddockBuilder {
     private Option _option;
     private int _biome = 0;
 
-    public IPaddock buildPaddock() throws NameException {
+    public IPaddock buildPaddock() throws UnauthorizedNameException, 
+            EmptyNameException, UnknownNameException {
         return new Paddock(_name, _coordinates, _neightbourhood, _animals,
                 _biome, _paddockType, _option);
     }

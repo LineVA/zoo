@@ -3,6 +3,8 @@ package zoo.paddock;
 import exception.IncorrectDimensionsException;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
+import exception.name.UnauthorizedNameException;
+import exception.name.UnknownNameException;
 import lombok.Getter;
 import launch.options.Option;
 
@@ -37,19 +39,16 @@ public class FakePaddock {
         this.biome = biome;
         this.paddockType = paddockType;
     }
-    
-    public IPaddock convertToPaddock(Option option) 
-            throws IncorrectDimensionsException, EmptyNameException, NameException{
-//        IPaddock tmpPad =  new Paddock(this.name, new PaddockCoordinates(this.x, this.y, 
-//                this.width, this.height), new ArrayList<>(), this.paddockType, option);
-//        tmpPad.setBiome(Integer.toString(this.biome));
-//        return tmpPad;
+
+    public IPaddock convertToPaddock(Option option)
+            throws IncorrectDimensionsException, EmptyNameException, 
+            UnauthorizedNameException, UnknownNameException {
         return new PaddockBuilder().name(this.name)
-                .coordinates(new  PaddockCoordinates(this.x, this.y, this.width, this.height))
-                        .paddockType(this.paddockType)
-                        .option(option)
-                        .biome(this.biome)
-                        .buildPaddock();
+                .coordinates(new PaddockCoordinates(this.x, this.y, this.width, this.height))
+                .paddockType(this.paddockType)
+                .option(option)
+                .biome(this.biome)
+                .buildPaddock();
     }
 
 }

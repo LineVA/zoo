@@ -2,7 +2,9 @@ package zoo.animalKeeper;
 
 import backup.save.SaveImpl;
 import exception.IncorrectDataException;
+import exception.name.EmptyNameException;
 import exception.name.NameException;
+import exception.name.UnauthorizedNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +35,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     public AnimalKeeperImpl(String name, Map<IPaddock, Double> timedPaddocks,
             Map<TaskPaddock, Double> timedTaskPerPaddock,
             Map<Integer, Double> managedFamilies, Map<Integer, Double> managedTasks,
-            Option option) throws NameException {
+            Option option) throws EmptyNameException, UnauthorizedNameException {
         this.option = option;
         NameVerifications.verify(name, this.option.getKeeperBundle());
         this.name = name;

@@ -6,6 +6,7 @@ import exception.IncorrectLoadException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
+import exception.name.UnauthorizedNameException;
 import exception.name.UnknownNameException;
 import java.io.File;
 import java.io.IOException;
@@ -38,11 +39,7 @@ public class LoadImpl implements Load {
 
     /**
      * The main method
-     *
-     * @param fileName
-     * @return
-     * @throws IOException
-     * @throws JDOMException
+     * @see backup.load.Load
      */
     @Override
     public IZoo loadZoo(String fileName) throws IOException, JDOMException {
@@ -69,34 +66,73 @@ public class LoadImpl implements Load {
         return zoo;
     }
 
+    /**
+     * Add a real animal to the zoo according the value of a fake animal
+     * @param zoo the zoo in which we add the animal
+     * @param animal the fake animal to add
+     * @param option the option of the animal
+     * @throws EmptyNameException if a fake animal has an empty name
+     * @throws UnknownNameException  if a fake animal has an unknown specie or paddock
+     * @throws IncorrectDataException if the age is lower than zero
+     * @throws AlreadyUsedNameException if an animal is already called by the name of the fake animal
+     */
     private void addFakeAnimalToZoo(IZoo zoo, FakeAnimal animal, Option option)
             throws EmptyNameException, UnknownNameException, IncorrectDataException,
-            AlreadyUsedNameException, NameException {
+            AlreadyUsedNameException, UnauthorizedNameException{
         Specie spec = zoo.findSpecieByScientificName(animal.getSpecie());
         IPaddock pad = zoo.findPaddockByName(animal.getPaddock());
         Sex sex = Sex.UNKNOWN.findById(animal.getSex());
         Diet diet = Diet.NONE.findDietById(animal.getDiet());
         pad.addAnimal(animal.convertToAnimal(spec, pad, sex, option));
     }
-
+    
+    /**
+     * Add a real paddock to the zoo according the value of a fake paddock
+     * @param zoo the zoo in which we add the paddock
+     * @param paddock the fake paddock to add
+     * @param option the option of the paddock
+     * @throws IncorrectDimensionsException
+     * @throws AlreadyUsedNameException if a paddock is already called by the name of the fake paddock
+     * @throws EmptyNameException if the fake paddock has an empty name
+     * @throws NameException 
+     */
     private void addFakePaddockToZoo(IZoo zoo, FakePaddock paddock, Option option)
-            throws IncorrectDimensionsException,
-            AlreadyUsedNameException, EmptyNameException, NameException {
+            throws IncorrectDimensionsException, UnknownNameException,
+            AlreadyUsedNameException, EmptyNameException, UnauthorizedNameException{
        Biome.NONE.findById(paddock.getBiome());
        PaddockTypes.UNKNOWN.findById(paddock.getPaddockType());
         zoo.addPaddock(paddock.convertToPaddock(option));
     }
 
+    /**
+     * Add a real animal keeper to the zoo according the value of a fake animal keeper
+     * @param zoo the zoo in which we add the animal keeper
+     * @param keeper the fake animal keeper to add
+     * @param option the options of the animal keeper
+     * @throws EmptyNameException 
+     * @throws UnknownNameException
+     * @throws NameException
+     * @throws IncorrectLoadException 
+     */
     private void addFakeKeeperToZoo(IZoo zoo, FakeAnimalKeeper keeper, Option option)
-            throws EmptyNameException, UnknownNameException, NameException, IncorrectLoadException {
+            throws EmptyNameException, UnknownNameException, IncorrectLoadException, 
+            AlreadyUsedNameException, UnauthorizedNameException {
         this.verifyManagedFamilies(keeper.getManagedFamilies());
         this.verifyManagedTasks(keeper.getManagedTasks());
         zoo.addKeeper(keeper.convertToAnimalKeeper(
-                verifyPaddock(zoo, keeper.getTimedPaddocks()),
-                verifyTaskPaddock(zoo, keeper.getTimedTasksPerPaddock(), keeper.getTimedPaddocks()), option));
+                verifyPaddockForKeeper(zoo, keeper.getTimedPaddocks()),
+                verifyTaskPaddockForKeeper(zoo, keeper.getTimedTasksPerPaddock(), keeper.getTimedPaddocks()), option));
     }
 
-    private Map<IPaddock, Double> verifyPaddock(IZoo zoo, Map<String, Double> timedPaddocks)
+    /**
+     * Verify the acceptability of the existence of the paddocks according to their names :
+     * @param zoo the zoo in chich we work
+     * @param timedPaddocks the set of paddocks to check
+     * @return a map of real timed paddocks
+     * @throws EmptyNameException if a member of the map has an empty name
+     * @throws UnknownNameException if a member of the map has an unknown name in the zoo
+     */
+    private Map<IPaddock, Double> verifyPaddockForKeeper(IZoo zoo, Map<String, Double> timedPaddocks)
             throws EmptyNameException, UnknownNameException {
         HashMap<IPaddock, Double> realMap = new HashMap<>();
         for (HashMap.Entry<String, Double> entry : timedPaddocks.entrySet()) {
@@ -106,7 +142,17 @@ public class LoadImpl implements Load {
         return realMap;
     }
 
-    private Map<TaskPaddock, Double> verifyTaskPaddock(
+    /**
+     * Verify the acceptability of the timed tasks poer paddock for a keeper
+     * @param zoo the zoo in which we work
+     * @param timedTasksPerPaddock the map of timed tasks per paddock to check
+     * @param timedPaddocks the already existing timed paddocks (identified by String)
+     * @return a map we the real timed tasks per paddock
+     * @throws UnknownNameException if a paddock or a task has an unknown name for this zoo
+     * @throws EmptyNameException if a paddock has an empty name
+     * @throws IncorrectLoadException if a timed task  refers to an unknown paddock
+     */
+    private Map<TaskPaddock, Double> verifyTaskPaddockForKeeper(
             IZoo zoo, Map<FakeTaskPaddock, Double> timedTasksPerPaddock,
             Map<String, Double> timedPaddocks)
             throws UnknownNameException, EmptyNameException, IncorrectLoadException {
@@ -122,15 +168,25 @@ public class LoadImpl implements Load {
         return realMap;
     }
     
+    /**
+     * Verify the aceptability of the managed families for a keeper
+     * @param managed the map of managed families to check 
+     * @throws UnknownNameException if a family does not correspond to a real family
+     */
     private void verifyManagedFamilies(Map<Integer, Double> managed)
-            throws EmptyNameException, UnknownNameException {
+            throws UnknownNameException {
          for (HashMap.Entry<Integer, Double> entry : managed.entrySet()) {
              Family.UNKNOWN.findById(entry.getKey());
         }
     }
     
+        /**
+     * Verify the aceptability of the managed tasks for a keeper
+     * @param managed the map of managed tasks to check 
+     * @throws UnknownNameException if a task does not correspond to a real task
+     */
      private void verifyManagedTasks(Map<Integer, Double> managed)
-            throws EmptyNameException, UnknownNameException {
+            throws UnknownNameException {
          for (HashMap.Entry<Integer, Double> entry : managed.entrySet()) {
              Task.UNKNOWN.findById(entry.getKey());
         }

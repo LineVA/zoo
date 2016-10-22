@@ -13,6 +13,7 @@ import backup.save.SaveImpl;
 import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
+import exception.name.UnauthorizedNameException;
 import java.util.Map;
 import java.util.ResourceBundle;
 import launch.options.Option;
@@ -75,7 +76,7 @@ public class Paddock implements IPaddock {
      */
     public Paddock(String name, PaddockCoordinates coor,
             ArrayList<IPaddock> neightbourhood, Map<String, Animal> animals, int biome, int paddockType, Option option)
-            throws EmptyNameException, NameException {
+            throws EmptyNameException, UnknownNameException, UnauthorizedNameException {
         this.option = option;
         NameVerifications.verify(name, this.option.getPaddockBundle());
         this.name = name;

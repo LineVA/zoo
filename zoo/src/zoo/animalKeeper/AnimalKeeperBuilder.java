@@ -1,6 +1,8 @@
 package zoo.animalKeeper;
 
+import exception.name.EmptyNameException;
 import exception.name.NameException;
+import exception.name.UnauthorizedNameException;
 import java.util.HashMap;
 import java.util.Map;
 import launch.options.Option;
@@ -19,7 +21,8 @@ public class AnimalKeeperBuilder {
     private Map<Integer, Double> _managedTasks = new HashMap<>();
     private Option _option;
 
-    public AnimalKeeper buildAnimalKeeper() throws NameException {
+    public AnimalKeeper buildAnimalKeeper()
+            throws EmptyNameException, UnauthorizedNameException {
         return new AnimalKeeperImpl(_name, _timedPaddocks, _timedTaskPerPaddock,
                 _managedFamilies, _managedTasks, _option);
     }

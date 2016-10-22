@@ -3,8 +3,10 @@ package zoo.animal;
 import backup.save.SaveImpl;
 import exception.IncorrectDataException;
 import exception.IncorrectLoadException;
+import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
+import exception.name.UnauthorizedNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -150,7 +152,8 @@ public class AnimalImpl implements Animal {
             ReproductionAttributes reproduction,
             LifeSpanLightAttributes life, SocialAttributes social,
             TerritoryAttributes territory, PersonalityAttributes personality, Option option)
-            throws IncorrectDataException, EmptyNameException, NameException {
+            throws IncorrectDataException, EmptyNameException, 
+            UnknownNameException, UnauthorizedNameException {
         this.option = option;
         this.specie = spec;
         NameVerifications.verify(name, this.option.getAnimalBundle());

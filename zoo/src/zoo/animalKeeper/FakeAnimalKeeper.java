@@ -1,6 +1,8 @@
 package zoo.animalKeeper;
 
+import exception.name.EmptyNameException;
 import exception.name.NameException;
+import exception.name.UnauthorizedNameException;
 import java.util.Map;
 import launch.options.Option;
 import lombok.Getter;
@@ -33,7 +35,8 @@ public class FakeAnimalKeeper {
     }
     
     public AnimalKeeper convertToAnimalKeeper(Map<IPaddock, Double> timedPads, 
-            Map<TaskPaddock, Double> timedTasks, Option option) throws NameException{
+            Map<TaskPaddock, Double> timedTasks, Option option) 
+            throws EmptyNameException, UnauthorizedNameException {
         return new AnimalKeeperBuilder().name(this.name)
                 .timedPaddocks(timedPads)
                 .timedTaskPerPaddock(timedTasks)

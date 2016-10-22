@@ -1,7 +1,7 @@
 package zoo;
 
 import exception.name.EmptyNameException;
-import exception.name.NameException;
+import exception.name.UnauthorizedNameException;
 import java.util.ResourceBundle;
 
 /**
@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 public class NameVerifications {
 
     public static boolean verify(String name, ResourceBundle bundle)
-            throws EmptyNameException, NameException{
+            throws EmptyNameException, UnauthorizedNameException{
         return isNotEmpty(name, bundle) && isNotLs(name, bundle); 
     }
     
@@ -23,9 +23,10 @@ public class NameVerifications {
         return true;
     }
     
-    public static boolean isNotLs(String name, ResourceBundle bundle) throws NameException{
+    public static boolean isNotLs(String name, ResourceBundle bundle) 
+            throws UnauthorizedNameException{
           if(name.equalsIgnoreCase("ls")){
-            throw new NameException(bundle.getString("LS_NAME"));
+            throw new UnauthorizedNameException(bundle.getString("LS_NAME"));
         }
         return true;
     }
