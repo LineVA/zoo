@@ -230,8 +230,8 @@ public class SaveImpl implements Save {
      * Create element "timedTaskPerPaddock"
      *
      * @param timedPAddocks the timedTaskPerPaddock to save
-     * @return the element "timedTaskPerPaddock" with three fields : task, paddock and
-     * time
+     * @return the element "timedTaskPerPaddock" with three fields : task,
+     * paddock and time
      *
      */
     private Element createElementTimedTaskPerPaddock(String name, int task, Double time) {
@@ -256,7 +256,7 @@ public class SaveImpl implements Save {
         return el;
     }
 
-       /**
+    /**
      * Create element "managedTask"
      *
      * @param timedPAddocks the managedTask to save
@@ -272,6 +272,7 @@ public class SaveImpl implements Save {
 
     /**
      * Create an element "paddocks"
+     *
      * @param zoo the zoo grom where we want to save the paddocks
      * @return an element "paddocks" containing a list of elements "paddock"
      */
@@ -285,6 +286,7 @@ public class SaveImpl implements Save {
 
     /**
      * Create an element "paddock"
+     *
      * @param pad the paddock to save
      * @return an element paddock with an attribute "name" and six fields :
      * biome, paddockType, x, y , width and height
@@ -304,6 +306,7 @@ public class SaveImpl implements Save {
 
     /**
      * Create an element "animals"
+     *
      * @param pad the paddock in where the animals to save are
      * @return an element "animals" containing a list of elements "animal"
      */
@@ -317,10 +320,11 @@ public class SaveImpl implements Save {
 
     /**
      * Create an element "animal"
+     *
      * @param animal the animal to save
-     * @return an element "animal" with an attribute "name" and ten sub-elements :
-     * specie, sex, age, personality, optimalFeeding, actualFeeding, actualReproduction, actualLifeSpan, 
-     * optimalSocial and optimalTeritory
+     * @return an element "animal" with an attribute "name" and ten sub-elements
+     * : specie, sex, age, personality, optimalFeeding, actualFeeding,
+     * actualReproduction, actualLifeSpan, optimalSocial and optimalTeritory
      */
     private Element createElementAnimal(Animal animal) {
         Element el = new Element("animal");
@@ -340,20 +344,27 @@ public class SaveImpl implements Save {
 
     /**
      * Create an element "personality"
+     *
      * @param att the personality attributes to save
      * @return an element "personality" with a sub-element "bravery"
      */
     private Element createElementPersonalityAttributes(PersonalityAttributes att) {
         Element el = new Element("personality");
         el.addContent(createElementWithText("bravery", String.valueOf(att.getBravery())));
+        el.addContent(createElementWithText("intelligence", String.valueOf(att.getIntelligence())));
+        el.addContent(createElementWithText("meticulousness", String.valueOf(att.getMeticulousness())));
+        el.addContent(createElementWithText("greed", String.valueOf(att.getGreed())));
+        el.addContent(createElementWithText("curiosity", String.valueOf(att.getCuriosity())));
         return el;
     }
 
     /**
      * Create an element "optimalBiomeAttributes"
+     *
      * @param att the biome attributes to save
-     * @return an element "optimalBiomeAttributes" with eight sub-elements : 
-     * night- and dayTemperature, pluviometry, treeDensity, treeHeight, drop, humidity and waterSalinity
+     * @return an element "optimalBiomeAttributes" with eight sub-elements :
+     * night- and dayTemperature, pluviometry, treeDensity, treeHeight, drop,
+     * humidity and waterSalinity
      */
     private Element createElementBiomeAttributes(BiomeAttributes att) {
         Element el = new Element("optimalBiomeAttributes");
@@ -370,6 +381,7 @@ public class SaveImpl implements Save {
 
     /**
      * Create an element "optimalFeedingAttributes"
+     *
      * @param att the attributes to save
      * @return an element "optimalFeedingAttributes with a sub-element quantity
      */
@@ -381,9 +393,11 @@ public class SaveImpl implements Save {
 
     /**
      * Create an element "actualFeedingAttributes"
+     *
      * @param animal the current animal
      * @param att the attributes to save
-     * @return an element "actualFeedingAttributes" with two sub-elements : diet and foodQuantity
+     * @return an element "actualFeedingAttributes" with two sub-elements : diet
+     * and foodQuantity
      */
     private Element createElementActualFeedingAttributes(Animal animal, FeedingAttributes att) {
         Element el = new Element("actualFeedingAttributes");
@@ -394,8 +408,10 @@ public class SaveImpl implements Save {
 
     /**
      * Create an element "actualLifeSpanAttributes"
+     *
      * @param att the attributes to save
-     * @return an element "actualLifeSpanAttributes" with one sub-element : lifeSpan
+     * @return an element "actualLifeSpanAttributes" with one sub-element :
+     * lifeSpan
      */
     private Element createElementLifeSpanAttributes(LifeSpanLightAttributes att) {
         Element el = new Element("actualLifeSpanAttributes");
@@ -405,9 +421,10 @@ public class SaveImpl implements Save {
 
     /**
      * Create an element "actualReproductionAttributes"
+     *
      * @param att the attributes to save
-     * @return an element "actualReproductionsAttributes" with four sub-elements : 
-     * femaleMaturityAge, maleMaturityAge, gestationFrequency and litterSize
+     * @return an element "actualReproductionsAttributes" with four sub-elements
+     * : femaleMaturityAge, maleMaturityAge, gestationFrequency and litterSize
      */
     private Element createElementReproductionAttributes(ReproductionAttributes att) {
         Element el = new Element("actualReproductionAttributes");
@@ -420,8 +437,10 @@ public class SaveImpl implements Save {
 
     /**
      * Create an element "optimalSocialAttributes"
+     *
      * @param att the attributes to save
-     * @return an element "optimalSocialAttributes" with one sub-element : groupSize
+     * @return an element "optimalSocialAttributes" with one sub-element :
+     * groupSize
      */
     private Element createElementSocialAttributes(SocialAttributes att) {
         Element el = new Element("optimalSocialAttributes");
@@ -431,8 +450,10 @@ public class SaveImpl implements Save {
 
     /**
      * Create an element "optimalTerritoryAttributes"
+     *
      * @param att the attributes to save
-     * @return an element "optimalTerritoryAttributes" with one sub-element : territorySize
+     * @return an element "optimalTerritoryAttributes" with one sub-element :
+     * territorySize
      */
     private Element createElementTeritoryAttributes(TerritoryAttributes att) {
         Element el = new Element("optimalTerritoryAttributes");
@@ -442,6 +463,7 @@ public class SaveImpl implements Save {
 
     /**
      * Create an element "dimensions"
+     *
      * @param width the width to save
      * @param height the height to save
      * @return an element "dimensions" with two sub-elements : width and height
@@ -455,8 +477,9 @@ public class SaveImpl implements Save {
 
     /**
      * Create an element zoo
+     *
      * @param zoo the zoo to save
-     * @return an element zoo with an attribute "name" and five sub-elements : 
+     * @return an element zoo with an attribute "name" and five sub-elements :
      * dimensions, age, monthsPerEvaluation, horizon and language
      */
     private Element createElementZoo(IZoo zoo) {
