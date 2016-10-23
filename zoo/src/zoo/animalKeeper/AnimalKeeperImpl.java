@@ -221,6 +221,16 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return info;
     }
 
+    private double computeTimedTaskUnknown(IPaddock paddock) {
+        double unknownTask = 100.0;
+        for (Map.Entry<TaskPaddock, Double> timedTask : this.timedTaskPerPaddock.entrySet()) {
+            if (timedTask.getKey().getPaddock().equals(paddock)) {
+                unknownTask -= timedTask.getValue();
+            }
+        }
+        return unknownTask;
+    }
+
     private String formattingPaddocks() {
         String info = "";
         String subsInfo = "";
@@ -230,9 +240,10 @@ public class AnimalKeeperImpl implements AnimalKeeper {
             subsInfo += " : ";
             for (HashMap.Entry<TaskPaddock, Double> entry2 : this.timedTaskPerPaddock.entrySet()) {
                 if (entry2.getKey().getPaddock().equals(entry.getKey())) {
-                    subsInfo += "tâche " + entry2.getKey().getTask() + " : " + entry2.getValue() + "% ; ";
+                    subsInfo += "tâche " + entry2.getKey().getTask() + " : " + entry2.getValue() + "%, ";
                 }
             }
+            subsInfo += "tâche " + Task.UNKNOWN.getId() + " : " + computeTimedTaskUnknown(entry.getKey()) + "%";
             info += subsInfo + "\n";
         }
         return info;
