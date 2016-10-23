@@ -261,7 +261,7 @@ public class AnimalImpl implements Animal {
 
     private PersonalityAttributes drawPersonality(){
         Random rand = new Random();
-        return new PersonalityAttributes(rand.nextDouble());
+        return new PersonalityAttributes(rand.nextDouble(), null, null, null, null);
     }
     
     /**

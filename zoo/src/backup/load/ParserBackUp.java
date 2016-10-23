@@ -275,7 +275,7 @@ public class ParserBackUp {
     private PersonalityAttributes parserPersonalityAttributes(Element tmpAnimalEl) {
         Element persoEl = tmpAnimalEl.getChild("personality");
         return new PersonalityAttributes(
-                Double.parseDouble(persoEl.getChildText("bravery")));
+                Double.parseDouble(persoEl.getChildText("bravery")), null, null, null, null);
     }
 
     /**
