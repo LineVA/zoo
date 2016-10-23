@@ -29,21 +29,19 @@ public class TutorialPlayImpl_1 extends Play {
     public ArrayList<Step> buildTutorial() {
         ArrayList<Step> steps = new ArrayList<>();
         // Step 1 : creation of the zoo
-        steps.add(new Step(super.getZoo(), "First, you need to create your zoo", "Help","Success1") {
+        steps.add(new Step(super.getZoo(), "First, you need to create your zoo", "Help","") {
                     @Override
                     public boolean check() {
                         return super.getZoo().getName(friendScenario) != null;
                     }
                 });
         // Step 2 : creation of a paddock
-//        steps.add(new Step(super.getZoo(), "Second, you need to create a paddock", "You have created a paddock",
-//                "Use the command '[pad|paddock] create <name> <x> <y> <width> <height>' ; "
-//                + "see 'man paddock' for more information") {
-//                    @Override
-//                    public boolean check() {
-//                        return super.getZoo().getPaddocks(friendScenario).size() == 1;
-//                    }
-//                });
+        steps.add(new Step(super.getZoo(), "Second, you need to create a paddock", "Help", "") {
+                    @Override
+                    public boolean check() {
+                        return super.getZoo().getPaddocks(friendScenario).size() == 1;
+                    }
+                });
         // Step 3 : first animal
 //        steps.add(new Step(super.getZoo(), "Third, you can install an animal in this paddock ;"
 //                + " to see the list of available species, you can use the command '[specie|spec] ls'",
