@@ -8,25 +8,23 @@ import zoo.IZoo;
  * @author doyenm
  */
 public abstract class Step {
-    
+
     @Getter
-    String previous;
+    String initial;
+    @Getter
+    String help;
     @Getter
     String success;
-    @Getter
-    String fail;
-    
+
     @Getter
     IZoo zoo;
-    
-    public Step(IZoo zoo, String previous, String success, String fail){
+
+    public Step(IZoo zoo, String previous, String help, String success) {
         this.zoo = zoo;
-        this.previous = previous;
+        this.initial = previous;
+        this.help = help;
         this.success = success;
-        this.fail = fail;
     }
 
     public abstract boolean check();
 }
-
-
