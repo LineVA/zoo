@@ -64,16 +64,29 @@ public class WellBeingImpl implements WellBeing {
             ArrayList<AnimalKeeper> keepers, IPaddock paddock) {
         System.out.println("Personality");
         double wB = 0.0;
+        TaskPaddock taskPaddock;
         for (AnimalKeeper keeper : keepers) {
             wB += influenceOfBravery(personality.getBravery(), keeper.getTimedPaddocks(), paddock);
-            wB += influenceOfSpecificTrait(personality.getIntelligence(),
-                    keeper.getTimedTaskPerPaddock().get(new TaskPaddock(paddock, Task.MEDICALTRAINING.getId())));
-            wB += influenceOfSpecificTrait(personality.getMeticulousness(),
-                    keeper.getTimedTaskPerPaddock().get(new TaskPaddock(paddock, Task.CLEANING.getId())));
-            wB += influenceOfSpecificTrait(personality.getGreed(),
-                    keeper.getTimedTaskPerPaddock().get(new TaskPaddock(paddock, Task.FEEDING.getId())));
-            wB += influenceOfSpecificTrait(personality.getCuriosity(),
-                    keeper.getTimedTaskPerPaddock().get(new TaskPaddock(paddock, Task.ENRICHMENT.getId())));
+            taskPaddock = new TaskPaddock(paddock, Task.MEDICALTRAINING.getId());
+            if (keeper.getTimedTaskPerPaddock().containsKey(taskPaddock)) {
+                wB += influenceOfSpecificTrait(personality.getIntelligence(),
+                        keeper.getTimedTaskPerPaddock().get(taskPaddock));
+            }
+            taskPaddock = new TaskPaddock(paddock, Task.CLEANING.getId());
+            if (keeper.getTimedTaskPerPaddock().containsKey(taskPaddock)) {
+                wB += influenceOfSpecificTrait(personality.getMeticulousness(),
+                        keeper.getTimedTaskPerPaddock().get(taskPaddock));
+            }
+            taskPaddock = new TaskPaddock(paddock, Task.FEEDING.getId());
+            if (keeper.getTimedTaskPerPaddock().containsKey(taskPaddock)) {
+                wB += influenceOfSpecificTrait(personality.getGreed(),
+                        keeper.getTimedTaskPerPaddock().get(taskPaddock));
+            }
+            taskPaddock = new TaskPaddock(paddock, Task.ENRICHMENT.getId());
+            if (keeper.getTimedTaskPerPaddock().containsKey(taskPaddock)) {
+                wB += influenceOfSpecificTrait(personality.getCuriosity(),
+                        keeper.getTimedTaskPerPaddock().get(taskPaddock));
+            }
         }
         System.out.println(wB);
         return wB;
