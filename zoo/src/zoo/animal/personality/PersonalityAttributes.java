@@ -32,10 +32,10 @@ public class PersonalityAttributes {
 
     public String toStringByLanguage(Option option) {
         String toStr = "";
-        toStr += option.getPersonalityBundle().getString("BRAVERY") + Utils.truncate(this.bravery);
-        toStr += option.getPersonalityBundle().getString("INTELLIGENCE") + Utils.truncate(this.intelligence);
-        toStr += option.getPersonalityBundle().getString("METICULOUSNESS") + Utils.truncate(this.meticulousness);
-        toStr += option.getPersonalityBundle().getString("GREED") + Utils.truncate(this.greed);
+        toStr += option.getPersonalityBundle().getString("BRAVERY") + Utils.truncate(this.bravery) + ", ";
+        toStr += option.getPersonalityBundle().getString("INTELLIGENCE") + Utils.truncate(this.intelligence) + ", ";
+        toStr += option.getPersonalityBundle().getString("METICULOUSNESS") + Utils.truncate(this.meticulousness) + ", ";
+        toStr += option.getPersonalityBundle().getString("GREED") + Utils.truncate(this.greed) + ", ";
         toStr += option.getPersonalityBundle().getString("CURIOSITY") + Utils.truncate(this.curiosity);
         return toStr;
     }
