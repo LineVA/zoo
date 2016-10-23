@@ -38,14 +38,13 @@ public class SaveImpl implements Save {
         private FriendSave() {
         }
     }
+    /**
+     * Instanciation of the private class
+     */
     private static final FriendSave friendSave = new FriendSave();
 
     /**
-     * The main method to create the expected file and save the zoo inside
-     *
-     * @param zoo
-     * @param fileName
-     * @throws EmptyNameException
+     * @see zoo.backup.save.Save
      */
     @Override
     public void saveZoo(IZoo zoo, String fileName) throws EmptyNameException {
@@ -53,7 +52,6 @@ public class SaveImpl implements Save {
         org.jdom2.Document doc = new Document(zooEl);
         zooEl.addContent(createElementPaddocks(zoo));
         zooEl.addContent(createElementKeepers(zoo));
-        //  zooEl.addContent(createElementAnimals(zoo));
         saveInFile(doc, createFileName(fileName));
     }
 
@@ -61,7 +59,8 @@ public class SaveImpl implements Save {
      * Create the name of the file in wich the backup of the zoo will be saved
      *
      * @param name the name of the file without any extension
-     * @return the name of the file with the extension ".xml"
+     * @return the name of the file with the extension ".xml" in the repository
+     * "./gameBackUps"
      * @throws EmptyNameException throws if the name is empty
      */
     private String createFileName(String name) throws EmptyNameException {
@@ -71,27 +70,51 @@ public class SaveImpl implements Save {
         return "./gameBackUps/" + name + ".xml";
     }
 
+    /**
+     * Save a Document into a file
+     *
+     * @param doc the Document to save
+     * @param fichier the name of the file
+     */
     private void saveInFile(Document doc, String fichier) {
         try {
-            //On utilise ici un affichage classique avec getPrettyFormat()
             XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
-            //Remarquez qu'il suffit simplement de créer une instance de FileOutputStream
-            //avec en argument le nom du fichier pour effectuer la sérialisation.
             sortie.output(doc, new FileOutputStream(fichier));
         } catch (java.io.IOException e) {
         }
     }
 
+    /**
+     * Create an element with text
+     *
+     * @param nam the name of the element
+     * @param value the texxt of this element
+     * @return the element
+     */
     private Element createElementWithText(String name, String value) {
         Element el = new Element(name);
         el.setText(value);
         return el;
     }
 
+    /**
+     * Create an attribute
+     *
+     * @param name the name of the attribute
+     * @param value the value of the attribute
+     * @return the attribute
+     */
     private Attribute createAttribute(String name, String value) {
         return new Attribute(name, value);
     }
 
+    /**
+     * Create element "animalKeepers" with the information of the keepers
+     *
+     * @param zoo the zoo from where the keepers come
+     * @return the element "animalKeeper" with all the information about the
+     * keeper
+     */
     private Element createElementKeepers(IZoo zoo) {
         Element el = new Element("animalKeepers");
         zoo.getAnimalKeepers(friendSave).entrySet().stream().forEach((keeper) -> {
@@ -100,6 +123,13 @@ public class SaveImpl implements Save {
         return el;
     }
 
+    /**
+     * Create element "animalKeeper" with the information of a keeper
+     *
+     * @param zoo the zoo from where the keeper come
+     * @return the element "animalKeeper" with all the infoirmation about the
+     * current keeper
+     */
     private Element createElementKeeper(AnimalKeeper keeper) {
         Element el = new Element("animalKeeper");
         el.setAttribute(createAttribute("name", keeper.getName(friendSave)));
@@ -110,6 +140,14 @@ public class SaveImpl implements Save {
         return el;
     }
 
+    /**
+     * Create element "timedPaddocks" with the information the timed paddocks of
+     * a keeper
+     *
+     * @param timedPAddocks the timedPaddocks to save
+     * @return the element "timedPAddocks" with all the information about the
+     * current timedPaddocks
+     */
     private Element createElementTimedPaddocks(Map<IPaddock, Double> timedPaddocks) {
         Element el = new Element("timedPaddocks");
         for (HashMap.Entry<IPaddock, Double> entry : timedPaddocks.entrySet()) {
@@ -118,6 +156,15 @@ public class SaveImpl implements Save {
         return el;
     }
 
+    /**
+     * Create element "timedTasksPerPaddock" with the information the timed
+     * tasks per paddock of a keeper
+     *
+     * @param timedPAddocks the timedTasksPerPaddock to save
+     * @return the element "timedTasksPerPaddock" with all the information about
+     * the current timed tasks per paddock
+     *
+     */
     private Element createElementTimedTasksPerPaddock(Map<TaskPaddock, Double> timedTasksPerPaddock) {
         Element el = new Element("timedTasksPerPaddock");
         for (HashMap.Entry<TaskPaddock, Double> entry : timedTasksPerPaddock.entrySet()) {
@@ -129,6 +176,15 @@ public class SaveImpl implements Save {
         return el;
     }
 
+    /**
+     * Create element "managedFamilies" with the information the managed
+     * families of a keeper
+     *
+     * @param timedPAddocks the managedFamilies to save
+     * @return the element "tmanagedFamilies" with all the information about the
+     * current managed families
+     *
+     */
     private Element createElementManagedFamilies(Map<Integer, Double> managedFamilies) {
         Element el = new Element("managedFamilies");
         for (HashMap.Entry<Integer, Double> entry : managedFamilies.entrySet()) {
@@ -138,6 +194,15 @@ public class SaveImpl implements Save {
         return el;
     }
 
+    /**
+     * Create element "managedTasks" with the information the managed tasks of a
+     * keeper
+     *
+     * @param timedPAddocks the managedTasks to save
+     * @return the element "managedTasks" with all the information about the
+     * current managed tasks
+     *
+     */
     private Element createElementManagedTasks(Map<Integer, Double> managedTasks) {
         Element el = new Element("managedTasks");
         for (HashMap.Entry<Integer, Double> entry : managedTasks.entrySet()) {
@@ -147,6 +212,13 @@ public class SaveImpl implements Save {
         return el;
     }
 
+    /**
+     * Create element "timedPaddock"
+     *
+     * @param timedPAddocks the timedPaddock to save
+     * @return the element "timedPaddock" with two fields : paddock and time
+     *
+     */
     private Element createElementTimedPaddock(String name, Double time) {
         Element el = new Element("timedPaddock");
         el.addContent(createElementWithText("paddock", name));
@@ -154,6 +226,14 @@ public class SaveImpl implements Save {
         return el;
     }
 
+    /**
+     * Create element "timedTaskPerPaddock"
+     *
+     * @param timedPAddocks the timedTaskPerPaddock to save
+     * @return the element "timedTaskPerPaddock" with three fields : task, paddock and
+     * time
+     *
+     */
     private Element createElementTimedTaskPerPaddock(String name, int task, Double time) {
         Element el = new Element("timedTaskPerPaddock");
         el.addContent(createElementWithText("paddock", name));
@@ -162,6 +242,13 @@ public class SaveImpl implements Save {
         return el;
     }
 
+    /**
+     * Create element "managedFamily"
+     *
+     * @param timedPAddocks the managedFamily to save
+     * @return the element "managedFamily" with two fields : family and grade
+     *
+     */
     private Element createElementManagedFamily(int family, Double time) {
         Element el = new Element("managedFamily");
         el.addContent(createElementWithText("family", Integer.toString(family)));
@@ -169,6 +256,13 @@ public class SaveImpl implements Save {
         return el;
     }
 
+       /**
+     * Create element "managedTask"
+     *
+     * @param timedPAddocks the managedTask to save
+     * @return the element "managedTask" with two fields : task and grade
+     *
+     */
     private Element createElementManagedTask(int task, Double time) {
         Element el = new Element("managedTask");
         el.addContent(createElementWithText("task", Integer.toString(task)));
@@ -220,7 +314,7 @@ public class SaveImpl implements Save {
         el.addContent(createElementTeritoryAttributes(animal.getOptimalTerritory(friendSave)));
         return el;
     }
-    
+
     private Element createElementPersonalityAttributes(PersonalityAttributes att) {
         Element el = new Element("personality");
         el.addContent(createElementWithText("bravery", String.valueOf(att.getBravery())));
