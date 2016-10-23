@@ -275,7 +275,11 @@ public class ParserBackUp {
     private PersonalityAttributes parserPersonalityAttributes(Element tmpAnimalEl) {
         Element persoEl = tmpAnimalEl.getChild("personality");
         return new PersonalityAttributes(
-                Double.parseDouble(persoEl.getChildText("bravery")), null, null, null, null);
+                Double.parseDouble(persoEl.getChildText("bravery")),
+                Double.parseDouble(persoEl.getChildText("intelligence")),
+                Double.parseDouble(persoEl.getChildText("meticulousness")), 
+                Double.parseDouble(persoEl.getChildText("greed")), 
+                Double.parseDouble(persoEl.getChildText("curiosity")));
     }
 
     /**
