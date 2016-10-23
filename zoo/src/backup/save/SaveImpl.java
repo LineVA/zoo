@@ -270,6 +270,11 @@ public class SaveImpl implements Save {
         return el;
     }
 
+    /**
+     * Create an element "paddocks"
+     * @param zoo the zoo grom where we want to save the paddocks
+     * @return an element "paddocks" containing a list of elements "paddock"
+     */
     private Element createElementPaddocks(IZoo zoo) {
         Element el = new Element("paddocks");
         zoo.getPaddocks(friendSave).entrySet().stream().forEach((pad) -> {
@@ -278,6 +283,12 @@ public class SaveImpl implements Save {
         return el;
     }
 
+    /**
+     * Create an element "paddock"
+     * @param pad the paddock to save
+     * @return an element paddock with an attribute "name" and six fields :
+     * biome, paddockType, x, y , width and height
+     */
     private Element createElementPaddock(IPaddock pad) {
         Element el = new Element("paddock");
         el.setAttribute(createAttribute("name", pad.getName(friendSave)));
@@ -291,6 +302,11 @@ public class SaveImpl implements Save {
         return el;
     }
 
+    /**
+     * Create an element "animals"
+     * @param pad the paddock in where the animals to save are
+     * @return an element "animals" containing a list of elements "animal"
+     */
     private Element createElementAnimals(IPaddock pad) {
         Element el = new Element("animals");
         for (HashMap.Entry<String, Animal> animal : pad.getAnimals(friendSave).entrySet()) {
@@ -299,6 +315,13 @@ public class SaveImpl implements Save {
         return el;
     }
 
+    /**
+     * Create an element "animal"
+     * @param animal the animal to save
+     * @return an element "animal" with an attribute "name" and ten sub-elements :
+     * specie, sex, age, personality, optimalFeeding, actualFeeding, actualReproduction, actualLifeSpan, 
+     * optimalSocial and optimalTeritory
+     */
     private Element createElementAnimal(Animal animal) {
         Element el = new Element("animal");
         el.setAttribute(createAttribute("name", animal.getName(friendSave)));
@@ -315,12 +338,23 @@ public class SaveImpl implements Save {
         return el;
     }
 
+    /**
+     * Create an element "personality"
+     * @param att the personality attributes to save
+     * @return an element "personality" with a sub-element "bravery"
+     */
     private Element createElementPersonalityAttributes(PersonalityAttributes att) {
         Element el = new Element("personality");
         el.addContent(createElementWithText("bravery", String.valueOf(att.getBravery())));
         return el;
     }
 
+    /**
+     * Create an element "optimalBiomeAttributes"
+     * @param att the biome attributes to save
+     * @return an element "optimalBiomeAttributes" with eight sub-elements : 
+     * night- and dayTemperature, pluviometry, treeDensity, treeHeight, drop, humidity and waterSalinity
+     */
     private Element createElementBiomeAttributes(BiomeAttributes att) {
         Element el = new Element("optimalBiomeAttributes");
         el.addContent(createElementWithText("nightTemperature", String.valueOf(att.getNightTemperature())));
@@ -334,12 +368,23 @@ public class SaveImpl implements Save {
         return el;
     }
 
+    /**
+     * Create an element "optimalFeedingAttributes"
+     * @param att the attributes to save
+     * @return an element "optimalFeedingAttributes with a sub-element quantity
+     */
     private Element createElementOptimalFeedingAttributes(FeedingAttributes att) {
         Element el = new Element("optimalFeedingAttributes");
         el.addContent(createElementWithText("quantity", String.valueOf(att.getFoodQuantity())));
         return el;
     }
 
+    /**
+     * Create an element "actualFeedingAttributes"
+     * @param animal the current animal
+     * @param att the attributes to save
+     * @return an element "actualFeedingAttributes" with two sub-elements : diet and foodQuantity
+     */
     private Element createElementActualFeedingAttributes(Animal animal, FeedingAttributes att) {
         Element el = new Element("actualFeedingAttributes");
         el.addContent(createElementWithText("diet", String.valueOf(animal.getDiet(friendSave))));
@@ -347,12 +392,23 @@ public class SaveImpl implements Save {
         return el;
     }
 
+    /**
+     * Create an element "actualLifeSpanAttributes"
+     * @param att the attributes to save
+     * @return an element "actualLifeSpanAttributes" with one sub-element : lifeSpan
+     */
     private Element createElementLifeSpanAttributes(LifeSpanLightAttributes att) {
         Element el = new Element("actualLifeSpanAttributes");
         el.addContent(createElementWithText("lifeSpan", String.valueOf(att.getLifeSpan())));
         return el;
     }
 
+    /**
+     * Create an element "actualReproductionAttributes"
+     * @param att the attributes to save
+     * @return an element "actualReproductionsAttributes" with four sub-elements : 
+     * femaleMaturityAge, maleMaturityAge, gestationFrequency and litterSize
+     */
     private Element createElementReproductionAttributes(ReproductionAttributes att) {
         Element el = new Element("actualReproductionAttributes");
         el.addContent(createElementWithText("femaleMaturityAge", String.valueOf(att.getFemaleMaturityAge())));
@@ -362,18 +418,34 @@ public class SaveImpl implements Save {
         return el;
     }
 
+    /**
+     * Create an element "optimalSocialAttributes"
+     * @param att the attributes to save
+     * @return an element "optimalSocialAttributes" with one sub-element : groupSize
+     */
     private Element createElementSocialAttributes(SocialAttributes att) {
         Element el = new Element("optimalSocialAttributes");
         el.addContent(createElementWithText("groupSize", String.valueOf(att.getGroupSize())));
         return el;
     }
 
+    /**
+     * Create an element "optimalTerritoryAttributes"
+     * @param att the attributes to save
+     * @return an element "optimalTerritoryAttributes" with one sub-element : territorySize
+     */
     private Element createElementTeritoryAttributes(TerritoryAttributes att) {
         Element el = new Element("optimalTerritoryAttributes");
         el.addContent(createElementWithText("territorySize", String.valueOf(att.getTerritorySize())));
         return el;
     }
 
+    /**
+     * Create an element "dimensions"
+     * @param width the width to save
+     * @param height the height to save
+     * @return an element "dimensions" with two sub-elements : width and height
+     */
     private Element createElementDimensionsZoo(int width, int height) {
         Element dimEl = new Element("dimensions");
         dimEl.addContent(createElementWithText("width", Integer.toString(width)));
@@ -381,6 +453,12 @@ public class SaveImpl implements Save {
         return dimEl;
     }
 
+    /**
+     * Create an element zoo
+     * @param zoo the zoo to save
+     * @return an element zoo with an attribute "name" and five sub-elements : 
+     * dimensions, age, monthsPerEvaluation, horizon and language
+     */
     private Element createElementZoo(IZoo zoo) {
         Element zooEl = new Element("zoo");
         zooEl.setAttribute(createAttribute("name", zoo.getName(friendSave).trim()));
