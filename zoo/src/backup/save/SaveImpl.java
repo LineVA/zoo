@@ -44,7 +44,7 @@ public class SaveImpl implements Save {
     private static final FriendSave friendSave = new FriendSave();
 
     /**
-     * @see zoo.backup.save.Save
+     * @see backup.save.Save
      */
     @Override
     public void saveZoo(IZoo zoo, String fileName) throws EmptyNameException {
