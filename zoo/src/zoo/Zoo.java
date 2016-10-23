@@ -21,9 +21,13 @@ import launch.options.Option;
 import lombok.Getter;
 import lombok.Setter;
 import launch.play.tutorials.TutorialPlayImpl_1;
+import utils.Constants;
 import zoo.animal.Animal;
+import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.feeding.Diet;
+import zoo.animal.feeding.Size;
 import zoo.animal.reproduction.Sex;
+import zoo.animal.specie.Family;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
 import zoo.animalKeeper.AnimalKeeper;
@@ -31,6 +35,8 @@ import zoo.animalKeeper.AnimalKeeperBuilder;
 import zoo.paddock.IPaddock;
 import zoo.paddock.PaddockBuilder;
 import zoo.paddock.biome.Biome;
+import zoo.paddock.biome.Continent;
+import zoo.paddock.biome.Ecoregion;
 
 /**
  *
@@ -291,14 +297,14 @@ public class Zoo implements IZoo {
 
     @Override
     public ArrayList<String> listAnimalKeeper(IPaddock paddock)
-            throws UnknownNameException, EmptyNameException{
+            throws UnknownNameException, EmptyNameException {
         ArrayList<String> list = new ArrayList<>();
         if (paddock == null) {
             for (HashMap.Entry<String, AnimalKeeper> entry : this.keepers.entrySet()) {
                 list.add(entry.getKey());
             }
         } else {
-            this.findAnimalKeeperByPaddock(paddock).forEach(item ->{
+            this.findAnimalKeeperByPaddock(paddock).forEach(item -> {
                 list.add(item.getName());
             });
         }
@@ -551,9 +557,12 @@ public class Zoo implements IZoo {
     public ArrayList<Animal> getAnimals(TutorialPlayImpl_1.FriendScenario friend) {
         try {
             friend.hashCode();
-            return this.listAnimal(null, null, null, null, null);
+            return this.listAnimal(null, new LightSpecie(null, Constants.UNDEFIND_ENUM,
+                     Constants.UNDEFIND_ENUM,
+                     Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,  Constants.UNDEFIND_ENUM,
+                    Constants.UNDEFIND_ENUM,  Constants.UNDEFIND_ENUM), null, null, null);
         } catch (Exception ex) {
-            System.out.println("ERROR  !!!!!!!!!!!!!!!!!");
+            System.out.println("ERROR");
             return null;
         }
     }

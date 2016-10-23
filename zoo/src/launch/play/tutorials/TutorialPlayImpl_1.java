@@ -43,16 +43,14 @@ public class TutorialPlayImpl_1 extends Play {
                     }
                 });
         // Step 3 : first animal
-//        steps.add(new Step(super.getZoo(), "Third, you can install an animal in this paddock ;"
-//                + " to see the list of available species, you can use the command '[specie|spec] ls'",
-//                "You now have an animal in the paddock",
-//                "Use the command 'animal create <name> <paddock> <specie> <sex>' ; "
-//                + "see 'man animal' for more information") {
-//                    @Override
-//                    public boolean check() {
-//                        return super.getZoo().getAnimals(friendScenario).size() == 1;
-//                    }
-//                });
+        steps.add(new Step(super.getZoo(), "Third, you can install an animal in this paddock ; "
+                + "you may want to see the list of available species before that",
+                "Help", "") {
+                    @Override
+                    public boolean check() {
+                        return super.getZoo().getAnimals(friendScenario).size() == 1;
+                    }
+                });
 ////        // Step 4 : animal info
 //        steps.add(new Step(super.getZoo(), "Fourthly, you can see the personal information of this animal "
 //                + "by using the command 'animal <name>'."
