@@ -153,24 +153,38 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return timedTasks;
     }
 
+    private boolean checkTask(ArrayList<Task> tasks) {
+        for (Task task : tasks) {
+            if (task.equals(Task.UNKNOWN)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public void addTaskToAPaddock(IPaddock paddock, ArrayList<Task> tasks, ArrayList<Double> times)
             throws IncorrectDataException, UnknownNameException {
         // Check if this animal keeper is associated to pad
         if (this.timedPaddocks.containsKey(paddock)) {
-            // We retrieve all the timed tasks associated to this paddock
-            HashMap<Integer, Double> oldTimedTasks = findTimedTasksByPaddock(paddock);
-            // Prepare HashMap of the new TimedTasks
-            HashMap<Task, Double> newTimedTasks = prepareHashMap(tasks, times);
-            // We remplace the old tasks by the new ones
-            HashMap<Integer, Double> askedTimedTasks = expectTimedTasks(oldTimedTasks, newTimedTasks);
-            // We check if the timer are consistent or not
-            ArrayList<Double> askedTimes = extractTimesFromTimedTasks(askedTimedTasks);
-            if (checkTimes(askedTimes)) {
-                this.timedTaskPerPaddock = reconstructTimedTasksPerPaddock(paddock, askedTimedTasks);
+            if (this.checkTask(tasks)) {
+                // We retrieve all the timed tasks associated to this paddock
+                HashMap<Integer, Double> oldTimedTasks = findTimedTasksByPaddock(paddock);
+                // Prepare HashMap of the new TimedTasks
+                HashMap<Task, Double> newTimedTasks = prepareHashMap(tasks, times);
+                // We remplace the old tasks by the new ones
+                HashMap<Integer, Double> askedTimedTasks = expectTimedTasks(oldTimedTasks, newTimedTasks);
+                // We check if the timer are consistent or not
+                ArrayList<Double> askedTimes = extractTimesFromTimedTasks(askedTimedTasks);
+                if (checkTimes(askedTimes)) {
+                    this.timedTaskPerPaddock = reconstructTimedTasksPerPaddock(paddock, askedTimedTasks);
+                } else {
+                    throw new IncorrectDataException(
+                            this.option.getKeeperBundle().getString("ERROR_CUMULATIVE_TIMES"));
+                }
             } else {
                 throw new IncorrectDataException(
-                        this.option.getKeeperBundle().getString("ERROR_CUMULATIVE_TIMES"));
+                        this.option.getKeeperBundle().getString("ERROR_TASK_UNKNOWN"));
             }
         } else {
             throw new IncorrectDataException(
