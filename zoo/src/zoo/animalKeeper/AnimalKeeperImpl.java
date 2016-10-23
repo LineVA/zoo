@@ -3,7 +3,6 @@ package zoo.animalKeeper;
 import backup.save.SaveImpl;
 import exception.IncorrectDataException;
 import exception.name.EmptyNameException;
-import exception.name.NameException;
 import exception.name.UnauthorizedNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
@@ -25,6 +24,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     private final String name;
     @Getter
     private Map<IPaddock, Double> timedPaddocks;
+    @Getter
     private Map<TaskPaddock, Double> timedTaskPerPaddock;
     @Getter
     private Map<Integer, Double> managedFamilies;

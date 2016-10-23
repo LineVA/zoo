@@ -2,6 +2,7 @@ package zoo.animal.wellbeing;
 
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.Map;
 import lombok.Getter;
 import zoo.animal.AnimalsAttributes;
 import zoo.animal.feeding.FeedingAttributes;
@@ -9,6 +10,8 @@ import zoo.animal.personality.PersonalityAttributes;
 import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.Specie;
 import zoo.animalKeeper.AnimalKeeper;
+import zoo.animalKeeper.Task;
+import zoo.animalKeeper.TaskPaddock;
 import zoo.paddock.IPaddock;
 import zoo.paddock.TerritoryAttributes;
 import zoo.statistics.Compare;
@@ -62,20 +65,42 @@ public class WellBeingImpl implements WellBeing {
         System.out.println("Personality");
         double wB = 0.0;
         for (AnimalKeeper keeper : keepers) {
-            if (personality.getBravery() >= 0.5) {
-                System.out.println("if");
-                wB += computeInfluenceBravery(personality.getBravery() - 0.5, keeper.getTimedPaddocks().get(paddock));
-            } else {
-                System.out.println("else");
-                wB -= computeInfluenceBravery(personality.getBravery(), keeper.getTimedPaddocks().get(paddock));
-            }
+            wB += influenceOfBravery(personality.getBravery(), keeper.getTimedPaddocks(), paddock);
+            wB += influenceOfSpecificTrait(personality.getIntelligence(),
+                    keeper.getTimedTaskPerPaddock().get(new TaskPaddock(paddock, Task.MEDICALTRAINING.getId())));
+            wB += influenceOfSpecificTrait(personality.getMeticulousness(),
+                    keeper.getTimedTaskPerPaddock().get(new TaskPaddock(paddock, Task.CLEANING.getId())));
+            wB += influenceOfSpecificTrait(personality.getGreed(),
+                    keeper.getTimedTaskPerPaddock().get(new TaskPaddock(paddock, Task.FEEDING.getId())));
+            wB += influenceOfSpecificTrait(personality.getCuriosity(),
+                    keeper.getTimedTaskPerPaddock().get(new TaskPaddock(paddock, Task.ENRICHMENT.getId())));
         }
         System.out.println(wB);
         return wB;
     }
 
-    private double computeInfluenceBravery(double bravery, double time) {
-        return bravery * time;
+    private double influenceOfSpecificTrait(double trait, double time) {
+        if (trait >= 0.5) {
+            System.out.println("if");
+            return computeNumericInfluenceOfATrait(trait - 0.5, time);
+        } else {
+            System.out.println("else");
+            return -computeNumericInfluenceOfATrait(trait, time);
+        }
+    }
+
+    private double influenceOfBravery(Double trait, Map<IPaddock, Double> timedPaddocks, IPaddock paddock) {
+        if (trait >= 0.5) {
+            System.out.println("if");
+            return computeNumericInfluenceOfATrait(trait - 0.5, timedPaddocks.get(paddock));
+        } else {
+            System.out.println("else");
+            return -computeNumericInfluenceOfATrait(trait, timedPaddocks.get(paddock));
+        }
+    }
+
+    private double computeNumericInfluenceOfATrait(double trait, double time) {
+        return trait * time;
     }
 
     public double computeSocialWB(SocialAttributes social, IPaddock pad, Specie spec) {

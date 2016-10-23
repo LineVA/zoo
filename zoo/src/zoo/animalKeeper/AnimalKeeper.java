@@ -23,6 +23,8 @@ public interface AnimalKeeper {
 
     public Map<IPaddock, Double> getTimedPaddocks();
 
+    public Map<TaskPaddock, Double> getTimedTaskPerPaddock();
+
     public ArrayList<String> info() throws UnknownNameException;
 
     public void removeTimedTasksPerPaddock(ArrayList<TaskPaddock> tasksPaddock);
@@ -38,11 +40,10 @@ public interface AnimalKeeper {
     public boolean isMakingMedicalTrainingInThePaddock(IPaddock paddock);
 
     public boolean isMakingEnrichmentInThePaddock(IPaddock paddock);
-    
+
     /**
      * Getters for the back up
      */
-
     public String getName(SaveImpl.FriendSave friend);
 
     public Map<IPaddock, Double> getTimedPaddocks(SaveImpl.FriendSave friend);
