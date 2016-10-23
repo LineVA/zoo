@@ -14,11 +14,20 @@ import zoo.animal.specie.ParserSpecie;
 import zoo.animal.specie.Specie;
 
 /**
- *
+ * Class providing static method to instanciate the list of allowing species
  * @author doyenm
  */
 public class InstanciateSpecies {
 
+    /**
+     * Intanciate of the allowing species
+     * @param resource the repository where to find the xml files of the species
+     * @param option the options of Play
+     * @return the map of the allowed species ;
+     * the key in the main name of the specie in the current language
+     * @throws IOException in case of problem to read the resource files
+     * @throws JDOMException if a resource file has a problem with the xml structure
+     */
     public static Map<String, Specie> instanciateSpecies(String resource, Option option)
             throws IOException, JDOMException {
         Map<String, Specie> species = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
