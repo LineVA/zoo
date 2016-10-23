@@ -1,13 +1,16 @@
-
 package exception.name;
 
 /**
- * Exception when the user used an unknown name for a paddock or an animal
- * CANNOT be used for an incorrect cmd (ex. : zpp instead of zoo)
+ * Sub-case of NameException : if the searched name does not exist
  * @author doyenm
  */
 public class UnknownNameException extends NameException {
-    public UnknownNameException(String msg){
+
+         /**
+     * Constructor
+     * @param msg  the message to send
+     */
+    public UnknownNameException(String msg) {
         super(msg);
     }
 }
