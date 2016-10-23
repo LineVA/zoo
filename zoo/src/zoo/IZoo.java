@@ -62,7 +62,7 @@ public interface IZoo {
 
     public ArrayList<PaddockCoordinates> map() throws IncorrectDimensionsException;
 
-    public int evaluate();
+    public double evaluate();
 
     public ArrayList<String> birth() 
             throws AlreadyUsedNameException, IncorrectDataException, NameException, IncorrectLoadException;

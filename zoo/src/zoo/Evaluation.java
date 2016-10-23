@@ -1,4 +1,4 @@
-package zoo.evaluation;
+package zoo;
 
 import exception.IncorrectDataException;
 import exception.IncorrectLoadException;
@@ -21,7 +21,7 @@ public class Evaluation {
 
     }
 
-    public int evaluate(Map<String, IPaddock> paddocks) {
+    public double evaluate(Map<String, IPaddock> paddocks) {
         ArrayList<Specie> presentedSpecies = new ArrayList<>();
         ArrayList<Specie> localPresentedSpecies = new ArrayList<>();
         int kidsNb = 0;

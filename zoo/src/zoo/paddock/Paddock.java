@@ -424,7 +424,7 @@ public class Paddock implements IPaddock {
 
     @Override
     public double wellBeing(ArrayList<AnimalKeeper> keepers) throws UnknownNameException {
-        int wB = 0;
+        double wB = 0;
         for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
             wB += entry.getValue().wellBeing(keepers);
         }

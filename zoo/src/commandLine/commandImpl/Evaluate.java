@@ -9,6 +9,7 @@ import exception.IncorrectLoadException;
 import exception.name.NameException;
 import java.util.ArrayList;
 import launch.play.Play;
+import utils.Utils;
 
 /**
  *
@@ -37,7 +38,7 @@ public class Evaluate implements Command {
     @Override
     public  ReturnExec execute(String[] cmd) {
         ArrayList<String> info = new ArrayList<>();
-        int zooEvaluation = 0;
+        double zooEvaluation = 0;
         try {
             // Evolution of the animalKeepers 
             this.play.getZoo().evolveAnimalKeepers();
@@ -54,7 +55,7 @@ public class Evaluate implements Command {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
         info.add(this.play.getOption().getGeneralCmdBundle()
-                .getString("ZOO_EVALUATION") + zooEvaluation);
+                .getString("ZOO_EVALUATION") + Utils.truncate(zooEvaluation));
         return new ReturnExec(FormattingDisplay.formattingArrayList(info), TypeReturn.SUCCESS);
     }
 

@@ -28,7 +28,6 @@ import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
 import zoo.animalKeeper.AnimalKeeper;
 import zoo.animalKeeper.AnimalKeeperBuilder;
-import zoo.evaluation.Evaluation;
 import zoo.paddock.IPaddock;
 import zoo.paddock.PaddockBuilder;
 import zoo.paddock.biome.Biome;
@@ -367,7 +366,7 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public int evaluate() {
+    public double evaluate() {
         return new Evaluation().evaluate(this.paddocks);
     }
 
