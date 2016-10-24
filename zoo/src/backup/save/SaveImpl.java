@@ -1,7 +1,11 @@
 package backup.save;
 
 import exception.name.EmptyNameException;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 import org.jdom2.Attribute;
@@ -42,6 +46,20 @@ public class SaveImpl implements Save {
      * Instanciation of the private class
      */
     private static final FriendSave friendSave = new FriendSave();
+
+    /**
+     * @see backup.save.Save
+     */
+    @Override
+    public boolean isFileAlreadyExisting(String fileName) throws EmptyNameException {
+        String name = createFileName(fileName);
+        try {
+           new FileReader(new File(name));
+            return true;
+        } catch (FileNotFoundException ex) {
+            return false;
+        }
+    }
 
     /**
      * @see backup.save.Save
