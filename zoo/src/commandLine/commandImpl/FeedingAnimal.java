@@ -25,51 +25,57 @@ public class FeedingAnimal implements Command {
         this.play = play;
     }
 
-      @Override
+    @Override
     public boolean hasInitiateAZoo() {
         return false;
     }
-    
+
     boolean success = false;
-    
-     @Override
+
+    @Override
     public boolean isSuccess() {
         return this.success;
     }
-    
+
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
             Animal animal = this.play.getZoo().findAnimalByName(cmd[1]);
             Boolean changeDiet = false;
             if (args[0] != null) {
-              animal.changeDiet(args[0]);
+                animal.changeDiet(args[0]);
             }
             if (args[1] != null) {
-                animal.changeFoodQuantity(Double.parseDouble(args[1]));
+                try {
+                    animal.changeFoodQuantity(Double.parseDouble(args[1]));
+                } catch (java.lang.NumberFormatException ex) {
+                    return new ReturnExec(
+                            this.play.getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION"), 
+                            TypeReturn.ERROR);
+                }
             }
             return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
                     .getString("ANIMALS_DIET") + " " + args[0], TypeReturn.SUCCESS);
         } catch (EmptyNameException | UnknownNameException |
-               IncorrectLoadException | NumberFormatException ex) {
+                IncorrectLoadException | NumberFormatException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
     }
 
     private boolean firstCmd(String[] cmd) {
-        if (cmd.length >= 4 && cmd.length <9 && cmd.length % 2 == 0) {
+        if (cmd.length >= 4 && cmd.length < 9 && cmd.length % 2 == 0) {
             if (cmd[0].equals("animal")) {
                 return true;
             }
         }
         return false;
     }
-    
-    private boolean hasArgumentDiet(String cmd){
+
+    private boolean hasArgumentDiet(String cmd) {
         return cmd.equals("--diet") || cmd.equals("-d");
     }
-    
-     private boolean hasArgumentFoodQuantity(String cmd){
+
+    private boolean hasArgumentFoodQuantity(String cmd) {
         return cmd.equals("--foodQuantity") || cmd.equals("-fq");
     }
 
@@ -83,13 +89,13 @@ public class FeedingAnimal implements Command {
             } else if (cmd.length == 4 && this.hasArgumentFoodQuantity(cmd[2])) {
                 args[1] = cmd[3];
                 return true;
-            } else if (cmd.length == 6 && this.hasArgumentDiet(cmd[2]) 
+            } else if (cmd.length == 6 && this.hasArgumentDiet(cmd[2])
                     && this.hasArgumentFoodQuantity(cmd[4])) {
                 args[0] = cmd[3];
                 args[1] = cmd[5];
                 return true;
-            } else if (cmd.length == 6 && this.hasArgumentFoodQuantity(cmd[2]) 
-                    && this.hasArgumentDiet(cmd[4]) ) {
+            } else if (cmd.length == 6 && this.hasArgumentFoodQuantity(cmd[2])
+                    && this.hasArgumentDiet(cmd[4])) {
                 args[0] = cmd[5];
                 args[1] = cmd[3];
                 return true;
