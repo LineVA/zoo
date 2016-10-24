@@ -3,7 +3,6 @@ package commandLine.commandImpl;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
-import exception.name.EmptyNameException;
 import java.io.IOException;
 import java.util.Map;
 import launch.InstanciateSpecies;
@@ -51,6 +50,9 @@ public class CreateZoo implements Command {
                     .getString("ZOO_CREATION_SUCESS"), TypeReturn.SUCCESS);
         } catch (JDOMException |  IOException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
+        } catch (java.lang.NumberFormatException ex){
+            return new ReturnExec(this.play.getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION")
+            , TypeReturn.ERROR);
         }
     }
 
