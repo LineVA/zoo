@@ -48,10 +48,14 @@ public class LoadZoo implements Command {
             this.success = true;
             return new ReturnExec(
                     this.play.getOption().getGeneralCmdBundle().getString("ZOO_CREATION_SUCESS"), TypeReturn.SUCCESS);
-        } catch (IOException | JDOMException ex) {
+        } catch ( JDOMException ex) {
             this.previousHasBeenSuccessfull = false;
             return new ReturnExec(
                     this.play.getOption().getGeneralCmdBundle().getString("FAIL_LOAD"), TypeReturn.ERROR);
+        } catch ( IOException ex) {
+            this.previousHasBeenSuccessfull = false;
+            return new ReturnExec(
+                    this.play.getOption().getGeneralCmdBundle().getString("FAILED_FILE"), TypeReturn.ERROR);
         }
     }
 

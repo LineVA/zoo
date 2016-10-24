@@ -37,9 +37,9 @@ public class ParserBackUp {
      * The constructor of the parser
      *
      * @param file the file to parse
-     * @throws IOException
-     * @throws JDOMException
-     */
+     * @throws IOException if if an I/O error prevents a document from being fully parsed
+     * @throws JDOMException if error occurs during parsing
+      */
     public ParserBackUp(File file) throws IOException, JDOMException {
         SAXBuilder sax = new SAXBuilder();
         Document document;
