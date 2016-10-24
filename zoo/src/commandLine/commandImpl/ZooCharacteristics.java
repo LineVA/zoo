@@ -47,7 +47,7 @@ public class ZooCharacteristics implements Command {
             }
         } catch (NumberFormatException ex) {
             return new ReturnExec(
-                    this.play.getOption().getGeneralCmdBundle().getString("SPEED_HORIZON_NUMBER"),
+                    this.play.getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION"),
                     TypeReturn.SUCCESS);
         }
         return new ReturnExec(result, TypeReturn.SUCCESS);
