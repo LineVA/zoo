@@ -41,6 +41,9 @@ public class CreatePaddock implements Command {
                     .getString("PADDOCK_CREATION_SUCCESS"), TypeReturn.SUCCESS);
         } catch (NameException | IncorrectDimensionsException ex) {
                 return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
+        } catch (java.lang.NumberFormatException ex){
+            return new ReturnExec(this.play.getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION")
+            , TypeReturn.ERROR);
         }
     }
 
