@@ -15,16 +15,20 @@ public abstract class CommandManager {
 
     Play play;
     @Getter
-    Iterable<Command> playCommands;
+    Iterable<AbstractCommand> playCommands;
       @Getter
       @Setter
     private String firstLine;
       @Getter
       private Option option;
+      @Getter
+      private SaveZoo save;
+      
     
     public CommandManager(Play play, Option option){
         this.option = option;
           this.play = play;
+          this.save = new SaveZoo(play);
             // For Paddock, Animal, Specie and Animal Keeper : Ls must be before Detail
           // and Create & remove before Ls
         playCommands = asList(new CreateZoo(play), new DetailZoo(play),
@@ -39,7 +43,7 @@ public abstract class CommandManager {
                 new LsPaddockType(play), new PadTypePad(play),
                 new LsSpecie(play), new DetailSpecie(play), new LsFamily(play),
                 new LsFeeding(play), new LsSize(play),
-                new SaveZoo(play), new LoadZoo(play),
+                 save, new LoadZoo(play),
                 new Options(play), new ZooCharacteristics(play),
                 new Documentation(play),
                 new LsTask(play),

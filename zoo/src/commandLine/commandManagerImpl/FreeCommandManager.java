@@ -1,5 +1,6 @@
 package commandLine.commandManagerImpl;
 
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.CommandManager;
 import commandLine.ReturnExec;
@@ -23,6 +24,8 @@ public class FreeCommandManager extends CommandManager {
 
     public boolean isInitiate = false;
 
+    public boolean isSaving = false;
+
     public FreeCommandManager(Play play, Option option) {
         super(play, option);
         super.setFirstLine(super.getOption().getGeneralCmdBundle().getString("WELCOME"));
@@ -33,11 +36,17 @@ public class FreeCommandManager extends CommandManager {
     public ReturnExec run(String cmd) {
         String[] parse = SplitDoubleQuotes.split(cmd);
         if (isInitiate) {
-            for (Command command : super.getPlayCommands()) {
-                if (command.canExecute(parse)) {
-                    ReturnExec result = command.execute(parse);
-                    this.isInitiate |= command.hasInitiateAZoo();
-                    return result;
+            if (isSaving) {
+                this.isSaving = false;
+                return super.getSave().confirmSaving(parse);
+            } else {
+                for (AbstractCommand command : super.getPlayCommands()) {
+                    if (command.canExecute(parse)) {
+                        ReturnExec result = command.execute(parse);
+                        this.isInitiate |= command.hasInitiateAZoo();
+                        this.isSaving = command.isSaving();
+                        return result;
+                    }
                 }
             }
             return new ReturnExec(super.getOption().getGeneralCmdBundle().getString("UNKNOWN_CMD"), TypeReturn.ERROR);

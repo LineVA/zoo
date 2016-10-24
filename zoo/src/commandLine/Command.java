@@ -4,7 +4,7 @@ package commandLine;
  * The interface for the different commands
  * @author doyenm
  */
-public interface Command {
+public interface Command{
     
     /**
      * Method used to execute the command line
