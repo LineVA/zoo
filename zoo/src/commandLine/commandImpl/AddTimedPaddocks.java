@@ -52,6 +52,9 @@ public class AddTimedPaddocks implements Command {
                     this.play.getOption().getGeneralCmdBundle().getString("TIMED_PADDOCKS_SUCCESS"),TypeReturn.SUCCESS);
         } catch (UnknownNameException  | EmptyNameException | IncorrectDataException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
+        } catch (java.lang.NumberFormatException ex){
+            return new ReturnExec(this.play.getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION")
+            , TypeReturn.ERROR);
         }
     }
 
