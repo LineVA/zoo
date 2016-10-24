@@ -1,6 +1,7 @@
 package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
@@ -11,7 +12,7 @@ import zoo.paddock.biome.Biome;
  *
  * @author doyenm
  */
-public class LsBiome implements Command {
+public class LsBiome extends AbstractCommand implements Command {
 
     Play play;
 

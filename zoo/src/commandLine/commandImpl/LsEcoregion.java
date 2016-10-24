@@ -1,18 +1,18 @@
 package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import launch.play.Play;
-import zoo.paddock.biome.Continent;
 import zoo.paddock.biome.Ecoregion;
 
 /**
  *
  * @author doyenm
  */
-public class LsEcoregion implements Command {
+public class LsEcoregion extends AbstractCommand implements Command {
 
     Play play;
 

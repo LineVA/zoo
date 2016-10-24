@@ -2,10 +2,10 @@ package commandLine.commandImpl;
 
 import backup.load.Load;
 import backup.load.LoadImpl;
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
-import exception.IncorrectDataException;
 import java.io.IOException;
 import launch.play.Play;
 import org.jdom2.JDOMException;
@@ -15,7 +15,7 @@ import zoo.IZoo;
  *
  * @author doyenm
  */
-public class LoadZoo implements Command {
+public class LoadZoo extends AbstractCommand implements Command {
 
     Play play;
 

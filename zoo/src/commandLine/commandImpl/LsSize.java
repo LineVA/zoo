@@ -1,18 +1,18 @@
 package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import launch.play.Play;
 import zoo.animal.feeding.Size;
-import zoo.paddock.biome.Continent;
 
 /**
  *
  * @author doyenm
  */
-public class LsSize implements Command {
+public class LsSize extends AbstractCommand implements Command {
 
     Play play;
 

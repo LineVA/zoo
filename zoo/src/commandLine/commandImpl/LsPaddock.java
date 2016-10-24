@@ -1,6 +1,7 @@
 package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
@@ -10,13 +11,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import launch.play.Play;
 import zoo.animal.specie.Specie;
-import zoo.paddock.biome.Continent;
 
 /**
  *
  * @author doyenm
  */
-public class LsPaddock implements Command {
+public class LsPaddock extends AbstractCommand implements Command {
 
     Play play;
 

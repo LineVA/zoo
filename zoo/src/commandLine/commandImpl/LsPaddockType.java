@@ -2,19 +2,18 @@
 package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import launch.play.Play;
 import zoo.paddock.PaddockTypes;
-import zoo.paddock.biome.Biome;
-import zoo.paddock.biome.Continent;
 
 /**
  *
  * @author doyenm
  */
-public class LsPaddockType implements Command{
+public class LsPaddockType  extends AbstractCommand implements Command{
 
     Play play;
 

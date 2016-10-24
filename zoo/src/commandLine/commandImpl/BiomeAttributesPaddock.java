@@ -1,5 +1,6 @@
 package commandLine.commandImpl;
 
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import launch.play.Play;
@@ -8,7 +9,7 @@ import launch.play.Play;
  *
  * @author doyenm
  */
-public class BiomeAttributesPaddock implements Command {
+public class BiomeAttributesPaddock extends AbstractCommand implements Command {
 
     Play play;
     boolean success = false;

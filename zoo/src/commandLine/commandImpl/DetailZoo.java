@@ -1,6 +1,7 @@
 package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
@@ -10,11 +11,12 @@ import launch.play.Play;
  *
  * @author doyenm
  */
-public class DetailZoo implements Command {
+public class DetailZoo extends AbstractCommand {
 
     Play play;
 
     public DetailZoo(Play play) {
+        super();
         this.play = play;
     }
 

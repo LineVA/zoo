@@ -1,6 +1,7 @@
 package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
@@ -15,7 +16,7 @@ import utils.Utils;
  *
  * @author doyenm
  */
-public class Evaluate implements Command {
+public class Evaluate extends AbstractCommand implements Command {
 
      Play play;
 

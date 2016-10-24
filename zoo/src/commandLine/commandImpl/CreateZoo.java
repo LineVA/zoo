@@ -1,5 +1,6 @@
 package commandLine.commandImpl;
 
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
@@ -14,7 +15,7 @@ import zoo.animal.specie.Specie;
  *
  * @author doyenm
  */
-public class CreateZoo implements Command {
+public class CreateZoo extends AbstractCommand  {
 
     Play play;
     boolean previousHasBeenSuccessfull = false;
@@ -32,6 +33,7 @@ public class CreateZoo implements Command {
     }
 
     public CreateZoo(Play play) {
+        super();
         this.play = play;
     }
 

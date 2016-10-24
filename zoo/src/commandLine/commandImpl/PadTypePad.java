@@ -1,5 +1,6 @@
 package commandLine.commandImpl;
 
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
@@ -12,7 +13,7 @@ import zoo.paddock.IPaddock;
  *
  * @author doyenm
  */
-public class PadTypePad implements Command {
+public class PadTypePad extends AbstractCommand implements Command {
 
     Play play;
 

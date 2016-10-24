@@ -1,5 +1,6 @@
 package commandLine.commandImpl;
 
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
@@ -12,7 +13,7 @@ import utils.ReadingMan;
  *
  * @author doyenm
  */
-public class Man implements Command {
+public class Man extends AbstractCommand implements Command {
     
     Play play;
     String arg = "";

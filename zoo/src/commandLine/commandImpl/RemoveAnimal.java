@@ -1,5 +1,6 @@
 package commandLine.commandImpl;
 
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
@@ -12,7 +13,7 @@ import zoo.animal.Animal;
  *
  * @author doyenm
  */
-public class RemoveAnimal implements Command {
+public class RemoveAnimal extends AbstractCommand implements Command {
 
     Play play;
 

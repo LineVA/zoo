@@ -1,5 +1,6 @@
 package commandLine.commandImpl;
 
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
@@ -12,7 +13,7 @@ import org.jdom2.JDOMException;
  *
  * @author doyenm
  */
-public class Options implements Command{
+public class Options extends AbstractCommand implements Command{
   Play play;
 
     public Options(Play play) {

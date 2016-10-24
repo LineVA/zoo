@@ -2,6 +2,7 @@ package commandLine.commandImpl;
 
 import backup.load.Load;
 import backup.load.LoadImpl;
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
@@ -13,7 +14,7 @@ import org.jdom2.JDOMException;
  *
  * @author doyenm
  */
-public class LoadTutorial implements Command {
+public class LoadTutorial extends AbstractCommand implements Command {
 
     Play play;
 

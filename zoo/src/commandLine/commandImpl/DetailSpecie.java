@@ -1,6 +1,7 @@
 package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
@@ -13,7 +14,7 @@ import zoo.animal.specie.Specie;
  *
  * @author doyenm
  */
-public class DetailSpecie implements Command {
+public class DetailSpecie extends AbstractCommand implements Command {
 
     Play play;
 

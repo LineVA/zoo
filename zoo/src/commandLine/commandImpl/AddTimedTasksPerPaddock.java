@@ -1,5 +1,6 @@
 package commandLine.commandImpl;
 
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
@@ -16,7 +17,7 @@ import zoo.paddock.IPaddock;
  *
  * @author doyenm
  */
-public class AddTimedTasksPerPaddock implements Command{
+public class AddTimedTasksPerPaddock extends AbstractCommand implements Command{
 
     Play play;
     boolean success = false;

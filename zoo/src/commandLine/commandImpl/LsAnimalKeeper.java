@@ -1,6 +1,7 @@
 package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
@@ -13,7 +14,7 @@ import zoo.paddock.IPaddock;
  *
  * @author doyenm
  */
-public class LsAnimalKeeper implements Command {
+public class LsAnimalKeeper extends AbstractCommand implements Command {
 
     Play play;
 

@@ -1,9 +1,9 @@
 package commandLine.commandImpl;
 
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
-import exception.IncorrectDataException;
 import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
@@ -14,7 +14,7 @@ import zoo.animal.Animal;
  *
  * @author doyenm
  */
-public class FeedingAnimal implements Command {
+public class FeedingAnimal extends AbstractCommand implements Command {
 
     Play play;
     // args[0] : the argument after '--diet'

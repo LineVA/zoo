@@ -1,6 +1,7 @@
 package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
@@ -10,19 +11,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import launch.play.Play;
 import utils.Constants;
-import zoo.animal.Animal;
-import zoo.animal.feeding.Diet;
-import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.LightSpecie;
 import zoo.paddock.IPaddock;
-import zoo.paddock.biome.Biome;
-import zoo.paddock.biome.Continent;
 
 /**
  *
  * @author doyenm
  */
-public class LsSpecie implements Command {
+public class LsSpecie extends AbstractCommand implements Command {
 
     Play play;
     // args[0] : the argument after '--paddock'

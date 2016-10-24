@@ -1,5 +1,6 @@
 package commandLine.commandImpl;
 
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
@@ -11,7 +12,7 @@ import launch.play.Play;
  *
  * @author doyenm
  */
-public class CreatePaddock implements Command {
+public class CreatePaddock extends AbstractCommand implements Command {
 
     Play play;
 

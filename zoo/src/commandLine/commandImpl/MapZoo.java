@@ -1,6 +1,7 @@
 package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
@@ -8,13 +9,12 @@ import exception.IncorrectDimensionsException;
 import java.util.ArrayList;
 import launch.play.Play;
 import zoo.paddock.PaddockCoordinates;
-import zoo.paddock.biome.Continent;
 
 /**
  *
  * @author doyenm
  */
-public class MapZoo implements Command {
+public class MapZoo extends AbstractCommand implements Command {
 
     Play play;
 

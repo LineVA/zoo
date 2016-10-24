@@ -4,6 +4,7 @@ import commandLine.Command;
 import exception.name.EmptyNameException;
 import backup.save.Save;
 import backup.save.SaveImpl;
+import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import launch.play.Play;
@@ -12,11 +13,12 @@ import launch.play.Play;
  *
  * @author doyenm
  */
-public class SaveZoo implements Command {
+public class SaveZoo extends AbstractCommand {
 
     Play play;
 
     public SaveZoo(Play play) {
+        super();
         this.play = play;
     }
 
@@ -32,11 +34,19 @@ public class SaveZoo implements Command {
         return this.success;
     }
 
-    @Override
-    public ReturnExec execute(String[] cmd) {
-        Save saveProcess = new SaveImpl();
+    public ReturnExec confirmSaving(String[] cmd) {
+        super.setSaving(false);
+        if (cmd.length == 1) {
+            if ("yes".equalsIgnoreCase(cmd[0]) || "y".equalsIgnoreCase(cmd[0])) {
+                return executeSaving(new SaveImpl(), cmd);
+            }
+        }
+        return new ReturnExec("Le zoo n'a pas été sauvegardé", TypeReturn.ERROR);
+    }
+
+    private ReturnExec executeSaving(Save saveProcess, String[] cmd) {
         try {
-            saveProcess.saveZoo(this.play.getZoo(), cmd[1]);
+            saveProcess.saveZoo(this.play.getZoo(), cmd[0]);
             this.success = true;
             return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
                     .getString("SAVE_SUCCESS"), TypeReturn.SUCCESS);
@@ -45,8 +55,34 @@ public class SaveZoo implements Command {
         }
     }
 
+    private ReturnExec checkBeforeSaving(Save saveProcess, String[] cmd) {
+        try {
+            if (saveProcess.isFileAlreadyExisting(cmd[1])) {
+                super.setSaving(true);
+                return new ReturnExec(
+                        "Un fichier portant ce nom existe déjà. Voulez-vous l'écraser définitivement ? ",
+                        TypeReturn.QUESTION);
+            } else {
+                return executeSaving(saveProcess, cmd);
+            }
+        } catch (Exception ex) {
+            System.out.println("COVO");
+        }
+        return null;
+    }
+
+    @Override
+    public ReturnExec execute(String[] cmd) {
+        Save saveProcess = new SaveImpl();
+        if (super.isSaving()) {
+            return executeSaving(saveProcess, cmd);
+        } else {
+            return checkBeforeSaving(saveProcess, cmd);
+        }
+    }
+
     @Override
     public boolean canExecute(String[] cmd) {
-       return cmd.length==2 && "save".equals(cmd[0]);
+        return cmd.length == 2 && "save".equals(cmd[0]);
     }
 }

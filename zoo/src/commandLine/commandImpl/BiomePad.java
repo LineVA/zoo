@@ -1,5 +1,6 @@
 package commandLine.commandImpl;
 
+import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
@@ -12,7 +13,7 @@ import zoo.paddock.IPaddock;
  *Command line : 
  * @author doyenm
  */
-public class BiomePad implements Command {
+public class BiomePad extends AbstractCommand implements Command {
 
     Play play;
     boolean success = false;
