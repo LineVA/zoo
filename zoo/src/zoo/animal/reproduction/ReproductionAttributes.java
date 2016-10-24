@@ -36,4 +36,20 @@ public class ReproductionAttributes {
         info += bundle.getString("LITTER_SIZE") + this.litterSize;
         return info;
     }
+
+    public String femaleToStringByLanguage(Option option) {
+        String info = "";
+        ResourceBundle bundle = option.getReproductionBundle();
+        info += bundle.getString("AGE_FEMALE") + this.femaleMaturityAge + ", ";
+        info += bundle.getString("GESTATION_FREQUENCY") + Utils.truncate(this.gestationFrequency) + ", ";
+        info += bundle.getString("LITTER_SIZE") + this.litterSize;
+        return info;
+    }
+
+    public String maleToStringByLanguage(Option option) {
+        String info = "";
+        ResourceBundle bundle = option.getReproductionBundle();
+        info += bundle.getString("AGE_MALE") + this.maleMaturityAge;
+        return info;
+    }
 }

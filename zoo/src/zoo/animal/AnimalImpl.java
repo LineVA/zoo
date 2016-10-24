@@ -152,7 +152,7 @@ public class AnimalImpl implements Animal {
             ReproductionAttributes reproduction,
             LifeSpanLightAttributes life, SocialAttributes social,
             TerritoryAttributes territory, PersonalityAttributes personality, Option option)
-            throws IncorrectDataException, EmptyNameException, 
+            throws IncorrectDataException, EmptyNameException,
             UnknownNameException, UnauthorizedNameException {
         this.option = option;
         this.specie = spec;
@@ -207,8 +207,8 @@ public class AnimalImpl implements Animal {
     }
 
     /**
-     * Compute the actual values of the feedings attributes for this animal
-     * they are initially null
+     * Compute the actual values of the feedings attributes for this animal they
+     * are initially null
      *
      * @param spec the Specie of the animal
      * @return its actualFeedingAttributes
@@ -259,12 +259,12 @@ public class AnimalImpl implements Animal {
                 getTerritorySize().gaussianDouble());
     }
 
-    private PersonalityAttributes drawPersonality(){
+    private PersonalityAttributes drawPersonality() {
         Random rand = new Random();
-        return new PersonalityAttributes(rand.nextDouble(), rand.nextDouble(), rand.nextDouble(), 
+        return new PersonalityAttributes(rand.nextDouble(), rand.nextDouble(), rand.nextDouble(),
                 rand.nextDouble(), rand.nextDouble());
     }
-    
+
     /**
      * Compute if the animal is mature by comparing its age and the age age of
      * sexual maturity for its sex
@@ -307,7 +307,11 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("SEX") + this.sex.toStringByLanguage());
         info.add(bundle.getString("WB") + this.wellBeing);
         info.add(bundle.getString("DIET") + Diet.NONE.findDietById(actualDiet).toStringByLanguage());
-        info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.toStringByLanguage(option));
+        if (this.sex.isFemale()) {
+            info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.femaleToStringByLanguage(option));
+        } else {
+            info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.maleToStringByLanguage(option));
+        }
         info.add(bundle.getString("LIFESPAN_ATT") + this.actualLifeSpan.toStringByLanguage(option));
         info.add(bundle.getString("OPT_SOCIAL_ATT") + this.optimalSocial.toStringByLanguage(option));
         info.add(bundle.getString("ACT_GROUP_SIZE") + this.paddock.countAnimalsOfTheSameSpecie(this.specie));
@@ -510,9 +514,9 @@ public class AnimalImpl implements Animal {
         save.hashCode();
         return this.actualDiet;
     }
-    
-    @Override 
-    public PersonalityAttributes getPersonality(SaveImpl.FriendSave save){
+
+    @Override
+    public PersonalityAttributes getPersonality(SaveImpl.FriendSave save) {
         return this.personality;
     }
 }
