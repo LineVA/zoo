@@ -75,12 +75,15 @@ public class Specie {
     private GaussianTerritoryAttributes gaussianTerritoryAttributes;
     @Getter
     private DocumentationURI documentation;
+    @Getter
+    int breedingProgramme;
 
     public Specie(Names names, DocumentationURI docu, BiomeAttributes biomeAtt, FeedingAttributes feeding,
             ArrayList<Integer> diets, ReproductionAttributes repro,
             LifeSpanAttributes lifeSpan, int conservation,
             SocialAttributes social, TerritoryAttributes territory,
-            int ecoregion, int family, ArrayList<Integer> biomes, int size, ArrayList<Integer> continents) {
+            int ecoregion, int family, ArrayList<Integer> biomes,
+            int size, ArrayList<Integer> continents, int breedingProgramme) {
         this.names = names;
         this.specieBiome = biomeAtt;
         this.diets = diets;
@@ -102,6 +105,7 @@ public class Specie {
         this.gaussianTerritoryAttributes = new GaussianTerritoryAttributes(territory);
         this.size = size;
         this.documentation = docu;
+        this.breedingProgramme = breedingProgramme;
     }
 
     public boolean canBeInTheSamePaddock(Specie specie) throws UnknownNameException {
