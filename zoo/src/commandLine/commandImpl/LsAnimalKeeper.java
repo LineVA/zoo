@@ -2,7 +2,6 @@ package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
 import commandLine.AbstractCommand;
-import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
@@ -14,27 +13,13 @@ import zoo.paddock.IPaddock;
  *
  * @author doyenm
  */
-public class LsAnimalKeeper extends AbstractCommand implements Command {
-
-    Play play;
+public class LsAnimalKeeper extends AbstractCommand  {
 
     String[] args;
     // args[0] : enclos
 
     public LsAnimalKeeper(Play play) {
-        this.play = play;
-    }
-
-    @Override
-    public boolean hasInitiateAZoo() {
-        return false;
-    }
-
-    boolean success = false;
-
-    @Override
-    public boolean isSuccess() {
-        return this.success;
+        super(play);
     }
 
     @Override
@@ -42,11 +27,11 @@ public class LsAnimalKeeper extends AbstractCommand implements Command {
         IPaddock paddock = null;
         try {
             if (args[0] != null) {
-                paddock = this.play.getZoo().findPaddockByName(args[0]);
+                paddock = super.getPlay().getZoo().findPaddockByName(args[0]);
             }
-            this.success = true;
+            super.setSuccess(true);
             return new ReturnExec(
-                    FormattingDisplay.formattingArrayList(this.play.getZoo().listAnimalKeeper(paddock)),
+                    FormattingDisplay.formattingArrayList(super.getPlay().getZoo().listAnimalKeeper(paddock)),
                     TypeReturn.SUCCESS);
         } catch (EmptyNameException | UnknownNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);

@@ -1,6 +1,5 @@
 package commandLine.commandImpl;
 
-import commandLine.Command;
 import exception.name.EmptyNameException;
 import backup.save.Save;
 import backup.save.SaveImpl;
@@ -15,23 +14,8 @@ import launch.play.Play;
  */
 public class SaveZoo extends AbstractCommand {
 
-    Play play;
-
     public SaveZoo(Play play) {
-        super();
-        this.play = play;
-    }
-
-    @Override
-    public boolean hasInitiateAZoo() {
-        return false;
-    }
-
-    boolean success = false;
-
-    @Override
-    public boolean isSuccess() {
-        return this.success;
+        super(play);
     }
 
     public ReturnExec confirmSaving(String[] cmd) {
@@ -46,9 +30,9 @@ public class SaveZoo extends AbstractCommand {
 
     private ReturnExec executeSaving(Save saveProcess, String[] cmd) {
         try {
-            saveProcess.saveZoo(this.play.getZoo(), cmd[0]);
-            this.success = true;
-            return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
+            saveProcess.saveZoo(super.getPlay().getZoo(), cmd[0]);
+            super.setSuccess(true);
+            return new ReturnExec(super.getPlay().getOption().getGeneralCmdBundle()
                     .getString("SAVE_SUCCESS"), TypeReturn.SUCCESS);
         } catch (EmptyNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);

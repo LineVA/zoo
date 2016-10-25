@@ -17,24 +17,8 @@ import zoo.animal.specie.Specie;
  */
 public class CreateZoo extends AbstractCommand  {
 
-    Play play;
-    boolean previousHasBeenSuccessfull = false;
-
-    @Override
-    public boolean hasInitiateAZoo() {
-        return this.previousHasBeenSuccessfull;
-    }
-
-    boolean success = false;
-
-    @Override
-    public boolean isSuccess() {
-        return this.success;
-    }
-
     public CreateZoo(Play play) {
-        super();
-        this.play = play;
+        super(play);
     }
 
     @Override
@@ -43,17 +27,17 @@ public class CreateZoo extends AbstractCommand  {
             int monthsPerEvaluation = 6;
             int horizon = 5;
             int age = 0;
-            Map<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species", this.play.getOption());
-            this.play.getZoo().initiateZoo(cmd[2], Integer.parseInt(cmd[3]),
+            Map<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species", 
+                    super.getPlay().getOption());
+          super.getPlay().getZoo().initiateZoo(cmd[2], Integer.parseInt(cmd[3]),
                     Integer.parseInt(cmd[4]), species, age, monthsPerEvaluation, horizon);
-            this.previousHasBeenSuccessfull = true;
-            this.success = true;
-            return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
+           super.setSuccess(true);
+            return new ReturnExec(super.getPlay().getOption().getGeneralCmdBundle()
                     .getString("ZOO_CREATION_SUCESS"), TypeReturn.SUCCESS);
         } catch (JDOMException |  IOException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         } catch (java.lang.NumberFormatException ex){
-            return new ReturnExec(this.play.getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION")
+            return new ReturnExec(super.getPlay().getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION")
             , TypeReturn.ERROR);
         }
     }

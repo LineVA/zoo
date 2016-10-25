@@ -2,7 +2,6 @@ package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
 import commandLine.AbstractCommand;
-import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.IncorrectDataException;
@@ -16,46 +15,31 @@ import utils.Utils;
  *
  * @author doyenm
  */
-public class Evaluate extends AbstractCommand implements Command {
-
-     Play play;
+public class Evaluate extends AbstractCommand {
 
     public Evaluate(Play play) {
-        this.play = play;
+        super(play);
     }
-    
-      @Override
-    public boolean hasInitiateAZoo() {
-        return false;
-    }
-    
-    boolean success = false;
-    
-     @Override
-    public boolean isSuccess() {
-        return this.success;
-    }
-    
+
     @Override
-    public  ReturnExec execute(String[] cmd) {
+    public ReturnExec execute(String[] cmd) {
         ArrayList<String> info = new ArrayList<>();
         double zooEvaluation = 0;
         try {
             // Evolution of the animalKeepers 
-            this.play.getZoo().evolveAnimalKeepers();
+            super.getPlay().getZoo().evolveAnimalKeepers();
             // Well-beeing of each animal
-           zooEvaluation += this.play.getZoo().grade();
+            zooEvaluation += super.getPlay().getZoo().grade();
             // Special events :
             // ageing, births and deaths
-            info.addAll(this.play.getZoo().ageing());
+            info.addAll(super.getPlay().getZoo().ageing());
             // Zoo evaluation
-           zooEvaluation += this.play.getZoo().evaluate();
-           this.success = true;
-        } catch (
-                IncorrectDataException | NameException | IncorrectLoadException ex) {
+            zooEvaluation += super.getPlay().getZoo().evaluate();
+            super.setSuccess(true);
+        } catch (IncorrectDataException | NameException | IncorrectLoadException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
-        info.add(this.play.getOption().getGeneralCmdBundle()
+        info.add(super.getPlay().getOption().getGeneralCmdBundle()
                 .getString("ZOO_EVALUATION") + Utils.truncate(zooEvaluation));
         return new ReturnExec(FormattingDisplay.formattingArrayList(info), TypeReturn.SUCCESS);
     }

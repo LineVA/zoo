@@ -17,23 +17,10 @@ import zoo.paddock.IPaddock;
  *
  * @author doyenm
  */
-public class AddTimedTasksPerPaddock extends AbstractCommand implements Command{
-
-    Play play;
-    boolean success = false;
-
-    @Override
-    public boolean isSuccess() {
-        return this.success;
-    }
+public class AddTimedTasksPerPaddock extends AbstractCommand {
 
     public AddTimedTasksPerPaddock(Play play) {
-        this.play = play;
-    }
-
-    @Override
-    public boolean hasInitiateAZoo() {
-        return false;
+        super(play);
     }
 
     @Override
@@ -47,14 +34,14 @@ public class AddTimedTasksPerPaddock extends AbstractCommand implements Command{
                 times.add(Double.parseDouble(cmd[i + 1]));
                 i += 2;
             }
-            AnimalKeeper keeper = this.play.getZoo().findAnimalKeeperByName(cmd[1]);
-            IPaddock paddock = this.play.getZoo().findPaddockByName(cmd[3]);
+            AnimalKeeper keeper = super.getPlay().getZoo().findAnimalKeeperByName(cmd[1]);
+            IPaddock paddock = super.getPlay().getZoo().findPaddockByName(cmd[3]);
             keeper.addTaskToAPaddock(paddock, tasks, times);
-            this.success = true;
+            super.setSuccess(true);
             return new ReturnExec(
-                    this.play.getOption().getGeneralCmdBundle().getString("TIMED_TASKS_SUCCESS"),
+                    super.getPlay().getOption().getGeneralCmdBundle().getString("TIMED_TASKS_SUCCESS"),
                     TypeReturn.SUCCESS);
-        } catch (UnknownNameException  | EmptyNameException | IncorrectDataException ex) {
+        } catch (UnknownNameException | EmptyNameException | IncorrectDataException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
     }

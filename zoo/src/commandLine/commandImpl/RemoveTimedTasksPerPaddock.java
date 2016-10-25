@@ -1,7 +1,6 @@
 package commandLine.commandImpl;
 
 import commandLine.AbstractCommand;
-import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
@@ -17,29 +16,16 @@ import zoo.paddock.IPaddock;
  *
  * @author doyenm
  */
-public class RemoveTimedTasksPerPaddock  extends AbstractCommand implements Command {
-
-    Play play;
-    boolean success = false;
-
-    @Override
-    public boolean isSuccess() {
-        return this.success;
-    }
+public class RemoveTimedTasksPerPaddock  extends AbstractCommand  {
 
     public RemoveTimedTasksPerPaddock(Play play) {
-        this.play = play;
-    }
-
-    @Override
-    public boolean hasInitiateAZoo() {
-        return false;
+        super(play);
     }
 
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
-            IPaddock paddock = this.play.getZoo().findPaddockByName(cmd[4]);
+            IPaddock paddock = super.getPlay().getZoo().findPaddockByName(cmd[4]);
             ArrayList<TaskPaddock> tasksPerPaddock = new ArrayList<>();
             int i = 5;
             while (i < cmd.length) {
@@ -47,11 +33,11 @@ public class RemoveTimedTasksPerPaddock  extends AbstractCommand implements Comm
                tasksPerPaddock.add(new TaskPaddock(paddock, Integer.parseInt(cmd[i])));
                 i += 1;
             }
-            AnimalKeeper keeper = this.play.getZoo().findAnimalKeeperByName(cmd[1]);
+            AnimalKeeper keeper = super.getPlay().getZoo().findAnimalKeeperByName(cmd[1]);
             keeper.removeTimedTasksPerPaddock(tasksPerPaddock);
-            this.success = true;
+            super.setSuccess(true);
             return new ReturnExec(
-                    this.play.getOption().getGeneralCmdBundle().getString("TIMED_PADDOCKS_SUCCESS"),
+                    super.getPlay().getOption().getGeneralCmdBundle().getString("TIMED_PADDOCKS_SUCCESS"),
                     TypeReturn.SUCCESS);
         } catch (UnknownNameException | EmptyNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);

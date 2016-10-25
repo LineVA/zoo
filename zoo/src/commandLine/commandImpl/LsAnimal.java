@@ -22,9 +22,8 @@ import zoo.paddock.biome.Biome;
  *
  * @author doyenm
  */
-public class LsAnimal extends AbstractCommand implements Command {
+public class LsAnimal extends AbstractCommand  {
 
-    Play play;
     // args[0] : the argument after '--specie'
     // args[1] : the argument after '--paddock'
     // args[2] : the argument after '--ecoregion'
@@ -39,19 +38,7 @@ public class LsAnimal extends AbstractCommand implements Command {
     String[] args;
 
     public LsAnimal(Play play) {
-        this.play = play;
-    }
-
-    @Override
-    public boolean hasInitiateAZoo() {
-        return false;
-    }
-
-    boolean success = false;
-
-    @Override
-    public boolean isSuccess() {
-        return this.success;
+        super(play);
     }
 
     @Override
@@ -65,10 +52,10 @@ public class LsAnimal extends AbstractCommand implements Command {
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
         try {
             if (args[0] != null) {
-                spec.setNames(this.play.getZoo().findSpecieByName(args[0]).getNames());
+                spec.setNames(super.getPlay().getZoo().findSpecieByName(args[0]).getNames());
             }
             if (args[1] != null) {
-                pad = this.play.getZoo().findPaddockByName(args[1]);
+                pad = super.getPlay().getZoo().findPaddockByName(args[1]);
             }
             if (args[2] != null) {
                 spec.setEcoregion(Integer.parseInt(args[2]));
@@ -94,9 +81,9 @@ public class LsAnimal extends AbstractCommand implements Command {
             if (args[9] != null) {
                 spec.setContinent(Integer.parseInt(args[9]));
             }
-            this.success = true;
+            super.setSuccess(true);
             ArrayList<String> names = new ArrayList<>();
-            for (Animal animal : this.play.getZoo().listAnimal(pad, spec, sex, diet, biome)) {
+            for (Animal animal : super.getPlay().getZoo().listAnimal(pad, spec, sex, diet, biome)) {
                 names.add(animal.getName());
             }
             Collections.sort(names);

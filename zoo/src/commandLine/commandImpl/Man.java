@@ -1,7 +1,6 @@
 package commandLine.commandImpl;
 
 import commandLine.AbstractCommand;
-import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import java.io.File;
@@ -13,36 +12,29 @@ import utils.ReadingMan;
  *
  * @author doyenm
  */
-public class Man extends AbstractCommand implements Command {
+public class Man extends AbstractCommand {
     
     Play play;
     String arg = "";
     
     public Man(Play play) {
-        this.play = play;
-    }
-    
-    boolean success = false;
-    
-    @Override
-    public boolean hasInitiateAZoo() {
-        return false;
+       super(play);
     }
     
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
             if ("zoo".equals(this.arg)) {
-                this.success = true;
+                super.setSuccess(true);
                 return new ReturnExec(ReadingMan.load(new File("doc/man/manZoo")), TypeReturn.SUCCESS);
             } else if("pad".equals(arg) || "paddock".equals(arg)){
-                   this.success = true;
+                   super.setSuccess(true);
                 return new ReturnExec(ReadingMan.load(new File("doc/man/manPaddock")), TypeReturn.SUCCESS);
             } else if("cmd".equals(arg) || "command".equals(arg)){
-                   this.success = true;
+                   super.setSuccess(true);
                 return new ReturnExec(ReadingMan.load(new File("doc/man/cmdLines")), TypeReturn.SUCCESS);
             } else if("specie".equals(arg) || "spec".equals(arg)){
-                   this.success = true;
+                   super.setSuccess(true);
                 return new ReturnExec(ReadingMan.load(new File("doc/man/manSpecie")), TypeReturn.SUCCESS);
             }                       
             return new ReturnExec("", TypeReturn.SUCCESS);
@@ -70,10 +62,5 @@ public class Man extends AbstractCommand implements Command {
             }
         }
         return false;
-    }
-    
-    @Override
-    public boolean isSuccess() {
-        return this.success;
     }
 }

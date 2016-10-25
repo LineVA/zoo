@@ -1,7 +1,6 @@
 package commandLine.commandImpl;
 
 import commandLine.AbstractCommand;
-import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import java.io.IOException;
@@ -13,28 +12,20 @@ import org.jdom2.JDOMException;
  *
  * @author doyenm
  */
-public class Options extends AbstractCommand implements Command{
-  Play play;
-
+public class Options extends AbstractCommand {
+  
     public Options(Play play) {
-        this.play = play;
-    }
-    
-    boolean success = false;
-    
-      @Override
-    public boolean hasInitiateAZoo() {
-        return false;
+        super(play);
     }
 
     @Override
     public ReturnExec execute(String[] cmd) {
         try { 
-        this.play.getOption().setLanguage(cmd[2]);
-        this.play.updateOption();
-        this.play.getZoo().setSpecies(InstanciateSpecies.instanciateSpecies("resources/species", this.play.getOption()));
-        this.success = true;
-        return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
+        super.getPlay().getOption().setLanguage(cmd[2]);
+        super.getPlay().updateOption();
+        super.getPlay().getZoo().setSpecies(InstanciateSpecies.instanciateSpecies("resources/species", super.getPlay().getOption()));
+        super.setSuccess(true);
+        return new ReturnExec(super.getPlay().getOption().getGeneralCmdBundle()
                 .getString("OPTION_CHANGE_SUCCESS"), TypeReturn.SUCCESS);
          } catch (JDOMException | IOException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
@@ -49,10 +40,5 @@ public class Options extends AbstractCommand implements Command{
             }
         }
         return false;
-    }
-
-    @Override
-    public boolean isSuccess() {
-        return this.success;
     }
 }

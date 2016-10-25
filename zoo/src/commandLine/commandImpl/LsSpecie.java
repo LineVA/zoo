@@ -2,7 +2,6 @@ package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
 import commandLine.AbstractCommand;
-import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
@@ -18,9 +17,8 @@ import zoo.paddock.IPaddock;
  *
  * @author doyenm
  */
-public class LsSpecie extends AbstractCommand implements Command {
+public class LsSpecie extends AbstractCommand  {
 
-    Play play;
     // args[0] : the argument after '--paddock'
     // args[1] : the argument after '--biome'
     // args[2] : the argument after '--ecoregion'
@@ -32,19 +30,7 @@ public class LsSpecie extends AbstractCommand implements Command {
     String[] args;
 
     public LsSpecie(Play play) {
-        this.play = play;
-    }
-
-    @Override
-    public boolean hasInitiateAZoo() {
-        return false;
-    }
-
-    boolean success = false;
-
-    @Override
-    public boolean isSuccess() {
-        return this.success;
+        super(play);
     }
 
     @Override
@@ -55,7 +41,7 @@ public class LsSpecie extends AbstractCommand implements Command {
         IPaddock pad = null;
         try {
             if (args[0] != null) {
-                pad = this.play.getZoo().findPaddockByName(args[0]);
+                pad = super.getPlay().getZoo().findPaddockByName(args[0]);
             }
             if (args[1] != null) {
                 light.setBiome(Integer.parseInt(args[1]));
@@ -78,11 +64,11 @@ public class LsSpecie extends AbstractCommand implements Command {
             if (args[7] != null) {
                 light.setContinent(Integer.parseInt(args[7]));
             }
-            this.success = true;
+            super.setSuccess(true);
         } catch (EmptyNameException | UnknownNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
-        ArrayList<String> list = this.play.getZoo().listSpecie(light, pad);
+        ArrayList<String> list = super.getPlay().getZoo().listSpecie(light, pad);
         Collections.sort(list);
         return new ReturnExec(FormattingDisplay.formattingArrayList(list), TypeReturn.SUCCESS);
     }

@@ -16,26 +16,12 @@ import zoo.animal.specie.Specie;
  *
  * @author doyenm
  */
-public class LsPaddock extends AbstractCommand implements Command {
-
-    Play play;
+public class LsPaddock extends AbstractCommand  {
 
     String[] args;
 
     public LsPaddock(Play play) {
-        this.play = play;
-    }
-
-    @Override
-    public boolean hasInitiateAZoo() {
-        return false;
-    }
-
-    boolean success = false;
-
-    @Override
-    public boolean isSuccess() {
-        return this.success;
+        super(play);
     }
 
     @Override
@@ -43,13 +29,13 @@ public class LsPaddock extends AbstractCommand implements Command {
         Specie spec = null;
         if (args[0] != null) {
             try {
-                spec = this.play.getZoo().findSpecieByName(args[0]);
-                this.success = true;
+                spec = super.getPlay().getZoo().findSpecieByName(args[0]);
+                super.setSuccess(true);
             } catch (EmptyNameException | UnknownNameException ex) {
                 return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
             }
         }
-        ArrayList<String> list = this.play.getZoo().listPaddock(spec);
+        ArrayList<String> list = super.getPlay().getZoo().listPaddock(spec);
         Collections.sort(list);
         return new ReturnExec(FormattingDisplay.formattingArrayList(list), TypeReturn.SUCCESS);
     }

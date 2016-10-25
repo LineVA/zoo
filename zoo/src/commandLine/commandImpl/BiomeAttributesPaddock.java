@@ -1,7 +1,6 @@
 package commandLine.commandImpl;
 
 import commandLine.AbstractCommand;
-import commandLine.Command;
 import commandLine.ReturnExec;
 import launch.play.Play;
 
@@ -9,23 +8,10 @@ import launch.play.Play;
  *
  * @author doyenm
  */
-public class BiomeAttributesPaddock extends AbstractCommand implements Command {
-
-    Play play;
-    boolean success = false;
-    
-     @Override
-    public boolean isSuccess() {
-        return this.success;
-    }
+public class BiomeAttributesPaddock extends AbstractCommand {
 
     public BiomeAttributesPaddock(Play play) {
-        this.play = play;
-    }
-
-    @Override
-    public boolean hasInitiateAZoo() {
-        return false;
+        super(play);
     }
 
     @Override

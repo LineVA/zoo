@@ -18,36 +18,22 @@ import zoo.paddock.IPaddock;
 /**
  * @author doyenm
  */
-public class CreateAnimal extends AbstractCommand implements Command {
-
-    Play play;
-
-    boolean success = false;
-
-    @Override
-    public boolean isSuccess() {
-        return this.success;
-    }
+public class CreateAnimal extends AbstractCommand {
 
     public CreateAnimal(Play play) {
-        this.play = play;
-    }
-
-    @Override
-    public boolean hasInitiateAZoo() {
-        return false;
+        super(play);
     }
 
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
-            this.play.getZoo().findAnimalByName(cmd[2]);
-            return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
+           super.getPlay().getZoo().findAnimalByName(cmd[2]);
+            return new ReturnExec(super.getPlay().getOption().getGeneralCmdBundle()
                     .getString("ALREADY_EXISTING_ANIMAL_NAME"), TypeReturn.SUCCESS);
         } catch (UnknownNameException ex1) {
             try {
-                IPaddock pad = this.play.getZoo().findPaddockByName(cmd[3]);
-                Specie specie = this.play.getZoo().findSpecieByName(cmd[4]);
+                IPaddock pad = super.getPlay().getZoo().findPaddockByName(cmd[3]);
+                Specie specie = super.getPlay().getZoo().findSpecieByName(cmd[4]);
                 Sex sex;
                 try {
                     sex = Sex.UNKNOWN.findById(Integer.parseInt(cmd[5]));
@@ -55,10 +41,10 @@ public class CreateAnimal extends AbstractCommand implements Command {
                     sex = Sex.UNKNOWN.findByNameAccordingToLanguage(cmd[5]);
                 }
                 Animal animal = new AnimalImpl(specie, cmd[2], pad,
-                        sex, this.play.getOption());
+                        sex, super.getPlay().getOption());
                 pad.addAnimal(animal);
-                this.success = true;
-                return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
+                super.setSuccess(true);
+                return new ReturnExec(super.getPlay().getOption().getGeneralCmdBundle()
                         .getString("ANIMAL_CREATION_SUCCESS"), TypeReturn.SUCCESS);
             } catch (NameException | IncorrectLoadException ex) {
                 return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);

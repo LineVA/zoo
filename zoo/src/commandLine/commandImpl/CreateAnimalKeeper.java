@@ -11,33 +11,19 @@ import launch.play.Play;
  *
  * @author doyenm
  */
-public class CreateAnimalKeeper  extends AbstractCommand implements Command{
-
-    Play play;
+public class CreateAnimalKeeper  extends AbstractCommand {
 
     public CreateAnimalKeeper(Play play) {
-        this.play = play;
-    }
-
-    boolean success = false;
-
-    @Override
-    public boolean isSuccess() {
-        return this.success;
-    }
-
-    @Override
-    public boolean hasInitiateAZoo() {
-        return false;
+       super(play);
     }
 
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
-            this.play.getZoo().addKeeper(cmd[2]);
-            this.success = true;
+            super.getPlay().getZoo().addKeeper(cmd[2]);
+            super.setSuccess(true);
             return new ReturnExec(
-                    this.play.getOption().getGeneralCmdBundle().getString("KEEPER_CREATION_SUCCESS"),
+                   super.getPlay().getOption().getGeneralCmdBundle().getString("KEEPER_CREATION_SUCCESS"),
                     TypeReturn.SUCCESS);
         } catch (NameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);

@@ -14,34 +14,20 @@ import zoo.animal.Animal;
  *
  * @author doyenm
  */
-public class FeedingAnimal extends AbstractCommand implements Command {
+public class FeedingAnimal extends AbstractCommand {
 
-    Play play;
     // args[0] : the argument after '--diet'
     // args[1] : the argument after '--foodQuantity'
     String[] args;
 
     public FeedingAnimal(Play play) {
-        this.play = play;
-    }
-
-    @Override
-    public boolean hasInitiateAZoo() {
-        return false;
-    }
-
-    boolean success = false;
-
-    @Override
-    public boolean isSuccess() {
-        return this.success;
+        super(play);
     }
 
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
-            Animal animal = this.play.getZoo().findAnimalByName(cmd[1]);
-            Boolean changeDiet = false;
+            Animal animal = super.getPlay().getZoo().findAnimalByName(cmd[1]);
             if (args[0] != null) {
                 animal.changeDiet(args[0]);
             }
@@ -50,11 +36,11 @@ public class FeedingAnimal extends AbstractCommand implements Command {
                     animal.changeFoodQuantity(Double.parseDouble(args[1]));
                 } catch (java.lang.NumberFormatException ex) {
                     return new ReturnExec(
-                            this.play.getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION"), 
+                          super.getPlay().getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION"), 
                             TypeReturn.ERROR);
                 }
             }
-            return new ReturnExec(this.play.getOption().getGeneralCmdBundle()
+            return new ReturnExec(super.getPlay().getOption().getGeneralCmdBundle()
                     .getString("ANIMALS_DIET") + " " + args[0], TypeReturn.SUCCESS);
         } catch (EmptyNameException | UnknownNameException |
                 IncorrectLoadException | NumberFormatException ex) {

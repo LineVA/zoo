@@ -1,7 +1,6 @@
 package commandLine.commandImpl;
 
 import commandLine.AbstractCommand;
-import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.IncorrectDataException;
@@ -16,23 +15,10 @@ import zoo.paddock.IPaddock;
  *
  * @author doyenm
  */
-public class AddTimedPaddocks extends AbstractCommand implements Command {
-
-    Play play;
-    boolean success = false;
-
-    @Override
-    public boolean isSuccess() {
-        return this.success;
-    }
-
+public class AddTimedPaddocks extends AbstractCommand {
+   
     public AddTimedPaddocks(Play play) {
-        this.play = play;
-    }
-
-    @Override
-    public boolean hasInitiateAZoo() {
-        return false;
+        super(play);
     }
 
     @Override
@@ -42,19 +28,21 @@ public class AddTimedPaddocks extends AbstractCommand implements Command {
             ArrayList<Double> times = new ArrayList<>();
             int i = 3;
             while (i < cmd.length) {
-                paddocks.add(this.play.getZoo().findPaddockByName(cmd[i]));
+                paddocks.add(super.getPlay().getZoo().findPaddockByName(cmd[i]));
                 times.add(Double.parseDouble(cmd[i + 1]));
                 i += 2;
             }
-            AnimalKeeper keeper = this.play.getZoo().findAnimalKeeperByName(cmd[1]);
+            AnimalKeeper keeper = super.getPlay().getZoo().findAnimalKeeperByName(cmd[1]);
             keeper.addTimedPaddocks(paddocks, times);
-            this.success = true;
+            super.setSuccess(true);
             return new ReturnExec(
-                    this.play.getOption().getGeneralCmdBundle().getString("TIMED_PADDOCKS_SUCCESS"),TypeReturn.SUCCESS);
+                   super.getPlay().getOption().getGeneralCmdBundle().getString("TIMED_PADDOCKS_SUCCESS"),
+                    TypeReturn.SUCCESS);
         } catch (UnknownNameException  | EmptyNameException | IncorrectDataException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         } catch (java.lang.NumberFormatException ex){
-            return new ReturnExec(this.play.getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION")
+            return new ReturnExec(
+                    super.getPlay().getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION")
             , TypeReturn.ERROR);
         }
     }

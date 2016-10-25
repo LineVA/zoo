@@ -13,29 +13,15 @@ import launch.play.Play;
  */
 public class DetailZoo extends AbstractCommand {
 
-    Play play;
-
     public DetailZoo(Play play) {
-        super();
-        this.play = play;
-    }
-
-      @Override
-    public boolean hasInitiateAZoo() {
-        return false;
-    }
-    
-    boolean success = false;
-    
-     @Override
-    public boolean isSuccess() {
-        return this.success;
+        super(play);
     }
     
     @Override
     public ReturnExec execute(String[] cmd) {
-        this.success = true;
-        return new ReturnExec(FormattingDisplay.formattingArrayList(this.play.getZoo().info()), TypeReturn.SUCCESS);
+       super.setSuccess(true);
+        return new ReturnExec(FormattingDisplay.formattingArrayList(super.getPlay().getZoo().info()), 
+                TypeReturn.SUCCESS);
     }
 
     @Override

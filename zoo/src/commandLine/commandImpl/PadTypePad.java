@@ -1,7 +1,6 @@
 package commandLine.commandImpl;
 
 import commandLine.AbstractCommand;
-import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
@@ -13,34 +12,20 @@ import zoo.paddock.IPaddock;
  *
  * @author doyenm
  */
-public class PadTypePad extends AbstractCommand implements Command {
-
-    Play play;
+public class PadTypePad extends AbstractCommand  {
 
     public PadTypePad(Play play) {
-        this.play = play;
-    }
-
-    @Override
-    public boolean hasInitiateAZoo() {
-        return false;
-    }
-
-    boolean success = false;
-
-    @Override
-    public boolean isSuccess() {
-        return this.success;
+        super(play);
     }
 
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
-            IPaddock pad = this.play.getZoo().findPaddockByName(cmd[1]);
+            IPaddock pad = super.getPlay().getZoo().findPaddockByName(cmd[1]);
             pad.setPaddockType(cmd[3]);
-            this.success = true;
+            super.setSuccess(true);
             return new ReturnExec(
-                    this.play.getOption().getGeneralCmdBundle().getString("TYPE_PAD") + cmd[3],
+                    super.getPlay().getOption().getGeneralCmdBundle().getString("TYPE_PAD") + cmd[3],
                     TypeReturn.SUCCESS);
         } catch(UnknownNameException | EmptyNameException ex){
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);

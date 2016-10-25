@@ -16,30 +16,17 @@ import zoo.animal.specie.Specie;
  */
 public class DetailSpecie extends AbstractCommand implements Command {
 
-    Play play;
-
     public DetailSpecie(Play play) {
-        this.play = play;
-    }
-    
-      @Override
-    public boolean hasInitiateAZoo() {
-        return false;
-    }
-    
-    boolean success = false;
-    
-     @Override
-    public boolean isSuccess() {
-        return this.success;
+        super(play);
     }
 
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
-            Specie spec = this.play.getZoo().findSpecieByName(cmd[1]);
-            this.success = true;
-            return new ReturnExec(FormattingDisplay.formattingArrayList(spec.info(this.play.getOption())), TypeReturn.SUCCESS);
+            Specie spec = super.getPlay().getZoo().findSpecieByName(cmd[1]);
+           super.setSuccess(true);
+            return new ReturnExec(FormattingDisplay.formattingArrayList(spec.info(super.getPlay().getOption())),
+                    TypeReturn.SUCCESS);
         } catch (UnknownNameException | EmptyNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }

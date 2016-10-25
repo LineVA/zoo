@@ -3,7 +3,6 @@ package commandLine.commandImpl;
 import backup.load.Load;
 import backup.load.LoadImpl;
 import commandLine.AbstractCommand;
-import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import java.io.IOException;
@@ -15,26 +14,10 @@ import zoo.IZoo;
  *
  * @author doyenm
  */
-public class LoadZoo extends AbstractCommand implements Command {
-
-    Play play;
-
-    boolean previousHasBeenSuccessfull = false;
-
-    @Override
-    public boolean hasInitiateAZoo() {
-        return this.previousHasBeenSuccessfull;
-    }
+public class LoadZoo extends AbstractCommand {
 
     public LoadZoo(Play play) {
-        this.play = play;
-    }
-
-    boolean success = false;
-
-    @Override
-    public boolean isSuccess() {
-        return this.success;
+        super(play);
     }
 
     @Override
@@ -42,20 +25,17 @@ public class LoadZoo extends AbstractCommand implements Command {
         try {
             Load load = new LoadImpl();
             IZoo zoo = load.loadZoo("gameBackUps/" + cmd[1] + ".xml");
-            this.play.setZoo(zoo);
-            this.play.setOption(zoo.getOption());
-            this.previousHasBeenSuccessfull = true;
-            this.success = true;
+            super.getPlay().setZoo(zoo);
+            super.getPlay().setOption(zoo.getOption());
+            super.setSuccess(true);
             return new ReturnExec(
-                    this.play.getOption().getGeneralCmdBundle().getString("ZOO_CREATION_SUCESS"), TypeReturn.SUCCESS);
-        } catch ( JDOMException ex) {
-            this.previousHasBeenSuccessfull = false;
+                    super.getPlay().getOption().getGeneralCmdBundle().getString("ZOO_CREATION_SUCESS"), TypeReturn.SUCCESS);
+        } catch (JDOMException ex) {
             return new ReturnExec(
-                    this.play.getOption().getGeneralCmdBundle().getString("FAIL_LOAD"), TypeReturn.ERROR);
-        } catch ( IOException ex) {
-            this.previousHasBeenSuccessfull = false;
+                    super.getPlay().getOption().getGeneralCmdBundle().getString("FAIL_LOAD"), TypeReturn.ERROR);
+        } catch (IOException ex) {
             return new ReturnExec(
-                    this.play.getOption().getGeneralCmdBundle().getString("FAILED_FILE"), TypeReturn.ERROR);
+                  super.getPlay().getOption().getGeneralCmdBundle().getString("FAILED_FILE"), TypeReturn.ERROR);
         }
     }
 

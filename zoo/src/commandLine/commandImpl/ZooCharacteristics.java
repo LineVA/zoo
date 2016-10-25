@@ -1,7 +1,6 @@
 package commandLine.commandImpl;
 
 import commandLine.AbstractCommand;
-import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.IncorrectDataException;
@@ -11,14 +10,12 @@ import launch.play.Play;
  *
  * @author doyenm
  */
-public class ZooCharacteristics extends AbstractCommand implements Command {
-
-    Play play;
+public class ZooCharacteristics extends AbstractCommand  {
 
     String[] args = new String[]{null, null};
 
     public ZooCharacteristics(Play play) {
-        this.play = play;
+        super(play);
     }
 
     @Override
@@ -35,35 +32,23 @@ public class ZooCharacteristics extends AbstractCommand implements Command {
             }
             try {
                 if (args[0] != null) {
-                    this.play.getZoo().changeSpeed(speed);
-                    result += this.play.getOption().getGeneralCmdBundle().getString("SPEED_CHANGE_SUCCESS") + cmd[2];
+                    super.getPlay().getZoo().changeSpeed(speed);
+                    result += super.getPlay().getOption().getGeneralCmdBundle().getString("SPEED_CHANGE_SUCCESS") + cmd[2];
                 }
                 if (args[1] != null) {
-                    this.play.getZoo().changeHorizon(horizon);
-                    result += this.play.getOption().getGeneralCmdBundle().getString("HORIZON_CHANGE_SUCCESS") + cmd[2];
+                    super.getPlay().getZoo().changeHorizon(horizon);
+                    result += super.getPlay().getOption().getGeneralCmdBundle().getString("HORIZON_CHANGE_SUCCESS") + cmd[2];
                 }
-                this.success = true;
+                super.setSuccess(true);
             } catch (IncorrectDataException ex) {
                 result += ex.getMessage();
             }
         } catch (NumberFormatException ex) {
             return new ReturnExec(
-                    this.play.getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION"),
+                    super.getPlay().getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION"),
                     TypeReturn.SUCCESS);
         }
         return new ReturnExec(result, TypeReturn.SUCCESS);
-    }
-
-    @Override
-    public boolean hasInitiateAZoo() {
-        return false;
-    }
-
-    boolean success = false;
-
-    @Override
-    public boolean isSuccess() {
-        return this.success;
     }
 
     @Override

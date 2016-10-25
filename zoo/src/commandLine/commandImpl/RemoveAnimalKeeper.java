@@ -1,7 +1,6 @@
 package commandLine.commandImpl;
 
 import commandLine.AbstractCommand;
-import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
@@ -12,33 +11,19 @@ import launch.play.Play;
  *
  * @author doyenm
  */
-public class RemoveAnimalKeeper extends AbstractCommand implements Command{
-
-    Play play;
+public class RemoveAnimalKeeper extends AbstractCommand {
 
     public RemoveAnimalKeeper(Play play) {
-        this.play = play;
-    }
-
-    @Override
-    public boolean hasInitiateAZoo() {
-        return false;
-    }
-
-    boolean success = false;
-
-    @Override
-    public boolean isSuccess() {
-        return this.success;
+        super(play);
     }
 
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
-          this.play.getZoo().removeKeeper(this.play.getZoo().findAnimalKeeperByName(cmd[2]));
-            this.success = true;
+          super.getPlay().getZoo().removeKeeper(super.getPlay().getZoo().findAnimalKeeperByName(cmd[2]));
+            super.setSuccess(true);
             return new ReturnExec(
-                    this.play.getOption().getGeneralCmdBundle().getString("KEEPER_REMOVE_SUCCESS"),
+                    super.getPlay().getOption().getGeneralCmdBundle().getString("KEEPER_REMOVE_SUCCESS"),
                     TypeReturn.SUCCESS);
         } catch (EmptyNameException | UnknownNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);

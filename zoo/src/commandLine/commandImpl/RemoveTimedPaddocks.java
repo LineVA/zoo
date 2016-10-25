@@ -1,7 +1,6 @@
 package commandLine.commandImpl;
 
 import commandLine.AbstractCommand;
-import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
@@ -15,23 +14,10 @@ import zoo.paddock.IPaddock;
  *
  * @author doyenm
  */
-public class RemoveTimedPaddocks extends AbstractCommand implements Command {
-
-    Play play;
-    boolean success = false;
-
-    @Override
-    public boolean isSuccess() {
-        return this.success;
-    }
+public class RemoveTimedPaddocks extends AbstractCommand  {
 
     public RemoveTimedPaddocks(Play play) {
-        this.play = play;
-    }
-
-    @Override
-    public boolean hasInitiateAZoo() {
-        return false;
+        super(play);
     }
 
     @Override
@@ -40,14 +26,14 @@ public class RemoveTimedPaddocks extends AbstractCommand implements Command {
             ArrayList<IPaddock> paddocks = new ArrayList<>();
             int i = 4;
             while (i < cmd.length) {
-                paddocks.add(this.play.getZoo().findPaddockByName(cmd[i]));
+                paddocks.add(super.getPlay().getZoo().findPaddockByName(cmd[i]));
                 i += 1;
             }
-            AnimalKeeper keeper = this.play.getZoo().findAnimalKeeperByName(cmd[1]);
+            AnimalKeeper keeper = super.getPlay().getZoo().findAnimalKeeperByName(cmd[1]);
             keeper.removeTimedPaddocks(paddocks);
-            this.success = true;
+            super.setSuccess(true);
             return new ReturnExec(
-                    this.play.getOption().getGeneralCmdBundle().getString("TIMED_PADDOCKS_SUCCESS"),
+                    super.getPlay().getOption().getGeneralCmdBundle().getString("TIMED_PADDOCKS_SUCCESS"),
                     TypeReturn.SUCCESS);
         } catch (UnknownNameException | EmptyNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
