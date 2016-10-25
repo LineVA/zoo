@@ -47,8 +47,9 @@ public class ParserSpecie {
         int size = sizeParser(root);
         ArrayList<Integer> continents = continentParser(root);
         DocumentationURI docu = documentationParser(root);
+        int programme = breedingProgrammeParser(root);
         Specie spec = new Specie(names, docu, biomeAtt, feeding, diet, repro, lifeSpan,
-                conservation, social, territory, region, family, biomes, size, continents, 0);
+                conservation, social, territory, region, family, biomes, size, continents, programme);
         return spec;
     }
 
@@ -144,6 +145,11 @@ public class ParserSpecie {
         return Integer.parseInt(genEl.getChildText("family"));
     }
 
+    private static int breedingProgrammeParser(Element root){
+          Element genEl = root.getChild("general");
+        return Integer.parseInt(genEl.getChildText("breedingProgramme"));
+    }
+    
     private static SocialAttributes socialParser(Element root) throws IncorrectLoadException {
         Element socialEl = root.getChild("social");
         return new SocialAttributes(Integer.parseInt(socialEl.getChildText("groupSize")));
