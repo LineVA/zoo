@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+  <names>
+    <fr>Puma</fr>
+    <additionalFrenchNames>
+      <name>Lion de montagne</name>
+      <name>Cougar</name>
+    </additionalFrenchNames>
+    <en>Cougar</en>
+    <additionalEnglishNames>
+      <name>Mountain lion</name>
+      <name>Catamount</name>
+      <name>Puma</name>
+      <name>Panther</name>
+    </additionalEnglishNames>
+    <scientific>Puma concolor</scientific>
+  </names>
+  <general>
+    <uicn>1</uicn>
+    <family>8</family>
+    <continents>
+      <continent>2</continent>
+      <continent>3</continent>
+    </continents>
+    <ecoregion>1</ecoregion>
+    <breedingProgramme>0</breedingProgramme>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Puma</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Cougar</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>24</femaleMaturity>
+    <maleMaturity>30</maleMaturity>
+    <gestationFrequency>0.5</gestationFrequency>
+    <litterSize>3</litterSize>
+    <leavingAge>12</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>228</femaleLifespan>
+    <maleLifespan>228</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>120</territorySize>
+    <biomes>
+      <biome>1</biome>
+    </biomes>
+  </territory>
+  <feeding>
+    <quantity>2.1</quantity>
+    <size>5</size>
+    <diets>
+      <diet>3</diet>
+    </diets>
+  </feeding>
+  <social>
+    <groupSize>1</groupSize>
+  </social>
+</animal>

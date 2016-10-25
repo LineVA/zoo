@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+  <names>
+    <fr>Vari noir et blanc</fr>
+    <additionalFrenchNames>
+      <name>Lémur vari</name>
+    </additionalFrenchNames>
+    <en>Black and white ruffed lemur</en>
+    <additionalEnglishNames>
+      <name>Black and white lemur</name>
+    </additionalEnglishNames>
+    <scientific>Varecia variegata</scientific>
+  </names>
+  <general>
+    <uicn>5</uicn>
+    <family>10</family>
+    <continents>
+      <continent>1</continent>
+    </continents>
+    <ecoregion>0</ecoregion>
+    <breedingProgramme>2</breedingProgramme>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Varecia_variegata</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Black-and-white_ruffed_lemur</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>20</femaleMaturity>
+    <maleMaturity>20</maleMaturity>
+    <gestationFrequency>1</gestationFrequency>
+    <litterSize>2</litterSize>
+    <leavingAge>6</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>228</femaleLifespan>
+    <maleLifespan>220</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>40</territorySize>
+    <biomes>
+      <biome>1</biome>
+    </biomes>
+  </territory>
+  <feeding>
+    <quantity>0.350</quantity>
+    <size>1</size>
+    <diets>
+      <diet>5</diet>
+    </diets>
+  </feeding>
+  <social>
+    <groupSize>4</groupSize>
+  </social>
+</animal>

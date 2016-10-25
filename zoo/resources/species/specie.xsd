@@ -30,7 +30,6 @@
                         <xs:sequence>
                             <xs:element type="xs:integer" name="uicn"/>
                             <xs:element type="xs:string" name="family"/>
-                            <xs:element type="xs:string" name="breedingProgramme"/>
                             <xs:element name="continents">
                                 <xs:complexType>
                                     <xs:sequence>
@@ -39,6 +38,7 @@
                                 </xs:complexType>
                             </xs:element>
                             <xs:element type="xs:integer" name="ecoregion"/>
+                            <xs:element type="xs:string" name="breedingProgramme"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>

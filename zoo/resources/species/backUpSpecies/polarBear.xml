@@ -40,9 +40,11 @@
     </biomes>
   </territory>
   <feeding>
-    <diet>3</diet>
     <quantity>13</quantity>
     <size>8</size>
+    <diets>
+      <diet>3</diet>
+    </diets>
   </feeding>
   <social>
     <groupSize>1</groupSize>

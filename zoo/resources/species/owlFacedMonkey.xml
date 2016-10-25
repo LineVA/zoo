@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+  <names>
+    <fr>Cercopithèque à tête de hibou</fr>
+    <additionalFrenchNames>
+      <name>Cercopithèque de Hamlyn</name>
+    </additionalFrenchNames>
+    <en>Diana monkey</en>
+    <additionalEnglishNames>
+      <name>Hamlyn's monkey</name>
+    </additionalEnglishNames>
+    <scientific>Cercopithecus hamlyni</scientific>
+  </names>
+  <general>
+    <uicn>3</uicn>
+    <family>31</family>
+    <continents>
+      <continent>1</continent>
+    </continents>
+    <ecoregion>0</ecoregion>
+    <breedingProgramme>1</breedingProgramme>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Cercopithecus_hamlyni</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Hamlyn's_monkey</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>36</femaleMaturity>
+    <maleMaturity>36</maleMaturity>
+    <gestationFrequency>0.5</gestationFrequency>
+    <litterSize>1</litterSize>
+    <leavingAge>6</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>240</femaleLifespan>
+    <maleLifespan>240</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>40</territorySize>
+    <biomes>
+      <biome>1</biome>
+    </biomes>
+  </territory>
+  <feeding>
+    <quantity>0.700</quantity>
+    <size>1</size>
+    <diets>
+      <diet>17</diet>
+    </diets>
+  </feeding>
+  <social>
+    <groupSize>5</groupSize>
+  </social>
+</animal>
