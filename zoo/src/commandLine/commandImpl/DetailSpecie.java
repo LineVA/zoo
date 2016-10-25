@@ -35,7 +35,7 @@ public class DetailSpecie extends AbstractCommand implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
-            if (cmd[0].equals("spec") || cmd[0].equals("specie")) {
+            if (cmd[0].equalsIgnoreCase("spec") || cmd[0].equalsIgnoreCase("specie")) {
                 return true;
             }
         }

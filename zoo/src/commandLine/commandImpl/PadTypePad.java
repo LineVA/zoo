@@ -34,7 +34,7 @@ public class PadTypePad extends AbstractCommand  {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 4 && (cmd[0].equals("pad") || "paddock".equals(cmd[0]))
-                && (cmd[2].equals("-pT") || "--padType".equals(cmd[2]) || "--paddockType".equals(cmd[2]));
+        return cmd.length == 4 && (cmd[0].equalsIgnoreCase("pad") || "paddock".equalsIgnoreCase(cmd[0]))
+                && (cmd[2].equalsIgnoreCase("-pT") || "--padType".equalsIgnoreCase(cmd[2]) || "--paddockType".equalsIgnoreCase(cmd[2]));
     }
 }

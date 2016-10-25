@@ -33,7 +33,7 @@ public class DetailPad extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
-            if (cmd[0].equals("pad") || cmd[0].equals("paddock")) {
+            if (cmd[0].equalsIgnoreCase("pad") || cmd[0].equalsIgnoreCase("paddock")) {
                 return true;
             }
         }

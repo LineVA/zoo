@@ -26,6 +26,6 @@ public class LsPaddockType  extends AbstractCommand {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 2 && (cmd[0].equals("paddockType") || "padType".equals(cmd[0])) && cmd[1].equals("ls");
+        return cmd.length == 2 && (cmd[0].equalsIgnoreCase("paddockType") || "padType".equalsIgnoreCase(cmd[0])) && cmd[1].equalsIgnoreCase("ls");
     }
 }

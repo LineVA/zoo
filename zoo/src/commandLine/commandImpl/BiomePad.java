@@ -35,8 +35,8 @@ public class BiomePad extends AbstractCommand{
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 4) {
-            if (cmd[0].equals("pad") || cmd[0].equals("paddock")) {
-                if (cmd[2].equals("--biome") || cmd[2].equals("-b")) {
+            if (cmd[0].equalsIgnoreCase("pad") || cmd[0].equalsIgnoreCase("paddock")) {
+                if (cmd[2].equalsIgnoreCase("--biome") || cmd[2].equalsIgnoreCase("-b")) {
                     return true;
                 }
             }

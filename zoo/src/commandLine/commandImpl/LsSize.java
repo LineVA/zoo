@@ -25,6 +25,6 @@ public class LsSize extends AbstractCommand  {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 2 && cmd[0].equals("size") && cmd[1].equals("ls");
+        return cmd.length == 2 && cmd[0].equalsIgnoreCase("size") && cmd[1].equalsIgnoreCase("ls");
     }
 }

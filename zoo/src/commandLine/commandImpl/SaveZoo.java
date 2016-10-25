@@ -67,6 +67,6 @@ public class SaveZoo extends AbstractCommand {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 2 && "save".equals(cmd[0]);
+        return cmd.length == 2 && "save".equalsIgnoreCase(cmd[0]);
     }
 }

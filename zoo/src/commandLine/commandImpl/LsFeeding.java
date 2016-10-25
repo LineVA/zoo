@@ -26,8 +26,8 @@ public class LsFeeding extends AbstractCommand  {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
-            if (cmd[0].equals("diet")) {
-                if (cmd[1].equals("ls")) {
+            if (cmd[0].equalsIgnoreCase("diet")) {
+                if (cmd[1].equalsIgnoreCase("ls")) {
                     return true;
                 }
             }

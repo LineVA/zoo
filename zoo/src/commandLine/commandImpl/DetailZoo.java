@@ -27,7 +27,7 @@ public class DetailZoo extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 1) {
-            if (cmd[0].equals("zoo")) {
+            if (cmd[0].equalsIgnoreCase("zoo")) {
                 return true;
             }
         }

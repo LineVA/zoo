@@ -27,6 +27,6 @@ public class LsTask extends AbstractCommand {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 2 && cmd[0].equals("task") && cmd[1].equals("ls");
+        return cmd.length == 2 && cmd[0].equalsIgnoreCase("task") && cmd[1].equalsIgnoreCase("ls");
     }
 }

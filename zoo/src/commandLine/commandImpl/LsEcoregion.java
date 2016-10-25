@@ -25,6 +25,6 @@ public class LsEcoregion extends AbstractCommand  {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 2 && cmd[0].equals("ecoregion") && cmd[1].equals("ls");
+        return cmd.length == 2 && cmd[0].equalsIgnoreCase("ecoregion") && cmd[1].equalsIgnoreCase("ls");
     }
 }

@@ -33,7 +33,7 @@ public class DetailAnimalKeeper extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
-            if (cmd[0].equals("animalKeeper") || "aK".equals(cmd[0]) || "ak".equals(cmd[0])) {
+            if (cmd[0].equalsIgnoreCase("animalKeeper") || "aK".equalsIgnoreCase(cmd[0]) || "ak".equalsIgnoreCase(cmd[0])) {
                 return true;
             }
         }

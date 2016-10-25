@@ -75,8 +75,8 @@ public class LsSpecie extends AbstractCommand  {
 
     public boolean firstCmd(String[] cmd) {
         if (cmd.length >= 2) {
-            if (cmd[0].equals("specie") || cmd[0].equals("spec")) {
-                if (cmd[1].equals("ls")) {
+            if (cmd[0].equalsIgnoreCase("specie") || cmd[0].equalsIgnoreCase("spec")) {
+                if (cmd[1].equalsIgnoreCase("ls")) {
                     return true;
                 }
             }
@@ -89,35 +89,35 @@ public class LsSpecie extends AbstractCommand  {
     }
 
     private boolean hasArgumentPaddock(String cmd) {
-        return cmd.equals("--paddock") || cmd.equals("-p");
+        return cmd.equalsIgnoreCase("--paddock") || cmd.equalsIgnoreCase("-p");
     }
 
     private boolean hasArgumentEcoregion(String cmd) {
-        return cmd.equals("--ecoregion") || cmd.equals("-e");
+        return cmd.equalsIgnoreCase("--ecoregion") || cmd.equalsIgnoreCase("-e");
     }
 
     private boolean hasArgumentDiet(String cmd) {
-        return cmd.equals("--diet") || cmd.equals("-d");
+        return cmd.equalsIgnoreCase("--diet") || cmd.equalsIgnoreCase("-d");
     }
 
     private boolean hasArgumentFamily(String cmd) {
-        return cmd.equals("--family") || cmd.equals("-f");
+        return cmd.equalsIgnoreCase("--family") || cmd.equalsIgnoreCase("-f");
     }
 
     private boolean hasArgumentConservation(String cmd) {
-        return cmd.equals("--conservation") || cmd.equals("-cs");
+        return cmd.equalsIgnoreCase("--conservation") || cmd.equalsIgnoreCase("-cs");
     }
 
     private boolean hasArgumentBiome(String cmd) {
-        return cmd.equals("--biome") || cmd.equals("-b");
+        return cmd.equalsIgnoreCase("--biome") || cmd.equalsIgnoreCase("-b");
     }
 
     private boolean hasArgumentSize(String cmd) {
-        return cmd.equals("--size") || cmd.equals("-sz");
+        return cmd.equalsIgnoreCase("--size") || cmd.equalsIgnoreCase("-sz");
     }
 
     private boolean hasArgumentContinent(String cmd) {
-        return cmd.equals("--continent") || cmd.equals("-ct");
+        return cmd.equalsIgnoreCase("--continent") || cmd.equalsIgnoreCase("-ct");
     }
 
     private boolean saveArgument(String arg, String value) {

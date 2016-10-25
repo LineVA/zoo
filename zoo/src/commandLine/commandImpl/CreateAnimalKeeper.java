@@ -33,8 +33,8 @@ public class CreateAnimalKeeper  extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 3) {
-            if (cmd[0].equals("ak") || cmd[0].equals("animalKeeper") || "aK".equals(cmd[0])) {
-                if (cmd[1].equals("create")) {
+            if (cmd[0].equalsIgnoreCase("ak") || cmd[0].equalsIgnoreCase("animalKeeper") || "aK".equalsIgnoreCase(cmd[0])) {
+                if (cmd[1].equalsIgnoreCase("create")) {
                     return true;
                 }
             }

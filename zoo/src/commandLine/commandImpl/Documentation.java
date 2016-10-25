@@ -23,11 +23,11 @@ public class Documentation extends AbstractCommand {
     public ReturnExec execute(String[] cmd) {
         try {
             Specie spec = super.getPlay().getZoo().findSpecieByName(cmd[2]);
-            if ("wiki".equals(cmd[1]) || "wikipedia".equals(cmd[1])) {
+            if ("wiki".equalsIgnoreCase(cmd[1]) || "wikipedia".equalsIgnoreCase(cmd[1])) {
                 DocumentationGeneration.display(
                         spec.getDocumentation().getWikipediaAccordingLanguage(super.getPlay().getOption()));
             }
-              if ("ad".equals(cmd[1]) || "animalDiversity".equals(cmd[1])) {
+              if ("ad".equalsIgnoreCase(cmd[1]) || "animalDiversity".equalsIgnoreCase(cmd[1])) {
                 DocumentationGeneration.display(
                         spec.getDocumentation().getAnimalDiversity());
             }
@@ -41,9 +41,9 @@ public class Documentation extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 3) {
-            if ((cmd[0].equals("doc") || "documentation".equals(cmd[0])) 
-                    && (("wiki".equals(cmd[1]) || "wikipedia".equals(cmd[1])) 
-                    ||("animalDiversity".equals(cmd[1]) || "aD".equals(cmd[1])))) {
+            if ((cmd[0].equalsIgnoreCase("doc") || "documentation".equalsIgnoreCase(cmd[0])) 
+                    && (("wiki".equalsIgnoreCase(cmd[1]) || "wikipedia".equalsIgnoreCase(cmd[1])) 
+                    ||("animalDiversity".equalsIgnoreCase(cmd[1]) || "aD".equalsIgnoreCase(cmd[1])))) {
                 return true;
             }
         }

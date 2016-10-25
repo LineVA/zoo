@@ -42,8 +42,8 @@ public class LsPaddock extends AbstractCommand  {
 
     public boolean firstCmd(String[] cmd) {
         if (cmd.length >= 2) {
-            if (cmd[0].equals("paddock") || cmd[0].equals("pad")) {
-                if (cmd[1].equals("ls")) {
+            if (cmd[0].equalsIgnoreCase("paddock") || cmd[0].equalsIgnoreCase("pad")) {
+                if (cmd[1].equalsIgnoreCase("ls")) {
                     return true;
                 }
             }
@@ -57,7 +57,7 @@ public class LsPaddock extends AbstractCommand  {
         if (firstCmd(cmd)) {
             if (cmd.length == 2) {
                 return true;
-            } else if (cmd.length == 4 && (cmd[2].equals("-s") || cmd[2].equals("--specie"))) {
+            } else if (cmd.length == 4 && (cmd[2].equalsIgnoreCase("-s") || cmd[2].equalsIgnoreCase("--specie"))) {
                 args[0] = cmd[3];
                 return true;
             }

@@ -55,7 +55,7 @@ public class ZooCharacteristics extends AbstractCommand  {
     public boolean canExecute(String[] cmd
     ) {
         if (cmd.length == 3) {
-            if (cmd[0].equals("zoo")) {
+            if (cmd[0].equalsIgnoreCase("zoo")) {
                 switch (cmd[1]) {
                     case "-s":
                     case "--speed":
@@ -70,12 +70,12 @@ public class ZooCharacteristics extends AbstractCommand  {
         }
 
         if (cmd.length == 5) {
-            if (cmd[0].equals("zoo")) {
-                if ((cmd[1].equals("-s") || cmd[1].equals("--speed")) && (cmd[3].equals("-h") || cmd[3].equals("--horizon"))) {
+            if (cmd[0].equalsIgnoreCase("zoo")) {
+                if ((cmd[1].equalsIgnoreCase("-s") || cmd[1].equalsIgnoreCase("--speed")) && (cmd[3].equalsIgnoreCase("-h") || cmd[3].equalsIgnoreCase("--horizon"))) {
                     args[0] = cmd[2];
                     args[1] = cmd[4];
                     return true;
-                } else if ((cmd[3].equals("-h") || cmd[3].equals("--horizon")) && (cmd[1].equals("-h") || cmd[1].equals("--horizon"))) {
+                } else if ((cmd[3].equalsIgnoreCase("-h") || cmd[3].equalsIgnoreCase("--horizon")) && (cmd[1].equalsIgnoreCase("-h") || cmd[1].equalsIgnoreCase("--horizon"))) {
                     args[0] = cmd[4];
                     args[1] = cmd[2];
                     return true;

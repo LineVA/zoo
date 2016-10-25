@@ -33,7 +33,7 @@ public class MapZoo extends AbstractCommand{
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
-            if (cmd[0].equals("zoo") && cmd[1].equals("map")) {
+            if (cmd[0].equalsIgnoreCase("zoo") && cmd[1].equalsIgnoreCase("map")) {
                 return true;
             }
         }

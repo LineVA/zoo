@@ -40,15 +40,15 @@ public class LsAnimalKeeper extends AbstractCommand  {
 
     private boolean firstCmd(String[] cmd) {
         if (cmd.length == 2) {
-            if (cmd[0].equals("animalKeeper") || "aK".equals(cmd[0]) || "ak".equals(cmd[0])) {
-                if (cmd[1].equals("ls")) {
+            if (cmd[0].equalsIgnoreCase("animalKeeper") || "aK".equalsIgnoreCase(cmd[0]) || "ak".equalsIgnoreCase(cmd[0])) {
+                if (cmd[1].equalsIgnoreCase("ls")) {
                     return true;
                 }
             }
         }
         if (cmd.length == 4) {
-            if (cmd[0].equals("animalKeeper") || "aK".equals(cmd[0]) || "ak".equals(cmd[0])) {
-                if (cmd[1].equals("ls") && ("-p".equalsIgnoreCase(cmd[2]) || "--paddock".equalsIgnoreCase(cmd[2]))) {
+            if (cmd[0].equalsIgnoreCase("animalKeeper") || "aK".equalsIgnoreCase(cmd[0]) || "ak".equalsIgnoreCase(cmd[0])) {
+                if (cmd[1].equalsIgnoreCase("ls") && ("-p".equalsIgnoreCase(cmd[2]) || "--paddock".equalsIgnoreCase(cmd[2]))) {
                     args[0] = cmd[3];
                     return true;
                 }

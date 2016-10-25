@@ -36,8 +36,8 @@ public class CreatePaddock extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 7) {
-            if (cmd[0].equals("pad") || cmd[0].equals("paddock")) {
-                if (cmd[1].equals("create")) {
+            if (cmd[0].equalsIgnoreCase("pad") || cmd[0].equalsIgnoreCase("paddock")) {
+                if (cmd[1].equalsIgnoreCase("create")) {
                     return true;
                 }
             }

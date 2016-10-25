@@ -50,8 +50,8 @@ public class AddTimedPaddocks extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length >= 5 && cmd.length % 2 == 1) {
-            if (cmd[0].equals("ak") || cmd[0].equals("aK") || cmd[0].equals("animalKeeper")) {
-                if (cmd[2].equals("--timedPaddocks") || cmd[2].equals("-tP")) {
+            if (cmd[0].equalsIgnoreCase("ak") || cmd[0].equalsIgnoreCase("aK") || cmd[0].equalsIgnoreCase("animalKeeper")) {
+                if (cmd[2].equalsIgnoreCase("--timedPaddocks") || cmd[2].equalsIgnoreCase("-tP")) {
                     return true;
                 }
             }

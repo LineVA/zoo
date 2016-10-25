@@ -35,7 +35,7 @@ public class Options extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 3) {
-            if (cmd[0].equals("option") && cmd[1].equals("-l")) {
+            if (cmd[0].equalsIgnoreCase("option") && cmd[1].equalsIgnoreCase("-l")) {
                 return true;
             }
         }

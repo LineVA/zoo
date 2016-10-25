@@ -50,7 +50,7 @@ public class FeedingAnimal extends AbstractCommand {
 
     private boolean firstCmd(String[] cmd) {
         if (cmd.length >= 4 && cmd.length < 9 && cmd.length % 2 == 0) {
-            if (cmd[0].equals("animal")) {
+            if (cmd[0].equalsIgnoreCase("animal")) {
                 return true;
             }
         }
@@ -58,11 +58,11 @@ public class FeedingAnimal extends AbstractCommand {
     }
 
     private boolean hasArgumentDiet(String cmd) {
-        return cmd.equals("--diet") || cmd.equals("-d");
+        return cmd.equalsIgnoreCase("--diet") || cmd.equalsIgnoreCase("-d");
     }
 
     private boolean hasArgumentFoodQuantity(String cmd) {
-        return cmd.equals("--foodQuantity") || cmd.equals("-fq");
+        return cmd.equalsIgnoreCase("--foodQuantity") || cmd.equalsIgnoreCase("-fq");
     }
 
     @Override

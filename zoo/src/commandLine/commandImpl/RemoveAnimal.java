@@ -34,7 +34,7 @@ public class RemoveAnimal extends AbstractCommand  {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 3) {
-            if ("animal".equals(cmd[0]) && "remove".equals(cmd[1])) {
+            if ("animal".equalsIgnoreCase(cmd[0]) && "remove".equalsIgnoreCase(cmd[1])) {
                 return true;
             }
         }
