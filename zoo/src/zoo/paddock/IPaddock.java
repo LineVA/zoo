@@ -40,7 +40,7 @@ public interface IPaddock {
     public ArrayList<Animal> listAnimal(LightSpecie specie, Sex sex, Diet diet, Biome biome)
             throws UnknownNameException;
 
-    public ArrayList<String> birth()
+    public ArrayList<String> birth(int monthsPerEvaluation)
             throws IncorrectDataException, NameException, IncorrectLoadException;
 
     public void ageing(int monthsPerEvaluation);

@@ -370,23 +370,6 @@ public class Zoo implements IZoo {
         return new Evaluation().evaluate(this.paddocks);
     }
 
-//    @Override
-//    public ArrayList<String> death() {
-//        ArrayList<String> info = new ArrayList<>();
-//        for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
-//            info.addAll(padEntry.getValue().death());
-//        }
-//        return info;
-//    }
-    @Override
-    public ArrayList<String> birth() throws IncorrectDataException, NameException, IncorrectLoadException {
-        ArrayList<String> info = new ArrayList<>();
-        for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
-            info.addAll(padEntry.getValue().birth());
-        }
-        return info;
-    }
-
     @Override
     public ArrayList<String> ageing()
             throws IncorrectDataException, NameException, EmptyNameException, IncorrectLoadException {

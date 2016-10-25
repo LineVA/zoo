@@ -55,16 +55,12 @@ public class Evaluation {
         return families;
     }
 
-//    public double animalKeeperEvaluate(){
-//        
-//    }
-    
     public ArrayList<String> ageing(Map<String, IPaddock> paddocks, int monthsPerEvaluation)
             throws IncorrectDataException, EmptyNameException, NameException, IncorrectLoadException {
         ArrayList<String> info = new ArrayList<>();
         for (HashMap.Entry<String, IPaddock> padEntry : paddocks.entrySet()) {
             padEntry.getValue().ageing(monthsPerEvaluation);
-            info.addAll(padEntry.getValue().birth());
+            info.addAll(padEntry.getValue().birth(monthsPerEvaluation));
             info.addAll(padEntry.getValue().death());
         }
         return info;

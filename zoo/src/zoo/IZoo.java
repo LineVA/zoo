@@ -64,10 +64,6 @@ public interface IZoo {
 
     public double evaluate();
 
-    public ArrayList<String> birth() 
-            throws AlreadyUsedNameException, IncorrectDataException, NameException, IncorrectLoadException;
-
-
     public IPaddock findPaddockByName(String paddockName)
             throws EmptyNameException, UnknownNameException;
 

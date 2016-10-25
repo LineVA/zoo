@@ -32,9 +32,9 @@ public class ReproductionImpl implements Reproduction {
     }
 
     @Override
-    public ArrayList<Animal> reproducte(Animal animal)
+    public ArrayList<Animal> reproducte(Animal animal, int monthsPerEvaluation)
             throws IncorrectDataException, NameException, EmptyNameException, IncorrectLoadException {
-        if (canFemaleReproducte(animal)) {
+        if (canFemaleReproducte(animal, monthsPerEvaluation)) {
             Animal father = whichMale(animal.findRoommatesOfTheSameSpecie());
             if (father != null) {
                 return generateFamily(animal, father);
@@ -87,20 +87,22 @@ public class ReproductionImpl implements Reproduction {
      * Check if the animal is a female and if it is sexually mature
      *
      * @param animal the animal we check
+     * @param monthsPerEvaluation the number of months spent at every evaluation
      * @return true if it can reproducte
      */
-    public boolean canFemaleReproducte(Animal animal) {
-       return animal.canBePregnant() && isInGestation(animal);
+    public boolean canFemaleReproducte(Animal animal, int monthsPerEvaluation) {
+        return animal.canBePregnant() && isInGestation(animal, monthsPerEvaluation);
     }
 
     /**
      * Check if the studying female can statistically have a gestation
      *
      * @param animal the animal we test
+     * @param monthsPerEvaluation the number of months spent at every evaluation
      * @return true if it can, false else
      */
-    public boolean isInGestation(Animal animal) {
-        return uniform.isLowerOrEquals(animal.getActualGestationFrequency());
+    public boolean isInGestation(Animal animal, int monthsPerEvaluation) {
+        return uniform.isLowerOrEquals(animal.getActualGestationFrequency() * monthsPerEvaluation / 12);
     }
 
     /**
@@ -110,7 +112,7 @@ public class ReproductionImpl implements Reproduction {
      * @return true if it is, false else
      */
     public boolean canMaleReproducte(Animal animal) {
-      return animal.canFecundateAFemale();
+        return animal.canFecundateAFemale();
     }
 
     /**
