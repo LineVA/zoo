@@ -30,6 +30,7 @@
                         <xs:sequence>
                             <xs:element type="xs:integer" name="uicn"/>
                             <xs:element type="xs:string" name="family"/>
+                            <xs:element type="xs:string" name="breedingProgramme"/>
                             <xs:element name="continents">
                                 <xs:complexType>
                                     <xs:sequence>
@@ -88,7 +89,7 @@
                         <xs:sequence>
                             <xs:element type="xs:decimal" name="quantity"/>
                             <xs:element type="xs:int" name="size"/>
-                             <xs:element name="diets">
+                            <xs:element name="diets">
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element type="xs:integer" name="diet" maxOccurs="unbounded" minOccurs="1"/>
