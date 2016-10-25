@@ -3,7 +3,6 @@ package zoo.animal;
 import backup.save.SaveImpl;
 import exception.IncorrectDataException;
 import exception.IncorrectLoadException;
-import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
 import exception.name.UnauthorizedNameException;
