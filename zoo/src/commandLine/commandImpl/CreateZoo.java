@@ -31,7 +31,8 @@ public class CreateZoo extends AbstractCommand  {
                     super.getPlay().getOption());
           super.getPlay().getZoo().initiateZoo(cmd[2], Integer.parseInt(cmd[3]),
                     Integer.parseInt(cmd[4]), species, age, monthsPerEvaluation, horizon);
-           super.setSuccess(true);
+          super.setInitiate(true);
+          super.setSuccess(true);
             return new ReturnExec(super.getPlay().getOption().getGeneralCmdBundle()
                     .getString("ZOO_CREATION_SUCESS"), TypeReturn.SUCCESS);
         } catch (JDOMException |  IOException ex) {
@@ -51,7 +52,7 @@ public class CreateZoo extends AbstractCommand  {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 5) {
-            if (cmd[0].equals("zoo") && cmd[1].equals("create")) {
+            if (cmd[0].equalsIgnoreCase("zoo") && cmd[1].equalsIgnoreCase("create")) {
                 return true;
             }
         }

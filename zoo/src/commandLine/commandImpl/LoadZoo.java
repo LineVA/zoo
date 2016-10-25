@@ -27,6 +27,7 @@ public class LoadZoo extends AbstractCommand {
             IZoo zoo = load.loadZoo("gameBackUps/" + cmd[1] + ".xml");
             super.getPlay().setZoo(zoo);
             super.getPlay().setOption(zoo.getOption());
+            super.setInitiate(true);
             super.setSuccess(true);
             return new ReturnExec(
                     super.getPlay().getOption().getGeneralCmdBundle().getString("ZOO_CREATION_SUCESS"), TypeReturn.SUCCESS);
@@ -42,7 +43,7 @@ public class LoadZoo extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
-            if (cmd[0].equals("load")) {
+            if (cmd[0].equalsIgnoreCase("load")) {
                 return true;
             }
         }

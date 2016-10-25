@@ -41,7 +41,7 @@ public class FreeCommandManager extends CommandManager {
         for (AbstractCommand command : super.getPlayCommands()) {
             if (command.canExecute(parse)) {
                 ReturnExec result = command.execute(parse);
-                this.isInitiate |= command.hasInitiateAZoo();
+                this.isInitiate |= command.isInitiate();
                 this.isSaving = command.isSaving();
                 return result;
             }
@@ -61,7 +61,7 @@ public class FreeCommandManager extends CommandManager {
         for (Command command : initialCommands) {
             if (command.canExecute(parse)) {
                 ReturnExec result = command.execute(parse);
-                this.isInitiate = command.hasInitiateAZoo();
+                this.isInitiate = command.isInitiate();
                 return result;
             }
         }

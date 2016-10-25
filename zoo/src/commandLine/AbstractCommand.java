@@ -19,19 +19,12 @@ public abstract class AbstractCommand implements Command {
     @Getter
     @Setter
     private boolean success = false;
+    @Getter
+    @Setter
+    private boolean initiate = false;
 
-    @Override
-    public boolean isSuccess() {
-        return this.success;
-    }
-    
     public AbstractCommand(Play play){
         this.play = play;
-    }
-    
-     @Override
-    public boolean hasInitiateAZoo() {
-        return false;
     }
 
 }

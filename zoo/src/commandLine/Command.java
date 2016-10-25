@@ -26,7 +26,7 @@ public interface Command{
      * Indicates if a zoo has been initiated
      * @return  true if it has been initiated
      */
-    public boolean hasInitiateAZoo();
+    public boolean isInitiate();
     
     /**
      * Indicates if the operation is a success or not
