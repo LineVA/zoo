@@ -1,5 +1,7 @@
 package zoo.animal.specie;
 
+import exception.name.UnknownNameException;
+import launch.options.Option;
 import lombok.Getter;
 
 /**
@@ -17,5 +19,27 @@ public enum BreedingProgramme {
 
     BreedingProgramme(int id) {
         this.id = id;
+    }
+    
+    Option option;
+
+     public void setOption(Option option) {
+        for (BreedingProgramme programme : BreedingProgramme.values()) {
+             programme.option = option;
+         }
+    }
+     
+         public BreedingProgramme findById(int id) throws UnknownNameException {
+        for (BreedingProgramme programme: BreedingProgramme.values()) {
+            if (programme.getId() == id) {
+                return programme;
+            }
+        }
+        throw new UnknownNameException(
+                this.option.getSpecieBundle().getString("UNKNOWN_NAME_BP"));
+    }
+    
+     public String toStringByLanguage(){
+        return this.option.getSpecieBundle().getString("BP_" + this.toString().toUpperCase());
     }
 }

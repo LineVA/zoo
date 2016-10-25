@@ -11,6 +11,7 @@ import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.Size;
 import zoo.animal.reproduction.Sex;
+import zoo.animal.specie.BreedingProgramme;
 import zoo.animal.specie.Family;
 import zoo.animalKeeper.Task;
 import zoo.paddock.PaddockTypes;
@@ -48,6 +49,7 @@ abstract public class Play {
         Continent.UNKNOWN.setOption(opt);
         PaddockTypes.UNKNOWN.setOption(opt);
         Task.UNKNOWN.setOption(opt);
+        BreedingProgramme.NONE.setOption(opt);
         this.option = opt;
     }
 
