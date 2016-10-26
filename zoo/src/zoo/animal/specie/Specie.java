@@ -138,11 +138,11 @@ public class Specie {
         info.add(bundle.getString("OTHER_NAME") + this.names.getAdditionalNamesAccordingLanguage(option));
         info.add(bundle.getString("SCIENTIFIC_NAME") + this.names.getScientificName());
         info.add(bundle.getString("CONSERVATION") + ConservationStatus.UNKNOWN.findById(this.conservation).toStringByLanguage());
+        info.add(bundle.getString("BREEDING_PROGRAMME") + BreedingProgramme.NONE.findById(this.breedingProgramme).toStringByLanguage());
         info.add(bundle.getString("CONTINENT") + this.continentsToString());
         info.add(bundle.getString("BIOME") + this.biomesToString());
         info.add(bundle.getString("ECOREGION") + Ecoregion.UNKNOWN.findById(this.ecoregion).toStringByLanguage());
         info.add(bundle.getString("FAMILY") + Family.UNKNOWN.findById(this.family).toStringByLanguage());
-        info.add(bundle.getString("BREEDING_PROGRAMME") + BreedingProgramme.NONE.findById(this.breedingProgramme).toStringByLanguage());
         info.add(bundle.getString("DIET") + this.dietsToString());
         info.add(bundle.getString("SIZE") + Size.UNKNOWN.findSizeById(size).toStringByLanguage());
         info.add(bundle.getString("REPRODUCTION_ATT") + this.specieReproduction.toStringByLanguage(option));
@@ -246,7 +246,7 @@ public class Specie {
         if (lightSpecie.getContinent() != -1) {
             isCorresponding &= this.continents.contains(lightSpecie.getContinent());
         }
-        if (lightSpecie.getBreedingProgramme()!= -1) {
+        if (lightSpecie.getBreedingProgramme() != -1) {
             isCorresponding &= lightSpecie.getBreedingProgramme() == this.breedingProgramme;
         }
         return isCorresponding;
