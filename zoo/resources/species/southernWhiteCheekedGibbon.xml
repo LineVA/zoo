@@ -3,11 +3,10 @@
   <names>
     <fr>Gibbon à favoris blancs du Sud</fr>
     <additionalFrenchNames>
-        <name>Gibbon à joues blanches du Sud</name>
+      <name>Gibbon à joues blanches du Sud</name>
     </additionalFrenchNames>
     <en>Southern white-cheeked gibbon</en>
-    <additionalEnglishNames>
-    </additionalEnglishNames>
+    <additionalEnglishNames />
     <scientific>Nomascus leucogenys siki</scientific>
   </names>
   <general>
@@ -17,6 +16,7 @@
       <continent>5</continent>
     </continents>
     <ecoregion>0</ecoregion>
+    <breedingProgramme>0</breedingProgramme>
   </general>
   <documentation>
     <frenchWikipedia>https://fr.wikipedia.org/wiki/Nomascus_leucogenys</frenchWikipedia>

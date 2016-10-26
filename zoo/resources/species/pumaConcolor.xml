@@ -23,6 +23,7 @@
       <continent>3</continent>
     </continents>
     <ecoregion>1</ecoregion>
+    <breedingProgramme>0</breedingProgramme>
   </general>
   <documentation>
     <frenchWikipedia>https://fr.wikipedia.org/wiki/Puma</frenchWikipedia>

@@ -3,11 +3,11 @@
   <names>
     <fr>Cercopithèque à tête de hibou</fr>
     <additionalFrenchNames>
-        <name>Cercopithèque de Hamlyn</name>
+      <name>Cercopithèque de Hamlyn</name>
     </additionalFrenchNames>
     <en>Diana monkey</en>
     <additionalEnglishNames>
-        <name>Hamlyn's monkey</name>
+      <name>Hamlyn's monkey</name>
     </additionalEnglishNames>
     <scientific>Cercopithecus hamlyni</scientific>
   </names>
@@ -18,6 +18,7 @@
       <continent>1</continent>
     </continents>
     <ecoregion>0</ecoregion>
+    <breedingProgramme>1</breedingProgramme>
   </general>
   <documentation>
     <frenchWikipedia>https://fr.wikipedia.org/wiki/Cercopithecus_hamlyni</frenchWikipedia>

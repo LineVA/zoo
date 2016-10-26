@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
-        <fr>NULL</fr>
-        <additionalFrenchNames />
-        <en>Diana monkey</en>
+        <fr>Hocheur à ventre roux</fr>
+        <additionalFrenchNames>
+            <name>Hocheur à ventre rouge</name>
+            <name>Singe à ventre rouge</name>
+        </additionalFrenchNames>
+        <en>Red-bellied monkey</en>
         <additionalEnglishNames>
+            <name>White-throated guenon</name>
+            <name>Red-bellied guenon</name>
         </additionalEnglishNames>
-        <scientific>Cercopithecus nigroviridis</scientific>
+        <scientific>Cercopithecus erythrogaster</scientific>
     </names>
     <general>
         <uicn>3</uicn>
@@ -15,11 +20,10 @@
             <continent>1</continent>
         </continents>
         <ecoregion>0</ecoregion>
-        <breedingProgramme>2</breedingProgramme>
     </general>
     <documentation>
-        <frenchWikipedia>https://fr.wikipedia.org/wiki/Cercopithèque_diane</frenchWikipedia>
-        <englishWikipedia>https://en.wikipedia.org/wiki/Diana_monkey</englishWikipedia>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Cercopithecus_erythrogaster</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/White-throated_guenon</englishWikipedia>
         <animalDiversity />
     </documentation>
     <reproduction>
@@ -30,23 +34,23 @@
         <leavingAge>6</leavingAge>
     </reproduction>
     <lifespan>
-        <femaleLifespan>240</femaleLifespan>
-        <maleLifespan>240</maleLifespan>
+        <femaleLifespan>230</femaleLifespan>
+        <maleLifespan>230</maleLifespan>
     </lifespan>
     <territory>
-        <territorySize>120</territorySize>
+        <territorySize>80</territorySize>
         <biomes>
             <biome>1</biome>
         </biomes>
     </territory>
     <feeding>
-        <quantity>0.603</quantity>
+        <quantity>0.708</quantity>
         <size>1</size>
         <diets>
             <diet>17</diet>
         </diets>
     </feeding>
     <social>
-        <groupSize>15</groupSize>
+        <groupSize>10</groupSize>
     </social>
 </animal>

@@ -1,5 +1,6 @@
 package zoo.animal.specie;
 
+import zoo.animal.conservation.BreedingProgramme;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -75,12 +76,15 @@ public class Specie {
     private GaussianTerritoryAttributes gaussianTerritoryAttributes;
     @Getter
     private DocumentationURI documentation;
+    @Getter
+    int breedingProgramme;
 
     public Specie(Names names, DocumentationURI docu, BiomeAttributes biomeAtt, FeedingAttributes feeding,
             ArrayList<Integer> diets, ReproductionAttributes repro,
             LifeSpanAttributes lifeSpan, int conservation,
             SocialAttributes social, TerritoryAttributes territory,
-            int ecoregion, int family, ArrayList<Integer> biomes, int size, ArrayList<Integer> continents) {
+            int ecoregion, int family, ArrayList<Integer> biomes,
+            int size, ArrayList<Integer> continents, int breedingProgramme) {
         this.names = names;
         this.specieBiome = biomeAtt;
         this.diets = diets;
@@ -102,6 +106,7 @@ public class Specie {
         this.gaussianTerritoryAttributes = new GaussianTerritoryAttributes(territory);
         this.size = size;
         this.documentation = docu;
+        this.breedingProgramme = breedingProgramme;
     }
 
     public boolean canBeInTheSamePaddock(Specie specie) throws UnknownNameException {
@@ -133,6 +138,7 @@ public class Specie {
         info.add(bundle.getString("OTHER_NAME") + this.names.getAdditionalNamesAccordingLanguage(option));
         info.add(bundle.getString("SCIENTIFIC_NAME") + this.names.getScientificName());
         info.add(bundle.getString("CONSERVATION") + ConservationStatus.UNKNOWN.findById(this.conservation).toStringByLanguage());
+        info.add(bundle.getString("BREEDING_PROGRAMME") + BreedingProgramme.NONE.findById(this.breedingProgramme).toStringByLanguage());
         info.add(bundle.getString("CONTINENT") + this.continentsToString());
         info.add(bundle.getString("BIOME") + this.biomesToString());
         info.add(bundle.getString("ECOREGION") + Ecoregion.UNKNOWN.findById(this.ecoregion).toStringByLanguage());
@@ -240,7 +246,9 @@ public class Specie {
         if (lightSpecie.getContinent() != -1) {
             isCorresponding &= this.continents.contains(lightSpecie.getContinent());
         }
-
+        if (lightSpecie.getBreedingProgramme() != -1) {
+            isCorresponding &= lightSpecie.getBreedingProgramme() == this.breedingProgramme;
+        }
         return isCorresponding;
     }
 

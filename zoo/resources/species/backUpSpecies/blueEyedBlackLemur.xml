@@ -1,51 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
-    <names>
-        <fr>Lémur aux yeux turquoises</fr>
-        <additionalFrenchNames>
-            <name>Lémur de Sclater</name>
-        </additionalFrenchNames>
-        <en>Blue-eyed black lemur</en>
-        <additionalEnglishNames>
-            <name>Sclater's lemur</name>
-        </additionalEnglishNames>
-        <scientific>Eulemur macaco flavifrons</scientific>
-    </names>
-    <general>
-        <uicn>5</uicn>
-        <family>10</family>
-        <continents>
-            <continent>1</continent>
-        </continents>
-        <ecoregion>0</ecoregion>
-    </general>
-    <documentation>
-        <frenchWikipedia>https://fr.wikipedia.org/wiki/Lémut_aux_yeux_turquoises</frenchWikipedia>
-        <englishWikipedia>https://en.wikipedia.org/wiki/Blue-eyed_black_lemur</englishWikipedia>
-        <animalDiversity></animalDiversity>
-    </documentation>
-    <reproduction>
-        <femaleMaturity>21</femaleMaturity>
-        <maleMaturity>21</maleMaturity>
-        <gestationFrequency>1</gestationFrequency>
-        <litterSize>1</litterSize>
-        <leavingAge>6</leavingAge>
-    </reproduction>
-    <lifespan>
-        <femaleLifespan>228</femaleLifespan>
-        <maleLifespan>228</maleLifespan>
-    </lifespan>
-    <territory>
-        <territorySize>60</territorySize>
-        <biomes>
-            <biome>2</biome>
-        </biomes>
-    </territory>
-    <feeding>
-        <diet>5</diet>
-        <quantity>205</quantity>
-        <size>1</size>
-    </feeding>
-    <social>
-        <groupSize>8</groupSize>
-    </social>
+  <names>
+    <fr>Lémur aux yeux turquoises</fr>
+    <additionalFrenchNames>
+      <name>Lémur de Sclater</name>
+    </additionalFrenchNames>
+    <en>Blue-eyed black lemur</en>
+    <additionalEnglishNames>
+      <name>Sclater's lemur</name>
+    </additionalEnglishNames>
+    <scientific>Eulemur macaco flavifrons</scientific>
+  </names>
+  <general>
+    <uicn>5</uicn>
+    <family>10</family>
+    <continents>
+      <continent>1</continent>
+    </continents>
+    <ecoregion>0</ecoregion>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Lémut_aux_yeux_turquoises</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Blue-eyed_black_lemur</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>21</femaleMaturity>
+    <maleMaturity>21</maleMaturity>
+    <gestationFrequency>1</gestationFrequency>
+    <litterSize>1</litterSize>
+    <leavingAge>6</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>228</femaleLifespan>
+    <maleLifespan>228</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>60</territorySize>
+    <biomes>
+      <biome>2</biome>
+    </biomes>
+  </territory>
+  <feeding>
+    <quantity>0.205</quantity>
+    <size>1</size>
+    <diets>
+      <diet>5</diet>
+    </diets>
+  </feeding>
+  <social>
+    <groupSize>8</groupSize>
+  </social>
 </animal>

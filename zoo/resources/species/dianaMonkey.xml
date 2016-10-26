@@ -4,8 +4,7 @@
     <fr>Cercopithèque diane</fr>
     <additionalFrenchNames />
     <en>Diana monkey</en>
-    <additionalEnglishNames>
-    </additionalEnglishNames>
+    <additionalEnglishNames />
     <scientific>Cercopithecus diana</scientific>
   </names>
   <general>
@@ -15,6 +14,7 @@
       <continent>1</continent>
     </continents>
     <ecoregion>0</ecoregion>
+    <breedingProgramme>1</breedingProgramme>
   </general>
   <documentation>
     <frenchWikipedia>https://fr.wikipedia.org/wiki/Cercopithèque_diane</frenchWikipedia>

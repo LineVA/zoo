@@ -3,11 +3,10 @@
   <names>
     <fr>Gibbon à coiffe</fr>
     <additionalFrenchNames>
-        <name>Gibbon à bonnet</name>
+      <name>Gibbon à bonnet</name>
     </additionalFrenchNames>
     <en>Pileated gibbon</en>
-    <additionalEnglishNames>
-    </additionalEnglishNames>
+    <additionalEnglishNames />
     <scientific>Hylobates pileatus</scientific>
   </names>
   <general>
@@ -17,6 +16,7 @@
       <continent>5</continent>
     </continents>
     <ecoregion>0</ecoregion>
+    <breedingProgramme>1</breedingProgramme>
   </general>
   <documentation>
     <frenchWikipedia>https://fr.wikipedia.org/wiki/Hylobates_pileatus</frenchWikipedia>

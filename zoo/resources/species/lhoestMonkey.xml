@@ -5,7 +5,7 @@
     <additionalFrenchNames />
     <en>L'Hoest's monkey</en>
     <additionalEnglishNames>
-        <name>Mountain monkey</name>
+      <name>Mountain monkey</name>
     </additionalEnglishNames>
     <scientific>Cercopithecus lhoesti</scientific>
   </names>
@@ -16,6 +16,7 @@
       <continent>1</continent>
     </continents>
     <ecoregion>0</ecoregion>
+    <breedingProgramme>1</breedingProgramme>
   </general>
   <documentation>
     <frenchWikipedia>https://fr.wikipedia.org/wiki/Cercopithèque_de_L'Hœst</frenchWikipedia>

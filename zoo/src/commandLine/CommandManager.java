@@ -38,7 +38,7 @@ public abstract class CommandManager {
                 new CreateAnimal(play),  new RemoveAnimal(play), 
                 new LsAnimal(play), new DetailAnimal(play),
                 new FeedingAnimal(play),
-                new LsSex(play), new LsConservation(play),
+                new LsSex(play), new LsConservation(play), new LsBreedingProgramme(play),
                 new LsBiome(play), new LsEcoregion(play), new LsContinent(play),
                 new LsPaddockType(play), new PadTypePad(play),
                 new LsSpecie(play), new DetailSpecie(play), new LsFamily(play),
