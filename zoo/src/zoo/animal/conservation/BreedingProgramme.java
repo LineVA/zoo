@@ -1,4 +1,4 @@
-package zoo.animal.specie;
+package zoo.animal.conservation;
 
 import exception.name.UnknownNameException;
 import launch.options.Option;

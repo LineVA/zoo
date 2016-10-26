@@ -11,7 +11,7 @@ import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.Size;
 import zoo.animal.reproduction.Sex;
-import zoo.animal.specie.BreedingProgramme;
+import zoo.animal.conservation.BreedingProgramme;
 import zoo.animal.specie.Family;
 import zoo.animalKeeper.Task;
 import zoo.paddock.PaddockTypes;
