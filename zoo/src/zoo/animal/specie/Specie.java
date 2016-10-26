@@ -246,7 +246,9 @@ public class Specie {
         if (lightSpecie.getContinent() != -1) {
             isCorresponding &= this.continents.contains(lightSpecie.getContinent());
         }
-
+        if (lightSpecie.getBreedingProgramme()!= -1) {
+            isCorresponding &= lightSpecie.getBreedingProgramme() == this.breedingProgramme;
+        }
         return isCorresponding;
     }
 

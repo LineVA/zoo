@@ -89,7 +89,7 @@ public class LsSpecie extends AbstractCommand {
     }
 
     private boolean checkLength(String[] cmd) {
-        return cmd.length >= 2 && cmd.length <= 16 && cmd.length % 2 == 0;
+        return cmd.length >= 2 && cmd.length <= 18 && cmd.length % 2 == 0;
     }
 
     private boolean hasArgumentPaddock(String cmd) {
@@ -124,6 +124,10 @@ public class LsSpecie extends AbstractCommand {
         return cmd.equalsIgnoreCase("--continent") || cmd.equalsIgnoreCase("-ct");
     }
 
+    private boolean hasArgumentBreedingProgramme(String cmd) {
+        return cmd.equalsIgnoreCase("--breedingProgramme") || cmd.equalsIgnoreCase("-bP");
+    }
+
     private boolean saveArgument(String arg, String value) {
         if (this.hasArgumentBiome(arg)) {
             args[1] = value;
@@ -141,6 +145,8 @@ public class LsSpecie extends AbstractCommand {
             args[6] = value;
         } else if (this.hasArgumentContinent(arg)) {
             args[7] = value;
+        } else if (this.hasArgumentBreedingProgramme(arg)) {
+            args[8] = value;
         } else {
             return false;
         }
@@ -149,7 +155,7 @@ public class LsSpecie extends AbstractCommand {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        this.args = new String[]{null, null, null, null, null, null, null, null};
+        this.args = new String[]{null, null, null, null, null, null, null, null, null};
         if (firstCmd(cmd) && checkLength(cmd)) {
             int i = 2;
             while (i <= cmd.length - 2) {
