@@ -48,7 +48,7 @@ public class LsAnimal extends AbstractCommand  {
         Biome biome = null;
         Sex sex = null;
         LightSpecie spec = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
-                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
+                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, 
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
         try {
             if (args[0] != null) {

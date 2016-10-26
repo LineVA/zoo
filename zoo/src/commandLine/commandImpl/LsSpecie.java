@@ -17,7 +17,7 @@ import zoo.paddock.IPaddock;
  *
  * @author doyenm
  */
-public class LsSpecie extends AbstractCommand  {
+public class LsSpecie extends AbstractCommand {
 
     // args[0] : the argument after '--paddock'
     // args[1] : the argument after '--biome'
@@ -27,6 +27,7 @@ public class LsSpecie extends AbstractCommand  {
     // args[5] : the argument after '--conservation'
     // args[6] : the argument after '--size'
     // args[7] : the argument after '--continent'
+    // args[8 : the argument after '--breedingProgramme'
     String[] args;
 
     public LsSpecie(Play play) {
@@ -37,7 +38,7 @@ public class LsSpecie extends AbstractCommand  {
     public ReturnExec execute(String[] cmd) {
         LightSpecie light = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
-                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
+                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
         IPaddock pad = null;
         try {
             if (args[0] != null) {
@@ -63,6 +64,9 @@ public class LsSpecie extends AbstractCommand  {
             }
             if (args[7] != null) {
                 light.setContinent(Integer.parseInt(args[7]));
+            }
+            if (args[8] != null) {
+                light.setBreedingProgramme(Integer.parseInt(args[8]));
             }
             super.setSuccess(true);
         } catch (EmptyNameException | UnknownNameException ex) {
