@@ -41,6 +41,8 @@ Liste des commandes :
 > animal ls [--continent|-ct] 'id' : Liste des animaux selon le continent d'origine d'identifiant 'id' de l'espèce
 > animal ls [--diet|-d] 'id' : Liste des animaux selon le régime d'identifiant 'id' attribué à l'animal
 > animal ls [--sex--sx] 'id' : Liste des animaux de sexe 'id'
+> animal ls [--breedingProgramme|-bp] 'id' : Liste des animaux présents 
+        dont l'espèce est incluse dans un programme d'élevage d'id 'id'
 > animal ls [--biome|-b] 'id' : Liste des animaux présents dans des enclos ayant le biome 'id'
 > animal <name> : Détails de l'animal 'name'
 > animal <name> [--diet|-d] <id|regime> : Attribution du régime d'identifiant 'id' 
