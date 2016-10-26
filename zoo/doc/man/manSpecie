@@ -9,6 +9,7 @@ Ces détails sont, dans l'ordre :
     - sa famille,
     - son poids moyen,
     - son statut de conservation défini par l'UICN,
+    - sa participation à un programme européen d'élevage (EEP ou ESB),
     - son continent d'origine,
     - son biome d'origine,
     - son écorégion d'origine,
@@ -32,11 +33,15 @@ Si aucune écorégion ne porte cet identifiant, un message d'erreur s'affiche.
 Si aucune famille ne porte cet identifiant, un message d'erreur s'affiche.
     - [--conservation|-cs] 'id' : Liste des espèces selon le statut de conservation d'identifiant 'id' 
 Si aucun statut de conservation ne porte cet identifiant, un message d'erreur s'affiche.
+    - [--breedingProgramme|-bp] : Liste des espèces selon leur participation 
+à un programme européen d'élevage (EEP ou ESB) d'identifiant 'id'
+Si aucun programme d'élevage ne porte cet identifiant, un message d'erreur s'affiche. 
     - [--size|-sz] 'id' : Liste des espèces selon la taille d'identifiant 'id' 
 Si aucune taille ne porte cet identifiant, un message d'erreur s'affiche.
     - [--continent|-ct] 'id' : Liste des espèces selon le continent d'origine d'identifiant 'id' 
 Si aucun continent ne porte cet identifiant, un message d'erreur s'affiche.
     - [--diet|-d] 'id' : Liste des espèces selon le régime d'identifiant 'id' 
 Si aucun régime alimentaire ne porte cet identifiant, un message d'erreur s'affiche.
-    - [--biome|-b] 'id' : Liste des espèces réclamant qle biome 'id'
-Si aucun biome ne porte cet identifiant, un message d'erreur s'affiche.      
+    - [--biome|-b] 'id' : Liste des espèces réclamant le biome 'id'
+Si aucun biome ne porte cet identifiant, un message d'erreur s'affiche.  
+  
