@@ -23,6 +23,7 @@ import zoo.BirthObservable;
 import zoo.NameVerifications;
 import zoo.animal.Animal;
 import zoo.animal.AnimalImpl;
+import zoo.animal.conservation.BreedingProgramme;
 import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.death.DieImpl;
 import zoo.animal.death.IDie;
@@ -251,6 +252,20 @@ public class Paddock implements IPaddock {
         }
         return list;
     }
+    
+     private ArrayList<Animal> listAnimalWithBreedingProgramme
+        (ArrayList<Animal> animals, BreedingProgramme breedingProgramme) {
+        ArrayList<Animal> list = animals;
+        Iterator it = list.iterator();
+        Animal next;
+        while (it.hasNext()) {
+            next = (AnimalImpl) it.next();
+            if (!(next.getSpecie().getBreedingProgramme()== breedingProgramme.getId())) {
+                it.remove();
+            }
+        }
+        return list;
+    }
 
     private ArrayList<Animal> listAnimalWithDiet(ArrayList<Animal> animals, Diet diet) {
         ArrayList<Animal> list = animals;
@@ -317,6 +332,10 @@ public class Paddock implements IPaddock {
         if (specie.getContinent() != -1) {
             list = listAnimalWithContinent(list,
                     Continent.UNKNOWN.findById(specie.getContinent()));
+        }
+        if (specie.getBreedingProgramme()!= -1) {
+            list = listAnimalWithBreedingProgramme(list,
+                    BreedingProgramme.NONE.findById(specie.getBreedingProgramme()));
         }
         if (sex != null) {
             list = listAnimalWithSex(list, sex);
@@ -515,7 +534,7 @@ public class Paddock implements IPaddock {
     @Override
     public ArrayList<Integer> listFamiliesById() {
         ArrayList<Integer> listFamily = new ArrayList<>();
-        for(Specie specie : this.listSpecies()){
+        for (Specie specie : this.listSpecies()) {
             listFamily.add(specie.getFamily());
         }
         return listFamily;

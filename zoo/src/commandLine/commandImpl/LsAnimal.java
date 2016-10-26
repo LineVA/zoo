@@ -2,7 +2,6 @@ package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
 import commandLine.AbstractCommand;
-import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
@@ -22,7 +21,7 @@ import zoo.paddock.biome.Biome;
  *
  * @author doyenm
  */
-public class LsAnimal extends AbstractCommand  {
+public class LsAnimal extends AbstractCommand {
 
     // args[0] : the argument after '--specie'
     // args[1] : the argument after '--paddock'
@@ -34,7 +33,7 @@ public class LsAnimal extends AbstractCommand  {
     // args[7] : the argument after '--biome'
     // args[8] : the argument after '--size'
     // args[9] : the argument after '--continent'
-
+    // args[10] : the argument after '--breedingProgramme'
     String[] args;
 
     public LsAnimal(Play play) {
@@ -48,7 +47,7 @@ public class LsAnimal extends AbstractCommand  {
         Biome biome = null;
         Sex sex = null;
         LightSpecie spec = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
-                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, 
+                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
         try {
             if (args[0] != null) {
@@ -81,6 +80,9 @@ public class LsAnimal extends AbstractCommand  {
             if (args[9] != null) {
                 spec.setContinent(Integer.parseInt(args[9]));
             }
+            if (args[10] != null) {
+                spec.setBreedingProgramme(Integer.parseInt(args[10]));
+            }
             super.setSuccess(true);
             ArrayList<String> names = new ArrayList<>();
             for (Animal animal : super.getPlay().getZoo().listAnimal(pad, spec, sex, diet, biome)) {
@@ -107,7 +109,7 @@ public class LsAnimal extends AbstractCommand  {
     }
 
     private boolean checkLength(String[] cmd) {
-        return cmd.length >= 2 && cmd.length <= 20 && cmd.length % 2 == 0;
+        return cmd.length >= 2 && cmd.length <= 22 && cmd.length % 2 == 0;
     }
 
     private boolean hasArgumentSpecie(String cmd) {
@@ -150,6 +152,10 @@ public class LsAnimal extends AbstractCommand  {
         return cmd.equalsIgnoreCase("--continent") || cmd.equalsIgnoreCase("-ct");
     }
 
+    private boolean hasArgumentBreedingProgramme(String cmd) {
+        return cmd.equalsIgnoreCase("--breedingProgramme") || cmd.equalsIgnoreCase("-bp");
+    }
+
     private boolean saveArgument(String arg, String value) {
         if (this.hasArgumentBiome(arg)) {
             args[7] = value;
@@ -171,6 +177,8 @@ public class LsAnimal extends AbstractCommand  {
             args[0] = value;
         } else if (this.hasArgumentContinent(arg)) {
             args[9] = value;
+        } else if (this.hasArgumentBreedingProgramme(arg)) {
+            args[10] = value;
         } else {
             return false;
         }
@@ -179,7 +187,7 @@ public class LsAnimal extends AbstractCommand  {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        this.args = new String[]{null, null, null, null, null, null, null, null, null, null};
+        this.args = new String[]{null, null, null, null, null, null, null, null, null, null, null};
         if (firstCmd(cmd) && checkLength(cmd)) {
             int i = 2;
             while (i <= cmd.length - 2) {
