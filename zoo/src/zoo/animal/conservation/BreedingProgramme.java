@@ -1,8 +1,10 @@
 package zoo.animal.conservation;
 
 import exception.name.UnknownNameException;
+import java.util.ArrayList;
 import launch.options.Option;
 import lombok.Getter;
+import zoo.animal.feeding.Diet;
 
 /**
  *
@@ -41,5 +43,14 @@ public enum BreedingProgramme {
     
      public String toStringByLanguage(){
         return this.option.getSpecieBundle().getString("BP_" + this.toString().toUpperCase());
+    }
+     
+      public ArrayList<String> list() {
+        ArrayList<String> list = new ArrayList<>();
+        for (BreedingProgramme programme : BreedingProgramme.values()) {
+            list.add(programme.id + " - " +
+                    this.option.getSpecieBundle().getString("BP_" + programme.toString().toUpperCase() + "_DESCRIPTION"));
+        }
+        return list;
     }
 }
