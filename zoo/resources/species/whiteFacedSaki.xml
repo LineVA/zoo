@@ -19,6 +19,7 @@
             <continent>2</continent>
         </continents>
         <ecoregion>0</ecoregion>
+        <breedingProgramme>1</breedingProgramme>
     </general>
     <documentation>
         <frenchWikipedia>https://fr.wikipedia.org/wiki/Pithecia_pithecia</frenchWikipedia>

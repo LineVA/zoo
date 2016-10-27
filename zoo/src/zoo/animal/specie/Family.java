@@ -42,7 +42,8 @@ public enum Family {
     CASTORIDAE(29),
     HYLOBATIDAE(30), 
     CERCOPITHECIDAE(31),
-    PITHECIIDAE(32);
+    PITHECIIDAE(32),
+    CRICETINAE(33);
     
 //    HERPESTIDAE(9),
 //    HYENIDAE(10),

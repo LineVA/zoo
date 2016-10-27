@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+  <names>
+    <fr>Lynx boréal</fr>
+    <additionalFrenchNames>
+        <name>Lynx d'Eurasie</name>
+        <name>Lynx commun</name>
+        <name>Loup-cervier</name>
+    </additionalFrenchNames>
+    <en>Eurasian lynx</en>
+    <additionalEnglishNames>
+    </additionalEnglishNames>
+    <scientific>Lynx lynx</scientific>
+  </names>
+  <general>
+    <uicn>1</uicn>
+    <family>8</family>
+    <continents>
+      <continent>4</continent>
+      <continent>5</continent>
+    </continents>
+    <ecoregion>0</ecoregion>
+        <breedingProgramme>2</breedingProgramme>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Lynx_boréal</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Eurasian_lynx</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>22</femaleMaturity>
+    <maleMaturity>30</maleMaturity>
+    <gestationFrequency>0.5</gestationFrequency>
+    <litterSize>2</litterSize>
+    <leavingAge>0</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>225</femaleLifespan>
+    <maleLifespan>225</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>100</territorySize>
+    <biomes>
+      <biome>4</biome>
+      <biome>6</biome>
+      <biome>10</biome>
+      <biome>13</biome>
+    </biomes>
+  </territory>
+  <feeding>
+    <quantity>0.9</quantity>
+    <size>4</size>
+    <diets>
+      <diet>3</diet>
+    </diets>
+  </feeding>
+  <social>
+    <groupSize>1</groupSize>
+  </social>
+</animal>
