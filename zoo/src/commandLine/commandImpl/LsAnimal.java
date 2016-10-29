@@ -37,6 +37,7 @@ public class LsAnimal extends AbstractCommand {
     // args[10] : the argument after '--breedingProgramme'
     String[] args;
     Set<String> sexes;
+    Set<String> diets;
     
     public LsAnimal(Play play) {
         super(play);
@@ -84,7 +85,8 @@ public class LsAnimal extends AbstractCommand {
 //            }
 //            super.setSuccess(true);
             ArrayList<String> names = new ArrayList<>();
-            for (Animal animal : super.getPlay().getZoo().listAnimal(pad, spec, convertStringToSex(sexes), diet, biome)) {
+            for (Animal animal : super.getPlay().getZoo().listAnimal(pad, spec, convertStringToSex(sexes), 
+                    convertStringToDiet(diets), biome)) {
                 names.add(animal.getName());
             }
             Collections.sort(names);
@@ -103,6 +105,15 @@ public class LsAnimal extends AbstractCommand {
             sexes.add(Sex.UNKNOWN.findById(Integer.parseInt(str)));
         }
         return sexes;
+    }
+    
+     private Set<Diet> convertStringToDiet(Set<String> strings)
+            throws UnknownNameException, java.lang.NumberFormatException{
+        Set<Diet> diets = new HashSet<>();
+        for(String str : strings){
+            diets.add(Diet.NONE.findDietById(Integer.parseInt(str)));
+        }
+        return diets;
     }
 
     private boolean firstCmd(String[] cmd) {
@@ -170,7 +181,7 @@ public class LsAnimal extends AbstractCommand {
         } else if (this.hasArgumentConservation(arg)) {
             args[6] = value;
         } else if (this.hasArgumentDiet(arg)) {
-            args[3] = value;
+           diets = SplittingAmpersand.split(value);
         } else if (this.hasArgumentEcoregion(arg)) {
             args[2] = value;
         } else if (this.hasArgumentFamily(arg)) {
@@ -197,6 +208,7 @@ public class LsAnimal extends AbstractCommand {
     public boolean canExecute(String[] cmd) {
         this.args = new String[]{null, null, null, null, null, null, null, null, null, null, null};
         sexes = new HashSet<String>();
+        diets = new HashSet<String>();
         if (firstCmd(cmd) && checkLength(cmd)) {
             int i = 2;
             while (i <= cmd.length - 2) {

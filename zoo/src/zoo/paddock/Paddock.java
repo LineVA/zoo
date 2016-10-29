@@ -254,7 +254,8 @@ public class Paddock implements IPaddock {
         return list;
     }
 
-    private ArrayList<Animal> listAnimalWithBreedingProgramme(ArrayList<Animal> animals, BreedingProgramme breedingProgramme) {
+    private ArrayList<Animal> listAnimalWithBreedingProgramme(ArrayList<Animal> animals,
+            BreedingProgramme breedingProgramme) {
         ArrayList<Animal> list = animals;
         Iterator it = list.iterator();
         Animal next;
@@ -267,17 +268,21 @@ public class Paddock implements IPaddock {
         return list;
     }
 
-    private ArrayList<Animal> listAnimalWithDiet(ArrayList<Animal> animals, Diet diet) {
-        ArrayList<Animal> list = animals;
-        Iterator it = list.iterator();
-        Animal next;
-        while (it.hasNext()) {
-            next = (AnimalImpl) it.next();
-            if (!next.hasTheSameDiet(diet)) {
-                it.remove();
+    private ArrayList<Animal> listAnimalWithDiet(ArrayList<Animal> animals, Set<Diet> diet) {
+        if (diet == null || diet.size() != 1) {
+            return new ArrayList<Animal>();
+        } else {
+            ArrayList<Animal> list = animals;
+            Iterator it = list.iterator();
+            Animal next;
+            while (it.hasNext()) {
+                next = (AnimalImpl) it.next();
+                if (!next.hasTheSameDiet((Diet)diet.toArray()[0])) {
+                    it.remove();
+                }
             }
+            return list;
         }
-        return list;
     }
 
     private ArrayList<Animal> listAnimalWithSex(ArrayList<Animal> animals, Set<Sex> sex) {
@@ -314,7 +319,7 @@ public class Paddock implements IPaddock {
     }
 
     @Override
-    public ArrayList<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Diet diet, Biome biome)
+    public ArrayList<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Biome biome)
             throws UnknownNameException {
         ArrayList<Animal> list = listAnimalWithoutCriteria();
 //        if (specie.getEcoregion() != -1) {
@@ -344,9 +349,9 @@ public class Paddock implements IPaddock {
         if (sex != null && sex.size() != 0) {
             list = listAnimalWithSex(list, sex);
         }
-//        if (diet != null) {
-//            list = listAnimalWithDiet(list, diet);
-//        }
+        if (diet != null && diet.size() != 0) {
+            list = listAnimalWithDiet(list, diet);
+        }
 //        if (biome != null) {
 //            list = listAnimalWithBiome(list, biome);
 //        }
