@@ -229,7 +229,7 @@ public class Specie {
             isCorresponding &= this.biomes.containsAll((lightSpecie.getBiome()));
         }
         if (null != lightSpecie.getEcoregion()) {
-            isCorresponding &= lightSpecie.getEcoregion().get(1) == this.ecoregion;
+            isCorresponding &= lightSpecie.getEcoregion().get(0) == this.ecoregion;
         }
         if (null != lightSpecie.getDiet()) {
             isCorresponding &= this.diets.containsAll(lightSpecie.getDiet());

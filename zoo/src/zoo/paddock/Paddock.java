@@ -323,6 +323,19 @@ public class Paddock implements IPaddock {
         return list;
     }
 
+    private ArrayList<Animal> listAnimalWithLightSpecie(ArrayList<Animal> animals, LightSpecie lightSpecie){
+         ArrayList<Animal> list = animals;
+        Iterator it = list.iterator();
+        Animal next;
+        while (it.hasNext()) {
+            next = (AnimalImpl) it.next();
+            if (!(next.getSpecie().compare(lightSpecie))) {
+                it.remove();
+            }
+        }
+        return list;
+    }
+    
     @Override
     public ArrayList<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome)
             throws UnknownNameException {
@@ -351,6 +364,7 @@ public class Paddock implements IPaddock {
 //            list = listAnimalWithBreedingProgramme(list,
 //                    BreedingProgramme.NONE.findById(specie.getBreedingProgramme()));
 //        }
+        list = listAnimalWithLightSpecie(list, specie);
         if (sex != null && sex.size() != 0) {
             list = listAnimalWithSex(list, sex);
         }

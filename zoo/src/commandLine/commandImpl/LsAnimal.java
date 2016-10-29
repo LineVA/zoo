@@ -5,12 +5,14 @@ import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.SplittingAmpersand;
 import commandLine.TypeReturn;
+import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import launch.play.Play;
+import utils.Utils;
 import zoo.animal.Animal;
 import zoo.animal.feeding.Diet;
 import zoo.animal.reproduction.Sex;
@@ -39,6 +41,12 @@ public class LsAnimal extends AbstractCommand {
     Set<String> sexes;
     Set<String> diets;
     Set<String> biomes;
+    Set<String> ecoregions;
+    Set<String> families;
+    Set<String> conservations;
+    Set<String> sizes;
+    Set<String> continents;
+    Set<String> breedingProgrammes;
     
     public LsAnimal(Play play) {
         super(play);
@@ -51,40 +59,31 @@ public class LsAnimal extends AbstractCommand {
         Biome biome = null;
         LightSpecie spec = new LightSpecie(null, null, null, null, null, null, null, null, null);
         try {
-//            if (args[0] != null) {
-//                spec.setNames(super.getPlay().getZoo().findSpecieByName(args[0]).getNames());
-//            }
+            if (args[0] != null) {
+                spec.setNames(super.getPlay().getZoo().findSpecieByName(args[0]).getNames());
+            }
 //            if (args[1] != null) {
 //                pad = super.getPlay().getZoo().findPaddockByName(args[1]);
 //            }
-//            if (args[2] != null) {
-//                spec.setEcoregion(Integer.parseInt(args[2]));
-//            }
-//            if (args[3] != null) {
-//                diet = Diet.NONE.findDietById(Integer.parseInt(args[3]));
-//            }
-//            if (sexes.size() != 0) {
-//                sex = Sex.UNKNOWN.findById(sexes);
-//            }
-//            if (args[5] != null) {
-//                spec.setFamily(Integer.parseInt(args[5]));
-//            }
-//            if (args[6] != null) {
-//                spec.setConservation(Integer.parseInt(args[6]));
-//            }
-//            if (args[7] != null) {
-//                biome = Biome.NONE.findById(Integer.parseInt(args[7]));
-//            }
-//            if (args[8] != null) {
-//                spec.setSize(Integer.parseInt(args[8]));
-//            }
-//            if (args[9] != null) {
-//                spec.setContinent(Integer.parseInt(args[9]));
-//            }
-//            if (args[10] != null) {
-//                spec.setBreedingProgramme(Integer.parseInt(args[10]));
-//            }
-//            super.setSuccess(true);
+            if (ecoregions.size() != 0) {
+                spec.setEcoregion(Utils.convertToArrayListOfInteger(ecoregions));
+            }
+            if (!families.isEmpty()) {
+                spec.setFamily(Utils.convertToArrayListOfInteger(families));
+            }
+            if (!conservations.isEmpty()) {
+                spec.setConservation(Utils.convertToArrayListOfInteger(conservations));
+            }
+            if (!sizes.isEmpty()) {
+                spec.setSize(Utils.convertToArrayListOfInteger(sizes));
+            }
+            if (!continents.isEmpty()) {
+                spec.setContinent(Utils.convertToArrayListOfInteger(continents));
+            }
+            if (!breedingProgrammes.isEmpty()) {
+                spec.setBreedingProgramme(Utils.convertToArrayListOfInteger(breedingProgrammes));
+            }
+            super.setSuccess(true);
             ArrayList<String> names = new ArrayList<>();
             for (Animal animal : super.getPlay().getZoo().listAnimal(pad, spec, convertStringToSex(sexes), 
                     convertStringToDiet(diets), convertStringToBiome(biomes))) {
@@ -92,11 +91,11 @@ public class LsAnimal extends AbstractCommand {
             }
             Collections.sort(names);
             return new ReturnExec(FormattingDisplay.formattingArrayList(names), TypeReturn.SUCCESS);
-        } catch (UnknownNameException ex) {
+        } catch (UnknownNameException | EmptyNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         } catch (NumberFormatException ex) {
             return new ReturnExec("INTEGER ERROR", TypeReturn.ERROR);
-        }
+        } 
     }
     
     private Set<Sex> convertStringToSex(Set<String> strings)
@@ -189,25 +188,25 @@ public class LsAnimal extends AbstractCommand {
         if (this.hasArgumentBiome(arg)) {
             biomes = SplittingAmpersand.split(value);
         } else if (this.hasArgumentConservation(arg)) {
-            args[6] = value;
+            conservations = SplittingAmpersand.split(value);
         } else if (this.hasArgumentDiet(arg)) {
            diets = SplittingAmpersand.split(value);
         } else if (this.hasArgumentEcoregion(arg)) {
-            args[2] = value;
+           ecoregions = SplittingAmpersand.split(value);
         } else if (this.hasArgumentFamily(arg)) {
-            args[5] = value;
+            families = SplittingAmpersand.split(value);
         } else if (this.hasArgumentPaddock(arg)) {
             args[1] = value;
         } else if (this.hasArgumentSex(arg)) {
             sexes = SplittingAmpersand.split(value);
         } else if (this.hasArgumentSize(arg)) {
-            args[8] = value;
+            sizes = SplittingAmpersand.split(value);
         } else if (this.hasArgumentSpecie(arg)) {
             args[0] = value;
         } else if (this.hasArgumentContinent(arg)) {
-            args[9] = value;
+            continents = SplittingAmpersand.split(value);
         } else if (this.hasArgumentBreedingProgramme(arg)) {
-            args[10] = value;
+            breedingProgrammes = SplittingAmpersand.split(value);
         } else {
             return false;
         }
@@ -220,6 +219,12 @@ public class LsAnimal extends AbstractCommand {
         sexes = new HashSet<>();
         diets = new HashSet<>();
         biomes = new HashSet<>();
+        conservations = new HashSet<>();
+        ecoregions = new HashSet<>();
+        families = new HashSet<>();
+        sizes = new HashSet<>();
+        continents = new HashSet<>();
+        breedingProgrammes = new HashSet<>();
         if (firstCmd(cmd) && checkLength(cmd)) {
             int i = 2;
             while (i <= cmd.length - 2) {
