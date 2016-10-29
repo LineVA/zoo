@@ -36,7 +36,10 @@ public class LoadZoo extends AbstractCommand {
                     super.getPlay().getOption().getGeneralCmdBundle().getString("FAIL_LOAD"), TypeReturn.ERROR);
         } catch (IOException ex) {
             return new ReturnExec(
-                  super.getPlay().getOption().getGeneralCmdBundle().getString("FAILED_FILE"), TypeReturn.ERROR);
+                  super.getPlay().getOption().getGeneralCmdBundle().getString("MISSING_FILE"), TypeReturn.ERROR);
+        } catch(Exception ex){
+             return new ReturnExec(
+                  super.getPlay().getOption().getGeneralCmdBundle().getString("CORRUPTED_FILE"), TypeReturn.ERROR);
         }
     }
 
