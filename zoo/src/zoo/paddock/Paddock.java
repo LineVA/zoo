@@ -313,30 +313,30 @@ public class Paddock implements IPaddock {
     public ArrayList<Animal> listAnimal(LightSpecie specie, Sex sex, Diet diet, Biome biome)
             throws UnknownNameException {
         ArrayList<Animal> list = listAnimalWithoutCriteria();
-        if (specie.getEcoregion() != -1) {
-            list = listAnimalWithEcoregion(list, Ecoregion.UNKNOWN.findById(specie.getEcoregion()));
-        }
-        if (specie.getNames() != null) {
-            list = listAnimalWithSpecie(list, specie);
-        }
-        if (specie.getFamily() != -1) {
-            list = listAnimalWithFamily(list, Family.UNKNOWN.findById(specie.getFamily()));
-        }
-        if (specie.getSize() != -1) {
-            list = listAnimalWithSize(list, Size.UNKNOWN.findSizeById(specie.getSize()));
-        }
-        if (specie.getConservation() != -1) {
-            list = listAnimalWithConservation(list,
-                    ConservationStatus.UNKNOWN.findById(specie.getConservation()));
-        }
-        if (specie.getContinent() != -1) {
-            list = listAnimalWithContinent(list,
-                    Continent.UNKNOWN.findById(specie.getContinent()));
-        }
-        if (specie.getBreedingProgramme()!= -1) {
-            list = listAnimalWithBreedingProgramme(list,
-                    BreedingProgramme.NONE.findById(specie.getBreedingProgramme()));
-        }
+//        if (specie.getEcoregion() != -1) {
+//            list = listAnimalWithEcoregion(list, Ecoregion.UNKNOWN.findById(specie.getEcoregion()));
+//        }
+//        if (specie.getNames() != null) {
+//            list = listAnimalWithSpecie(list, specie);
+//        }
+//        if (specie.getFamily() != -1) {
+//            list = listAnimalWithFamily(list, Family.UNKNOWN.findById(specie.getFamily()));
+//        }
+//        if (specie.getSize() != -1) {
+//            list = listAnimalWithSize(list, Size.UNKNOWN.findSizeById(specie.getSize()));
+//        }
+//        if (specie.getConservation() != -1) {
+//            list = listAnimalWithConservation(list,
+//                    ConservationStatus.UNKNOWN.findById(specie.getConservation()));
+//        }
+//        if (specie.getContinent() != -1) {
+//            list = listAnimalWithContinent(list,
+//                    Continent.UNKNOWN.findById(specie.getContinent()));
+//        }
+//        if (specie.getBreedingProgramme()!= -1) {
+//            list = listAnimalWithBreedingProgramme(list,
+//                    BreedingProgramme.NONE.findById(specie.getBreedingProgramme()));
+//        }
         if (sex != null) {
             list = listAnimalWithSex(list, sex);
         }

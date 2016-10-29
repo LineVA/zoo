@@ -225,30 +225,30 @@ public class Specie {
 
     public boolean compare(LightSpecie lightSpecie) {
         boolean isCorresponding = true;
-        if (lightSpecie.getBiome() != -1) {
-            isCorresponding &= this.biomes.contains((lightSpecie.getBiome()));
+        if (null != lightSpecie.getBiome()) {
+            isCorresponding &= this.biomes.containsAll((lightSpecie.getBiome()));
         }
-        if (lightSpecie.getEcoregion() != -1) {
-            isCorresponding &= lightSpecie.getEcoregion() == this.ecoregion;
-        }
-        if (lightSpecie.getDiet() != -1) {
-            isCorresponding &= this.diets.contains(lightSpecie.getDiet());
-        }
-        if (lightSpecie.getFamily() != -1) {
-            isCorresponding &= lightSpecie.getFamily() == this.family;
-        }
-        if (lightSpecie.getConservation() != -1) {
-            isCorresponding &= lightSpecie.getConservation() == this.conservation;
-        }
-        if (lightSpecie.getSize() != -1) {
-            isCorresponding &= lightSpecie.getSize() == this.size;
-        }
-        if (lightSpecie.getContinent() != -1) {
-            isCorresponding &= this.continents.contains(lightSpecie.getContinent());
-        }
-        if (lightSpecie.getBreedingProgramme() != -1) {
-            isCorresponding &= lightSpecie.getBreedingProgramme() == this.breedingProgramme;
-        }
+//        if (lightSpecie.getEcoregion() != -1) {
+//            isCorresponding &= lightSpecie.getEcoregion() == this.ecoregion;
+//        }
+//        if (lightSpecie.getDiet() != -1) {
+//            isCorresponding &= this.diets.contains(lightSpecie.getDiet());
+//        }
+//        if (lightSpecie.getFamily() != -1) {
+//            isCorresponding &= lightSpecie.getFamily() == this.family;
+//        }
+//        if (lightSpecie.getConservation() != -1) {
+//            isCorresponding &= lightSpecie.getConservation() == this.conservation;
+//        }
+//        if (lightSpecie.getSize() != -1) {
+//            isCorresponding &= lightSpecie.getSize() == this.size;
+//        }
+//        if (lightSpecie.getContinent() != -1) {
+//            isCorresponding &= this.continents.contains(lightSpecie.getContinent());
+//        }
+//        if (lightSpecie.getBreedingProgramme() != -1) {
+//            isCorresponding &= lightSpecie.getBreedingProgramme() == this.breedingProgramme;
+//        }
         return isCorresponding;
     }
 

@@ -3,13 +3,15 @@ package commandLine.commandImpl;
 import basicGui.FormattingDisplay;
 import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
+import commandLine.SplittingAmpersand;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import launch.play.Play;
-import utils.Constants;
 import zoo.animal.specie.LightSpecie;
 import zoo.paddock.IPaddock;
 
@@ -28,47 +30,55 @@ public class LsSpecie extends AbstractCommand {
     // args[6] : the argument after '--size'
     // args[7] : the argument after '--continent'
     // args[8 : the argument after '--breedingProgramme'
-    String[] args;
+    ArrayList<String>[] args;
+    String paddockName = "";
+    Set<String> biomes;
 
     public LsSpecie(Play play) {
         super(play);
     }
 
+    private ArrayList<Integer> convertToArrayListOfInteger(Set<String> strings){
+        ArrayList<Integer> integers = new ArrayList<>();
+        for(String str : strings){
+            integers.add(Integer.parseInt(str));
+        }
+        return integers;
+    }
+    
     @Override
     public ReturnExec execute(String[] cmd) {
-        LightSpecie light = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
-                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
-                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
+       LightSpecie light = new LightSpecie(null, null, null, null, null, null, null, null, null);
         IPaddock pad = null;
         try {
-            if (args[0] != null) {
-                pad = super.getPlay().getZoo().findPaddockByName(args[0]);
+            if (paddockName != "") {
+                pad = super.getPlay().getZoo().findPaddockByName(paddockName);
             }
-            if (args[1] != null) {
-                light.setBiome(Integer.parseInt(args[1]));
+            if (biomes.size() != 0) {
+                light.setBiome(convertToArrayListOfInteger(biomes));
             }
-            if (args[2] != null) {
-                light.setEcoregion(Integer.parseInt(args[2]));
-            }
-            if (args[3] != null) {
-                light.setDiet(Integer.parseInt(args[3]));
-            }
-            if (args[4] != null) {
-                light.setFamily(Integer.parseInt(args[4]));
-            }
-            if (args[5] != null) {
-                light.setConservation(Integer.parseInt(args[5]));
-            }
-            if (args[6] != null) {
-                light.setSize(Integer.parseInt(args[6]));
-            }
-            if (args[7] != null) {
-                light.setContinent(Integer.parseInt(args[7]));
-            }
-            if (args[8] != null) {
-                light.setBreedingProgramme(Integer.parseInt(args[8]));
-            }
-            super.setSuccess(true);
+//            if (args[2] != null) {
+//                light.setEcoregion(Integer.parseInt(args[2]));
+//            }
+//            if (args[3] != null) {
+//                light.setDiet(Integer.parseInt(args[3]));
+//            }
+//            if (args[4] != null) {
+//                light.setFamily(Integer.parseInt(args[4]));
+//            }
+//            if (args[5] != null) {
+//                light.setConservation(Integer.parseInt(args[5]));
+//            }
+//            if (args[6] != null) {
+//                light.setSize(Integer.parseInt(args[6]));
+//            }
+//            if (args[7] != null) {
+//                light.setContinent(Integer.parseInt(args[7]));
+//            }
+//            if (args[8] != null) {
+//                light.setBreedingProgramme(Integer.parseInt(args[8]));
+//            }
+//            super.setSuccess(true);
         } catch (EmptyNameException | UnknownNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
@@ -130,23 +140,23 @@ public class LsSpecie extends AbstractCommand {
 
     private boolean saveArgument(String arg, String value) {
         if (this.hasArgumentBiome(arg)) {
-            args[1] = value;
-        } else if (this.hasArgumentConservation(arg)) {
-            args[5] = value;
-        } else if (this.hasArgumentDiet(arg)) {
-            args[3] = value;
-        } else if (this.hasArgumentEcoregion(arg)) {
-            args[2] = value;
-        } else if (this.hasArgumentFamily(arg)) {
-            args[4] = value;
+            biomes = SplittingAmpersand.split(value);
+//        } else if (this.hasArgumentConservation(arg)) {
+//            args[5] = value;
+//        } else if (this.hasArgumentDiet(arg)) {
+//            args[3] = value;
+//        } else if (this.hasArgumentEcoregion(arg)) {
+//            args[2] = value;
+//        } else if (this.hasArgumentFamily(arg)) {
+//            args[4] = value;
         } else if (this.hasArgumentPaddock(arg)) {
-            args[0] = value;
-        } else if (this.hasArgumentSize(arg)) {
-            args[6] = value;
-        } else if (this.hasArgumentContinent(arg)) {
-            args[7] = value;
-        } else if (this.hasArgumentBreedingProgramme(arg)) {
-            args[8] = value;
+            paddockName = value;
+//        } else if (this.hasArgumentSize(arg)) {
+//            args[6] = value;
+//        } else if (this.hasArgumentContinent(arg)) {
+//            args[7] = value;
+//        } else if (this.hasArgumentBreedingProgramme(arg)) {
+//            args[8] = value;
         } else {
             return false;
         }
@@ -155,7 +165,8 @@ public class LsSpecie extends AbstractCommand {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        this.args = new String[]{null, null, null, null, null, null, null, null, null};
+//        this.args = new Set<String>[9];
+        biomes = new HashSet<>();
         if (firstCmd(cmd) && checkLength(cmd)) {
             int i = 2;
             while (i <= cmd.length - 2) {

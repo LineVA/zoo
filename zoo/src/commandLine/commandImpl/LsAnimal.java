@@ -46,55 +46,56 @@ public class LsAnimal extends AbstractCommand {
         Diet diet = null;
         Biome biome = null;
         Sex sex = null;
-        LightSpecie spec = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
-                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
-                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
-        try {
-            if (args[0] != null) {
-                spec.setNames(super.getPlay().getZoo().findSpecieByName(args[0]).getNames());
-            }
-            if (args[1] != null) {
-                pad = super.getPlay().getZoo().findPaddockByName(args[1]);
-            }
-            if (args[2] != null) {
-                spec.setEcoregion(Integer.parseInt(args[2]));
-            }
-            if (args[3] != null) {
-                diet = Diet.NONE.findDietById(Integer.parseInt(args[3]));
-            }
-            if (args[4] != null) {
-                sex = Sex.UNKNOWN.findById(Integer.parseInt(args[4]));
-            }
-            if (args[5] != null) {
-                spec.setFamily(Integer.parseInt(args[5]));
-            }
-            if (args[6] != null) {
-                spec.setConservation(Integer.parseInt(args[6]));
-            }
-            if (args[7] != null) {
-                biome = Biome.NONE.findById(Integer.parseInt(args[7]));
-            }
-            if (args[8] != null) {
-                spec.setSize(Integer.parseInt(args[8]));
-            }
-            if (args[9] != null) {
-                spec.setContinent(Integer.parseInt(args[9]));
-            }
-            if (args[10] != null) {
-                spec.setBreedingProgramme(Integer.parseInt(args[10]));
-            }
-            super.setSuccess(true);
-            ArrayList<String> names = new ArrayList<>();
-            for (Animal animal : super.getPlay().getZoo().listAnimal(pad, spec, sex, diet, biome)) {
-                names.add(animal.getName());
-            }
-            Collections.sort(names);
-            return new ReturnExec(FormattingDisplay.formattingArrayList(names), TypeReturn.SUCCESS);
-        } catch (EmptyNameException | UnknownNameException ex) {
-            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
-        } catch (NumberFormatException ex) {
-            return new ReturnExec("INTEGER ERROR", TypeReturn.ERROR);
-        }
+//        LightSpecie spec = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
+//                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
+//                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
+//        try {
+//            if (args[0] != null) {
+//                spec.setNames(super.getPlay().getZoo().findSpecieByName(args[0]).getNames());
+//            }
+//            if (args[1] != null) {
+//                pad = super.getPlay().getZoo().findPaddockByName(args[1]);
+//            }
+//            if (args[2] != null) {
+//                spec.setEcoregion(Integer.parseInt(args[2]));
+//            }
+//            if (args[3] != null) {
+//                diet = Diet.NONE.findDietById(Integer.parseInt(args[3]));
+//            }
+//            if (args[4] != null) {
+//                sex = Sex.UNKNOWN.findById(Integer.parseInt(args[4]));
+//            }
+//            if (args[5] != null) {
+//                spec.setFamily(Integer.parseInt(args[5]));
+//            }
+//            if (args[6] != null) {
+//                spec.setConservation(Integer.parseInt(args[6]));
+//            }
+//            if (args[7] != null) {
+//                biome = Biome.NONE.findById(Integer.parseInt(args[7]));
+//            }
+//            if (args[8] != null) {
+//                spec.setSize(Integer.parseInt(args[8]));
+//            }
+//            if (args[9] != null) {
+//                spec.setContinent(Integer.parseInt(args[9]));
+//            }
+//            if (args[10] != null) {
+//                spec.setBreedingProgramme(Integer.parseInt(args[10]));
+//            }
+//            super.setSuccess(true);
+//            ArrayList<String> names = new ArrayList<>();
+//            for (Animal animal : super.getPlay().getZoo().listAnimal(pad, spec, sex, diet, biome)) {
+//                names.add(animal.getName());
+//            }
+//            Collections.sort(names);
+//            return new ReturnExec(FormattingDisplay.formattingArrayList(names), TypeReturn.SUCCESS);
+//        } catch (EmptyNameException | UnknownNameException ex) {
+//            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
+//        } catch (NumberFormatException ex) {
+//            return new ReturnExec("INTEGER ERROR", TypeReturn.ERROR);
+//        }
+        return null;
     }
 
     private boolean firstCmd(String[] cmd) {
