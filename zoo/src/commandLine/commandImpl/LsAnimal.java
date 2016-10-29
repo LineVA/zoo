@@ -47,24 +47,30 @@ public class LsAnimal extends AbstractCommand {
     Set<String> sizes;
     Set<String> continents;
     Set<String> breedingProgrammes;
-    
+    Set<String> paddocks;
+
     public LsAnimal(Play play) {
         super(play);
     }
 
+    public Set<IPaddock> convertToIPaddock(Set<String> strings)
+            throws EmptyNameException, UnknownNameException {
+        Set<IPaddock> paddocks = new HashSet<>();
+        for (String str : strings) {
+            paddocks.add(super.getPlay().getZoo().findPaddockByName(str));
+        }
+        return paddocks;
+    }
+
     @Override
     public ReturnExec execute(String[] cmd) {
-        IPaddock pad = null;
+        Set<IPaddock> pad = null;
 //        Diet diet = null;
-        Biome biome = null;
         LightSpecie spec = new LightSpecie(null, null, null, null, null, null, null, null, null);
         try {
             if (args[0] != null) {
                 spec.setNames(super.getPlay().getZoo().findSpecieByName(args[0]).getNames());
             }
-//            if (args[1] != null) {
-//                pad = super.getPlay().getZoo().findPaddockByName(args[1]);
-//            }
             if (ecoregions.size() != 0) {
                 spec.setEcoregion(Utils.convertToArrayListOfInteger(ecoregions));
             }
@@ -85,7 +91,7 @@ public class LsAnimal extends AbstractCommand {
             }
             super.setSuccess(true);
             ArrayList<String> names = new ArrayList<>();
-            for (Animal animal : super.getPlay().getZoo().listAnimal(pad, spec, convertStringToSex(sexes), 
+            for (Animal animal : super.getPlay().getZoo().listAnimal(convertToIPaddock(paddocks), spec, convertStringToSex(sexes),
                     convertStringToDiet(diets), convertStringToBiome(biomes))) {
                 names.add(animal.getName());
             }
@@ -95,31 +101,31 @@ public class LsAnimal extends AbstractCommand {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         } catch (NumberFormatException ex) {
             return new ReturnExec("INTEGER ERROR", TypeReturn.ERROR);
-        } 
+        }
     }
-    
+
     private Set<Sex> convertStringToSex(Set<String> strings)
-            throws UnknownNameException, java.lang.NumberFormatException{
+            throws UnknownNameException, java.lang.NumberFormatException {
         Set<Sex> sexes = new HashSet<>();
-        for(String str : strings){
+        for (String str : strings) {
             sexes.add(Sex.UNKNOWN.findById(Integer.parseInt(str)));
         }
         return sexes;
     }
-    
-     private Set<Diet> convertStringToDiet(Set<String> strings)
-            throws UnknownNameException, java.lang.NumberFormatException{
+
+    private Set<Diet> convertStringToDiet(Set<String> strings)
+            throws UnknownNameException, java.lang.NumberFormatException {
         Set<Diet> diets = new HashSet<>();
-        for(String str : strings){
+        for (String str : strings) {
             diets.add(Diet.NONE.findDietById(Integer.parseInt(str)));
         }
         return diets;
     }
-     
-      private Set<Biome> convertStringToBiome(Set<String> strings)
-            throws UnknownNameException, java.lang.NumberFormatException{
+
+    private Set<Biome> convertStringToBiome(Set<String> strings)
+            throws UnknownNameException, java.lang.NumberFormatException {
         Set<Biome> biomes = new HashSet<>();
-        for(String str : strings){
+        for (String str : strings) {
             biomes.add(Biome.NONE.findById(Integer.parseInt(str)));
         }
         return biomes;
@@ -190,13 +196,13 @@ public class LsAnimal extends AbstractCommand {
         } else if (this.hasArgumentConservation(arg)) {
             conservations = SplittingAmpersand.split(value);
         } else if (this.hasArgumentDiet(arg)) {
-           diets = SplittingAmpersand.split(value);
+            diets = SplittingAmpersand.split(value);
         } else if (this.hasArgumentEcoregion(arg)) {
-           ecoregions = SplittingAmpersand.split(value);
+            ecoregions = SplittingAmpersand.split(value);
         } else if (this.hasArgumentFamily(arg)) {
             families = SplittingAmpersand.split(value);
         } else if (this.hasArgumentPaddock(arg)) {
-            args[1] = value;
+            paddocks = SplittingAmpersand.split(value);
         } else if (this.hasArgumentSex(arg)) {
             sexes = SplittingAmpersand.split(value);
         } else if (this.hasArgumentSize(arg)) {

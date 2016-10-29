@@ -436,7 +436,7 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<Animal> listAnimal(IPaddock paddock,
+    public ArrayList<Animal> listAnimal(Set<IPaddock> paddock,
             LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome)
             throws UnknownNameException {
         if (paddock == null) {
@@ -446,7 +446,14 @@ public class Zoo implements IZoo {
             }
             return list;
         } else {
-            return paddock.listAnimal(specie, sex, diet, biome);
+            if (paddock.size() != 1) {
+                return new ArrayList<Animal>();
+            } else {
+                for (IPaddock pad : paddock) {
+                    return pad.listAnimal(specie, sex, diet, biome);
+                }
+            }
+            return null; 
         }
     }
 
