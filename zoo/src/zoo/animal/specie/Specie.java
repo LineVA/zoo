@@ -228,27 +228,43 @@ public class Specie {
         if (null != lightSpecie.getBiome()) {
             isCorresponding &= this.biomes.containsAll((lightSpecie.getBiome()));
         }
-//        if (lightSpecie.getEcoregion() != -1) {
-//            isCorresponding &= lightSpecie.getEcoregion() == this.ecoregion;
-//        }
-//        if (lightSpecie.getDiet() != -1) {
-//            isCorresponding &= this.diets.contains(lightSpecie.getDiet());
-//        }
-//        if (lightSpecie.getFamily() != -1) {
-//            isCorresponding &= lightSpecie.getFamily() == this.family;
-//        }
-//        if (lightSpecie.getConservation() != -1) {
-//            isCorresponding &= lightSpecie.getConservation() == this.conservation;
-//        }
-//        if (lightSpecie.getSize() != -1) {
-//            isCorresponding &= lightSpecie.getSize() == this.size;
-//        }
-//        if (lightSpecie.getContinent() != -1) {
-//            isCorresponding &= this.continents.contains(lightSpecie.getContinent());
-//        }
-//        if (lightSpecie.getBreedingProgramme() != -1) {
-//            isCorresponding &= lightSpecie.getBreedingProgramme() == this.breedingProgramme;
-//        }
+        if (null != lightSpecie.getEcoregion()) {
+            isCorresponding &= lightSpecie.getEcoregion().get(1) == this.ecoregion;
+        }
+        if (null != lightSpecie.getDiet()) {
+            isCorresponding &= this.diets.containsAll(lightSpecie.getDiet());
+        }
+        if (null != lightSpecie.getFamily()) {
+            if (lightSpecie.getFamily().size() > 1) {
+                return false;
+            }
+            isCorresponding &= lightSpecie.getFamily().get(0) == this.family;
+        }
+        if (null != lightSpecie.getConservation() && lightSpecie.getConservation().size() < 2) {
+            if (lightSpecie.getConservation()
+                    .size() > 1) {
+                return false;
+            }
+            isCorresponding &= lightSpecie.getConservation().get(0) == this.conservation;
+        }
+        if (null != lightSpecie.getSize()) {
+            if (lightSpecie.getSize().size() > 1) {
+                return false;
+            }
+            isCorresponding &= lightSpecie.getSize().get(0) == this.size;
+        }
+        if (null != lightSpecie.getContinent()) {
+            if (lightSpecie.getContinent().size() > 1) {
+                return false;
+            }
+            isCorresponding &= this.continents.containsAll(lightSpecie.getContinent());
+        }
+        if (null != lightSpecie.getBreedingProgramme()) {
+            if (lightSpecie.getBreedingProgramme().size() > 1) {
+                return false;
+            }
+            isCorresponding &= lightSpecie.getBreedingProgramme().get(0) == this.breedingProgramme;
+        }
         return isCorresponding;
     }
 

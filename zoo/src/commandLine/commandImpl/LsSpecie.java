@@ -33,22 +33,29 @@ public class LsSpecie extends AbstractCommand {
     ArrayList<String>[] args;
     String paddockName = "";
     Set<String> biomes;
+    Set<String> ecoregions;
+    Set<String> diets;
+    Set<String> families;
+    Set<String> conservations;
+    Set<String> sizes;
+    Set<String> continents;
+    Set<String> breedingProgrammes;
 
     public LsSpecie(Play play) {
         super(play);
     }
 
-    private ArrayList<Integer> convertToArrayListOfInteger(Set<String> strings){
+    private ArrayList<Integer> convertToArrayListOfInteger(Set<String> strings) {
         ArrayList<Integer> integers = new ArrayList<>();
-        for(String str : strings){
+        for (String str : strings) {
             integers.add(Integer.parseInt(str));
         }
         return integers;
     }
-    
+
     @Override
     public ReturnExec execute(String[] cmd) {
-       LightSpecie light = new LightSpecie(null, null, null, null, null, null, null, null, null);
+        LightSpecie light = new LightSpecie(null, null, null, null, null, null, null, null, null);
         IPaddock pad = null;
         try {
             if (paddockName != "") {
@@ -57,28 +64,28 @@ public class LsSpecie extends AbstractCommand {
             if (biomes.size() != 0) {
                 light.setBiome(convertToArrayListOfInteger(biomes));
             }
-//            if (args[2] != null) {
-//                light.setEcoregion(Integer.parseInt(args[2]));
-//            }
-//            if (args[3] != null) {
-//                light.setDiet(Integer.parseInt(args[3]));
-//            }
-//            if (args[4] != null) {
-//                light.setFamily(Integer.parseInt(args[4]));
-//            }
-//            if (args[5] != null) {
-//                light.setConservation(Integer.parseInt(args[5]));
-//            }
-//            if (args[6] != null) {
-//                light.setSize(Integer.parseInt(args[6]));
-//            }
-//            if (args[7] != null) {
-//                light.setContinent(Integer.parseInt(args[7]));
-//            }
-//            if (args[8] != null) {
-//                light.setBreedingProgramme(Integer.parseInt(args[8]));
-//            }
-//            super.setSuccess(true);
+            if (ecoregions.size() != 0) {
+                light.setEcoregion(convertToArrayListOfInteger(ecoregions));
+            }
+            if (diets.size() != 0) {
+                light.setDiet(convertToArrayListOfInteger(diets));
+            }
+            if (families.size() != 0) {
+                light.setFamily(convertToArrayListOfInteger(families));
+            }
+            if (conservations.size() != 0) {
+                light.setConservation(convertToArrayListOfInteger(conservations));
+            }
+            if (sizes.size() != 0) {
+                light.setSize(convertToArrayListOfInteger(sizes));
+            }
+            if (continents.size() != 0) {
+                light.setContinent(convertToArrayListOfInteger(continents));
+            }
+            if (breedingProgrammes.size() != 0) {
+                light.setBreedingProgramme(convertToArrayListOfInteger(breedingProgrammes));
+            }
+            super.setSuccess(true);
         } catch (EmptyNameException | UnknownNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
@@ -141,22 +148,22 @@ public class LsSpecie extends AbstractCommand {
     private boolean saveArgument(String arg, String value) {
         if (this.hasArgumentBiome(arg)) {
             biomes = SplittingAmpersand.split(value);
-//        } else if (this.hasArgumentConservation(arg)) {
-//            args[5] = value;
-//        } else if (this.hasArgumentDiet(arg)) {
-//            args[3] = value;
-//        } else if (this.hasArgumentEcoregion(arg)) {
-//            args[2] = value;
-//        } else if (this.hasArgumentFamily(arg)) {
-//            args[4] = value;
+        } else if (this.hasArgumentConservation(arg)) {
+            conservations = SplittingAmpersand.split(value);
+        } else if (this.hasArgumentDiet(arg)) {
+            diets = SplittingAmpersand.split(value);
+        } else if (this.hasArgumentEcoregion(arg)) {
+            ecoregions = SplittingAmpersand.split(value);
+        } else if (this.hasArgumentFamily(arg)) {
+            families = SplittingAmpersand.split(value);
         } else if (this.hasArgumentPaddock(arg)) {
             paddockName = value;
-//        } else if (this.hasArgumentSize(arg)) {
-//            args[6] = value;
-//        } else if (this.hasArgumentContinent(arg)) {
-//            args[7] = value;
-//        } else if (this.hasArgumentBreedingProgramme(arg)) {
-//            args[8] = value;
+        } else if (this.hasArgumentSize(arg)) {
+            sizes = SplittingAmpersand.split(value);
+        } else if (this.hasArgumentContinent(arg)) {
+            continents = SplittingAmpersand.split(value);
+        } else if (this.hasArgumentBreedingProgramme(arg)) {
+            breedingProgrammes = SplittingAmpersand.split(value);
         } else {
             return false;
         }
@@ -167,6 +174,14 @@ public class LsSpecie extends AbstractCommand {
     public boolean canExecute(String[] cmd) {
 //        this.args = new Set<String>[9];
         biomes = new HashSet<>();
+        ecoregions = new HashSet<>();
+        families = new HashSet<>();
+        diets = new HashSet<>();
+        conservations = new HashSet<>();
+        continents = new HashSet<>();
+        sizes = new HashSet<>();
+        breedingProgrammes = new HashSet<>();
+
         if (firstCmd(cmd) && checkLength(cmd)) {
             int i = 2;
             while (i <= cmd.length - 2) {
