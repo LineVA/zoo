@@ -38,7 +38,7 @@ public interface IPaddock {
     public Animal findAnimalByName(String animalName)
             throws UnknownNameException, EmptyNameException;
 
-    public ArrayList<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Biome biome)
+    public ArrayList<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome)
             throws UnknownNameException;
 
     public ArrayList<String> birth(int monthsPerEvaluation)

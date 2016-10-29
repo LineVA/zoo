@@ -81,7 +81,7 @@ public interface IZoo {
             throws UnknownNameException, EmptyNameException;
 
     public ArrayList<Animal> listAnimal(IPaddock paddock, LightSpecie specie,
-            Set<Sex> sex, Set<Diet> diet, Biome biome) throws UnknownNameException;
+            Set<Sex> sex, Set<Diet> diet, Set<Biome> biome) throws UnknownNameException;
 
     public ArrayList<String> listSpecie(LightSpecie lightSpecie, IPaddock paddock);
 

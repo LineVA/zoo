@@ -38,6 +38,7 @@ public class LsAnimal extends AbstractCommand {
     String[] args;
     Set<String> sexes;
     Set<String> diets;
+    Set<String> biomes;
     
     public LsAnimal(Play play) {
         super(play);
@@ -46,7 +47,7 @@ public class LsAnimal extends AbstractCommand {
     @Override
     public ReturnExec execute(String[] cmd) {
         IPaddock pad = null;
-        Diet diet = null;
+//        Diet diet = null;
         Biome biome = null;
         LightSpecie spec = new LightSpecie(null, null, null, null, null, null, null, null, null);
         try {
@@ -86,7 +87,7 @@ public class LsAnimal extends AbstractCommand {
 //            super.setSuccess(true);
             ArrayList<String> names = new ArrayList<>();
             for (Animal animal : super.getPlay().getZoo().listAnimal(pad, spec, convertStringToSex(sexes), 
-                    convertStringToDiet(diets), biome)) {
+                    convertStringToDiet(diets), convertStringToBiome(biomes))) {
                 names.add(animal.getName());
             }
             Collections.sort(names);
@@ -114,6 +115,15 @@ public class LsAnimal extends AbstractCommand {
             diets.add(Diet.NONE.findDietById(Integer.parseInt(str)));
         }
         return diets;
+    }
+     
+      private Set<Biome> convertStringToBiome(Set<String> strings)
+            throws UnknownNameException, java.lang.NumberFormatException{
+        Set<Biome> biomes = new HashSet<>();
+        for(String str : strings){
+            biomes.add(Biome.NONE.findById(Integer.parseInt(str)));
+        }
+        return biomes;
     }
 
     private boolean firstCmd(String[] cmd) {
@@ -177,7 +187,7 @@ public class LsAnimal extends AbstractCommand {
 
     private boolean saveArgument(String arg, String value) {
         if (this.hasArgumentBiome(arg)) {
-            args[7] = value;
+            biomes = SplittingAmpersand.split(value);
         } else if (this.hasArgumentConservation(arg)) {
             args[6] = value;
         } else if (this.hasArgumentDiet(arg)) {
@@ -207,8 +217,9 @@ public class LsAnimal extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         this.args = new String[]{null, null, null, null, null, null, null, null, null, null, null};
-        sexes = new HashSet<String>();
-        diets = new HashSet<String>();
+        sexes = new HashSet<>();
+        diets = new HashSet<>();
+        biomes = new HashSet<>();
         if (firstCmd(cmd) && checkLength(cmd)) {
             int i = 2;
             while (i <= cmd.length - 2) {

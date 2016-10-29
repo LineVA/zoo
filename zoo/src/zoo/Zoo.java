@@ -437,7 +437,7 @@ public class Zoo implements IZoo {
 
     @Override
     public ArrayList<Animal> listAnimal(IPaddock paddock,
-            LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Biome biome)
+            LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome)
             throws UnknownNameException {
         if (paddock == null) {
             ArrayList<Animal> list = new ArrayList<>();

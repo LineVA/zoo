@@ -277,7 +277,7 @@ public class Paddock implements IPaddock {
             Animal next;
             while (it.hasNext()) {
                 next = (AnimalImpl) it.next();
-                if (!next.hasTheSameDiet((Diet)diet.toArray()[0])) {
+                if (!next.hasTheSameDiet((Diet) diet.toArray()[0])) {
                     it.remove();
                 }
             }
@@ -302,12 +302,17 @@ public class Paddock implements IPaddock {
         }
     }
 
-    private ArrayList<Animal> listAnimalWithBiome(ArrayList<Animal> animals, Biome biome) {
-        ArrayList<Animal> list = animals;
-        if (this.biome != biome.getId()) {
-            list.removeAll(this.animals.values());
+    private ArrayList<Animal> listAnimalWithBiome(ArrayList<Animal> animals, Set<Biome> biome) 
+            throws UnknownNameException {
+        if (biome != null && biome.size() != 1) {
+            return new ArrayList<Animal>();
+        } else {
+            ArrayList<Animal> list = animals;
+            if (!biome.contains(Biome.NONE.findById(this.biome))) {
+                list.removeAll(this.animals.values());
+            }
+            return list;
         }
-        return list;
     }
 
     public ArrayList<Animal> listAnimalWithoutCriteria() {
@@ -319,7 +324,7 @@ public class Paddock implements IPaddock {
     }
 
     @Override
-    public ArrayList<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Biome biome)
+    public ArrayList<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome)
             throws UnknownNameException {
         ArrayList<Animal> list = listAnimalWithoutCriteria();
 //        if (specie.getEcoregion() != -1) {
@@ -352,9 +357,9 @@ public class Paddock implements IPaddock {
         if (diet != null && diet.size() != 0) {
             list = listAnimalWithDiet(list, diet);
         }
-//        if (biome != null) {
-//            list = listAnimalWithBiome(list, biome);
-//        }
+        if (biome != null && biome.size() != 0) {
+            list = listAnimalWithBiome(list, biome);
+        }
         return list;
     }
 
