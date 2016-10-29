@@ -13,7 +13,6 @@ import java.util.HashSet;
 import java.util.Set;
 import launch.play.Play;
 import utils.Utils;
-import static utils.Utils.convertToArrayListOfInteger;
 import zoo.animal.specie.LightSpecie;
 import zoo.paddock.IPaddock;
 
