@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 import launch.options.Option;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Set;
 import zoo.BirthObservable;
 import zoo.NameVerifications;
 import zoo.animal.Animal;
@@ -252,15 +253,14 @@ public class Paddock implements IPaddock {
         }
         return list;
     }
-    
-     private ArrayList<Animal> listAnimalWithBreedingProgramme
-        (ArrayList<Animal> animals, BreedingProgramme breedingProgramme) {
+
+    private ArrayList<Animal> listAnimalWithBreedingProgramme(ArrayList<Animal> animals, BreedingProgramme breedingProgramme) {
         ArrayList<Animal> list = animals;
         Iterator it = list.iterator();
         Animal next;
         while (it.hasNext()) {
             next = (AnimalImpl) it.next();
-            if (!(next.getSpecie().getBreedingProgramme()== breedingProgramme.getId())) {
+            if (!(next.getSpecie().getBreedingProgramme() == breedingProgramme.getId())) {
                 it.remove();
             }
         }
@@ -280,17 +280,21 @@ public class Paddock implements IPaddock {
         return list;
     }
 
-    private ArrayList<Animal> listAnimalWithSex(ArrayList<Animal> animals, Sex sex) {
-        ArrayList<Animal> list = animals;
-        Iterator it = list.iterator();
-        Animal next;
-        while (it.hasNext()) {
-            next = (AnimalImpl) it.next();
-            if (!next.getSex().equals(sex)) {
-                it.remove();
+    private ArrayList<Animal> listAnimalWithSex(ArrayList<Animal> animals, Set<Sex> sex) {
+        if (sex == null || sex.size() != 1) {
+            return new ArrayList<Animal>();
+        } else {
+            ArrayList<Animal> list = animals;
+            Iterator it = list.iterator();
+            Animal next;
+            while (it.hasNext()) {
+                next = (AnimalImpl) it.next();
+                if (!sex.contains(next.getSex())) {
+                    it.remove();
+                }
             }
+            return list;
         }
-        return list;
     }
 
     private ArrayList<Animal> listAnimalWithBiome(ArrayList<Animal> animals, Biome biome) {
@@ -310,7 +314,7 @@ public class Paddock implements IPaddock {
     }
 
     @Override
-    public ArrayList<Animal> listAnimal(LightSpecie specie, Sex sex, Diet diet, Biome biome)
+    public ArrayList<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Diet diet, Biome biome)
             throws UnknownNameException {
         ArrayList<Animal> list = listAnimalWithoutCriteria();
 //        if (specie.getEcoregion() != -1) {
@@ -337,15 +341,15 @@ public class Paddock implements IPaddock {
 //            list = listAnimalWithBreedingProgramme(list,
 //                    BreedingProgramme.NONE.findById(specie.getBreedingProgramme()));
 //        }
-        if (sex != null) {
+        if (sex != null && sex.size() != 0) {
             list = listAnimalWithSex(list, sex);
         }
-        if (diet != null) {
-            list = listAnimalWithDiet(list, diet);
-        }
-        if (biome != null) {
-            list = listAnimalWithBiome(list, biome);
-        }
+//        if (diet != null) {
+//            list = listAnimalWithDiet(list, diet);
+//        }
+//        if (biome != null) {
+//            list = listAnimalWithBiome(list, biome);
+//        }
         return list;
     }
 

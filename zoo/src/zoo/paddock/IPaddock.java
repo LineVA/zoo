@@ -9,6 +9,7 @@ import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
 import java.util.Map;
+import java.util.Set;
 import launch.options.Option;
 import zoo.animal.Animal;
 import zoo.animal.feeding.Diet;
@@ -37,7 +38,7 @@ public interface IPaddock {
     public Animal findAnimalByName(String animalName)
             throws UnknownNameException, EmptyNameException;
 
-    public ArrayList<Animal> listAnimal(LightSpecie specie, Sex sex, Diet diet, Biome biome)
+    public ArrayList<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Diet diet, Biome biome)
             throws UnknownNameException;
 
     public ArrayList<String> birth(int monthsPerEvaluation)

@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.TreeMap;
 import launch.options.Option;
 import lombok.Getter;
@@ -436,7 +437,7 @@ public class Zoo implements IZoo {
 
     @Override
     public ArrayList<Animal> listAnimal(IPaddock paddock,
-            LightSpecie specie, Sex sex, Diet diet, Biome biome)
+            LightSpecie specie, Set<Sex> sex, Diet diet, Biome biome)
             throws UnknownNameException {
         if (paddock == null) {
             ArrayList<Animal> list = new ArrayList<>();

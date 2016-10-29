@@ -11,6 +11,7 @@ import backup.save.SaveImpl;
 import exception.IncorrectLoadException;
 import exception.name.NameException;
 import java.util.Map;
+import java.util.Set;
 import launch.options.Option;
 import launch.play.tutorials.TutorialPlayImpl_1;
 import zoo.animal.Animal;
@@ -80,7 +81,7 @@ public interface IZoo {
             throws UnknownNameException, EmptyNameException;
 
     public ArrayList<Animal> listAnimal(IPaddock paddock, LightSpecie specie,
-            Sex sex, Diet diet, Biome biome) throws UnknownNameException;
+            Set<Sex> sex, Diet diet, Biome biome) throws UnknownNameException;
 
     public ArrayList<String> listSpecie(LightSpecie lightSpecie, IPaddock paddock);
 

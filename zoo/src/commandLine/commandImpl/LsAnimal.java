@@ -3,13 +3,14 @@ package commandLine.commandImpl;
 import basicGui.FormattingDisplay;
 import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
+import commandLine.SplittingAmpersand;
 import commandLine.TypeReturn;
-import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import launch.play.Play;
-import utils.Constants;
 import zoo.animal.Animal;
 import zoo.animal.feeding.Diet;
 import zoo.animal.reproduction.Sex;
@@ -35,7 +36,8 @@ public class LsAnimal extends AbstractCommand {
     // args[9] : the argument after '--continent'
     // args[10] : the argument after '--breedingProgramme'
     String[] args;
-
+    Set<String> sexes;
+    
     public LsAnimal(Play play) {
         super(play);
     }
@@ -45,11 +47,8 @@ public class LsAnimal extends AbstractCommand {
         IPaddock pad = null;
         Diet diet = null;
         Biome biome = null;
-        Sex sex = null;
-//        LightSpecie spec = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
-//                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
-//                Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
-//        try {
+        LightSpecie spec = new LightSpecie(null, null, null, null, null, null, null, null, null);
+        try {
 //            if (args[0] != null) {
 //                spec.setNames(super.getPlay().getZoo().findSpecieByName(args[0]).getNames());
 //            }
@@ -62,8 +61,8 @@ public class LsAnimal extends AbstractCommand {
 //            if (args[3] != null) {
 //                diet = Diet.NONE.findDietById(Integer.parseInt(args[3]));
 //            }
-//            if (args[4] != null) {
-//                sex = Sex.UNKNOWN.findById(Integer.parseInt(args[4]));
+//            if (sexes.size() != 0) {
+//                sex = Sex.UNKNOWN.findById(sexes);
 //            }
 //            if (args[5] != null) {
 //                spec.setFamily(Integer.parseInt(args[5]));
@@ -84,18 +83,26 @@ public class LsAnimal extends AbstractCommand {
 //                spec.setBreedingProgramme(Integer.parseInt(args[10]));
 //            }
 //            super.setSuccess(true);
-//            ArrayList<String> names = new ArrayList<>();
-//            for (Animal animal : super.getPlay().getZoo().listAnimal(pad, spec, sex, diet, biome)) {
-//                names.add(animal.getName());
-//            }
-//            Collections.sort(names);
-//            return new ReturnExec(FormattingDisplay.formattingArrayList(names), TypeReturn.SUCCESS);
-//        } catch (EmptyNameException | UnknownNameException ex) {
-//            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
-//        } catch (NumberFormatException ex) {
-//            return new ReturnExec("INTEGER ERROR", TypeReturn.ERROR);
-//        }
-        return null;
+            ArrayList<String> names = new ArrayList<>();
+            for (Animal animal : super.getPlay().getZoo().listAnimal(pad, spec, convertStringToSex(sexes), diet, biome)) {
+                names.add(animal.getName());
+            }
+            Collections.sort(names);
+            return new ReturnExec(FormattingDisplay.formattingArrayList(names), TypeReturn.SUCCESS);
+        } catch (UnknownNameException ex) {
+            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
+        } catch (NumberFormatException ex) {
+            return new ReturnExec("INTEGER ERROR", TypeReturn.ERROR);
+        }
+    }
+    
+    private Set<Sex> convertStringToSex(Set<String> strings)
+            throws UnknownNameException, java.lang.NumberFormatException{
+        Set<Sex> sexes = new HashSet<>();
+        for(String str : strings){
+            sexes.add(Sex.UNKNOWN.findById(Integer.parseInt(str)));
+        }
+        return sexes;
     }
 
     private boolean firstCmd(String[] cmd) {
@@ -171,7 +178,7 @@ public class LsAnimal extends AbstractCommand {
         } else if (this.hasArgumentPaddock(arg)) {
             args[1] = value;
         } else if (this.hasArgumentSex(arg)) {
-            args[4] = value;
+            sexes = SplittingAmpersand.split(value);
         } else if (this.hasArgumentSize(arg)) {
             args[8] = value;
         } else if (this.hasArgumentSpecie(arg)) {
@@ -189,6 +196,7 @@ public class LsAnimal extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         this.args = new String[]{null, null, null, null, null, null, null, null, null, null, null};
+        sexes = new HashSet<String>();
         if (firstCmd(cmd) && checkLength(cmd)) {
             int i = 2;
             while (i <= cmd.length - 2) {
