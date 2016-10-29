@@ -12,6 +12,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import launch.play.Play;
+import utils.Utils;
+import static utils.Utils.convertToArrayListOfInteger;
 import zoo.animal.specie.LightSpecie;
 import zoo.paddock.IPaddock;
 
@@ -45,14 +47,6 @@ public class LsSpecie extends AbstractCommand {
         super(play);
     }
 
-    private ArrayList<Integer> convertToArrayListOfInteger(Set<String> strings) {
-        ArrayList<Integer> integers = new ArrayList<>();
-        for (String str : strings) {
-            integers.add(Integer.parseInt(str));
-        }
-        return integers;
-    }
-
     @Override
     public ReturnExec execute(String[] cmd) {
         LightSpecie light = new LightSpecie(null, null, null, null, null, null, null, null, null);
@@ -62,32 +56,36 @@ public class LsSpecie extends AbstractCommand {
                 pad = super.getPlay().getZoo().findPaddockByName(paddockName);
             }
             if (biomes.size() != 0) {
-                light.setBiome(convertToArrayListOfInteger(biomes));
+                light.setBiome(Utils.convertToArrayListOfInteger(biomes));
             }
             if (ecoregions.size() != 0) {
-                light.setEcoregion(convertToArrayListOfInteger(ecoregions));
+                light.setEcoregion(Utils.convertToArrayListOfInteger(ecoregions));
             }
             if (diets.size() != 0) {
-                light.setDiet(convertToArrayListOfInteger(diets));
+                light.setDiet(Utils.convertToArrayListOfInteger(diets));
             }
             if (families.size() != 0) {
-                light.setFamily(convertToArrayListOfInteger(families));
+                light.setFamily(Utils.convertToArrayListOfInteger(families));
             }
             if (conservations.size() != 0) {
-                light.setConservation(convertToArrayListOfInteger(conservations));
+                light.setConservation(Utils.convertToArrayListOfInteger(conservations));
             }
             if (sizes.size() != 0) {
-                light.setSize(convertToArrayListOfInteger(sizes));
+                light.setSize(Utils.convertToArrayListOfInteger(sizes));
             }
             if (continents.size() != 0) {
-                light.setContinent(convertToArrayListOfInteger(continents));
+                light.setContinent(Utils.convertToArrayListOfInteger(continents));
             }
             if (breedingProgrammes.size() != 0) {
-                light.setBreedingProgramme(convertToArrayListOfInteger(breedingProgrammes));
+                light.setBreedingProgramme(Utils.convertToArrayListOfInteger(breedingProgrammes));
             }
             super.setSuccess(true);
         } catch (EmptyNameException | UnknownNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
+        } catch(java.lang.NumberFormatException ex){
+            return new ReturnExec(
+            this.getPlay().getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION"),
+                    TypeReturn.ERROR);
         }
         ArrayList<String> list = super.getPlay().getZoo().listSpecie(light, pad);
         Collections.sort(list);
