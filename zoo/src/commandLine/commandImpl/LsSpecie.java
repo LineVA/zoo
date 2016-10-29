@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 import launch.play.Play;
 import utils.Utils;
+import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.LightSpecie;
 import zoo.paddock.IPaddock;
 
@@ -32,7 +33,7 @@ public class LsSpecie extends AbstractCommand {
     // args[7] : the argument after '--continent'
     // args[8 : the argument after '--breedingProgramme'
     ArrayList<String>[] args;
-    String paddockName = "";
+    Set<String> paddockName;
     Set<String> biomes;
     Set<String> ecoregions;
     Set<String> diets;
@@ -46,13 +47,23 @@ public class LsSpecie extends AbstractCommand {
         super(play);
     }
 
+     public Set<IPaddock> convertToIPaddock(Set<String> strings)
+             throws EmptyNameException, UnknownNameException 
+          {
+        Set<IPaddock> paddocks = new HashSet<>();
+        for (String str : strings) {
+            paddocks.add(super.getPlay().getZoo().findPaddockByName(str));
+        }
+        return paddocks;
+    }
+    
     @Override
     public ReturnExec execute(String[] cmd) {
         LightSpecie light = new LightSpecie(null, null, null, null, null, null, null, null, null);
-        IPaddock pad = null;
+        Set<IPaddock> pad = new HashSet<>();
         try {
-            if (paddockName != "") {
-                pad = super.getPlay().getZoo().findPaddockByName(paddockName);
+            if (paddockName.size()!= 0) {
+                pad = convertToIPaddock(paddockName);
             }
             if (biomes.size() != 0) {
                 light.setBiome(Utils.convertToArrayListOfInteger(biomes));
@@ -154,7 +165,7 @@ public class LsSpecie extends AbstractCommand {
         } else if (this.hasArgumentFamily(arg)) {
             families = SplittingAmpersand.split(value);
         } else if (this.hasArgumentPaddock(arg)) {
-            paddockName = value;
+            paddockName = SplittingAmpersand.split(value);
         } else if (this.hasArgumentSize(arg)) {
             sizes = SplittingAmpersand.split(value);
         } else if (this.hasArgumentContinent(arg)) {

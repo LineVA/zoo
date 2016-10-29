@@ -292,14 +292,14 @@ public class Zoo implements IZoo {
 
     @Override
     public ArrayList<String> listAnimalKeeper(IPaddock paddock)
-            throws UnknownNameException, EmptyNameException{
+            throws UnknownNameException, EmptyNameException {
         ArrayList<String> list = new ArrayList<>();
         if (paddock == null) {
             for (HashMap.Entry<String, AnimalKeeper> entry : this.keepers.entrySet()) {
                 list.add(entry.getKey());
             }
         } else {
-            this.findAnimalKeeperByPaddock(paddock).forEach(item ->{
+            this.findAnimalKeeperByPaddock(paddock).forEach(item -> {
                 list.add(item.getName());
             });
         }
@@ -451,14 +451,16 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<String> listSpecie(LightSpecie lightSpecie, IPaddock paddock) {
+    public ArrayList<String> listSpecie(LightSpecie lightSpecie, Set<IPaddock> paddock) {
         ArrayList<Specie> list = new ArrayList<>();
         if (paddock == null) {
             species.entrySet().stream().forEach((entry) -> {
                 list.add(entry.getValue());
             });
         } else {
-            list.addAll(paddock.listSpecies());
+            for (IPaddock pad : paddock) {
+                list.addAll(pad.listSpecies());
+            }
         }
         Iterator it = list.iterator();
         Specie next;
