@@ -24,7 +24,10 @@ Si aucune espèce ne porte ce nom, alors un message d'erreur s'affiche.
 
 > specie ls : Affiche la liste des espèces disponibles classées par ordre alphabétique
     Des options sont disponibles pour n'afficher que les espèces intéressantes. Plusieurs options peuvent être
-utilisées simultanément et dans un ordre quelconque. Il s'agit de : 
+utilisées simultanément et dans un ordre quelconque. Il est posisble d'effectuer une recherche sur plusieurs
+critères du même type, par exemple les espèces présentes à la fois sur le continent asiatique
+ et sur le continent européen. Les options sont alors de la forme : '-ct 4&5'.
+ Les différentes options sont : 
     - [--paddock|-p] <name> : liste des espèces dans l'enclos 'name'
 Si aucun enclos ne porte ce nom, un message d'erreur s'affiche.
     - [--ecoregion|-e] 'id' : Liste des espèces selon l'écorégion d'identifiant 'id'
