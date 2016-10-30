@@ -4,7 +4,6 @@ import backup.save.SaveImpl;
 import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
-import java.util.ArrayList;
 import java.util.List;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.Diet;
@@ -29,7 +28,7 @@ public interface Animal {
 
     public boolean isTooOld();
 
-    public ArrayList<String> info() throws UnknownNameException;
+    public List<String> info() throws UnknownNameException;
 
     public void ageing(int monthsPerEvaluation);
 
@@ -41,7 +40,7 @@ public interface Animal {
 
     public boolean hasTheSameDiet(Diet diet);
 
-    public ArrayList<Animal> findRoommatesOfTheSameSpecie();
+    public List<Animal> findRoommatesOfTheSameSpecie();
 
     public boolean canBePregnant();
 

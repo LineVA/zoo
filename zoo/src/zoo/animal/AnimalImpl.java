@@ -297,8 +297,8 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public ArrayList<String> info() throws UnknownNameException {
-        ArrayList<String> info = new ArrayList<>();
+    public List<String> info() throws UnknownNameException {
+        List<String> info = new ArrayList<>();
         ResourceBundle bundle = this.option.getAnimalBundle();
         info.add(bundle.getString("NAME") + this.name);
         info.add(bundle.getString("PADDOCK") + this.paddock.getName());
@@ -358,7 +358,7 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public ArrayList<Animal> findRoommatesOfTheSameSpecie() {
+    public List<Animal> findRoommatesOfTheSameSpecie() {
         if (this.paddock != null && this.specie != null) {
             return this.paddock.animalsOfTheSameSpecie(this.specie);
         }

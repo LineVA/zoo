@@ -3,7 +3,7 @@ package zoo.animal.reproduction;
 import exception.IncorrectDataException;
 import exception.IncorrectLoadException;
 import exception.name.NameException;
-import java.util.ArrayList;
+import java.util.List;
 import zoo.animal.Animal;
 
 /**
@@ -24,7 +24,7 @@ public interface Reproduction {
      * @throws NameException
      * @throws IncorrectLoadException 
      */
-    public ArrayList<Animal> reproducte(Animal animal, int monthsPerEvaluation) 
+    public List<Animal> reproducte(Animal animal, int monthsPerEvaluation) 
             throws IncorrectDataException, NameException, IncorrectLoadException;
     
 }

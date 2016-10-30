@@ -358,11 +358,11 @@ public class Paddock implements IPaddock {
     }
 
     @Override
-    public ArrayList<String> birth(int monthsPerEvaluation) throws IncorrectDataException, NameException, IncorrectLoadException {
-        ArrayList<String> info = new ArrayList<>();
-        ArrayList<Animal> tmpAnimal = new ArrayList<>();
+    public List<String> birth(int monthsPerEvaluation) throws IncorrectDataException, NameException, IncorrectLoadException {
+        List<String> info = new ArrayList<>();
+        List<Animal> tmpAnimal = new ArrayList<>();
         Reproduction repro = new ReproductionImpl();
-        ArrayList<Animal> newFamily;
+        List<Animal> newFamily;
         Animal newComer;
         for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
             newFamily = repro.reproducte(animalEntry.getValue(), monthsPerEvaluation);
@@ -397,7 +397,7 @@ public class Paddock implements IPaddock {
         this.newComerName = name;
     }
 
-    private void incomingNewBorn(ArrayList<Animal> tmpAnimal) {
+    private void incomingNewBorn(List<Animal> tmpAnimal) {
         Iterator it = tmpAnimal.iterator();
         Animal animal;
         while (it.hasNext()) {

@@ -6,6 +6,7 @@ import exception.name.EmptyNameException;
 import exception.name.NameException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import zoo.statistics.Uniform;
 import zoo.animal.Animal;
 import zoo.animal.AnimalImpl;
@@ -32,7 +33,7 @@ public class ReproductionImpl implements Reproduction {
     }
 
     @Override
-    public ArrayList<Animal> reproducte(Animal animal, int monthsPerEvaluation)
+    public List<Animal> reproducte(Animal animal, int monthsPerEvaluation)
             throws IncorrectDataException, NameException, EmptyNameException, IncorrectLoadException {
         if (canFemaleReproducte(animal, monthsPerEvaluation)) {
             Animal father = whichMale(animal.findRoommatesOfTheSameSpecie());
@@ -48,12 +49,12 @@ public class ReproductionImpl implements Reproduction {
      *
      * @param mother the mother of the family
      * @param father the father
-     * @return an ArrayList ; the first element is the fater, the following are
+     * @return a List ; the first element is the fater, the following are
      * the babies
      */
-    public ArrayList<Animal> generateFamily(Animal mother, Animal father)
+    public List<Animal> generateFamily(Animal mother, Animal father)
             throws IncorrectDataException, EmptyNameException, NameException, IncorrectLoadException {
-        ArrayList<Animal> family = new ArrayList<>();
+        List<Animal> family = new ArrayList<>();
         family.add(mother);
         family.add(father);
         int litterSize = uniform.intAverage(mother.getActualLitterSize());
@@ -123,7 +124,7 @@ public class ReproductionImpl implements Reproduction {
      * @param animals the animals in the paddock
      * @return the male if one has been found, null else.
      */
-    public Animal whichMale(ArrayList<Animal> animals) {
+    public Animal whichMale(List<Animal> animals) {
         Iterator it = animals.iterator();
         Animal potentialMale;
         while (it.hasNext()) {
