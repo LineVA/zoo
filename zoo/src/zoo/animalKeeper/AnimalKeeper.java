@@ -3,7 +3,6 @@ package zoo.animalKeeper;
 import backup.save.SaveImpl;
 import exception.IncorrectDataException;
 import exception.name.UnknownNameException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import zoo.paddock.IPaddock;
