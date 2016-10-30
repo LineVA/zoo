@@ -39,7 +39,7 @@ public enum Size {
         return this.option.getSizeBundle().getString(this.toString().toUpperCase());
     }
     
-    public Size findSizeById(int id) throws UnknownNameException {
+    public Size findById(int id) throws UnknownNameException {
         for (Size size : Size.values()) {
             if (size.getId() == id) {
                 return size;

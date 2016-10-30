@@ -134,8 +134,8 @@ public class CanBeAfraidOfTest {
         assertTrue(Diet.NONE.findDietById(diet2).canBeEatenBy(diet1));
         size1 = Size.M.getId();
         size2 = Size.XXXL.getId();
-        assertFalse(Size.UNKNOWN.findSizeById(size1).areCloseEnough(size2));
-        assertFalse(Size.UNKNOWN.findSizeById(size2).areCloseEnough(size1));
+        assertFalse(Size.UNKNOWN.findById(size1).areCloseEnough(size2));
+        assertFalse(Size.UNKNOWN.findById(size2).areCloseEnough(size1));
         specie1 = new Specie(names, biomeAtt, feedingAtt, diet1, reproAtt, lifespanAtt, status, socialAtt, terriAtt, ecoregion1, family, biome, size1);
         specie2 = new Specie(names, biomeAtt, feedingAtt, diet2, reproAtt, lifespanAtt, status, socialAtt, terriAtt, ecoregion2, family, biome, size2);
         // When
@@ -158,8 +158,8 @@ public class CanBeAfraidOfTest {
         assertTrue(Diet.NONE.findDietById(diet2).canBeEatenBy(diet1));
         size1 = Size.M.getId();
         size2 = Size.L.getId();
-        assertTrue(Size.UNKNOWN.findSizeById(size1).areCloseEnough(size2));
-        assertTrue(Size.UNKNOWN.findSizeById(size2).areCloseEnough(size1));
+        assertTrue(Size.UNKNOWN.findById(size1).areCloseEnough(size2));
+        assertTrue(Size.UNKNOWN.findById(size2).areCloseEnough(size1));
         specie1 = new Specie(names, biomeAtt, feedingAtt, diet1, reproAtt, lifespanAtt, status, socialAtt, terriAtt, ecoregion1, family, biome, size1);
         specie2 = new Specie(names, biomeAtt, feedingAtt, diet2, reproAtt, lifespanAtt, status, socialAtt, terriAtt, ecoregion2, family, biome, size2);
         // When

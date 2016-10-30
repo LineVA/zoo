@@ -113,7 +113,7 @@ public class Specie {
         for (Integer diet : this.diets) {
             if (Diet.NONE.findDietById(diet).isCompatible(specie.diets)
                     && this.ecoregion == specie.ecoregion) {
-                return Size.UNKNOWN.findSizeById(this.size).areCloseEnough(specie.size);
+                return Size.UNKNOWN.findById(this.size).areCloseEnough(specie.size);
             }
         }
         return false;
@@ -124,7 +124,7 @@ public class Specie {
             for (Integer specDiet : specie.getDiets()) {
                 if (Diet.NONE.findDietById(diet).canBeEatenBy(specDiet)
                         && this.ecoregion == specie.ecoregion) {
-                    return Size.UNKNOWN.findSizeById(this.size).areCloseEnough(specie.size);
+                    return Size.UNKNOWN.findById(this.size).areCloseEnough(specie.size);
                 }
             }
         }
@@ -144,7 +144,7 @@ public class Specie {
         info.add(bundle.getString("ECOREGION") + Ecoregion.UNKNOWN.findById(this.ecoregion).toStringByLanguage());
         info.add(bundle.getString("FAMILY") + Family.UNKNOWN.findById(this.family).toStringByLanguage());
         info.add(bundle.getString("DIET") + this.dietsToString());
-        info.add(bundle.getString("SIZE") + Size.UNKNOWN.findSizeById(size).toStringByLanguage());
+        info.add(bundle.getString("SIZE") + Size.UNKNOWN.findById(size).toStringByLanguage());
         info.add(bundle.getString("REPRODUCTION_ATT") + this.specieReproduction.toStringByLanguage(option));
         info.add(bundle.getString("LIFESPAN_ATT") + this.specieLifeSpan.toStringByLanguage(option));
         info.add(bundle.getString("SOCIAL_ATT") + this.specieSocial.toStringByLanguage(option));
