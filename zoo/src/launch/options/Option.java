@@ -12,42 +12,40 @@ import lombok.Getter;
 public class Option {
 
     @Getter
-    Locale locale;
+    private Locale locale;
 
     @Getter
-    ResourceBundle generalCmdBundle;
+    private ResourceBundle generalCmdBundle;
     @Getter
-    ResourceBundle zooBundle;
+    private ResourceBundle zooBundle;
     @Getter
-    ResourceBundle paddockBundle;
+    private ResourceBundle paddockBundle;
     @Getter
-    ResourceBundle animalBundle;
+    private ResourceBundle animalBundle;
     @Getter
-    ResourceBundle specieBundle;
+    private ResourceBundle specieBundle;
     @Getter
-    ResourceBundle dietBundle;
+    private ResourceBundle dietBundle;
     @Getter
-    ResourceBundle reproductionBundle;
+    private ResourceBundle reproductionBundle;
     @Getter
-    ResourceBundle lifespanBundle;
+    private ResourceBundle lifespanBundle;
     @Getter
-    ResourceBundle socialBundle;
+    private ResourceBundle socialBundle;
     @Getter
-    ResourceBundle territoryBundle;
+    private ResourceBundle territoryBundle;
     @Getter
-    ResourceBundle conservationBundle;
+    private ResourceBundle conservationBundle;
     @Getter
-    ResourceBundle ecoregionBundle;
+    private ResourceBundle ecoregionBundle;
     @Getter
-    ResourceBundle familyBundle;
+    private ResourceBundle familyBundle;
     @Getter
-    ResourceBundle sizeBundle;
+    private ResourceBundle sizeBundle;
     @Getter
-    ResourceBundle continentBundle;
+    private ResourceBundle continentBundle;
     @Getter
-    ResourceBundle keeperBundle;
-    @Getter
-    ResourceBundle personalityBundle;
+    private ResourceBundle keeperBundle;
 
     public Option() {
         locale = Locale.getDefault();
@@ -79,7 +77,6 @@ public class Option {
         this.sizeBundle = ResourceBundle.getBundle("i18n.animal.feeding.size", locale);
         this.continentBundle = ResourceBundle.getBundle("i18n.paddock.continent", locale);
         this.keeperBundle = ResourceBundle.getBundle("i18n.animalKeeper.keeper", locale);
-        this.personalityBundle = ResourceBundle.getBundle("i18n.animal.personality", locale);
     }
 
     public void setLanguage(String lang) {
