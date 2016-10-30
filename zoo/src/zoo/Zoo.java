@@ -440,7 +440,7 @@ public class Zoo implements IZoo {
     public List<Animal> listAnimal(Set<IPaddock> paddock,
             LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome)
             throws UnknownNameException {
-        if (paddock == null) {
+        if (paddock.isEmpty()) {
             List<Animal> list = new ArrayList<>();
             for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
                 list.addAll(entry.getValue().listAnimal(specie, sex, diet, biome));
