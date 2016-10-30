@@ -22,24 +22,39 @@ import zoo.statistics.Compare;
  */
 public class WellBeingImpl implements WellBeing {
 
+    /**
+     * The coefficient to apply to the grade according to the level of the specie
+     */
     private final double coefficient;
+    /**
+     * The width of each interval associated with a grade
+     */
     private final double diameter;
+    /**
+     * Number of criteria used to compute
+     */
     @Getter
     private final int criteriaNumber = 3;
 
+    /**
+     * Constructor
+     * @param coefficient the coeficient
+     * @param diameter the diameter 
+     */
     public WellBeingImpl(double coefficient, double diameter) {
         this.coefficient = coefficient;
         this.diameter = diameter;
     }
 
     /**
-     * @param attributes
-     * @param pad
-     * @param specie
-     * @param keepers
-     * @return keepers : the keepers who work in the paddock of the current
+     * Compute the well-beeing of the animal
+     * @param attributes the artributes of the animal
+     * @param pad the paddock in which the animal is
+     * @param specie the specie of the animal
+     * @param keepers the keepers who work in the paddock of the current
      * animal
-     * @throws UnknownNameException
+     * @return the value of the weel-beeing of the animal
+     * @throws UnknownNameException if the informations about the specie are corrupted
      */
     @Override
     public double computeWellBeing(AnimalsAttributes attributes, IPaddock pad,
@@ -60,6 +75,13 @@ public class WellBeingImpl implements WellBeing {
         return wB;
     }
 
+    /**
+     * Compute the influence of the keepers on the animal
+     * @param personality the personality's attributes of the animal
+     * @param keepers the keepers who work in the same paddock where the animal is
+     * @param paddock the paddock of the animal
+     * @return the value of weel-beeing given by the keepers
+     */
     private double computeKeepersInfluence(PersonalityAttributes personality,
             List<AnimalKeeper> keepers, IPaddock paddock) {
         System.out.println("Personality");
@@ -92,6 +114,12 @@ public class WellBeingImpl implements WellBeing {
         return wB;
     }
 
+    /**
+     * Compute the influence of a specific personality's trait
+     * @param trait the value of the trait
+     * @param time the time spent by the keeper with the animal
+     * @return the value of the influence
+     */
     private double influenceOfSpecificTrait(double trait, double time) {
         if (trait >= 0.5) {
             System.out.println("if");
@@ -205,6 +233,11 @@ public class WellBeingImpl implements WellBeing {
         return isAfraid;
     }
 
+    /**
+     * Check if the value of the well-beeing is greater than 1-2*diameter of the maximum
+     * @param compare the value we want to compare
+     * @return true if it is close enough
+     */
     @Override
     public boolean isCloseEnoughToMax(double compare) {
         return (compare >= (1 - 2 * this.diameter) * Compare.getMax() * this.criteriaNumber);
