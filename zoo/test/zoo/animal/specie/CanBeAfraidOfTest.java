@@ -64,8 +64,8 @@ public class CanBeAfraidOfTest {
         diet1 = Diet.APHIDIPHAGOUS.getId();
         diet2 = Diet.BACCIVOROUS.getId();
         // We check if the cannot eat themselves
-        assertFalse(Diet.NONE.findDietById(diet1).canBeEatenBy(diet2));
-        assertFalse(Diet.NONE.findDietById(diet2).canBeEatenBy(diet1));
+        assertFalse(Diet.NONE.findById(diet1).canBeEatenBy(diet2));
+        assertFalse(Diet.NONE.findById(diet2).canBeEatenBy(diet1));
         size1 = Size.UNKNOWN.getId();
         size2 = size1;
         specie1 = new Specie(names, biomeAtt, feedingAtt, diet1, reproAtt, lifespanAtt, status, socialAtt, terriAtt, ecoregion1, family, biome, size1);
@@ -86,8 +86,8 @@ public class CanBeAfraidOfTest {
         diet1 = Diet.APHIDIPHAGOUS.getId();
         diet2 = Diet.BACCIVOROUS.getId();
         // We check if the cannot eat themselves
-        assertFalse(Diet.NONE.findDietById(diet1).canBeEatenBy(diet2));
-        assertFalse(Diet.NONE.findDietById(diet2).canBeEatenBy(diet1));
+        assertFalse(Diet.NONE.findById(diet1).canBeEatenBy(diet2));
+        assertFalse(Diet.NONE.findById(diet2).canBeEatenBy(diet1));
         size1 = Size.UNKNOWN.getId();
         size2 = size1;
         specie1 = new Specie(names, biomeAtt, feedingAtt, diet1, reproAtt, lifespanAtt, status, socialAtt, terriAtt, ecoregion1, family, biome, size1);
@@ -108,8 +108,8 @@ public class CanBeAfraidOfTest {
         diet1 = Diet.CARNIVOROUS.getId();
         diet2 = Diet.CARNIVOROUS.getId();
         // We check if the cannot eat themselves
-        assertTrue(Diet.NONE.findDietById(diet1).canBeEatenBy(diet2));
-        assertTrue(Diet.NONE.findDietById(diet2).canBeEatenBy(diet1));
+        assertTrue(Diet.NONE.findById(diet1).canBeEatenBy(diet2));
+        assertTrue(Diet.NONE.findById(diet2).canBeEatenBy(diet1));
         size1 = Size.UNKNOWN.getId();
         size2 = size1;
         specie1 = new Specie(names, biomeAtt, feedingAtt, diet1, reproAtt, lifespanAtt, status, socialAtt, terriAtt, ecoregion1, family, biome, size1);
@@ -130,8 +130,8 @@ public class CanBeAfraidOfTest {
         diet1 = Diet.CARNIVOROUS.getId();
         diet2 = Diet.CARNIVOROUS.getId();
         // We check if the cannot eat themselves
-        assertTrue(Diet.NONE.findDietById(diet1).canBeEatenBy(diet2));
-        assertTrue(Diet.NONE.findDietById(diet2).canBeEatenBy(diet1));
+        assertTrue(Diet.NONE.findById(diet1).canBeEatenBy(diet2));
+        assertTrue(Diet.NONE.findById(diet2).canBeEatenBy(diet1));
         size1 = Size.M.getId();
         size2 = Size.XXXL.getId();
         assertFalse(Size.UNKNOWN.findById(size1).areCloseEnough(size2));
@@ -154,8 +154,8 @@ public class CanBeAfraidOfTest {
         diet1 = Diet.CARNIVOROUS.getId();
         diet2 = Diet.CARNIVOROUS.getId();
         // We check if the cannot eat themselves
-        assertTrue(Diet.NONE.findDietById(diet1).canBeEatenBy(diet2));
-        assertTrue(Diet.NONE.findDietById(diet2).canBeEatenBy(diet1));
+        assertTrue(Diet.NONE.findById(diet1).canBeEatenBy(diet2));
+        assertTrue(Diet.NONE.findById(diet2).canBeEatenBy(diet1));
         size1 = Size.M.getId();
         size2 = Size.L.getId();
         assertTrue(Size.UNKNOWN.findById(size1).areCloseEnough(size2));

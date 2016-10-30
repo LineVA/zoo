@@ -98,7 +98,7 @@ public class LsAnimal extends AbstractCommand {
             throws UnknownNameException, java.lang.NumberFormatException {
         Set<Diet> diets = new HashSet<>();
         for (String str : strings) {
-            diets.add(Diet.NONE.findDietById(Integer.parseInt(str)));
+            diets.add(Diet.NONE.findById(Integer.parseInt(str)));
         }
         return diets;
     }

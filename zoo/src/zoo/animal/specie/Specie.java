@@ -111,7 +111,7 @@ public class Specie {
 
     public boolean canBeInTheSamePaddock(Specie specie) throws UnknownNameException {
         for (Integer diet : this.diets) {
-            if (Diet.NONE.findDietById(diet).isCompatible(specie.diets)
+            if (Diet.NONE.findById(diet).isCompatible(specie.diets)
                     && this.ecoregion == specie.ecoregion) {
                 return Size.UNKNOWN.findById(this.size).areCloseEnough(specie.size);
             }
@@ -122,7 +122,7 @@ public class Specie {
     public boolean canBeAfraidOf(Specie specie) throws UnknownNameException {
         for (Integer diet : this.diets) {
             for (Integer specDiet : specie.getDiets()) {
-                if (Diet.NONE.findDietById(diet).canBeEatenBy(specDiet)
+                if (Diet.NONE.findById(diet).canBeEatenBy(specDiet)
                         && this.ecoregion == specie.ecoregion) {
                     return Size.UNKNOWN.findById(this.size).areCloseEnough(specie.size);
                 }
@@ -160,7 +160,7 @@ public class Specie {
         Iterator it = this.diets.iterator();
         while (it.hasNext()) {
             next = (Integer) it.next();
-            info += Diet.NONE.findDietById(next).toStringByLanguage();
+            info += Diet.NONE.findById(next).toStringByLanguage();
             if (it.hasNext()) {
                 info += ", ";
             }

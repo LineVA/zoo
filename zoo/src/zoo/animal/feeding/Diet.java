@@ -94,7 +94,7 @@ public enum Diet {
         }
     }
 
-    public Diet findDietById(int id) throws UnknownNameException {
+    public Diet findById(int id) throws UnknownNameException {
         for (Diet diet : Diet.values()) {
             if (diet.getId() == id) {
                 return diet;
@@ -107,7 +107,7 @@ public enum Diet {
     public boolean isCompatible(ArrayList<Integer> diets) throws UnknownNameException {
         boolean result = false;
         for (Integer diet : diets) {
-            result = result || (!this.canBeEatenBy(diet) && !Diet.NONE.findDietById(diet).canBeEatenBy(this.id));
+            result = result || (!this.canBeEatenBy(diet) && !Diet.NONE.findById(diet).canBeEatenBy(this.id));
         }
         return result;
     }

@@ -82,7 +82,7 @@ public class LoadImpl implements Load {
         Specie spec = zoo.findSpecieByScientificName(animal.getSpecie());
         IPaddock pad = zoo.findPaddockByName(animal.getPaddock());
         Sex sex = Sex.UNKNOWN.findById(animal.getSex());
-        Diet diet = Diet.NONE.findDietById(animal.getDiet());
+        Diet diet = Diet.NONE.findById(animal.getDiet());
         pad.addAnimal(animal.convertToAnimal(spec, pad, sex, option));
     }
     

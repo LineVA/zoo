@@ -305,7 +305,7 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("AGE") + this.age);
         info.add(bundle.getString("SEX") + this.sex.toStringByLanguage());
         info.add(bundle.getString("WB") + this.wellBeing);
-        info.add(bundle.getString("DIET") + Diet.NONE.findDietById(actualDiet).toStringByLanguage());
+        info.add(bundle.getString("DIET") + Diet.NONE.findById(actualDiet).toStringByLanguage());
         if (this.sex.isFemale()) {
             info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.femaleToStringByLanguage(option));
         } else {
@@ -389,7 +389,7 @@ public class AnimalImpl implements Animal {
     public void changeDiet(Object obj) throws UnknownNameException {
         try {
             int tmpDietInt = Integer.parseInt((String) obj);
-            Diet.NONE.findDietById(tmpDietInt);
+            Diet.NONE.findById(tmpDietInt);
             this.actualDiet = tmpDietInt;
         } catch (UnknownNameException | NumberFormatException ex) {
             String tmpDietStr = (String) obj;
