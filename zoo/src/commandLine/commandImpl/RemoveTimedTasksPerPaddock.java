@@ -51,7 +51,7 @@ public class RemoveTimedTasksPerPaddock  extends AbstractCommand  {
             if (cmd[0].equalsIgnoreCase("ak") || cmd[0].equalsIgnoreCase("animalKeeper")) {
                 if ("-r".equalsIgnoreCase(cmd[2]) || "--remove".equalsIgnoreCase(cmd[2])) {
                     if (cmd[3].equalsIgnoreCase("--timedTaskPerPaddock") || 
-                            cmd[3].equalsIgnoreCase("-tT") || "-tTPP".equalsIgnoreCase(cmd[3])) {
+                            cmd[3].equalsIgnoreCase("-tT") || "-tTP".equalsIgnoreCase(cmd[3])) {
                         return true;
                     }
                 }
