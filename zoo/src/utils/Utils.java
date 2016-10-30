@@ -1,6 +1,7 @@
 package utils;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -36,9 +37,9 @@ public class Utils {
         return initial;
     }
     
-     public static ArrayList<Integer> convertToArrayListOfInteger(Set<String> strings) 
+     public static List<Integer> convertToListOfInteger(Set<String> strings) 
              throws java.lang.NumberFormatException{
-        ArrayList<Integer> integers = new ArrayList<>();
+        List<Integer> integers = new ArrayList<>();
         for (String str : strings) {
             integers.add(Integer.parseInt(str));
         }

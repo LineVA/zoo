@@ -7,9 +7,9 @@ import commandLine.SplittingAmpersand;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import launch.play.Play;
 import utils.Utils;
@@ -55,28 +55,28 @@ public class LsSpecie extends AbstractCommand {
                 pad = convertToIPaddock(paddockName);
             }
             if (!biomes.isEmpty()) {
-                light.setBiome(Utils.convertToArrayListOfInteger(biomes));
+                light.setBiome(Utils.convertToListOfInteger(biomes));
             }
             if (!ecoregions.isEmpty()) {
-                light.setEcoregion(Utils.convertToArrayListOfInteger(ecoregions));
+                light.setEcoregion(Utils.convertToListOfInteger(ecoregions));
             }
             if (!diets.isEmpty()) {
-                light.setDiet(Utils.convertToArrayListOfInteger(diets));
+                light.setDiet(Utils.convertToListOfInteger(diets));
             }
             if (!families.isEmpty()) {
-                light.setFamily(Utils.convertToArrayListOfInteger(families));
+                light.setFamily(Utils.convertToListOfInteger(families));
             }
             if (!conservations.isEmpty()) {
-                light.setConservation(Utils.convertToArrayListOfInteger(conservations));
+                light.setConservation(Utils.convertToListOfInteger(conservations));
             }
             if (!sizes.isEmpty()) {
-                light.setSize(Utils.convertToArrayListOfInteger(sizes));
+                light.setSize(Utils.convertToListOfInteger(sizes));
             }
             if (!continents.isEmpty()) {
-                light.setContinent(Utils.convertToArrayListOfInteger(continents));
+                light.setContinent(Utils.convertToListOfInteger(continents));
             }
             if (!breedingProgrammes.isEmpty()) {
-                light.setBreedingProgramme(Utils.convertToArrayListOfInteger(breedingProgrammes));
+                light.setBreedingProgramme(Utils.convertToListOfInteger(breedingProgrammes));
             }
             super.setSuccess(true);
         } catch (EmptyNameException | UnknownNameException ex) {
@@ -86,7 +86,7 @@ public class LsSpecie extends AbstractCommand {
             this.getPlay().getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION"),
                     TypeReturn.ERROR);
         }
-        ArrayList<String> list = super.getPlay().getZoo().listSpecie(light, pad);
+        List<String> list = super.getPlay().getZoo().listSpecie(light, pad);
         Collections.sort(list);
         return new ReturnExec(FormattingDisplay.formattingList(list), TypeReturn.SUCCESS);
     }

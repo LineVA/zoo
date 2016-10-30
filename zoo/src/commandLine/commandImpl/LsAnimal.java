@@ -10,6 +10,7 @@ import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import launch.play.Play;
 import utils.Utils;
@@ -50,25 +51,25 @@ public class LsAnimal extends AbstractCommand {
                 spec.setNames(super.getPlay().getZoo().findSpecieByName(specie).getNames());
             }
             if (!ecoregions.isEmpty()) {
-                spec.setEcoregion(Utils.convertToArrayListOfInteger(ecoregions));
+                spec.setEcoregion(Utils.convertToListOfInteger(ecoregions));
             }
             if (!families.isEmpty()) {
-                spec.setFamily(Utils.convertToArrayListOfInteger(families));
+                spec.setFamily(Utils.convertToListOfInteger(families));
             }
             if (!conservations.isEmpty()) {
-                spec.setConservation(Utils.convertToArrayListOfInteger(conservations));
+                spec.setConservation(Utils.convertToListOfInteger(conservations));
             }
             if (!sizes.isEmpty()) {
-                spec.setSize(Utils.convertToArrayListOfInteger(sizes));
+                spec.setSize(Utils.convertToListOfInteger(sizes));
             }
             if (!continents.isEmpty()) {
-                spec.setContinent(Utils.convertToArrayListOfInteger(continents));
+                spec.setContinent(Utils.convertToListOfInteger(continents));
             }
             if (!breedingProgrammes.isEmpty()) {
-                spec.setBreedingProgramme(Utils.convertToArrayListOfInteger(breedingProgrammes));
+                spec.setBreedingProgramme(Utils.convertToListOfInteger(breedingProgrammes));
             }
             super.setSuccess(true);
-            ArrayList<String> names = new ArrayList<>();
+            List<String> names = new ArrayList<>();
             for (Animal animal : super.getPlay().getZoo().listAnimal(convertToIPaddock(paddocks), spec, convertStringToSex(sexes),
                     convertStringToDiet(diets), convertStringToBiome(biomes))) {
                 names.add(animal.getName());

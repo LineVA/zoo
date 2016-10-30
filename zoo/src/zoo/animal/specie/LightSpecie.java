@@ -1,6 +1,6 @@
 package zoo.animal.specie;
 
-import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import zoo.animal.Names;
@@ -12,28 +12,28 @@ import zoo.animal.Names;
 public class LightSpecie {
 
     @Getter @Setter
-    private  ArrayList<Integer> diet;
+    private  List<Integer> diet;
     @Getter @Setter
-    private  ArrayList<Integer> family;
+    private  List<Integer> family;
     @Getter @Setter
     private  Names names;
     @Getter @Setter
-    private  ArrayList<Integer> ecoregion;
+    private  List<Integer> ecoregion;
     @Getter @Setter
-    private  ArrayList<Integer> conservation;
+    private  List<Integer> conservation;
     @Getter @Setter
-    private  ArrayList<Integer> biome;
+    private  List<Integer> biome;
     @Getter @Setter
-    private  ArrayList<Integer> size;
+    private  List<Integer> size;
     @Getter @Setter
-    private  ArrayList<Integer> continent;
+    private  List<Integer> continent;
     @Getter @Setter
-    private ArrayList<Integer> breedingProgramme;
+    private List<Integer> breedingProgramme;
 
     public LightSpecie(Names names,
-            ArrayList<Integer> diet, ArrayList<Integer> conservation,
-            ArrayList<Integer> ecoregion, ArrayList<Integer> family, ArrayList<Integer> biome, 
-            ArrayList<Integer> size, ArrayList<Integer> continent, ArrayList<Integer> breedingProgramme) {
+            List<Integer> diet, List<Integer> conservation,
+            List<Integer> ecoregion, List<Integer> family, List<Integer> biome, 
+            List<Integer> size, List<Integer> continent, List<Integer> breedingProgramme) {
         this.names = names;
         this.diet = diet;
         this.family = family;
