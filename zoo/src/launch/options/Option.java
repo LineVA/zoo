@@ -11,17 +11,35 @@ import lombok.Getter;
  */
 public class Option {
 
+    /**
+     * The current Locale
+     */
     @Getter
     private Locale locale;
 
+    /**
+     * General messages about the command lines 
+     */
     @Getter
     private ResourceBundle generalCmdBundle;
+    /**
+     * Messages about the zoo
+     */
     @Getter
     private ResourceBundle zooBundle;
+     /**
+     * Messages about a paddock
+     */
     @Getter
     private ResourceBundle paddockBundle;
+     /**
+     * Messages about an animal
+     */
     @Getter
     private ResourceBundle animalBundle;
+     /**
+     * Messages about a specie
+     */
     @Getter
     private ResourceBundle specieBundle;
     @Getter
@@ -36,6 +54,9 @@ public class Option {
     private ResourceBundle territoryBundle;
     @Getter
     private ResourceBundle conservationBundle;
+     /**
+     * Messages about an animal keeper
+     */
     @Getter
     private ResourceBundle keeperBundle;
 
@@ -44,6 +65,10 @@ public class Option {
         this.updateBundles();
     }
 
+    /**
+     * Change the value of locale
+     * @param str  the value of the new locale
+     */
     public Option(String str) {
         if (str.equals("")) {
             str = "fr";
@@ -52,6 +77,9 @@ public class Option {
         updateBundles();
     }
 
+    /**
+     * Update all the bundle with the locale
+     */
     public void updateBundles() {
         this.zooBundle = ResourceBundle.getBundle("i18n.zoo.info", locale);
         this.generalCmdBundle = ResourceBundle.getBundle("i18n.info", locale);
@@ -67,6 +95,10 @@ public class Option {
         this.keeperBundle = ResourceBundle.getBundle("i18n.animalKeeper.keeper", locale);
     }
 
+    /**
+     * Change the language
+     * @param lang  the parameter to update the Locale
+     */
     public void setLanguage(String lang) {
         switch (lang) {
             case "en":
@@ -81,10 +113,9 @@ public class Option {
     }
 
     /**
-     * For save
-     *
-     * @param friend
-     * @return
+     * Get the value of the Locale
+     * @param friend the private class used to save all the informations about a zoo
+     * @return the value of the language of the Locale
      */
     public String getLocale(SaveImpl.FriendSave friend) {
         friend.hashCode();
