@@ -7,6 +7,7 @@ import exception.name.UnauthorizedNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import launch.options.Option;
 import lombok.Getter;
@@ -49,16 +50,16 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return time > 0.0 && time <= 100.0;
     }
 
-    private boolean checkCumulativeTime(ArrayList<Double> times) {
+    private boolean checkCumulativeTime(List<Double> times) {
         Double cumulativeTime = 0.0;
         cumulativeTime = times.stream().map((time) -> time)
                 .reduce(cumulativeTime, (accumulator, _item) -> accumulator + _item);
         return cumulativeTime >= 0.0 && cumulativeTime <= 100.0;
     }
 
-    private ArrayList<Double> extractTimes(Map<IPaddock, Double> occupations) {
+    private List<Double> extractTimes(Map<IPaddock, Double> occupations) {
         Object[] times = occupations.values().toArray();
-        ArrayList<Double> timesList = new ArrayList<>();
+        List<Double> timesList = new ArrayList<>();
         for (Object time : times) {
             timesList.add((Double) time);
         }
@@ -66,7 +67,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     }
 
     @Override
-    public void addTimedPaddocks(ArrayList<IPaddock> paddocks, ArrayList<Double> times)
+    public void addTimedPaddocks(List<IPaddock> paddocks, List<Double> times)
             throws IncorrectDataException {
         Map<IPaddock, Double> oldTimedPaddocks = new HashMap<>();
         oldTimedPaddocks.putAll(this.timedPaddocks);
@@ -118,16 +119,16 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return actualTimedTasks;
     }
 
-    private ArrayList<Double> extractTimesFromTimedTasks(Map<Integer, Double> timedTasks) {
+    private List<Double> extractTimesFromTimedTasks(Map<Integer, Double> timedTasks) {
         Object[] times = timedTasks.values().toArray();
-        ArrayList<Double> timesList = new ArrayList<>();
+        List<Double> timesList = new ArrayList<>();
         for (Object time : times) {
             timesList.add((Double) time);
         }
         return timesList;
     }
 
-    private boolean checkTimes(ArrayList<Double> times) {
+    private boolean checkTimes(List<Double> times) {
         for (Double time : times) {
             if (!this.checkIndiviualTime(time)) {
                 return false;
@@ -145,7 +146,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return timedTasksPerPaddock;
     }
 
-    private HashMap<Task, Double> prepareHashMap(ArrayList<Task> tasks, ArrayList<Double> times) {
+    private HashMap<Task, Double> prepareHashMap(List<Task> tasks, List<Double> times) {
         HashMap<Task, Double> timedTasks = new HashMap<>();
         for (int i = 0; i < tasks.size(); i++) {
             timedTasks.put(tasks.get(i), times.get(i));
@@ -153,7 +154,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return timedTasks;
     }
 
-    private boolean checkTask(ArrayList<Task> tasks) {
+    private boolean checkTask(List<Task> tasks) {
         for (Task task : tasks) {
             if (task.equals(Task.UNKNOWN)) {
                 return false;
@@ -163,7 +164,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     }
 
     @Override
-    public void addTaskToAPaddock(IPaddock paddock, ArrayList<Task> tasks, ArrayList<Double> times)
+    public void addTaskToAPaddock(IPaddock paddock, List<Task> tasks, List<Double> times)
             throws IncorrectDataException, UnknownNameException {
         // Check if this animal keeper is associated to pad
         if (this.timedPaddocks.containsKey(paddock)) {
@@ -175,7 +176,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
                 // We remplace the old tasks by the new ones
                 HashMap<Integer, Double> askedTimedTasks = expectTimedTasks(oldTimedTasks, newTimedTasks);
                 // We check if the timer are consistent or not
-                ArrayList<Double> askedTimes = extractTimesFromTimedTasks(askedTimedTasks);
+                List<Double> askedTimes = extractTimesFromTimedTasks(askedTimedTasks);
                 if (checkTimes(askedTimes)) {
                     this.timedTaskPerPaddock = reconstructTimedTasksPerPaddock(paddock, askedTimedTasks);
                 } else {
@@ -198,7 +199,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
 
     private void evaluateByFamily() {
         for (HashMap.Entry<IPaddock, Double> paddock : this.timedPaddocks.entrySet()) {
-            ArrayList<Integer> familiesList = paddock.getKey().listFamiliesById();
+            List<Integer> familiesList = paddock.getKey().listFamiliesById();
             for (Integer family : familiesList) {
                 double init = 0.0;
                 if (this.managedFamilies.containsKey(family)) {
@@ -226,8 +227,8 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     }
 
     @Override
-    public ArrayList<String> info() throws UnknownNameException {
-        ArrayList<String> info = new ArrayList<>();
+    public List<String> info() throws UnknownNameException {
+        List<String> info = new ArrayList<>();
         info.add(name);
         info.add(this.formattingPaddocks());
         info.add(this.formattingManagedFamilies());
@@ -294,7 +295,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     }
 
     @Override
-    public void removeTimedPaddocks(ArrayList<IPaddock> paddocks) {
+    public void removeTimedPaddocks(List<IPaddock> paddocks) {
         for (IPaddock pad : paddocks) {
             if (this.timedPaddocks.containsKey(pad)) {
                 this.timedPaddocks.remove(pad);
@@ -304,7 +305,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     }
 
     private void removeAllTimedTaskForAPaddock(IPaddock paddock) {
-        ArrayList<TaskPaddock> tasksPaddockList = new ArrayList<>();
+        List<TaskPaddock> tasksPaddockList = new ArrayList<>();
         for (Task task : Task.values()) {
             tasksPaddockList.add(new TaskPaddock(paddock, task.getId()));
         }
@@ -312,7 +313,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     }
 
     @Override
-    public void removeTimedTasksPerPaddock(ArrayList<TaskPaddock> tasksPaddock) {
+    public void removeTimedTasksPerPaddock(List<TaskPaddock> tasksPaddock) {
         for (TaskPaddock taskPad : tasksPaddock) {
             if (this.timedTaskPerPaddock.containsKey(taskPad)) {
                 this.timedTaskPerPaddock.remove(taskPad);

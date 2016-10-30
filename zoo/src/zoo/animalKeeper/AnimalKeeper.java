@@ -4,6 +4,7 @@ import backup.save.SaveImpl;
 import exception.IncorrectDataException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import zoo.paddock.IPaddock;
 
@@ -13,10 +14,10 @@ import zoo.paddock.IPaddock;
  */
 public interface AnimalKeeper {
 
-    public void addTaskToAPaddock(IPaddock paddock, ArrayList<Task> tasks, ArrayList<Double> times)
+    public void addTaskToAPaddock(IPaddock paddock, List<Task> tasks, List<Double> times)
             throws IncorrectDataException, UnknownNameException;
 
-    public void addTimedPaddocks(ArrayList<IPaddock> paddocks, ArrayList<Double> times)
+    public void addTimedPaddocks(List<IPaddock> paddocks, List<Double> times)
             throws IncorrectDataException;
 
     public String getName();
@@ -25,11 +26,11 @@ public interface AnimalKeeper {
 
     public Map<TaskPaddock, Double> getTimedTaskPerPaddock();
 
-    public ArrayList<String> info() throws UnknownNameException;
+    public List<String> info() throws UnknownNameException;
 
-    public void removeTimedTasksPerPaddock(ArrayList<TaskPaddock> tasksPaddock);
+    public void removeTimedTasksPerPaddock(List<TaskPaddock> tasksPaddock);
 
-    public void removeTimedPaddocks(ArrayList<IPaddock> paddocks);
+    public void removeTimedPaddocks(List<IPaddock> paddocks);
 
     public boolean workInGivenPaddock(IPaddock paddock);
 

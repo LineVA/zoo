@@ -1,13 +1,13 @@
 package commandLine.commandImpl;
 
 import commandLine.AbstractCommand;
-import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.IncorrectDataException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.List;
 import launch.play.Play;
 import zoo.animalKeeper.AnimalKeeper;
 import zoo.animalKeeper.Task;
@@ -26,8 +26,8 @@ public class AddTimedTasksPerPaddock extends AbstractCommand {
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
-            ArrayList<Task> tasks = new ArrayList<>();
-            ArrayList<Double> times = new ArrayList<>();
+            List<Task> tasks = new ArrayList<>();
+            List<Double> times = new ArrayList<>();
             int i = 4;
             while (i < cmd.length) {
                 tasks.add(Task.UNKNOWN.findById(Integer.parseInt(cmd[i])));

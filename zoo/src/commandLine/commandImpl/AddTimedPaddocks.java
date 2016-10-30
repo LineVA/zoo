@@ -7,6 +7,7 @@ import exception.IncorrectDataException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.List;
 import launch.play.Play;
 import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.IPaddock;
@@ -24,8 +25,8 @@ public class AddTimedPaddocks extends AbstractCommand {
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
-            ArrayList<IPaddock> paddocks = new ArrayList<>();
-            ArrayList<Double> times = new ArrayList<>();
+            List<IPaddock> paddocks = new ArrayList<>();
+            List<Double> times = new ArrayList<>();
             int i = 3;
             while (i < cmd.length) {
                 paddocks.add(super.getPlay().getZoo().findPaddockByName(cmd[i]));
