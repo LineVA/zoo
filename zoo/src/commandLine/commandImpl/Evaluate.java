@@ -8,6 +8,7 @@ import exception.IncorrectDataException;
 import exception.IncorrectLoadException;
 import exception.name.NameException;
 import java.util.ArrayList;
+import java.util.List;
 import launch.play.Play;
 import utils.Utils;
 
@@ -23,7 +24,7 @@ public class Evaluate extends AbstractCommand {
 
     @Override
     public ReturnExec execute(String[] cmd) {
-        ArrayList<String> info = new ArrayList<>();
+        List<String> info = new ArrayList<>();
         double zooEvaluation = 0;
         try {
             // Evolution of the animalKeepers 

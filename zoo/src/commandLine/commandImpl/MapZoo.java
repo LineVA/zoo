@@ -5,7 +5,7 @@ import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.IncorrectDimensionsException;
-import java.util.ArrayList;
+import java.util.List;
 import launch.play.Play;
 import zoo.paddock.PaddockCoordinates;
 
@@ -22,7 +22,7 @@ public class MapZoo extends AbstractCommand{
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
-            ArrayList<PaddockCoordinates> map = super.getPlay().getZoo().map();
+            List<PaddockCoordinates> map = super.getPlay().getZoo().map();
             super.setSuccess(true);
             return new ReturnExec(FormattingDisplay.zooMap(map), TypeReturn.SUCCESS);
         } catch (IncorrectDimensionsException ex) {

@@ -6,6 +6,7 @@ import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.List;
 import launch.play.Play;
 import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.IPaddock;
@@ -23,7 +24,7 @@ public class RemoveTimedPaddocks extends AbstractCommand  {
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
-            ArrayList<IPaddock> paddocks = new ArrayList<>();
+            List<IPaddock> paddocks = new ArrayList<>();
             int i = 4;
             while (i < cmd.length) {
                 paddocks.add(super.getPlay().getZoo().findPaddockByName(cmd[i]));

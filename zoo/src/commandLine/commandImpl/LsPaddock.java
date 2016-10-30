@@ -6,8 +6,8 @@ import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import launch.play.Play;
 import zoo.animal.specie.Specie;
 
@@ -34,7 +34,7 @@ public class LsPaddock extends AbstractCommand  {
                 return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
             }
         }
-        ArrayList<String> list = super.getPlay().getZoo().listPaddock(spec);
+        List<String> list = super.getPlay().getZoo().listPaddock(spec);
         Collections.sort(list);
         return new ReturnExec(FormattingDisplay.formattingList(list), TypeReturn.SUCCESS);
     }
