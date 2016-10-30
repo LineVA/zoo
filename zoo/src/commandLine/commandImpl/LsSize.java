@@ -20,7 +20,7 @@ public class LsSize extends AbstractCommand  {
     @Override
     public ReturnExec execute(String[] cmd) {
         super.setSuccess(true);
-        return new ReturnExec(FormattingDisplay.formattingArrayList(Size.UNKNOWN.list()), TypeReturn.SUCCESS);
+        return new ReturnExec(FormattingDisplay.formattingList(Size.UNKNOWN.list()), TypeReturn.SUCCESS);
     }
 
     @Override

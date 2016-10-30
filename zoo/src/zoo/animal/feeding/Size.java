@@ -2,11 +2,12 @@ package zoo.animal.feeding;
 
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.List;
 import launch.options.Option;
 import lombok.Getter;
 
 /**
- *
+ * The sizes
  * @author doyenm
  */
 public enum Size {
@@ -27,6 +28,9 @@ public enum Size {
         this.id = id;
     }
     
+    /**
+     * Option used to select the current language
+     */
     private Option option;
     
     public void setOption(Option option) {
@@ -35,10 +39,20 @@ public enum Size {
          }
     }
     
+    /**
+     * Return the name of the size, according to the current language
+     * @return the name of the size
+     */
     public String toStringByLanguage(){
         return this.option.getSizeBundle().getString(this.toString().toUpperCase());
     }
     
+    /**
+     * Find a size by it identifier
+     * @param id the identifier to search
+     * @return the corresponding size
+     * @throws UnknownNameException if no size matches the identifier 
+     */
     public Size findById(int id) throws UnknownNameException {
         for (Size size : Size.values()) {
             if (size.getId() == id) {
@@ -49,16 +63,30 @@ public enum Size {
                 this.option.getDietBundle().getString("UNKNOWN_SIZE_BY_ID"));
     }
     
+    /**
+     * Check if the current size is in a diameter o 2 around a given size
+     * @param size the size we compare with the current one
+     * @return true if current_size >= size - 2 and current_size<= size + 2
+     */
     public boolean isEnoughNearFrom(int size){
         return this.id >= size - 2 && this.id <= size + 2;
     }
     
+    /**
+     * Check if there is less than two units between two sizes
+     * @param size the size with which we compare the current one
+     * @return true if there is less than two units between them
+     */
     public boolean areCloseEnough(int size){
         return ((this.getId() - size >= -1) && (this.getId() - size<= 2));
     }
     
-      public ArrayList<String> list(){
-         ArrayList<String> list = new ArrayList<>();
+    /**
+     * List all of the sizes
+     * @return the list, each item corresponding to an element of the enumeration
+     */
+      public List<String> list(){
+         List<String> list = new ArrayList<>();
         for (Size size : Size.values()) {
             list.add(size.id + " - " + 
                     this.option.getSizeBundle().getString(size.toString().toUpperCase()));
