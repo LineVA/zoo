@@ -1,7 +1,6 @@
 
 package basicGui;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -71,7 +70,7 @@ public class FormattingDisplay {
      * @param list List of PaddockCoordinates ; the first must represent the dimensions of the zoo
      * @return 
      */
-    public static String zooMap(ArrayList<PaddockCoordinates> list) {
+    public static String zooMap(List<PaddockCoordinates> list) {
         char[][] array = new char[list.get(0).getWidth() + 2][list.get(0).getHeight() + 2];
         array = d2ArrayCharInitialize(array);
         array = contourMap(array);
@@ -108,25 +107,4 @@ public class FormattingDisplay {
         }
         return finalStr;
     }
-    
-     /**
-     * Layout for a list of Strings
-     * @param list List of strings we need to display
-     * @return a formatting String corresponding to the parameter
-     */
-//    public static String formattingArrayList(List<String> list) {
-//        Iterator it = list.iterator();
-//        String str = "";
-//        String finalStr = "";
-//        while (it.hasNext()) {
-//            str = (String) it.next();
-//            if (it.hasNext()) {
-//                finalStr += str + "\n";
-//            } else {
-//                finalStr += str + "\n";
-//            }
-//        }
-//        return finalStr;
-//    }
-
 }
