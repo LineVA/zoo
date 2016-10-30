@@ -4,6 +4,7 @@ import backup.load.ParserBackUp;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import org.jdom2.JDOMException;
 import org.junit.Assert;
 import org.junit.Test;
@@ -24,9 +25,9 @@ public class ParserPaddockTest {
         // Given
         ParserBackUp parser = new ParserBackUp(new File("test/backup/load/parserBackup/test2.xml"));
         // When
-        ArrayList<FakePaddock> paddocks = parser.parserPaddocks();
+        List<FakePaddock> paddocks = parser.parserPaddocks();
         // Then
-        ArrayList<FakePaddock> expectedPaddocks = new ArrayList<>();
+        List<FakePaddock> expectedPaddocks = new ArrayList<>();
         Assert.assertEquals(expectedPaddocks, paddocks);
     }
 
@@ -39,11 +40,11 @@ public class ParserPaddockTest {
         // Given
         ParserBackUp parser = new ParserBackUp(new File("test/backup/load/parserBackup/test3.xml"));
         // When
-        ArrayList<FakePaddock> paddocks = parser.parserPaddocks();
+        List<FakePaddock> paddocks = parser.parserPaddocks();
         // Then
         FakePaddock expectedPad1 = new FakePaddock("pad1", 1, 2, 3, 4);
         FakePaddock expectedPad2 = new FakePaddock("pad2", 5, 6, 7, 8);
-        ArrayList<FakePaddock> expectedPaddocks = new ArrayList<>();
+        List<FakePaddock> expectedPaddocks = new ArrayList<>();
         expectedPaddocks.add(expectedPad1);
         expectedPaddocks.add(expectedPad2);
         Assert.assertEquals(expectedPaddocks.size(), paddocks.size());

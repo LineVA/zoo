@@ -1,7 +1,7 @@
 package zoo.animal.reproduction;
 
 import exception.IncorrectDataException;
-import java.util.ArrayList;
+import java.util.List;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
@@ -50,7 +50,7 @@ public class GenerateFamilyTest {
         Animal father = new AnimalImpl(expectedSpecie, "father", expectedPad, Sex.MALE, 0);
         // When
         ReproductionImpl repro = new ReproductionImpl(uniform);
-        ArrayList<Animal> actual = repro.generateFamily(mother, father);
+        List<Animal> actual = repro.generateFamily(mother, father);
         // Then
         String expectedName1 = "motherfather0";
         String expectedName2 = "motherfather1";

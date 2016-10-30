@@ -4,7 +4,7 @@ import exception.IncorrectDataException;
 import exception.name.NameException;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 import launch.options.Option;
 import org.jdom2.JDOMException;
 import static org.junit.Assert.assertEquals;
@@ -56,7 +56,7 @@ public class ListAnimalTest {
         LightSpecie light = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
-        ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
+        List<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(2, results.size());
         assertTrue(results.contains(animal1));
@@ -75,7 +75,7 @@ public class ListAnimalTest {
         LightSpecie light = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
                 0, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
                 Constants.UNDEFIND_ENUM);
-        ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
+        List<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(1, results.size());
         assertTrue(results.contains(animal2));
@@ -93,7 +93,7 @@ public class ListAnimalTest {
         LightSpecie light = new LightSpecie(specie2.getNames(), Constants.UNDEFIND_ENUM, 
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
-        ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
+        List<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(1, results.size());
         assertTrue(results.contains(animal2));
@@ -111,7 +111,7 @@ public class ListAnimalTest {
         LightSpecie light = new LightSpecie(null, Constants.UNDEFIND_ENUM, 
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, 2, Constants.UNDEFIND_ENUM,
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
-        ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
+        List<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(1, results.size());
         assertTrue(results.contains(animal2));
@@ -129,7 +129,7 @@ public class ListAnimalTest {
         LightSpecie light = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, 2, 
                 Constants.UNDEFIND_ENUM);
-        ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
+        List<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(1, results.size());
         assertTrue(results.contains(animal2));
@@ -147,7 +147,7 @@ public class ListAnimalTest {
         LightSpecie light = new LightSpecie(null, Constants.UNDEFIND_ENUM, 2, Constants.UNDEFIND_ENUM,
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, 
                 Constants.UNDEFIND_ENUM);
-        ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
+        List<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(1, results.size());
         assertTrue(results.contains(animal2));
@@ -167,7 +167,7 @@ public class ListAnimalTest {
         LightSpecie light = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
-        ArrayList<Animal> results = paddock.listAnimal(light, null, Diet.BACCIVOROUS, null);
+        List<Animal> results = paddock.listAnimal(light, null, Diet.BACCIVOROUS, null);
         // Then 
         assertEquals(1, results.size());
         assertTrue(results.contains(animal2));
@@ -185,7 +185,7 @@ public class ListAnimalTest {
         LightSpecie light = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
-        ArrayList<Animal> results = paddock.listAnimal(light, Sex.FEMALE, null, null);
+        List<Animal> results = paddock.listAnimal(light, Sex.FEMALE, null, null);
         // Then 
         assertEquals(1, results.size());
         assertTrue(results.contains(animal2));
@@ -204,7 +204,7 @@ public class ListAnimalTest {
         LightSpecie light = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM,
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM);
-        ArrayList<Animal> results = paddock.listAnimal(light, null, null, Biome.DESERT);
+        List<Animal> results = paddock.listAnimal(light, null, null, Biome.DESERT);
         // Then 
         assertEquals(0, results.size());
     }
@@ -221,7 +221,7 @@ public class ListAnimalTest {
         LightSpecie light = new LightSpecie(null, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, 
                 Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, Constants.UNDEFIND_ENUM, 
                 Constants.UNDEFIND_ENUM, 2);
-        ArrayList<Animal> results = paddock.listAnimal(light, null, null, null);
+        List<Animal> results = paddock.listAnimal(light, null, null, null);
         // Then 
         assertEquals(1, results.size());
         assertTrue(results.contains(animal2));

@@ -4,6 +4,7 @@ import exception.name.EmptyNameException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import launch.options.Option;
 import zoo.IZoo;
@@ -28,7 +29,7 @@ public class CreateElementKeeperMain {
         Option option = new Option();
         zoo.initiateZoo("zooName", 10, 10, null, 1, 2, 3);
         zoo.setOption(option);
-        ArrayList<IPaddock> neightbourhood = new ArrayList<>();
+        List<IPaddock> neightbourhood = new ArrayList<>();
         Map<String, Animal> animals = new HashMap<>();
         IPaddock pad1 = new Paddock("pad1", new PaddockCoordinates(1, 1, 1, 1), neightbourhood, animals, 0, 1, option);
         IPaddock pad2 = new Paddock("pad2", new PaddockCoordinates(2, 2, 2, 2), neightbourhood, animals, 0, 1, option);

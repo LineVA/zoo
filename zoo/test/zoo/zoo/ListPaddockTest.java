@@ -4,8 +4,8 @@ import exception.IncorrectDimensionsException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
@@ -52,7 +52,7 @@ public class ListPaddockTest {
         zoo.addPaddock("a", 1, 1, 1, 1);
         zoo.addPaddock("b", 2, 2, 2, 2);
         // When
-        ArrayList<String> actualList = zoo.listPaddockByName();
+        List<String> actualList = zoo.listPaddockByName();
         // Then
         assertEquals(2, actualList.size());
         assertEquals(true, actualList.contains("a"));
@@ -63,7 +63,7 @@ public class ListPaddockTest {
     public void shouldReturnAnEmptyListWhenThereIsNoPaddock() {
         // Given
         // When
-        ArrayList<String> actualList = zoo.listPaddockByName();
+        List<String> actualList = zoo.listPaddockByName();
         // Then
         assertEquals(0, actualList.size());
     }

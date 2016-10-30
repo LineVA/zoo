@@ -6,6 +6,7 @@ import exception.name.NameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import launch.options.Option;
 import org.junit.Assert;
 import org.junit.Before;
@@ -74,7 +75,7 @@ public class EvaluateByFamilyTest {
         int biome = Biome.NONE.getId();
         int size = Size.M.getId();
         int family1 = Family.ANTILOCAPRIDAE.getId();
-        ArrayList<Integer> continents = new ArrayList<>();
+        List<Integer> continents = new ArrayList<>();
        specie1 = new Specie(names, biomeAtt, feedingAtt, diet, reproAtt, lifespanAtt, status, 
                 socialAtt, terriAtt, ecoregion, family1, biome, size, continents);
         Animal animal1 = new AnimalImpl(specie1, "animal1", pad1, Sex.MALE, option);

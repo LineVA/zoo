@@ -4,6 +4,7 @@ import exception.IncorrectDataException;
 import exception.IncorrectDimensionsException;
 import exception.name.AlreadyUsedNameException;
 import java.util.ArrayList;
+import java.util.List;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -71,10 +72,10 @@ public class FindRoomatesOfTheSameSpecieTest {
         pad1.addAnimal(animal1);
         pad1.addAnimal(animal2);
         // When
-        ArrayList<Animal> expectedList = new ArrayList<>();
+        List<Animal> expectedList = new ArrayList<>();
         expectedList.add(animal1);
         expectedList.add(animal2);
-        ArrayList<Animal> actualList = animal1.findRoommatesOfTheSameSpecie();
+        List<Animal> actualList = animal1.findRoommatesOfTheSameSpecie();
         // Then
         assertEquals(2, actualList.size());
         assertTrue(actualList.contains(animal1));
@@ -96,9 +97,9 @@ public class FindRoomatesOfTheSameSpecieTest {
         pad1.addAnimal(animal1);
         pad1.addAnimal(animal2);
         // When
-        ArrayList<Animal> expectedList = new ArrayList<>();
+        List<Animal> expectedList = new ArrayList<>();
         expectedList.add(animal1);
-        ArrayList<Animal> actualList = animal1.findRoommatesOfTheSameSpecie();
+        List<Animal> actualList = animal1.findRoommatesOfTheSameSpecie();
         // Then
         assertEquals(1, actualList.size());
         assertTrue(actualList.contains(animal1));
@@ -124,9 +125,9 @@ public class FindRoomatesOfTheSameSpecieTest {
         pad1.addAnimal(animal2);
         pad2.addAnimal(animal3);
         // When
-        ArrayList<Animal> expectedList = new ArrayList<>();
+        List<Animal> expectedList = new ArrayList<>();
         expectedList.add(animal1);
-        ArrayList<Animal> actualList = animal1.findRoommatesOfTheSameSpecie();
+        List<Animal> actualList = animal1.findRoommatesOfTheSameSpecie();
         // Then
         assertEquals(1, actualList.size());
         assertTrue(actualList.contains(animal1));
@@ -141,8 +142,8 @@ public class FindRoomatesOfTheSameSpecieTest {
                 null, null, 0, null, null, null, null);
         pad1.addAnimal(animal1);
         // When
-        ArrayList<Animal> expectedList = new ArrayList<>();
-        ArrayList<Animal> actualList = animal1.findRoommatesOfTheSameSpecie();
+        List<Animal> expectedList = new ArrayList<>();
+        List<Animal> actualList = animal1.findRoommatesOfTheSameSpecie();
         // Then
         assertNull(actualList);
     }
@@ -156,8 +157,8 @@ public class FindRoomatesOfTheSameSpecieTest {
                 null, null, 0, null, null, null, null);
         pad1.addAnimal(animal1);
         // When
-        ArrayList<Animal> expectedList = new ArrayList<>();
-        ArrayList<Animal> actualList = animal1.findRoommatesOfTheSameSpecie();
+        List<Animal> expectedList = new ArrayList<>();
+        List<Animal> actualList = animal1.findRoommatesOfTheSameSpecie();
         // Then
         assertNull(actualList);
     }
