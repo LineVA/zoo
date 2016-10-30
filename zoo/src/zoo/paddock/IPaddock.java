@@ -53,7 +53,7 @@ public interface IPaddock {
 
     public int countAnimalsOfTheSameSpecie(Specie specie);
 
-    public double wellBeing(ArrayList<AnimalKeeper> keepers) throws UnknownNameException;
+    public double wellBeing(List<AnimalKeeper> keepers) throws UnknownNameException;
 
     public int computeSize();
 
@@ -84,7 +84,7 @@ public interface IPaddock {
 
     public void addInNeightbourhood(IPaddock paddock);
 
-    public void addAllInNeightbourhood(ArrayList<IPaddock> neightbourhood);
+    public void addAllInNeightbourhood(List<IPaddock> neightbourhood);
 
     public void removeFromNeightbourhood();
 

@@ -6,7 +6,6 @@ import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.io.IOException;
-import java.util.ArrayList;
 import backup.save.SaveImpl;
 import exception.IncorrectLoadException;
 import exception.name.NameException;
@@ -50,9 +49,9 @@ public interface IZoo {
 
     public void removePaddock(IPaddock paddock);
 
-    public ArrayList<String> listPaddock(Specie specie);
+    public List<String> listPaddock(Specie specie);
 
-    public ArrayList<String> listAnimalKeeper(IPaddock paddock) 
+    public List<String> listAnimalKeeper(IPaddock paddock) 
               throws UnknownNameException, EmptyNameException;
 
     public void addKeeper(String name) 
@@ -62,7 +61,7 @@ public interface IZoo {
     
     public void removeKeeper(AnimalKeeper keeper);
 
-    public ArrayList<PaddockCoordinates> map() throws IncorrectDimensionsException;
+    public List<PaddockCoordinates> map() throws IncorrectDimensionsException;
 
     public double evaluate();
 
@@ -81,16 +80,16 @@ public interface IZoo {
     public Animal findAnimalByName(String animalName)
             throws UnknownNameException, EmptyNameException;
 
-    public ArrayList<Animal> listAnimal(Set<IPaddock> paddock, LightSpecie specie,
+    public List<Animal> listAnimal(Set<IPaddock> paddock, LightSpecie specie,
             Set<Sex> sex, Set<Diet> diet, Set<Biome> biome) throws UnknownNameException;
 
-    public ArrayList<String> listSpecie(LightSpecie lightSpecie, Set<IPaddock> paddock);
+    public List<String> listSpecie(LightSpecie lightSpecie, Set<IPaddock> paddock);
 
     public List<String> ageing() throws IncorrectDataException, NameException, IncorrectLoadException;
 
     public double grade() throws UnknownNameException, EmptyNameException;
 
-    public ArrayList<String> info();
+    public List<String> info();
 
     public void changeSpeed(int newSpeed) throws IncorrectDataException;
 
@@ -104,7 +103,7 @@ public interface IZoo {
 
     public Map<String, IPaddock> getPaddocks(TutorialPlayImpl_1.FriendScenario friend);
 
-    public ArrayList<Animal> getAnimals(TutorialPlayImpl_1.FriendScenario friend);
+    public List<Animal> getAnimals(TutorialPlayImpl_1.FriendScenario friend);
 
     /**
      * Friend pattern : give access to each of the fields of Zoo only to the

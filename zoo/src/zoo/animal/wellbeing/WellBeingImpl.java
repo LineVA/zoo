@@ -2,6 +2,7 @@ package zoo.animal.wellbeing;
 
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import lombok.Getter;
 import zoo.animal.AnimalsAttributes;
@@ -43,7 +44,7 @@ public class WellBeingImpl implements WellBeing {
      */
     @Override
     public double computeWellBeing(AnimalsAttributes attributes, IPaddock pad,
-            Specie specie, ArrayList<AnimalKeeper> keepers)
+            Specie specie, List<AnimalKeeper> keepers)
             throws UnknownNameException {
         double wB = 0.0;
         wB += computeSocialWB(attributes.getOptimalSocial(), pad, specie);
@@ -61,7 +62,7 @@ public class WellBeingImpl implements WellBeing {
     }
 
     private double computeKeepersInfluence(PersonalityAttributes personality,
-            ArrayList<AnimalKeeper> keepers, IPaddock paddock) {
+            List<AnimalKeeper> keepers, IPaddock paddock) {
         System.out.println("Personality");
         double wB = 0.0;
         TaskPaddock taskPaddock;
@@ -130,7 +131,7 @@ public class WellBeingImpl implements WellBeing {
         return a;
     }
 
-    private boolean isAKeeperForFeeding(IPaddock paddock, ArrayList<AnimalKeeper> keepers) {
+    private boolean isAKeeperForFeeding(IPaddock paddock, List<AnimalKeeper> keepers) {
         for (AnimalKeeper keeper : keepers) {
             if (keeper.isMakingFeedingInThePaddock(paddock)) {
                 return true;
@@ -141,7 +142,7 @@ public class WellBeingImpl implements WellBeing {
 
     private double computeFoodWB(int diet, FeedingAttributes optimalFeeding,
             FeedingAttributes actualFeeding, Specie spec,
-            ArrayList<AnimalKeeper> keepers, IPaddock paddock) {
+            List<AnimalKeeper> keepers, IPaddock paddock) {
         System.out.println("Food quantity : ");
         if (isAKeeperForFeeding(paddock, keepers) && spec.getDiets().contains(diet)) {
             System.out.println("Good diet");

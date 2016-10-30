@@ -8,6 +8,7 @@ import exception.name.NameException;
 import exception.name.UnauthorizedNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 import launch.options.Option;
@@ -328,7 +329,7 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public double wellBeing(ArrayList<AnimalKeeper> keepers) throws UnknownNameException {
+    public double wellBeing(List<AnimalKeeper> keepers) throws UnknownNameException {
         AnimalsAttributes attributes = new AnimalsAttributes(this.optimalBiome, this.optimalFeeding,
                 this.actualFeeding, this.actualDiet, this.optimalSocial, this.optimalTerritory, this.personality);
         this.wellBeing = wB.computeWellBeing(attributes, paddock, specie, keepers);

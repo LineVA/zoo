@@ -450,7 +450,7 @@ public class Paddock implements IPaddock {
     }
 
     @Override
-    public double wellBeing(ArrayList<AnimalKeeper> keepers) throws UnknownNameException {
+    public double wellBeing(List<AnimalKeeper> keepers) throws UnknownNameException {
         double wB = 0;
         for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
             wB += entry.getValue().wellBeing(keepers);
@@ -554,7 +554,7 @@ public class Paddock implements IPaddock {
     }
 
     @Override
-    public void addAllInNeightbourhood(ArrayList<IPaddock> neightbourhood) {
+    public void addAllInNeightbourhood(List<IPaddock> neightbourhood) {
         this.neightbourhood.addAll(neightbourhood);
     }
 

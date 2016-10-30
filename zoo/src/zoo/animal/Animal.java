@@ -5,6 +5,7 @@ import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.List;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.FeedingAttributes;
@@ -32,7 +33,7 @@ public interface Animal {
 
     public void ageing(int monthsPerEvaluation);
 
-    public double wellBeing(ArrayList<AnimalKeeper> keepers) throws UnknownNameException;
+    public double wellBeing(List<AnimalKeeper> keepers) throws UnknownNameException;
 
     public boolean isFromTheSameSpecie(Specie specie);
 

@@ -147,7 +147,7 @@ public class Zoo implements IZoo {
             EmptyNameException, NameException {
         PaddockCoordinates coor = new PaddockCoordinates(x, y, width, height);
         checkEmplacement(coor);
-        ArrayList<IPaddock> neightbourhood = new ArrayList<>();
+        List<IPaddock> neightbourhood = new ArrayList<>();
         PaddockCoordinates coorNeightbourhood = coor.getNeightbourhoodCoordinates(this.horizon);
         IPaddock tmp;
         for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
@@ -197,7 +197,7 @@ public class Zoo implements IZoo {
             throws AlreadyUsedNameException, IncorrectDimensionsException {
         PaddockCoordinates coor = paddock.getCoordinates();
         checkEmplacement(coor);
-        ArrayList<IPaddock> neightbourhood = new ArrayList<>();
+        List<IPaddock> neightbourhood = new ArrayList<>();
         PaddockCoordinates coorNeightbourhood = coor.getNeightbourhoodCoordinates(this.horizon);
         IPaddock tmp;
         for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
@@ -216,7 +216,7 @@ public class Zoo implements IZoo {
         }
     }
 
-    private void reactualizeNeightbourhoods(IPaddock paddock, ArrayList<IPaddock> neightbourhoods) {
+    private void reactualizeNeightbourhoods(IPaddock paddock, List<IPaddock> neightbourhoods) {
         neightbourhoods.stream().forEach((neightbour) -> {
             neightbour.addInNeightbourhood(paddock);
         });
@@ -226,11 +226,11 @@ public class Zoo implements IZoo {
      * Method used to list the paddocks of the zoo
      *
      * @param specie
-     * @return ArrayList of their names
+     * @return List of their names
      */
     @Override
-    public ArrayList<String> listPaddock(Specie specie) {
-        ArrayList<String> list = new ArrayList<>();
+    public List<String> listPaddock(Specie specie) {
+        List<String> list = new ArrayList<>();
         if (specie == null) {
             paddocks.entrySet().stream().forEach((entry) -> {
                 list.add(entry.getKey());
@@ -280,9 +280,9 @@ public class Zoo implements IZoo {
                 this.option.getKeeperBundle().getString("UNKNOWN_KEEPER"));
     }
 
-    private ArrayList<AnimalKeeper> findAnimalKeeperByPaddock(IPaddock paddock) throws UnknownNameException,
+    private List<AnimalKeeper> findAnimalKeeperByPaddock(IPaddock paddock) throws UnknownNameException,
             EmptyNameException {
-        ArrayList<AnimalKeeper> list = new ArrayList<>();
+        List<AnimalKeeper> list = new ArrayList<>();
         for (HashMap.Entry<String, AnimalKeeper> keeper : this.keepers.entrySet()) {
             if (keeper.getValue().workInGivenPaddock(paddock)) {
                 list.add(keeper.getValue());
@@ -292,9 +292,9 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<String> listAnimalKeeper(IPaddock paddock)
+    public List<String> listAnimalKeeper(IPaddock paddock)
             throws UnknownNameException, EmptyNameException {
-        ArrayList<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         if (paddock == null) {
             for (HashMap.Entry<String, AnimalKeeper> entry : this.keepers.entrySet()) {
                 list.add(entry.getKey());
@@ -308,7 +308,7 @@ public class Zoo implements IZoo {
     }
 
     private void removePaddockFromKeepers(IPaddock paddock) {
-        ArrayList<IPaddock> padList = new ArrayList<>();
+        List<IPaddock> padList = new ArrayList<>();
         padList.add(paddock);
         for (HashMap.Entry<String, AnimalKeeper> keeper : this.keepers.entrySet()) {
             keeper.getValue().removeTimedPaddocks(padList);
@@ -380,8 +380,8 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<PaddockCoordinates> map() throws IncorrectDimensionsException {
-        ArrayList<PaddockCoordinates> map = new ArrayList<>();
+    public List<PaddockCoordinates> map() throws IncorrectDimensionsException {
+        List<PaddockCoordinates> map = new ArrayList<>();
         map.add(new PaddockCoordinates(0, 0, width, height));
         paddocks.entrySet().stream().forEach((padEntry) -> {
             map.add(padEntry.getValue().getCoordinates());
@@ -437,11 +437,11 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<Animal> listAnimal(Set<IPaddock> paddock,
+    public List<Animal> listAnimal(Set<IPaddock> paddock,
             LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome)
             throws UnknownNameException {
         if (paddock == null) {
-            ArrayList<Animal> list = new ArrayList<>();
+            List<Animal> list = new ArrayList<>();
             for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
                 list.addAll(entry.getValue().listAnimal(specie, sex, diet, biome));
             }
@@ -459,8 +459,8 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<String> listSpecie(LightSpecie lightSpecie, Set<IPaddock> paddock) {
-        ArrayList<Specie> list = new ArrayList<>();
+    public List<String> listSpecie(LightSpecie lightSpecie, Set<IPaddock> paddock) {
+        List<Specie> list = new ArrayList<>();
         if (paddock == null) {
             species.entrySet().stream().forEach((entry) -> {
                 list.add(entry.getValue());
@@ -478,7 +478,7 @@ public class Zoo implements IZoo {
                 it.remove();
             }
         }
-        ArrayList<String> strList = new ArrayList<>();
+        List<String> strList = new ArrayList<>();
         for (Specie spec : list) {
             strList.add(spec.getNameAccordingLanguage(this.option));
         }
@@ -515,8 +515,8 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<String> info() {
-        ArrayList<String> info = new ArrayList<>();
+    public List<String> info() {
+        List<String> info = new ArrayList<>();
         ResourceBundle bundle = this.option.getZooBundle();
         info.add(bundle.getString("NAME") + this.name);
         info.add(bundle.getString("AGE") + this.age);
@@ -542,7 +542,7 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<Animal> getAnimals(TutorialPlayImpl_1.FriendScenario friend) {
+    public List<Animal> getAnimals(TutorialPlayImpl_1.FriendScenario friend) {
         try {
             friend.hashCode();
             return this.listAnimal(null, null, null, null, null);
