@@ -66,7 +66,8 @@ public enum Size {
     /**
      * Check if the current size is in a diameter o 2 around a given size
      * @param size the size we compare with the current one
-     * @return true if current_size >= size - 2 and current_size<= size + 2
+     * @return true if current_size greater or equals than (size - 2)
+     * and current_size lower or equals than (size + 2)
      */
     public boolean isEnoughNearFrom(int size){
         return this.id >= size - 2 && this.id <= size + 2;
