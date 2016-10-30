@@ -53,7 +53,7 @@ public enum Ecoregion {
             }
         }
         throw new UnknownNameException(
-                this.option.getEcoregionBundle().getString("UNKNOWN_ID"));
+                this.option.getPaddockBundle().getString("ECOREGION.UNKNOWN_ID"));
     }
 
       /**
@@ -61,7 +61,7 @@ public enum Ecoregion {
      * @return the name of the ecoregion, according to the current language
      */
       public String toStringByLanguage(){
-        return this.option.getEcoregionBundle().getString(this.toString().toUpperCase());
+        return this.option.getPaddockBundle().getString("ECOREGION." + this.toString().toUpperCase());
     }
       
         /**
@@ -72,7 +72,7 @@ public enum Ecoregion {
         List<String> list = new ArrayList<>();
         for (Ecoregion region : Ecoregion.values()) {
             list.add(region.id + " - " +
-                    this.option.getEcoregionBundle().getString(region.toString().toUpperCase()));
+                  region.toStringByLanguage());
         }
         return list;
     }

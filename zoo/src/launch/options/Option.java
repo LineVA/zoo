@@ -37,8 +37,6 @@ public class Option {
     @Getter
     private ResourceBundle conservationBundle;
     @Getter
-    private ResourceBundle ecoregionBundle;
-    @Getter
     private ResourceBundle keeperBundle;
 
     public Option() {
@@ -66,7 +64,6 @@ public class Option {
         this.socialBundle = ResourceBundle.getBundle("i18n.animal.social.social", locale);
         this.territoryBundle = ResourceBundle.getBundle("i18n.animal.territory.territory", locale);
         this.conservationBundle = ResourceBundle.getBundle("i18n.animal.conservation.conservation", locale);
-        this.ecoregionBundle = ResourceBundle.getBundle("i18n.paddock.ecoregion", locale);
         this.keeperBundle = ResourceBundle.getBundle("i18n.animalKeeper.keeper", locale);
     }
 
