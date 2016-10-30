@@ -67,7 +67,7 @@ public class Paddock implements IPaddock {
     @Getter
     Map<String, Animal> animals;
     private int paddockType;
-    private ArrayList<IPaddock> neightbourhood;
+    private List<IPaddock> neightbourhood;
     private BirthObservable obs = new BirthObservable();
 
     /**
@@ -78,7 +78,7 @@ public class Paddock implements IPaddock {
      * @param coor the coordinates of the paddock
      */
     public Paddock(String name, PaddockCoordinates coor,
-            ArrayList<IPaddock> neightbourhood, Map<String, Animal> animals, int biome, int paddockType, Option option)
+            List<IPaddock> neightbourhood, Map<String, Animal> animals, int biome, int paddockType, Option option)
             throws EmptyNameException, UnknownNameException, UnauthorizedNameException {
         this.option = option;
         NameVerifications.verify(name, this.option.getPaddockBundle());
@@ -146,9 +146,9 @@ public class Paddock implements IPaddock {
     }
 
     @Override
-    public ArrayList<String> info() throws UnknownNameException {
+    public List<String> info() throws UnknownNameException {
         ResourceBundle bundle = this.option.getPaddockBundle();
-        ArrayList<String> info = new ArrayList<>();
+        List<String> info = new ArrayList<>();
         info.add(bundle.getString("NAME") + this.name);
         info.add(bundle.getString("COORDINATES") + this.coordinates.toStringByLanguage(bundle));
         info.add(bundle.getString("NEIGHTBOURS") + this.listNeightbourhood());
@@ -177,8 +177,8 @@ public class Paddock implements IPaddock {
         throw new UnknownNameException(this.option.getAnimalBundle().getString("UNKNOWN_NAME"));
     }
 
-    private ArrayList<Animal> listAnimalWithSpecie(ArrayList<Animal> animals, LightSpecie specie) {
-        ArrayList<Animal> list = animals;
+    private List<Animal> listAnimalWithSpecie(List<Animal> animals, LightSpecie specie) {
+        List<Animal> list = animals;
         Iterator it = list.iterator();
         Animal next;
         while (it.hasNext()) {
@@ -190,8 +190,8 @@ public class Paddock implements IPaddock {
         return list;
     }
 
-    private ArrayList<Animal> listAnimalWithEcoregion(ArrayList<Animal> animals, Ecoregion ecoregion) {
-        ArrayList<Animal> list = animals;
+    private List<Animal> listAnimalWithEcoregion(List<Animal> animals, Ecoregion ecoregion) {
+        List<Animal> list = animals;
         Iterator it = list.iterator();
         Animal next;
         while (it.hasNext()) {
@@ -203,8 +203,8 @@ public class Paddock implements IPaddock {
         return list;
     }
 
-    private ArrayList<Animal> listAnimalWithFamily(ArrayList<Animal> animals, Family family) {
-        ArrayList<Animal> list = animals;
+    private List<Animal> listAnimalWithFamily(List<Animal> animals, Family family) {
+        List<Animal> list = animals;
         Iterator it = list.iterator();
         Animal next;
         while (it.hasNext()) {
@@ -216,8 +216,8 @@ public class Paddock implements IPaddock {
         return list;
     }
 
-    private ArrayList<Animal> listAnimalWithContinent(ArrayList<Animal> animals, Continent continent) {
-        ArrayList<Animal> list = animals;
+    private List<Animal> listAnimalWithContinent(List<Animal> animals, Continent continent) {
+        List<Animal> list = animals;
         Iterator it = list.iterator();
         Animal next;
         while (it.hasNext()) {
@@ -229,8 +229,8 @@ public class Paddock implements IPaddock {
         return list;
     }
 
-    private ArrayList<Animal> listAnimalWithSize(ArrayList<Animal> animals, Size size) {
-        ArrayList<Animal> list = animals;
+    private List<Animal> listAnimalWithSize(List<Animal> animals, Size size) {
+        List<Animal> list = animals;
         Iterator it = list.iterator();
         Animal next;
         while (it.hasNext()) {
@@ -242,8 +242,8 @@ public class Paddock implements IPaddock {
         return list;
     }
 
-    private ArrayList<Animal> listAnimalWithConservation(ArrayList<Animal> animals, ConservationStatus status) {
-        ArrayList<Animal> list = animals;
+    private List<Animal> listAnimalWithConservation(List<Animal> animals, ConservationStatus status) {
+        List<Animal> list = animals;
         Iterator it = list.iterator();
         Animal next;
         while (it.hasNext()) {
@@ -255,9 +255,9 @@ public class Paddock implements IPaddock {
         return list;
     }
 
-    private ArrayList<Animal> listAnimalWithBreedingProgramme(ArrayList<Animal> animals,
+    private List<Animal> listAnimalWithBreedingProgramme(List<Animal> animals,
             BreedingProgramme breedingProgramme) {
-        ArrayList<Animal> list = animals;
+        List<Animal> list = animals;
         Iterator it = list.iterator();
         Animal next;
         while (it.hasNext()) {
@@ -269,11 +269,11 @@ public class Paddock implements IPaddock {
         return list;
     }
 
-    private ArrayList<Animal> listAnimalWithDiet(ArrayList<Animal> animals, Set<Diet> diet) {
+    private List<Animal> listAnimalWithDiet(List<Animal> animals, Set<Diet> diet) {
         if (diet == null || diet.size() != 1) {
             return new ArrayList<Animal>();
         } else {
-            ArrayList<Animal> list = animals;
+            List<Animal> list = animals;
             Iterator it = list.iterator();
             Animal next;
             while (it.hasNext()) {
@@ -286,11 +286,11 @@ public class Paddock implements IPaddock {
         }
     }
 
-    private ArrayList<Animal> listAnimalWithSex(ArrayList<Animal> animals, Set<Sex> sex) {
+    private List<Animal> listAnimalWithSex(List<Animal> animals, Set<Sex> sex) {
         if (sex == null || sex.size() != 1) {
             return new ArrayList<Animal>();
         } else {
-            ArrayList<Animal> list = animals;
+            List<Animal> list = animals;
             Iterator it = list.iterator();
             Animal next;
             while (it.hasNext()) {
@@ -303,12 +303,12 @@ public class Paddock implements IPaddock {
         }
     }
 
-    private ArrayList<Animal> listAnimalWithBiome(ArrayList<Animal> animals, Set<Biome> biome) 
+    private List<Animal> listAnimalWithBiome(List<Animal> animals, Set<Biome> biome) 
             throws UnknownNameException {
         if (biome != null && biome.size() != 1) {
             return new ArrayList<Animal>();
         } else {
-            ArrayList<Animal> list = animals;
+            List<Animal> list = animals;
             if (!biome.contains(Biome.NONE.findById(this.biome))) {
                 list.removeAll(this.animals.values());
             }
@@ -316,16 +316,16 @@ public class Paddock implements IPaddock {
         }
     }
 
-    public ArrayList<Animal> listAnimalWithoutCriteria() {
-        ArrayList<Animal> list = new ArrayList<>();
+    public List<Animal> listAnimalWithoutCriteria() {
+        List<Animal> list = new ArrayList<>();
         animals.entrySet().stream().forEach((entry) -> {
             list.add(entry.getValue());
         });
         return list;
     }
 
-    private ArrayList<Animal> listAnimalWithLightSpecie(ArrayList<Animal> animals, LightSpecie lightSpecie){
-         ArrayList<Animal> list = animals;
+    private List<Animal> listAnimalWithLightSpecie(List<Animal> animals, LightSpecie lightSpecie){
+         List<Animal> list = animals;
         Iterator it = list.iterator();
         Animal next;
         while (it.hasNext()) {
@@ -338,9 +338,9 @@ public class Paddock implements IPaddock {
     }
     
     @Override
-    public ArrayList<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome)
+    public List<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome)
             throws UnknownNameException {
-        ArrayList<Animal> list = listAnimalWithoutCriteria();
+        List<Animal> list = listAnimalWithoutCriteria();
         if (specie.getNames() != null) {
             list = listAnimalWithSpecie(list, specie);
         }
@@ -414,10 +414,10 @@ public class Paddock implements IPaddock {
     }
 
     @Override
-    public ArrayList<String> death() {
-        ArrayList<String> info = new ArrayList<>();
+    public List<String> death() {
+        List<String> info = new ArrayList<>();
         IDie die = new DieImpl();
-        ArrayList<Animal> tmpAnimal = new ArrayList<>();
+        List<Animal> tmpAnimal = new ArrayList<>();
         Animal dying;
         for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
             // If the animal is dead
@@ -431,7 +431,7 @@ public class Paddock implements IPaddock {
         return info;
     }
 
-    private void leavingNewDead(ArrayList<Animal> tmpAnimal) {
+    private void leavingNewDead(List<Animal> tmpAnimal) {
         Iterator it = tmpAnimal.iterator();
         Animal animal;
         while (it.hasNext()) {
@@ -488,8 +488,8 @@ public class Paddock implements IPaddock {
     }
 
     @Override
-    public ArrayList<Animal> animalsOfTheSameSpecie(Specie specie) {
-        ArrayList<Animal> sameSpecieAnimals = new ArrayList<>();
+    public List<Animal> animalsOfTheSameSpecie(Specie specie) {
+        List<Animal> sameSpecieAnimals = new ArrayList<>();
         this.animals.entrySet().stream().filter(
                 (animalEntry)
                 -> (animalEntry.getValue().isFromTheSameSpecie(specie))).forEach((animalEntry) -> {
@@ -499,8 +499,8 @@ public class Paddock implements IPaddock {
     }
 
     @Override
-    public ArrayList<String> listSpeciesByName() {
-        ArrayList<String> listSpecie = new ArrayList<>();
+    public List<String> listSpeciesByName() {
+        List<String> listSpecie = new ArrayList<>();
         this.animals.entrySet().stream().filter(
                 (animalEntry)
                 -> (!listSpecie.contains(animalEntry.getValue().getSpecie()))).forEach((animalEntry) -> {
@@ -510,7 +510,7 @@ public class Paddock implements IPaddock {
     }
 
     @Override
-    public ArrayList<String> listSpeciesByName(ArrayList<String> presentedSpecies) {
+    public List<String> listSpeciesByName(List<String> presentedSpecies) {
         this.animals.entrySet().stream().map(
                 (animalEntry)
                 -> animalEntry.getValue().getSpecie().getNameAccordingLanguage(option)).filter((name)
@@ -521,8 +521,8 @@ public class Paddock implements IPaddock {
     }
 
     @Override
-    public ArrayList<Specie> listSpecies() {
-        ArrayList<Specie> listSpecie = new ArrayList<>();
+    public List<Specie> listSpecies() {
+        List<Specie> listSpecie = new ArrayList<>();
         this.animals.entrySet().stream().filter((animalEntry)
                 -> (!listSpecie.contains(animalEntry.getValue().getSpecie()))).forEach((animalEntry) -> {
                     listSpecie.add(animalEntry.getValue().getSpecie());
@@ -540,8 +540,8 @@ public class Paddock implements IPaddock {
     }
 
     @Override
-    public ArrayList<Integer> listFamiliesById() {
-        ArrayList<Integer> listFamily = new ArrayList<>();
+    public List<Integer> listFamiliesById() {
+        List<Integer> listFamily = new ArrayList<>();
         for (Specie specie : this.listSpecies()) {
             listFamily.add(specie.getFamily());
         }
@@ -571,9 +571,9 @@ public class Paddock implements IPaddock {
     }
 
     @Override
-    public ArrayList<Specie> listSpeciesInNeightbourhood() {
-        ArrayList<Specie> speciesList = new ArrayList<>();
-        ArrayList<Specie> localList = new ArrayList<>();
+    public List<Specie> listSpeciesInNeightbourhood() {
+        List<Specie> speciesList = new ArrayList<>();
+        List<Specie> localList = new ArrayList<>();
         for (IPaddock pad : this.neightbourhood) {
             localList.addAll(pad.listSpecies(speciesList));
             speciesList = localList;

@@ -3,7 +3,6 @@ package zoo.paddock;
 import exception.IncorrectDataException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.UnknownNameException;
-import java.util.ArrayList;
 import backup.save.SaveImpl;
 import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
@@ -34,12 +33,12 @@ public interface IPaddock {
 
     public void removeAnimal(Animal animal);
 
-    public ArrayList<String> info() throws UnknownNameException;
+    public List<String> info() throws UnknownNameException;
 
     public Animal findAnimalByName(String animalName)
             throws UnknownNameException, EmptyNameException;
 
-    public ArrayList<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome)
+    public List<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome)
             throws UnknownNameException;
 
     public List<String> birth(int monthsPerEvaluation)
@@ -47,9 +46,9 @@ public interface IPaddock {
 
     public void ageing(int monthsPerEvaluation);
 
-    public ArrayList<String> death();
+    public List<String> death();
 
-    public ArrayList<Animal> animalsOfTheSameSpecie(Specie specie);
+    public List<Animal> animalsOfTheSameSpecie(Specie specie);
 
     public int countAnimalsOfTheSameSpecie(Specie specie);
 
@@ -63,22 +62,22 @@ public interface IPaddock {
 
     public int countNonMatureAnimals();
 
-    public ArrayList<String> listSpeciesByName(ArrayList<String> presentedSpecies);
+    public List<String> listSpeciesByName(List<String> presentedSpecies);
 
-    public ArrayList<String> listSpeciesByName();
+    public List<String> listSpeciesByName();
 
     public List<Specie> listSpecies(List<Specie> presentedSpecies);
 
-    public ArrayList<Specie> listSpecies();
+    public List<Specie> listSpecies();
     
     /**
      * Can contain doubles if two or more species of the same family
      * are in this paddock
      * @return 
      */
-    public ArrayList<Integer> listFamiliesById();
+    public List<Integer> listFamiliesById();
 
-    public ArrayList<Specie> listSpeciesInNeightbourhood();
+    public List<Specie> listSpeciesInNeightbourhood();
 
     public String getName();
 
