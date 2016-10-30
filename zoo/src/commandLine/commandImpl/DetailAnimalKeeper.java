@@ -24,7 +24,7 @@ public class DetailAnimalKeeper extends AbstractCommand {
         try {
             AnimalKeeper keeper = super.getPlay().getZoo().findAnimalKeeperByName(cmd[1]);
             super.setSuccess(true);
-            return new ReturnExec(FormattingDisplay.formattingArrayList(keeper.info()), TypeReturn.SUCCESS);
+            return new ReturnExec(FormattingDisplay.formattingList(keeper.info()), TypeReturn.SUCCESS);
         } catch (UnknownNameException | EmptyNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }

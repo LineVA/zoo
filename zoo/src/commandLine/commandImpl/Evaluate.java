@@ -41,7 +41,7 @@ public class Evaluate extends AbstractCommand {
         }
         info.add(super.getPlay().getOption().getGeneralCmdBundle()
                 .getString("ZOO_EVALUATION") + Utils.truncate(zooEvaluation));
-        return new ReturnExec(FormattingDisplay.formattingArrayList(info), TypeReturn.SUCCESS);
+        return new ReturnExec(FormattingDisplay.formattingList(info), TypeReturn.SUCCESS);
     }
 
     @Override

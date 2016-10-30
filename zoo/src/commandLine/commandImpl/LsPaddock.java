@@ -2,7 +2,6 @@ package commandLine.commandImpl;
 
 import basicGui.FormattingDisplay;
 import commandLine.AbstractCommand;
-import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
@@ -37,7 +36,7 @@ public class LsPaddock extends AbstractCommand  {
         }
         ArrayList<String> list = super.getPlay().getZoo().listPaddock(spec);
         Collections.sort(list);
-        return new ReturnExec(FormattingDisplay.formattingArrayList(list), TypeReturn.SUCCESS);
+        return new ReturnExec(FormattingDisplay.formattingList(list), TypeReturn.SUCCESS);
     }
 
     public boolean firstCmd(String[] cmd) {

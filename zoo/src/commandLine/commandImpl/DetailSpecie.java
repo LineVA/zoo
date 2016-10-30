@@ -25,7 +25,7 @@ public class DetailSpecie extends AbstractCommand implements Command {
         try {
             Specie spec = super.getPlay().getZoo().findSpecieByName(cmd[1]);
            super.setSuccess(true);
-            return new ReturnExec(FormattingDisplay.formattingArrayList(spec.info(super.getPlay().getOption())),
+            return new ReturnExec(FormattingDisplay.formattingList(spec.info(super.getPlay().getOption())),
                     TypeReturn.SUCCESS);
         } catch (UnknownNameException | EmptyNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);

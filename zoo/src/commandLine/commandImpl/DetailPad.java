@@ -24,7 +24,7 @@ public class DetailPad extends AbstractCommand {
         try {
             IPaddock pad =super.getPlay().getZoo().findPaddockByName(cmd[1]);
             super.setSuccess(true);
-            return new ReturnExec(FormattingDisplay.formattingArrayList(pad.info()), TypeReturn.SUCCESS);
+            return new ReturnExec(FormattingDisplay.formattingList(pad.info()), TypeReturn.SUCCESS);
         } catch (UnknownNameException | EmptyNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }        

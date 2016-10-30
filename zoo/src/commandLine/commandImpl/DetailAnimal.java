@@ -24,7 +24,7 @@ public class DetailAnimal extends AbstractCommand {
         try {
             Animal animal = super.getPlay().getZoo().findAnimalByName(cmd[1]);
            super.setSuccess(true);
-            return new ReturnExec(FormattingDisplay.formattingArrayList(animal.info()),TypeReturn.SUCCESS);
+            return new ReturnExec(FormattingDisplay.formattingList(animal.info()),TypeReturn.SUCCESS);
         } catch (UnknownNameException | EmptyNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
