@@ -26,18 +26,7 @@ import zoo.paddock.biome.Biome;
  */
 public class LsAnimal extends AbstractCommand {
 
-    // args[0] : the argument after '--specie'
-    // args[1] : the argument after '--paddock'
-    // args[2] : the argument after '--ecoregion'
-    // args[3] : the argument after '--diet'
-    // args[4] : the argument after '--sex'
-    // args[5] : the argument after '--family'
-    // args[6] : the argument after '--conservation'
-    // args[7] : the argument after '--biome'
-    // args[8] : the argument after '--size'
-    // args[9] : the argument after '--continent'
-    // args[10] : the argument after '--breedingProgramme'
-    String[] args;
+    String specie = null;
     Set<String> sexes;
     Set<String> diets;
     Set<String> biomes;
@@ -55,17 +44,15 @@ public class LsAnimal extends AbstractCommand {
 
     @Override
     public ReturnExec execute(String[] cmd) {
-        Set<IPaddock> pad = null;
-//        Diet diet = null;
         LightSpecie spec = new LightSpecie(null, null, null, null, null, null, null, null, null);
         try {
-            if (args[0] != null) {
-                spec.setNames(super.getPlay().getZoo().findSpecieByName(args[0]).getNames());
+            if (specie != null) {
+                spec.setNames(super.getPlay().getZoo().findSpecieByName(specie).getNames());
             }
-            if(!paddocks.isEmpty()){
-                pad = this.convertToIPaddock(paddocks);
-            }
-            if (ecoregions.size() != 0) {
+//            if(!paddocks.isEmpty()){
+//                pad = this.convertToIPaddock(paddocks);
+//            }
+            if (!ecoregions.isEmpty()) {
                 spec.setEcoregion(Utils.convertToArrayListOfInteger(ecoregions));
             }
             if (!families.isEmpty()) {
@@ -85,7 +72,7 @@ public class LsAnimal extends AbstractCommand {
             }
             super.setSuccess(true);
             ArrayList<String> names = new ArrayList<>();
-            for (Animal animal : super.getPlay().getZoo().listAnimal(pad, spec, convertStringToSex(sexes),
+            for (Animal animal : super.getPlay().getZoo().listAnimal(convertToIPaddock(paddocks), spec, convertStringToSex(sexes),
                     convertStringToDiet(diets), convertStringToBiome(biomes))) {
                 names.add(animal.getName());
             }
@@ -212,7 +199,7 @@ public class LsAnimal extends AbstractCommand {
         } else if (this.hasArgumentSize(arg)) {
             sizes = SplittingAmpersand.split(value);
         } else if (this.hasArgumentSpecie(arg)) {
-            args[0] = value;
+            specie = value;
         } else if (this.hasArgumentContinent(arg)) {
             continents = SplittingAmpersand.split(value);
         } else if (this.hasArgumentBreedingProgramme(arg)) {
@@ -225,7 +212,6 @@ public class LsAnimal extends AbstractCommand {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        this.args = new String[]{null, null, null, null, null, null, null, null, null, null, null};
         sexes = new HashSet<>();
         diets = new HashSet<>();
         biomes = new HashSet<>();
