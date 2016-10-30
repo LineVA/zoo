@@ -53,15 +53,6 @@ public class LsAnimal extends AbstractCommand {
         super(play);
     }
 
-    public Set<IPaddock> convertToIPaddock(Set<String> strings)
-            throws EmptyNameException, UnknownNameException {
-        Set<IPaddock> paddocks = new HashSet<>();
-        for (String str : strings) {
-            paddocks.add(super.getPlay().getZoo().findPaddockByName(str));
-        }
-        return paddocks;
-    }
-
     @Override
     public ReturnExec execute(String[] cmd) {
         Set<IPaddock> pad = null;
@@ -70,6 +61,9 @@ public class LsAnimal extends AbstractCommand {
         try {
             if (args[0] != null) {
                 spec.setNames(super.getPlay().getZoo().findSpecieByName(args[0]).getNames());
+            }
+            if(!paddocks.isEmpty()){
+                pad = this.convertToIPaddock(paddocks);
             }
             if (ecoregions.size() != 0) {
                 spec.setEcoregion(Utils.convertToArrayListOfInteger(ecoregions));
@@ -91,7 +85,7 @@ public class LsAnimal extends AbstractCommand {
             }
             super.setSuccess(true);
             ArrayList<String> names = new ArrayList<>();
-            for (Animal animal : super.getPlay().getZoo().listAnimal(convertToIPaddock(paddocks), spec, convertStringToSex(sexes),
+            for (Animal animal : super.getPlay().getZoo().listAnimal(pad, spec, convertStringToSex(sexes),
                     convertStringToDiet(diets), convertStringToBiome(biomes))) {
                 names.add(animal.getName());
             }
@@ -130,6 +124,16 @@ public class LsAnimal extends AbstractCommand {
         }
         return biomes;
     }
+    
+      public Set<IPaddock> convertToIPaddock(Set<String> strings)
+            throws EmptyNameException, UnknownNameException {
+        Set<IPaddock> paddocks = new HashSet<>();
+        for (String str : strings) {
+            paddocks.add(super.getPlay().getZoo().findPaddockByName(str));
+        }
+        return paddocks;
+    }
+
 
     private boolean firstCmd(String[] cmd) {
         if (cmd.length >= 2) {
@@ -230,6 +234,7 @@ public class LsAnimal extends AbstractCommand {
         families = new HashSet<>();
         sizes = new HashSet<>();
         continents = new HashSet<>();
+        paddocks = new HashSet<>();
         breedingProgrammes = new HashSet<>();
         if (firstCmd(cmd) && checkLength(cmd)) {
             int i = 2;
