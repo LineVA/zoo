@@ -20,7 +20,7 @@ public class LsSex extends AbstractCommand  {
     @Override
     public ReturnExec execute(String[] cmd) {
         super.setSuccess(true);
-        return new ReturnExec(FormattingDisplay.formattingArrayList(Sex.UNKNOWN.list()), TypeReturn.SUCCESS);
+        return new ReturnExec(FormattingDisplay.formattingList(Sex.UNKNOWN.list()), TypeReturn.SUCCESS);
     }
 
     @Override
