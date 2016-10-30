@@ -4,6 +4,7 @@ import zoo.animal.conservation.BreedingProgramme;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import launch.options.Option;
@@ -37,7 +38,7 @@ public class Specie {
     @Getter
     private final BiomeAttributes specieBiome;
     @Getter
-    private final ArrayList<Integer> diets;
+    private final List<Integer> diets;
     @Getter
     private final int family;
     @Getter
@@ -57,11 +58,11 @@ public class Specie {
     @Getter
     private final int conservation;
     @Getter
-    private final ArrayList<Integer> biomes;
+    private final List<Integer> biomes;
     @Getter
     private final int size;
     @Getter
-    private final ArrayList<Integer> continents;
+    private final List<Integer> continents;
     @Getter
     private GaussianBiomeAttributes gaussianBiome;
     @Getter
@@ -80,11 +81,11 @@ public class Specie {
     int breedingProgramme;
 
     public Specie(Names names, DocumentationURI docu, BiomeAttributes biomeAtt, FeedingAttributes feeding,
-            ArrayList<Integer> diets, ReproductionAttributes repro,
+            List<Integer> diets, ReproductionAttributes repro,
             LifeSpanAttributes lifeSpan, int conservation,
             SocialAttributes social, TerritoryAttributes territory,
-            int ecoregion, int family, ArrayList<Integer> biomes,
-            int size, ArrayList<Integer> continents, int breedingProgramme) {
+            int ecoregion, int family, List<Integer> biomes,
+            int size, List<Integer> continents, int breedingProgramme) {
         this.names = names;
         this.specieBiome = biomeAtt;
         this.diets = diets;
@@ -131,8 +132,8 @@ public class Specie {
         return false;
     }
 
-    public ArrayList<String> info(Option option) throws UnknownNameException {
-        ArrayList<String> info = new ArrayList<>();
+    public List<String> info(Option option) throws UnknownNameException {
+        List<String> info = new ArrayList<>();
         ResourceBundle bundle = option.getSpecieBundle();
         info.add(bundle.getString("NAME") + this.names.getNameAccordingLanguage(option));
         info.add(bundle.getString("OTHER_NAME") + this.names.getAdditionalNamesAccordingLanguage(option));

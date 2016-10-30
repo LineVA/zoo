@@ -34,10 +34,10 @@ public class ParserSpecie {
         root = document.getRootElement();
         Names names = namesParser(root);
         BiomeAttributes biomeAtt = biomeAttributesParser(root);
-        ArrayList<Integer> diet = dietParser(root);
+        List<Integer> diet = dietParser(root);
         int region = ecoregionParser(root);
         int family = familyParser(root);
-        ArrayList<Integer> biomes = biomeParser(root);
+        List<Integer> biomes = biomeParser(root);
         FeedingAttributes feeding = feedingParser(root);
         ReproductionAttributes repro = reproductionParser(root);
         LifeSpanAttributes lifeSpan = lifeSpanParser(root);
@@ -45,7 +45,7 @@ public class ParserSpecie {
         SocialAttributes social = socialParser(root);
         TerritoryAttributes territory = territoryParser(root);
         int size = sizeParser(root);
-        ArrayList<Integer> continents = continentParser(root);
+        List<Integer> continents = continentParser(root);
         DocumentationURI docu = documentationParser(root);
         int programme = breedingProgrammeParser(root);
         Specie spec = new Specie(names, docu, biomeAtt, feeding, diet, repro, lifeSpan,
@@ -53,8 +53,8 @@ public class ParserSpecie {
         return spec;
     }
 
-    private static ArrayList<String> additionalNames(Element root) {
-        ArrayList<String> additional = new ArrayList<>();
+    private static List<String> additionalNames(Element root) {
+        List<String> additional = new ArrayList<>();
         List<Element> names = root.getChildren("name");
         for (Element name : names) {
             additional.add(name.getText());
@@ -74,8 +74,8 @@ public class ParserSpecie {
         return biome;
     }
 
-    private static ArrayList<Integer> biomeParser(Element root) {
-        ArrayList<Integer> biomes = new ArrayList<>();
+    private static List<Integer> biomeParser(Element root) {
+        List<Integer> biomes = new ArrayList<>();
         Element continentsEl = root.getChild("territory").getChild("biomes");
         List<Element> continentEl = continentsEl.getChildren("biome");
         for (Element cont : continentEl) {
@@ -84,8 +84,8 @@ public class ParserSpecie {
         return biomes;
     }
     
-     private static ArrayList<Integer> dietParser(Element root) {
-        ArrayList<Integer> diets = new ArrayList<>();
+     private static List<Integer> dietParser(Element root) {
+        List<Integer> diets = new ArrayList<>();
         Element dietsEl = root.getChild("feeding").getChild("diets");
         List<Element> dietEl = dietsEl.getChildren("diet");
         for (Element cont : dietEl) {
@@ -95,16 +95,10 @@ public class ParserSpecie {
     }
 
 
-    private static ArrayList<Integer> continentParser(Element root) {
-        ArrayList<Integer> continents = new ArrayList<>();
+    private static List<Integer> continentParser(Element root) {
+        List<Integer> continents = new ArrayList<>();
         Element continentsEl = root.getChild("general").getChild("continents");
         List<Element> continentEl = continentsEl.getChildren("continent");
-//        Iterator it = continent.iterator();
-//        Element next;
-//        while (it.hasNext()) {
-//            next = (Element) it.next();
-//            continents.add(Integer.parseInt(next.getText()));
-//        }
         for (Element cont : continentEl) {
             continents.add(Integer.parseInt(cont.getText()));
         }
