@@ -64,24 +64,16 @@ public enum Biome implements Cloneable {
     Biome(int id, double night, double day, double pluvio, double treeD,
             double treeH, double drop, double water, double humidity) {
         this.id = id;
-        if (isPositivOrZero(pluvio) && isPositivOrZero(treeD)
-                && isPositivOrZero(treeH) && isPositivOrZero(drop)
-                && isPositivOrZero(water) && isPositivOrZero(water)
-                && isPositivOrZero(humidity) && isLowerOrEqualsThanOne(humidity)) {
-            this.attributes = new BiomeAttributes(night, water, pluvio, treeD,
-                    treeH, drop, water, humidity);
-        } else {
-            throw new ExceptionInInitializerError("One or more data are incorrects ;"
-                    + " see 'man biome' for more information.");
-        }
-    }
-
-    private boolean isPositivOrZero(double test) {
-        return test >= 0.0;
-    }
-
-    private boolean isLowerOrEqualsThanOne(double test) {
-        return test <= 1.0;
+//        if (isPositivOrZero(pluvio) && isPositivOrZero(treeD)
+//                && isPositivOrZero(treeH) && isPositivOrZero(drop)
+//                && isPositivOrZero(water) && isPositivOrZero(water)
+//                && isPositivOrZero(humidity) && isLowerOrEqualsThanOne(humidity)) {
+//            this.attributes = new BiomeAttributes(night, water, pluvio, treeD,
+//                    treeH, drop, water, humidity);
+//        } else {
+//            throw new ExceptionInInitializerError("One or more data are incorrects ;"
+//                    + " see 'man biome' for more information.");
+//        }
     }
 
     /**
