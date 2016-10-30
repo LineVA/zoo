@@ -1,7 +1,6 @@
 package zoo.animal.wellbeing;
 
 import exception.name.UnknownNameException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import lombok.Getter;
@@ -187,7 +186,7 @@ public class WellBeingImpl implements WellBeing {
     private boolean isThereIncompatibleSpeciesInThePaddock(IPaddock pad, Specie currentSpec)
             throws UnknownNameException {
         boolean absenceOfIncompabilities = true;
-        ArrayList<Specie> species = pad.listSpecies();
+        List<Specie> species = pad.listSpecies();
         for (Specie spec : species) {
             if (spec != currentSpec) {
                 absenceOfIncompabilities &= currentSpec.canBeInTheSamePaddock(spec);
@@ -199,7 +198,7 @@ public class WellBeingImpl implements WellBeing {
     private boolean isAfraidBySpeciesInOtherPaddocks(IPaddock pad, Specie currentSpec)
             throws UnknownNameException {
         boolean isAfraid = false;
-        ArrayList<Specie> species = pad.listSpeciesInNeightbourhood();
+        List<Specie> species = pad.listSpeciesInNeightbourhood();
         for (Specie spec : species) {
             isAfraid |= currentSpec.canBeAfraidOf(spec);
         }
