@@ -36,20 +36,19 @@ public class LsSpecie extends AbstractCommand {
         super(play);
     }
 
-     public Set<IPaddock> convertToIPaddock(Set<String> strings)
-             throws EmptyNameException, UnknownNameException 
-          {
+    public Set<IPaddock> convertToIPaddock(Set<String> strings)
+            throws EmptyNameException, UnknownNameException {
         Set<IPaddock> paddocks = new HashSet<>();
         for (String str : strings) {
             paddocks.add(super.getPlay().getZoo().findPaddockByName(str));
         }
         return paddocks;
     }
-    
+
     @Override
     public ReturnExec execute(String[] cmd) {
+        Set<IPaddock> pad = null;
         LightSpecie light = new LightSpecie(null, null, null, null, null, null, null, null, null);
-        Set<IPaddock> pad = new HashSet<>();
         try {
             if (!paddockName.isEmpty()) {
                 pad = convertToIPaddock(paddockName);
@@ -81,9 +80,9 @@ public class LsSpecie extends AbstractCommand {
             super.setSuccess(true);
         } catch (EmptyNameException | UnknownNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
-        } catch(java.lang.NumberFormatException ex){
+        } catch (java.lang.NumberFormatException ex) {
             return new ReturnExec(
-            this.getPlay().getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION"),
+                    this.getPlay().getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION"),
                     TypeReturn.ERROR);
         }
         List<String> list = super.getPlay().getZoo().listSpecie(light, pad);
@@ -177,6 +176,7 @@ public class LsSpecie extends AbstractCommand {
         continents = new HashSet<>();
         sizes = new HashSet<>();
         breedingProgrammes = new HashSet<>();
+        paddockName = new HashSet<>();
 
         if (firstCmd(cmd) && checkLength(cmd)) {
             int i = 2;
