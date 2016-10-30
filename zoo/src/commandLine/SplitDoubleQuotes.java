@@ -1,16 +1,18 @@
 package commandLine;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Static class used to parse the cmd line into an array
+ *
  * @author doyenm
  */
 public class SplitDoubleQuotes {
 
     public static String[] split(String str) {
-        ArrayList<String> array = new ArrayList<>();
-         String[] tmp = str.split("^[ ]+");
+        List<String> array = new ArrayList<>();
+        String[] tmp = str.split("^[ ]+");
         String[] split = tmp[tmp.length - 1].split("[ ]+");
         boolean end = false;
         String current = "";
