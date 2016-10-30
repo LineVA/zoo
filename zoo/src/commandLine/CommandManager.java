@@ -42,7 +42,7 @@ public abstract class CommandManager {
                 new LsBiome(play), new LsEcoregion(play), new LsContinent(play),
                 new LsPaddockType(play), new PadTypePad(play),
                 new LsSpecie(play), new DetailSpecie(play), new LsFamily(play),
-                new LsFeeding(play), new LsSize(play),
+                new LsDiet(play), new LsSize(play),
                  save, new LoadZoo(play),
                 new Options(play), new ZooCharacteristics(play),
                 new Documentation(play),

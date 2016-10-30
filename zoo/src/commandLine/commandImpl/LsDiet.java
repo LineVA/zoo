@@ -11,9 +11,9 @@ import zoo.animal.feeding.Diet;
  *
  * @author doyenm
  */
-public class LsFeeding extends AbstractCommand  {
+public class LsDiet extends AbstractCommand  {
 
-    public LsFeeding(Play play) {
+    public LsDiet(Play play) {
         super(play);
     }
 
