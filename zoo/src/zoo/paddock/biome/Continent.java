@@ -53,7 +53,7 @@ public enum Continent {
             }
         }
         throw new UnknownNameException(
-                this.option.getContinentBundle().getString("UNKNOWN_CONTINENT"));
+                this.option.getPaddockBundle().getString("CONTINENT.UNKNOWN_CONTINENT"));
     }
 
      /**
@@ -61,7 +61,7 @@ public enum Continent {
      * @return the name of the continent, according to the current language
      */
     public String toStringByLanguage() {
-        return this.option.getContinentBundle().getString(this.toString().toUpperCase());
+        return this.option.getPaddockBundle().getString("CONTINENT." + this.toString().toUpperCase());
     }
     
       /**
@@ -72,7 +72,7 @@ public enum Continent {
         List<String> list = new ArrayList<>();
         for (Continent continent : Continent.values()) {
             list.add(continent.id + " - " +
-                    this.option.getContinentBundle().getString(continent.toString().toUpperCase()));
+                   continent.toStringByLanguage());
         }
         return list;
     }
