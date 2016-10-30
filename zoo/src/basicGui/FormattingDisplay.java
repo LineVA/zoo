@@ -4,6 +4,7 @@ package basicGui;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import zoo.paddock.PaddockCoordinates;
 
 /**
@@ -90,10 +91,10 @@ public class FormattingDisplay {
 
     /**
      * Layout for a list of Strings
-     * @param list List of strings we wneed to display
-     * @return 
+     * @param list List of strings we need to display
+     * @return a formatting String corresponding to the parameter
      */
-    public static String formattingArrayList(ArrayList<String> list) {
+    public static String formattingList(List<String> list) {
         Iterator it = list.iterator();
         String str = "";
         String finalStr = "";
@@ -107,4 +108,25 @@ public class FormattingDisplay {
         }
         return finalStr;
     }
+    
+     /**
+     * Layout for a list of Strings
+     * @param list List of strings we need to display
+     * @return a formatting String corresponding to the parameter
+     */
+    public static String formattingArrayList(List<String> list) {
+        Iterator it = list.iterator();
+        String str = "";
+        String finalStr = "";
+        while (it.hasNext()) {
+            str = (String) it.next();
+            if (it.hasNext()) {
+                finalStr += str + "\n";
+            } else {
+                finalStr += str + "\n";
+            }
+        }
+        return finalStr;
+    }
+
 }
