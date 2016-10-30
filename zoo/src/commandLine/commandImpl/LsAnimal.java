@@ -49,9 +49,6 @@ public class LsAnimal extends AbstractCommand {
             if (specie != null) {
                 spec.setNames(super.getPlay().getZoo().findSpecieByName(specie).getNames());
             }
-//            if(!paddocks.isEmpty()){
-//                pad = this.convertToIPaddock(paddocks);
-//            }
             if (!ecoregions.isEmpty()) {
                 spec.setEcoregion(Utils.convertToArrayListOfInteger(ecoregions));
             }
@@ -77,7 +74,7 @@ public class LsAnimal extends AbstractCommand {
                 names.add(animal.getName());
             }
             Collections.sort(names);
-            return new ReturnExec(FormattingDisplay.formattingArrayList(names), TypeReturn.SUCCESS);
+            return new ReturnExec(FormattingDisplay.formattingList(names), TypeReturn.SUCCESS);
         } catch (UnknownNameException | EmptyNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         } catch (NumberFormatException ex) {

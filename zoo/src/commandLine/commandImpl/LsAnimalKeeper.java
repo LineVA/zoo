@@ -31,7 +31,7 @@ public class LsAnimalKeeper extends AbstractCommand  {
             }
             super.setSuccess(true);
             return new ReturnExec(
-                    FormattingDisplay.formattingArrayList(super.getPlay().getZoo().listAnimalKeeper(paddock)),
+                    FormattingDisplay.formattingList(super.getPlay().getZoo().listAnimalKeeper(paddock)),
                     TypeReturn.SUCCESS);
         } catch (EmptyNameException | UnknownNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
