@@ -20,7 +20,7 @@ public class LsEcoregion extends AbstractCommand  {
     @Override
     public ReturnExec execute(String[] cmd) {
         super.setSuccess(true);
-        return new ReturnExec(FormattingDisplay.formattingArrayList(Ecoregion.UNKNOWN.list()), TypeReturn.SUCCESS);
+        return new ReturnExec(FormattingDisplay.formattingList(Ecoregion.UNKNOWN.list()), TypeReturn.SUCCESS);
     }
 
     @Override
