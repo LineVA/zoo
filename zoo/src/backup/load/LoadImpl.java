@@ -10,8 +10,8 @@ import exception.name.UnauthorizedNameException;
 import exception.name.UnknownNameException;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import launch.options.Option;
 import org.jdom2.JDOMException;
@@ -49,17 +49,17 @@ public class LoadImpl implements Load {
         Option option = new Option(parser.parserLanguage());
         IZoo zoo = parser.parserZoo().convertToZoo(option);
         // Creation of the paddocks
-        ArrayList<FakePaddock> padList = parser.parserPaddocks();
+        List<FakePaddock> padList = parser.parserPaddocks();
         for (FakePaddock pad : padList) {
             addFakePaddockToZoo(zoo, pad, option);
         }
         // Creation of the animals
-        ArrayList<FakeAnimal> animalList = parser.parserAnimals();
+        List<FakeAnimal> animalList = parser.parserAnimals();
         for (FakeAnimal animal : animalList) {
             addFakeAnimalToZoo(zoo, animal, option);
         }
         // Creation of the animal keepers
-        ArrayList<FakeAnimalKeeper> keeperList = parser.parserAnimalKeepers();
+        List<FakeAnimalKeeper> keeperList = parser.parserAnimalKeepers();
         for (FakeAnimalKeeper keeper : keeperList) {
             addFakeKeeperToZoo(zoo, keeper, option);
         }

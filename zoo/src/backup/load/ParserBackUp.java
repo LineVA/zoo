@@ -79,10 +79,10 @@ public class ParserBackUp {
      * Method used to parse paddocks
      * @return The list of FakePaddocks extracted from the parsed file
      */
-    public ArrayList<FakePaddock> parserPaddocks() {
+    public List<FakePaddock> parserPaddocks() {
         Element paddocksEl = zooEl.getChild("paddocks");
         List<Element> paddocksElList = paddocksEl.getChildren("paddock");
-        ArrayList<FakePaddock> paddocksList = new ArrayList<>();
+        List<FakePaddock> paddocksList = new ArrayList<>();
         for (Element tmpPadEl : paddocksElList) {
             paddocksList.add(new FakePaddock(tmpPadEl.getAttributeValue("name"),
                     Integer.parseInt(tmpPadEl.getChildText("x")),
@@ -99,8 +99,8 @@ public class ParserBackUp {
      * Extract the list of elements "animals" from the parsed file
      * @return the list
      */
-    private ArrayList<Element> findElementsAnimals() {
-        ArrayList<Element> animalsEl = new ArrayList<>();
+    private List<Element> findElementsAnimals() {
+        List<Element> animalsEl = new ArrayList<>();
         Element paddocksEl = zooEl.getChild("paddocks");
         List<Element> paddocksElList = paddocksEl.getChildren("paddock");
         paddocksElList.stream().forEach((Element el) -> animalsEl.add(el.getChild("animals")));
@@ -112,9 +112,9 @@ public class ParserBackUp {
      *
      * @return The list of FakeAnimal in the file
      */
-    public ArrayList<FakeAnimal> parserAnimals() throws IncorrectLoadException {
-        ArrayList<Element> animalsElList = findElementsAnimals();
-        ArrayList<FakeAnimal> animalList = new ArrayList<>();
+    public List<FakeAnimal> parserAnimals() throws IncorrectLoadException {
+        List<Element> animalsElList = findElementsAnimals();
+        List<FakeAnimal> animalList = new ArrayList<>();
         for (Element el : animalsElList) {
             animalList.addAll(parserAnimal(el));
         }
@@ -128,9 +128,9 @@ public class ParserBackUp {
      * @throws IncorrectLoadException if a parsed element does not respect the limitations 
      * of the animal attributes 
      */
-    private ArrayList<FakeAnimal> parserAnimal(Element animalsEl) throws IncorrectLoadException {
+    private List<FakeAnimal> parserAnimal(Element animalsEl) throws IncorrectLoadException {
         List<Element> animalsElList = animalsEl.getChildren("animal");
-        ArrayList<FakeAnimal> animalsList = new ArrayList<>();
+        List<FakeAnimal> animalsList = new ArrayList<>();
         String spec;
         String pad = animalsEl.getParentElement().getAttributeValue("name");
         int sex;
@@ -286,13 +286,13 @@ public class ParserBackUp {
      * Extract the list of fake keepers of the zoo
      * @return the list of fake animal keepers in the parsed file
      */
-    public ArrayList<FakeAnimalKeeper> parserAnimalKeepers() {
-        ArrayList<FakeAnimalKeeper> keepers = new ArrayList<>();
+    public List<FakeAnimalKeeper> parserAnimalKeepers() {
+        List<FakeAnimalKeeper> keepers = new ArrayList<>();
         Element keepersEl = this.zooEl.getChild("animalKeepers");
         List<Element> keeperListEl = keepersEl.getChildren("animalKeeper");
-        for (Element el : keeperListEl) {
+        keeperListEl.stream().forEach((el) -> {
             keepers.add(parserAnimalKeeper(el));
-        }
+        });
         return keepers;
     }
 
