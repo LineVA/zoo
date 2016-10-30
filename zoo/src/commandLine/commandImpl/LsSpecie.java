@@ -13,7 +13,6 @@ import java.util.HashSet;
 import java.util.Set;
 import launch.play.Play;
 import utils.Utils;
-import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.LightSpecie;
 import zoo.paddock.IPaddock;
 
@@ -23,16 +22,6 @@ import zoo.paddock.IPaddock;
  */
 public class LsSpecie extends AbstractCommand {
 
-    // args[0] : the argument after '--paddock'
-    // args[1] : the argument after '--biome'
-    // args[2] : the argument after '--ecoregion'
-    // args[3] : the argument after '--diet'
-    // args[4] : the argument after '--family'
-    // args[5] : the argument after '--conservation'
-    // args[6] : the argument after '--size'
-    // args[7] : the argument after '--continent'
-    // args[8 : the argument after '--breedingProgramme'
-    ArrayList<String>[] args;
     Set<String> paddockName;
     Set<String> biomes;
     Set<String> ecoregions;
@@ -62,31 +51,31 @@ public class LsSpecie extends AbstractCommand {
         LightSpecie light = new LightSpecie(null, null, null, null, null, null, null, null, null);
         Set<IPaddock> pad = new HashSet<>();
         try {
-            if (paddockName.size()!= 0) {
+            if (!paddockName.isEmpty()) {
                 pad = convertToIPaddock(paddockName);
             }
-            if (biomes.size() != 0) {
+            if (!biomes.isEmpty()) {
                 light.setBiome(Utils.convertToArrayListOfInteger(biomes));
             }
-            if (ecoregions.size() != 0) {
+            if (!ecoregions.isEmpty()) {
                 light.setEcoregion(Utils.convertToArrayListOfInteger(ecoregions));
             }
-            if (diets.size() != 0) {
+            if (!diets.isEmpty()) {
                 light.setDiet(Utils.convertToArrayListOfInteger(diets));
             }
-            if (families.size() != 0) {
+            if (!families.isEmpty()) {
                 light.setFamily(Utils.convertToArrayListOfInteger(families));
             }
-            if (conservations.size() != 0) {
+            if (!conservations.isEmpty()) {
                 light.setConservation(Utils.convertToArrayListOfInteger(conservations));
             }
-            if (sizes.size() != 0) {
+            if (!sizes.isEmpty()) {
                 light.setSize(Utils.convertToArrayListOfInteger(sizes));
             }
-            if (continents.size() != 0) {
+            if (!continents.isEmpty()) {
                 light.setContinent(Utils.convertToArrayListOfInteger(continents));
             }
-            if (breedingProgrammes.size() != 0) {
+            if (!breedingProgrammes.isEmpty()) {
                 light.setBreedingProgramme(Utils.convertToArrayListOfInteger(breedingProgrammes));
             }
             super.setSuccess(true);
@@ -180,7 +169,6 @@ public class LsSpecie extends AbstractCommand {
 
     @Override
     public boolean canExecute(String[] cmd) {
-//        this.args = new Set<String>[9];
         biomes = new HashSet<>();
         ecoregions = new HashSet<>();
         families = new HashSet<>();
