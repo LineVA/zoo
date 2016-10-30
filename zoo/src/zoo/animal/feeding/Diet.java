@@ -146,7 +146,7 @@ public enum Diet {
     }
 
     /**
-     * Find a dietaccording to its name and the current language
+     * Find a diet according to its name and the current language
      * @param name the name to search
      * @return the corresponding diet
      * @throws UnknownNameException if the name matches none of the diets 
