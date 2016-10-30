@@ -20,7 +20,7 @@ public class LsContinent extends AbstractCommand  {
     @Override
     public ReturnExec execute(String[] cmd) {
         super.setSuccess(true);
-        return new ReturnExec(FormattingDisplay.formattingArrayList(Continent.UNKNOWN.list()), TypeReturn.SUCCESS);
+        return new ReturnExec(FormattingDisplay.formattingList(Continent.UNKNOWN.list()), TypeReturn.SUCCESS);
     }
 
     @Override
