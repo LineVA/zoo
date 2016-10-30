@@ -25,21 +25,15 @@ import zoo.BirthObservable;
 import zoo.NameVerifications;
 import zoo.animal.Animal;
 import zoo.animal.AnimalImpl;
-import zoo.animal.conservation.BreedingProgramme;
-import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.death.DieImpl;
 import zoo.animal.death.IDie;
 import zoo.animal.feeding.Diet;
-import zoo.animal.feeding.Size;
 import zoo.animal.reproduction.Reproduction;
 import zoo.animal.reproduction.ReproductionImpl;
 import zoo.animal.reproduction.Sex;
-import zoo.animal.specie.Family;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
 import zoo.animalKeeper.AnimalKeeper;
-import zoo.paddock.biome.Continent;
-import zoo.paddock.biome.Ecoregion;
 
 /**
  *
@@ -52,11 +46,11 @@ public class Paddock implements IPaddock {
     /**
      * The name of the paddock
      */
-    private final String name;
+    private String name;
     /**
      * Its coordinates
      */
-    private final PaddockCoordinates coordinates;
+    private PaddockCoordinates coordinates;
     /**
      * Its biome's id
      */
@@ -85,7 +79,7 @@ public class Paddock implements IPaddock {
         this.name = name;
         this.coordinates = coor;
         this.biome = biome;
-        this.attributes = (BiomeAttributes) Biome.NONE.getAttributes().clone();
+//        this.attributes = (BiomeAttributes) Biome.NONE.getAttributes().clone();
         this.animals = animals;
         this.neightbourhood = neightbourhood;
         this.paddockType = paddockType;
