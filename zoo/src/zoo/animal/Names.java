@@ -1,12 +1,10 @@
 package zoo.animal;
 
-import exception.name.UnknownNameException;
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
 import launch.options.Option;
 import lombok.Getter;
-import zoo.paddock.biome.Continent;
 
 /**
  *
@@ -17,16 +15,16 @@ public class Names {
     @Getter
     private final String frenchName;
     @Getter
-    private final ArrayList<String> additionalFrenchNames;
+    private final List<String> additionalFrenchNames;
     @Getter
     private final String englishName;
     @Getter
-    private final ArrayList<String> additionalEnglishNames;
+    private final List<String> additionalEnglishNames;
     @Getter
     private final String scientificName;
 
     public Names(String frenchName, String englishName, String scientificName,
-            ArrayList<String> additionalFrenchNames, ArrayList<String> additionalEnglishNames) {
+            List<String> additionalFrenchNames, List<String> additionalEnglishNames) {
         this.frenchName = frenchName;
         this.englishName = englishName;
         this.scientificName = scientificName;
@@ -72,7 +70,7 @@ public class Names {
         return true;
     }
 
-     private String additionalNamesToString(ArrayList<String> names) {
+     private String additionalNamesToString(List<String> names) {
         String info = "";
         String next;
         Iterator it = names.iterator();
