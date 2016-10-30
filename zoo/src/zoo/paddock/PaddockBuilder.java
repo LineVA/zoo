@@ -4,6 +4,7 @@ import exception.name.EmptyNameException;
 import exception.name.UnauthorizedNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import launch.options.Option;
@@ -19,7 +20,7 @@ public class PaddockBuilder {
     private PaddockCoordinates _coordinates;
     private Map<String, Animal> _animals = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     private int _paddockType = 0;
-    private ArrayList<IPaddock> _neightbourhood = new ArrayList<>();
+    private List<IPaddock> _neightbourhood = new ArrayList<>();
     private Option _option;
     private int _biome = 0;
 
@@ -44,7 +45,7 @@ public class PaddockBuilder {
         return this;
     }
 
-    public PaddockBuilder neightbourhood(ArrayList<IPaddock> _neightbourhood) {
+    public PaddockBuilder neightbourhood(List<IPaddock> _neightbourhood) {
         this._neightbourhood = _neightbourhood;
         return this;
     }
