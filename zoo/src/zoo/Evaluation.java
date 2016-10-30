@@ -6,6 +6,7 @@ import exception.name.EmptyNameException;
 import exception.name.NameException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import zoo.animal.specie.Family;
 import zoo.animal.specie.Specie;
@@ -22,8 +23,8 @@ public class Evaluation {
     }
 
     public double evaluate(Map<String, IPaddock> paddocks) {
-        ArrayList<Specie> presentedSpecies = new ArrayList<>();
-        ArrayList<Specie> localPresentedSpecies = new ArrayList<>();
+        List<Specie> presentedSpecies = new ArrayList<>();
+        List<Specie> localPresentedSpecies = new ArrayList<>();
         int kidsNb = 0;
         for (Map.Entry<String, IPaddock> padEntry : paddocks.entrySet()) {
             kidsNb += padEntry.getValue().countNonMatureAnimals();
@@ -32,7 +33,7 @@ public class Evaluation {
         return kidsNb * 1 + presentedSpecies.size() * 1 + familyEvaluation(presentedSpecies);
     }
     
-    private int familyEvaluation(ArrayList<Specie> species) {
+    private int familyEvaluation(List<Specie> species) {
         int[] families = familiesArrayFilling(species);
         int familiesNb = 0;
         int byThree = 0;
@@ -47,7 +48,7 @@ public class Evaluation {
         return familiesNb / 3 + byThree;
     }
 
-    private int[] familiesArrayFilling(ArrayList<Specie> species) {
+    private int[] familiesArrayFilling(List<Specie> species) {
         int[] families = new int[Family.values().length];
         species.stream().map((spec) -> spec.getFamily()).forEach((fam) -> {
             families[fam] += 1;
@@ -55,9 +56,9 @@ public class Evaluation {
         return families;
     }
 
-    public ArrayList<String> ageing(Map<String, IPaddock> paddocks, int monthsPerEvaluation)
+    public List<String> ageing(Map<String, IPaddock> paddocks, int monthsPerEvaluation)
             throws IncorrectDataException, EmptyNameException, NameException, IncorrectLoadException {
-        ArrayList<String> info = new ArrayList<>();
+        List<String> info = new ArrayList<>();
         for (HashMap.Entry<String, IPaddock> padEntry : paddocks.entrySet()) {
             padEntry.getValue().ageing(monthsPerEvaluation);
             info.addAll(padEntry.getValue().birth(monthsPerEvaluation));

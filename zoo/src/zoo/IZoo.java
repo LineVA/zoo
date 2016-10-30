@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import backup.save.SaveImpl;
 import exception.IncorrectLoadException;
 import exception.name.NameException;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import launch.options.Option;
@@ -85,7 +86,7 @@ public interface IZoo {
 
     public ArrayList<String> listSpecie(LightSpecie lightSpecie, Set<IPaddock> paddock);
 
-    public ArrayList<String> ageing() throws IncorrectDataException, NameException, IncorrectLoadException;
+    public List<String> ageing() throws IncorrectDataException, NameException, IncorrectLoadException;
 
     public double grade() throws UnknownNameException, EmptyNameException;
 

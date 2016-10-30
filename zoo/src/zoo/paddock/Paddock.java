@@ -14,6 +14,7 @@ import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
 import exception.name.UnauthorizedNameException;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import launch.options.Option;
@@ -530,7 +531,7 @@ public class Paddock implements IPaddock {
     }
 
     @Override
-    public ArrayList<Specie> listSpecies(ArrayList<Specie> presentedSpecies) {
+    public List<Specie> listSpecies(List<Specie> presentedSpecies) {
         this.animals.entrySet().stream().filter((animalEntry)
                 -> (!presentedSpecies.contains(animalEntry.getValue().getSpecie()))).forEach((animalEntry) -> {
                     presentedSpecies.add(animalEntry.getValue().getSpecie());

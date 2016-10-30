@@ -13,6 +13,7 @@ import backup.save.SaveImpl;
 import exception.IncorrectLoadException;
 import exception.name.NameException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.ResourceBundle;
@@ -372,7 +373,7 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public ArrayList<String> ageing()
+    public List<String> ageing()
             throws IncorrectDataException, NameException, EmptyNameException, IncorrectLoadException {
         this.age += this.monthsPerEvaluation;
         return new Evaluation().ageing(this.paddocks, this.monthsPerEvaluation);

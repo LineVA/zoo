@@ -8,6 +8,7 @@ import backup.save.SaveImpl;
 import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import launch.options.Option;
@@ -66,7 +67,7 @@ public interface IPaddock {
 
     public ArrayList<String> listSpeciesByName();
 
-    public ArrayList<Specie> listSpecies(ArrayList<Specie> presentedSpecies);
+    public List<Specie> listSpecies(List<Specie> presentedSpecies);
 
     public ArrayList<Specie> listSpecies();
     
