@@ -24,6 +24,8 @@ Liste des commandes :
 > paddock <name> : Affichage des détails de l'enclos 'name'
 > paddock <name> [--biome|-b] <id|name2> : Attribution du biome d'identifiant 'id' 
         ou de nom 'name2' à l'enclos 'name'
+> paddock <name> [-pT|--padT|--paddockType] <id>: Attribution du type d'enclos d'identifiant 'id'
+        à lenclos 'name'
 > paddock remove <name> : Suppression du paddock 'name'
 
 > animal create <name> <enclos> <espece> <sexe> : Création d'un animal nommé 'name', 
@@ -89,3 +91,4 @@ Liste des commandes :
 > diet ls : Liste des régimes
 > task ls : Liste des tâches attribuables à un soigneur
 > breedingProgramme : Liste des programmes de conservation
+> paddockType ls : Liste des types d'enclos
