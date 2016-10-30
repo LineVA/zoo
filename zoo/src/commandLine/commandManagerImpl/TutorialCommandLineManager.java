@@ -5,7 +5,7 @@ import commandLine.CommandManager;
 import commandLine.ReturnExec;
 import commandLine.SplitDoubleQuotes;
 import commandLine.TypeReturn;
-import java.util.ArrayList;
+import java.util.List;
 import launch.play.Play;
 import launch.play.Step;
 
@@ -15,10 +15,10 @@ import launch.play.Step;
  */
 public class TutorialCommandLineManager extends CommandManager {
 
-    ArrayList<Step> steps;
+    List<Step> steps;
     int i = 0;
 
-    public TutorialCommandLineManager(Play play, ArrayList<Step> steps) {
+    public TutorialCommandLineManager(Play play, List<Step> steps) {
         super(play, null);
         this.steps = steps;
         super.setFirstLine(steps.get(0).getPrevious());
