@@ -3,6 +3,7 @@ package zoo.animal.feeding;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import launch.options.Option;
 import lombok.Getter;
 
@@ -128,7 +129,7 @@ public enum Diet {
      * @throws UnknownNameException if one of the integer in parameters doest not match
      * with any diet of the enumeration
      */
-    public boolean isCompatible(ArrayList<Integer> diets) throws UnknownNameException {
+    public boolean isCompatible(List<Integer> diets) throws UnknownNameException {
         boolean result = false;
         for (Integer diet : diets) {
             result = result || (!this.canBeEatenBy(diet) && !Diet.NONE.findById(diet).canBeEatenBy(this.id));
@@ -165,8 +166,8 @@ public enum Diet {
      * List all of the diets
      * @return the list, each item corresponding to an element of the enumeration
      */
-    public ArrayList<String> list() {
-        ArrayList<String> list = new ArrayList<>();
+    public List<String> list() {
+        List<String> list = new ArrayList<>();
         for (Diet diet : Diet.values()) {
             list.add(diet.id + " - " + this.option.getDietBundle().getString(diet.toString().toUpperCase())
                     + " : " + this.option.getDietBundle().getString(diet.toString().toUpperCase() + "_DESCRIPTION"));
