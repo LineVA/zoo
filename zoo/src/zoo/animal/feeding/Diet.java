@@ -7,7 +7,7 @@ import launch.options.Option;
 import lombok.Getter;
 
 /**
- *
+ * The diets
  * @author doyenm
  */
 public enum Diet {
@@ -44,9 +44,14 @@ public enum Diet {
 
     @Getter
     int id;
+    /**
+     * Indicates if the line can be eaten by the column
+     */
     boolean[][] eatables;
 
-//    private static ResourceBundle bundle;
+    /**
+     * Optionused to know the current language
+     */
     private Option option;
 
     Diet(int id) {
@@ -60,6 +65,10 @@ public enum Diet {
         }
     }
 
+    /**
+     * Fill the eatables array
+     * A carnivore can eat everyone
+     */
     public void fill() {
         eatables = new boolean[27][27];
         Arrays.fill(this.eatables[0], false);
@@ -94,6 +103,12 @@ public enum Diet {
         }
     }
 
+    /**
+     * Find a diet by its identifier
+     * @param id the identifier to search
+     * @return the corresponding diet
+     * @throws UnknownNameException if tno diet matches the identifier 
+     */
     public Diet findById(int id) throws UnknownNameException {
         for (Diet diet : Diet.values()) {
             if (diet.getId() == id) {
@@ -104,6 +119,15 @@ public enum Diet {
                 this.option.getDietBundle().getString("UNKNOWN_DIET_BY_ID"));
     }
 
+    /**
+     * Indicates if several diets are compatible with the current one : 
+     * the current cannot eat the ones given in parameters and
+     * the ones if parameter cannot eat the current one
+     * @param diets  list of diets to check
+     * @return true if they are all compatible with the current one
+     * @throws UnknownNameException if one of the integer in parameters doest not match
+     * with any diet of the enumeration
+     */
     public boolean isCompatible(ArrayList<Integer> diets) throws UnknownNameException {
         boolean result = false;
         for (Integer diet : diets) {
@@ -112,10 +136,21 @@ public enum Diet {
         return result;
     }
 
+    /**
+     * Check if the parameter can be eaten by the current one
+     * @param diet the diet to check
+     * @return true if it can be eaten by the current one
+     */
     public boolean canBeEatenBy(int diet) {
         return this.eatables[diet][this.id];
     }
 
+    /**
+     * Find a dietaccording to its name and the current language
+     * @param name the name to search
+     * @return the corresponding diet
+     * @throws UnknownNameException if the name matches none of the diets 
+     */
     public Diet findDietByNameAccordingToLanguage(String name) throws UnknownNameException {
         for (Diet diet : Diet.values()) {
             if (diet.toStringByLanguage().equalsIgnoreCase(name)) {
@@ -126,6 +161,10 @@ public enum Diet {
                 this.option.getDietBundle().getString("UNKNOWN_DIET_BY_NAME"));
     }
 
+    /**
+     * List all of the diets
+     * @return the list, each item corresponding to an element of the enumeration
+     */
     public ArrayList<String> list() {
         ArrayList<String> list = new ArrayList<>();
         for (Diet diet : Diet.values()) {
@@ -135,6 +174,10 @@ public enum Diet {
         return list;
     }
 
+    /**
+     * toString with the current language
+     * @return the name of the diet, according to the current language
+     */
     public String toStringByLanguage() {
         return this.option.getDietBundle().getString(this.toString().toUpperCase());
     }

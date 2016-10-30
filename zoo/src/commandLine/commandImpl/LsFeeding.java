@@ -20,7 +20,7 @@ public class LsFeeding extends AbstractCommand  {
     @Override
     public ReturnExec execute(String[] cmd) {
         super.setSuccess(true);
-        return new ReturnExec(FormattingDisplay.formattingArrayList(Diet.NONE.list()), TypeReturn.SUCCESS);
+        return new ReturnExec(FormattingDisplay.formattingList(Diet.NONE.list()), TypeReturn.SUCCESS);
     }
 
     @Override
