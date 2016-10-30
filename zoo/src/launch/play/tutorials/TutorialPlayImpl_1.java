@@ -2,6 +2,7 @@ package launch.play.tutorials;
 
 import commandLine.commandManagerImpl.TutorialCommandLineManager;
 import java.util.ArrayList;
+import java.util.List;
 import launch.play.Play;
 import launch.play.Step;
 import zoo.animal.Animal;
@@ -24,8 +25,8 @@ public class TutorialPlayImpl_1 extends Play {
         super.setManager(new TutorialCommandLineManager(this, this.buildTutorial()));
     }
 
-    public ArrayList<Step> buildTutorial() {
-        ArrayList<Step> steps = new ArrayList<>();
+    public List<Step> buildTutorial() {
+        List<Step> steps = new ArrayList<>();
         // Step 1 : creation of the zoo
         steps.add(new Step(super.getZoo(), "First, you need to create your zoo", "Your zoo is now created",
                 "Use the command 'zoo create <name> <width> <height>' ; "
@@ -76,7 +77,7 @@ public class TutorialPlayImpl_1 extends Play {
                 + "see 'man animal' for more information") {
                     @Override
                     public boolean check() {
-                        ArrayList<Animal> animals = super.getZoo().getAnimals(friendScenario);
+                        List<Animal> animals = super.getZoo().getAnimals(friendScenario);
                         for (Animal animal : animals) {
                             for (Animal animal2 : animals) {
                                 if ((animal.getSex() != animal2.getSex())
