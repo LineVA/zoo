@@ -152,7 +152,7 @@ public enum Diet {
      * @return the corresponding diet
      * @throws UnknownNameException if the name matches none of the diets 
      */
-    public Diet findDietByNameAccordingToLanguage(String name) throws UnknownNameException {
+    public Diet findByNameAccordingToLanguage(String name) throws UnknownNameException {
         for (Diet diet : Diet.values()) {
             if (diet.toStringByLanguage().equalsIgnoreCase(name)) {
                 return diet;
