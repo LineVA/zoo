@@ -60,7 +60,7 @@ public enum Size {
       public ArrayList<String> list(){
          ArrayList<String> list = new ArrayList<>();
         for (Size size : Size.values()) {
-            list.add(
+            list.add(size.id + " - " + 
                     this.option.getSizeBundle().getString(size.toString().toUpperCase()));
         }
         return list;
