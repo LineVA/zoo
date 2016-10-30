@@ -4,9 +4,10 @@ import basicGui.FormattingDisplay;
 import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
+import java.util.Collections;
+import java.util.List;
 import launch.play.Play;
 import zoo.animal.conservation.BreedingProgramme;
-import zoo.animal.conservation.ConservationStatus;
 
 /**
  *
@@ -21,7 +22,9 @@ public class LsBreedingProgramme extends AbstractCommand{
     @Override
     public ReturnExec execute(String[] cmd) {
         super.setSuccess(true);
-        return new ReturnExec(FormattingDisplay.formattingArrayList(BreedingProgramme.NONE.list()), TypeReturn.SUCCESS);
+        List<String> list = BreedingProgramme.NONE.list();
+        return new ReturnExec(FormattingDisplay.formattingList(list), 
+                TypeReturn.SUCCESS);
     }
 
     @Override
