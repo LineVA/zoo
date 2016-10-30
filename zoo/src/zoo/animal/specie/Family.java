@@ -97,7 +97,7 @@ public enum Family {
             }
         }
         throw new UnknownNameException(
-                this.option.getFamilyBundle().getString("UNKNOWN_NAME"));
+                this.option.getSpecieBundle().getString("FAMILY.UNKNOWN_NAME"));
     }
     
      /**
@@ -106,7 +106,7 @@ public enum Family {
      */
      public String toStringByLanguage(){
          return this.toString();
-//        return this.option.getFamilyBundle().getString(this.toString().toUpperCase());
+//        return this.option.getFamilyBundle().getString("FAMILY." + this.toString().toUpperCase());
     }
      
        /**
