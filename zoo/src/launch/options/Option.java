@@ -41,8 +41,6 @@ public class Option {
     @Getter
     private ResourceBundle familyBundle;
     @Getter
-    private ResourceBundle sizeBundle;
-    @Getter
     private ResourceBundle keeperBundle;
 
     public Option() {
@@ -72,7 +70,6 @@ public class Option {
         this.conservationBundle = ResourceBundle.getBundle("i18n.animal.conservation.conservation", locale);
         this.ecoregionBundle = ResourceBundle.getBundle("i18n.paddock.ecoregion", locale);
         this.familyBundle = ResourceBundle.getBundle("i18n.specie.family", locale);
-        this.sizeBundle = ResourceBundle.getBundle("i18n.animal.feeding.size", locale);
         this.keeperBundle = ResourceBundle.getBundle("i18n.animalKeeper.keeper", locale);
     }
 

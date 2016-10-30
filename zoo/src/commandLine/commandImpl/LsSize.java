@@ -5,7 +5,7 @@ import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import launch.play.Play;
-import zoo.animal.feeding.Size;
+import zoo.animal.specie.Size;
 
 /**
  *

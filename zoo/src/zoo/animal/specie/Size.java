@@ -1,4 +1,4 @@
-package zoo.animal.feeding;
+package zoo.animal.specie;
 
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public enum Size {
      * @return the name of the size
      */
     public String toStringByLanguage(){
-        return this.option.getSizeBundle().getString(this.toString().toUpperCase());
+        return this.option.getSpecieBundle().getString("SIZE." + this.toString().toUpperCase());
     }
     
     /**
@@ -90,7 +90,7 @@ public enum Size {
          List<String> list = new ArrayList<>();
         for (Size size : Size.values()) {
             list.add(size.id + " - " + 
-                    this.option.getSizeBundle().getString(size.toString().toUpperCase()));
+                    size.toStringByLanguage());
         }
         return list;
     }

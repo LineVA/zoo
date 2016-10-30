@@ -16,7 +16,6 @@ import zoo.animal.death.LifeSpanAttributes;
 import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.feeding.GaussianFeedingAttributes;
-import zoo.animal.feeding.Size;
 import zoo.animal.reproduction.GaussianReproductionAttributes;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.GaussianSocialAttributes;
