@@ -20,7 +20,7 @@ public class LsFamily extends AbstractCommand  {
     @Override
     public ReturnExec execute(String[] cmd) {
         super.setSuccess(true);
-        return new ReturnExec(FormattingDisplay.formattingArrayList(Family.UNKNOWN.list()), TypeReturn.SUCCESS);
+        return new ReturnExec(FormattingDisplay.formattingList(Family.UNKNOWN.list()), TypeReturn.SUCCESS);
     }
 
     @Override
