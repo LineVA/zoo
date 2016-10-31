@@ -154,6 +154,7 @@ public class Specie {
         info.add(bundle.getString("SOCIAL_ATT") + this.specieSocial.toStringByLanguage(option));
         info.add(bundle.getString("FEEDING_ATT") + this.specieFeeding.toStringByLanguage(option));
         info.add(bundle.getString("TERRITORY_ATT") + this.specieTerritory.toStringByLanguage(option));
+        info.add(bundle.getString("TAGS") + this.tags.toString());
         info.add(bundle.getString("ADD_INFO"));
         return info;
     }
