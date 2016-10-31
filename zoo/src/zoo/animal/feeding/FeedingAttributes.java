@@ -31,6 +31,6 @@ public class FeedingAttributes {
     }
     
     public String toStringByLanguage(Option option){
-        return option.getDietBundle().getString("FOOD_QUANTITY") + Utils.truncate(this.foodQuantity);
+        return option.getSpecieBundle().getString("DIET.FOOD_QUANTITY") + Utils.truncate(this.foodQuantity);
     }
 }

@@ -117,7 +117,7 @@ public enum Diet {
             }
         }
         throw new UnknownNameException(
-                this.option.getDietBundle().getString("UNKNOWN_DIET_BY_ID"));
+                this.option.getSpecieBundle().getString("DIET.UNKNOWN_DIET_BY_ID"));
     }
 
     /**
@@ -159,7 +159,7 @@ public enum Diet {
             }
         }
         throw new UnknownNameException(
-                this.option.getDietBundle().getString("UNKNOWN_DIET_BY_NAME"));
+                this.option.getSpecieBundle().getString("DIET.UNKNOWN_DIET_BY_NAME"));
     }
 
     /**
@@ -169,8 +169,8 @@ public enum Diet {
     public List<String> list() {
         List<String> list = new ArrayList<>();
         for (Diet diet : Diet.values()) {
-            list.add(diet.id + " - " + this.option.getDietBundle().getString(diet.toString().toUpperCase())
-                    + " : " + this.option.getDietBundle().getString(diet.toString().toUpperCase() + "_DESCRIPTION"));
+            list.add(diet.id + " - " + diet.toStringByLanguage()
+                    + " : " + this.option.getSpecieBundle().getString("DIET." + diet.toString().toUpperCase() + "_DESCRIPTION"));
         }
         return list;
     }
@@ -180,6 +180,6 @@ public enum Diet {
      * @return the name of the diet, according to the current language
      */
     public String toStringByLanguage() {
-        return this.option.getDietBundle().getString(this.toString().toUpperCase());
+        return this.option.getSpecieBundle().getString("DIET." + this.toString().toUpperCase());
     }
 }

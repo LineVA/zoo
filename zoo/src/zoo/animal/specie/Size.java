@@ -60,7 +60,7 @@ public enum Size {
             }
         }
         throw new UnknownNameException(
-                this.option.getDietBundle().getString("UNKNOWN_SIZE_BY_ID"));
+                this.option.getSpecieBundle().getString("SIZE.UNKNOWN_SIZE_BY_ID"));
     }
     
     /**
