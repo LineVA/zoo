@@ -18,6 +18,8 @@ public class SaveZoo extends AbstractCommand {
         super(play);
     }
 
+    private String fileName = null;
+
     public ReturnExec confirmSaving(String[] cmd) {
         super.setSaving(false);
         if (cmd.length == 1) {
@@ -30,7 +32,11 @@ public class SaveZoo extends AbstractCommand {
 
     private ReturnExec executeSaving(Save saveProcess, String[] cmd) {
         try {
-            saveProcess.saveZoo(super.getPlay().getZoo(), cmd[0]);
+            if (fileName == null) {
+                saveProcess.saveZoo(super.getPlay().getZoo(), cmd[1]);
+            } else {
+                saveProcess.saveZoo(super.getPlay().getZoo(), fileName);
+            }
             super.setSuccess(true);
             return new ReturnExec(super.getPlay().getOption().getGeneralCmdBundle()
                     .getString("SAVE_SUCCESS"), TypeReturn.SUCCESS);
@@ -42,6 +48,7 @@ public class SaveZoo extends AbstractCommand {
     private ReturnExec checkBeforeSaving(Save saveProcess, String[] cmd) {
         try {
             if (saveProcess.isFileAlreadyExisting(cmd[1])) {
+                this.fileName = cmd[1];
                 super.setSaving(true);
                 return new ReturnExec(
                         "Un fichier portant ce nom existe déjà. Voulez-vous l'écraser définitivement ? ",
