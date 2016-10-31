@@ -42,14 +42,6 @@ public class Option {
      */
     @Getter
     private ResourceBundle specieBundle;
-    @Getter
-    private ResourceBundle reproductionBundle;
-    @Getter
-    private ResourceBundle lifespanBundle;
-    @Getter
-    private ResourceBundle socialBundle;
-    @Getter
-    private ResourceBundle territoryBundle;
      /**
      * Messages about an animal keeper
      */
@@ -82,10 +74,6 @@ public class Option {
         this.paddockBundle = ResourceBundle.getBundle("i18n.paddock.paddock", locale);
         this.animalBundle = ResourceBundle.getBundle("i18n.animal.animal", locale);
         this.specieBundle = ResourceBundle.getBundle("i18n.specie.specie", locale);
-        this.reproductionBundle = ResourceBundle.getBundle("i18n.animal.reproduction.reproduction", locale);
-        this.lifespanBundle = ResourceBundle.getBundle("i18n.animal.lifespan.lifespan", locale);
-        this.socialBundle = ResourceBundle.getBundle("i18n.animal.social.social", locale);
-        this.territoryBundle = ResourceBundle.getBundle("i18n.animal.territory.territory", locale);
         this.keeperBundle = ResourceBundle.getBundle("i18n.animalKeeper.keeper", locale);
     }
 

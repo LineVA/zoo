@@ -56,7 +56,7 @@ public enum Sex {
             }
         }
         throw new UnknownNameException(
-                this.option.getReproductionBundle().getString("UNKNOWN_SEX"));
+                this.option.getAnimalBundle().getString("REPRODUCTION.UNKNOWN_SEX"));
     }
 
       /**
@@ -72,7 +72,7 @@ public enum Sex {
             }
         }
         throw new UnknownNameException(
-                this.option.getReproductionBundle().getString("UNKNOWN_SEX"));
+                this.option.getAnimalBundle().getString("REPRODUCTION.UNKNOWN_SEX"));
     }
 
      /**
@@ -80,7 +80,7 @@ public enum Sex {
      * @return the name of the sex, according to the current language
      */
     public String toStringByLanguage() {
-        return this.option.getReproductionBundle().getString(this.toString().toUpperCase());
+        return this.option.getAnimalBundle().getString("REPRODUCTION." + this.toString().toUpperCase());
     }
 
       /**
@@ -91,7 +91,7 @@ public enum Sex {
         List<String> list = new ArrayList<>();
         for (Sex sex : Sex.values()) {
             list.add(
-                    sex.getId() + " - " + this.option.getReproductionBundle().getString(sex.toString().toUpperCase()));
+                    sex.getId() + " - " + sex.toStringByLanguage());
         }
         return list;
     }

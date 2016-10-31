@@ -23,6 +23,6 @@ public class LifeSpanLightAttributes {
     }
 
     public String toStringByLanguage(Option option) {
-        return option.getLifespanBundle().getString("LIFESPAN") + this.lifeSpan;
+        return option.getAnimalBundle().getString("LIFESPAN.LIFESPAN") + this.lifeSpan;
     }
 }

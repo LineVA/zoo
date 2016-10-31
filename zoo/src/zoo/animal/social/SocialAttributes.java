@@ -25,7 +25,7 @@ public class SocialAttributes {
     
     public String toStringByLanguage(Option option){
         String toStr = "";
-        toStr += option.getSocialBundle().getString("GROUP_SIZE") + this.groupSize;
+        toStr += option.getAnimalBundle().getString("SOCIAL.GROUP_SIZE") + this.groupSize;
         return toStr;
     }
 }

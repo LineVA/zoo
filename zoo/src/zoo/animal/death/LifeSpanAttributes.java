@@ -31,10 +31,10 @@ public class LifeSpanAttributes {
     }
 
     public String toStringByLanguage(Option option) {
-        ResourceBundle bundle = option.getLifespanBundle();
+        ResourceBundle bundle = option.getAnimalBundle();
         String info = "";
-        info += bundle.getString("FEMALE_LIFESPAN") + this.femaleLifeSpan + ", ";
-        info += bundle.getString("MALE_LIFESPAN") + this.maleLifeSpan;
+        info += bundle.getString("LIFESPAN.FEMALE_LIFESPAN") + this.femaleLifeSpan + ", ";
+        info += bundle.getString("LIFESPAN.MALE_LIFESPAN") + this.maleLifeSpan;
         return info;
     }
 }
