@@ -81,14 +81,14 @@ public class Specie {
     @Getter
     int breedingProgramme;
     @Getter
-    Set<String> tags;
+    Tags tags;
 
     public Specie(Names names, DocumentationURI docu, BiomeAttributes biomeAtt, FeedingAttributes feeding,
             List<Integer> diets, ReproductionAttributes repro,
             LifeSpanAttributes lifeSpan, int conservation,
             SocialAttributes social, TerritoryAttributes territory,
             int ecoregion, int family, List<Integer> biomes,
-            int size, List<Integer> continents, int breedingProgramme, Set<String> tags) {
+            int size, List<Integer> continents, int breedingProgramme, Tags tags) {
         this.names = names;
         this.specieBiome = biomeAtt;
         this.diets = diets;
@@ -224,15 +224,20 @@ public class Specie {
     public String getNameAccordingLanguage(Option option) {
         return this.names.getNameAccordingLanguage(option);
     }
+    
+     public Set<String> getTagsAccordingToLanguage(Option option) {
+        return this.tags.getTagsAccordingToLanguage(option);
+    }
 
     public boolean equals(LightSpecie light) {
         return Objects.equals(this.names, light.getNames());
     }
 
-    public boolean compare(LightSpecie lightSpecie) {
+    public boolean compare(LightSpecie lightSpecie, Option option) {
         boolean isCorresponding = true;
         if (null != lightSpecie.getTags()) {
-            isCorresponding &= Utils.toUpperCase(this.tags).containsAll(Utils.toUpperCase(lightSpecie.getTags()));
+            isCorresponding &= Utils.toUpperCase(this.getTagsAccordingToLanguage(option))
+                    .containsAll(Utils.toUpperCase(lightSpecie.getTags()));
         }
         if (null != lightSpecie.getBiome()) {
             isCorresponding &= this.biomes.containsAll((lightSpecie.getBiome()));

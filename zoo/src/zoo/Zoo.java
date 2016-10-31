@@ -474,7 +474,7 @@ public class Zoo implements IZoo {
         Specie next;
         while (it.hasNext()) {
             next = (Specie) it.next();
-            if (!next.compare(lightSpecie)) {
+            if (!next.compare(lightSpecie, this.option)) {
                 it.remove();
             }
         }

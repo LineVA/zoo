@@ -50,7 +50,7 @@ public class ParserSpecie {
         List<Integer> continents = continentParser(root);
         DocumentationURI docu = documentationParser(root);
         int programme = breedingProgrammeParser(root);
-        Set<String> tags = tagsParser(root);
+        Tags tags = tagsParser(root);
         Specie spec = new Specie(names, docu, biomeAtt, feeding, diet, repro, lifeSpan,
                 conservation, social, territory, region, family, biomes, size, continents, programme, tags);
         return spec;
@@ -166,14 +166,22 @@ public class ParserSpecie {
                 docEl.getChildText("englishWikipedia"), docEl.getChildText("animalDiversity"));
     }
 
-    private static Set<String> tagsParser(Element root) {
+    private static Tags tagsParser(Element root) {
         Element tagsEl = root.getChild("tags");
-        Set<String> tagsSet = new HashSet<>();
         if (tagsEl != null) {
-            List<Element> tagEl = tagsEl.getChild("frenchTags").getChildren("tag");
-            for(Element el : tagEl){
-                tagsSet.add(el.getText());
-            }
+            return new Tags(languageTagsParser(tagsEl.getChild("frenchTags")),
+                    languageTagsParser(tagsEl.getChild("englishTags"))
+            );
+        } else {
+            return new Tags(new HashSet<String>(), new HashSet<String>());
+        }
+    }
+
+    private static Set<String> languageTagsParser(Element languageTag) {
+        Set<String> tagsSet = new HashSet<>();
+        List<Element> tagEl = languageTag.getChildren("tag");
+        for (Element el : tagEl) {
+            tagsSet.add(el.getText());
         }
         return tagsSet;
     }

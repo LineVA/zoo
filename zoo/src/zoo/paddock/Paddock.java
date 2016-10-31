@@ -245,7 +245,7 @@ public class Paddock implements IPaddock {
         Animal next;
         while (it.hasNext()) {
             next = (AnimalImpl) it.next();
-            if (!(next.getSpecie().compare(lightSpecie))) {
+            if (!(next.getSpecie().compare(lightSpecie, this.option))) {
                 it.remove();
             }
         }
