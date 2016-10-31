@@ -18,15 +18,19 @@ public class DieImpl implements IDie{
     
     @Override
     public boolean isDied(Animal animal) {
-        return mustDie(animal);
+        return isInStarvation(animal) || mustDie(animal);
     }
     
-    public boolean mustDie(Animal animal){
+    private boolean mustDie(Animal animal){
         if(animal.isTooOld()){
             if(animal.isEnoughHappy()){
                 return this.uniform.isGreaterOrEquals(0.5);
             }
         }
         return false;
+    }
+    
+    private boolean isInStarvation(Animal animal){
+        return animal.isTooStarving();
     }
 }

@@ -79,6 +79,7 @@ public class AnimalImpl implements Animal {
     // it is computed when the animal is created,
     // actual is given by the number of animal is the paddock.
     private final TerritoryAttributes optimalTerritory;
+    private int turnsOfStarvation;
 
     /**
      * There is no notion of optimal in personality
@@ -113,6 +114,7 @@ public class AnimalImpl implements Animal {
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
         this.wellBeing = 0;
+        this.turnsOfStarvation = 0;
     }
 
     public AnimalImpl(Specie spec, String name,
@@ -140,6 +142,7 @@ public class AnimalImpl implements Animal {
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
         this.wellBeing = 0;
+        this.turnsOfStarvation = 0;
     }
 
     public void drawAttributes() {
@@ -152,7 +155,8 @@ public class AnimalImpl implements Animal {
             FeedingAttributes actualFeeding, int diet,
             ReproductionAttributes reproduction,
             LifeSpanLightAttributes life, SocialAttributes social,
-            TerritoryAttributes territory, PersonalityAttributes personality,double wellBeing, Option option)
+            TerritoryAttributes territory, PersonalityAttributes personality, double wellBeing,
+            int turnsOfStarvation, Option option)
             throws IncorrectDataException, EmptyNameException,
             UnknownNameException, UnauthorizedNameException {
         this.option = option;
@@ -180,6 +184,7 @@ public class AnimalImpl implements Animal {
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
         this.wellBeing = wellBeing;
+        this.turnsOfStarvation = turnsOfStarvation;
     }
 
     private BiomeAttributes drawOptimalBiome(Specie spec) {
@@ -296,6 +301,16 @@ public class AnimalImpl implements Animal {
         }
         return false;
     }
+    
+      /**
+     * Compute if an animal is too much starving
+     *
+     * @return true if it is starving, false else.
+     */
+    @Override
+    public boolean isTooStarving() {
+      return this.turnsOfStarvation >= 3;
+    }
 
     @Override
     public List<String> info() throws UnknownNameException {
@@ -307,6 +322,7 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("AGE") + this.age);
         info.add(bundle.getString("SEX") + this.sex.toStringByLanguage());
         info.add(bundle.getString("WB") + Utils.truncate(this.wellBeing));
+        info.add(bundle.getString("MONTHS_WITHOUT_EATING") + this.turnsOfStarvation);
         info.add(bundle.getString("DIET") + Diet.NONE.findById(actualDiet).toStringByLanguage());
         if (this.sex.isFemale()) {
             info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.femaleToStringByLanguage(option));
@@ -334,6 +350,11 @@ public class AnimalImpl implements Animal {
         AnimalsAttributes attributes = new AnimalsAttributes(this.optimalBiome, this.optimalFeeding,
                 this.actualFeeding, this.actualDiet, this.optimalSocial, this.optimalTerritory, this.personality);
         this.wellBeing = wB.computeWellBeing(attributes, paddock, specie, keepers);
+        if(wB.testOfStarvation(keepers, paddock)){
+            this.turnsOfStarvation++;
+        } else {
+            this.turnsOfStarvation = 0;
+        }
         return this.wellBeing;
     }
 
@@ -520,8 +541,8 @@ public class AnimalImpl implements Animal {
     public PersonalityAttributes getPersonality(SaveImpl.FriendSave save) {
         return this.personality;
     }
-    
-      @Override
+
+    @Override
     public double getWellBeeing(SaveImpl.FriendSave save) {
         return this.wellBeing;
     }

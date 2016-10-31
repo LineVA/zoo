@@ -46,6 +46,17 @@ public class WellBeingImpl implements WellBeing {
         this.diameter = diameter;
     }
 
+    @Override
+        public boolean testOfStarvation(List<AnimalKeeper> keepers, IPaddock paddock){
+            for(AnimalKeeper keeper : keepers){
+                if(keeper.isMakingFeedingInThePaddock(paddock)){
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
     /**
      * Compute the well-beeing of the animal
      * @param attributes the artributes of the animal

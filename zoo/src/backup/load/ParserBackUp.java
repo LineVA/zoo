@@ -162,7 +162,7 @@ public class ParserBackUp {
             animalsList.add(new FakeAnimal(spec,
                     tmpAnimalEl.getAttributeValue("name"),
                     pad, sex, age, biome, optFeed, actualFeed, diet, repro,
-                    life, social, territory, personality, wellBeing));
+                    life, social, territory, personality, wellBeing, 0));
         }
         return animalsList;
     }

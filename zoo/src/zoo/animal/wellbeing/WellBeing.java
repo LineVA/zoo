@@ -16,4 +16,6 @@ public interface WellBeing {
             throws UnknownNameException;
     
     public boolean isCloseEnoughToMax(double compare);
+    
+    public boolean testOfStarvation(List<AnimalKeeper> keepers, IPaddock paddock);
 }
