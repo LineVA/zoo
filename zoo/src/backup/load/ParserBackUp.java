@@ -144,6 +144,7 @@ public class ParserBackUp {
         SocialAttributes social;
         TerritoryAttributes territory;
         double wellBeing;
+        int starvation;
         for(Element tmpAnimalEl : animalsElList){
         PersonalityAttributes personality;
             spec = tmpAnimalEl.getChildText("specie");
@@ -159,10 +160,11 @@ public class ParserBackUp {
             territory = parserTerritoryAttributes(tmpAnimalEl);
             personality = parserPersonalityAttributes(tmpAnimalEl);
             wellBeing = parserWellBeing(tmpAnimalEl);
+            starvation = parserStarvation(tmpAnimalEl);
             animalsList.add(new FakeAnimal(spec,
                     tmpAnimalEl.getAttributeValue("name"),
                     pad, sex, age, biome, optFeed, actualFeed, diet, repro,
-                    life, social, territory, personality, wellBeing, 0));
+                    life, social, territory, personality, wellBeing, starvation));
         }
         return animalsList;
     }
@@ -175,6 +177,16 @@ public class ParserBackUp {
         return biome;
     }
 
+        /**
+     * Parse the turn's number of starvation of an animal
+     * @param tmpAnimalEl the "animal" element to parse
+     * @return the corresponding number of turns
+     */
+    private int parserStarvation(Element tmpAnimalEl)
+            throws IncorrectLoadException {
+      return Integer.parseInt(tmpAnimalEl.getChildText("starvation"));
+    }
+    
      /**
      * Parse the well-being of an animal
      * @param tmpAnimalEl the "animal" element to parse
