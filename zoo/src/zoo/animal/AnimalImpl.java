@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import launch.options.Option;
 import lombok.Getter;
 import lombok.Setter;
+import utils.Utils;
 import zoo.NameVerifications;
 import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.death.LifeSpanLightAttributes;
@@ -305,7 +306,7 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("SPECIE") + this.specie.getNameaccordingToLanguage(option));
         info.add(bundle.getString("AGE") + this.age);
         info.add(bundle.getString("SEX") + this.sex.toStringByLanguage());
-        info.add(bundle.getString("WB") + this.wellBeing);
+        info.add(bundle.getString("WB") + Utils.truncate(this.wellBeing));
         info.add(bundle.getString("DIET") + Diet.NONE.findById(actualDiet).toStringByLanguage());
         if (this.sex.isFemale()) {
             info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.femaleToStringByLanguage(option));
