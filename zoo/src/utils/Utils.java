@@ -1,6 +1,7 @@
 package utils;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -44,5 +45,13 @@ public class Utils {
             integers.add(Integer.parseInt(str));
         }
         return integers;
+    }
+     
+     public static Set<String> toUpperCase(Set<String> strings){
+        Set<String> uppers = new HashSet<>();
+        for(String str : strings){
+            uppers.add(str.toUpperCase());
+        }
+        return uppers;
     }
 }

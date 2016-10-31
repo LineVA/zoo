@@ -1,6 +1,7 @@
 package zoo.animal.specie;
 
 import java.util.List;
+import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 import zoo.animal.Names;
@@ -29,11 +30,14 @@ public class LightSpecie {
     private  List<Integer> continent;
     @Getter @Setter
     private List<Integer> breedingProgramme;
+    @Getter @Setter
+    private Set<String> tags;
 
     public LightSpecie(Names names,
             List<Integer> diet, List<Integer> conservation,
             List<Integer> ecoregion, List<Integer> family, List<Integer> biome, 
-            List<Integer> size, List<Integer> continent, List<Integer> breedingProgramme) {
+            List<Integer> size, List<Integer> continent, List<Integer> breedingProgramme,
+            Set<String> tags) {
         this.names = names;
         this.diet = diet;
         this.family = family;
@@ -43,5 +47,6 @@ public class LightSpecie {
         this.conservation = conservation;
         this.continent = continent;
         this.breedingProgramme = breedingProgramme;
+        this.tags = tags;
     }
 }

@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import launch.options.Option;
 import lombok.Getter;
+import utils.Utils;
 import zoo.animal.Names;
 import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.death.GaussianLifeSpanAttributes;
@@ -230,6 +231,9 @@ public class Specie {
 
     public boolean compare(LightSpecie lightSpecie) {
         boolean isCorresponding = true;
+        if (null != lightSpecie.getTags()) {
+            isCorresponding &= Utils.toUpperCase(this.tags).containsAll(Utils.toUpperCase(lightSpecie.getTags()));
+        }
         if (null != lightSpecie.getBiome()) {
             isCorresponding &= this.biomes.containsAll((lightSpecie.getBiome()));
         }

@@ -31,6 +31,7 @@ public class LsSpecie extends AbstractCommand {
     Set<String> sizes;
     Set<String> continents;
     Set<String> breedingProgrammes;
+    Set<String> tags;
 
     public LsSpecie(Play play) {
         super(play);
@@ -48,8 +49,11 @@ public class LsSpecie extends AbstractCommand {
     @Override
     public ReturnExec execute(String[] cmd) {
         Set<IPaddock> pad = null;
-        LightSpecie light = new LightSpecie(null, null, null, null, null, null, null, null, null);
+        LightSpecie light = new LightSpecie(null, null, null, null, null, null, null, null, null, null);
         try {
+            if (!tags.isEmpty()) {
+                light.setTags(tags);
+            }
             if (!paddockName.isEmpty()) {
                 pad = convertToIPaddock(paddockName);
             }
@@ -102,7 +106,7 @@ public class LsSpecie extends AbstractCommand {
     }
 
     private boolean checkLength(String[] cmd) {
-        return cmd.length >= 2 && cmd.length <= 18 && cmd.length % 2 == 0;
+        return cmd.length >= 2 && cmd.length <= 20 && cmd.length % 2 == 0;
     }
 
     private boolean hasArgumentPaddock(String cmd) {
@@ -141,6 +145,10 @@ public class LsSpecie extends AbstractCommand {
         return cmd.equalsIgnoreCase("--breedingProgramme") || cmd.equalsIgnoreCase("-bP");
     }
 
+    private boolean hasArgumentTags(String cmd) {
+        return cmd.equalsIgnoreCase("--tag") || cmd.equalsIgnoreCase("-t");
+    }
+
     private boolean saveArgument(String arg, String value) {
         if (this.hasArgumentBiome(arg)) {
             biomes = SplittingAmpersand.split(value);
@@ -160,6 +168,8 @@ public class LsSpecie extends AbstractCommand {
             continents = SplittingAmpersand.split(value);
         } else if (this.hasArgumentBreedingProgramme(arg)) {
             breedingProgrammes = SplittingAmpersand.split(value);
+        } else if (this.hasArgumentTags(arg)) {
+            tags = SplittingAmpersand.split(value);
         } else {
             return false;
         }
@@ -177,6 +187,7 @@ public class LsSpecie extends AbstractCommand {
         sizes = new HashSet<>();
         breedingProgrammes = new HashSet<>();
         paddockName = new HashSet<>();
+        tags = new HashSet<>();
 
         if (firstCmd(cmd) && checkLength(cmd)) {
             int i = 2;
