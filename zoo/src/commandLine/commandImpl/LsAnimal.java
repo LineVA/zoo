@@ -38,6 +38,7 @@ public class LsAnimal extends AbstractCommand {
     Set<String> continents;
     Set<String> breedingProgrammes;
     Set<String> paddocks;
+    Set<String> tags;
 
     public LsAnimal(Play play) {
         super(play);
@@ -45,7 +46,7 @@ public class LsAnimal extends AbstractCommand {
 
     @Override
     public ReturnExec execute(String[] cmd) {
-        LightSpecie spec = new LightSpecie(null, null, null, null, null, null, null, null, null);
+        LightSpecie spec = new LightSpecie(null, null, null, null, null, null, null, null, null, null);
         try {
             if (specie != null) {
                 spec.setNames(super.getPlay().getZoo().findSpecieByName(specie).getNames());
@@ -67,6 +68,9 @@ public class LsAnimal extends AbstractCommand {
             }
             if (!breedingProgrammes.isEmpty()) {
                 spec.setBreedingProgramme(Utils.convertToListOfInteger(breedingProgrammes));
+            }
+            if (!tags.isEmpty()) {
+                spec.setTags(tags);
             }
             super.setSuccess(true);
             List<String> names = new ArrayList<>();
@@ -109,8 +113,8 @@ public class LsAnimal extends AbstractCommand {
         }
         return biomes;
     }
-    
-      public Set<IPaddock> convertToIPaddock(Set<String> strings)
+
+    public Set<IPaddock> convertToIPaddock(Set<String> strings)
             throws EmptyNameException, UnknownNameException {
         Set<IPaddock> paddocks = new HashSet<>();
         for (String str : strings) {
@@ -118,7 +122,6 @@ public class LsAnimal extends AbstractCommand {
         }
         return paddocks;
     }
-
 
     private boolean firstCmd(String[] cmd) {
         if (cmd.length >= 2) {
@@ -132,7 +135,7 @@ public class LsAnimal extends AbstractCommand {
     }
 
     private boolean checkLength(String[] cmd) {
-        return cmd.length >= 2 && cmd.length <= 22 && cmd.length % 2 == 0;
+        return cmd.length >= 2 && cmd.length <= 24 && cmd.length % 2 == 0;
     }
 
     private boolean hasArgumentSpecie(String cmd) {
@@ -179,6 +182,10 @@ public class LsAnimal extends AbstractCommand {
         return cmd.equalsIgnoreCase("--breedingProgramme") || cmd.equalsIgnoreCase("-bp");
     }
 
+    private boolean hasArgumentTags(String cmd) {
+        return cmd.equalsIgnoreCase("--tag") || cmd.equalsIgnoreCase("-t");
+    }
+
     private boolean saveArgument(String arg, String value) {
         if (this.hasArgumentBiome(arg)) {
             biomes = SplittingAmpersand.split(value);
@@ -202,6 +209,8 @@ public class LsAnimal extends AbstractCommand {
             continents = SplittingAmpersand.split(value);
         } else if (this.hasArgumentBreedingProgramme(arg)) {
             breedingProgrammes = SplittingAmpersand.split(value);
+        } else if (this.hasArgumentTags(arg)) {
+            tags = SplittingAmpersand.split(value);
         } else {
             return false;
         }
@@ -220,6 +229,7 @@ public class LsAnimal extends AbstractCommand {
         continents = new HashSet<>();
         paddocks = new HashSet<>();
         breedingProgrammes = new HashSet<>();
+        tags = new HashSet<>();
         if (firstCmd(cmd) && checkLength(cmd)) {
             int i = 2;
             while (i <= cmd.length - 2) {
