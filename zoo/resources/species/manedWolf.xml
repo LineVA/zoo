@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+  <names>
+    <fr>Loup à crinière</fr>
+    <additionalFrenchNames />
+    <en>Maned wolf</en>
+    <additionalEnglishNames />
+    <scientific>Chrysocyon brachyurus</scientific>
+  </names>
+  <general>
+    <uicn>2</uicn>
+    <family>1</family>
+    <continents>
+      <continent>2</continent>
+    </continents>
+    <ecoregion>0</ecoregion>
+    <breedingProgramme>1</breedingProgramme>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Loup_%C3%A0_crini%C3%A8re</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Maned_wolf</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>24</femaleMaturity>
+    <maleMaturity>24</maleMaturity>
+    <gestationFrequency>1</gestationFrequency>
+    <litterSize>2</litterSize>
+    <leavingAge>0</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>132</femaleLifespan>
+    <maleLifespan>132</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>304</territorySize>
+    <biomes>
+      <biome>7</biome>
+    </biomes>
+  </territory>
+  <feeding>
+    <quantity>1</quantity>
+    <size>3</size>
+    <diets>
+      <diet>17</diet>
+    </diets>
+  </feeding>
+  <social>
+    <groupSize>1</groupSize>
+  </social>
+</animal>

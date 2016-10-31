@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+    <names>
+        <fr>Hamster d'Europe</fr>
+        <additionalFrenchNames>
+            <name>Grand hamster</name>
+            <name>Hamster commun</name>
+            <name>Cochon de seigle</name>
+            <name>Grand hamster d'Alsace</name>
+            <name>Cochon des blés</name>
+        </additionalFrenchNames>
+        <en>European hamster</en>
+        <additionalEnglishNames>
+            <name>Eurasian hamster</name>
+            <name>Black-bellied hamster</name>
+            <name>Common hamster</name>
+        </additionalEnglishNames>
+        <scientific>Cricetus cricetus</scientific>
+    </names>
+    <general>
+        <uicn>1</uicn>
+        <family>33</family>
+        <continents>
+            <continent>4</continent>
+            <continent>5</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+        <breedingProgramme>0</breedingProgramme>
+    </general>
+    <documentation>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Hamster_d'Europe</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/European_hamster</englishWikipedia>
+        <animalDiversity />
+    </documentation>
+    <reproduction>
+        <femaleMaturity>3</femaleMaturity>
+        <maleMaturity>3</maleMaturity>
+        <gestationFrequency>2</gestationFrequency>
+        <litterSize>7</litterSize>
+        <leavingAge>0</leavingAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>18</femaleLifespan>
+        <maleLifespan>18</maleLifespan>
+    </lifespan>
+    <territory>
+        <territorySize>2</territorySize>
+        <biomes>
+            <biome>4</biome>
+            <biome>8</biome>
+            <biome>13</biome>
+        </biomes>
+    </territory>
+    <feeding>
+        <quantity>0.05</quantity>
+        <size>1</size>
+        <diets>
+            <diet>17</diet>
+        </diets>
+    </feeding>
+    <social>
+        <groupSize>1</groupSize>
+    </social>
+</animal>

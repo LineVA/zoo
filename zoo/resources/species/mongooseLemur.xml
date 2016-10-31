@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+  <names>
+    <fr>Lémur mongos</fr>
+    <additionalFrenchNames>
+      <name>Mongos</name>
+      <name>Lémur mongoz</name>
+    </additionalFrenchNames>
+    <en>Mongoose lemur</en>
+    <additionalEnglishNames />
+    <scientific>Eulemur mongoz</scientific>
+  </names>
+  <general>
+    <uicn>5</uicn>
+    <family>10</family>
+    <continents>
+      <continent>1</continent>
+    </continents>
+    <ecoregion>0</ecoregion>
+    <breedingProgramme>1</breedingProgramme>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Lémur_mongos</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Mongoose_lemur</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>24</femaleMaturity>
+    <maleMaturity>24</maleMaturity>
+    <gestationFrequency>1</gestationFrequency>
+    <litterSize>1</litterSize>
+    <leavingAge>6</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>360</femaleLifespan>
+    <maleLifespan>360</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>40</territorySize>
+    <biomes>
+      <biome>2</biome>
+    </biomes>
+  </territory>
+  <feeding>
+    <quantity>0.140</quantity>
+    <size>1</size>
+    <diets>
+      <diet>5</diet>
+    </diets>
+  </feeding>
+  <social>
+    <groupSize>4</groupSize>
+  </social>
+</animal>

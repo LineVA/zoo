@@ -53,4 +53,13 @@
   <social>
     <groupSize>1</groupSize>
   </social>
+  <tags>
+      <frenchTags>
+          <tag>Mammifère</tag>
+          <tag>Ours</tag>
+      </frenchTags>
+      <englishTags>
+          <tag>Bear</tag>
+      </englishTags>
+  </tags>
 </animal>
