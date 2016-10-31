@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.Set;
 import launch.options.Option;
 import lombok.Getter;
 import zoo.animal.Names;
@@ -78,13 +79,15 @@ public class Specie {
     private DocumentationURI documentation;
     @Getter
     int breedingProgramme;
+    @Getter
+    Set<String> tags;
 
     public Specie(Names names, DocumentationURI docu, BiomeAttributes biomeAtt, FeedingAttributes feeding,
             List<Integer> diets, ReproductionAttributes repro,
             LifeSpanAttributes lifeSpan, int conservation,
             SocialAttributes social, TerritoryAttributes territory,
             int ecoregion, int family, List<Integer> biomes,
-            int size, List<Integer> continents, int breedingProgramme) {
+            int size, List<Integer> continents, int breedingProgramme, Set<String> tags) {
         this.names = names;
         this.specieBiome = biomeAtt;
         this.diets = diets;
@@ -107,6 +110,7 @@ public class Specie {
         this.size = size;
         this.documentation = docu;
         this.breedingProgramme = breedingProgramme;
+        this.tags = tags;
     }
 
     public boolean canBeInTheSamePaddock(Specie specie) throws UnknownNameException {

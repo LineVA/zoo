@@ -6,7 +6,9 @@ import exception.name.UnknownNameException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -48,8 +50,9 @@ public class ParserSpecie {
         List<Integer> continents = continentParser(root);
         DocumentationURI docu = documentationParser(root);
         int programme = breedingProgrammeParser(root);
+        Set<String> tags = tagsParser(root);
         Specie spec = new Specie(names, docu, biomeAtt, feeding, diet, repro, lifeSpan,
-                conservation, social, territory, region, family, biomes, size, continents, programme);
+                conservation, social, territory, region, family, biomes, size, continents, programme, tags);
         return spec;
     }
 
@@ -83,8 +86,8 @@ public class ParserSpecie {
         }
         return biomes;
     }
-    
-     private static List<Integer> dietParser(Element root) {
+
+    private static List<Integer> dietParser(Element root) {
         List<Integer> diets = new ArrayList<>();
         Element dietsEl = root.getChild("feeding").getChild("diets");
         List<Element> dietEl = dietsEl.getChildren("diet");
@@ -93,7 +96,6 @@ public class ParserSpecie {
         }
         return diets;
     }
-
 
     private static List<Integer> continentParser(Element root) {
         List<Integer> continents = new ArrayList<>();
@@ -139,11 +141,11 @@ public class ParserSpecie {
         return Integer.parseInt(genEl.getChildText("family"));
     }
 
-    private static int breedingProgrammeParser(Element root){
-          Element genEl = root.getChild("general");
+    private static int breedingProgrammeParser(Element root) {
+        Element genEl = root.getChild("general");
         return Integer.parseInt(genEl.getChildText("breedingProgramme"));
     }
-    
+
     private static SocialAttributes socialParser(Element root) throws IncorrectLoadException {
         Element socialEl = root.getChild("social");
         return new SocialAttributes(Integer.parseInt(socialEl.getChildText("groupSize")));
@@ -162,5 +164,17 @@ public class ParserSpecie {
         Element docEl = root.getChild("documentation");
         return new DocumentationURI(docEl.getChildText("frenchWikipedia"),
                 docEl.getChildText("englishWikipedia"), docEl.getChildText("animalDiversity"));
+    }
+
+    private static Set<String> tagsParser(Element root) {
+        Element tagsEl = root.getChild("tags");
+        Set<String> tagsSet = new HashSet<>();
+        if (tagsEl != null) {
+            List<Element> tagEl = tagsEl.getChild("frenchTags").getChildren("tag");
+            for(Element el : tagEl){
+                tagsSet.add(el.getText());
+            }
+        }
+        return tagsSet;
     }
 }
