@@ -22,7 +22,7 @@ public class DocumentationURI {
         this.animalDiversity = animalDiversity;
     }
     
-    public String getWikipediaAccordingLanguage(Option option){
+    public String getWikipediaaccordingToLanguage(Option option){
         if (option.getLocale().getLanguage().equals("fr")) {
             return this.frenchWikipedia;
         } else {

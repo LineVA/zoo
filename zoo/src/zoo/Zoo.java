@@ -480,7 +480,7 @@ public class Zoo implements IZoo {
         }
         List<String> strList = new ArrayList<>();
         for (Specie spec : list) {
-            strList.add(spec.getNameAccordingLanguage(this.option));
+            strList.add(spec.getNameaccordingToLanguage(this.option));
         }
         return strList;
     }
