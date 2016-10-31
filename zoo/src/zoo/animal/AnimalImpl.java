@@ -350,7 +350,7 @@ public class AnimalImpl implements Animal {
         AnimalsAttributes attributes = new AnimalsAttributes(this.optimalBiome, this.optimalFeeding,
                 this.actualFeeding, this.actualDiet, this.optimalSocial, this.optimalTerritory, this.personality);
         this.wellBeing = wB.computeWellBeing(attributes, paddock, specie, keepers);
-        if (wB.testOfStarvation(keepers, paddock)) {
+        if (wB.testOfStarvation(this.actualDiet, paddock, this.specie.getDiets(), keepers)) {
             this.turnsOfStarvation++;
         } else {
             this.turnsOfStarvation = 0;

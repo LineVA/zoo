@@ -12,10 +12,12 @@ import zoo.paddock.IPaddock;
  * @author doyenm
  */
 public interface WellBeing {
-    public double computeWellBeing(AnimalsAttributes attributes, IPaddock pad, Specie specie, List<AnimalKeeper> keepers)
+    public double computeWellBeing(AnimalsAttributes attributes, IPaddock pad, Specie specie, 
+            List<AnimalKeeper> keepers)
             throws UnknownNameException;
     
     public boolean isCloseEnoughToMax(double compare);
     
-    public boolean testOfStarvation(List<AnimalKeeper> keepers, IPaddock paddock);
+    public boolean testOfStarvation(int actualDiet, IPaddock paddock, 
+            List<Integer> specieDiet, List<AnimalKeeper> keepers);
 }

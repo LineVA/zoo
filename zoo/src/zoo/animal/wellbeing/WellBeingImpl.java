@@ -23,7 +23,8 @@ import zoo.statistics.Compare;
 public class WellBeingImpl implements WellBeing {
 
     /**
-     * The coefficient to apply to the grade according to the level of the specie
+     * The coefficient to apply to the grade according to the level of the
+     * specie
      */
     private final double coefficient;
     /**
@@ -38,8 +39,9 @@ public class WellBeingImpl implements WellBeing {
 
     /**
      * Constructor
+     *
      * @param coefficient the coeficient
-     * @param diameter the diameter 
+     * @param diameter the diameter
      */
     public WellBeingImpl(double coefficient, double diameter) {
         this.coefficient = coefficient;
@@ -47,25 +49,29 @@ public class WellBeingImpl implements WellBeing {
     }
 
     @Override
-        public boolean testOfStarvation(List<AnimalKeeper> keepers, IPaddock paddock){
-            for(AnimalKeeper keeper : keepers){
-                if(keeper.isMakingFeedingInThePaddock(paddock)){
-                    return false;
-                }
-            }
+    public boolean testOfStarvation(int actualDiet, IPaddock paddock,
+           List<Integer> specieDiet, List<AnimalKeeper> keepers) {
+        if (!specieDiet.contains(actualDiet)) {
             return true;
         }
-
+        for (AnimalKeeper keeper : keepers) {
+            if (keeper.isMakingFeedingInThePaddock(paddock)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * Compute the well-beeing of the animal
+     *
      * @param attributes the artributes of the animal
      * @param pad the paddock in which the animal is
      * @param specie the specie of the animal
-     * @param keepers the keepers who work in the paddock of the current
-     * animal
+     * @param keepers the keepers who work in the paddock of the current animal
      * @return the value of the weel-beeing of the animal
-     * @throws UnknownNameException if the informations about the specie are corrupted
+     * @throws UnknownNameException if the informations about the specie are
+     * corrupted
      */
     @Override
     public double computeWellBeing(AnimalsAttributes attributes, IPaddock pad,
@@ -88,8 +94,10 @@ public class WellBeingImpl implements WellBeing {
 
     /**
      * Compute the influence of the keepers on the animal
+     *
      * @param personality the personality's attributes of the animal
-     * @param keepers the keepers who work in the same paddock where the animal is
+     * @param keepers the keepers who work in the same paddock where the animal
+     * is
      * @param paddock the paddock of the animal
      * @return the value of weel-beeing given by the keepers
      */
@@ -127,6 +135,7 @@ public class WellBeingImpl implements WellBeing {
 
     /**
      * Compute the influence of a specific personality's trait
+     *
      * @param trait the value of the trait
      * @param time the time spent by the keeper with the animal
      * @return the value of the influence
@@ -245,7 +254,9 @@ public class WellBeingImpl implements WellBeing {
     }
 
     /**
-     * Check if the value of the well-beeing is greater than 1-2*diameter of the maximum
+     * Check if the value of the well-beeing is greater than 1-2*diameter of the
+     * maximum
+     *
      * @param compare the value we want to compare
      * @return true if it is close enough
      */
