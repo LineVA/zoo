@@ -19,7 +19,8 @@ Ces détails sont, dans l'ordre :
  le nombre moyen de porté par an, la taille moyenne d'une portée),
     - ses attributs de vie (espérance de vie moyenne pour une femelle et un mâle),
     - ses attributs sociaux (taille moyenne d'un groupe),
-    - ses attributs de territoire (taille moyenne de l'espace nécessaire à un individu).
+    - ses attributs de territoire (taille moyenne de l'espace nécessaire à un individu),
+    - ses tags.
 Si aucune espèce ne porte ce nom, alors un message d'erreur s'affiche.
 
 > specie ls : Affiche la liste des espèces disponibles classées par ordre alphabétique
@@ -47,4 +48,6 @@ Si aucun continent ne porte cet identifiant, un message d'erreur s'affiche.
 Si aucun régime alimentaire ne porte cet identifiant, un message d'erreur s'affiche.
     - [--biome|-b] 'id' : Liste des espèces réclamant le biome 'id'
 Si aucun biome ne porte cet identifiant, un message d'erreur s'affiche.  
+    - [--tag|-t] 'tag' : Liste des espèces possédant le tag 'tag'
+Si aucune espèce ne porte ce tag, la liste est vide.
   
