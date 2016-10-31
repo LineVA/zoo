@@ -348,9 +348,10 @@ public class Paddock implements IPaddock {
 
     private void leavingNewDead(List<Animal> tmpAnimal) {
         Iterator it = tmpAnimal.iterator();
-        Animal animal;
+        Animal next;
         while (it.hasNext()) {
-            it.remove();
+          next = (Animal) it.next();
+          this.removeAnimal(next);
         }
     }
 
