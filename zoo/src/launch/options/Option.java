@@ -52,8 +52,6 @@ public class Option {
     private ResourceBundle socialBundle;
     @Getter
     private ResourceBundle territoryBundle;
-    @Getter
-    private ResourceBundle conservationBundle;
      /**
      * Messages about an animal keeper
      */
@@ -91,7 +89,6 @@ public class Option {
         this.lifespanBundle = ResourceBundle.getBundle("i18n.animal.lifespan.lifespan", locale);
         this.socialBundle = ResourceBundle.getBundle("i18n.animal.social.social", locale);
         this.territoryBundle = ResourceBundle.getBundle("i18n.animal.territory.territory", locale);
-        this.conservationBundle = ResourceBundle.getBundle("i18n.animal.conservation.conservation", locale);
         this.keeperBundle = ResourceBundle.getBundle("i18n.animalKeeper.keeper", locale);
     }
 

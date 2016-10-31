@@ -57,7 +57,7 @@ public enum ConservationStatus {
                 return status;
             }
         }
-        throw new UnknownNameException(this.option.getConservationBundle().getString("UNKNOWN_ID"));
+        throw new UnknownNameException(this.option.getSpecieBundle().getString("CONSERVATION.UNKNOWN_ID"));
     }
     
     /**
@@ -65,7 +65,7 @@ public enum ConservationStatus {
      * @return the name of the status
      */
     public String toStringByLanguage(){
-        return this.option.getConservationBundle().getString(this.toString().toUpperCase());
+        return this.option.getSpecieBundle().getString("CONSERVATION." + this.toString().toUpperCase());
     }
     
     /**
@@ -76,7 +76,7 @@ public enum ConservationStatus {
         List<String> list = new ArrayList<>();
         for (ConservationStatus status : ConservationStatus.values()) {
             list.add(status.id + " - " +
-                    this.option.getConservationBundle().getString(status.toString().toUpperCase()));
+                   status.toStringByLanguage());
         }
         return list;
     }
