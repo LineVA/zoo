@@ -351,6 +351,7 @@ public class SaveImpl implements Save {
         el.addContent(createElementWithText("sex", Integer.toString(animal.getSex(friendSave).getId())));
         el.addContent(createElementWithText("age", String.valueOf(animal.getAge(friendSave))));
         el.addContent(createElementWithText("wellBeing", String.valueOf(animal.getWellBeeing(friendSave))));
+        el.addContent(createElementWithText("starvation", String.valueOf(animal.getStarvation(friendSave))));
         el.addContent(createElementPersonalityAttributes(animal.getPersonality(friendSave)));
         el.addContent(createElementOptimalFeedingAttributes(animal.getOptimalFeeding(friendSave)));
         el.addContent(createElementActualFeedingAttributes(animal, animal.getActualFeeding(friendSave)));

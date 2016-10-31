@@ -98,4 +98,6 @@ public interface Animal {
 
     public double getWellBeeing(SaveImpl.FriendSave save);
 
+    public int getStarvation(SaveImpl.FriendSave save);
+
 }

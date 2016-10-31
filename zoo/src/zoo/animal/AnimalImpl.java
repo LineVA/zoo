@@ -301,15 +301,15 @@ public class AnimalImpl implements Animal {
         }
         return false;
     }
-    
-      /**
+
+    /**
      * Compute if an animal is too much starving
      *
      * @return true if it is starving, false else.
      */
     @Override
     public boolean isTooStarving() {
-      return this.turnsOfStarvation >= 3;
+        return this.turnsOfStarvation >= 3;
     }
 
     @Override
@@ -350,7 +350,7 @@ public class AnimalImpl implements Animal {
         AnimalsAttributes attributes = new AnimalsAttributes(this.optimalBiome, this.optimalFeeding,
                 this.actualFeeding, this.actualDiet, this.optimalSocial, this.optimalTerritory, this.personality);
         this.wellBeing = wB.computeWellBeing(attributes, paddock, specie, keepers);
-        if(wB.testOfStarvation(keepers, paddock)){
+        if (wB.testOfStarvation(keepers, paddock)) {
             this.turnsOfStarvation++;
         } else {
             this.turnsOfStarvation = 0;
@@ -546,4 +546,11 @@ public class AnimalImpl implements Animal {
     public double getWellBeeing(SaveImpl.FriendSave save) {
         return this.wellBeing;
     }
+
+    @Override
+    public int getStarvation(SaveImpl.FriendSave save) {
+        save.hashCode();
+        return this.turnsOfStarvation;
+    }
+
 }
