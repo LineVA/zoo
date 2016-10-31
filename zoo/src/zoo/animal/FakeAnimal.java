@@ -41,12 +41,13 @@ public class FakeAnimal {
     SocialAttributes social;
     TerritoryAttributes territory;
     PersonalityAttributes personality;
+    double wellBeing;
 
     public FakeAnimal(String specie, String name, String paddock, int sex, int age,
             BiomeAttributes biome, FeedingAttributes optFeed,
             FeedingAttributes actualFeed, int diet,
             ReproductionAttributes repro, LifeSpanLightAttributes life,
-            SocialAttributes social, TerritoryAttributes territory, PersonalityAttributes personality) {
+            SocialAttributes social, TerritoryAttributes territory, PersonalityAttributes personality, double wellBeing) {
         this.specie = specie;
         this.name = name;
         this.paddock = paddock;
@@ -61,6 +62,7 @@ public class FakeAnimal {
         this.social = social;
         this.territory = territory;
         this.personality = personality;
+        this.wellBeing = wellBeing;
     }
 
     public Animal convertToAnimal(Specie spec, IPaddock pad, Sex sex, Option option)
@@ -68,7 +70,7 @@ public class FakeAnimal {
             UnknownNameException{
         return new AnimalImpl(spec, this.name, pad, sex, this.age, this.biome,
                 this.optFeed, this.actualFeed, this.diet, this.repro, this.life,
-                this.social, this.territory, this.personality, option);
+                this.social, this.territory, this.personality, this.wellBeing, option);
     }
 
 }

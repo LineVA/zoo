@@ -143,6 +143,7 @@ public class ParserBackUp {
         LifeSpanLightAttributes life;
         SocialAttributes social;
         TerritoryAttributes territory;
+        double wellBeing;
         for(Element tmpAnimalEl : animalsElList){
         PersonalityAttributes personality;
             spec = tmpAnimalEl.getChildText("specie");
@@ -157,10 +158,11 @@ public class ParserBackUp {
             social = parserSocialAttributes(tmpAnimalEl);
             territory = parserTerritoryAttributes(tmpAnimalEl);
             personality = parserPersonalityAttributes(tmpAnimalEl);
+            wellBeing = parserWellBeing(tmpAnimalEl);
             animalsList.add(new FakeAnimal(spec,
                     tmpAnimalEl.getAttributeValue("name"),
                     pad, sex, age, biome, optFeed, actualFeed, diet, repro,
-                    life, social, territory, personality));
+                    life, social, territory, personality, wellBeing));
         }
         return animalsList;
     }
@@ -173,6 +175,16 @@ public class ParserBackUp {
         return biome;
     }
 
+     /**
+     * Parse the well-being of an animal
+     * @param tmpAnimalEl the "animal" element to parse
+     * @return the corresponding well-being
+     */
+    private double parserWellBeing(Element tmpAnimalEl)
+            throws IncorrectLoadException {
+      return Double.parseDouble(tmpAnimalEl.getChildText("wellBeing"));
+    }
+    
     /**
      * Parse the optimal feeding attributes of an animal
      * @param tmpAnimalEl the "animal" element to parse

@@ -54,7 +54,7 @@ public class SaveImpl implements Save {
     public boolean isFileAlreadyExisting(String fileName) throws EmptyNameException {
         String name = createFileName(fileName);
         try {
-           new FileReader(new File(name));
+            new FileReader(new File(name));
             return true;
         } catch (FileNotFoundException ex) {
             return false;
@@ -350,6 +350,7 @@ public class SaveImpl implements Save {
         el.addContent(createElementWithText("specie", animal.getSpecie(friendSave).getNames().getScientificName()));
         el.addContent(createElementWithText("sex", Integer.toString(animal.getSex(friendSave).getId())));
         el.addContent(createElementWithText("age", String.valueOf(animal.getAge(friendSave))));
+        el.addContent(createElementWithText("wellBeing", String.valueOf(animal.getWellBeeing(friendSave))));
         el.addContent(createElementPersonalityAttributes(animal.getPersonality(friendSave)));
         el.addContent(createElementOptimalFeedingAttributes(animal.getOptimalFeeding(friendSave)));
         el.addContent(createElementActualFeedingAttributes(animal, animal.getActualFeeding(friendSave)));

@@ -94,4 +94,6 @@ public interface Animal {
 
     public PersonalityAttributes getPersonality(SaveImpl.FriendSave friend);
 
+    public double getWellBeeing(SaveImpl.FriendSave save);
+
 }

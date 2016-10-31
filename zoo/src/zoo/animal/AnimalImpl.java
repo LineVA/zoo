@@ -152,7 +152,7 @@ public class AnimalImpl implements Animal {
             FeedingAttributes actualFeeding, int diet,
             ReproductionAttributes reproduction,
             LifeSpanLightAttributes life, SocialAttributes social,
-            TerritoryAttributes territory, PersonalityAttributes personality, Option option)
+            TerritoryAttributes territory, PersonalityAttributes personality,double wellBeing, Option option)
             throws IncorrectDataException, EmptyNameException,
             UnknownNameException, UnauthorizedNameException {
         this.option = option;
@@ -179,7 +179,7 @@ public class AnimalImpl implements Animal {
         this.wB = new WellBeingImpl(
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
-        this.wellBeing = 0;
+        this.wellBeing = wellBeing;
     }
 
     private BiomeAttributes drawOptimalBiome(Specie spec) {
@@ -519,5 +519,10 @@ public class AnimalImpl implements Animal {
     @Override
     public PersonalityAttributes getPersonality(SaveImpl.FriendSave save) {
         return this.personality;
+    }
+    
+      @Override
+    public double getWellBeeing(SaveImpl.FriendSave save) {
+        return this.wellBeing;
     }
 }
