@@ -142,6 +142,7 @@ public class Specie {
         info.add(bundle.getString("NAME") + this.names.getNameaccordingToLanguage(option));
         info.add(bundle.getString("OTHER_NAME") + this.names.getAdditionalNamesaccordingToLanguage(option));
         info.add(bundle.getString("SCIENTIFIC_NAME") + this.names.getScientificName());
+        info.addAll(this.names.infoAccordingToOtherLanguages(option));
         info.add(bundle.getString("CONSERVATION") + ConservationStatus.UNKNOWN.findById(this.conservation).toStringByLanguage());
         info.add(bundle.getString("BREEDING_PROGRAMME") + BreedingProgramme.NONE.findById(this.breedingProgramme).toStringByLanguage());
         info.add(bundle.getString("CONTINENT") + this.continentsToString());
@@ -224,8 +225,8 @@ public class Specie {
     public String getNameaccordingToLanguage(Option option) {
         return this.names.getNameaccordingToLanguage(option);
     }
-    
-     public Set<String> getTagsAccordingToLanguage(Option option) {
+
+    public Set<String> getTagsAccordingToLanguage(Option option) {
         return this.tags.getTagsAccordingToLanguage(option);
     }
 

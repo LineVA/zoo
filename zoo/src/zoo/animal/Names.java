@@ -1,5 +1,6 @@
 package zoo.animal;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -39,8 +40,8 @@ public class Names {
             return this.englishName;
         }
     }
-    
-     public String getAdditionalNamesaccordingToLanguage(Option option) {
+
+    public String getAdditionalNamesaccordingToLanguage(Option option) {
         if (option.getLocale().getLanguage().equals("fr")) {
             return this.additionalNamesToString(this.additionalFrenchNames);
         } else {
@@ -70,7 +71,7 @@ public class Names {
         return true;
     }
 
-     private String additionalNamesToString(List<String> names) {
+    private String additionalNamesToString(List<String> names) {
         String info = "";
         String next;
         Iterator it = names.iterator();
@@ -83,5 +84,15 @@ public class Names {
         }
         return info;
     }
-    
+
+    public List<String> infoAccordingToOtherLanguages(Option option) {
+        List<String> others = new ArrayList<>();
+        if (option.getLocale().getLanguage().equals("fr")) {
+            others.add(option.getSpecieBundle().getString("ENGLISH_NAME") + this.englishName);
+        } else if (option.getLocale().getLanguage().equals("en")) {
+            others.add(option.getSpecieBundle().getString("FRENCH_NAME") + this.frenchName);
+        }
+        return others;
+    }
+
 }
