@@ -58,6 +58,7 @@
                             <xs:element type="xs:integer" name="maleMaturity"/>
                             <xs:element type="xs:decimal" name="gestationFrequency"/>
                             <xs:element type="xs:integer" name="litterSize"/>
+                            <xs:element type="xs:integer" name="weaningAge" minOccurs="0" maxOccurs="1"/>
                             <xs:element type="xs:integer" name="leavingAge"/>
                         </xs:sequence>
                     </xs:complexType>
@@ -103,7 +104,17 @@
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element type="xs:integer" name="groupSize"/>
-                        </xs:sequence>
+                            <xs:element type="xs:string" name="territorial" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="socialStructures" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:string" name="structure" minOccurs="0" maxOccurs="unbounded"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element type="xs:string" name="maleParticipationInBreeding" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:string" name="isolationOfYoung" minOccurs="0" maxOccurs="1"/>
+                            </xs:sequence>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="tags" minOccurs="0">
@@ -116,7 +127,7 @@
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
-                              <xs:element name="englishTags">
+                            <xs:element name="englishTags">
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element type="xs:string" name="tag" minOccurs="0" maxOccurs="unbounded"/>
