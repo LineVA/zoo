@@ -136,7 +136,7 @@ public class Specie {
         return false;
     }
 
-    public List<String> info(Option option) throws UnknownNameException {
+    public List<String> toString(Option option) throws UnknownNameException {
         List<String> info = new ArrayList<>();
         ResourceBundle bundle = option.getSpecieBundle();
         info.add(bundle.getString("NAME") + this.names.getNameaccordingToLanguage(option));
