@@ -539,11 +539,13 @@ public class AnimalImpl implements Animal {
 
     @Override
     public PersonalityAttributes getPersonality(SaveImpl.FriendSave save) {
+        save.hashCode();
         return this.personality;
     }
 
     @Override
     public double getWellBeeing(SaveImpl.FriendSave save) {
+        save.hashCode();
         return this.wellBeing;
     }
 
