@@ -17,23 +17,54 @@ import zoo.animal.specie.Family;
 import zoo.paddock.IPaddock;
 
 /**
- *
+ * Concrete class for the Animal Keeper
  * @author doyenm
  */
 public class AnimalKeeperImpl implements AnimalKeeper {
 
+    /**
+     * Name of the keeper
+     */
     @Getter
     private final String name;
+    /**
+     * Map of the paddocks on which the keeper is affected 
+     * and the proportion of time he spend in this paddock
+     */
     @Getter
     private Map<IPaddock, Double> timedPaddocks;
+    /**
+     * Map of the {paddock + task} on which the keeper is affected 
+     * and the proportion of time he spend on this combination
+     */
     @Getter
     private Map<TaskPaddock, Double> timedTaskPerPaddock;
+    /**
+     * Map on the competence of the keeper with the families
+     */
     @Getter
     private Map<Integer, Double> managedFamilies;
+    /**
+     * Map on the competence of the keeper with the tasks
+     */
     private Map<Integer, Double> managedTasks;
 
+    /**
+     * Option used to know the current language
+     */
     private Option option;
 
+    /**
+     * Constructor
+     * @param name its name
+     * @param timedPaddocks its Map of paddock and time
+     * @param timedTaskPerPaddock its Map of TaskPaddock and time
+     * @param managedFamilies its map of families and grade
+     * @param managedTasks its map of tasks and grade
+     * @param option the option
+     * @throws EmptyNameException if name is empty
+     * @throws UnauthorizedNameException if name is part of the unauthorized names
+     */
     public AnimalKeeperImpl(String name, Map<IPaddock, Double> timedPaddocks,
             Map<TaskPaddock, Double> timedTaskPerPaddock,
             Map<Integer, Double> managedFamilies, Map<Integer, Double> managedTasks,
@@ -47,10 +78,21 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         this.timedTaskPerPaddock = timedTaskPerPaddock;
     }
 
+    /**
+     * Check if a time is greater than 0.0 and lower or equals than 100.0
+     * @param time the time to check
+     * @return true if the time check the conditions, false else
+     */
     private boolean checkIndiviualTime(Double time) {
         return time > 0.0 && time <= 100.0;
     }
 
+    /**
+     * Check if the sum of Double containing in a list is greater or equals than 0.0 
+     * and lower or equals than 100.0
+     * @param times the list to check
+     * @return true if it verifies the conditions
+     */
     private boolean checkCumulativeTime(List<Double> times) {
         Double cumulativeTime = 0.0;
         cumulativeTime = times.stream().map((time) -> time)
@@ -58,6 +100,11 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return cumulativeTime >= 0.0 && cumulativeTime <= 100.0;
     }
 
+    /**
+     * Extract the value of a map
+     * @param occupations the map to parse
+     * @return a list of the values of the map, parse to Double
+     */
     private List<Double> extractTimes(Map<IPaddock, Double> occupations) {
         Object[] times = occupations.values().toArray();
         List<Double> timesList = new ArrayList<>();
@@ -67,6 +114,12 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return timesList;
     }
 
+    /**
+     * Add several timed paddocks to the ones of the keeper
+     * @param paddocks the list of paddocks
+     * @param times the list of the corresponding times
+     * @throws IncorrectDataException if the times are incorrect (individualy ou collectively)
+     */
     @Override
     public void addTimedPaddocks(List<IPaddock> paddocks, List<Double> times)
             throws IncorrectDataException {
@@ -84,6 +137,12 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         }
     }
 
+    /**
+     * Add a timed paddock to the ones of the keeper
+     * @param paddock the paddock to add
+     * @param time the corresponding time
+     * @throws IncorrectDataException if time is incorrect (individualy or in addition with the others)
+     */
     private void addAPaddock(IPaddock paddock, Double time) throws IncorrectDataException {
         if (checkIndiviualTime(time)) {
             this.timedPaddocks.put(paddock, time);
@@ -97,6 +156,11 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         }
     }
 
+    /**
+     * Find the map of the timed tasks for the given paddock
+     * @param paddock the paddock for which we search the timed tasks
+     * @return the map of the timed tasks for paddock
+     */
     private Map<Integer, Double> findTimedTasksByPaddock(IPaddock paddock) {
         Map<Integer, Double> timedTasks = new HashMap<>();
         for (Map.Entry<TaskPaddock, Double> entry : this.timedTaskPerPaddock.entrySet()) {
@@ -107,6 +171,11 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return timedTasks;
     }
     
+       /**
+     * Find the map of the timed PaddockTask which do not corresponded to a given paddock 
+     * @param paddock the paddock for which we do not search the timed tasks
+     * @return the map of the timed TaskPaddock 
+     */
     private Map<TaskPaddock, Double> findTimedTasksForOtherPaddocks(IPaddock paddock){
           Map<TaskPaddock, Double> timedTasks = new HashMap<>();
         for (Map.Entry<TaskPaddock, Double> entry : this.timedTaskPerPaddock.entrySet()) {
@@ -117,6 +186,13 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return timedTasks;
     }
 
+    /**
+     * Ciompose a map of timed tasks by taking the ones of askedTimedTasks and the ones of
+     * oldTimedTasks which are NOT in askedTimedTasks
+     * @param oldTimedTasks the old timed tasks use d to complete askedTimedTAsks
+     * @param askedTimedTasks map of timed tasks we must take and complete
+     * @return the corresponding map
+     */
     private Map<Integer, Double> expectTimedTasks(
             Map<Integer, Double> oldTimedTasks, Map<Task, Double> askedTimedTasks) {
         Map<Integer, Double> actualTimedTasks = new HashMap<>();
@@ -130,6 +206,11 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return actualTimedTasks;
     }
 
+    /**
+     * Extract the values of a map of timed tasks
+     * @param timedTasks the map to parse
+     * @return the values of the map
+     */
     private List<Double> extractTimesFromTimedTasks(Map<Integer, Double> timedTasks) {
         Object[] times = timedTasks.values().toArray();
         List<Double> timesList = new ArrayList<>();
@@ -139,6 +220,12 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return timesList;
     }
 
+    /**
+     * Check the validity of times, collectively and individualy
+     * @param times the times to check 
+     * @return true if the sum is greater or equals than 0.0 and lower or equals of 100.0
+     * and if each time is greater than 0.0 and lower or equand than 100.0
+     */
     private boolean checkTimes(List<Double> times) {
         for (Double time : times) {
             if (!this.checkIndiviualTime(time)) {
@@ -174,6 +261,14 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return true;
     }
 
+    /**
+     * Add timed tasks to a paddock
+     * @param paddock the paddock in which we are
+     * @param tasks the tasks to add
+     * @param times the corresponding times
+     * @throws IncorrectDataException if the times are incorrect
+     * @throws UnknownNameException if the tasks are unknown
+     */
     @Override
     public void addTaskToAPaddock(IPaddock paddock, List<Task> tasks, List<Double> times)
             throws IncorrectDataException, UnknownNameException {
@@ -240,6 +335,11 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         }
     }
 
+    /**
+     * Informations of the keeper
+     * @return the list of this informations
+     * @throws UnknownNameException if a task or a family is unknown
+     */
     @Override
     public List<String> info() throws UnknownNameException {
         List<String> info = new ArrayList<>();
@@ -303,6 +403,9 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return "Tâches gérées : " + info;
     }
 
+    /**
+     * Re-compute the grades of the keeper by tasks and families
+     */
     @Override
     public void evolve() {
         this.evaluateByFamily();
@@ -319,6 +422,10 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         }
     }
 
+    /**
+     * Remove a timed paddock
+     * @param paddock  the paddock to remove
+     */
     private void removeAllTimedTaskForAPaddock(IPaddock paddock) {
         List<TaskPaddock> tasksPaddockList = new ArrayList<>();
         for (Task task : Task.values()) {
@@ -327,6 +434,10 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         removeTimedTasksPerPaddock(tasksPaddockList);
     }
 
+    /**
+     * remove a list of paddocks
+     * @param tasksPaddock  the list to remove
+     */
     @Override
     public void removeTimedTasksPerPaddock(List<TaskPaddock> tasksPaddock) {
         for (TaskPaddock taskPad : tasksPaddock) {
@@ -336,26 +447,51 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         }
     }
 
+    /**
+     * Check if the keeper works in a given paddock
+     * @param paddock the paddock to check
+     * @return true if he works in it
+     */
     @Override
     public boolean workInGivenPaddock(IPaddock paddock) {
         return this.timedPaddocks.containsKey(paddock);
     }
 
+    /**
+     * Check if the keeper is making cleaning in the given paddock
+     * @param paddock the paddock to check
+     * @return true if he does
+     */
     @Override
     public boolean isMakingCleaningInThePaddock(IPaddock paddock) {
         return this.timedTaskPerPaddock.containsKey(new TaskPaddock(paddock, Task.CLEANING.getId()));
     }
 
+      /**
+     * Check if the keeper is making feeding in the given paddock
+     * @param paddock the paddock to check
+     * @return true if he does
+     */
     @Override
     public boolean isMakingFeedingInThePaddock(IPaddock paddock) {
         return this.timedTaskPerPaddock.containsKey(new TaskPaddock(paddock, Task.FEEDING.getId()));
     }
 
+      /**
+     * Check if the keeper is making medical training in the given paddock
+     * @param paddock the paddock to check
+     * @return true if he does
+     */
     @Override
     public boolean isMakingMedicalTrainingInThePaddock(IPaddock paddock) {
         return this.timedTaskPerPaddock.containsKey(new TaskPaddock(paddock, Task.MEDICALTRAINING.getId()));
     }
 
+      /**
+     * Check if the keeper is making enrichment in the given paddock
+     * @param paddock the paddock to check
+     * @return true if he does
+     */
     @Override
     public boolean isMakingEnrichmentInThePaddock(IPaddock paddock) {
         return this.timedTaskPerPaddock.containsKey(new TaskPaddock(paddock, Task.ENRICHMENT.getId()));
