@@ -56,4 +56,16 @@
   <social>
     <groupSize>8</groupSize>
   </social>
+  <tags>
+      <frenchTags>
+          <tag>Mammifère</tag>
+          <tag>Rongeur</tag>
+          <tag>Castor</tag>
+      </frenchTags>
+      <englishTags>
+          <tag>Mammal</tag>
+          <tag>Rodent</tag>
+          <tag>Beaver</tag>
+      </englishTags>
+  </tags>
 </animal>

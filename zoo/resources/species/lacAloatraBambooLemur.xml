@@ -54,4 +54,17 @@
   <social>
     <groupSize>4</groupSize>
   </social>
+  <tags>
+      <frenchTags>
+          <tag>Mammifère</tag>
+          <tag>Primate</tag>
+          <tag>Lémur</tag>
+          <tag>Lémurien</tag>
+      </frenchTags>
+      <englishTags>
+          <tag>Mammal</tag>
+          <tag>Primate</tag>
+          <tag>Lemur</tag>
+      </englishTags>
+  </tags>
 </animal>

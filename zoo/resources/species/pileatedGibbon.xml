@@ -50,4 +50,18 @@
   <social>
     <groupSize>2</groupSize>
   </social>
+    <tags>
+      <frenchTags>
+          <tag>Mammifère</tag>
+          <tag>Primate</tag>
+          <tag>Singe</tag>
+          <tag>Gibbon</tag>
+      </frenchTags>
+      <englishTags>
+          <tag>Mammal</tag>
+          <tag>Primate</tag>
+          <tag>Monkey</tag>
+          <tag>Gibbon</tag>
+      </englishTags>
+  </tags>
 </animal>
