@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+  <names>
+    <fr>Grand bharal</fr>
+    <additionalFrenchNames>
+        <name>Mouton bleu</name>
+    </additionalFrenchNames>
+    <en>Bharal</en>
+    <additionalEnglishNames>
+        <name>Himalayan blue sheep</name>
+        <name>Naur</name>
+    </additionalEnglishNames>
+    <scientific>Pseudois nayaur</scientific>
+  </names>
+  <general>
+    <uicn>1</uicn>
+    <family>19</family>
+    <continents>
+      <continent>5</continent>
+    </continents>
+    <ecoregion>0</ecoregion>
+    <breedingProgramme>2</breedingProgramme>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/????????</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Bharal</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>84</femaleMaturity>
+    <maleMaturity>84</maleMaturity>
+    <gestationFrequency>1</gestationFrequency>
+    <litterSize>1</litterSize>
+    <weaningAge>6</weaningAge>
+    <leavingAge>0</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>192</femaleLifespan>
+    <maleLifespan>192</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>1600</territorySize>
+    <biomes>
+      <biome>10</biome>
+    </biomes>
+  </territory>
+  <feeding>
+    <quantity>0.950</quantity>
+    <size>5</size>
+    <diets>
+      <diet>8</diet>
+    </diets>
+  </feeding>
+  <social>
+    <groupSize>16</groupSize>
+    <territorial>U</territorial>
+    <socialStructures></socialStructures>
+    <maleParticipationInBreeding>U</maleParticipationInBreeding>
+    <isolationOfYoung>U</isolationOfYoung>
+  </social>
+  <tags>
+      <frenchTags>
+          <tag>Mammifère</tag>
+          <tag>Bovin</tag>
+          <tag>Caprin</tag>
+      </frenchTags>
+      <englishTags>
+          <tag>Mammal</tag>
+          <tag>Bovine</tag>
+          <tag>Caprine</tag>
+      </englishTags>
+  </tags>
+</animal>
