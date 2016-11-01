@@ -106,6 +106,16 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         }
         return timedTasks;
     }
+    
+    private Map<TaskPaddock, Double> findTimedTasksForOtherPaddocks(IPaddock paddock){
+          Map<TaskPaddock, Double> timedTasks = new HashMap<>();
+        for (HashMap.Entry<TaskPaddock, Double> entry : this.timedTaskPerPaddock.entrySet()) {
+            if (!entry.getKey().getPaddock().equals(paddock)) {
+                timedTasks.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return timedTasks;
+    }
 
     private HashMap<Integer, Double> expectTimedTasks(
             HashMap<Integer, Double> oldTimedTasks, HashMap<Task, Double> askedTimedTasks) {
@@ -172,6 +182,8 @@ public class AnimalKeeperImpl implements AnimalKeeper {
             if (this.checkTask(tasks)) {
                 // We retrieve all the timed tasks associated to this paddock
                 HashMap<Integer, Double> oldTimedTasks = findTimedTasksByPaddock(paddock);
+                  // We retrieve all the timed tasks associated to the other paddocks
+                Map<TaskPaddock, Double> otherTimedTasks = findTimedTasksForOtherPaddocks(paddock);
                 // Prepare HashMap of the new TimedTasks
                 HashMap<Task, Double> newTimedTasks = prepareHashMap(tasks, times);
                 // We remplace the old tasks by the new ones
@@ -180,6 +192,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
                 List<Double> askedTimes = extractTimesFromTimedTasks(askedTimedTasks);
                 if (checkTimes(askedTimes)) {
                     this.timedTaskPerPaddock = reconstructTimedTasksPerPaddock(paddock, askedTimedTasks);
+                    this.timedTaskPerPaddock.putAll(otherTimedTasks);
                 } else {
                     throw new IncorrectDataException(
                             this.option.getKeeperBundle().getString("ERROR_CUMULATIVE_TIMES"));
