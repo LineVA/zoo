@@ -97,9 +97,9 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         }
     }
 
-    private HashMap<Integer, Double> findTimedTasksByPaddock(IPaddock paddock) {
-        HashMap<Integer, Double> timedTasks = new HashMap<>();
-        for (HashMap.Entry<TaskPaddock, Double> entry : this.timedTaskPerPaddock.entrySet()) {
+    private Map<Integer, Double> findTimedTasksByPaddock(IPaddock paddock) {
+        Map<Integer, Double> timedTasks = new HashMap<>();
+        for (Map.Entry<TaskPaddock, Double> entry : this.timedTaskPerPaddock.entrySet()) {
             if (entry.getKey().getPaddock().equals(paddock)) {
                 timedTasks.put(entry.getKey().getTask(), entry.getValue());
             }
@@ -109,7 +109,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     
     private Map<TaskPaddock, Double> findTimedTasksForOtherPaddocks(IPaddock paddock){
           Map<TaskPaddock, Double> timedTasks = new HashMap<>();
-        for (HashMap.Entry<TaskPaddock, Double> entry : this.timedTaskPerPaddock.entrySet()) {
+        for (Map.Entry<TaskPaddock, Double> entry : this.timedTaskPerPaddock.entrySet()) {
             if (!entry.getKey().getPaddock().equals(paddock)) {
                 timedTasks.put(entry.getKey(), entry.getValue());
             }
@@ -117,9 +117,9 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return timedTasks;
     }
 
-    private HashMap<Integer, Double> expectTimedTasks(
-            HashMap<Integer, Double> oldTimedTasks, HashMap<Task, Double> askedTimedTasks) {
-        HashMap<Integer, Double> actualTimedTasks = new HashMap<>();
+    private Map<Integer, Double> expectTimedTasks(
+            Map<Integer, Double> oldTimedTasks, Map<Task, Double> askedTimedTasks) {
+        Map<Integer, Double> actualTimedTasks = new HashMap<>();
         for (Task task : Task.values()) {
             if (askedTimedTasks.containsKey(task)) {
                 actualTimedTasks.put(task.getId(), askedTimedTasks.get(task));
@@ -148,17 +148,17 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         return this.checkCumulativeTime(times);
     }
 
-    private HashMap<TaskPaddock, Double>
-            reconstructTimedTasksPerPaddock(IPaddock paddock, HashMap<Integer, Double> timedTasks) {
-        HashMap<TaskPaddock, Double> timedTasksPerPaddock = new HashMap<>();
-        for (HashMap.Entry<Integer, Double> entry : timedTasks.entrySet()) {
+    private Map<TaskPaddock, Double>
+            reconstructTimedTasksPerPaddock(IPaddock paddock, Map<Integer, Double> timedTasks) {
+        Map<TaskPaddock, Double> timedTasksPerPaddock = new HashMap<>();
+        for (Map.Entry<Integer, Double> entry : timedTasks.entrySet()) {
             timedTasksPerPaddock.put(new TaskPaddock(paddock, entry.getKey()), entry.getValue());
         }
         return timedTasksPerPaddock;
     }
 
-    private HashMap<Task, Double> prepareHashMap(List<Task> tasks, List<Double> times) {
-        HashMap<Task, Double> timedTasks = new HashMap<>();
+    private Map<Task, Double> prepareMap(List<Task> tasks, List<Double> times) {
+        Map<Task, Double> timedTasks = new HashMap<>();
         for (int i = 0; i < tasks.size(); i++) {
             timedTasks.put(tasks.get(i), times.get(i));
         }
@@ -181,13 +181,13 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         if (this.timedPaddocks.containsKey(paddock)) {
             if (this.checkTask(tasks)) {
                 // We retrieve all the timed tasks associated to this paddock
-                HashMap<Integer, Double> oldTimedTasks = findTimedTasksByPaddock(paddock);
+                Map<Integer, Double> oldTimedTasks = findTimedTasksByPaddock(paddock);
                   // We retrieve all the timed tasks associated to the other paddocks
                 Map<TaskPaddock, Double> otherTimedTasks = findTimedTasksForOtherPaddocks(paddock);
-                // Prepare HashMap of the new TimedTasks
-                HashMap<Task, Double> newTimedTasks = prepareHashMap(tasks, times);
+                // Prepare Map of the new TimedTasks
+                Map<Task, Double> newTimedTasks = prepareMap(tasks, times);
                 // We remplace the old tasks by the new ones
-                HashMap<Integer, Double> askedTimedTasks = expectTimedTasks(oldTimedTasks, newTimedTasks);
+                Map<Integer, Double> askedTimedTasks = expectTimedTasks(oldTimedTasks, newTimedTasks);
                 // We check if the timer are consistent or not
                 List<Double> askedTimes = extractTimesFromTimedTasks(askedTimedTasks);
                 if (checkTimes(askedTimes)) {
@@ -212,7 +212,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     }
 
     private void evaluateByFamily() {
-        for (HashMap.Entry<IPaddock, Double> paddock : this.timedPaddocks.entrySet()) {
+        for (Map.Entry<IPaddock, Double> paddock : this.timedPaddocks.entrySet()) {
             List<Integer> familiesList = paddock.getKey().listFamiliesById();
             for (Integer family : familiesList) {
                 double init = 0.0;
@@ -232,7 +232,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
 
     private void evaluateByTask() {
         double init = 0.0;
-        for (HashMap.Entry<TaskPaddock, Double> entry : this.timedTaskPerPaddock.entrySet()) {
+        for (Map.Entry<TaskPaddock, Double> entry : this.timedTaskPerPaddock.entrySet()) {
             if (this.managedTasks.containsKey(entry.getKey().getTask())) {
                 init = this.managedTasks.get(entry.getKey().getTask());
                 this.managedTasks.put(entry.getKey().getTask(), init + computeTasks(entry.getKey()));
@@ -263,11 +263,11 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     private String formattingPaddocks() {
         String info = "";
         String subsInfo = "";
-        for (HashMap.Entry<IPaddock, Double> entry : this.timedPaddocks.entrySet()) {
+        for (Map.Entry<IPaddock, Double> entry : this.timedPaddocks.entrySet()) {
             subsInfo = "Enclos " + entry.getKey().getName();
             subsInfo += " (" + Utils.truncate(entry.getValue()) + "%)";
             subsInfo += " : ";
-            for (HashMap.Entry<TaskPaddock, Double> entry2 : this.timedTaskPerPaddock.entrySet()) {
+            for (Map.Entry<TaskPaddock, Double> entry2 : this.timedTaskPerPaddock.entrySet()) {
                 if (entry2.getKey().getPaddock().equals(entry.getKey())) {
                     subsInfo += "tâche " + entry2.getKey().getTask() + " : " + Utils.truncate(entry2.getValue()) + "%, ";
                 }
@@ -282,7 +282,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     private String formattingManagedFamilies() throws UnknownNameException {
         String info = "";
         String subsInfo;
-        for (HashMap.Entry<Integer, Double> entry : this.managedFamilies.entrySet()) {
+        for (Map.Entry<Integer, Double> entry : this.managedFamilies.entrySet()) {
             subsInfo = Family.UNKNOWN.findById(entry.getKey()).toStringByLanguage();
             subsInfo += " (";
             subsInfo += Utils.truncate(entry.getValue()) + ") ; ";
@@ -294,7 +294,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
     private String formattingManagedTasks() throws UnknownNameException {
         String info = "";
         String subsInfo;
-        for (HashMap.Entry<Integer, Double> entry : this.managedTasks.entrySet()) {
+        for (Map.Entry<Integer, Double> entry : this.managedTasks.entrySet()) {
             subsInfo = Task.UNKNOWN.findById(entry.getKey()).toString();
             subsInfo += " (";
             subsInfo += Utils.truncate(entry.getValue()) + ") ; ";
