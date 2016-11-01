@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import launch.options.Option;
 import lombok.Getter;
+import utils.Utils;
 import zoo.NameVerifications;
 import zoo.animal.specie.Family;
 import zoo.paddock.IPaddock;
@@ -251,14 +252,15 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         String subsInfo = "";
         for (HashMap.Entry<IPaddock, Double> entry : this.timedPaddocks.entrySet()) {
             subsInfo = "Enclos " + entry.getKey().getName();
-            subsInfo += " (" + entry.getValue() + "%)";
+            subsInfo += " (" + Utils.truncate(entry.getValue()) + "%)";
             subsInfo += " : ";
             for (HashMap.Entry<TaskPaddock, Double> entry2 : this.timedTaskPerPaddock.entrySet()) {
                 if (entry2.getKey().getPaddock().equals(entry.getKey())) {
-                    subsInfo += "tâche " + entry2.getKey().getTask() + " : " + entry2.getValue() + "%, ";
+                    subsInfo += "tâche " + entry2.getKey().getTask() + " : " + Utils.truncate(entry2.getValue()) + "%, ";
                 }
             }
-            subsInfo += "tâche " + Task.UNKNOWN.getId() + " : " + computeTimedTaskUnknown(entry.getKey()) + "%";
+            subsInfo += "tâche " + Task.UNKNOWN.getId() + " : " 
+                    + Utils.truncate(computeTimedTaskUnknown(entry.getKey())) + "%";
             info += subsInfo + "\n";
         }
         return info;
@@ -270,7 +272,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         for (HashMap.Entry<Integer, Double> entry : this.managedFamilies.entrySet()) {
             subsInfo = Family.UNKNOWN.findById(entry.getKey()).toStringByLanguage();
             subsInfo += " (";
-            subsInfo += entry.getValue() + ") ; ";
+            subsInfo += Utils.truncate(entry.getValue()) + ") ; ";
             info += subsInfo;
         }
         return "Familles gérées : " + info;
@@ -282,7 +284,7 @@ public class AnimalKeeperImpl implements AnimalKeeper {
         for (HashMap.Entry<Integer, Double> entry : this.managedTasks.entrySet()) {
             subsInfo = Task.UNKNOWN.findById(entry.getKey()).toString();
             subsInfo += " (";
-            subsInfo += entry.getValue() + ") ; ";
+            subsInfo += Utils.truncate(entry.getValue()) + ") ; ";
             info += subsInfo;
         }
         return "Tâches gérées : " + info;
