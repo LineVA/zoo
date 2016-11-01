@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
   <names>
-    <fr>Gibbon à joues jaunes</fr>
-    <additionalFrenchNames />
+    <fr>Gibbon à favoris roux</fr>
+    <additionalFrenchNames>
+        <name>Gibbon à joues jaunes</name>
+    </additionalFrenchNames>
     <en>Yellow-cheeked gibbon</en>
     <additionalEnglishNames>
       <name>Golden-cheeked gibbon</name>

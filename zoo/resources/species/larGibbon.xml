@@ -1,67 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
   <names>
-    <fr>Lémur mongoz</fr>
+    <fr>Gibbon lar</fr>
     <additionalFrenchNames>
-      <name>Mongos</name>
-      <name>Lémur mongos</name>
+      <name>Gibbon à mains blanches</name>
     </additionalFrenchNames>
-    <en>Mongoose lemur</en>
-    <additionalEnglishNames />
-    <scientific>Eulemur mongoz</scientific>
+    <en>Lar gibbon</en>
+    <additionalEnglishNames>
+        <name>White-handed gibbon</name>
+    </additionalEnglishNames>
+    <scientific>Hylobates lar</scientific>
   </names>
   <general>
-    <uicn>5</uicn>
-    <family>10</family>
+    <uicn>4</uicn>
+    <family>30</family>
     <continents>
-      <continent>1</continent>
+      <continent>5</continent>
     </continents>
     <ecoregion>0</ecoregion>
     <breedingProgramme>1</breedingProgramme>
   </general>
   <documentation>
-    <frenchWikipedia>https://fr.wikipedia.org/wiki/Lémur_mongos</frenchWikipedia>
-    <englishWikipedia>https://en.wikipedia.org/wiki/Mongoose_lemur</englishWikipedia>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Gibbon_à_mains_blanches</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Lar_gibbon</englishWikipedia>
     <animalDiversity />
   </documentation>
   <reproduction>
-    <femaleMaturity>24</femaleMaturity>
-    <maleMaturity>24</maleMaturity>
-    <gestationFrequency>1</gestationFrequency>
+    <femaleMaturity>90</femaleMaturity>
+    <maleMaturity>108</maleMaturity>
+    <gestationFrequency>0.29</gestationFrequency>
     <litterSize>1</litterSize>
-    <leavingAge>6</leavingAge>
+    <weaningAge>20</weaningAge>
+    <leavingAge>0</leavingAge>
   </reproduction>
   <lifespan>
     <femaleLifespan>360</femaleLifespan>
     <maleLifespan>360</maleLifespan>
   </lifespan>
   <territory>
-    <territorySize>40</territorySize>
+    <territorySize>100</territorySize>
     <biomes>
       <biome>2</biome>
     </biomes>
   </territory>
   <feeding>
-    <quantity>0.140</quantity>
-    <size>1</size>
+    <quantity>0.864</quantity>
+    <size>2</size>
     <diets>
       <diet>5</diet>
     </diets>
   </feeding>
   <social>
-    <groupSize>4</groupSize>
+    <groupSize>2</groupSize>
   </social>
-  <tags>
+    <tags>
       <frenchTags>
           <tag>Mammifère</tag>
           <tag>Primate</tag>
-          <tag>Lémur</tag>
-          <tag>Lémurien</tag>
+          <tag>Singe</tag>
+          <tag>Gibbon</tag>
       </frenchTags>
       <englishTags>
           <tag>Mammal</tag>
           <tag>Primate</tag>
-          <tag>Lemur</tag>
+          <tag>Monkey</tag>
+          <tag>Gibbon</tag>
       </englishTags>
   </tags>
 </animal>
