@@ -40,7 +40,7 @@ public enum Size {
     }
     
     /**
-     * Return the name of the size, according to the current language
+     * Return the name of the size, According to the current language
      * @return the name of the size
      */
     public String toStringByLanguage(){

@@ -420,7 +420,7 @@ public class Paddock implements IPaddock {
         this.animals.entrySet().stream().filter(
                 (animalEntry)
                 -> (!listSpecie.contains(animalEntry.getValue().getSpecie()))).forEach((animalEntry) -> {
-                    listSpecie.add(animalEntry.getValue().getSpecie().getNameaccordingToLanguage(option));
+                    listSpecie.add(animalEntry.getValue().getSpecie().getNameAccordingToLanguage(option));
                 });
         return listSpecie;
     }
@@ -429,7 +429,7 @@ public class Paddock implements IPaddock {
     public List<String> listSpeciesByName(List<String> presentedSpecies) {
         this.animals.entrySet().stream().map(
                 (animalEntry)
-                -> animalEntry.getValue().getSpecie().getNameaccordingToLanguage(option)).filter((name)
+                -> animalEntry.getValue().getSpecie().getNameAccordingToLanguage(option)).filter((name)
                         -> (!presentedSpecies.contains(name))).forEach((name) -> {
                     presentedSpecies.add(name);
                 });

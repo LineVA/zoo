@@ -33,7 +33,7 @@ public class Names {
         this.additionalFrenchNames = additionalFrenchNames;
     }
 
-    public String getNameaccordingToLanguage(Option option) {
+    public String getNameAccordingToLanguage(Option option) {
         if (option.getLocale().getLanguage().equals("fr")) {
             return this.frenchName;
         } else {
@@ -41,7 +41,7 @@ public class Names {
         }
     }
 
-    public String getAdditionalNamesaccordingToLanguage(Option option) {
+    public String getAdditionalNamesAccordingToLanguage(Option option) {
         if (option.getLocale().getLanguage().equals("fr")) {
             return this.additionalNamesToString(this.additionalFrenchNames);
         } else {

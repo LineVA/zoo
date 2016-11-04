@@ -25,7 +25,7 @@ public class Documentation extends AbstractCommand {
             Specie spec = super.getPlay().getZoo().findSpecieByName(cmd[2]);
             if ("wiki".equalsIgnoreCase(cmd[1]) || "wikipedia".equalsIgnoreCase(cmd[1])) {
                 DocumentationGeneration.display(
-                        spec.getDocumentation().getWikipediaaccordingToLanguage(super.getPlay().getOption()));
+                        spec.getDocumentation().getWikipediaAccordingToLanguage(super.getPlay().getOption()));
             }
               if ("ad".equalsIgnoreCase(cmd[1]) || "animalDiversity".equalsIgnoreCase(cmd[1])) {
                 DocumentationGeneration.display(

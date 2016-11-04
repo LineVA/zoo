@@ -139,8 +139,8 @@ public class Specie {
     public List<String> toString(Option option) throws UnknownNameException {
         List<String> info = new ArrayList<>();
         ResourceBundle bundle = option.getSpecieBundle();
-        info.add(bundle.getString("NAME") + this.names.getNameaccordingToLanguage(option));
-        info.add(bundle.getString("OTHER_NAME") + this.names.getAdditionalNamesaccordingToLanguage(option));
+        info.add(bundle.getString("NAME") + this.names.getNameAccordingToLanguage(option));
+        info.add(bundle.getString("OTHER_NAME") + this.names.getAdditionalNamesAccordingToLanguage(option));
         info.add(bundle.getString("SCIENTIFIC_NAME") + this.names.getScientificName());
         info.addAll(this.names.infoAccordingToOtherLanguages(option));
         info.add(bundle.getString("CONSERVATION") + ConservationStatus.UNKNOWN.findById(this.conservation).toStringByLanguage());
@@ -222,8 +222,8 @@ public class Specie {
         return Objects.equals(this.names, other.names);
     }
 
-    public String getNameaccordingToLanguage(Option option) {
-        return this.names.getNameaccordingToLanguage(option);
+    public String getNameAccordingToLanguage(Option option) {
+        return this.names.getNameAccordingToLanguage(option);
     }
 
     public Set<String> getTagsAccordingToLanguage(Option option) {
