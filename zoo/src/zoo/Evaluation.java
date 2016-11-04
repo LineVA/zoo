@@ -59,7 +59,7 @@ public class Evaluation {
     public List<String> ageing(Map<String, IPaddock> paddocks, int monthsPerEvaluation)
             throws IncorrectDataException, EmptyNameException, NameException, IncorrectLoadException {
         List<String> info = new ArrayList<>();
-        for (HashMap.Entry<String, IPaddock> padEntry : paddocks.entrySet()) {
+        for (Map.Entry<String, IPaddock> padEntry : paddocks.entrySet()) {
             padEntry.getValue().ageing(monthsPerEvaluation);
             info.addAll(padEntry.getValue().birth(monthsPerEvaluation));
             info.addAll(padEntry.getValue().death());
