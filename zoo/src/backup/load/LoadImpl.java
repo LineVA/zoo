@@ -67,7 +67,7 @@ public class LoadImpl implements Load {
     }
 
     /**
-     * Add a real animal to the zoo according the value of a fake animal
+     * Add a real animal to the zoo according to the value of a fake animal
      * @param zoo the zoo in which we add the animal
      * @param animal the fake animal to add
      * @param option the option of the animal
@@ -87,7 +87,7 @@ public class LoadImpl implements Load {
     }
     
     /**
-     * Add a real paddock to the zoo according the value of a fake paddock
+     * Add a real paddock to the zoo according to the value of a fake paddock
      * @param zoo the zoo in which we add the paddock
      * @param paddock the fake paddock to add
      * @param option the option of the paddock
@@ -105,7 +105,7 @@ public class LoadImpl implements Load {
     }
 
     /**
-     * Add a real animal keeper to the zoo according the value of a fake animal keeper
+     * Add a real animal keeper to the zoo according to the value of a fake animal keeper
      * @param zoo the zoo in which we add the animal keeper
      * @param keeper the fake animal keeper to add
      * @param option the options of the animal keeper
@@ -143,7 +143,7 @@ public class LoadImpl implements Load {
     }
 
     /**
-     * Verify the acceptability of the timed tasks poer paddock for a keeper
+     * Verify the acceptability of the timed tasks per paddock for a keeper
      * @param zoo the zoo in which we work
      * @param timedTasksPerPaddock the map of timed tasks per paddock to check
      * @param timedPaddocks the already existing timed paddocks (identified by String)
