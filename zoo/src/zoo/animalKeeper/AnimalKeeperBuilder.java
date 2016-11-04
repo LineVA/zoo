@@ -1,7 +1,6 @@
 package zoo.animalKeeper;
 
 import exception.name.EmptyNameException;
-import exception.name.NameException;
 import exception.name.UnauthorizedNameException;
 import java.util.HashMap;
 import java.util.Map;
