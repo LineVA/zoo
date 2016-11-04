@@ -8,7 +8,6 @@ import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import backup.save.SaveImpl;
 import exception.IncorrectLoadException;
 import exception.name.NameException;
@@ -150,7 +149,7 @@ public class Zoo implements IZoo {
         List<IPaddock> neightbourhood = new ArrayList<>();
         PaddockCoordinates coorNeightbourhood = coor.getNeightbourhoodCoordinates(this.horizon);
         IPaddock tmp;
-        for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
+        for (Map.Entry<String, IPaddock> entry : paddocks.entrySet()) {
             tmp = checkNeightbourhood(entry, coor, coorNeightbourhood);
             if (tmp != null) {
                 neightbourhood.add(tmp);
@@ -200,7 +199,7 @@ public class Zoo implements IZoo {
         List<IPaddock> neightbourhood = new ArrayList<>();
         PaddockCoordinates coorNeightbourhood = coor.getNeightbourhoodCoordinates(this.horizon);
         IPaddock tmp;
-        for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
+        for (Map.Entry<String, IPaddock> entry : paddocks.entrySet()) {
             tmp = checkNeightbourhood(entry, coor, coorNeightbourhood);
             if (tmp != null) {
                 neightbourhood.add(tmp);
@@ -283,7 +282,7 @@ public class Zoo implements IZoo {
     private List<AnimalKeeper> findAnimalKeeperByPaddock(IPaddock paddock) throws UnknownNameException,
             EmptyNameException {
         List<AnimalKeeper> list = new ArrayList<>();
-        for (HashMap.Entry<String, AnimalKeeper> keeper : this.keepers.entrySet()) {
+        for (Map.Entry<String, AnimalKeeper> keeper : this.keepers.entrySet()) {
             if (keeper.getValue().workInGivenPaddock(paddock)) {
                 list.add(keeper.getValue());
             }
@@ -296,7 +295,7 @@ public class Zoo implements IZoo {
             throws UnknownNameException, EmptyNameException {
         List<String> list = new ArrayList<>();
         if (paddock == null) {
-            for (HashMap.Entry<String, AnimalKeeper> entry : this.keepers.entrySet()) {
+            for (Map.Entry<String, AnimalKeeper> entry : this.keepers.entrySet()) {
                 list.add(entry.getKey());
             }
         } else {
@@ -310,7 +309,7 @@ public class Zoo implements IZoo {
     private void removePaddockFromKeepers(IPaddock paddock) {
         List<IPaddock> padList = new ArrayList<>();
         padList.add(paddock);
-        for (HashMap.Entry<String, AnimalKeeper> keeper : this.keepers.entrySet()) {
+        for (Map.Entry<String, AnimalKeeper> keeper : this.keepers.entrySet()) {
             keeper.getValue().removeTimedPaddocks(padList);
         }
     }
@@ -336,7 +335,7 @@ public class Zoo implements IZoo {
 
     @Override
     public void evolveAnimalKeepers() {
-        for (HashMap.Entry<String, AnimalKeeper> entry : this.keepers.entrySet()) {
+        for (Map.Entry<String, AnimalKeeper> entry : this.keepers.entrySet()) {
             entry.getValue().evolve();
         }
     }
@@ -425,7 +424,7 @@ public class Zoo implements IZoo {
             throw new EmptyNameException(
                     this.option.getAnimalBundle().getString("EMPTY_NAME"));
         }
-        for (HashMap.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
+        for (Map.Entry<String, IPaddock> padEntry : this.paddocks.entrySet()) {
             try {
                 return padEntry.getValue().findAnimalByName(animalName);
             } catch (UnknownNameException ex) {
@@ -442,7 +441,7 @@ public class Zoo implements IZoo {
             throws UnknownNameException {
         if (paddock.isEmpty()) {
             List<Animal> list = new ArrayList<>();
-            for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
+            for (Map.Entry<String, IPaddock> entry : paddocks.entrySet()) {
                 list.addAll(entry.getValue().listAnimal(specie, sex, diet, biome));
             }
             return list;
@@ -488,7 +487,7 @@ public class Zoo implements IZoo {
     @Override
     public double grade() throws UnknownNameException, EmptyNameException {
         this.grade = 0.0;
-        for (HashMap.Entry<String, IPaddock> entry : paddocks.entrySet()) {
+        for (Map.Entry<String, IPaddock> entry : paddocks.entrySet()) {
             this.grade += entry.getValue().wellBeing(findAnimalKeeperByPaddock(entry.getValue()));
         }
         return this.grade;
