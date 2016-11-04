@@ -134,8 +134,8 @@ public class LoadImpl implements Load {
      */
     private Map<IPaddock, Double> verifyPaddockForKeeper(IZoo zoo, Map<String, Double> timedPaddocks)
             throws EmptyNameException, UnknownNameException {
-        HashMap<IPaddock, Double> realMap = new HashMap<>();
-        for (HashMap.Entry<String, Double> entry : timedPaddocks.entrySet()) {
+        Map<IPaddock, Double> realMap = new HashMap<>();
+        for (Map.Entry<String, Double> entry : timedPaddocks.entrySet()) {
             IPaddock pad = zoo.findPaddockByName(entry.getKey());
             realMap.put(pad, entry.getValue());
         }
@@ -156,8 +156,8 @@ public class LoadImpl implements Load {
             IZoo zoo, Map<FakeTaskPaddock, Double> timedTasksPerPaddock,
             Map<String, Double> timedPaddocks)
             throws UnknownNameException, EmptyNameException, IncorrectLoadException {
-        HashMap<TaskPaddock, Double> realMap = new HashMap<>();
-        for (HashMap.Entry<FakeTaskPaddock, Double> entry : timedTasksPerPaddock.entrySet()) {
+        Map<TaskPaddock, Double> realMap = new HashMap<>();
+        for (Map.Entry<FakeTaskPaddock, Double> entry : timedTasksPerPaddock.entrySet()) {
             IPaddock pad = zoo.findPaddockByName(entry.getKey().getPaddock());
             Task.UNKNOWN.findById(entry.getKey().getTask());
              if(!timedPaddocks.containsKey(pad.getName())){
@@ -175,7 +175,7 @@ public class LoadImpl implements Load {
      */
     private void verifyManagedFamilies(Map<Integer, Double> managed)
             throws UnknownNameException {
-         for (HashMap.Entry<Integer, Double> entry : managed.entrySet()) {
+         for (Map.Entry<Integer, Double> entry : managed.entrySet()) {
              Family.UNKNOWN.findById(entry.getKey());
         }
     }
@@ -187,7 +187,7 @@ public class LoadImpl implements Load {
      */
      private void verifyManagedTasks(Map<Integer, Double> managed)
             throws UnknownNameException {
-         for (HashMap.Entry<Integer, Double> entry : managed.entrySet()) {
+         for (Map.Entry<Integer, Double> entry : managed.entrySet()) {
              Task.UNKNOWN.findById(entry.getKey());
         }
     }

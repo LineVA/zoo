@@ -339,7 +339,7 @@ public class ParserBackUp {
      * @return the corresponding map of the timed paddocks identifying by the name
      */
     private Map<String, Double> parserTimedPaddocks(Element el) {
-        HashMap<String, Double> timedPaddocks = new HashMap<>();
+        Map<String, Double> timedPaddocks = new HashMap<>();
         for (Element padEl : el.getChild("timedPaddocks").getChildren("timedPaddock")) {
             timedPaddocks.put(padEl.getChildText("paddock"), Double.parseDouble(padEl.getChildText("time")));
         }
@@ -352,7 +352,7 @@ public class ParserBackUp {
      * @return the corresponding map of the timed tasks per paddock identifying by the name and id
      */
     private Map<FakeTaskPaddock, Double> parserTimedTasksPerPaddock(Element el) {
-        HashMap<FakeTaskPaddock, Double> timedPaddocks = new HashMap<>();
+        Map<FakeTaskPaddock, Double> timedPaddocks = new HashMap<>();
         for (Element padEl : el.getChild("timedTasksPerPaddock").getChildren("timedTaskPerPaddock")) {
             timedPaddocks.put(
                     new FakeTaskPaddock(padEl.getChildText("paddock"), Integer.parseInt(padEl.getChildText("task"))),
@@ -367,7 +367,7 @@ public class ParserBackUp {
      * @return the corresponding map of the managed families identifying by the id
      */
     private Map<Integer, Double> parserManagedFamilies(Element el) {
-        HashMap<Integer, Double> managed = new HashMap<>();
+        Map<Integer, Double> managed = new HashMap<>();
         for (Element managedEl : el.getChild("managedFamilies").getChildren("managedFamily")) {
             managed.put(Integer.parseInt(managedEl.getChildText("family")),
                     Double.parseDouble(managedEl.getChildText("time")));
@@ -381,7 +381,7 @@ public class ParserBackUp {
      * @return the corresponding map of the managed tasks identifying by the id
      */
     private Map<Integer, Double> parserManagedTasks(Element el) {
-        HashMap<Integer, Double> managed = new HashMap<>();
+        Map<Integer, Double> managed = new HashMap<>();
         for (Element managedEl : el.getChild("managedTasks").getChildren("managedTask")) {
             managed.put(Integer.parseInt(managedEl.getChildText("task")),
                     Double.parseDouble(managedEl.getChildText("time")));

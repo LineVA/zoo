@@ -1,12 +1,10 @@
 package backup.save;
 
 import exception.name.EmptyNameException;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.util.HashMap;
 import java.util.Map;
 import org.jdom2.Attribute;
 import org.jdom2.Document;
@@ -168,7 +166,7 @@ public class SaveImpl implements Save {
      */
     private Element createElementTimedPaddocks(Map<IPaddock, Double> timedPaddocks) {
         Element el = new Element("timedPaddocks");
-        for (HashMap.Entry<IPaddock, Double> entry : timedPaddocks.entrySet()) {
+        for (Map.Entry<IPaddock, Double> entry : timedPaddocks.entrySet()) {
             el.addContent(createElementTimedPaddock(entry.getKey().getName(friendSave), entry.getValue()));
         }
         return el;
@@ -185,7 +183,7 @@ public class SaveImpl implements Save {
      */
     private Element createElementTimedTasksPerPaddock(Map<TaskPaddock, Double> timedTasksPerPaddock) {
         Element el = new Element("timedTasksPerPaddock");
-        for (HashMap.Entry<TaskPaddock, Double> entry : timedTasksPerPaddock.entrySet()) {
+        for (Map.Entry<TaskPaddock, Double> entry : timedTasksPerPaddock.entrySet()) {
             el.addContent(createElementTimedTaskPerPaddock(
                     entry.getKey().getPaddock().getName(friendSave),
                     entry.getKey().getTask(),
@@ -205,7 +203,7 @@ public class SaveImpl implements Save {
      */
     private Element createElementManagedFamilies(Map<Integer, Double> managedFamilies) {
         Element el = new Element("managedFamilies");
-        for (HashMap.Entry<Integer, Double> entry : managedFamilies.entrySet()) {
+        for (Map.Entry<Integer, Double> entry : managedFamilies.entrySet()) {
             el.addContent(createElementManagedFamily(
                     entry.getKey(), entry.getValue()));
         }
@@ -223,7 +221,7 @@ public class SaveImpl implements Save {
      */
     private Element createElementManagedTasks(Map<Integer, Double> managedTasks) {
         Element el = new Element("managedTasks");
-        for (HashMap.Entry<Integer, Double> entry : managedTasks.entrySet()) {
+        for (Map.Entry<Integer, Double> entry : managedTasks.entrySet()) {
             el.addContent(createElementManagedTask(
                     entry.getKey(), entry.getValue()));
         }
@@ -330,7 +328,7 @@ public class SaveImpl implements Save {
      */
     private Element createElementAnimals(IPaddock pad) {
         Element el = new Element("animals");
-        for (HashMap.Entry<String, Animal> animal : pad.getAnimals(friendSave).entrySet()) {
+        for (Map.Entry<String, Animal> animal : pad.getAnimals(friendSave).entrySet()) {
             el.addContent(createElementAnimal((Animal) animal.getValue()));
         }
         return el;
