@@ -3,6 +3,7 @@ package zoo.animalKeeper;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
 import java.util.HashMap;
+import java.util.Map;
 import launch.options.Option;
 import org.junit.Assert;
 import org.junit.Before;
@@ -16,7 +17,7 @@ import zoo.paddock.PaddockBuilder;
  */
 public class TaskPaddockHMTest {
 
-    public HashMap<TaskPaddock, Double> timedPerPaddock = new HashMap<>();
+    public Map<TaskPaddock, Double> timedPerPaddock = new HashMap<>();
     public IPaddock pad1;
     public IPaddock pad2;
     public int task1 = 1;

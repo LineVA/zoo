@@ -6,6 +6,7 @@ import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.AfterClass;
@@ -58,7 +59,7 @@ public class VisualizeXMLSave {
     public void should_CreateAFileWithTheCorectNameAndContent()
             throws EmptyNameException, IncorrectDimensionsException, IOException {
         IZoo zoo = new Zoo();
-        HashMap<String, Specie> species = new HashMap<>();
+        Map<String, Specie> species = new HashMap<>();
         BiomeAttributes biome = new BiomeAttributes(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
         FeedingAttributes feeding = new FeedingAttributes(0.0);
         ReproductionAttributes reproduction = new ReproductionAttributes(0, 0, 0.0, 0);
@@ -79,7 +80,7 @@ public class VisualizeXMLSave {
         String expectedName = "myZoo2";
         int expectedWidth = 10;
         int expectedHeight = 10;
-        HashMap<String, Specie> expectedSpecies = null;
+        Map<String, Specie> expectedSpecies = null;
         int expectedAge = 90;
         int expectedMonthsPerEval = 98;
         int expectedHorizon = 8;

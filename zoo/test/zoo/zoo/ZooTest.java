@@ -4,6 +4,7 @@ import exception.IncorrectDimensionsException;
 import exception.name.EmptyNameException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
@@ -46,8 +47,8 @@ public class ZooTest {
         int expectedAge = 0;
         int expectedMonths = 9;
         int expectedHorizon = 8;
-        HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
-        HashMap<String, Specie> expectedSpecies = new HashMap<>();
+        Map<String, Paddock> expectedPaddocks = new HashMap<>();
+        Map<String, Specie> expectedSpecies = new HashMap<>();
         // When
         Zoo zoo = new Zoo();
         zoo.initiateZoo(expectedName, expectedWidth, expectedHeight,
@@ -58,8 +59,8 @@ public class ZooTest {
         int actualHeight = zoo.getHeight();
         int actualAge = zoo.getAge();
         int actualMonths = zoo.getMonthsPerEvaluation();
-        HashMap<String, IPaddock> actualPaddocks = zoo.getPaddocks();
-        HashMap<String, Specie> actualSpecies = zoo.getSpecies();
+        Map<String, IPaddock> actualPaddocks = zoo.getPaddocks();
+        Map<String, Specie> actualSpecies = zoo.getSpecies();
         assertEquals(expectedWidth, actualWidth);
         assertEquals(expectedHeight, actualHeight);
         assertEquals(expectedName, actualName);
@@ -76,7 +77,7 @@ public class ZooTest {
         String expectedName = "foo";
         int expectedWidth = -1;
         int expectedHeight = 7;
-        HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
+        Map<String, Paddock> expectedPaddocks = new HashMap<>();
         // When
         thrown.expect(IncorrectDimensionsException.class);
         Zoo zoo = new Zoo();
@@ -92,7 +93,7 @@ public class ZooTest {
         String expectedName = "foo";
         int expectedWidth = 0;
         int expectedHeight = 7;
-        HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
+        Map<String, Paddock> expectedPaddocks = new HashMap<>();
         // When
         thrown.expect(IncorrectDimensionsException.class);
         Zoo zoo = new Zoo();
@@ -107,7 +108,7 @@ public class ZooTest {
         String expectedName = "foo";
         int expectedWidth = 6;
         int expectedHeight = -1;
-        HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
+        Map<String, Paddock> expectedPaddocks = new HashMap<>();
         // When
         thrown.expect(IncorrectDimensionsException.class);
         Zoo zoo = new Zoo();
@@ -122,7 +123,7 @@ public class ZooTest {
         String expectedName = "foo";
         int expectedWidth = 6;
         int expectedHeight = -1;
-        HashMap<String, Paddock> expectedPaddocks = new HashMap<>();
+        Map<String, Paddock> expectedPaddocks = new HashMap<>();
         // When
         thrown.expect(IncorrectDimensionsException.class);
         Zoo zoo = new Zoo();

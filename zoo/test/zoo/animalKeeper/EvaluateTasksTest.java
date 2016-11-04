@@ -1,6 +1,7 @@
 package zoo.animalKeeper;
 
 import exception.IncorrectDataException;
+import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.NameException;
 import exception.name.UnknownNameException;
@@ -9,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import launch.options.Option;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -39,8 +39,7 @@ import zoo.paddock.biome.Ecoregion;
  *
  * @author doyenm
  */
-public class EvaluateByFamilyTest {
-
+public class EvaluateTasksTest {
     public Map<TaskPaddock, Double> timedPerPaddock = new HashMap<>();
     public IPaddock pad1;
     public IPaddock pad2;
@@ -61,7 +60,7 @@ public class EvaluateByFamilyTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Before
-    public void setUpClass() throws EmptyNameException, NameException, IncorrectDataException {
+    public void setUpClass() throws EmptyNameException, NameException, IncorrectDataException, IncorrectLoadException {
         Option option = new Option();
         Map<String, Animal> animals = new HashMap<>();
         ReproductionAttributes reproAtt = new ReproductionAttributes(0, 0, 0.0, 0);
@@ -92,40 +91,8 @@ public class EvaluateByFamilyTest {
     }
 
     @Test
-    public void shouldReturnZeroWhenTheKeeperDoesNotWorkInThePaddock()
+    public void shouldReturnZeroWhenTheKeeperIsNotAffectToThisTAsk()
             throws IncorrectDataException, UnknownNameException {
-        // Given
-        keeper = new AnimalKeeperImpl("keeper1",timedPaddocks, null, managedFamilies, null);
-        // When
-        keeper.evaluateByFamily(pad1);
-        // Then
-        Assert.assertTrue(keeper.getManagedFamilies().isEmpty());
-    }
-    
-     @Test
-    public void shouldNotReturnZeroWhenTheKeeperWorksInThePaddockAndWithThisFamilyForTheFirstTime()
-            throws IncorrectDataException, UnknownNameException {
-        // Given
-        timedPaddocks.put(pad1, time1);
-        keeper = new AnimalKeeperImpl("keeper1",timedPaddocks, null, managedFamilies, null);
-        // When
-        keeper.evaluateByFamily(pad1);
-        // Then
-        Assert.assertEquals(1, keeper.getManagedFamilies().size());
-        Assert.assertEquals(time1/100.0, keeper.getManagedFamilies().get(specie1.getFamily()), 0.0);
-    }
-    
-      @Test
-    public void shouldNotReturnZeroWhenTheKeeperWorksInThePaddockAndWithThisFamilyNotForTheFirstTime()
-            throws IncorrectDataException, UnknownNameException {
-        // Given
-        timedPaddocks.put(pad1, time1);
-        managedFamilies.put(specie1.getFamily(), 1.0);
-        keeper = new AnimalKeeperImpl("keeper1",timedPaddocks, null, managedFamilies, null);
-        // When
-        keeper.evaluateByFamily(pad1);
-        // Then
-        Assert.assertEquals(1, keeper.getManagedFamilies().size());
-        Assert.assertEquals(time1/100.0 + 1.0, keeper.getManagedFamilies().get(specie1.getFamily()), 0.0);
+   
     }
 }

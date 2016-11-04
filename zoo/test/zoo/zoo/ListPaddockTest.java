@@ -4,8 +4,8 @@ import exception.IncorrectDimensionsException;
 import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
@@ -29,7 +29,7 @@ public class ListPaddockTest {
         String expectedName = "foo";
         int expectedWidth = 6;
         int expectedHeight = 7;
-        HashMap<String, Specie> expectedSpecies = null;
+        Map<String, Specie> expectedSpecies = null;
         int expectedAge  = 1;
         int expectedMonthsPerEval = 8;
         int expectedHorizon = 9;
@@ -46,7 +46,7 @@ public class ListPaddockTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void shouldReturnTheNameOfThePaddocksWhenTheHashmapIsNotNull()
+    public void shouldReturnTheNameOfThePaddocksWhenTheMapIsNotNull()
             throws AlreadyUsedNameException, IncorrectDimensionsException {
         // Given
         zoo.addPaddock("a", 1, 1, 1, 1);

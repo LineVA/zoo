@@ -4,7 +4,7 @@ import zoo.Zoo;
 import exception.IncorrectDimensionsException;
 import exception.name.EmptyNameException;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.Map;
 import org.jdom2.Element;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
@@ -43,7 +43,7 @@ public class CreateElementZooTest {
         String expectedName = "foo";
         int expectedWidth = 1;
         int expectedHeight = 2;
-        HashMap<String, Specie> expectedSpecies = null;
+        Map<String, Specie> expectedSpecies = null;
         int expectedAge = 0;
         int expectedMonthsPerEval = 0;
         int expectedHorizon = 0;

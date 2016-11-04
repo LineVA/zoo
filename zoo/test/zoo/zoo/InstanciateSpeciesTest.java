@@ -36,7 +36,7 @@ public class InstanciateSpeciesTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void shouldReturnAnHAshMapOfTwoElements() throws EmptyNameException, IOException, JDOMException {
+    public void shouldReturnAnMapOfTwoElements() throws EmptyNameException, IOException, JDOMException {
         // Given
         String resource = "./test/zoo/zoo/resourceSpeciesTest";
         // When

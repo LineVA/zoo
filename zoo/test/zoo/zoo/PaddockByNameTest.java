@@ -5,7 +5,7 @@ import exception.name.AlreadyUsedNameException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.Map;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
@@ -17,7 +17,6 @@ import zoo.paddock.PaddockCoordinates;
 import zoo.Zoo;
 import zoo.animal.specie.Specie;
 import zoo.paddock.IPaddock;
-import static zoo.zoo.AddPaddockTest.zoo;
 
 /**
  *
@@ -32,7 +31,7 @@ public class PaddockByNameTest {
        String expectedName = "foo";
         int expectedWidth = 6;
         int expectedHeight = 7;
-        HashMap<String, Specie> expectedSpecies = null;
+        Map<String, Specie> expectedSpecies = null;
         int expectedAge  = 1;
         int expectedMonthsPerEval = 8;
         int expectedHorizon = 9;

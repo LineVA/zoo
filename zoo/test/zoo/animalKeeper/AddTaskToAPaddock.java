@@ -5,6 +5,7 @@ import exception.name.EmptyNameException;
 import exception.name.NameException;
 import exception.name.UnknownNameException;
 import java.util.HashMap;
+import java.util.Map;
 import launch.options.Option;
 import org.junit.Before;
 import org.junit.Rule;
@@ -19,7 +20,7 @@ import zoo.paddock.PaddockBuilder;
  */
 public class AddTaskToAPaddock {
 
-    public HashMap<TaskPaddock, Double> timedPerPaddock = new HashMap<>();
+    public Map<TaskPaddock, Double> timedPerPaddock = new HashMap<>();
     public IPaddock pad1;
     public IPaddock pad2;
     public int task1 = 1;
@@ -31,7 +32,7 @@ public class AddTaskToAPaddock {
     public Double time2 = 2.0;
     public Double time3 = 3.0;
     public AnimalKeeper keeper;
-    public HashMap<IPaddock, Double> timedPaddocks;
+    public Map<IPaddock, Double> timedPaddocks;
     public Option option;
 
     @Rule
@@ -59,7 +60,7 @@ public class AddTaskToAPaddock {
                 .buildAnimalKeeper();
         // When
         thrown.expect(IncorrectDataException.class);
-        HashMap<Task, Double> timedTasks = new HashMap<>();
+        Map<Task, Double> timedTasks = new HashMap<>();
         timedTasks.put(Task.CLEANING, 101.0);
         keeper.addTaskToAPaddock(pad1, timedTasks);
         // Then
@@ -75,7 +76,7 @@ public class AddTaskToAPaddock {
                 .buildAnimalKeeper();
         // When
         thrown.expect(IncorrectDataException.class);
-        HashMap<Task, Double> timedTasks = new HashMap<>();
+        Map<Task, Double> timedTasks = new HashMap<>();
         timedTasks.put(Task.CLEANING, 10.0);
         timedTasks.put(Task.ENRICHMENT, 91.0);
         keeper.addTaskToAPaddock(pad1, timedTasks);
@@ -92,8 +93,8 @@ public class AddTaskToAPaddock {
                 .buildAnimalKeeper();
         // When
         thrown.expect(IncorrectDataException.class);
-        HashMap<Task, Double> timedTasks1 = new HashMap<>();
-        HashMap<Task, Double> timedTasks2 = new HashMap<>();
+        Map<Task, Double> timedTasks1 = new HashMap<>();
+        Map<Task, Double> timedTasks2 = new HashMap<>();
         timedTasks1.put(Task.CLEANING, 10.0);
         keeper.addTaskToAPaddock(pad1, timedTasks1);
         timedTasks2.put(Task.ENRICHMENT, 91.0);
@@ -110,8 +111,8 @@ public class AddTaskToAPaddock {
                 .option(option)
                 .buildAnimalKeeper();
         // When
-        HashMap<Task, Double> timedTasks1 = new HashMap<>();
-        HashMap<Task, Double> timedTasks2 = new HashMap<>();
+        Map<Task, Double> timedTasks1 = new HashMap<>();
+        Map<Task, Double> timedTasks2 = new HashMap<>();
         timedTasks1.put(Task.CLEANING, 10.0);
         keeper.addTaskToAPaddock(pad1, timedTasks1);
         timedTasks2.put(Task.CLEANING, 91.0);
@@ -129,8 +130,8 @@ public class AddTaskToAPaddock {
                 .buildAnimalKeeper();
         // When
         thrown.expect(IncorrectDataException.class);
-        HashMap<Task, Double> timedTasks1 = new HashMap<>();
-        HashMap<Task, Double> timedTasks2 = new HashMap<>();
+        Map<Task, Double> timedTasks1 = new HashMap<>();
+        Map<Task, Double> timedTasks2 = new HashMap<>();
         timedTasks1.put(Task.CLEANING, 10.0);
         keeper.addTaskToAPaddock(pad1, timedTasks1);
         timedTasks2.put(Task.CLEANING, 91.0);
