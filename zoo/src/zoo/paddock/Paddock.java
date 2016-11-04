@@ -6,7 +6,6 @@ import zoo.paddock.biome.Biome;
 import exception.name.AlreadyUsedNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import lombok.Getter;
 import backup.save.SaveImpl;
@@ -279,7 +278,7 @@ public class Paddock implements IPaddock {
         Reproduction repro = new ReproductionImpl();
         List<Animal> newFamily;
         Animal newComer;
-        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
+        for (Map.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
             newFamily = repro.reproducte(animalEntry.getValue(), monthsPerEvaluation);
             // If there is reproduction
             if (newFamily != null) {
@@ -334,7 +333,7 @@ public class Paddock implements IPaddock {
         IDie die = new DieImpl();
         List<Animal> tmpAnimal = new ArrayList<>();
         Animal dying;
-        for (HashMap.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
+        for (Map.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
             // If the animal is dead
             dying = animalEntry.getValue();
             if (die.isDied(dying)) {
@@ -368,7 +367,7 @@ public class Paddock implements IPaddock {
     @Override
     public double wellBeing(List<AnimalKeeper> keepers) throws UnknownNameException {
         double wB = 0;
-        for (HashMap.Entry<String, Animal> entry : animals.entrySet()) {
+        for (Map.Entry<String, Animal> entry : animals.entrySet()) {
             wB += entry.getValue().wellBeing(keepers);
         }
         return wB;
