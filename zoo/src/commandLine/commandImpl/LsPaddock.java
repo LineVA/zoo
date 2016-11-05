@@ -43,9 +43,6 @@ public class LsPaddock extends AbstractCommand {
             if (!this.types.isEmpty()) {
                 light.setTypes(Utils.convertToSetOfInteger(types));
             }
-            if (!this.species.isEmpty()) {
-
-            }
             List<String> names = super.getPlay().getZoo().listPaddock(light, convertToSpecieSet(species));
             Collections.sort(names);
             super.setSuccess(true);
