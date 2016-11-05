@@ -110,7 +110,7 @@ public class Paddock implements IPaddock {
     private void setBiome(Biome biome) {
         if (biome != null) {
             this.biome = biome.getId();
-            this.attributes = (BiomeAttributes) biome.getAttributes().clone();
+//            this.attributes = (BiomeAttributes) biome.getAttributes().clone();
         } else {
             setBiome(Biome.NONE);
         }
@@ -147,7 +147,7 @@ public class Paddock implements IPaddock {
         info.add(bundle.getString("NEIGHTBOURS") + this.listNeightbourhood());
         info.add(bundle.getString("TYPE") + PaddockTypes.UNKNOWN.findById(this.paddockType).toStringByLanguage());
         info.add(bundle.getString("BIOME") + Biome.NONE.findById(this.biome).toStringByLanguage());
-        info.add(bundle.getString("BIOMES_CHARACTERISTICS") + this.attributes.toString());
+//        info.add(bundle.getString("BIOMES_CHARACTERISTICS") + this.attributes.toString());
         return info;
     }
 
@@ -495,6 +495,25 @@ public class Paddock implements IPaddock {
         }
         return speciesList;
     }
+    
+    @Override
+    public boolean compareTo(LightPaddock lightPaddock){
+          boolean isCorresponding = true;
+        if (null != lightPaddock.getBiomes()) {
+            if (lightPaddock.getBiomes().size() > 1) {
+                return false;
+            }
+            isCorresponding &= lightPaddock.getBiomes().contains(this.biome);
+        }
+         if (null != lightPaddock.getTypes()) {
+            if (lightPaddock.getTypes().size() > 1) {
+                return false;
+            }
+            isCorresponding &= lightPaddock.getTypes().contains(this.paddockType);
+        }
+        return isCorresponding;
+    }
+    
 
     @Override
     public String getName(SaveImpl.FriendSave friend) {

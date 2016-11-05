@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import backup.save.SaveImpl;
 import exception.IncorrectLoadException;
 import exception.name.NameException;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,7 @@ import zoo.animal.specie.Specie;
 import zoo.animalKeeper.AnimalKeeper;
 import zoo.animalKeeper.AnimalKeeperBuilder;
 import zoo.paddock.IPaddock;
+import zoo.paddock.LightPaddock;
 import zoo.paddock.PaddockBuilder;
 import zoo.paddock.biome.Biome;
 
@@ -221,25 +223,22 @@ public class Zoo implements IZoo {
         });
     }
 
-    /**
-     * Method used to list the paddocks of the zoo
-     *
-     * @param specie
-     * @return List of their names
-     */
     @Override
-    public List<String> listPaddock(Specie specie) {
+    public List<String> listPaddock(LightPaddock lightPaddock, Set<Specie> species) {
+        List<IPaddock> padList = new ArrayList<>();
         List<String> list = new ArrayList<>();
-        if (specie == null) {
-            paddocks.entrySet().stream().forEach((entry) -> {
-                list.add(entry.getKey());
-            });
-        } else {
-            paddocks.entrySet().stream().filter((entry)
-                    -> (entry.getValue().countAnimalsOfTheSameSpecie(specie) != 0)).forEach((entry) -> {
-                        list.add(entry.getKey());
-                    });
+        for (Map.Entry<String, IPaddock> paddock : paddocks.entrySet()) {
+            if (paddock.getValue().compareTo(lightPaddock)) {
+                padList.add(paddock.getValue());
+            }
         }
+         for(Specie spec : species){
+             for(IPaddock pad : padList){
+                 if(pad.countAnimalsOfTheSameSpecie(spec) > 0){
+                     list.add(pad.getName());
+                 }
+             }
+         }
         return list;
     }
 
@@ -453,7 +452,7 @@ public class Zoo implements IZoo {
                     return pad.listAnimal(specie, sex, diet, biome);
                 }
             }
-            return null; 
+            return null;
         }
     }
 

@@ -37,21 +37,30 @@ public class Utils {
         }
         return initial;
     }
-    
-     public static List<Integer> convertToListOfInteger(Set<String> strings) 
-             throws java.lang.NumberFormatException{
+
+    public static List<Integer> convertToListOfInteger(Set<String> strings)
+            throws java.lang.NumberFormatException {
         List<Integer> integers = new ArrayList<>();
         for (String str : strings) {
             integers.add(Integer.parseInt(str));
         }
         return integers;
     }
-     
-     public static Set<String> toUpperCase(Set<String> strings){
+
+    public static Set<String> toUpperCase(Set<String> strings) {
         Set<String> uppers = new HashSet<>();
-        for(String str : strings){
+        for (String str : strings) {
             uppers.add(str.toUpperCase());
         }
         return uppers;
+    }
+
+    public static Set<Integer> convertToSetOfInteger(Set<String> strings)
+            throws java.lang.NumberFormatException {
+        Set<Integer> integers = new HashSet<>();
+        for (String str : strings) {
+            integers.add(Integer.parseInt(str));
+        }
+        return integers;
     }
 }

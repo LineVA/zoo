@@ -83,7 +83,8 @@ public class LsAnimal extends AbstractCommand {
         } catch (UnknownNameException | EmptyNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         } catch (NumberFormatException ex) {
-            return new ReturnExec("INTEGER ERROR", TypeReturn.ERROR);
+            return new ReturnExec(super.getPlay().getOption().getGeneralCmdBundle()
+                    .getString("NUMBER_FORMAT_EXCEPTION"), TypeReturn.ERROR);
         }
     }
 
