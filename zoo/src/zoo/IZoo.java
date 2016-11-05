@@ -50,7 +50,7 @@ public interface IZoo {
 
     public void removePaddock(IPaddock paddock);
 
-    public List<String> listPaddock(LightPaddock lightPaddock);
+    public List<String> listPaddock(LightPaddock lightPaddock, Set<Specie> species);
 
     public List<String> listAnimalKeeper(IPaddock paddock) 
               throws UnknownNameException, EmptyNameException;

@@ -225,23 +225,21 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public List<String> listPaddock(LightPaddock lightPaddock) {
+    public List<String> listPaddock(LightPaddock lightPaddock, Set<Specie> species) {
+        List<IPaddock> padList = new ArrayList<>();
         List<String> list = new ArrayList<>();
-//        if (specie == null) {
-//            paddocks.entrySet().stream().forEach((entry) -> {
-//                list.add(entry.getKey());
-//            });
-//        } else {
-//            paddocks.entrySet().stream().filter((entry)
-//                    -> (entry.getValue().countAnimalsOfTheSameSpecie(specie) != 0)).forEach((entry) -> {
-//                        list.add(entry.getKey());
-//                    });
-//        }
-        for(Map.Entry<String, IPaddock> paddock : paddocks.entrySet()){
-            if(paddock.getValue().compareTo(lightPaddock)){
-                list.add(paddock.getKey());
+        for (Map.Entry<String, IPaddock> paddock : paddocks.entrySet()) {
+            if (paddock.getValue().compareTo(lightPaddock)) {
+                padList.add(paddock.getValue());
             }
         }
+         for(Specie spec : species){
+             for(IPaddock pad : padList){
+                 if(pad.countAnimalsOfTheSameSpecie(spec) > 0){
+                     list.add(pad.getName());
+                 }
+             }
+         }
         return list;
     }
 
@@ -455,7 +453,7 @@ public class Zoo implements IZoo {
                     return pad.listAnimal(specie, sex, diet, biome);
                 }
             }
-            return null; 
+            return null;
         }
     }
 

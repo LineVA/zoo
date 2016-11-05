@@ -5,12 +5,17 @@ import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.SplittingAmpersand;
 import commandLine.TypeReturn;
+import exception.name.EmptyNameException;
+import exception.name.UnknownNameException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import launch.play.Play;
 import utils.Utils;
+import zoo.animal.specie.Specie;
 import zoo.paddock.LightPaddock;
 
 /**
@@ -22,6 +27,7 @@ public class LsPaddock extends AbstractCommand {
     String[] args;
     Set<String> biomes;
     Set<String> types;
+    Set<String> species;
 
     public LsPaddock(Play play) {
         super(play);
@@ -34,20 +40,34 @@ public class LsPaddock extends AbstractCommand {
             if (!this.biomes.isEmpty()) {
                 light.setBiomes(Utils.convertToSetOfInteger(biomes));
             }
-               if (!this.types.isEmpty()) {
+            if (!this.types.isEmpty()) {
                 light.setTypes(Utils.convertToSetOfInteger(types));
             }
-            List<String> names = super.getPlay().getZoo().listPaddock(light);
+            if (!this.species.isEmpty()) {
+
+            }
+            List<String> names = super.getPlay().getZoo().listPaddock(light, convertToSpecieSet(species));
             Collections.sort(names);
             super.setSuccess(true);
             return new ReturnExec(FormattingDisplay.formattingList(names), TypeReturn.SUCCESS);
         } catch (NumberFormatException ex) {
             return new ReturnExec("INTEGER ERROR", TypeReturn.ERROR);
+        } catch (EmptyNameException | UnknownNameException ex) {
+            return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
     }
 
+    private Set<Specie> convertToSpecieSet(Set<String> strings)
+            throws EmptyNameException, UnknownNameException {
+        Set<Specie> species = new HashSet<>();
+        for (String str : strings) {
+            species.add(super.getPlay().getZoo().findSpecieByName(str));
+        }
+        return species;
+    }
+
     private boolean checkLength(String[] cmd) {
-        return cmd.length >= 2 && cmd.length % 2 == 0 && cmd.length <= 6;
+        return cmd.length >= 2 && cmd.length % 2 == 0 && cmd.length <= 8;
     }
 
     private boolean checkFirstParts(String[] cmd) {
@@ -64,11 +84,17 @@ public class LsPaddock extends AbstractCommand {
                 || "--paddockType".equalsIgnoreCase(arg);
     }
 
+    private boolean hasArgumentSpecie(String arg) {
+        return "-s".equalsIgnoreCase(arg) || "--specie".equalsIgnoreCase(arg);
+    }
+
     private boolean saveArguments(String arg, String value) {
         if (this.hasArgumentBiome(arg)) {
             this.biomes = SplittingAmpersand.split(value);
         } else if (this.hasArgumentType(arg)) {
             this.types = SplittingAmpersand.split(value);
+        } else if (this.hasArgumentSpecie(arg)) {
+            this.species = SplittingAmpersand.split(value);
         } else {
             return false;
         }
@@ -79,6 +105,7 @@ public class LsPaddock extends AbstractCommand {
     public boolean canExecute(String[] cmd) {
         this.biomes = new HashSet<>();
         this.types = new HashSet<>();
+        this.species = new HashSet<>();
         if (checkLength(cmd)) {
             if (checkFirstParts(cmd)) {
                 int i = 2;
