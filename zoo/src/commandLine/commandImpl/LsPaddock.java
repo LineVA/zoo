@@ -11,8 +11,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import launch.play.Play;
 import utils.Utils;
 import zoo.animal.specie.Specie;
@@ -48,7 +46,8 @@ public class LsPaddock extends AbstractCommand {
             super.setSuccess(true);
             return new ReturnExec(FormattingDisplay.formattingList(names), TypeReturn.SUCCESS);
         } catch (NumberFormatException ex) {
-            return new ReturnExec("INTEGER ERROR", TypeReturn.ERROR);
+            return new ReturnExec(super.getPlay().getOption().getGeneralCmdBundle()
+                    .getString("NUMBER_FORMAT_EXCEPTION"), TypeReturn.ERROR);
         } catch (EmptyNameException | UnknownNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
