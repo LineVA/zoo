@@ -21,6 +21,7 @@ import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
 import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.IPaddock;
+import zoo.paddock.LightPaddock;
 import zoo.paddock.PaddockCoordinates;
 import zoo.paddock.biome.Biome;
 
@@ -49,7 +50,7 @@ public interface IZoo {
 
     public void removePaddock(IPaddock paddock);
 
-    public List<String> listPaddock(Specie specie);
+    public List<String> listPaddock(LightPaddock lightPaddock);
 
     public List<String> listAnimalKeeper(IPaddock paddock) 
               throws UnknownNameException, EmptyNameException;

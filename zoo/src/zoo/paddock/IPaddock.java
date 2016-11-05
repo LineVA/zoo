@@ -24,6 +24,8 @@ import zoo.paddock.biome.Biome;
  * @author doyenm
  */
 public interface IPaddock {
+    
+    public boolean compareTo(LightPaddock lightPaddock);
 
     public void setBiome(String biomeName) throws UnknownNameException;
 
