@@ -505,6 +505,12 @@ public class Paddock implements IPaddock {
             }
             isCorresponding &= lightPaddock.getBiomes().contains(this.biome);
         }
+         if (null != lightPaddock.getTypes()) {
+            if (lightPaddock.getTypes().size() > 1) {
+                return false;
+            }
+            isCorresponding &= lightPaddock.getTypes().contains(this.paddockType);
+        }
         return isCorresponding;
     }
     
