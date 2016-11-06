@@ -148,7 +148,7 @@ public class ParserBackUp {
         int starvation;
         for(Element tmpAnimalEl : animalsElList){
         PersonalityAttributes personality;
-            spec = tmpAnimalEl.getChildText("specie");
+            spec = tmpAnimalEl.getChildText(Constants.SPECIE);
             sex = Integer.parseInt(tmpAnimalEl.getChildText("sex"));
             age = Integer.parseInt(tmpAnimalEl.getChildText("age"));
             biome = parserBiomeAttributes(tmpAnimalEl);
