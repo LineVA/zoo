@@ -6,6 +6,7 @@ import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import launch.play.Play;
 import utils.Constants;
@@ -45,7 +46,7 @@ public class RemoveTimedPaddocks extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length >= 5) {
-            if (cmd[0].equalsIgnoreCase("ak") || cmd[0].equalsIgnoreCase("animalKeeper")) {
+            if (Arrays.asList(Constants.AK_OR_ANIMALKEEPER).contains(cmd[0])) {
                 if (Constants.REMOVE.equalsIgnoreCase(cmd[2])) {
                     if (cmd[3].equalsIgnoreCase("--timedPaddocks") || cmd[3].equalsIgnoreCase("-tP")) {
                         return true;
