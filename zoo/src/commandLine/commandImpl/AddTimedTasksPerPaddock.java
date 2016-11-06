@@ -52,7 +52,7 @@ public class AddTimedTasksPerPaddock extends AbstractCommand {
     public boolean canExecute(String[] cmd) {
         if (cmd.length >= 6 && cmd.length % 2 == 0) {
             if (Arrays.asList(Constants.AK_OR_ANIMALKEEPER).contains(cmd[0])) {
-                if (cmd[2].equalsIgnoreCase("--timedTaskPerPaddock") || cmd[2].equalsIgnoreCase("-tT") || "-tTP".equalsIgnoreCase(cmd[2])) {
+                if (Arrays.asList(Constants.TIMEDTASK_ARG).contains(cmd[2])) {
                     return true;
                 }
             }

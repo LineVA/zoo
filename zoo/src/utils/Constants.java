@@ -38,6 +38,8 @@ public  class Constants {
     public static final String SPEED = "speed";
     // --speed || -s as argument
     public static final String[] SPEED_ARG = {"--speed", "-s"};
+    // --timedTaskPerPaddock, -tT, -tTP as arguments
+    public static final String[] TIMEDTASK_ARG = {"--timedTaskPerPaddock", "-tT", "-tTP"};
     // yes || y
     public static final String[] YES_OR_Y = {"yes", "y"};
     // zoo
