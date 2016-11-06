@@ -8,6 +8,7 @@ import commandLine.TypeReturn;
 import java.io.IOException;
 import launch.play.Play;
 import org.jdom2.JDOMException;
+import utils.Constants;
 import zoo.IZoo;
 
 /**
@@ -46,7 +47,7 @@ public class LoadZoo extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
-            if (cmd[0].equalsIgnoreCase("load")) {
+            if (Constants.LOAD.equalsIgnoreCase(cmd[0])) {
                 return true;
             }
         }

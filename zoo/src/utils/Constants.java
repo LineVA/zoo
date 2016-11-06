@@ -54,6 +54,8 @@ public class Constants {
     public static final String LANGUAGE = "language";
     // --language || -l as argument
     public static final String[] LANGUAGE_ARG = {"--language", "-l"};
+    // load
+    public static final String LOAD = "load";
     // ls
     public static final String LS = "ls";
     // man
