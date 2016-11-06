@@ -20,8 +20,14 @@ public class Constants {
     public static final String HORIZON = "horizon";
     // --horizon |- -h as argument
     public static final String[] HORIZON_ARG = {"--horizon", "-h"};
+    // language
+    public static final String LANGUAGE = "language";
+    // --language || -l as argument
+    public static final String[] LANGUAGE_ARG = {"--language", "-l"};
     // ls
     public static final String LS = "ls";
+    // option
+    public static final String OPTION = "option";
     // paddock
     public static final String PADDOCK = "paddock";
     // paddock || pad
@@ -29,7 +35,7 @@ public class Constants {
     // paddockType
     public static final String PADDOCKTYPE = "paddockType";
     // paddockType || padType
-        public static final String[] PADDOCKTYPE_OR_PADTYPE = {"paddockType", "padType"};
+    public static final String[] PADDOCKTYPE_OR_PADTYPE = {"paddockType", "padType"};
     // --paddockType || --padType || -pT
     public static final String[] PADDOCKTYPE_ARG = {"--paddockType", "--padType", "-pT"};
     // remove

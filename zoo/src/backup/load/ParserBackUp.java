@@ -73,7 +73,7 @@ public class ParserBackUp {
      * @return Code of the language
      */
     public String parserLanguage() {
-        return zooEl.getChildText("language");
+        return zooEl.getChildText(Constants.LANGUAGE);
     }
 
     /**
