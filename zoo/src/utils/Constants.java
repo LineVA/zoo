@@ -24,6 +24,8 @@ public  class Constants {
     public static final String[] PAD_OR_PADDOCK = {"paddock", "pad"};
     // remove
     public static final String REMOVE = "remove";
+    // save
+    public static final String SAVE = "save";
     // specie
     public static final String SPECIE = "specie";
     // specie || spec
@@ -32,6 +34,8 @@ public  class Constants {
     public static final String SPEED = "speed";
     // --speed || -s as argument
     public static final String[] SPEED_ARG = {"--speed", "-s"};
+    // yes || y
+    public static final String[] YES_OR_Y = {"yes", "y"};
     // zoo
     public static final String ZOO = "zoo";
   
