@@ -25,19 +25,16 @@ public class FreeCommandManager extends CommandManager {
     public boolean isInitiate = false;
 
     public boolean isSaving = false;
+    
+    public boolean isLoading = false;
 
     public FreeCommandManager(Play play, Option option) {
         super(play, option);
         super.setFirstLine(super.getOption().getGeneralCmdBundle().getString("WELCOME"));
         initialCommands = asList(new CreateZoo(play), new LoadZoo(play), new Options(play), new Man(play));
     }
-
-    private ReturnExec isCurrentlySaving(String[] parse) {
-        this.isSaving = false;
-        return super.getSave().confirmSaving(parse);
-    }
-
-    private ReturnExec isNotCurrentlySaving(String[] parse) {
+    
+     private ReturnExec isNotCurrentlyLoading(String[] parse) {
         for (AbstractCommand command : super.getPlayCommands()) {
             if (command.canExecute(parse)) {
                 ReturnExec result = command.execute(parse);
@@ -48,6 +45,23 @@ public class FreeCommandManager extends CommandManager {
         }
         return new ReturnExec(
                 super.getOption().getGeneralCmdBundle().getString("UNKNOWN_CMD"), TypeReturn.ERROR);
+    }
+     
+     private ReturnExec isCurrentlyLoading(String[] parse){
+         this.isLoading = false;
+         return super.getLoad().confirmLoading(parse);
+     }
+
+    private ReturnExec isCurrentlySaving(String[] parse) {
+        this.isSaving = false;
+        return super.getSave().confirmSaving(parse);
+    }
+
+    private ReturnExec isNotCurrentlySaving(String[] parse) {
+        if (isLoading) {
+            return isCurrentlyLoading(parse);
+        }
+        return isNotCurrentlyLoading(parse);
     }
 
     private ReturnExec hasBeenInitiate(String[] parse) {
@@ -74,7 +88,7 @@ public class FreeCommandManager extends CommandManager {
         String[] parse = SplitDoubleQuotes.split(cmd);
         if (isInitiate) {
             return hasBeenInitiate(parse);
-        } 
+        }
         return hasNotBeenYetInitiate(parse);
     }
 }
