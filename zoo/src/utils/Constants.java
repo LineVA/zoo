@@ -18,6 +18,8 @@ public  class Constants {
     public static final String PADDOCK = "paddock";
     // paddock || pad
     public static final String[] PAD_OR_PADDOCK = {"paddock", "pad"};
+    // remove
+    public static final String REMOVE = "remove";
     // zoo
     public static final String ZOO = "zoo";
   

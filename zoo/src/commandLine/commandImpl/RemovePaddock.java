@@ -36,7 +36,8 @@ public class RemovePaddock extends AbstractCommand  {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 3) {
-            if ((Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd[0])) && cmd[1].equalsIgnoreCase("remove")) {
+            if ((Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd[0])) && 
+                    Constants.REMOVE.equalsIgnoreCase(cmd[1])) {
                 return true;
             }
         }

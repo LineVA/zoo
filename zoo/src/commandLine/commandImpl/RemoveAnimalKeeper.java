@@ -6,6 +6,7 @@ import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import launch.play.Play;
+import utils.Constants;
 
 /**
  *
@@ -34,7 +35,7 @@ public class RemoveAnimalKeeper extends AbstractCommand {
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 3) {
             if (("animalKeeper".equalsIgnoreCase(cmd[0]) || "ak".equalsIgnoreCase(cmd[0]) || "aK".equalsIgnoreCase(cmd[0]))
-                    && "remove".equalsIgnoreCase(cmd[1])) {
+                    && Constants.REMOVE.equalsIgnoreCase(cmd[1])) {
                 return true;
             }
         }
