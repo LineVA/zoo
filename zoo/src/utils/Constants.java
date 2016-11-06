@@ -80,6 +80,8 @@ public class Constants {
     public static final String SAVE = "save";
      // sex
     public static final String SEX = "sex";
+      // --sex || -sx as argument
+    public static final String[] SEX_ARG = {"--sex", "-sx"};
     // size
     public static final String SIZE = "size";
     // --size || -sz as argument
