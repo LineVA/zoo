@@ -8,6 +8,7 @@ import exception.name.UnknownNameException;
 import java.util.ArrayList;
 import java.util.List;
 import launch.play.Play;
+import utils.Constants;
 import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.IPaddock;
 
@@ -15,7 +16,7 @@ import zoo.paddock.IPaddock;
  *
  * @author doyenm
  */
-public class RemoveTimedPaddocks extends AbstractCommand  {
+public class RemoveTimedPaddocks extends AbstractCommand {
 
     public RemoveTimedPaddocks(Play play) {
         super(play);
@@ -45,7 +46,7 @@ public class RemoveTimedPaddocks extends AbstractCommand  {
     public boolean canExecute(String[] cmd) {
         if (cmd.length >= 5) {
             if (cmd[0].equalsIgnoreCase("ak") || cmd[0].equalsIgnoreCase("animalKeeper")) {
-                if ("-r".equalsIgnoreCase(cmd[2]) || "--remove".equalsIgnoreCase(cmd[2])) {
+                if (Constants.REMOVE.equalsIgnoreCase(cmd[2])) {
                     if (cmd[3].equalsIgnoreCase("--timedPaddocks") || cmd[3].equalsIgnoreCase("-tP")) {
                         return true;
                     }
