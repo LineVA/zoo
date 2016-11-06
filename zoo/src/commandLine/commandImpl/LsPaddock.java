@@ -7,6 +7,7 @@ import commandLine.SplittingAmpersand;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -68,7 +69,7 @@ public class LsPaddock extends AbstractCommand {
     }
 
     private boolean checkFirstParts(String[] cmd) {
-        return ("pad".equalsIgnoreCase(cmd[0]) || "paddock".equalsIgnoreCase(cmd[0]))
+        return (Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd[0]))
                 && Constants.LS.equalsIgnoreCase(cmd[1]);
     }
 

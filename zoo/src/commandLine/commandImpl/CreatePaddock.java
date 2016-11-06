@@ -5,6 +5,7 @@ import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.IncorrectDimensionsException;
 import exception.name.NameException;
+import java.util.Arrays;
 import launch.play.Play;
 import utils.Constants;
 
@@ -37,7 +38,7 @@ public class CreatePaddock extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 7) {
-            if (cmd[0].equalsIgnoreCase("pad") || cmd[0].equalsIgnoreCase("paddock")) {
+            if (Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd[0])) {
                 if (Constants.CREATE.equalsIgnoreCase(cmd[1])) {
                     return true;
                 }

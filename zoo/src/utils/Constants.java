@@ -14,6 +14,8 @@ public  class Constants {
     public static final String CREATE = "create";
     // ls
     public static final String LS = "ls";
+    // paddock || pad
+    public static final String[] PAD_OR_PADDOCK = {"paddock", "pad"};
     // zoo
     public static final String ZOO = "zoo";
   

@@ -5,6 +5,7 @@ import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import launch.play.Play;
 import utils.Constants;
 import utils.ReadingMan;
@@ -28,7 +29,7 @@ public class Man extends AbstractCommand {
             if (Constants.ZOO.equalsIgnoreCase(this.arg)) {
                 super.setSuccess(true);
                 return new ReturnExec(ReadingMan.load(new File("doc/man/manZoo")), TypeReturn.SUCCESS);
-            } else if("pad".equalsIgnoreCase(arg) || "paddock".equalsIgnoreCase(arg)){
+            } else if(Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd[0])){
                    super.setSuccess(true);
                 return new ReturnExec(ReadingMan.load(new File("doc/man/manPaddock")), TypeReturn.SUCCESS);
             } else if("cmd".equalsIgnoreCase(arg) || "command".equalsIgnoreCase(arg)){
@@ -46,7 +47,7 @@ public class Man extends AbstractCommand {
     
     private boolean checkSecondArg(String cmd) {
         if (Constants.ZOO.equalsIgnoreCase(cmd) || 
-                "paddock".equalsIgnoreCase(cmd) || "pad".equalsIgnoreCase(cmd) || 
+               Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd) || 
                 "cmd".equalsIgnoreCase(cmd) || "command".equalsIgnoreCase(cmd) ||
                 "specie".equalsIgnoreCase(cmd) || "spec".equalsIgnoreCase(cmd)) {
             this.arg = cmd;
