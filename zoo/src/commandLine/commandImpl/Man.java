@@ -29,7 +29,7 @@ public class Man extends AbstractCommand {
             if (Constants.ZOO.equalsIgnoreCase(this.arg)) {
                 super.setSuccess(true);
                 return new ReturnExec(ReadingMan.load(new File("doc/man/manZoo")), TypeReturn.SUCCESS);
-            } else if(Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd[0])){
+            } else if(Arrays.asList(Constants.PAD_OR_PADDOCK).contains(arg)){
                    super.setSuccess(true);
                 return new ReturnExec(ReadingMan.load(new File("doc/man/manPaddock")), TypeReturn.SUCCESS);
             } else if("cmd".equalsIgnoreCase(arg) || "command".equalsIgnoreCase(arg)){
