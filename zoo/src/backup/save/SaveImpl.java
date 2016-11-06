@@ -148,7 +148,7 @@ public class SaveImpl implements Save {
      * current keeper
      */
     private Element createElementKeeper(AnimalKeeper keeper) {
-        Element el = new Element("animalKeeper");
+        Element el = new Element(Constants.ANIMALKEEPER);
         el.setAttribute(createAttribute("name", keeper.getName(friendSave)));
         el.addContent(createElementTimedPaddocks(keeper.getTimedPaddocks(friendSave)));
         el.addContent(createElementTimedTasksPerPaddock(keeper.getTimedTaskPerPaddock(friendSave)));

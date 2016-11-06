@@ -314,7 +314,7 @@ public class ParserBackUp {
     public List<FakeAnimalKeeper> parserAnimalKeepers() {
         List<FakeAnimalKeeper> keepers = new ArrayList<>();
         Element keepersEl = this.zooEl.getChild("animalKeepers");
-        List<Element> keeperListEl = keepersEl.getChildren("animalKeeper");
+        List<Element> keeperListEl = keepersEl.getChildren(Constants.ANIMALKEEPER);
         keeperListEl.stream().forEach((el) -> {
             keepers.add(parserAnimalKeeper(el));
         });

@@ -10,6 +10,8 @@ public  class Constants {
     public static final int UNDEFIND_ENUM = -1; 
     // animal
     public static final String ANIMAL = "animal";
+    // animalKeeper
+    public static final String ANIMALKEEPER = "animalKeeper";
     // animalKeeper || ak
     public static final String[] AK_OR_ANIMALKEEPER = {"animalKeeper", "ak"};
       // create
