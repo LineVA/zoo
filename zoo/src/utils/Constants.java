@@ -42,6 +42,8 @@ public class Constants {
     public static final String ECOREGION = "ecoregion";
     // --ecoregion || -e as argument
     public static final String[] ECOREGION_ARG = {"--ecoregion", "-e"};
+    // evaluate
+    public static final String EVALUATE = "evaluate";
      // family
     public static final String FAMILY = "family";
     // --family || -f as argument
