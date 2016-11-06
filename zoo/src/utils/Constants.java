@@ -10,5 +10,7 @@ public  class Constants {
     public static final int UNDEFIND_ENUM = -1; 
     // ls
     public static final String LS="ls";
+    // create
+    public static final String CREATE ="create";
     
 }

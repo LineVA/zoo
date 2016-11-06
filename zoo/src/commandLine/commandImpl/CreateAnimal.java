@@ -9,6 +9,7 @@ import exception.name.EmptyNameException;
 import exception.name.NameException;
 import exception.name.UnknownNameException;
 import launch.play.Play;
+import utils.Constants;
 import zoo.animal.Animal;
 import zoo.animal.AnimalImpl;
 import zoo.animal.reproduction.Sex;
@@ -58,7 +59,7 @@ public class CreateAnimal extends AbstractCommand {
     public boolean canExecute(String[] cmd
     ) {
         if (cmd.length == 6) {
-            if (cmd[0].equalsIgnoreCase("animal") && cmd[1].equalsIgnoreCase("create")) {
+            if (cmd[0].equalsIgnoreCase("animal") && Constants.CREATE.equalsIgnoreCase(cmd[1])) {
                 return true;
             }
         }

@@ -6,6 +6,7 @@ import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.name.NameException;
 import launch.play.Play;
+import utils.Constants;
 
 /**
  *
@@ -34,7 +35,7 @@ public class CreateAnimalKeeper  extends AbstractCommand {
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 3) {
             if (cmd[0].equalsIgnoreCase("ak") || cmd[0].equalsIgnoreCase("animalKeeper") || "aK".equalsIgnoreCase(cmd[0])) {
-                if (cmd[1].equalsIgnoreCase("create")) {
+                if (Constants.CREATE.equalsIgnoreCase(cmd[1])) {
                     return true;
                 }
             }

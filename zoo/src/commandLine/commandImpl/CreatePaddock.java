@@ -6,6 +6,7 @@ import commandLine.TypeReturn;
 import exception.IncorrectDimensionsException;
 import exception.name.NameException;
 import launch.play.Play;
+import utils.Constants;
 
 /**
  *
@@ -37,7 +38,7 @@ public class CreatePaddock extends AbstractCommand {
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 7) {
             if (cmd[0].equalsIgnoreCase("pad") || cmd[0].equalsIgnoreCase("paddock")) {
-                if (cmd[1].equalsIgnoreCase("create")) {
+                if (Constants.CREATE.equalsIgnoreCase(cmd[1])) {
                     return true;
                 }
             }
