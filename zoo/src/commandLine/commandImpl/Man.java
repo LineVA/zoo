@@ -6,6 +6,7 @@ import commandLine.TypeReturn;
 import java.io.File;
 import java.io.IOException;
 import launch.play.Play;
+import utils.Constants;
 import utils.ReadingMan;
 
 /**
@@ -24,7 +25,7 @@ public class Man extends AbstractCommand {
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
-            if ("zoo".equalsIgnoreCase(this.arg)) {
+            if (Constants.ZOO.equalsIgnoreCase(this.arg)) {
                 super.setSuccess(true);
                 return new ReturnExec(ReadingMan.load(new File("doc/man/manZoo")), TypeReturn.SUCCESS);
             } else if("pad".equalsIgnoreCase(arg) || "paddock".equalsIgnoreCase(arg)){
@@ -44,7 +45,7 @@ public class Man extends AbstractCommand {
     }
     
     private boolean checkSecondArg(String cmd) {
-        if ("zoo".equalsIgnoreCase(cmd) || 
+        if (Constants.ZOO.equalsIgnoreCase(cmd) || 
                 "paddock".equalsIgnoreCase(cmd) || "pad".equalsIgnoreCase(cmd) || 
                 "cmd".equalsIgnoreCase(cmd) || "command".equalsIgnoreCase(cmd) ||
                 "specie".equalsIgnoreCase(cmd) || "spec".equalsIgnoreCase(cmd)) {

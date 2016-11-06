@@ -7,6 +7,7 @@ import commandLine.TypeReturn;
 import exception.IncorrectDimensionsException;
 import java.util.List;
 import launch.play.Play;
+import utils.Constants;
 import zoo.paddock.PaddockCoordinates;
 
 /**
@@ -33,7 +34,7 @@ public class MapZoo extends AbstractCommand{
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
-            if (cmd[0].equalsIgnoreCase("zoo") && cmd[1].equalsIgnoreCase("map")) {
+            if (Constants.ZOO.equalsIgnoreCase(cmd[0]) && cmd[1].equalsIgnoreCase("map")) {
                 return true;
             }
         }

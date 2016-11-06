@@ -11,6 +11,7 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
+import utils.Constants;
 import zoo.IZoo;
 import zoo.animal.Animal;
 import zoo.animal.death.LifeSpanLightAttributes;
@@ -501,7 +502,7 @@ public class SaveImpl implements Save {
      * dimensions, age, monthsPerEvaluation, horizon and language
      */
     private Element createElementZoo(IZoo zoo) {
-        Element zooEl = new Element("zoo");
+        Element zooEl = new Element(Constants.ZOO);
         zooEl.setAttribute(createAttribute("name", zoo.getName(friendSave).trim()));
         zooEl.addContent(createElementDimensionsZoo(zoo.getWidth(friendSave), zoo.getHeight(friendSave)));
         zooEl.addContent(createElementWithText("age", Integer.toString(zoo.getAge(friendSave))));

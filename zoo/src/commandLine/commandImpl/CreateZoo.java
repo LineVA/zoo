@@ -53,7 +53,7 @@ public class CreateZoo extends AbstractCommand  {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 5) {
-            if (cmd[0].equalsIgnoreCase("zoo") && Constants.CREATE.equalsIgnoreCase(cmd[1])) {
+            if (Constants.ZOO.equalsIgnoreCase(cmd[0]) && Constants.CREATE.equalsIgnoreCase(cmd[1])) {
                 return true;
             }
         }
