@@ -78,8 +78,7 @@ public class LsPaddock extends AbstractCommand {
     }
 
     private boolean hasArgumentType(String arg) {
-        return "-pt".equalsIgnoreCase(arg) || "--padType".equalsIgnoreCase(arg)
-                || "--paddockType".equalsIgnoreCase(arg);
+        return Arrays.asList(Constants.PADDOCKTYPE_ARG).contains(arg);
     }
 
     private boolean hasArgumentSpecie(String arg) {

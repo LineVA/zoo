@@ -91,7 +91,7 @@ public class ParserBackUp {
                     Integer.parseInt(tmpPadEl.getChildText("width")),
                     Integer.parseInt(tmpPadEl.getChildText("height")),
                     Integer.parseInt(tmpPadEl.getChildText("biome")),
-                    Integer.parseInt(tmpPadEl.getChildText("paddockType"))));
+                    Integer.parseInt(tmpPadEl.getChildText(Constants.PADDOCKTYPE))));
         }
         return paddocksList;
     }

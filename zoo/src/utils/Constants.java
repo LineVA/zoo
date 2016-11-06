@@ -26,6 +26,12 @@ public class Constants {
     public static final String PADDOCK = "paddock";
     // paddock || pad
     public static final String[] PAD_OR_PADDOCK = {"paddock", "pad"};
+    // paddockType
+    public static final String PADDOCKTYPE = "paddockType";
+    // paddockType || padType
+        public static final String[] PADDOCKTYPE_OR_PADTYPE = {"paddockType", "padType"};
+    // --paddockType || --padType || -pT
+    public static final String[] PADDOCKTYPE_ARG = {"--paddockType", "--padType", "-pT"};
     // remove
     public static final String REMOVE = "remove";
     // save
@@ -38,15 +44,15 @@ public class Constants {
     public static final String SPEED = "speed";
     // --speed || -s as argument
     public static final String[] SPEED_ARG = {"--speed", "-s"};
-      // timedPaddock
+    // timedPaddock
     public static final String TIMEDPADDOCK = "timedPaddock";
-      // timedPaddocks
+    // timedPaddocks
     public static final String TIMEDPADDOCKS = "timedPaddocks";
     // --timedPaddock, -tP as arguments
     public static final String[] TIMEDPADDOCK_ARG = {"--timedPaddock", "-tP"};
     // timedTaskPerPaddock
     public static final String TIMEDTASK = "timedTaskPerPaddock";
-      // timedTasksPerPaddock
+    // timedTasksPerPaddock
     public static final String TIMEDTASKS = "timedTasksPerPaddock";
     // --timedTaskPerPaddock, -tT, -tTP as arguments
     public static final String[] TIMEDTASK_ARG = {"--timedTaskPerPaddock", "-tT", "-tTP"};
