@@ -26,6 +26,8 @@ public class Constants {
     public static final String[] LANGUAGE_ARG = {"--language", "-l"};
     // ls
     public static final String LS = "ls";
+    // map
+    public static final String MAP = "map";
     // option
     public static final String OPTION = "option";
     // paddock

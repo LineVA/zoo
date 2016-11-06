@@ -34,7 +34,7 @@ public class MapZoo extends AbstractCommand{
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
-            if (Constants.ZOO.equalsIgnoreCase(cmd[0]) && cmd[1].equalsIgnoreCase("map")) {
+            if (Constants.ZOO.equalsIgnoreCase(cmd[0]) && Constants.MAP.equalsIgnoreCase(cmd[1])) {
                 return true;
             }
         }
