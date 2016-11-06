@@ -6,7 +6,9 @@ import commandLine.TypeReturn;
 import documentation.DocumentationGeneration;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 import launch.play.Play;
+import utils.Constants;
 import zoo.animal.specie.Specie;
 
 /**
@@ -23,13 +25,9 @@ public class Documentation extends AbstractCommand {
     public ReturnExec execute(String[] cmd) {
         try {
             Specie spec = super.getPlay().getZoo().findSpecieByName(cmd[2]);
-            if ("wiki".equalsIgnoreCase(cmd[1]) || "wikipedia".equalsIgnoreCase(cmd[1])) {
+            if (Arrays.asList(Constants.WIKI_OR_WIKIPEDIA).contains(cmd[1])) {
                 DocumentationGeneration.display(
                         spec.getDocumentation().getWikipediaAccordingToLanguage(super.getPlay().getOption()));
-            }
-              if ("ad".equalsIgnoreCase(cmd[1]) || "animalDiversity".equalsIgnoreCase(cmd[1])) {
-                DocumentationGeneration.display(
-                        spec.getDocumentation().getAnimalDiversity());
             }
             super.setSuccess(true);
             return new ReturnExec("", TypeReturn.SUCCESS);
@@ -41,9 +39,8 @@ public class Documentation extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 3) {
-            if ((cmd[0].equalsIgnoreCase("doc") || "documentation".equalsIgnoreCase(cmd[0])) 
-                    && (("wiki".equalsIgnoreCase(cmd[1]) || "wikipedia".equalsIgnoreCase(cmd[1])) 
-                    ||("animalDiversity".equalsIgnoreCase(cmd[1]) || "aD".equalsIgnoreCase(cmd[1])))) {
+            if (Arrays.asList(Constants.DOC_OR_DOCUMENTATION).contains(cmd[0])
+                    && Arrays.asList(Constants.WIKI_OR_WIKIPEDIA).contains(cmd[1])) {
                 return true;
             }
         }

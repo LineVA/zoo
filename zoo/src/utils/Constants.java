@@ -38,6 +38,8 @@ public class Constants {
     public static final String DIET = "diet";
     // --diet || -d as argument
     public static final String[] DIET_ARG = {"--diet", "-d"};
+    // documentation || doc
+        public static final String[] DOC_OR_DOCUMENTATION = {"documentation", "doc"};
      // ecoregion
     public static final String ECOREGION = "ecoregion";
     // --ecoregion || -e as argument
@@ -118,6 +120,8 @@ public class Constants {
     public static final String TIMEDTASKS = "timedTasksPerPaddock";
     // --timedTaskPerPaddock, -tT, -tTP as arguments
     public static final String[] TIMEDTASK_ARG = {"--timedTaskPerPaddock", "-tT", "-tTP"};
+    // wikipedia || wiki
+    public static final String[] WIKI_OR_WIKIPEDIA = {"wikipedia", "wiki"};
     // yes || y
     public static final String[] YES_OR_Y = {"yes", "y"};
     // zoo
