@@ -112,43 +112,44 @@ public class LsSpecie extends AbstractCommand {
     }
 
     private boolean hasArgumentPaddock(String cmd) {
-        return cmd.equalsIgnoreCase("--paddock") || cmd.equalsIgnoreCase("-p");
+        return Arrays.asList(Constants.PADDOCK_ARG).contains(cmd);
     }
 
     private boolean hasArgumentEcoregion(String cmd) {
-        return cmd.equalsIgnoreCase("--ecoregion") || cmd.equalsIgnoreCase("-e");
+        return Arrays.asList(Constants.ECOREGION_ARG).contains(cmd);
+
     }
 
     private boolean hasArgumentDiet(String cmd) {
-        return cmd.equalsIgnoreCase("--diet") || cmd.equalsIgnoreCase("-d");
+        return Arrays.asList(Constants.DIET_ARG).contains(cmd);
     }
 
     private boolean hasArgumentFamily(String cmd) {
-        return cmd.equalsIgnoreCase("--family") || cmd.equalsIgnoreCase("-f");
+        return Arrays.asList(Constants.FAMILY_ARG).contains(cmd);
     }
 
     private boolean hasArgumentConservation(String cmd) {
-        return cmd.equalsIgnoreCase("--conservation") || cmd.equalsIgnoreCase("-cs");
+        return Arrays.asList(Constants.CONSERVATION_ARG).contains(cmd);
     }
 
     private boolean hasArgumentBiome(String cmd) {
-        return cmd.equalsIgnoreCase("--biome") || cmd.equalsIgnoreCase("-b");
+        return Arrays.asList(Constants.BIOME_ARG).contains(cmd);
     }
 
     private boolean hasArgumentSize(String cmd) {
-        return cmd.equalsIgnoreCase("--size") || cmd.equalsIgnoreCase("-sz");
+        return Arrays.asList(Constants.SIZE_ARG).contains(cmd);
     }
 
     private boolean hasArgumentContinent(String cmd) {
-        return cmd.equalsIgnoreCase("--continent") || cmd.equalsIgnoreCase("-ct");
+        return Arrays.asList(Constants.CONTINENT_ARG).contains(cmd);
     }
 
     private boolean hasArgumentBreedingProgramme(String cmd) {
-        return cmd.equalsIgnoreCase("--breedingProgramme") || cmd.equalsIgnoreCase("-bP");
+        return Arrays.asList(Constants.BREEDING_ARG).contains(cmd);
     }
 
     private boolean hasArgumentTags(String cmd) {
-        return cmd.equalsIgnoreCase("--tag") || cmd.equalsIgnoreCase("-t");
+        return Arrays.asList(Constants.TAG_ARG).contains(cmd);
     }
 
     private boolean saveArgument(String arg, String value) {
