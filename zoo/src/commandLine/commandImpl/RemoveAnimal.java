@@ -6,6 +6,7 @@ import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import launch.play.Play;
+import utils.Constants;
 import zoo.animal.Animal;
 
 /**
@@ -34,7 +35,7 @@ public class RemoveAnimal extends AbstractCommand  {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 3) {
-            if ("animal".equalsIgnoreCase(cmd[0]) && "remove".equalsIgnoreCase(cmd[1])) {
+            if (Constants.ANIMAL.equalsIgnoreCase(cmd[0]) && "remove".equalsIgnoreCase(cmd[1])) {
                 return true;
             }
         }

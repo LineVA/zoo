@@ -59,7 +59,7 @@ public class CreateAnimal extends AbstractCommand {
     public boolean canExecute(String[] cmd
     ) {
         if (cmd.length == 6) {
-            if (cmd[0].equalsIgnoreCase("animal") && Constants.CREATE.equalsIgnoreCase(cmd[1])) {
+            if (Constants.ANIMAL.equalsIgnoreCase(cmd[0]) && Constants.CREATE.equalsIgnoreCase(cmd[1])) {
                 return true;
             }
         }

@@ -127,7 +127,7 @@ public class LsAnimal extends AbstractCommand {
 
     private boolean firstCmd(String[] cmd) {
         if (cmd.length >= 2) {
-            if (cmd[0].equalsIgnoreCase("animal")) {
+            if (Constants.ANIMAL.equalsIgnoreCase(cmd[0])) {
                 if (Constants.LS.equalsIgnoreCase(cmd[1])) {
                     return true;
                 }

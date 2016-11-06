@@ -344,7 +344,7 @@ public class SaveImpl implements Save {
      * actualReproduction, actualLifeSpan, optimalSocial and optimalTeritory
      */
     private Element createElementAnimal(Animal animal) {
-        Element el = new Element("animal");
+        Element el = new Element(Constants.ANIMAL);
         el.setAttribute(createAttribute("name", animal.getName(friendSave)));
         el.addContent(createElementWithText("specie", animal.getSpecie(friendSave).getNames().getScientificName()));
         el.addContent(createElementWithText("sex", Integer.toString(animal.getSex(friendSave).getId())));

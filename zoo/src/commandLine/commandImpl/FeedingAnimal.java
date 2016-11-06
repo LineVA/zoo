@@ -9,6 +9,7 @@ import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.text.MessageFormat;
 import launch.play.Play;
+import utils.Constants;
 import zoo.animal.Animal;
 
 /**
@@ -56,7 +57,7 @@ public class FeedingAnimal extends AbstractCommand {
 
     private boolean firstCmd(String[] cmd) {
         if (cmd.length >= 4 && cmd.length < 9 && cmd.length % 2 == 0) {
-            if (cmd[0].equalsIgnoreCase("animal")) {
+            if (Constants.ANIMAL.equalsIgnoreCase(cmd[0])) {
                 return true;
             }
         }

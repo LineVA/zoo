@@ -11,6 +11,7 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
+import utils.Constants;
 import zoo.FakeZoo;
 import zoo.animal.FakeAnimal;
 import zoo.animal.death.LifeSpanLightAttributes;
@@ -129,7 +130,7 @@ public class ParserBackUp {
      * of the animal attributes 
      */
     private List<FakeAnimal> parserAnimal(Element animalsEl) throws IncorrectLoadException {
-        List<Element> animalsElList = animalsEl.getChildren("animal");
+        List<Element> animalsElList = animalsEl.getChildren(Constants.ANIMAL);
         List<FakeAnimal> animalsList = new ArrayList<>();
         String spec;
         String pad = animalsEl.getParentElement().getAttributeValue("name");
