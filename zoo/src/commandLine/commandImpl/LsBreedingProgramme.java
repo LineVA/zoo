@@ -6,6 +6,7 @@ import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import java.util.List;
 import launch.play.Play;
+import utils.Constants;
 import zoo.animal.conservation.BreedingProgramme;
 
 /**
@@ -28,6 +29,6 @@ public class LsBreedingProgramme extends AbstractCommand{
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 2 && cmd[0].equalsIgnoreCase("breedingProgramme") && cmd[1].equalsIgnoreCase("ls");
+        return cmd.length == 2 && cmd[0].equalsIgnoreCase("breedingProgramme") && Constants.LS.equalsIgnoreCase(cmd[1]);
     }
 }

@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import launch.play.Play;
+import utils.Constants;
 import utils.Utils;
 import zoo.animal.specie.LightSpecie;
 import zoo.paddock.IPaddock;
@@ -97,7 +98,7 @@ public class LsSpecie extends AbstractCommand {
     public boolean firstCmd(String[] cmd) {
         if (cmd.length >= 2) {
             if (cmd[0].equalsIgnoreCase("specie") || cmd[0].equalsIgnoreCase("spec")) {
-                if (cmd[1].equalsIgnoreCase("ls")) {
+                if (Constants.LS.equalsIgnoreCase(cmd[1])) {
                     return true;
                 }
             }

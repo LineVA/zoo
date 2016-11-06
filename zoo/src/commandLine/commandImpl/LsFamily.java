@@ -5,6 +5,7 @@ import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import launch.play.Play;
+import utils.Constants;
 import zoo.animal.specie.Family;
 
 /**
@@ -25,6 +26,6 @@ public class LsFamily extends AbstractCommand  {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 2 && cmd[0].equalsIgnoreCase("family") && cmd[1].equalsIgnoreCase("ls");
+        return cmd.length == 2 && cmd[0].equalsIgnoreCase("family") && Constants.LS.equalsIgnoreCase(cmd[1]);
     }
 }

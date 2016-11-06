@@ -5,6 +5,7 @@ import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import launch.play.Play;
+import utils.Constants;
 import zoo.animal.conservation.ConservationStatus;
 
 /**
@@ -26,6 +27,6 @@ public class LsConservation extends AbstractCommand  {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 2 && cmd[0].equalsIgnoreCase("conservation") && cmd[1].equalsIgnoreCase("ls");
+        return cmd.length == 2 && cmd[0].equalsIgnoreCase("conservation") && Constants.LS.equalsIgnoreCase(cmd[1]);
     }
 }

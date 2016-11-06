@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import launch.play.Play;
+import utils.Constants;
 import utils.Utils;
 import zoo.animal.specie.Specie;
 import zoo.paddock.LightPaddock;
@@ -68,7 +69,7 @@ public class LsPaddock extends AbstractCommand {
 
     private boolean checkFirstParts(String[] cmd) {
         return ("pad".equalsIgnoreCase(cmd[0]) || "paddock".equalsIgnoreCase(cmd[0]))
-                && "ls".equalsIgnoreCase(cmd[1]);
+                && Constants.LS.equalsIgnoreCase(cmd[1]);
     }
 
     private boolean hasArgumentBiome(String arg) {

@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import launch.play.Play;
+import utils.Constants;
 import utils.Utils;
 import zoo.animal.Animal;
 import zoo.animal.feeding.Diet;
@@ -127,7 +128,7 @@ public class LsAnimal extends AbstractCommand {
     private boolean firstCmd(String[] cmd) {
         if (cmd.length >= 2) {
             if (cmd[0].equalsIgnoreCase("animal")) {
-                if (cmd[1].equalsIgnoreCase("ls")) {
+                if (Constants.LS.equalsIgnoreCase(cmd[1])) {
                     return true;
                 }
             }
