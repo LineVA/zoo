@@ -166,7 +166,7 @@ public class SaveImpl implements Save {
      * current timedPaddocks
      */
     private Element createElementTimedPaddocks(Map<IPaddock, Double> timedPaddocks) {
-        Element el = new Element("timedPaddocks");
+        Element el = new Element(Constants.TIMEDPADDOCKS);
         for (Map.Entry<IPaddock, Double> entry : timedPaddocks.entrySet()) {
             el.addContent(createElementTimedPaddock(entry.getKey().getName(friendSave), entry.getValue()));
         }
@@ -237,7 +237,7 @@ public class SaveImpl implements Save {
      *
      */
     private Element createElementTimedPaddock(String name, Double time) {
-        Element el = new Element("timedPaddock");
+        Element el = new Element(Constants.TIMEDPADDOCK);
         el.addContent(createElementWithText(Constants.PADDOCK, name));
         el.addContent(createElementWithText("time", Double.toString(time)));
         return el;

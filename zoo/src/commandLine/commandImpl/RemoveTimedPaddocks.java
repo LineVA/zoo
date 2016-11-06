@@ -48,7 +48,7 @@ public class RemoveTimedPaddocks extends AbstractCommand {
         if (cmd.length >= 5) {
             if (Arrays.asList(Constants.AK_OR_ANIMALKEEPER).contains(cmd[0])) {
                 if (Constants.REMOVE.equalsIgnoreCase(cmd[2])) {
-                    if (cmd[3].equalsIgnoreCase("--timedPaddocks") || cmd[3].equalsIgnoreCase("-tP")) {
+                    if (Arrays.asList(Constants.TIMEDPADDOCK_ARG).contains(cmd[3])) {
                         return true;
                     }
                 }
