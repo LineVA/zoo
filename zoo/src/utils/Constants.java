@@ -14,6 +14,8 @@ public class Constants {
     public static final String ANIMALKEEPER = "animalKeeper";
     // animalKeeper || ak
     public static final String[] AK_OR_ANIMALKEEPER = {"animalKeeper", "ak"};
+    // cmd || command
+    public static final String[] CMD_OR_COMMAND = {"command", "cmd"};
     // create
     public static final String CREATE = "create";
     // horizon
@@ -26,6 +28,8 @@ public class Constants {
     public static final String[] LANGUAGE_ARG = {"--language", "-l"};
     // ls
     public static final String LS = "ls";
+    // man
+    public static final String MAN = "man";
     // map
     public static final String MAP = "map";
     // option
