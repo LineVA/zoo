@@ -50,7 +50,8 @@ public class LsAnimalKeeper extends AbstractCommand  {
         }
         if (cmd.length == 4) {
             if (Arrays.asList(Constants.AK_OR_ANIMALKEEPER).contains(cmd[0])) {
-                if (Constants.LS.equalsIgnoreCase(cmd[1]) && ("-p".equalsIgnoreCase(cmd[2]) || "--paddock".equalsIgnoreCase(cmd[2]))) {
+                if (Constants.LS.equalsIgnoreCase(cmd[1]) && 
+                        Arrays.asList(Constants.PADDOCKTYPE_ARG).contains(cmd[2])) {
                     args[0] = cmd[3];
                     return true;
                 }
