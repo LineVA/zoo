@@ -82,7 +82,7 @@ public class ParserBackUp {
      */
     public List<FakePaddock> parserPaddocks() {
         Element paddocksEl = zooEl.getChild("paddocks");
-        List<Element> paddocksElList = paddocksEl.getChildren("paddock");
+        List<Element> paddocksElList = paddocksEl.getChildren(Constants.PADDOCK);
         List<FakePaddock> paddocksList = new ArrayList<>();
         for (Element tmpPadEl : paddocksElList) {
             paddocksList.add(new FakePaddock(tmpPadEl.getAttributeValue("name"),
@@ -103,7 +103,7 @@ public class ParserBackUp {
     private List<Element> findElementsAnimals() {
         List<Element> animalsEl = new ArrayList<>();
         Element paddocksEl = zooEl.getChild("paddocks");
-        List<Element> paddocksElList = paddocksEl.getChildren("paddock");
+        List<Element> paddocksElList = paddocksEl.getChildren(Constants.PADDOCK);
         paddocksElList.stream().forEach((Element el) -> animalsEl.add(el.getChild("animals")));
         return animalsEl;
     }
@@ -342,7 +342,7 @@ public class ParserBackUp {
     private Map<String, Double> parserTimedPaddocks(Element el) {
         Map<String, Double> timedPaddocks = new HashMap<>();
         for (Element padEl : el.getChild("timedPaddocks").getChildren("timedPaddock")) {
-            timedPaddocks.put(padEl.getChildText("paddock"), Double.parseDouble(padEl.getChildText("time")));
+            timedPaddocks.put(padEl.getChildText(Constants.PADDOCK), Double.parseDouble(padEl.getChildText("time")));
         }
         return timedPaddocks;
     }
@@ -356,7 +356,7 @@ public class ParserBackUp {
         Map<FakeTaskPaddock, Double> timedPaddocks = new HashMap<>();
         for (Element padEl : el.getChild("timedTasksPerPaddock").getChildren("timedTaskPerPaddock")) {
             timedPaddocks.put(
-                    new FakeTaskPaddock(padEl.getChildText("paddock"), Integer.parseInt(padEl.getChildText("task"))),
+                    new FakeTaskPaddock(padEl.getChildText(Constants.PADDOCK), Integer.parseInt(padEl.getChildText("task"))),
                     Double.parseDouble(padEl.getChildText("time")));
         }
         return timedPaddocks;

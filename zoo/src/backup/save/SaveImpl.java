@@ -238,7 +238,7 @@ public class SaveImpl implements Save {
      */
     private Element createElementTimedPaddock(String name, Double time) {
         Element el = new Element("timedPaddock");
-        el.addContent(createElementWithText("paddock", name));
+        el.addContent(createElementWithText(Constants.PADDOCK, name));
         el.addContent(createElementWithText("time", Double.toString(time)));
         return el;
     }
@@ -253,7 +253,7 @@ public class SaveImpl implements Save {
      */
     private Element createElementTimedTaskPerPaddock(String name, int task, Double time) {
         Element el = new Element("timedTaskPerPaddock");
-        el.addContent(createElementWithText("paddock", name));
+        el.addContent(createElementWithText(Constants.PADDOCK, name));
         el.addContent(createElementWithText("task", Integer.toString(task)));
         el.addContent(createElementWithText("time", Double.toString(time)));
         return el;
@@ -309,7 +309,7 @@ public class SaveImpl implements Save {
      * biome, paddockType, x, y , width and height
      */
     private Element createElementPaddock(IPaddock pad) {
-        Element el = new Element("paddock");
+        Element el = new Element(Constants.PADDOCK);
         el.setAttribute(createAttribute("name", pad.getName(friendSave)));
         el.addContent(createElementWithText("biome", Integer.toString(pad.getBiome(friendSave))));
         el.addContent(createElementWithText("paddockType", Integer.toString(pad.getPaddockType(friendSave))));
