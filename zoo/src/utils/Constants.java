@@ -14,23 +14,37 @@ public class Constants {
     public static final String ANIMALKEEPER = "animalKeeper";
     // animalKeeper || ak
     public static final String[] AK_OR_ANIMALKEEPER = {"animalKeeper", "ak"};
+       // biome
+    public static final String BIOME = "biome";
+    // --biome || -b as argument
+    public static final String[] BIOME_ARG = {"--biome", "-b"};
+      // breedingProgramme
+    public static final String BREEDING = "breedingProgramme";
     // --breedingProgramme || -bP as argument
     public static final String[] BREEDING_ARG = {"--breedingProgramme", "-bP"};
-        // --biome || -b as argument
-    public static final String[] BIOME_ARG = {"--biome", "-b"};
-   // cmd || command
+    // cmd || command
     public static final String[] CMD_OR_COMMAND = {"command", "cmd"};
+     // conservation
+    public static final String CONSERVATION = "conservation";
+    // --conservation || -cs as argument
+    public static final String[] CONSERVATION_ARG = {"--conservation", "-cs"};
+      // continent
+    public static final String CONTINENT = "continent";
     // --continent || -ct as argument
     public static final String[] CONTINENT_ARG = {"--continent", "-ct"};
-    // --continent || -ct as argument
-    public static final String[] CONSERVATION_ARG = {"--conservation", "-cs"};
     // create
     public static final String CREATE = "create";
+     // diet
+    public static final String DIET = "diet";
     // --diet || -d as argument
     public static final String[] DIET_ARG = {"--diet", "-d"};
+     // ecoregion
+    public static final String ECOREGION = "ecoregion";
     // --ecoregion || -e as argument
     public static final String[] ECOREGION_ARG = {"--ecoregion", "-e"};
-        // --family || -f as argument
+     // family
+    public static final String FAMILY = "family";
+    // --family || -f as argument
     public static final String[] FAMILY_ARG = {"--family", "-f"};
     // horizon
     public static final String HORIZON = "horizon";
@@ -64,7 +78,11 @@ public class Constants {
     public static final String REMOVE = "remove";
     // save
     public static final String SAVE = "save";
-        // --size || -sz as argument
+     // sex
+    public static final String SEX = "sex";
+    // size
+    public static final String SIZE = "size";
+    // --size || -sz as argument
     public static final String[] SIZE_ARG = {"--size", "-sz"};
     // specie
     public static final String SPECIE = "specie";

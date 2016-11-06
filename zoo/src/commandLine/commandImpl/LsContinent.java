@@ -26,6 +26,7 @@ public class LsContinent extends AbstractCommand  {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 2 && cmd[0].equalsIgnoreCase("continent") && Constants.LS.equalsIgnoreCase(cmd[1]);
+        return cmd.length == 2 &&Constants.CONTINENT.equalsIgnoreCase(cmd[0])
+                && Constants.LS.equalsIgnoreCase(cmd[1]);
     }
 }

@@ -26,6 +26,7 @@ public class LsBiome extends AbstractCommand  {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 2 && cmd[0].equalsIgnoreCase("biome") && Constants.LS.equalsIgnoreCase(cmd[1]);
+        return cmd.length == 2 && Constants.BIOME.equalsIgnoreCase(cmd[0])
+                && Constants.LS.equalsIgnoreCase(cmd[1]);
     }
 }

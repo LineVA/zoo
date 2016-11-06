@@ -29,6 +29,7 @@ public class LsBreedingProgramme extends AbstractCommand{
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 2 && cmd[0].equalsIgnoreCase("breedingProgramme") && Constants.LS.equalsIgnoreCase(cmd[1]);
+        return cmd.length == 2 && Constants.BREEDING.equalsIgnoreCase(cmd[0])
+                && Constants.LS.equalsIgnoreCase(cmd[1]);
     }
 }

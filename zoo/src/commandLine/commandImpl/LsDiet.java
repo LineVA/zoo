@@ -27,7 +27,7 @@ public class LsDiet extends AbstractCommand  {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
-            if (cmd[0].equalsIgnoreCase("diet")) {
+            if (Constants.DIET.equalsIgnoreCase(cmd[0])) {
                 if (Constants.LS.equalsIgnoreCase(cmd[1])) {
                     return true;
                 }

@@ -14,6 +14,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.input.sax.XMLReaders;
+import utils.Constants;
 import zoo.animal.Names;
 import zoo.animal.death.LifeSpanAttributes;
 import zoo.animal.feeding.FeedingAttributes;
@@ -80,7 +81,7 @@ public class ParserSpecie {
     private static List<Integer> biomeParser(Element root) {
         List<Integer> biomes = new ArrayList<>();
         Element continentsEl = root.getChild("territory").getChild("biomes");
-        List<Element> continentEl = continentsEl.getChildren("biome");
+        List<Element> continentEl = continentsEl.getChildren(Constants.BIOME);
         for (Element cont : continentEl) {
             biomes.add(Integer.parseInt(cont.getText()));
         }
@@ -90,7 +91,7 @@ public class ParserSpecie {
     private static List<Integer> dietParser(Element root) {
         List<Integer> diets = new ArrayList<>();
         Element dietsEl = root.getChild("feeding").getChild("diets");
-        List<Element> dietEl = dietsEl.getChildren("diet");
+        List<Element> dietEl = dietsEl.getChildren(Constants.DIET);
         for (Element cont : dietEl) {
             diets.add(Integer.parseInt(cont.getText()));
         }
@@ -100,7 +101,7 @@ public class ParserSpecie {
     private static List<Integer> continentParser(Element root) {
         List<Integer> continents = new ArrayList<>();
         Element continentsEl = root.getChild("general").getChild("continents");
-        List<Element> continentEl = continentsEl.getChildren("continent");
+        List<Element> continentEl = continentsEl.getChildren(Constants.CONTINENT);
         for (Element cont : continentEl) {
             continents.add(Integer.parseInt(cont.getText()));
         }
@@ -133,17 +134,17 @@ public class ParserSpecie {
 
     private static int ecoregionParser(Element root) {
         Element genEl = root.getChild("general");
-        return Integer.parseInt(genEl.getChildText("ecoregion"));
+        return Integer.parseInt(genEl.getChildText(Constants.ECOREGION));
     }
 
     private static int familyParser(Element root) {
         Element genEl = root.getChild("general");
-        return Integer.parseInt(genEl.getChildText("family"));
+        return Integer.parseInt(genEl.getChildText(Constants.FAMILY));
     }
 
     private static int breedingProgrammeParser(Element root) {
         Element genEl = root.getChild("general");
-        return Integer.parseInt(genEl.getChildText("breedingProgramme"));
+        return Integer.parseInt(genEl.getChildText(Constants.BREEDING));
     }
 
     private static SocialAttributes socialParser(Element root) throws IncorrectLoadException {
@@ -157,7 +158,7 @@ public class ParserSpecie {
     }
 
     private static int sizeParser(Element root) {
-        return Integer.parseInt(root.getChild("feeding").getChildText("size"));
+        return Integer.parseInt(root.getChild("feeding").getChildText(Constants.SIZE));
     }
 
     private static DocumentationURI documentationParser(Element root) {

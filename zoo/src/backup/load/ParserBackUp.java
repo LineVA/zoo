@@ -90,7 +90,7 @@ public class ParserBackUp {
                     Integer.parseInt(tmpPadEl.getChildText("y")),
                     Integer.parseInt(tmpPadEl.getChildText("width")),
                     Integer.parseInt(tmpPadEl.getChildText("height")),
-                    Integer.parseInt(tmpPadEl.getChildText("biome")),
+                    Integer.parseInt(tmpPadEl.getChildText(Constants.BIOME)),
                     Integer.parseInt(tmpPadEl.getChildText(Constants.PADDOCKTYPE))));
         }
         return paddocksList;
@@ -149,7 +149,7 @@ public class ParserBackUp {
         for(Element tmpAnimalEl : animalsElList){
         PersonalityAttributes personality;
             spec = tmpAnimalEl.getChildText(Constants.SPECIE);
-            sex = Integer.parseInt(tmpAnimalEl.getChildText("sex"));
+            sex = Integer.parseInt(tmpAnimalEl.getChildText(Constants.SEX));
             age = Integer.parseInt(tmpAnimalEl.getChildText("age"));
             biome = parserBiomeAttributes(tmpAnimalEl);
             optFeed = parserOptimalFeedingAttributes(tmpAnimalEl);
@@ -231,7 +231,7 @@ public class ParserBackUp {
      */
     private int parserDiet(Element tmpAnimalEl) {
         Element feedEl = tmpAnimalEl.getChild("actualFeedingAttributes");
-        return Integer.parseInt(feedEl.getChildText("diet"));
+        return Integer.parseInt(feedEl.getChildText(Constants.DIET));
     }
 
         /**

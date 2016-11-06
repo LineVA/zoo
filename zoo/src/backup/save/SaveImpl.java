@@ -311,7 +311,7 @@ public class SaveImpl implements Save {
     private Element createElementPaddock(IPaddock pad) {
         Element el = new Element(Constants.PADDOCK);
         el.setAttribute(createAttribute("name", pad.getName(friendSave)));
-        el.addContent(createElementWithText("biome", Integer.toString(pad.getBiome(friendSave))));
+        el.addContent(createElementWithText(Constants.BIOME, Integer.toString(pad.getBiome(friendSave))));
         el.addContent(createElementWithText(Constants.PADDOCKTYPE, Integer.toString(pad.getPaddockType(friendSave))));
         el.addContent(createElementWithText("x", Integer.toString(pad.getCoordinates(friendSave).getX())));
         el.addContent(createElementWithText("y", Integer.toString(pad.getCoordinates(friendSave).getY())));
@@ -347,7 +347,7 @@ public class SaveImpl implements Save {
         Element el = new Element(Constants.ANIMAL);
         el.setAttribute(createAttribute("name", animal.getName(friendSave)));
         el.addContent(createElementWithText(Constants.SPECIE, animal.getSpecie(friendSave).getNames().getScientificName()));
-        el.addContent(createElementWithText("sex", Integer.toString(animal.getSex(friendSave).getId())));
+        el.addContent(createElementWithText(Constants.SEX, Integer.toString(animal.getSex(friendSave).getId())));
         el.addContent(createElementWithText("age", String.valueOf(animal.getAge(friendSave))));
         el.addContent(createElementWithText("wellBeing", String.valueOf(animal.getWellBeeing(friendSave))));
         el.addContent(createElementWithText("starvation", String.valueOf(animal.getStarvation(friendSave))));
@@ -420,7 +420,7 @@ public class SaveImpl implements Save {
      */
     private Element createElementActualFeedingAttributes(Animal animal, FeedingAttributes att) {
         Element el = new Element("actualFeedingAttributes");
-        el.addContent(createElementWithText("diet", String.valueOf(animal.getDiet(friendSave))));
+        el.addContent(createElementWithText(Constants.DIET, String.valueOf(animal.getDiet(friendSave))));
         el.addContent(createElementWithText("quantity", String.valueOf(att.getFoodQuantity())));
         return el;
     }

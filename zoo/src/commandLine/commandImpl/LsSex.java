@@ -26,7 +26,7 @@ public class LsSex extends AbstractCommand  {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 2 && cmd[0].equalsIgnoreCase("sex")
+        return cmd.length == 2 && Constants.SEX.equalsIgnoreCase(cmd[0])
                 && Constants.LS.equalsIgnoreCase(cmd[1]);
     }
 }
