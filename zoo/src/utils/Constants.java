@@ -88,6 +88,8 @@ public class Constants {
     public static final String SPECIE = "specie";
     // specie || spec
     public static final String[] SPEC_OR_SPECIE = {"specie", "spec"};
+     // --specie, -s as arguments
+    public static final String[] SPECIE_ARG = {"--specie", "-s"};
     // speed
     public static final String SPEED = "speed";
     // --speed || -s as argument

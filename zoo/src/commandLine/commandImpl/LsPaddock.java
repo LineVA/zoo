@@ -74,7 +74,7 @@ public class LsPaddock extends AbstractCommand {
     }
 
     private boolean hasArgumentBiome(String arg) {
-        return "--biome".equalsIgnoreCase(arg) || "-b".equalsIgnoreCase(arg);
+        return Arrays.asList(Constants.BIOME_ARG).contains(arg);
     }
 
     private boolean hasArgumentType(String arg) {
@@ -82,7 +82,7 @@ public class LsPaddock extends AbstractCommand {
     }
 
     private boolean hasArgumentSpecie(String arg) {
-        return "-s".equalsIgnoreCase(arg) || "--specie".equalsIgnoreCase(arg);
+           return Arrays.asList(Constants.SPECIE_ARG).contains(arg);
     }
 
     private boolean saveArguments(String arg, String value) {
