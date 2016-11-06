@@ -7,6 +7,7 @@ import commandLine.SplittingAmpersand;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -97,7 +98,7 @@ public class LsSpecie extends AbstractCommand {
 
     public boolean firstCmd(String[] cmd) {
         if (cmd.length >= 2) {
-            if (cmd[0].equalsIgnoreCase("specie") || cmd[0].equalsIgnoreCase("spec")) {
+            if (Arrays.asList(Constants.SPEC_OR_SPECIE).contains(cmd[0])) {
                 if (Constants.LS.equalsIgnoreCase(cmd[1])) {
                     return true;
                 }

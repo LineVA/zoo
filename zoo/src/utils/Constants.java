@@ -20,6 +20,8 @@ public  class Constants {
     public static final String[] PAD_OR_PADDOCK = {"paddock", "pad"};
     // remove
     public static final String REMOVE = "remove";
+    // specie || spec
+    public static final String[] SPEC_OR_SPECIE = {"specie", "spec"};
     // zoo
     public static final String ZOO = "zoo";
   

@@ -35,7 +35,7 @@ public class Man extends AbstractCommand {
             } else if("cmd".equalsIgnoreCase(arg) || "command".equalsIgnoreCase(arg)){
                    super.setSuccess(true);
                 return new ReturnExec(ReadingMan.load(new File("doc/man/cmdLines")), TypeReturn.SUCCESS);
-            } else if("specie".equalsIgnoreCase(arg) || "spec".equalsIgnoreCase(arg)){
+            } else if(Arrays.asList(Constants.SPEC_OR_SPECIE).contains(arg)){
                    super.setSuccess(true);
                 return new ReturnExec(ReadingMan.load(new File("doc/man/manSpecie")), TypeReturn.SUCCESS);
             }                       
@@ -49,7 +49,7 @@ public class Man extends AbstractCommand {
         if (Constants.ZOO.equalsIgnoreCase(cmd) || 
                Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd) || 
                 "cmd".equalsIgnoreCase(cmd) || "command".equalsIgnoreCase(cmd) ||
-                "specie".equalsIgnoreCase(cmd) || "spec".equalsIgnoreCase(cmd)) {
+               Arrays.asList(Constants.SPEC_OR_SPECIE).contains(cmd)) {
             this.arg = cmd;
             return true;            
         }
