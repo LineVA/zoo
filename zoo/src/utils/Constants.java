@@ -46,6 +46,8 @@ public class Constants {
     public static final String FAMILY = "family";
     // --family || -f as argument
     public static final String[] FAMILY_ARG = {"--family", "-f"};
+     // --foodQuantity || -fg as argument
+    public static final String[] FOODQUANTITY_ARG = {"--foodQuantity", "-fq"};
     // horizon
     public static final String HORIZON = "horizon";
     // --horizon |- -h as argument

@@ -1,13 +1,13 @@
 package commandLine.commandImpl;
 
 import commandLine.AbstractCommand;
-import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.text.MessageFormat;
+import java.util.Arrays;
 import launch.play.Play;
 import utils.Constants;
 import zoo.animal.Animal;
@@ -65,11 +65,11 @@ public class FeedingAnimal extends AbstractCommand {
     }
 
     private boolean hasArgumentDiet(String cmd) {
-        return cmd.equalsIgnoreCase("--diet") || cmd.equalsIgnoreCase("-d");
+        return Arrays.asList(Constants.DIET_ARG).contains(cmd);
     }
 
     private boolean hasArgumentFoodQuantity(String cmd) {
-        return cmd.equalsIgnoreCase("--foodQuantity") || cmd.equalsIgnoreCase("-fq");
+              return Arrays.asList(Constants.FOODQUANTITY_ARG).contains(cmd);
     }
 
     @Override
