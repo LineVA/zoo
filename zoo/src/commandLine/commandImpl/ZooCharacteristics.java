@@ -4,6 +4,7 @@ import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.IncorrectDataException;
+import java.util.Arrays;
 import launch.play.Play;
 import utils.Constants;
 
@@ -11,7 +12,7 @@ import utils.Constants;
  *
  * @author doyenm
  */
-public class ZooCharacteristics extends AbstractCommand  {
+public class ZooCharacteristics extends AbstractCommand {
 
     String[] args = new String[]{null, null};
 
@@ -57,28 +58,26 @@ public class ZooCharacteristics extends AbstractCommand  {
     ) {
         if (cmd.length == 3) {
             if (Constants.ZOO.equalsIgnoreCase(cmd[0])) {
-                switch (cmd[1]) {
-                    case "-s":
-                    case "--speed":
-                        args[0] = cmd[2];
-                        return true;
-                    case "-h":
-                    case "--horizon":
-                        args[1] = cmd[2];
-                        return true;
+                if (Arrays.asList(Constants.SPEED_ARG).contains(cmd[1])) {
+                    args[0] = cmd[2];
+                    return true;
+                } else if (Arrays.asList(Constants.HORIZON_ARG).contains(cmd[1])) {
+                    args[1] = cmd[2];
+                    return true;
                 }
+                return false;
             }
         }
 
         if (cmd.length == 5) {
             if (Constants.ZOO.equalsIgnoreCase(cmd[0])) {
-                if ((cmd[1].equalsIgnoreCase("-s") || cmd[1].equalsIgnoreCase("--speed"))
-                        && (cmd[3].equalsIgnoreCase("-h") || cmd[3].equalsIgnoreCase("--horizon"))) {
+                if (Arrays.asList(Constants.SPEED_ARG).contains(cmd[1])
+                        && Arrays.asList(Constants.HORIZON_ARG).contains(cmd[3])) {
                     args[0] = cmd[2];
                     args[1] = cmd[4];
                     return true;
-                } else if ((cmd[3].equalsIgnoreCase("-h") || cmd[3].equalsIgnoreCase("--horizon")) 
-                        && (cmd[1].equalsIgnoreCase("-h") || cmd[1].equalsIgnoreCase("--horizon"))) {
+                } else if (Arrays.asList(Constants.HORIZON_ARG).contains(cmd[3])
+                        && Arrays.asList(Constants.HORIZON_ARG).contains(cmd[1])) {
                     args[0] = cmd[4];
                     args[1] = cmd[2];
                     return true;

@@ -63,7 +63,7 @@ public class ParserBackUp {
                 Integer.parseInt(dimEl.getChild("height").getText()),
                 Integer.parseInt(zooEl.getChild("age").getText()),
                 Integer.parseInt(zooEl.getChild("monthsPerEvaluation").getText()),
-                Integer.parseInt(zooEl.getChild("horizon").getText())
+                Integer.parseInt(zooEl.getChild(Constants.HORIZON).getText())
         );
     }
 
