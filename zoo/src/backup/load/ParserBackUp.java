@@ -354,7 +354,7 @@ public class ParserBackUp {
      */
     private Map<FakeTaskPaddock, Double> parserTimedTasksPerPaddock(Element el) {
         Map<FakeTaskPaddock, Double> timedPaddocks = new HashMap<>();
-        for (Element padEl : el.getChild("timedTasksPerPaddock").getChildren("timedTaskPerPaddock")) {
+        for (Element padEl : el.getChild(Constants.TIMEDTASKS).getChildren(Constants.TIMEDTASK)) {
             timedPaddocks.put(
                     new FakeTaskPaddock(padEl.getChildText(Constants.PADDOCK), Integer.parseInt(padEl.getChildText("task"))),
                     Double.parseDouble(padEl.getChildText("time")));

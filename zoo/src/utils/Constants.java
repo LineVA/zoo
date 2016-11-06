@@ -4,22 +4,22 @@ package utils;
  *
  * @author doyenm
  */
-public  class Constants {
-    
+public class Constants {
+
     // Value for undefined in an enum
-    public static final int UNDEFIND_ENUM = -1; 
+    public static final int UNDEFIND_ENUM = -1;
     // animal
     public static final String ANIMAL = "animal";
     // animalKeeper
     public static final String ANIMALKEEPER = "animalKeeper";
     // animalKeeper || ak
     public static final String[] AK_OR_ANIMALKEEPER = {"animalKeeper", "ak"};
-      // create
+    // create
     public static final String CREATE = "create";
     // horizon
     public static final String HORIZON = "horizon";
     // --horizon |- -h as argument
-    public static final String[] HORIZON_ARG={"--horizon", "-h"};
+    public static final String[] HORIZON_ARG = {"--horizon", "-h"};
     // ls
     public static final String LS = "ls";
     // paddock
@@ -38,12 +38,15 @@ public  class Constants {
     public static final String SPEED = "speed";
     // --speed || -s as argument
     public static final String[] SPEED_ARG = {"--speed", "-s"};
+    // timedTaskPerPaddock
+    public static final String TIMEDTASK = "timedTaskPerPaddock";
+      // timedTasksPerPaddock
+    public static final String TIMEDTASKS = "timedTasksPerPaddock";
     // --timedTaskPerPaddock, -tT, -tTP as arguments
     public static final String[] TIMEDTASK_ARG = {"--timedTaskPerPaddock", "-tT", "-tTP"};
     // yes || y
     public static final String[] YES_OR_Y = {"yes", "y"};
     // zoo
     public static final String ZOO = "zoo";
-  
-    
+
 }
