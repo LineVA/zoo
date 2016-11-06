@@ -56,6 +56,8 @@ public class Constants {
     public static final String SPEED = "speed";
     // --speed || -s as argument
     public static final String[] SPEED_ARG = {"--speed", "-s"};
+    // task
+    public static final String TASK = "task";
     // timedPaddock
     public static final String TIMEDPADDOCK = "timedPaddock";
     // timedPaddocks

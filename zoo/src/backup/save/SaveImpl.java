@@ -254,7 +254,7 @@ public class SaveImpl implements Save {
     private Element createElementTimedTaskPerPaddock(String name, int task, Double time) {
         Element el = new Element(Constants.TIMEDTASK);
         el.addContent(createElementWithText(Constants.PADDOCK, name));
-        el.addContent(createElementWithText("task", Integer.toString(task)));
+        el.addContent(createElementWithText(Constants.TASK, Integer.toString(task)));
         el.addContent(createElementWithText("time", Double.toString(time)));
         return el;
     }
@@ -282,7 +282,7 @@ public class SaveImpl implements Save {
      */
     private Element createElementManagedTask(int task, Double time) {
         Element el = new Element("managedTask");
-        el.addContent(createElementWithText("task", Integer.toString(task)));
+        el.addContent(createElementWithText(Constants.TASK, Integer.toString(task)));
         el.addContent(createElementWithText("time", Double.toString(time)));
         return el;
     }
