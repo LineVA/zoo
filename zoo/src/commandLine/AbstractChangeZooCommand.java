@@ -7,12 +7,12 @@ import lombok.Getter;
  *
  * @author doyenm
  */
-public abstract class AbstractChangeZoo extends AbstractCommand {
+public abstract class AbstractChangeZooCommand extends AbstractCommand {
 
     @Getter
     private String[] previousCmd;
 
-    public AbstractChangeZoo(Play play) {
+    public AbstractChangeZooCommand(Play play) {
         super(play);
     }
 

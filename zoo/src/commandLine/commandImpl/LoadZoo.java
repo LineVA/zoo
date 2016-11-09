@@ -2,7 +2,7 @@ package commandLine.commandImpl;
 
 import backup.load.Load;
 import backup.load.LoadImpl;
-import commandLine.AbstractChangeZoo;
+import commandLine.AbstractChangeZooCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import java.io.IOException;
@@ -14,7 +14,7 @@ import zoo.IZoo;
  *
  * @author doyenm
  */
-public class LoadZoo extends AbstractChangeZoo {
+public class LoadZoo extends AbstractChangeZooCommand {
 
     public LoadZoo(Play play) {
         super(play);
