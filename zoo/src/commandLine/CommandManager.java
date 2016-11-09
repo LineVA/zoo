@@ -23,12 +23,14 @@ public abstract class CommandManager {
       private Option option;
       @Getter
       private SaveZoo save;
-      
+      @Getter
+      private LoadZoo load;
     
     public CommandManager(Play play, Option option){
         this.option = option;
           this.play = play;
           this.save = new SaveZoo(play);
+          this.load = new LoadZoo(play);
             // For Paddock, Animal, Specie and Animal Keeper : Ls must be before Detail
           // and Create & remove before Ls
         playCommands = asList(new CreateZoo(play), new DetailZoo(play),
@@ -43,7 +45,7 @@ public abstract class CommandManager {
                 new LsPaddockType(play), new PadTypePad(play),
                 new LsSpecie(play), new DetailSpecie(play), new LsFamily(play),
                 new LsDiet(play), new LsSize(play),
-                 save, new LoadZoo(play),
+                 save, load,
                 new Options(play), new ZooCharacteristics(play),
                 new Documentation(play),
                 new LsTask(play),
