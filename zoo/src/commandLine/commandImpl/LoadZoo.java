@@ -52,27 +52,32 @@ public class LoadZoo extends AbstractCommand {
     public ReturnExec confirmChangingZoo(String[] cmd) {
         super.setChangingZoo(false);
         if (cmd.length == 1) {
-            if ("no".equalsIgnoreCase(cmd[0]) || "n".equalsIgnoreCase(cmd[0])) {
+            if ("yes".equalsIgnoreCase(cmd[0]) || "y".equalsIgnoreCase(cmd[0])) {
                 return executeChanging(cmd);
             }
         }
-        return new ReturnExec("Le zoo n'a pas été sauvegardé", TypeReturn.ERROR);
+        return new ReturnExec("Vous n'avez pas changé de zoo", TypeReturn.ERROR);
     }
 
     private ReturnExec checkBeforeChangingZoo(String[] cmd) {
         this.fileNameToLoad = cmd[1];
         super.setChangingZoo(true);
         super.setInitiate(true);
-        return new ReturnExec("Voulez-vous sauvegarder avant de quitter ce zoo ?",
+        return new ReturnExec("Vos actions non-sauvegardées vont être perdues. "
+                + "Etes-vous sûr de vouloir quitter votre zoo actuel ?",
                 TypeReturn.QUESTION);
     }
 
     @Override
     public ReturnExec execute(String[] cmd) {
-        if (super.isChangingZoo()) {
-            return executeChanging(cmd);
+        if (super.isInitiate()) {
+            if (super.isChangingZoo()) {
+                return executeChanging(cmd);
+            } else {
+                return checkBeforeChangingZoo(cmd);
+            }
         } else {
-            return checkBeforeChangingZoo(cmd);
+            return executeChanging(cmd);
         }
     }
 
