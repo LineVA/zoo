@@ -2,7 +2,7 @@ package commandLine.commandImpl;
 
 import backup.load.Load;
 import backup.load.LoadImpl;
-import commandLine.AbstractCommand;
+import commandLine.AbstractChangeZoo;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import java.io.IOException;
@@ -14,20 +14,18 @@ import zoo.IZoo;
  *
  * @author doyenm
  */
-public class LoadZoo extends AbstractCommand {
-
-    private String fileNameToLoad = null;
+public class LoadZoo extends AbstractChangeZoo {
 
     public LoadZoo(Play play) {
         super(play);
     }
 
-    private ReturnExec executeChanging(String[] cmd) {
+    public ReturnExec executeChanging(String[] cmd) {
         try {
             Load load = new LoadImpl();
             IZoo zoo;
-            if (this.fileNameToLoad != null) {
-                zoo = load.loadZoo("gameBackUps/" + this.fileNameToLoad + ".xml");
+            if (super.getPreviousCmd() != null) {
+                zoo = load.loadZoo("gameBackUps/" + super.getPreviousCmd()[1] + ".xml");
             } else {
                 zoo = load.loadZoo("gameBackUps/" + cmd[1] + ".xml");
             }
@@ -46,38 +44,6 @@ public class LoadZoo extends AbstractCommand {
         } catch (Exception ex) {
             return new ReturnExec(
                     super.getPlay().getOption().getGeneralCmdBundle().getString("CORRUPTED_FILE"), TypeReturn.ERROR);
-        }
-    }
-
-    public ReturnExec confirmChangingZoo(String[] cmd) {
-        super.setChangingZoo(false);
-        if (cmd.length == 1) {
-            if ("yes".equalsIgnoreCase(cmd[0]) || "y".equalsIgnoreCase(cmd[0])) {
-                return executeChanging(cmd);
-            }
-        }
-        return new ReturnExec("Vous n'avez pas changé de zoo", TypeReturn.ERROR);
-    }
-
-    private ReturnExec checkBeforeChangingZoo(String[] cmd) {
-        this.fileNameToLoad = cmd[1];
-        super.setChangingZoo(true);
-        super.setInitiate(true);
-        return new ReturnExec("Vos actions non-sauvegardées vont être perdues. "
-                + "Etes-vous sûr de vouloir quitter votre zoo actuel ?",
-                TypeReturn.QUESTION);
-    }
-
-    @Override
-    public ReturnExec execute(String[] cmd) {
-        if (super.isInitiate()) {
-            if (super.isChangingZoo()) {
-                return executeChanging(cmd);
-            } else {
-                return checkBeforeChangingZoo(cmd);
-            }
-        } else {
-            return executeChanging(cmd);
         }
     }
 
