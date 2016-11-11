@@ -133,7 +133,7 @@ public class SaveImpl implements Save {
      * keeper
      */
     private Element createElementKeepers(IZoo zoo) {
-        Element el = new Element("animalKeepers");
+        Element el = new Element(Constants.ANIMALKEEPERS);
         zoo.getAnimalKeepers(friendSave).entrySet().stream().forEach((keeper) -> {
             el.addContent(createElementKeeper((AnimalKeeper) keeper.getValue()));
         });
@@ -149,7 +149,7 @@ public class SaveImpl implements Save {
      */
     private Element createElementKeeper(AnimalKeeper keeper) {
         Element el = new Element(Constants.ANIMALKEEPER);
-        el.setAttribute(createAttribute("name", keeper.getName(friendSave)));
+        el.setAttribute(createAttribute(Constants.NAME, keeper.getName(friendSave)));
         el.addContent(createElementTimedPaddocks(keeper.getTimedPaddocks(friendSave)));
         el.addContent(createElementTimedTasksPerPaddock(keeper.getTimedTaskPerPaddock(friendSave)));
         el.addContent(createElementManagedFamilies(keeper.getManagedFamilies(friendSave)));
@@ -203,7 +203,7 @@ public class SaveImpl implements Save {
      *
      */
     private Element createElementManagedFamilies(Map<Integer, Double> managedFamilies) {
-        Element el = new Element("managedFamilies");
+        Element el = new Element(Constants.MANAGEDFAMILIES);
         for (Map.Entry<Integer, Double> entry : managedFamilies.entrySet()) {
             el.addContent(createElementManagedFamily(
                     entry.getKey(), entry.getValue()));
@@ -221,7 +221,7 @@ public class SaveImpl implements Save {
      *
      */
     private Element createElementManagedTasks(Map<Integer, Double> managedTasks) {
-        Element el = new Element("managedTasks");
+        Element el = new Element(Constants.MANAGEDTASKS);
         for (Map.Entry<Integer, Double> entry : managedTasks.entrySet()) {
             el.addContent(createElementManagedTask(
                     entry.getKey(), entry.getValue()));
@@ -239,7 +239,7 @@ public class SaveImpl implements Save {
     private Element createElementTimedPaddock(String name, Double time) {
         Element el = new Element(Constants.TIMEDPADDOCK);
         el.addContent(createElementWithText(Constants.PADDOCK, name));
-        el.addContent(createElementWithText("time", Double.toString(time)));
+        el.addContent(createElementWithText(Constants.TIME, Double.toString(time)));
         return el;
     }
 
@@ -255,7 +255,7 @@ public class SaveImpl implements Save {
         Element el = new Element(Constants.TIMEDTASK);
         el.addContent(createElementWithText(Constants.PADDOCK, name));
         el.addContent(createElementWithText(Constants.TASK, Integer.toString(task)));
-        el.addContent(createElementWithText("time", Double.toString(time)));
+        el.addContent(createElementWithText(Constants.TIME, Double.toString(time)));
         return el;
     }
 
@@ -267,9 +267,9 @@ public class SaveImpl implements Save {
      *
      */
     private Element createElementManagedFamily(int family, Double time) {
-        Element el = new Element("managedFamily");
-        el.addContent(createElementWithText("family", Integer.toString(family)));
-        el.addContent(createElementWithText("time", Double.toString(time)));
+        Element el = new Element(Constants.MANAGEDFAMILY);
+        el.addContent(createElementWithText(Constants.FAMILY, Integer.toString(family)));
+        el.addContent(createElementWithText(Constants.TIME, Double.toString(time)));
         return el;
     }
 
@@ -281,9 +281,9 @@ public class SaveImpl implements Save {
      *
      */
     private Element createElementManagedTask(int task, Double time) {
-        Element el = new Element("managedTask");
+        Element el = new Element(Constants.MANAGEDTASK);
         el.addContent(createElementWithText(Constants.TASK, Integer.toString(task)));
-        el.addContent(createElementWithText("time", Double.toString(time)));
+        el.addContent(createElementWithText(Constants.TIME, Double.toString(time)));
         return el;
     }
 
@@ -294,7 +294,7 @@ public class SaveImpl implements Save {
      * @return an element "paddocks" containing a list of elements "paddock"
      */
     private Element createElementPaddocks(IZoo zoo) {
-        Element el = new Element("paddocks");
+        Element el = new Element(Constants.PADDOCKS);
         zoo.getPaddocks(friendSave).entrySet().stream().forEach((pad) -> {
             el.addContent(createElementPaddock((IPaddock) pad.getValue()));
         });
@@ -310,13 +310,13 @@ public class SaveImpl implements Save {
      */
     private Element createElementPaddock(IPaddock pad) {
         Element el = new Element(Constants.PADDOCK);
-        el.setAttribute(createAttribute("name", pad.getName(friendSave)));
+        el.setAttribute(createAttribute(Constants.NAME, pad.getName(friendSave)));
         el.addContent(createElementWithText(Constants.BIOME, Integer.toString(pad.getBiome(friendSave))));
         el.addContent(createElementWithText(Constants.PADDOCKTYPE, Integer.toString(pad.getPaddockType(friendSave))));
-        el.addContent(createElementWithText("x", Integer.toString(pad.getCoordinates(friendSave).getX())));
-        el.addContent(createElementWithText("y", Integer.toString(pad.getCoordinates(friendSave).getY())));
-        el.addContent(createElementWithText("width", Integer.toString(pad.getCoordinates(friendSave).getWidth())));
-        el.addContent(createElementWithText("height", Integer.toString(pad.getCoordinates(friendSave).getHeight())));
+        el.addContent(createElementWithText(Constants.X, Integer.toString(pad.getCoordinates(friendSave).getX())));
+        el.addContent(createElementWithText(Constants.Y, Integer.toString(pad.getCoordinates(friendSave).getY())));
+        el.addContent(createElementWithText(Constants.WIDTH, Integer.toString(pad.getCoordinates(friendSave).getWidth())));
+        el.addContent(createElementWithText(Constants.HEIGHT, Integer.toString(pad.getCoordinates(friendSave).getHeight())));
         el.addContent(createElementAnimals(pad));
         return el;
     }
@@ -328,7 +328,7 @@ public class SaveImpl implements Save {
      * @return an element "animals" containing a list of elements "animal"
      */
     private Element createElementAnimals(IPaddock pad) {
-        Element el = new Element("animals");
+        Element el = new Element(Constants.ANIMALS);
         for (Map.Entry<String, Animal> animal : pad.getAnimals(friendSave).entrySet()) {
             el.addContent(createElementAnimal((Animal) animal.getValue()));
         }
@@ -348,9 +348,9 @@ public class SaveImpl implements Save {
         el.setAttribute(createAttribute("name", animal.getName(friendSave)));
         el.addContent(createElementWithText(Constants.SPECIE, animal.getSpecie(friendSave).getNames().getScientificName()));
         el.addContent(createElementWithText(Constants.SEX, Integer.toString(animal.getSex(friendSave).getId())));
-        el.addContent(createElementWithText("age", String.valueOf(animal.getAge(friendSave))));
-        el.addContent(createElementWithText("wellBeing", String.valueOf(animal.getWellBeeing(friendSave))));
-        el.addContent(createElementWithText("starvation", String.valueOf(animal.getStarvation(friendSave))));
+        el.addContent(createElementWithText(Constants.AGE, String.valueOf(animal.getAge(friendSave))));
+        el.addContent(createElementWithText(Constants.WELLBEING, String.valueOf(animal.getWellBeeing(friendSave))));
+        el.addContent(createElementWithText(Constants.STARVATION, String.valueOf(animal.getStarvation(friendSave))));
         el.addContent(createElementPersonalityAttributes(animal.getPersonality(friendSave)));
         el.addContent(createElementOptimalFeedingAttributes(animal.getOptimalFeeding(friendSave)));
         el.addContent(createElementActualFeedingAttributes(animal, animal.getActualFeeding(friendSave)));
@@ -368,12 +368,12 @@ public class SaveImpl implements Save {
      * @return an element "personality" with a sub-element "bravery"
      */
     private Element createElementPersonalityAttributes(PersonalityAttributes att) {
-        Element el = new Element("personality");
-        el.addContent(createElementWithText("bravery", String.valueOf(att.getBravery())));
-        el.addContent(createElementWithText("intelligence", String.valueOf(att.getIntelligence())));
-        el.addContent(createElementWithText("meticulousness", String.valueOf(att.getMeticulousness())));
-        el.addContent(createElementWithText("greed", String.valueOf(att.getGreed())));
-        el.addContent(createElementWithText("curiosity", String.valueOf(att.getCuriosity())));
+        Element el = new Element(Constants.PERSONALITY);
+        el.addContent(createElementWithText(Constants.BRAVERY, String.valueOf(att.getBravery())));
+        el.addContent(createElementWithText(Constants.INTELLIGENCE, String.valueOf(att.getIntelligence())));
+        el.addContent(createElementWithText(Constants.METICULOUSNESS, String.valueOf(att.getMeticulousness())));
+        el.addContent(createElementWithText(Constants.GREED, String.valueOf(att.getGreed())));
+        el.addContent(createElementWithText(Constants.CURIOSITY, String.valueOf(att.getCuriosity())));
         return el;
     }
 
@@ -384,6 +384,7 @@ public class SaveImpl implements Save {
      * @return an element "optimalBiomeAttributes" with eight sub-elements :
      * night- and dayTemperature, pluviometry, treeDensity, treeHeight, drop,
      * humidity and waterSalinity
+     * @deprecated 
      */
     private Element createElementBiomeAttributes(BiomeAttributes att) {
         Element el = new Element("optimalBiomeAttributes");
@@ -405,8 +406,8 @@ public class SaveImpl implements Save {
      * @return an element "optimalFeedingAttributes with a sub-element quantity
      */
     private Element createElementOptimalFeedingAttributes(FeedingAttributes att) {
-        Element el = new Element("optimalFeedingAttributes");
-        el.addContent(createElementWithText("quantity", String.valueOf(att.getFoodQuantity())));
+        Element el = new Element(Constants.OPTIMALFEEDING_ATT);
+        el.addContent(createElementWithText(Constants.QUANTITY, String.valueOf(att.getFoodQuantity())));
         return el;
     }
 
@@ -419,9 +420,9 @@ public class SaveImpl implements Save {
      * and foodQuantity
      */
     private Element createElementActualFeedingAttributes(Animal animal, FeedingAttributes att) {
-        Element el = new Element("actualFeedingAttributes");
+        Element el = new Element(Constants.ACTUALFEEDING_ATT);
         el.addContent(createElementWithText(Constants.DIET, String.valueOf(animal.getDiet(friendSave))));
-        el.addContent(createElementWithText("quantity", String.valueOf(att.getFoodQuantity())));
+        el.addContent(createElementWithText(Constants.QUANTITY, String.valueOf(att.getFoodQuantity())));
         return el;
     }
 
@@ -433,8 +434,8 @@ public class SaveImpl implements Save {
      * lifeSpan
      */
     private Element createElementLifeSpanAttributes(LifeSpanLightAttributes att) {
-        Element el = new Element("actualLifeSpanAttributes");
-        el.addContent(createElementWithText("lifeSpan", String.valueOf(att.getLifeSpan())));
+        Element el = new Element(Constants.ACTUALLIFESPAN_ATT);
+        el.addContent(createElementWithText(Constants.LIFESPAN, String.valueOf(att.getLifeSpan())));
         return el;
     }
 
@@ -446,11 +447,11 @@ public class SaveImpl implements Save {
      * : femaleMaturityAge, maleMaturityAge, gestationFrequency and litterSize
      */
     private Element createElementReproductionAttributes(ReproductionAttributes att) {
-        Element el = new Element("actualReproductionAttributes");
-        el.addContent(createElementWithText("femaleMaturityAge", String.valueOf(att.getFemaleMaturityAge())));
-        el.addContent(createElementWithText("maleMaturityAge", String.valueOf(att.getMaleMaturityAge())));
-        el.addContent(createElementWithText("gestationFrequency", String.valueOf(att.getGestationFrequency())));
-        el.addContent(createElementWithText("litterSize", String.valueOf(att.getLitterSize())));
+        Element el = new Element(Constants.ACTUALREPRODUCTION_ATT);
+        el.addContent(createElementWithText(Constants.FEMALEMATURITYAGE, String.valueOf(att.getFemaleMaturityAge())));
+        el.addContent(createElementWithText(Constants.MALEMATURITYAGE, String.valueOf(att.getMaleMaturityAge())));
+        el.addContent(createElementWithText(Constants.GESTATIONFREQUENCY, String.valueOf(att.getGestationFrequency())));
+        el.addContent(createElementWithText(Constants.LITTERSIZE, String.valueOf(att.getLitterSize())));
         return el;
     }
 
@@ -462,8 +463,8 @@ public class SaveImpl implements Save {
      * groupSize
      */
     private Element createElementSocialAttributes(SocialAttributes att) {
-        Element el = new Element("optimalSocialAttributes");
-        el.addContent(createElementWithText("groupSize", String.valueOf(att.getGroupSize())));
+        Element el = new Element(Constants.OPTIMALSOCIAL_ATT);
+        el.addContent(createElementWithText(Constants.GROUPSIZE, String.valueOf(att.getGroupSize())));
         return el;
     }
 
@@ -475,8 +476,8 @@ public class SaveImpl implements Save {
      * territorySize
      */
     private Element createElementTeritoryAttributes(TerritoryAttributes att) {
-        Element el = new Element("optimalTerritoryAttributes");
-        el.addContent(createElementWithText("territorySize", String.valueOf(att.getTerritorySize())));
+        Element el = new Element(Constants.OPTIMALTERRITORY_ATT);
+        el.addContent(createElementWithText(Constants.TERRITORYSIZE, String.valueOf(att.getTerritorySize())));
         return el;
     }
 
@@ -488,9 +489,9 @@ public class SaveImpl implements Save {
      * @return an element "dimensions" with two sub-elements : width and height
      */
     private Element createElementDimensionsZoo(int width, int height) {
-        Element dimEl = new Element("dimensions");
-        dimEl.addContent(createElementWithText("width", Integer.toString(width)));
-        dimEl.addContent(createElementWithText("height", Integer.toString(height)));
+        Element dimEl = new Element(Constants.DIMENSIONS);
+        dimEl.addContent(createElementWithText(Constants.WIDTH, Integer.toString(width)));
+        dimEl.addContent(createElementWithText(Constants.HEIGHT, Integer.toString(height)));
         return dimEl;
     }
 
@@ -503,10 +504,10 @@ public class SaveImpl implements Save {
      */
     private Element createElementZoo(IZoo zoo) {
         Element zooEl = new Element(Constants.ZOO);
-        zooEl.setAttribute(createAttribute("name", zoo.getName(friendSave).trim()));
+        zooEl.setAttribute(createAttribute(Constants.NAME, zoo.getName(friendSave).trim()));
         zooEl.addContent(createElementDimensionsZoo(zoo.getWidth(friendSave), zoo.getHeight(friendSave)));
-        zooEl.addContent(createElementWithText("age", Integer.toString(zoo.getAge(friendSave))));
-        zooEl.addContent(createElementWithText("monthsPerEvaluation", Integer.toString(zoo.getMonthsPerEvaluation(friendSave))));
+        zooEl.addContent(createElementWithText(Constants.AGE, Integer.toString(zoo.getAge(friendSave))));
+        zooEl.addContent(createElementWithText(Constants.MONTHSPEREVALUATION, Integer.toString(zoo.getMonthsPerEvaluation(friendSave))));
         zooEl.addContent(createElementWithText(Constants.HORIZON, Integer.toString(zoo.getHorizon(friendSave))));
         zooEl.addContent(createElementWithText(Constants.LANGUAGE, zoo.getOption(friendSave).getLocale(friendSave)));
         return zooEl;
