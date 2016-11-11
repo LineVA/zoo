@@ -5,7 +5,6 @@ import commandLine.CommandManager;
 import commandLine.ReturnExec;
 import commandLine.SplitDoubleQuotes;
 import commandLine.TypeReturn;
-import commandLine.commandImpl.CreateZoo;
 import commandLine.commandImpl.Options;
 import commandLine.commandImpl.Man;
 import static java.util.Arrays.asList;
@@ -29,7 +28,7 @@ public class FreeCommandManager extends CommandManager {
     public FreeCommandManager(Play play, Option option) {
         super(play, option);
         super.setFirstLine(super.getOption().getGeneralCmdBundle().getString("WELCOME"));
-        initialCommands = asList(new CreateZoo(play), super.getLoad(), new Options(play), new Man(play));
+        initialCommands = asList(super.getCreateZoo(), super.getLoad(), new Options(play), new Man(play));
     }
 
     private ReturnExec isCurrentlySaving(String[] parse) {

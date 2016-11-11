@@ -25,15 +25,18 @@ public abstract class CommandManager {
       private SaveZoo save;
       @Getter
       private LoadZoo load;
+      @Getter
+      private CreateZoo createZoo;
     
     public CommandManager(Play play, Option option){
         this.option = option;
           this.play = play;
           this.save = new SaveZoo(play);
           this.load = new LoadZoo(play);
+          this.createZoo = new CreateZoo(play);
             // For Paddock, Animal, Specie and Animal Keeper : Ls must be before Detail
           // and Create & remove before Ls
-        playCommands = asList(new CreateZoo(play), new DetailZoo(play),
+        playCommands = asList(this.createZoo, new DetailZoo(play),
                 new CreatePaddock(play), new RemovePaddock(play), 
                 new LsPaddock(play), new MapZoo(play), new DetailPad(play),
                 new Evaluate(play), new BiomePad(play), new BiomeAttributesPaddock(play),
