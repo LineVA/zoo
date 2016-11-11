@@ -105,6 +105,13 @@
                         <xs:sequence>
                             <xs:element type="xs:integer" name="groupSize"/>
                             <xs:element type="xs:string" name="territorial" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="activityPeriods" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:string" name="period" minOccurs="1" maxOccurs="unbounded"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
                             <xs:element name="socialStructures" minOccurs="0" maxOccurs="1">
                                 <xs:complexType>
                                     <xs:sequence>
@@ -114,7 +121,7 @@
                             </xs:element>
                             <xs:element type="xs:string" name="maleParticipationInBreeding" minOccurs="0" maxOccurs="1"/>
                             <xs:element type="xs:string" name="isolationOfYoung" minOccurs="0" maxOccurs="1"/>
-                            </xs:sequence>
+                        </xs:sequence>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="tags" minOccurs="0">
