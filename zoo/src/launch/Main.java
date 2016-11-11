@@ -4,8 +4,6 @@ import launch.play.FreePlayImpl;
 import launch.play.Play;
 import gui.MainGUI;
 import java.io.IOException;
-import java.util.Locale;
-import java.util.ResourceBundle;
 import launch.options.Option;
 import org.jdom2.JDOMException;
 
@@ -22,10 +20,8 @@ public class Main {
      * @throws JDOMException in case of problems with the instanciation of the species
      */
     public static void main(String[] args) throws IOException, JDOMException {
-         Locale locale = Locale.getDefault();
-        ResourceBundle bundle = ResourceBundle.getBundle("i18n.info", locale);
         Option options = new Option();
-        Play play = new FreePlayImpl(bundle, options);
+        Play play = new FreePlayImpl(options);
         MainGUI mainGUI = new MainGUI(play);
     }
 }

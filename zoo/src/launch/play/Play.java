@@ -36,7 +36,7 @@ abstract public class Play {
     @Setter
     private CommandManager manager;
 
-    public Play(ResourceBundle bundle, Option opt) {
+    public Play(Option opt) {
         this.zoo = new Zoo();
         this.zoo.setOption(opt);
         Diet.NONE.setOption(opt);

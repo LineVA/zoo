@@ -1,6 +1,5 @@
 package launch.play;
 
-import java.util.ResourceBundle;
 import launch.options.Option;
 
 /**
@@ -9,8 +8,8 @@ import launch.options.Option;
  */
 public class ScenarioPlayImpl extends Play {
 
-    public ScenarioPlayImpl(ResourceBundle bundle, Option opt) {
-        super(bundle, opt);
+    public ScenarioPlayImpl(Option opt) {
+        super(opt);
     }
 
 }

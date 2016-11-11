@@ -232,13 +232,19 @@ public class Zoo implements IZoo {
                 padList.add(paddock.getValue());
             }
         }
-         for(Specie spec : species){
-             for(IPaddock pad : padList){
-                 if(pad.countAnimalsOfTheSameSpecie(spec) > 0){
-                     list.add(pad.getName());
-                 }
-             }
-         }
+        if (species.size() != 0) {
+            for (Specie spec : species) {
+                for (IPaddock pad : padList) {
+                    if (pad.countAnimalsOfTheSameSpecie(spec) > 0) {
+                        list.add(pad.getName());
+                    }
+                }
+            }
+        } else {
+            for (IPaddock pad : padList) {
+                list.add(pad.getName());
+            }
+        }
         return list;
     }
 

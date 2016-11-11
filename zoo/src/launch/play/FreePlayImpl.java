@@ -1,6 +1,5 @@
 package launch.play;
 
-import java.util.ResourceBundle;
 import launch.options.Option;
 import commandLine.commandManagerImpl.FreeCommandManager;
 
@@ -10,8 +9,8 @@ import commandLine.commandManagerImpl.FreeCommandManager;
  */
 public class FreePlayImpl extends Play {
 
-    public FreePlayImpl(ResourceBundle bundle, Option opt) {
-        super(bundle, opt);
+    public FreePlayImpl(Option opt) {
+        super(opt);
         super.setManager(new FreeCommandManager(this, opt));
     }
 }
