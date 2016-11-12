@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+    <names>
+        <fr>Renard roux</fr>
+        <additionalFrenchNames>
+            <name>Renard commun</name>
+            <name>Renard rouge</name>
+            <name>Goupil</name>
+        </additionalFrenchNames>
+        <en>Red fox</en>
+        <additionalEnglishNames>
+        </additionalEnglishNames>
+        <scientific>Vulpes vulpes </scientific>
+    </names>
+    <general>
+        <uicn>1</uicn>
+        <family>1</family>
+        <continents>
+            <continent>3</continent>
+            <continent>4</continent>
+            <continent>5</continent>
+            <continent>6</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+        <breedingProgramme>0</breedingProgramme>
+    </general>
+    <documentation>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Renard_roux</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Red_fox</englishWikipedia>
+        <animalDiversity />
+    </documentation>
+    <reproduction>
+        <femaleMaturity>10</femaleMaturity>
+        <maleMaturity>10</maleMaturity>
+        <gestationFrequency>1</gestationFrequency>
+        <litterSize>5</litterSize>
+        <weaningAge>2</weaningAge>
+        <leavingAge>10</leavingAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>84</femaleLifespan>
+        <maleLifespan>84</maleLifespan>
+    </lifespan>
+    <territory>
+        <territorySize>120</territorySize>
+        <biomes>
+            <biome>4</biome>
+            <biome>6</biome>
+            <biome>8</biome>
+            <biome>10</biome>
+            <biome>11</biome>
+            <biome>12</biome>
+        </biomes>
+    </territory>
+    <feeding>
+        <quantity>0.5</quantity>
+        <size>2</size>
+        <diets>
+            <diet>3</diet>
+        </diets>
+    </feeding>
+    <social>
+        <groupSize>1</groupSize>
+    </social>
+    <tags>
+        <frenchTags>
+            <tag>Mammifère</tag>
+            <tag>Renard</tag>
+        </frenchTags>
+        <englishTags>
+            <tag>Mammal</tag>
+            <tag>Renard</tag>
+        </englishTags>
+    </tags>
+</animal>
