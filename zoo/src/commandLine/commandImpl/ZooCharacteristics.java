@@ -5,6 +5,7 @@ import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.IncorrectDataException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +18,8 @@ import utils.Constants;
  */
 public class ZooCharacteristics extends AbstractCommand {
 
+    // args[0] : speed
+    // args[1] : horizon
     String[] args = new String[]{null, null};
 
     public ZooCharacteristics(Play play) {
@@ -38,11 +41,15 @@ public class ZooCharacteristics extends AbstractCommand {
             try {
                 if (args[0] != null) {
                     super.getPlay().getZoo().changeSpeed(speed);
-                    result.add(super.getPlay().getOption().getGeneralCmdBundle().getString("SPEED_CHANGE_SUCCESS") + cmd[2]);
+                    result.add(MessageFormat.format(
+                            super.getPlay().getOption().getGeneralCmdBundle().getString("SPEED_CHANGE_SUCCESS"),
+                            speed));
                 }
                 if (args[1] != null) {
                     super.getPlay().getZoo().changeHorizon(horizon);
-                    result.add(super.getPlay().getOption().getGeneralCmdBundle().getString("HORIZON_CHANGE_SUCCESS") + cmd[2]);
+                    result.add(MessageFormat.format(
+                            super.getPlay().getOption().getGeneralCmdBundle().getString("HORIZON_CHANGE_SUCCESS"),
+                            horizon));
                 }
                 super.setSuccess(true);
             } catch (IncorrectDataException ex) {
