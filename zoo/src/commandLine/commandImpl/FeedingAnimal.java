@@ -1,5 +1,6 @@
 package commandLine.commandImpl;
 
+import basicGui.FormattingDisplay;
 import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
@@ -7,7 +8,9 @@ import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import launch.play.Play;
 import utils.Constants;
 import zoo.animal.Animal;
@@ -29,26 +32,27 @@ public class FeedingAnimal extends AbstractCommand {
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
-            String result = "";
+            List<String> result = new ArrayList<>();
             Animal animal = super.getPlay().getZoo().findAnimalByName(cmd[1]);
             if (args[0] != null) {
                 animal.changeDiet(args[0]);
-                result += MessageFormat.format(
+                result.add(MessageFormat.format(
                         super.getPlay().getOption().getGeneralCmdBundle().getString("ANIMALS_DIET"), 
-                        cmd[1],args[0],"\n");
+                        cmd[1],args[0]));
             }
             if (args[1] != null) {
                 try {
                     animal.changeFoodQuantity(Double.parseDouble(args[1]));
-                    result += MessageFormat.format(
-                            super.getPlay().getOption().getGeneralCmdBundle().getString("ANIMALS_FOOD_QUANTITY"), cmd[1], args[1]);
+                    result.add(MessageFormat.format(
+                            super.getPlay().getOption().getGeneralCmdBundle().getString("ANIMALS_FOOD_QUANTITY"),
+                            cmd[1], args[1]));
                 } catch (java.lang.NumberFormatException ex) {
                     return new ReturnExec(
                           super.getPlay().getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION"), 
                             TypeReturn.ERROR);
                 }
             }
-            return new ReturnExec(result, TypeReturn.SUCCESS);
+            return new ReturnExec(FormattingDisplay.formattingList(result), TypeReturn.SUCCESS);
         } catch (EmptyNameException | UnknownNameException |
                 IncorrectLoadException | NumberFormatException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
