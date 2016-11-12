@@ -79,8 +79,8 @@ public class ZooCharacteristics extends AbstractCommand {
                     args[0] = cmd[2];
                     args[1] = cmd[4];
                     return true;
-                } else if (Arrays.asList(Constants.HORIZON_ARG).contains(cmd[3])
-                        && Arrays.asList(Constants.HORIZON_ARG).contains(cmd[1])) {
+                } else if (Arrays.asList(Constants.HORIZON_ARG).contains(cmd[1])
+                        && Arrays.asList(Constants.SPEED_ARG).contains(cmd[3])) {
                     args[0] = cmd[4];
                     args[1] = cmd[2];
                     return true;
