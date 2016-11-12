@@ -5,6 +5,7 @@ import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import launch.play.Play;
+import utils.Constants;
 import zoo.animal.specie.Size;
 
 /**
@@ -25,6 +26,6 @@ public class LsSize extends AbstractCommand  {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 2 && cmd[0].equalsIgnoreCase("size") && cmd[1].equalsIgnoreCase("ls");
+        return cmd.length == 2 && Constants.SIZE.equalsIgnoreCase(cmd[0]) && Constants.LS.equalsIgnoreCase(cmd[1]);
     }
 }

@@ -5,7 +5,9 @@ import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
+import java.util.Arrays;
 import launch.play.Play;
+import utils.Constants;
 import zoo.paddock.IPaddock;
 
 /**
@@ -35,8 +37,8 @@ public class BiomePad extends AbstractCommand{
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 4) {
-            if (cmd[0].equalsIgnoreCase("pad") || cmd[0].equalsIgnoreCase("paddock")) {
-                if (cmd[2].equalsIgnoreCase("--biome") || cmd[2].equalsIgnoreCase("-b")) {
+            if (Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd[0])) {
+                if (Arrays.asList(Constants.BIOME_ARG).contains(cmd[2])) {
                     return true;
                 }
             }

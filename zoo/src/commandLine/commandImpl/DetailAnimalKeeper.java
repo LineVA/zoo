@@ -6,7 +6,9 @@ import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
+import java.util.Arrays;
 import launch.play.Play;
+import utils.Constants;
 import zoo.animalKeeper.AnimalKeeper;
 
 /**
@@ -33,7 +35,7 @@ public class DetailAnimalKeeper extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
-            if (cmd[0].equalsIgnoreCase("animalKeeper") || "aK".equalsIgnoreCase(cmd[0]) || "ak".equalsIgnoreCase(cmd[0])) {
+            if (Arrays.asList(Constants.AK_OR_ANIMALKEEPER).contains(cmd[0])) {
                 return true;
             }
         }

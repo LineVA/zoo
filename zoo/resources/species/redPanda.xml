@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
-  <names>
-    <fr>Castor canadien</fr>
-    <additionalFrenchNames>
-      <name>Castor américaini</name>
-    </additionalFrenchNames>
-    <en>American beaver</en>
-    <additionalEnglishNames>
-      <name>North-American beaver</name>
-    </additionalEnglishNames>
-    <scientific>Castor canadensis</scientific>
-  </names>
-  <general>
-    <uicn>1</uicn>
-    <family>29</family>
-    <continents>
-      <continent>3</continent>
-      <continent>5</continent>
-    </continents>
-    <ecoregion>0</ecoregion>
-    <breedingProgramme>0</breedingProgramme>
-  </general>
-  <documentation>
-    <frenchWikipedia>https://fr.wikipedia.org/wiki/Castor_du_Canada</frenchWikipedia>
-    <englishWikipedia>https://en.wikipedia.org/wiki/North_American_beaver</englishWikipedia>
-    <animalDiversity />
-  </documentation>
-  <reproduction>
-    <femaleMaturity>30</femaleMaturity>
-    <maleMaturity>30</maleMaturity>
-    <gestationFrequency>1</gestationFrequency>
-    <litterSize>3</litterSize>
-    <leavingAge>0</leavingAge>
-  </reproduction>
-  <lifespan>
-    <femaleLifespan>225</femaleLifespan>
-    <maleLifespan>225</maleLifespan>
-  </lifespan>
-  <territory>
-    <territorySize>60</territorySize>
-    <biomes>
-      <biome>4</biome>
-      <biome>5</biome>
-      <biome>6</biome>
-      <biome>8</biome>
-    </biomes>
-  </territory>
-  <feeding>
-    <quantity>1.600</quantity>
-    <size>4</size>
-    <diets>
-      <diet>28</diet>
-    </diets>
-  </feeding>
-  <social>
-    <groupSize>8</groupSize>
-  </social>
-  <tags>
+    <names>
+        <fr>Panda roux</fr>
+        <additionalFrenchNames>
+            <name>Petit panda</name>
+            <name>Panda fuligineux</name>
+            <name>Panda éclatant</name>
+        </additionalFrenchNames>
+        <en>Red panda</en>
+        <additionalEnglishNames>
+            <name>Lesser panda</name>
+            <name>Red bear-cat</name>
+            <name>Red cat-bear</name>
+        </additionalEnglishNames>
+        <scientific>Ailurus fulgens</scientific>
+    </names>
+    <general>
+        <uicn>4</uicn>
+        <family>34</family>
+        <continents>
+            <continent>5</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+        <breedingProgramme>1</breedingProgramme>
+    </general>
+    <documentation>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Ailurus_fulgens</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Red_panda</englishWikipedia>
+        <animalDiversity />
+    </documentation>
+    <reproduction>
+        <femaleMaturity>18</femaleMaturity>
+        <maleMaturity>18</maleMaturity>
+        <gestationFrequency>1</gestationFrequency>
+        <litterSize>2</litterSize>
+        <weaningAge>5</weaningAge>
+        <leavingAge>18</leavingAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>120</femaleLifespan>
+        <maleLifespan>120</maleLifespan>
+    </lifespan>
+    <territory>
+        <territorySize>56</territorySize>
+        <biomes>
+            <biome>1</biome>
+        </biomes>
+    </territory>
+    <feeding>
+        <quantity>0.200</quantity>
+        <size>1</size>
+        <diets>
+            <diet>8</diet>
+        </diets>
+    </feeding>
+    <social>
+        <groupSize>1</groupSize>
+    </social>
+      <tags>
       <frenchTags>
           <tag>Mammifère</tag>
-          <tag>Rongeur</tag>
-          <tag>Castor</tag>
+          <tag>Panda</tag>
       </frenchTags>
       <englishTags>
           <tag>Mammal</tag>
-          <tag>Rodent</tag>
-          <tag>Beaver</tag>
+          <tag>Panda</tag>
       </englishTags>
   </tags>
 </animal>
+>>>>>>> eb44caf1e204f55f2fffced87e342611c0e6510f

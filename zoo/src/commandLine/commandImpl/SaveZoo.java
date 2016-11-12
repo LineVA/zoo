@@ -6,7 +6,9 @@ import backup.save.SaveImpl;
 import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
+import java.util.Arrays;
 import launch.play.Play;
+import utils.Constants;
 
 /**
  *
@@ -23,7 +25,7 @@ public class SaveZoo extends AbstractCommand {
     public ReturnExec confirmSaving(String[] cmd) {
         super.setSaving(false);
         if (cmd.length == 1) {
-            if ("yes".equalsIgnoreCase(cmd[0]) || "y".equalsIgnoreCase(cmd[0])) {
+            if (Arrays.asList(Constants.YES_OR_Y).contains(cmd[0])) {
                 return executeSaving(new SaveImpl(), cmd);
             }
         }
@@ -74,6 +76,6 @@ public class SaveZoo extends AbstractCommand {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 2 && "save".equalsIgnoreCase(cmd[0]);
+        return cmd.length == 2 && Constants.SAVE.equalsIgnoreCase(cmd[0]);
     }
 }

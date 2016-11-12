@@ -4,9 +4,11 @@ import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import java.io.IOException;
+import java.util.Arrays;
 import launch.InstanciateSpecies;
 import launch.play.Play;
 import org.jdom2.JDOMException;
+import utils.Constants;
 
 /**
  *
@@ -35,7 +37,8 @@ public class Options extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 3) {
-            if (cmd[0].equalsIgnoreCase("option") && cmd[1].equalsIgnoreCase("-l")) {
+            if (cmd[0].equalsIgnoreCase(Constants.OPTION) && 
+                    Arrays.asList(Constants.LANGUAGE_ARG).contains(cmd[1])) {
                 return true;
             }
         }

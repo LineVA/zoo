@@ -5,7 +5,9 @@ import basicGui.FormattingDisplay;
 import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
+import java.util.Arrays;
 import launch.play.Play;
+import utils.Constants;
 import zoo.paddock.PaddockTypes;
 
 /**
@@ -26,6 +28,8 @@ public class LsPaddockType  extends AbstractCommand {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 2 && (cmd[0].equalsIgnoreCase("paddockType") || "padType".equalsIgnoreCase(cmd[0])) && cmd[1].equalsIgnoreCase("ls");
+        return cmd.length == 2 &&
+               Arrays.asList(Constants.PADDOCKTYPE_OR_PADTYPE).contains(cmd[0]) && 
+               Constants.LS.equalsIgnoreCase(cmd[1]);
     }
 }

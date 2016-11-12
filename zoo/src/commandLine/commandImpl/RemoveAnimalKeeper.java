@@ -5,7 +5,9 @@ import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
+import java.util.Arrays;
 import launch.play.Play;
+import utils.Constants;
 
 /**
  *
@@ -33,8 +35,8 @@ public class RemoveAnimalKeeper extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 3) {
-            if (("animalKeeper".equalsIgnoreCase(cmd[0]) || "ak".equalsIgnoreCase(cmd[0]) || "aK".equalsIgnoreCase(cmd[0]))
-                    && "remove".equalsIgnoreCase(cmd[1])) {
+            if (Arrays.asList(Constants.AK_OR_ANIMALKEEPER).contains(cmd[0])
+                    && Constants.REMOVE.equalsIgnoreCase(cmd[1])) {
                 return true;
             }
         }

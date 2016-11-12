@@ -5,7 +5,9 @@ import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.name.NameException;
+import java.util.Arrays;
 import launch.play.Play;
+import utils.Constants;
 
 /**
  *
@@ -33,8 +35,8 @@ public class CreateAnimalKeeper  extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 3) {
-            if (cmd[0].equalsIgnoreCase("ak") || cmd[0].equalsIgnoreCase("animalKeeper") || "aK".equalsIgnoreCase(cmd[0])) {
-                if (cmd[1].equalsIgnoreCase("create")) {
+            if (Arrays.asList(Constants.AK_OR_ANIMALKEEPER).contains(cmd[0])) {
+                if (Constants.CREATE.equalsIgnoreCase(cmd[1])) {
                     return true;
                 }
             }

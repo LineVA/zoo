@@ -7,7 +7,9 @@ import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
+import java.util.Arrays;
 import launch.play.Play;
+import utils.Constants;
 import zoo.animal.specie.Specie;
 
 /**
@@ -35,7 +37,7 @@ public class DetailSpecie extends AbstractCommand implements Command {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
-            if (cmd[0].equalsIgnoreCase("spec") || cmd[0].equalsIgnoreCase("specie")) {
+            if (Arrays.asList(Constants.SPEC_OR_SPECIE).contains(cmd[0])) {
                 return true;
             }
         }

@@ -5,6 +5,7 @@ import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import launch.play.Play;
+import utils.Constants;
 import zoo.paddock.biome.Continent;
 
 /**
@@ -25,6 +26,7 @@ public class LsContinent extends AbstractCommand  {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 2 && cmd[0].equalsIgnoreCase("continent") && cmd[1].equalsIgnoreCase("ls");
+        return cmd.length == 2 &&Constants.CONTINENT.equalsIgnoreCase(cmd[0])
+                && Constants.LS.equalsIgnoreCase(cmd[1]);
     }
 }

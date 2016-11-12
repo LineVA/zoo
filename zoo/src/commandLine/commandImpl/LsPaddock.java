@@ -7,11 +7,13 @@ import commandLine.SplittingAmpersand;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import launch.play.Play;
+import utils.Constants;
 import utils.Utils;
 import zoo.animal.specie.Specie;
 import zoo.paddock.LightPaddock;
@@ -67,21 +69,20 @@ public class LsPaddock extends AbstractCommand {
     }
 
     private boolean checkFirstParts(String[] cmd) {
-        return ("pad".equalsIgnoreCase(cmd[0]) || "paddock".equalsIgnoreCase(cmd[0]))
-                && "ls".equalsIgnoreCase(cmd[1]);
+        return (Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd[0]))
+                && Constants.LS.equalsIgnoreCase(cmd[1]);
     }
 
     private boolean hasArgumentBiome(String arg) {
-        return "--biome".equalsIgnoreCase(arg) || "-b".equalsIgnoreCase(arg);
+        return Arrays.asList(Constants.BIOME_ARG).contains(arg);
     }
 
     private boolean hasArgumentType(String arg) {
-        return "-pt".equalsIgnoreCase(arg) || "--padType".equalsIgnoreCase(arg)
-                || "--paddockType".equalsIgnoreCase(arg);
+        return Arrays.asList(Constants.PADDOCKTYPE_ARG).contains(arg);
     }
 
     private boolean hasArgumentSpecie(String arg) {
-        return "-s".equalsIgnoreCase(arg) || "--specie".equalsIgnoreCase(arg);
+           return Arrays.asList(Constants.SPECIE_ARG).contains(arg);
     }
 
     private boolean saveArguments(String arg, String value) {

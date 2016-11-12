@@ -5,7 +5,9 @@ import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
+import java.util.Arrays;
 import launch.play.Play;
+import utils.Constants;
 import zoo.paddock.IPaddock;
 
 /**
@@ -34,7 +36,8 @@ public class RemovePaddock extends AbstractCommand  {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 3) {
-            if ((cmd[0].equalsIgnoreCase("paddock") || cmd[0].equalsIgnoreCase("pad")) && cmd[1].equalsIgnoreCase("remove")) {
+            if ((Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd[0])) && 
+                    Constants.REMOVE.equalsIgnoreCase(cmd[1])) {
                 return true;
             }
         }

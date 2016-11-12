@@ -5,7 +5,9 @@ import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import launch.play.Play;
+import utils.Constants;
 import utils.ReadingMan;
 
 /**
@@ -24,16 +26,16 @@ public class Man extends AbstractCommand {
     @Override
     public ReturnExec execute(String[] cmd) {
         try {
-            if ("zoo".equalsIgnoreCase(this.arg)) {
+            if (Constants.ZOO.equalsIgnoreCase(this.arg)) {
                 super.setSuccess(true);
                 return new ReturnExec(ReadingMan.load(new File("doc/man/manZoo")), TypeReturn.SUCCESS);
-            } else if("pad".equalsIgnoreCase(arg) || "paddock".equalsIgnoreCase(arg)){
+            } else if(Arrays.asList(Constants.PAD_OR_PADDOCK).contains(arg)){
                    super.setSuccess(true);
                 return new ReturnExec(ReadingMan.load(new File("doc/man/manPaddock")), TypeReturn.SUCCESS);
-            } else if("cmd".equalsIgnoreCase(arg) || "command".equalsIgnoreCase(arg)){
+            } else if(Arrays.asList(Constants.CMD_OR_COMMAND).contains(arg)){
                    super.setSuccess(true);
                 return new ReturnExec(ReadingMan.load(new File("doc/man/cmdLines")), TypeReturn.SUCCESS);
-            } else if("specie".equalsIgnoreCase(arg) || "spec".equalsIgnoreCase(arg)){
+            } else if(Arrays.asList(Constants.SPEC_OR_SPECIE).contains(arg)){
                    super.setSuccess(true);
                 return new ReturnExec(ReadingMan.load(new File("doc/man/manSpecie")), TypeReturn.SUCCESS);
             }                       
@@ -44,10 +46,10 @@ public class Man extends AbstractCommand {
     }
     
     private boolean checkSecondArg(String cmd) {
-        if ("zoo".equalsIgnoreCase(cmd) || 
-                "paddock".equalsIgnoreCase(cmd) || "pad".equalsIgnoreCase(cmd) || 
-                "cmd".equalsIgnoreCase(cmd) || "command".equalsIgnoreCase(cmd) ||
-                "specie".equalsIgnoreCase(cmd) || "spec".equalsIgnoreCase(cmd)) {
+        if (Constants.ZOO.equalsIgnoreCase(cmd) || 
+               Arrays.asList(Constants.PAD_OR_PADDOCK).contains(cmd) || 
+                Arrays.asList(Constants.CMD_OR_COMMAND).contains(arg)||
+               Arrays.asList(Constants.SPEC_OR_SPECIE).contains(cmd)) {
             this.arg = cmd;
             return true;            
         }
@@ -57,7 +59,7 @@ public class Man extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
-            if (cmd[0].equalsIgnoreCase("man") && checkSecondArg(cmd[1])) {
+            if (cmd[0].equalsIgnoreCase(Constants.MAN) && checkSecondArg(cmd[1])) {
                 return true;
             }
         }

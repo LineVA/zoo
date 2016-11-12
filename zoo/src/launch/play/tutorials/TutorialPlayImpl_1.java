@@ -21,7 +21,7 @@ public class TutorialPlayImpl_1 extends Play {
     private static final FriendScenario friendScenario = new FriendScenario();
 
     public TutorialPlayImpl_1() {
-        super(null, null);
+        super(null);
         super.setManager(new TutorialCommandLineManager(this, this.buildTutorial()));
     }
 

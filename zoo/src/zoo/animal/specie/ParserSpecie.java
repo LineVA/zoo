@@ -14,6 +14,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.input.sax.XMLReaders;
+import utils.Constants;
 import zoo.animal.Names;
 import zoo.animal.death.LifeSpanAttributes;
 import zoo.animal.feeding.FeedingAttributes;
@@ -58,7 +59,7 @@ public class ParserSpecie {
 
     private static List<String> additionalNames(Element root) {
         List<String> additional = new ArrayList<>();
-        List<Element> names = root.getChildren("name");
+        List<Element> names = root.getChildren(Constants.NAME);
         for (Element name : names) {
             additional.add(name.getText());
         }
@@ -66,12 +67,17 @@ public class ParserSpecie {
     }
 
     private static Names namesParser(Element root) {
-        Element nameEl = root.getChild("names");
-        return new Names(nameEl.getChildText("fr"), nameEl.getChildText("en"),
-                nameEl.getChildText("scientific"), additionalNames(nameEl.getChild("additionalFrenchNames")),
-                additionalNames(nameEl.getChild("additionalEnglishNames")));
+        Element nameEl = root.getChild(Constants.NAMES);
+        return new Names(nameEl.getChildText(Constants.FR), nameEl.getChildText(Constants.EN),
+                nameEl.getChildText(Constants.SCIENTIFIC), additionalNames(nameEl.getChild(Constants.ADDITIONALFRENCHNAMES)),
+                additionalNames(nameEl.getChild(Constants.ADDITIONALENGLISHNAMES)));
     }
 
+    /**
+     * @deprecated
+     * @param root
+     * @return 
+     */
     private static BiomeAttributes biomeAttributesParser(Element root) {
         BiomeAttributes biome = new BiomeAttributes(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
         return biome;
@@ -79,8 +85,8 @@ public class ParserSpecie {
 
     private static List<Integer> biomeParser(Element root) {
         List<Integer> biomes = new ArrayList<>();
-        Element continentsEl = root.getChild("territory").getChild("biomes");
-        List<Element> continentEl = continentsEl.getChildren("biome");
+        Element continentsEl = root.getChild(Constants.TERRITORY).getChild(Constants.BIOMES);
+        List<Element> continentEl = continentsEl.getChildren(Constants.BIOME);
         for (Element cont : continentEl) {
             biomes.add(Integer.parseInt(cont.getText()));
         }
@@ -89,8 +95,8 @@ public class ParserSpecie {
 
     private static List<Integer> dietParser(Element root) {
         List<Integer> diets = new ArrayList<>();
-        Element dietsEl = root.getChild("feeding").getChild("diets");
-        List<Element> dietEl = dietsEl.getChildren("diet");
+        Element dietsEl = root.getChild(Constants.FEEDING).getChild(Constants.DIETS);
+        List<Element> dietEl = dietsEl.getChildren(Constants.DIET);
         for (Element cont : dietEl) {
             diets.add(Integer.parseInt(cont.getText()));
         }
@@ -99,8 +105,8 @@ public class ParserSpecie {
 
     private static List<Integer> continentParser(Element root) {
         List<Integer> continents = new ArrayList<>();
-        Element continentsEl = root.getChild("general").getChild("continents");
-        List<Element> continentEl = continentsEl.getChildren("continent");
+        Element continentsEl = root.getChild(Constants.GENERAL).getChild(Constants.CONTINENTS);
+        List<Element> continentEl = continentsEl.getChildren(Constants.CONTINENT);
         for (Element cont : continentEl) {
             continents.add(Integer.parseInt(cont.getText()));
         }
@@ -108,69 +114,69 @@ public class ParserSpecie {
     }
 
     private static FeedingAttributes feedingParser(Element root) throws IncorrectLoadException {
-        Element feedingEl = root.getChild("feeding");
-        return new FeedingAttributes(Double.parseDouble(feedingEl.getChildText("quantity")));
+        Element feedingEl = root.getChild(Constants.FEEDING);
+        return new FeedingAttributes(Double.parseDouble(feedingEl.getChildText(Constants.QUANTITY)));
     }
 
     private static ReproductionAttributes reproductionParser(Element root) {
-        Element reproEl = root.getChild("reproduction");
-        return new ReproductionAttributes(Integer.parseInt(reproEl.getChildText("femaleMaturity")),
-                Integer.parseInt(reproEl.getChildText("maleMaturity")),
-                Double.parseDouble(reproEl.getChildText("gestationFrequency")),
-                Integer.parseInt(reproEl.getChildText("litterSize")));
+        Element reproEl = root.getChild(Constants.REPRODUCTION);
+        return new ReproductionAttributes(Integer.parseInt(reproEl.getChildText(Constants.FEMALEMATURITYAGE)),
+                Integer.parseInt(reproEl.getChildText(Constants.MALEMATURITYAGE)),
+                Double.parseDouble(reproEl.getChildText(Constants.GESTATIONFREQUENCY)),
+                Integer.parseInt(reproEl.getChildText(Constants.LITTERSIZE)));
     }
 
     private static LifeSpanAttributes lifeSpanParser(Element root) throws IncorrectDataException, IncorrectLoadException {
-        Element lifeEl = root.getChild("lifespan");
-        return new LifeSpanAttributes(Integer.parseInt(lifeEl.getChildText("femaleLifespan")),
-                Integer.parseInt(lifeEl.getChildText("maleLifespan")));
+        Element lifeEl = root.getChild(Constants.LIFESPAN);
+        return new LifeSpanAttributes(Integer.parseInt(lifeEl.getChildText(Constants.FEMALELIFESPAN)),
+                Integer.parseInt(lifeEl.getChildText(Constants.MALELIFESPAN)));
     }
 
     private static int conservationParser(Element root) throws UnknownNameException {
-        Element consEl = root.getChild("general");
-        return Integer.parseInt(consEl.getChildText("uicn"));
+        Element consEl = root.getChild(Constants.GENERAL);
+        return Integer.parseInt(consEl.getChildText(Constants.UICN));
     }
 
     private static int ecoregionParser(Element root) {
-        Element genEl = root.getChild("general");
-        return Integer.parseInt(genEl.getChildText("ecoregion"));
+        Element genEl = root.getChild(Constants.GENERAL);
+        return Integer.parseInt(genEl.getChildText(Constants.ECOREGION));
     }
 
     private static int familyParser(Element root) {
-        Element genEl = root.getChild("general");
-        return Integer.parseInt(genEl.getChildText("family"));
+        Element genEl = root.getChild(Constants.GENERAL);
+        return Integer.parseInt(genEl.getChildText(Constants.FAMILY));
     }
 
     private static int breedingProgrammeParser(Element root) {
-        Element genEl = root.getChild("general");
-        return Integer.parseInt(genEl.getChildText("breedingProgramme"));
+        Element genEl = root.getChild(Constants.GENERAL);
+        return Integer.parseInt(genEl.getChildText(Constants.BREEDING));
     }
 
     private static SocialAttributes socialParser(Element root) throws IncorrectLoadException {
-        Element socialEl = root.getChild("social");
-        return new SocialAttributes(Integer.parseInt(socialEl.getChildText("groupSize")));
+        Element socialEl = root.getChild(Constants.SOCIAL);
+        return new SocialAttributes(Integer.parseInt(socialEl.getChildText(Constants.GROUPSIZE)));
     }
 
     private static TerritoryAttributes territoryParser(Element root) throws IncorrectLoadException {
-        Element terriEl = root.getChild("territory");
-        return new TerritoryAttributes(Double.parseDouble(terriEl.getChildText("territorySize")));
+        Element terriEl = root.getChild(Constants.TERRITORY);
+        return new TerritoryAttributes(Double.parseDouble(terriEl.getChildText(Constants.TERRITORYSIZE)));
     }
 
     private static int sizeParser(Element root) {
-        return Integer.parseInt(root.getChild("feeding").getChildText("size"));
+        return Integer.parseInt(root.getChild(Constants.FEEDING).getChildText(Constants.SIZE));
     }
 
     private static DocumentationURI documentationParser(Element root) {
-        Element docEl = root.getChild("documentation");
-        return new DocumentationURI(docEl.getChildText("frenchWikipedia"),
-                docEl.getChildText("englishWikipedia"), docEl.getChildText("animalDiversity"));
+        Element docEl = root.getChild(Constants.DOCUMENTATION);
+        return new DocumentationURI(docEl.getChildText(Constants.FRENCHWIKI),
+                docEl.getChildText(Constants.ENGLISHWIKI), docEl.getChildText(Constants.ANIMALDIVERSITY));
     }
 
     private static Tags tagsParser(Element root) {
-        Element tagsEl = root.getChild("tags");
+        Element tagsEl = root.getChild(Constants.TAGS);
         if (tagsEl != null) {
-            return new Tags(languageTagsParser(tagsEl.getChild("frenchTags")),
-                    languageTagsParser(tagsEl.getChild("englishTags"))
+            return new Tags(languageTagsParser(tagsEl.getChild(Constants.FRENCHTAGS)),
+                    languageTagsParser(tagsEl.getChild(Constants.ENGLISHTAGS))
             );
         } else {
             return new Tags(new HashSet<String>(), new HashSet<String>());
@@ -179,7 +185,7 @@ public class ParserSpecie {
 
     private static Set<String> languageTagsParser(Element languageTag) {
         Set<String> tagsSet = new HashSet<>();
-        List<Element> tagEl = languageTag.getChildren("tag");
+        List<Element> tagEl = languageTag.getChildren(Constants.TAG);
         for (Element el : tagEl) {
             tagsSet.add(el.getText());
         }

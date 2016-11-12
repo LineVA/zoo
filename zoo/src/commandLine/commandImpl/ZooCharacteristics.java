@@ -1,17 +1,25 @@
 package commandLine.commandImpl;
 
+import basicGui.FormattingDisplay;
 import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.IncorrectDataException;
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import launch.play.Play;
+import utils.Constants;
 
 /**
  *
  * @author doyenm
  */
-public class ZooCharacteristics extends AbstractCommand  {
+public class ZooCharacteristics extends AbstractCommand {
 
+    // args[0] : speed
+    // args[1] : horizon
     String[] args = new String[]{null, null};
 
     public ZooCharacteristics(Play play) {
@@ -22,7 +30,7 @@ public class ZooCharacteristics extends AbstractCommand  {
     public ReturnExec execute(String[] cmd) {
         int speed = -1;
         int horizon = -1;
-        String result = "";
+        List<String> result = new ArrayList<>();
         try {
             if (args[0] != null) {
                 speed = Integer.parseInt(args[0]);
@@ -33,49 +41,53 @@ public class ZooCharacteristics extends AbstractCommand  {
             try {
                 if (args[0] != null) {
                     super.getPlay().getZoo().changeSpeed(speed);
-                    result += super.getPlay().getOption().getGeneralCmdBundle().getString("SPEED_CHANGE_SUCCESS") + cmd[2];
+                    result.add(MessageFormat.format(
+                            super.getPlay().getOption().getGeneralCmdBundle().getString("SPEED_CHANGE_SUCCESS"),
+                            speed));
                 }
                 if (args[1] != null) {
                     super.getPlay().getZoo().changeHorizon(horizon);
-                    result += super.getPlay().getOption().getGeneralCmdBundle().getString("HORIZON_CHANGE_SUCCESS") + cmd[2];
+                    result.add(MessageFormat.format(
+                            super.getPlay().getOption().getGeneralCmdBundle().getString("HORIZON_CHANGE_SUCCESS"),
+                            horizon));
                 }
                 super.setSuccess(true);
             } catch (IncorrectDataException ex) {
-                result += ex.getMessage();
+                result.add(ex.getMessage());
             }
         } catch (NumberFormatException ex) {
             return new ReturnExec(
                     super.getPlay().getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION"),
                     TypeReturn.SUCCESS);
         }
-        return new ReturnExec(result, TypeReturn.SUCCESS);
+        return new ReturnExec(FormattingDisplay.formattingList(result), TypeReturn.SUCCESS);
     }
 
     @Override
     public boolean canExecute(String[] cmd
     ) {
         if (cmd.length == 3) {
-            if (cmd[0].equalsIgnoreCase("zoo")) {
-                switch (cmd[1]) {
-                    case "-s":
-                    case "--speed":
-                        args[0] = cmd[2];
-                        return true;
-                    case "-h":
-                    case "--horizon":
-                        args[1] = cmd[2];
-                        return true;
+            if (Constants.ZOO.equalsIgnoreCase(cmd[0])) {
+                if (Arrays.asList(Constants.SPEED_ARG).contains(cmd[1])) {
+                    args[0] = cmd[2];
+                    return true;
+                } else if (Arrays.asList(Constants.HORIZON_ARG).contains(cmd[1])) {
+                    args[1] = cmd[2];
+                    return true;
                 }
+                return false;
             }
         }
 
         if (cmd.length == 5) {
-            if (cmd[0].equalsIgnoreCase("zoo")) {
-                if ((cmd[1].equalsIgnoreCase("-s") || cmd[1].equalsIgnoreCase("--speed")) && (cmd[3].equalsIgnoreCase("-h") || cmd[3].equalsIgnoreCase("--horizon"))) {
+            if (Constants.ZOO.equalsIgnoreCase(cmd[0])) {
+                if (Arrays.asList(Constants.SPEED_ARG).contains(cmd[1])
+                        && Arrays.asList(Constants.HORIZON_ARG).contains(cmd[3])) {
                     args[0] = cmd[2];
                     args[1] = cmd[4];
                     return true;
-                } else if ((cmd[3].equalsIgnoreCase("-h") || cmd[3].equalsIgnoreCase("--horizon")) && (cmd[1].equalsIgnoreCase("-h") || cmd[1].equalsIgnoreCase("--horizon"))) {
+                } else if (Arrays.asList(Constants.HORIZON_ARG).contains(cmd[1])
+                        && Arrays.asList(Constants.SPEED_ARG).contains(cmd[3])) {
                     args[0] = cmd[4];
                     args[1] = cmd[2];
                     return true;

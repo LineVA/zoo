@@ -3,6 +3,7 @@ package zoo;
 import exception.name.EmptyNameException;
 import exception.name.UnauthorizedNameException;
 import java.util.ResourceBundle;
+import utils.Constants;
 
 /**
  *
@@ -25,7 +26,7 @@ public class NameVerifications {
     
     public static boolean isNotLs(String name, ResourceBundle bundle) 
             throws UnauthorizedNameException{
-          if(name.equalsIgnoreCase("ls")){
+          if(Constants.LS.equalsIgnoreCase(name)){
             throw new UnauthorizedNameException(bundle.getString("LS_NAME"));
         }
         return true;

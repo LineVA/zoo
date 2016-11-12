@@ -5,6 +5,7 @@ import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import launch.play.Play;
+import utils.Constants;
 import zoo.animal.feeding.Diet;
 
 /**
@@ -26,8 +27,8 @@ public class LsDiet extends AbstractCommand  {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 2) {
-            if (cmd[0].equalsIgnoreCase("diet")) {
-                if (cmd[1].equalsIgnoreCase("ls")) {
+            if (Constants.DIET.equalsIgnoreCase(cmd[0])) {
+                if (Constants.LS.equalsIgnoreCase(cmd[1])) {
                     return true;
                 }
             }

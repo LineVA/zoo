@@ -5,6 +5,7 @@ import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import launch.play.Play;
+import utils.Constants;
 import zoo.paddock.biome.Biome;
 
 /**
@@ -25,6 +26,7 @@ public class LsBiome extends AbstractCommand  {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 2 && cmd[0].equalsIgnoreCase("biome") && cmd[1].equalsIgnoreCase("ls");
+        return cmd.length == 2 && Constants.BIOME.equalsIgnoreCase(cmd[0])
+                && Constants.LS.equalsIgnoreCase(cmd[1]);
     }
 }

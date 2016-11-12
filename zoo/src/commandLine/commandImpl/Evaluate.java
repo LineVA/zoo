@@ -10,6 +10,7 @@ import exception.name.NameException;
 import java.util.ArrayList;
 import java.util.List;
 import launch.play.Play;
+import utils.Constants;
 import utils.Utils;
 
 /**
@@ -48,7 +49,7 @@ public class Evaluate extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 1) {
-            if (cmd[0].equalsIgnoreCase("evaluate")) {
+            if (Constants.EVALUATE.equalsIgnoreCase(cmd[0])) {
                 return true;
             }
         }

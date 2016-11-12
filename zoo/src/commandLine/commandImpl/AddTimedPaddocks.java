@@ -7,8 +7,10 @@ import exception.IncorrectDataException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import launch.play.Play;
+import utils.Constants;
 import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.IPaddock;
 
@@ -51,8 +53,8 @@ public class AddTimedPaddocks extends AbstractCommand {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length >= 5 && cmd.length % 2 == 1) {
-            if (cmd[0].equalsIgnoreCase("ak") || cmd[0].equalsIgnoreCase("aK") || cmd[0].equalsIgnoreCase("animalKeeper")) {
-                if (cmd[2].equalsIgnoreCase("--timedPaddocks") || cmd[2].equalsIgnoreCase("-tP")) {
+            if (Arrays.asList(Constants.AK_OR_ANIMALKEEPER).contains(cmd[0])) {
+                if (Arrays.asList(Constants.TIMEDPADDOCK_ARG).contains(cmd[2])) {
                     return true;
                 }
             }

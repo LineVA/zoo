@@ -5,6 +5,7 @@ import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import launch.play.Play;
+import utils.Constants;
 import zoo.animal.reproduction.Sex;
 
 /**
@@ -25,6 +26,7 @@ public class LsSex extends AbstractCommand  {
 
     @Override
     public boolean canExecute(String[] cmd) {
-        return cmd.length == 2 && cmd[0].equalsIgnoreCase("sex") && cmd[1].equalsIgnoreCase("ls");
+        return cmd.length == 2 && Constants.SEX.equalsIgnoreCase(cmd[0])
+                && Constants.LS.equalsIgnoreCase(cmd[1]);
     }
 }

@@ -8,11 +8,13 @@ import commandLine.TypeReturn;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import launch.play.Play;
+import utils.Constants;
 import utils.Utils;
 import zoo.animal.Animal;
 import zoo.animal.feeding.Diet;
@@ -126,8 +128,8 @@ public class LsAnimal extends AbstractCommand {
 
     private boolean firstCmd(String[] cmd) {
         if (cmd.length >= 2) {
-            if (cmd[0].equalsIgnoreCase("animal")) {
-                if (cmd[1].equalsIgnoreCase("ls")) {
+            if (Constants.ANIMAL.equalsIgnoreCase(cmd[0])) {
+                if (Constants.LS.equalsIgnoreCase(cmd[1])) {
                     return true;
                 }
             }
@@ -140,51 +142,51 @@ public class LsAnimal extends AbstractCommand {
     }
 
     private boolean hasArgumentSpecie(String cmd) {
-        return cmd.equalsIgnoreCase("--specie") || cmd.equalsIgnoreCase("-s");
-    }
-
-    private boolean hasArgumentPaddock(String cmd) {
-        return cmd.equalsIgnoreCase("--paddock") || cmd.equalsIgnoreCase("-p");
-    }
-
-    private boolean hasArgumentEcoregion(String cmd) {
-        return cmd.equalsIgnoreCase("--ecoregion") || cmd.equalsIgnoreCase("-e");
-    }
-
-    private boolean hasArgumentDiet(String cmd) {
-        return cmd.equalsIgnoreCase("--diet") || cmd.equalsIgnoreCase("-d");
+        return Arrays.asList(Constants.SPECIE_ARG).contains(cmd);
     }
 
     private boolean hasArgumentSex(String cmd) {
-        return cmd.equalsIgnoreCase("--sex") || cmd.equalsIgnoreCase("-sx");
+        return Arrays.asList(Constants.SEX_ARG).contains(cmd);
+    }
+
+    private boolean hasArgumentPaddock(String cmd) {
+        return Arrays.asList(Constants.PADDOCK_ARG).contains(cmd);
+    }
+
+    private boolean hasArgumentEcoregion(String cmd) {
+        return Arrays.asList(Constants.ECOREGION_ARG).contains(cmd);
+    }
+
+    private boolean hasArgumentDiet(String cmd) {
+        return Arrays.asList(Constants.DIET_ARG).contains(cmd);
     }
 
     private boolean hasArgumentFamily(String cmd) {
-        return cmd.equalsIgnoreCase("--family") || cmd.equalsIgnoreCase("-f");
+        return Arrays.asList(Constants.FAMILY_ARG).contains(cmd);
     }
 
     private boolean hasArgumentConservation(String cmd) {
-        return cmd.equalsIgnoreCase("--conservation") || cmd.equalsIgnoreCase("-cs");
+        return Arrays.asList(Constants.CONSERVATION_ARG).contains(cmd);
     }
 
     private boolean hasArgumentBiome(String cmd) {
-        return cmd.equalsIgnoreCase("--biome") || cmd.equalsIgnoreCase("-b");
+        return Arrays.asList(Constants.BIOME_ARG).contains(cmd);
     }
 
     private boolean hasArgumentSize(String cmd) {
-        return cmd.equalsIgnoreCase("--size") || cmd.equalsIgnoreCase("-sz");
+        return Arrays.asList(Constants.SIZE_ARG).contains(cmd);
     }
 
     private boolean hasArgumentContinent(String cmd) {
-        return cmd.equalsIgnoreCase("--continent") || cmd.equalsIgnoreCase("-ct");
+        return Arrays.asList(Constants.CONTINENT_ARG).contains(cmd);
     }
 
     private boolean hasArgumentBreedingProgramme(String cmd) {
-        return cmd.equalsIgnoreCase("--breedingProgramme") || cmd.equalsIgnoreCase("-bp");
+        return Arrays.asList(Constants.BREEDING_ARG).contains(cmd);
     }
 
     private boolean hasArgumentTags(String cmd) {
-        return cmd.equalsIgnoreCase("--tag") || cmd.equalsIgnoreCase("-t");
+        return Arrays.asList(Constants.TAG_ARG).contains(cmd);
     }
 
     private boolean saveArgument(String arg, String value) {

@@ -8,6 +8,7 @@ import java.util.Map;
 import launch.InstanciateSpecies;
 import launch.play.Play;
 import org.jdom2.JDOMException;
+import utils.Constants;
 import zoo.animal.specie.Specie;
 
 /**
@@ -61,7 +62,7 @@ public class CreateZoo extends AbstractChangeZooCommand  {
     @Override
     public boolean canExecute(String[] cmd) {
         if (cmd.length == 5) {
-            if (cmd[0].equalsIgnoreCase("zoo") && cmd[1].equalsIgnoreCase("create")) {
+            if (Constants.ZOO.equalsIgnoreCase(cmd[0]) && Constants.CREATE.equalsIgnoreCase(cmd[1])) {
                 return true;
             }
         }
