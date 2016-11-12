@@ -1,54 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
     <names>
-        <fr>Cobe à croissant</fr>
+        <fr>Cobe de Mrs Gray</fr>
         <additionalFrenchNames>
-            <name>Waterbuck</name>
-            <name>Antilope sing-sing</name>
+            <name>Code de Lechwe du Nil</name>
         </additionalFrenchNames>
-        <en>Waterbuck</en>
+        <en>Nile Lechwe</en>
         <additionalEnglishNames>
-            <name>Common waterbuck</name>
-            <name>Ringed waterbuck</name>
+            <name>Mrs gray's lechwe</name>
         </additionalEnglishNames>
-        <scientific>Kobus ellipsiprymnus</scientific>
+        <scientific>Kobus megaceros</scientific>
     </names>
     <general>
-        <uicn>1</uicn>
+        <uicn>4</uicn>
         <family>19</family>
         <continents>
             <continent>1</continent>
-            <continent>5</continent>
         </continents>
         <ecoregion>0</ecoregion>
-        <breedingProgramme>0</breedingProgramme>
+        <breedingProgramme>1</breedingProgramme>
     </general>
     <documentation>
-        <frenchWikipedia>https://fr.wikipedia.org/wiki/Kobus_ellipsiprymnus</frenchWikipedia>
-        <englishWikipedia>https://en.wikipedia.org/wiki/Waterbuck</englishWikipedia>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Kobus_megaceros</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Nile_lechwe</englishWikipedia>
         <animalDiversity />
     </documentation>
     <reproduction>
-        <femaleMaturity>13</femaleMaturity>
-        <maleMaturity>16</maleMaturity>
+        <femaleMaturity>20</femaleMaturity>
+        <maleMaturity>20</maleMaturity>
         <gestationFrequency>1</gestationFrequency>
         <litterSize>1</litterSize>
         <weaningAge>6</weaningAge>
     </reproduction>
     <lifespan>
-        <femaleLifespan>216</femaleLifespan>
-        <maleLifespan>216</maleLifespan>
+        <femaleLifespan>232</femaleLifespan>
+        <maleLifespan>232</maleLifespan>
     </lifespan>
     <territory>
         <territorySize>3500</territorySize>
         <biomes>
             <biome>7</biome>
-            <biome>13</biome>
         </biomes>
     </territory>
     <feeding>
-        <quantity>3.4</quantity>
-        <size>8</size>
+        <quantity>1.6</quantity>
+        <size>6</size>
         <diets>
             <diet>8</diet>
         </diets>
@@ -61,8 +57,8 @@
             <tag>Mammifère</tag>
             <tag>Bovidé</tag>
             <tag>Cobe</tag>
-            <tag>Kob</tag>
             <tag>Antilope</tag>
+            <tag>Kop</tag>
         </frenchTags>
         <englishTags>
             <tag>Mammal</tag>
