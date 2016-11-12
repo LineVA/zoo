@@ -59,7 +59,7 @@
                             <xs:element type="xs:decimal" name="gestationFrequency"/>
                             <xs:element type="xs:integer" name="litterSize"/>
                             <xs:element type="xs:integer" name="weaningAge" minOccurs="0" maxOccurs="1"/>
-                            <xs:element type="xs:integer" name="leavingAge"/>
+                            <xs:element type="xs:integer" name="leavingAge" minOccurs="0" maxOccurs="1"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
