@@ -1,10 +1,13 @@
 package commandLine.commandImpl;
 
+import basicGui.FormattingDisplay;
 import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
 import exception.IncorrectDataException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import launch.play.Play;
 import utils.Constants;
 
@@ -24,7 +27,7 @@ public class ZooCharacteristics extends AbstractCommand {
     public ReturnExec execute(String[] cmd) {
         int speed = -1;
         int horizon = -1;
-        String result = "";
+        List<String> result = new ArrayList<>();
         try {
             if (args[0] != null) {
                 speed = Integer.parseInt(args[0]);
@@ -35,22 +38,22 @@ public class ZooCharacteristics extends AbstractCommand {
             try {
                 if (args[0] != null) {
                     super.getPlay().getZoo().changeSpeed(speed);
-                    result += super.getPlay().getOption().getGeneralCmdBundle().getString("SPEED_CHANGE_SUCCESS") + cmd[2];
+                    result.add(super.getPlay().getOption().getGeneralCmdBundle().getString("SPEED_CHANGE_SUCCESS") + cmd[2]);
                 }
                 if (args[1] != null) {
                     super.getPlay().getZoo().changeHorizon(horizon);
-                    result += super.getPlay().getOption().getGeneralCmdBundle().getString("HORIZON_CHANGE_SUCCESS") + cmd[2];
+                    result.add(super.getPlay().getOption().getGeneralCmdBundle().getString("HORIZON_CHANGE_SUCCESS") + cmd[2]);
                 }
                 super.setSuccess(true);
             } catch (IncorrectDataException ex) {
-                result += ex.getMessage();
+                result.add(ex.getMessage());
             }
         } catch (NumberFormatException ex) {
             return new ReturnExec(
                     super.getPlay().getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION"),
                     TypeReturn.SUCCESS);
         }
-        return new ReturnExec(result, TypeReturn.SUCCESS);
+        return new ReturnExec(FormattingDisplay.formattingList(result), TypeReturn.SUCCESS);
     }
 
     @Override
