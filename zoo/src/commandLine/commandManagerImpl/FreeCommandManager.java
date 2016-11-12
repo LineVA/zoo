@@ -35,8 +35,8 @@ public class FreeCommandManager extends CommandManager {
         this.isSaving = false;
         return super.getSave().confirmSaving(parse);
     }
-    
-    private ReturnExec isCurrentlyChanging(String[] parse){
+
+    private ReturnExec isCurrentlyChanging(String[] parse) {
         this.isChanging = false;
         return super.getLoad().confirmChangingZoo(parse);
     }
@@ -47,10 +47,16 @@ public class FreeCommandManager extends CommandManager {
         } else {
             for (AbstractCommand command : super.getPlayCommands()) {
                 if (command.canExecute(parse)) {
+                    command.setChangingZoo(isChanging);
+                    command.setInitiate(isInitiate);
                     ReturnExec result = command.execute(parse);
                     this.isInitiate |= command.isInitiate();
                     this.isSaving = command.isSaving();
                     this.isChanging = command.isChangingZoo();
+                    AbstractCommand tmp = super.getCreateZoo();
+                    super.getLoad().setChangingZoo(command.isChangingZoo());
+                    tmp = super.getLoad();
+                    super.getCreateZoo().setChangingZoo(command.isChangingZoo());
                     return result;
                 }
             }

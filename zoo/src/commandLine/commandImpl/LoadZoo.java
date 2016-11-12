@@ -32,6 +32,7 @@ public class LoadZoo extends AbstractChangeZooCommand {
             }
             super.getPlay().setZoo(zoo);
             super.getPlay().setOption(zoo.getOption());
+            super.setChangingZoo(false);
             super.setInitiate(true);
             super.setSuccess(true);
             return new ReturnExec(

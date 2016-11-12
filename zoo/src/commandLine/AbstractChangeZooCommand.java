@@ -40,7 +40,7 @@ public abstract class AbstractChangeZooCommand extends AbstractCommand {
     @Override
     public ReturnExec execute(String[] cmd) {
         if (super.isInitiate()) {
-            if (super.isChangingZoo()) {
+            if (this.isChangingZoo()) {
                 return executeChanging(cmd);
             } else {
                 return this.checkBeforeChangingZoo(cmd);
