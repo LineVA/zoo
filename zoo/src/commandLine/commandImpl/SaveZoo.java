@@ -59,10 +59,11 @@ public class SaveZoo extends AbstractCommand {
             } else {
                 return executeSaving(saveProcess, cmd);
             }
-        } catch (Exception ex) {
-            System.out.println("COVO");
+        } catch (EmptyNameException ex) {
+            return new ReturnExec(
+                    this.getPlay().getOption().getGeneralCmdBundle().getString("EMPTY_NAME_EXCEPTION"), 
+                    TypeReturn.ERROR);
         }
-        return null;
     }
 
     @Override
