@@ -427,7 +427,8 @@ public class AnimalImpl implements Animal {
         if (quantity > 0.0) {
             this.actualFeeding.setFoodQuantity(quantity);
         } else {
-            throw new IncorrectLoadException("The food quantity must be greater or equals than zero.");
+            throw new IncorrectLoadException(
+            this.option.getAnimalBundle().getString("INCORRECT_FOOD_QUANTITY_NUMBER"));
         }
     }
 
