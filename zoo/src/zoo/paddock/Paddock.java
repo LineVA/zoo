@@ -321,7 +321,7 @@ public class Paddock implements IPaddock {
     }
 
     private Animal specifieNameOfTheNewBorn(Animal newBorn, Animal mother, Animal father)
-            throws EmptyNameException {
+            throws EmptyNameException, UnauthorizedNameException {
         obs.askAndWait(mother.getName(), father.getName(), newBorn.getSex().toString());
         newBorn.setName(newComerName);
         return newBorn;
