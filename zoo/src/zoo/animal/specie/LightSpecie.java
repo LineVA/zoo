@@ -31,13 +31,15 @@ public class LightSpecie {
     @Getter @Setter
     private List<Integer> breedingProgramme;
     @Getter @Setter
+    private List<Integer> fastDay;
+    @Getter @Setter
     private Set<String> tags;
 
     public LightSpecie(Names names,
             List<Integer> diet, List<Integer> conservation,
             List<Integer> ecoregion, List<Integer> family, List<Integer> biome, 
-            List<Integer> size, List<Integer> continent, List<Integer> breedingProgramme,
-            Set<String> tags) {
+            List<Integer> size, List<Integer> continent, List<Integer> breedingProgramme, 
+            List<Integer> fastDay, Set<String> tags) {
         this.names = names;
         this.diet = diet;
         this.family = family;
@@ -47,6 +49,7 @@ public class LightSpecie {
         this.conservation = conservation;
         this.continent = continent;
         this.breedingProgramme = breedingProgramme;
+        this.fastDay = fastDay;
         this.tags = tags;
     }
 }

@@ -48,7 +48,7 @@ public class LsAnimal extends AbstractCommand {
 
     @Override
     public ReturnExec execute(String[] cmd) {
-        LightSpecie spec = new LightSpecie(null, null, null, null, null, null, null, null, null, null);
+        LightSpecie spec = new LightSpecie(null, null, null, null, null, null, null, null, null, null, null);
         try {
             if (specie != null) {
                 spec.setNames(super.getPlay().getZoo().findSpecieByName(specie).getNames());

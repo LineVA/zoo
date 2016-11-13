@@ -51,7 +51,7 @@ public class LsSpecie extends AbstractCommand {
     @Override
     public ReturnExec execute(String[] cmd) {
         Set<IPaddock> pad = null;
-        LightSpecie light = new LightSpecie(null, null, null, null, null, null, null, null, null, null);
+        LightSpecie light = new LightSpecie(null, null, null, null, null, null, null, null, null, null, null);
         try {
             if (!tags.isEmpty()) {
                 light.setTags(tags);
