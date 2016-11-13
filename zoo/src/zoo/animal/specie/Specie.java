@@ -153,11 +153,12 @@ public class Specie {
         info.add(bundle.getString("ECOREGION") + Ecoregion.UNKNOWN.findById(this.ecoregion).toStringByLanguage());
         info.add(bundle.getString("FAMILY") + Family.UNKNOWN.findById(this.family).toStringByLanguage());
         info.add(bundle.getString("DIET") + this.dietsToString());
+        info.add(bundle.getString("FEEDING_ATT") + this.specieFeeding.toStringByLanguage(option));
+        info.add(bundle.getString("NB_FAST_DAYS") + this.fastDays);
         info.add(bundle.getString("SIZE") + Size.UNKNOWN.findById(size).toStringByLanguage());
         info.add(bundle.getString("REPRODUCTION_ATT") + this.specieReproduction.toStringByLanguage(option));
         info.add(bundle.getString("LIFESPAN_ATT") + this.specieLifeSpan.toStringByLanguage(option));
         info.add(bundle.getString("SOCIAL_ATT") + this.specieSocial.toStringByLanguage(option));
-        info.add(bundle.getString("FEEDING_ATT") + this.specieFeeding.toStringByLanguage(option));
         info.add(bundle.getString("TERRITORY_ATT") + this.specieTerritory.toStringByLanguage(option));
         info.add(bundle.getString("TAGS") + this.tags.getTagsAccordingToLanguage(option));
         info.add(bundle.getString("ADD_INFO"));
