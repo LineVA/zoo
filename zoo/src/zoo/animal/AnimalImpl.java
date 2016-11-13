@@ -61,6 +61,8 @@ public class AnimalImpl implements Animal {
     @Getter
     @Setter
     private int actualDiet;
+    @Getter
+    private int actualFastDays;
     private final FeedingAttributes optimalFeeding;
     @Setter
     private FeedingAttributes actualFeeding;
@@ -115,6 +117,7 @@ public class AnimalImpl implements Animal {
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
         this.wellBeing = 0;
         this.turnsOfStarvation = 0;
+        this.actualFastDays = 0;
     }
 
     public AnimalImpl(Specie spec, String name,
@@ -132,6 +135,7 @@ public class AnimalImpl implements Animal {
         this.actualLifeSpan = drawActualLifeSpan(spec);
         this.optimalBiome = null;
         this.actualDiet = Diet.NONE.getId();
+        this.actualFastDays = 0;
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
         this.personality = drawPersonality();
@@ -156,7 +160,7 @@ public class AnimalImpl implements Animal {
             ReproductionAttributes reproduction,
             LifeSpanLightAttributes life, SocialAttributes social,
             TerritoryAttributes territory, PersonalityAttributes personality, double wellBeing,
-            int turnsOfStarvation, Option option)
+            int turnsOfStarvation, int actualFastDays, Option option)
             throws IncorrectDataException, EmptyNameException,
             UnknownNameException, UnauthorizedNameException {
         this.option = option;
@@ -173,6 +177,7 @@ public class AnimalImpl implements Animal {
         this.actualFeeding = actualFeeding;
         this.optimalSocial = social;
         this.optimalTerritory = territory;
+        this.actualFastDays = actualFastDays;
         if (age >= 0) {
             this.age = age;
         } else {
