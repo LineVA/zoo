@@ -90,6 +90,8 @@ public class Constants {
     public static final String[] FAMILY_ARG = {"--family", "-f"};
     // fastDays
     public static final String FASTDAYS = "fastDays";
+    // --fastDay || -fd 
+     public static final String[] FASTDAY_ARG = {"--fastDay", "-fd"};
     // femaleLifespan
     public static final String FEMALELIFESPAN = "femaleLifespan";
     // femaleMaturityAge

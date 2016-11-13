@@ -253,6 +253,12 @@ public class Specie {
         if (null != lightSpecie.getDiet()) {
             isCorresponding &= this.diets.containsAll(lightSpecie.getDiet());
         }
+         if (null != lightSpecie.getFastDay()) {
+            if (lightSpecie.getFastDay().size() > 1) {
+                return false;
+            }
+            isCorresponding &= lightSpecie.getFastDay().get(0) == this.fastDays;
+        }
         if (null != lightSpecie.getFamily()) {
             if (lightSpecie.getFamily().size() > 1) {
                 return false;

@@ -34,6 +34,7 @@ public class LsSpecie extends AbstractCommand {
     Set<String> continents;
     Set<String> breedingProgrammes;
     Set<String> tags;
+    Set<String> fastDays;
 
     public LsSpecie(Play play) {
         super(play);
@@ -53,6 +54,9 @@ public class LsSpecie extends AbstractCommand {
         Set<IPaddock> pad = null;
         LightSpecie light = new LightSpecie(null, null, null, null, null, null, null, null, null, null, null);
         try {
+            if (!fastDays.isEmpty()) {
+                light.setFastDay(Utils.convertToListOfInteger(fastDays));
+            }
             if (!tags.isEmpty()) {
                 light.setTags(tags);
             }
@@ -108,7 +112,7 @@ public class LsSpecie extends AbstractCommand {
     }
 
     private boolean checkLength(String[] cmd) {
-        return cmd.length >= 2 && cmd.length <= 20 && cmd.length % 2 == 0;
+        return cmd.length >= 2 && cmd.length <= 22 && cmd.length % 2 == 0;
     }
 
     private boolean hasArgumentPaddock(String cmd) {
@@ -152,6 +156,10 @@ public class LsSpecie extends AbstractCommand {
         return Arrays.asList(Constants.TAG_ARG).contains(cmd);
     }
 
+    private boolean hasArgumentFastDays(String cmd) {
+        return Arrays.asList(Constants.FASTDAY_ARG).contains(cmd);
+    }
+
     private boolean saveArgument(String arg, String value) {
         if (this.hasArgumentBiome(arg)) {
             biomes = SplittingAmpersand.split(value);
@@ -173,6 +181,8 @@ public class LsSpecie extends AbstractCommand {
             breedingProgrammes = SplittingAmpersand.split(value);
         } else if (this.hasArgumentTags(arg)) {
             tags = SplittingAmpersand.split(value);
+        } else if (this.hasArgumentFastDays(arg)) {
+            fastDays = SplittingAmpersand.split(value);
         } else {
             return false;
         }
@@ -191,6 +201,7 @@ public class LsSpecie extends AbstractCommand {
         breedingProgrammes = new HashSet<>();
         paddockName = new HashSet<>();
         tags = new HashSet<>();
+        fastDays = new HashSet<>();
 
         if (firstCmd(cmd) && checkLength(cmd)) {
             int i = 2;
