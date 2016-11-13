@@ -44,6 +44,7 @@
     <diets>
       <diet>3</diet>
     </diets>
+        <fastDays>3</fastDays>
   </feeding>
   <social>
     <groupSize>1</groupSize>
