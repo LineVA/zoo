@@ -49,8 +49,11 @@ public class WellBeingImpl implements WellBeing {
     }
 
     @Override
-    public boolean testOfStarvation(int actualDiet, IPaddock paddock,
+    public boolean isStarving(int actualDiet, FeedingAttributes feedingAt, IPaddock paddock,
            List<Integer> specieDiet, List<AnimalKeeper> keepers) {
+        if(feedingAt.getFastDays() != 7){
+            return true;
+        }
         if (!specieDiet.contains(actualDiet)) {
             return true;
         }
@@ -60,6 +63,7 @@ public class WellBeingImpl implements WellBeing {
             }
         }
         return true;
+        
     }
 
     /**
@@ -187,11 +191,17 @@ public class WellBeingImpl implements WellBeing {
         return false;
     }
 
+    private boolean isActuallyFeeding(IPaddock paddock, List<AnimalKeeper> keepers, 
+            Specie spec, int diet, FeedingAttributes actualFeedingAttributes){
+        return isAKeeperForFeeding(paddock, keepers) && spec.getDiets().contains(diet)
+                && actualFeedingAttributes.getFastDays() <7;
+    }
+    
     private double computeFoodWB(int diet, FeedingAttributes optimalFeeding,
             FeedingAttributes actualFeeding, Specie spec,
             List<AnimalKeeper> keepers, IPaddock paddock) {
         System.out.println("Food quantity : ");
-        if (isAKeeperForFeeding(paddock, keepers) && spec.getDiets().contains(diet)) {
+        if (isActuallyFeeding(paddock, keepers, spec, diet, actualFeeding)) {
             System.out.println("Good diet");
             double a = Compare.compare(optimalFeeding.getFoodQuantity(), actualFeeding.getFoodQuantity(), this.diameter);
             System.out.println(a);
@@ -215,7 +225,7 @@ public class WellBeingImpl implements WellBeing {
 
     private double compatibilitiesWB(IPaddock pad, Specie spec) throws UnknownNameException {
         if (isThereIncompatibleSpeciesInThePaddock(pad, spec)) {
-            System.out.println("Inciompatibilities");
+            System.out.println("Incompatibilities");
             return Compare.getMin() * this.coefficient;
         } else {
             return 0.0;
