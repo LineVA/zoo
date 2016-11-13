@@ -60,6 +60,8 @@ public interface Animal {
 
     public Sex getSex();
 
+    public int getActualFastDays();
+
     public int getActualLitterSize();
 
     public double getActualGestationFrequency();
@@ -99,6 +101,6 @@ public interface Animal {
     public double getWellBeeing(SaveImpl.FriendSave save);
 
     public int getStarvation(SaveImpl.FriendSave save);
-    
+
     public int getActualFastDays(SaveImpl.FriendSave save);
 }

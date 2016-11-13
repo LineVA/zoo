@@ -476,6 +476,11 @@ public class AnimalImpl implements Animal {
         return this.paddock;
     }
 
+    @Override
+    public int getActualFastDays() {
+        return this.actualFastDays;
+    }
+
     /////////////////////
     @Override
     public String getName(SaveImpl.FriendSave save) {
@@ -560,7 +565,7 @@ public class AnimalImpl implements Animal {
         save.hashCode();
         return this.turnsOfStarvation;
     }
-    
+
     @Override
     public int getActualFastDays(SaveImpl.FriendSave save) {
         save.hashCode();

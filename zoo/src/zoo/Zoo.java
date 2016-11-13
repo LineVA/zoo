@@ -442,12 +442,12 @@ public class Zoo implements IZoo {
 
     @Override
     public List<Animal> listAnimal(Set<IPaddock> paddock,
-            LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome)
+            LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome, Set<Integer> fastDay)
             throws UnknownNameException {
         if (paddock.isEmpty()) {
             List<Animal> list = new ArrayList<>();
             for (Map.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-                list.addAll(entry.getValue().listAnimal(specie, sex, diet, biome));
+                list.addAll(entry.getValue().listAnimal(specie, sex, diet, biome, fastDay));
             }
             return list;
         } else {
@@ -455,7 +455,7 @@ public class Zoo implements IZoo {
                 return new ArrayList<Animal>();
             } else {
                 for (IPaddock pad : paddock) {
-                    return pad.listAnimal(specie, sex, diet, biome);
+                    return pad.listAnimal(specie, sex, diet, biome, fastDay);
                 }
             }
             return null;
@@ -549,7 +549,7 @@ public class Zoo implements IZoo {
     public List<Animal> getAnimals(TutorialPlayImpl_1.FriendScenario friend) {
         try {
             friend.hashCode();
-            return this.listAnimal(null, null, null, null, null);
+            return this.listAnimal(null, null, null, null, null, null);
         } catch (Exception ex) {
             System.out.println("ERROR  !!!!!!!!!!!!!!!!!");
             return null;

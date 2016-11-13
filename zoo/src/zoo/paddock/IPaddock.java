@@ -40,7 +40,8 @@ public interface IPaddock {
     public Animal findAnimalByName(String animalName)
             throws UnknownNameException, EmptyNameException;
 
-    public List<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome)
+    public List<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome,
+            Set<Integer>fastDay)
             throws UnknownNameException;
 
     public List<String> birth(int monthsPerEvaluation)

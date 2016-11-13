@@ -217,7 +217,7 @@ public class Paddock implements IPaddock {
         }
     }
 
-    private List<Animal> listAnimalWithBiome(List<Animal> animals, Set<Biome> biome) 
+    private List<Animal> listAnimalWithBiome(List<Animal> animals, Set<Biome> biome)
             throws UnknownNameException {
         if (biome != null && biome.size() != 1) {
             return new ArrayList<Animal>();
@@ -225,6 +225,24 @@ public class Paddock implements IPaddock {
             List<Animal> list = animals;
             if (!biome.contains(Biome.NONE.findById(this.biome))) {
                 list.removeAll(this.animals.values());
+            }
+            return list;
+        }
+    }
+
+    private List<Animal> listAnimalWithFastDay(List<Animal> animals, Set<Integer> fastDay)
+            throws UnknownNameException {
+        if (fastDay != null && fastDay.size() != 1) {
+            return new ArrayList<Animal>();
+        } else {
+            List<Animal> list = animals;
+            Iterator it = list.iterator();
+            Animal next;
+            while (it.hasNext()) {
+                next = (AnimalImpl) it.next();
+                if (!fastDay.contains(next.getActualFastDays())) {
+                    it.remove();
+                }
             }
             return list;
         }
@@ -238,8 +256,8 @@ public class Paddock implements IPaddock {
         return list;
     }
 
-    private List<Animal> listAnimalWithLightSpecie(List<Animal> animals, LightSpecie lightSpecie){
-         List<Animal> list = animals;
+    private List<Animal> listAnimalWithLightSpecie(List<Animal> animals, LightSpecie lightSpecie) {
+        List<Animal> list = animals;
         Iterator it = list.iterator();
         Animal next;
         while (it.hasNext()) {
@@ -250,9 +268,10 @@ public class Paddock implements IPaddock {
         }
         return list;
     }
-    
+
     @Override
-    public List<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome)
+    public List<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome,
+            Set<Integer> fastDay)
             throws UnknownNameException {
         List<Animal> list = listAnimalWithoutCriteria();
         if (specie.getNames() != null) {
@@ -267,6 +286,9 @@ public class Paddock implements IPaddock {
         }
         if (biome != null && !biome.isEmpty()) {
             list = listAnimalWithBiome(list, biome);
+        }
+        if (fastDay != null && !fastDay.isEmpty()) {
+            list = listAnimalWithFastDay(list, fastDay);
         }
         return list;
     }
@@ -349,8 +371,8 @@ public class Paddock implements IPaddock {
         Iterator it = tmpAnimal.iterator();
         Animal next;
         while (it.hasNext()) {
-          next = (Animal) it.next();
-          this.removeAnimal(next);
+            next = (Animal) it.next();
+            this.removeAnimal(next);
         }
     }
 
@@ -495,17 +517,17 @@ public class Paddock implements IPaddock {
         }
         return speciesList;
     }
-    
+
     @Override
-    public boolean compareTo(LightPaddock lightPaddock){
-          boolean isCorresponding = true;
+    public boolean compareTo(LightPaddock lightPaddock) {
+        boolean isCorresponding = true;
         if (null != lightPaddock.getBiomes()) {
             if (lightPaddock.getBiomes().size() > 1) {
                 return false;
             }
             isCorresponding &= lightPaddock.getBiomes().contains(this.biome);
         }
-         if (null != lightPaddock.getTypes()) {
+        if (null != lightPaddock.getTypes()) {
             if (lightPaddock.getTypes().size() > 1) {
                 return false;
             }
@@ -513,7 +535,6 @@ public class Paddock implements IPaddock {
         }
         return isCorresponding;
     }
-    
 
     @Override
     public String getName(SaveImpl.FriendSave friend) {
