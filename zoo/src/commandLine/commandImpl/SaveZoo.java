@@ -29,7 +29,8 @@ public class SaveZoo extends AbstractCommand {
                 return executeSaving(new SaveImpl(), cmd);
             }
         }
-        return new ReturnExec("Le zoo n'a pas été sauvegardé", TypeReturn.ERROR);
+        return new ReturnExec(
+                this.getPlay().getOption().getGeneralCmdBundle().getString("ZOO_NOT_SAVED"), TypeReturn.ERROR);
     }
 
     private ReturnExec executeSaving(Save saveProcess, String[] cmd) {
@@ -53,7 +54,7 @@ public class SaveZoo extends AbstractCommand {
                 this.fileName = cmd[1];
                 super.setSaving(true);
                 return new ReturnExec(
-                        "Un fichier portant ce nom existe déjà. Voulez-vous l'écraser définitivement ? ",
+                            this.getPlay().getOption().getGeneralCmdBundle().getString("ALREADY_EXISTED_FILE"),
                         TypeReturn.QUESTION);
             } else {
                 return executeSaving(saveProcess, cmd);
