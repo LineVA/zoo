@@ -428,7 +428,7 @@ public class AnimalImpl implements Animal {
             this.actualFeeding.setFoodQuantity(quantity);
         } else {
             throw new IncorrectLoadException(
-            this.option.getAnimalBundle().getString("INCORRECT_FOOD_QUANTITY_NUMBER"));
+                    this.option.getAnimalBundle().getString("INCORRECT_FOOD_QUANTITY_NUMBER"));
         }
     }
 
@@ -454,12 +454,9 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public void setName(String name) throws EmptyNameException {
-        if (!name.equals("")) {
-            this.name = name;
-        } else {
-            throw new EmptyNameException("The name of this animal is empty.");
-        }
+    public void setName(String name) throws EmptyNameException, UnauthorizedNameException {
+        NameVerifications.verify(name, this.option.getAnimalBundle());
+        this.name = name;
     }
 
     @Override

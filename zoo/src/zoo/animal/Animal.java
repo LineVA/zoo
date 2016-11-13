@@ -3,6 +3,7 @@ package zoo.animal;
 import backup.save.SaveImpl;
 import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
+import exception.name.UnauthorizedNameException;
 import exception.name.UnknownNameException;
 import java.util.List;
 import zoo.animal.death.LifeSpanLightAttributes;
@@ -70,7 +71,7 @@ public interface Animal {
 
     public IPaddock getPaddock();
 
-    public void setName(String name) throws EmptyNameException;
+    public void setName(String name) throws EmptyNameException, UnauthorizedNameException;
 
     /**
      * Friend pattern : give access to each of the fields of Animal only to the
