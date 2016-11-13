@@ -56,12 +56,12 @@
     <groupSize>10</groupSize>
   </social>
   <tags>
-      <frenchTag>
+      <frenchTags>
           <tag>Mammifère</tag>
           <tag>Félin</tag>
           <tag>Fauve</tag>
           <tag>Lion</tag>
-      </frenchTag>
+      </frenchTags>
       <englishTags>
           <tag>Mammal</tag>
           <tag>Cat</tag>

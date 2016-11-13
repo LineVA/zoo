@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+    <names>
+        <fr>Colobe guéréza</fr>
+        <additionalFrenchNames>
+            <name>Guéréza du Kilimandjaro</name>
+        </additionalFrenchNames>
+        <en>Mantled guereza</en>
+        <additionalEnglishNames>
+            <name>Guereza</name>
+            <name>Eastern black-and-white colobus</name>
+            <name>Abyssian black-and-white colobus</name>
+        </additionalEnglishNames>
+        <scientific>Colobus guereza</scientific>
+    </names>
+    <general>
+        <uicn>1</uicn>
+        <family>31</family>
+        <continents>
+            <continent>1</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+        <breedingProgramme>2</breedingProgramme>
+    </general>
+    <documentation>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Colobus_guereza</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Mantled_guereza</englishWikipedia>
+        <animalDiversity />
+    </documentation>
+    <reproduction>
+        <femaleMaturity>48</femaleMaturity>
+        <maleMaturity>72</maleMaturity>
+        <gestationFrequency>0.5</gestationFrequency>
+        <litterSize>1</litterSize>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>240</femaleLifespan>
+        <maleLifespan>240</maleLifespan>
+    </lifespan>
+    <territory>
+        <territorySize>150</territorySize>
+        <biomes>
+            <biome>1</biome>
+        </biomes>
+    </territory>
+    <feeding>
+        <quantity>0.7</quantity>
+        <size>2</size>
+        <diets>
+            <diet>21</diet>
+        </diets>
+    </feeding>
+    <social>
+        <groupSize>8</groupSize>
+    </social>
+    <tags>
+        <frenchTags>
+            <tag>Mammifère</tag>
+            <tag>Primate</tag>
+            <tag>Colobe</tag>
+            <tag>Guéréza</tag>
+            <tag>Cercopithèque</tag>
+            <tag>Cercopithecus</tag>
+            <tag>Singe</tag>
+        </frenchTags>
+        <englishTags>
+            <tag>Mammal</tag>
+            <tag>Primate</tag>
+            <tag>Monkey</tag>
+            <tag>Cercopithecus</tag>
+            <tag>Guereza</tag>
+            <tag>Colobus</tag>
+        </englishTags>
+    </tags>
+</animal>

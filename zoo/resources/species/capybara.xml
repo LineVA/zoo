@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+    <names>
+        <fr>Capybara</fr>
+        <additionalFrenchNames>
+            <name>Capibara</name>
+            <name>Cabiai</name>
+            <name>Cabiaï</name>
+            <name>Carpincho</name>
+            <name>Cochon d'eau</name>
+            <name>Hydrochère</name>
+        </additionalFrenchNames>
+        <en>Capybara</en>
+        <additionalEnglishNames />
+        <scientific>Hydrochoerus hydrochaeris</scientific>
+    </names>
+    <general>
+        <uicn>1</uicn>
+        <family>23</family>
+        <continents>
+            <continent>2</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+        <breedingProgramme>0</breedingProgramme>
+    </general>
+    <documentation>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Cabybara</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Capybara</englishWikipedia>
+        <animalDiversity />
+    </documentation>
+    <reproduction>
+        <femaleMaturity>18</femaleMaturity>
+        <maleMaturity>18</maleMaturity>
+        <gestationFrequency>1</gestationFrequency>
+        <litterSize>4</litterSize>
+        <weaningAge>3</weaningAge>
+        <leavingAge>12</leavingAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>72</femaleLifespan>
+        <maleLifespan>72</maleLifespan>
+    </lifespan>
+    <territory>
+        <territorySize>240</territorySize>
+        <biomes>
+            <biome>1</biome>
+            <biome>7</biome>
+        </biomes>
+    </territory>
+    <feeding>
+        <quantity>1.5</quantity>
+        <size>4</size>
+        <diets>
+            <diet>21</diet>
+        </diets>
+    </feeding>
+    <social>
+        <groupSize>5</groupSize>
+    </social>
+    <tags>
+        <frenchTags>
+            <tag>Mammifère</tag>
+            <tag>Rongeur</tag>
+        </frenchTags>
+        <englishTags>
+            <tag>Mammal</tag>
+            <tag>Rodent</tag>
+        </englishTags>
+    </tags>
+</animal>
