@@ -81,6 +81,8 @@ public class Specie {
     @Getter
     int breedingProgramme;
     @Getter
+    int fastDays;
+    @Getter
     Tags tags;
 
     public Specie(Names names, DocumentationURI docu, BiomeAttributes biomeAtt, FeedingAttributes feeding,
@@ -88,7 +90,7 @@ public class Specie {
             LifeSpanAttributes lifeSpan, int conservation,
             SocialAttributes social, TerritoryAttributes territory,
             int ecoregion, int family, List<Integer> biomes,
-            int size, List<Integer> continents, int breedingProgramme, Tags tags) {
+            int size, List<Integer> continents, int breedingProgramme, int fastDays, Tags tags) {
         this.names = names;
         this.specieBiome = biomeAtt;
         this.diets = diets;
@@ -111,6 +113,7 @@ public class Specie {
         this.size = size;
         this.documentation = docu;
         this.breedingProgramme = breedingProgramme;
+        this.fastDays = fastDays;
         this.tags = tags;
     }
 

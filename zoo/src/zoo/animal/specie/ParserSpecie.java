@@ -53,7 +53,7 @@ public class ParserSpecie {
         int programme = breedingProgrammeParser(root);
         Tags tags = tagsParser(root);
         Specie spec = new Specie(names, docu, biomeAtt, feeding, diet, repro, lifeSpan,
-                conservation, social, territory, region, family, biomes, size, continents, programme, tags);
+                conservation, social, territory, region, family, biomes, size, continents, programme, 0, tags);
         return spec;
     }
 
