@@ -52,8 +52,9 @@ public class ParserSpecie {
         DocumentationURI docu = documentationParser(root);
         int programme = breedingProgrammeParser(root);
         Tags tags = tagsParser(root);
+        int fastDays = fastDaysParser(root);
         Specie spec = new Specie(names, docu, biomeAtt, feeding, diet, repro, lifeSpan,
-                conservation, social, territory, region, family, biomes, size, continents, programme, 0, tags);
+                conservation, social, territory, region, family, biomes, size, continents, programme, fastDays, tags);
         return spec;
     }
 
@@ -101,6 +102,14 @@ public class ParserSpecie {
             diets.add(Integer.parseInt(cont.getText()));
         }
         return diets;
+    }
+    
+    private static int fastDaysParser(Element root){
+        Element fastDaysEl = root.getChild(Constants.FEEDING).getChild(Constants.FASTDAYS);
+        if(fastDaysEl != null){
+            return Integer.parseInt(fastDaysEl.getText());
+        } 
+        return 0;
     }
 
     private static List<Integer> continentParser(Element root) {
