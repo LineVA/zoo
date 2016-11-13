@@ -54,6 +54,8 @@ public interface Animal {
 
     public void changeFoodQuantity(Double quantity) throws IncorrectLoadException;
 
+    public void changeFastDays(int fastDays) throws IncorrectLoadException;
+
     public String getName();
 
     public Specie getSpecie();

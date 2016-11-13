@@ -436,6 +436,16 @@ public class AnimalImpl implements Animal {
         }
     }
 
+    @Override
+    public void changeFastDays(int fastDays) throws IncorrectLoadException {
+        if (fastDays >= 0 && fastDays <= 7) {
+            this.actualFastDays = fastDays;
+        } else {
+            throw new IncorrectLoadException(
+                    this.option.getAnimalBundle().getString("INCORRECT_FAST_DAYS_NUMBER"));
+        }
+    }
+
     /////////////////
     @Override
     public String getName() {

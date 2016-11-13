@@ -3,6 +3,7 @@ package commandLine.commandImpl;
 import basicGui.FormattingDisplay;
 import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
+import commandLine.SplittingAmpersand;
 import commandLine.TypeReturn;
 import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
@@ -23,6 +24,7 @@ public class FeedingAnimal extends AbstractCommand {
 
     // args[0] : the argument after '--diet'
     // args[1] : the argument after '--foodQuantity'
+    // args[2] : the argument after "--fastDay"
     String[] args;
 
     public FeedingAnimal(Play play) {
@@ -37,8 +39,8 @@ public class FeedingAnimal extends AbstractCommand {
             if (args[0] != null) {
                 animal.changeDiet(args[0]);
                 result.add(MessageFormat.format(
-                        super.getPlay().getOption().getGeneralCmdBundle().getString("ANIMALS_DIET"), 
-                        cmd[1],args[0]));
+                        super.getPlay().getOption().getGeneralCmdBundle().getString("ANIMALS_DIET"),
+                        cmd[1], args[0]));
             }
             if (args[1] != null) {
                 try {
@@ -48,7 +50,19 @@ public class FeedingAnimal extends AbstractCommand {
                             cmd[1], args[1]));
                 } catch (java.lang.NumberFormatException ex) {
                     return new ReturnExec(
-                          super.getPlay().getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION"), 
+                            super.getPlay().getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION"),
+                            TypeReturn.ERROR);
+                }
+            }
+              if (args[2] != null) {
+                try {
+                    animal.changeFastDays(Integer.parseInt(args[2]));
+                    result.add(MessageFormat.format(
+                            super.getPlay().getOption().getGeneralCmdBundle().getString("ANIMALS_FAST_DAYS"),
+                            cmd[1], args[2]));
+                } catch (java.lang.NumberFormatException ex) {
+                    return new ReturnExec(
+                            super.getPlay().getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION"),
                             TypeReturn.ERROR);
                 }
             }
@@ -60,7 +74,7 @@ public class FeedingAnimal extends AbstractCommand {
     }
 
     private boolean firstCmd(String[] cmd) {
-        if (cmd.length >= 4 && cmd.length < 9 && cmd.length % 2 == 0) {
+        if (cmd.length >= 4 && cmd.length < 8 && cmd.length % 2 == 0) {
             if (Constants.ANIMAL.equalsIgnoreCase(cmd[0])) {
                 return true;
             }
@@ -73,30 +87,38 @@ public class FeedingAnimal extends AbstractCommand {
     }
 
     private boolean hasArgumentFoodQuantity(String cmd) {
-              return Arrays.asList(Constants.FOODQUANTITY_ARG).contains(cmd);
+        return Arrays.asList(Constants.FOODQUANTITY_ARG).contains(cmd);
+    }
+    
+       private boolean hasArgumentFastDay(String cmd) {
+        return Arrays.asList(Constants.FASTDAY_ARG).contains(cmd);
+    }
+
+   private boolean saveArgument(String arg, String value) {
+     if (this.hasArgumentFastDay(arg)) {
+            this.args[2] = value;
+        } else if(this.hasArgumentDiet(arg)){
+            this.args[0] = value;
+        } else if(this.hasArgumentFoodQuantity(arg)){
+            this.args[1] = value;
+         } else {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean canExecute(String[] cmd) {
-        this.args = new String[]{null, null};
+        this.args = new String[]{null, null, null};
         if (firstCmd(cmd)) {
-            if (cmd.length == 4 && this.hasArgumentDiet(cmd[2])) {
-                args[0] = cmd[3];
-                return true;
-            } else if (cmd.length == 4 && this.hasArgumentFoodQuantity(cmd[2])) {
-                args[1] = cmd[3];
-                return true;
-            } else if (cmd.length == 6 && this.hasArgumentDiet(cmd[2])
-                    && this.hasArgumentFoodQuantity(cmd[4])) {
-                args[0] = cmd[3];
-                args[1] = cmd[5];
-                return true;
-            } else if (cmd.length == 6 && this.hasArgumentFoodQuantity(cmd[2])
-                    && this.hasArgumentDiet(cmd[4])) {
-                args[0] = cmd[5];
-                args[1] = cmd[3];
-                return true;
+            int i = 2;
+            while (i <= cmd.length - 2) {
+                if (!saveArgument(cmd[i], cmd[i + 1])) {
+                    return false;
+                }
+                i += 2;
             }
+            return true;
         }
         return false;
     }
