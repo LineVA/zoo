@@ -61,8 +61,6 @@ public class AnimalImpl implements Animal {
     @Getter
     @Setter
     private int actualDiet;
-    @Getter
-    private int actualFastDays;
     private final FeedingAttributes optimalFeeding;
     @Setter
     private FeedingAttributes actualFeeding;
@@ -117,7 +115,6 @@ public class AnimalImpl implements Animal {
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
         this.wellBeing = 0;
         this.turnsOfStarvation = 0;
-        this.actualFastDays = 0;
     }
 
     public AnimalImpl(Specie spec, String name,
@@ -135,7 +132,6 @@ public class AnimalImpl implements Animal {
         this.actualLifeSpan = drawActualLifeSpan(spec);
         this.optimalBiome = null;
         this.actualDiet = Diet.NONE.getId();
-        this.actualFastDays = 0;
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
         this.personality = drawPersonality();
@@ -160,7 +156,7 @@ public class AnimalImpl implements Animal {
             ReproductionAttributes reproduction,
             LifeSpanLightAttributes life, SocialAttributes social,
             TerritoryAttributes territory, PersonalityAttributes personality, double wellBeing,
-            int turnsOfStarvation, int actualFastDays, Option option)
+            int turnsOfStarvation, Option option)
             throws IncorrectDataException, EmptyNameException,
             UnknownNameException, UnauthorizedNameException {
         this.option = option;
@@ -177,7 +173,6 @@ public class AnimalImpl implements Animal {
         this.actualFeeding = actualFeeding;
         this.optimalSocial = social;
         this.optimalTerritory = territory;
-        this.actualFastDays = actualFastDays;
         if (age >= 0) {
             this.age = age;
         } else {
@@ -214,7 +209,7 @@ public class AnimalImpl implements Animal {
      */
     private FeedingAttributes drawOptimalFeeding(Specie spec) throws IncorrectLoadException {
         double quantity = spec.getGaussianFeeding().getFoodQuantity().nextDouble();
-        return new FeedingAttributes(quantity);
+        return new FeedingAttributes(quantity, 0);
     }
 
     /**
@@ -225,7 +220,7 @@ public class AnimalImpl implements Animal {
      * @return its actualFeedingAttributes
      */
     private FeedingAttributes drawActualFeeding(Specie spec) throws IncorrectLoadException {
-        return new FeedingAttributes(0.0);
+        return new FeedingAttributes(0.0, 0);
     }
 
     /**
@@ -330,7 +325,7 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("DIET") + Diet.NONE.findById(actualDiet).toStringByLanguage());
         info.add(bundle.getString("MONTHS_WITHOUT_EATING") + this.turnsOfStarvation);
         info.add(bundle.getString("ACT_FEEDING_ATT") + this.actualFeeding.toStringByLanguage(option));
-        info.add(bundle.getString("NB_FAST_DAYS") + this.actualFastDays);
+        info.add(bundle.getString("NB_FAST_DAYS") + this.actualFeeding.getFastDays());
         if (this.sex.isFemale()) {
             info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.femaleToStringByLanguage(option));
         } else {
@@ -439,7 +434,7 @@ public class AnimalImpl implements Animal {
     @Override
     public void changeFastDays(int fastDays) throws IncorrectLoadException {
         if (fastDays >= 0 && fastDays <= 7) {
-            this.actualFastDays = fastDays;
+            this.actualFeeding.setFastDays(fastDays);
         } else {
             throw new IncorrectLoadException(
                     this.option.getAnimalBundle().getString("INCORRECT_FAST_DAYS_NUMBER"));
@@ -488,7 +483,7 @@ public class AnimalImpl implements Animal {
 
     @Override
     public int getActualFastDays() {
-        return this.actualFastDays;
+        return this.actualFeeding.getFastDays();
     }
 
     /////////////////////
@@ -574,12 +569,6 @@ public class AnimalImpl implements Animal {
     public int getStarvation(SaveImpl.FriendSave save) {
         save.hashCode();
         return this.turnsOfStarvation;
-    }
-
-    @Override
-    public int getActualFastDays(SaveImpl.FriendSave save) {
-        save.hashCode();
-        return this.actualFastDays;
     }
 
 }

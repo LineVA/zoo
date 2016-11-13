@@ -81,8 +81,6 @@ public class Specie {
     @Getter
     int breedingProgramme;
     @Getter
-    int fastDays;
-    @Getter
     Tags tags;
 
     public Specie(Names names, DocumentationURI docu, BiomeAttributes biomeAtt, FeedingAttributes feeding,
@@ -90,7 +88,7 @@ public class Specie {
             LifeSpanAttributes lifeSpan, int conservation,
             SocialAttributes social, TerritoryAttributes territory,
             int ecoregion, int family, List<Integer> biomes,
-            int size, List<Integer> continents, int breedingProgramme, int fastDays, Tags tags) {
+            int size, List<Integer> continents, int breedingProgramme, Tags tags) {
         this.names = names;
         this.specieBiome = biomeAtt;
         this.diets = diets;
@@ -113,7 +111,6 @@ public class Specie {
         this.size = size;
         this.documentation = docu;
         this.breedingProgramme = breedingProgramme;
-        this.fastDays = fastDays;
         this.tags = tags;
     }
 
@@ -154,7 +151,7 @@ public class Specie {
         info.add(bundle.getString("FAMILY") + Family.UNKNOWN.findById(this.family).toStringByLanguage());
         info.add(bundle.getString("DIET") + this.dietsToString());
         info.add(bundle.getString("FEEDING_ATT") + this.specieFeeding.toStringByLanguage(option));
-        info.add(bundle.getString("NB_FAST_DAYS") + this.fastDays);
+        info.add(bundle.getString("NB_FAST_DAYS") + this.specieFeeding.getFastDays());
         info.add(bundle.getString("SIZE") + Size.UNKNOWN.findById(size).toStringByLanguage());
         info.add(bundle.getString("REPRODUCTION_ATT") + this.specieReproduction.toStringByLanguage(option));
         info.add(bundle.getString("LIFESPAN_ATT") + this.specieLifeSpan.toStringByLanguage(option));
@@ -257,7 +254,7 @@ public class Specie {
             if (lightSpecie.getFastDay().size() > 1) {
                 return false;
             }
-            isCorresponding &= lightSpecie.getFastDay().get(0) == this.fastDays;
+            isCorresponding &= lightSpecie.getFastDay().get(0) == this.specieFeeding.getFastDays();
         }
         if (null != lightSpecie.getFamily()) {
             if (lightSpecie.getFamily().size() > 1) {

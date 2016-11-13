@@ -52,9 +52,8 @@ public class ParserSpecie {
         DocumentationURI docu = documentationParser(root);
         int programme = breedingProgrammeParser(root);
         Tags tags = tagsParser(root);
-        int fastDays = fastDaysParser(root);
         Specie spec = new Specie(names, docu, biomeAtt, feeding, diet, repro, lifeSpan,
-                conservation, social, territory, region, family, biomes, size, continents, programme, fastDays, tags);
+                conservation, social, territory, region, family, biomes, size, continents, programme, tags);
         return spec;
     }
 
@@ -75,9 +74,8 @@ public class ParserSpecie {
     }
 
     /**
-     * @deprecated
-     * @param root
-     * @return 
+     * @deprecated @param root
+     * @return
      */
     private static BiomeAttributes biomeAttributesParser(Element root) {
         BiomeAttributes biome = new BiomeAttributes(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
@@ -103,12 +101,12 @@ public class ParserSpecie {
         }
         return diets;
     }
-    
-    private static int fastDaysParser(Element root){
+
+    private static int fastDaysParser(Element root) {
         Element fastDaysEl = root.getChild(Constants.FEEDING).getChild(Constants.FASTDAYS);
-        if(fastDaysEl != null){
+        if (fastDaysEl != null) {
             return Integer.parseInt(fastDaysEl.getText());
-        } 
+        }
         return 0;
     }
 
@@ -124,7 +122,12 @@ public class ParserSpecie {
 
     private static FeedingAttributes feedingParser(Element root) throws IncorrectLoadException {
         Element feedingEl = root.getChild(Constants.FEEDING);
-        return new FeedingAttributes(Double.parseDouble(feedingEl.getChildText(Constants.QUANTITY)));
+        if (feedingEl.getChildText(Constants.FASTDAYS) != null) {
+            return new FeedingAttributes(Double.parseDouble(feedingEl.getChildText(Constants.QUANTITY)),
+                    Integer.parseInt(feedingEl.getChildText(Constants.FASTDAYS)));
+        } else {
+            return new FeedingAttributes(Double.parseDouble(feedingEl.getChildText(Constants.QUANTITY)), 0);
+        }
     }
 
     private static ReproductionAttributes reproductionParser(Element root) {

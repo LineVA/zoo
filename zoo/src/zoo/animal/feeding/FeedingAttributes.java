@@ -13,10 +13,13 @@ public class FeedingAttributes {
 
     @Getter
     private double foodQuantity;
+    @Getter
+    private Integer fastDays;
     
-    public FeedingAttributes(double quantity) throws IncorrectLoadException{
-          if (Utils.isPositivOrNull(quantity)) {
+    public FeedingAttributes(double quantity, int fastDays) throws IncorrectLoadException{
+          if (Utils.isPositivOrNull(quantity) && Utils.isBetween(fastDays, 0, 7)) {
             this.foodQuantity = quantity;
+            this.fastDays = fastDays;
         } else {
             throw new IncorrectLoadException("");
         }
@@ -25,6 +28,14 @@ public class FeedingAttributes {
     public void setFoodQuantity(double quantity) throws IncorrectLoadException{
         if (Utils.isPositivOrNull(quantity)) {
             this.foodQuantity = quantity;
+        } else {
+            throw new IncorrectLoadException("");
+        }
+    }
+    
+    public void setFastDays(int fastDays) throws IncorrectLoadException {
+        if (fastDays >= 0 && fastDays <= 7) {
+            this.fastDays= fastDays;
         } else {
             throw new IncorrectLoadException("");
         }

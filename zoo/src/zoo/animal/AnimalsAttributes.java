@@ -24,7 +24,7 @@ public class AnimalsAttributes implements Cloneable {
 
     @Getter
     private final int actualDiet;
-
+    
     @Getter
     private final SocialAttributes optimalSocial;
 

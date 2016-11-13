@@ -163,11 +163,10 @@ public class ParserBackUp {
             personality = parserPersonalityAttributes(tmpAnimalEl);
             wellBeing = parserWellBeing(tmpAnimalEl);
             starvation = parserStarvation(tmpAnimalEl);
-            actualFastDays = parserFastDays(tmpAnimalEl);
             animalsList.add(new FakeAnimal(spec,
                     tmpAnimalEl.getAttributeValue(Constants.NAME),
                     pad, sex, age, biome, optFeed, actualFeed, diet, repro,
-                    life, social, territory, personality, wellBeing, starvation, actualFastDays));
+                    life, social, territory, personality, wellBeing, starvation));
         }
         return animalsList;
     }
@@ -190,17 +189,6 @@ public class ParserBackUp {
       return Integer.parseInt(tmpAnimalEl.getChildText(Constants.STARVATION));
     }
     
-      /**
-     * Parse the number of fast days of an animal
-     * @param tmpAnimalEl the "animal" element to parse
-     * @return the corresponding number of fast days
-     */
-    private int parserFastDays(Element tmpAnimalEl)
-            throws IncorrectLoadException {
-      return Integer.parseInt(tmpAnimalEl
-              .getChild(Constants.ACTUALFEEDING_ATT).getChildText(Constants.FASTDAYS));
-    }
-    
      /**
      * Parse the well-being of an animal
      * @param tmpAnimalEl the "animal" element to parse
@@ -221,7 +209,7 @@ public class ParserBackUp {
             throws IncorrectLoadException {
         Element feedEl = tmpAnimalEl.getChild(Constants.OPTIMALFEEDING_ATT);
         return new FeedingAttributes(
-                Double.parseDouble(feedEl.getChildText(Constants.QUANTITY)));
+                Double.parseDouble(feedEl.getChildText(Constants.QUANTITY)), 0);
     }
 
         /**
@@ -234,7 +222,8 @@ public class ParserBackUp {
             throws IncorrectLoadException {
         Element feedEl = tmpAnimalEl.getChild(Constants.ACTUALFEEDING_ATT);
         return new FeedingAttributes(
-                Double.parseDouble(feedEl.getChildText(Constants.QUANTITY)));
+                Double.parseDouble(feedEl.getChildText(Constants.QUANTITY)), 
+        Integer.parseInt(feedEl.getChildText(Constants.FASTDAYS)));
     }
 
         /**

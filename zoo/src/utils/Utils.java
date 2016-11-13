@@ -10,6 +10,10 @@ import java.util.Set;
  * @author doyenm
  */
 public class Utils {
+    
+    public static boolean isBetween(int test, int min, int max){
+        return (test >= min) && (test<=max);
+    }
 
     public static boolean isPositivOrNull(int test) {
         return test >= 0;
