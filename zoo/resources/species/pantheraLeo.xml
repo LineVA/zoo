@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
   <names>
-    <fr>Lion</fr>
+    <fr>Lion d'Afrique</fr>
     <additionalFrenchNames />
-    <en>Lion</en>
+    <en>African lion</en>
     <additionalEnglishNames />
-    <scientific>Panthera leo</scientific>
+    <scientific>Panthera leo leo</scientific>
   </names>
   <general>
     <uicn>3</uicn>
@@ -49,4 +49,19 @@
   <social>
     <groupSize>10</groupSize>
   </social>
+  <tags>
+      <frenchTag>
+          <tag>Mammifère</tag>
+          <tag>Félin</tag>
+          <tag>Fauve</tag>
+          <tag>Lion</tag>
+      </frenchTag>
+      <englishTags>
+          <tag>Mammal</tag>
+          <tag>Cat</tag>
+          <tag>Feline</tag>
+          <tag>Wild cat</tag>
+          <tag>Lion</tag>
+      </englishTags>
+  </tags>
 </animal>

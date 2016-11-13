@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+  <names>
+    <fr>Lion d'Asie</fr>
+    <additionalFrenchNames>
+        <name>Lion asiatique</name>
+        <name>Lion persan</name>
+    </additionalFrenchNames>
+    <en>Asiatic lion</en>
+    <additionalEnglishNames>
+        <name>Indian lion</name>
+        <name>Persian lion</name>
+    </additionalEnglishNames>
+    <scientific>Panthera leo persica</scientific>
+  </names>
+  <general>
+    <uicn>4</uicn>
+    <family>8</family>
+    <continents>
+      <continent>4</continent>
+    </continents>
+    <ecoregion>0</ecoregion>
+    <breedingProgramme>1</breedingProgramme>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Lion_asiatique</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Asiatic_Lion</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>48</femaleMaturity>
+    <maleMaturity>60</maleMaturity>
+    <gestationFrequency>0.5</gestationFrequency>
+    <litterSize>3</litterSize>
+    <leavingAge>16</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>168</femaleLifespan>
+    <maleLifespan>168</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>1000</territorySize>
+    <biomes>
+      <biome>13</biome>
+    </biomes>
+  </territory>
+  <feeding>
+    <quantity>3.5</quantity>
+    <size>7</size>
+    <diets>
+      <diet>3</diet>
+    </diets>
+        <fastDays>3</fastDays>
+  </feeding>
+  <social>
+    <groupSize>10</groupSize>
+  </social>
+  <tags>
+      <frenchTag>
+          <tag>Mammifère</tag>
+          <tag>Félin</tag>
+          <tag>Fauve</tag>
+          <tag>Lion</tag>
+      </frenchTag>
+      <englishTags>
+          <tag>Mammal</tag>
+          <tag>Cat</tag>
+          <tag>Feline</tag>
+          <tag>Wild cat</tag>
+          <tag>Lion</tag>
+      </englishTags>
+  </tags>
+</animal>
