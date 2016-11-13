@@ -327,8 +327,10 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("AGE") + this.age);
         info.add(bundle.getString("SEX") + this.sex.toStringByLanguage());
         info.add(bundle.getString("WB") + Utils.truncate(this.wellBeing));
-        info.add(bundle.getString("MONTHS_WITHOUT_EATING") + this.turnsOfStarvation);
         info.add(bundle.getString("DIET") + Diet.NONE.findById(actualDiet).toStringByLanguage());
+        info.add(bundle.getString("MONTHS_WITHOUT_EATING") + this.turnsOfStarvation);
+        info.add(bundle.getString("ACT_FEEDING_ATT") + this.actualFeeding.toStringByLanguage(option));
+        info.add(bundle.getString("NB_FAST_DAYS") + this.actualFastDays);
         if (this.sex.isFemale()) {
             info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.femaleToStringByLanguage(option));
         } else {
@@ -338,7 +340,6 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("OPT_SOCIAL_ATT") + this.optimalSocial.toStringByLanguage(option));
         info.add(bundle.getString("ACT_GROUP_SIZE") + this.paddock.countAnimalsOfTheSameSpecie(this.specie));
         info.add(bundle.getString("OPT_FEEDING_ATT") + this.optimalFeeding.toStringByLanguage(option));
-        info.add(bundle.getString("ACT_FEEDING_ATT") + this.actualFeeding.toStringByLanguage(option));
         info.add(bundle.getString("OPT_TERRITORY_ATT") + this.optimalTerritory.toStringByLanguage(option));
         info.add(bundle.getString("TERRITORY_SIZE") + this.paddock.computeSize());
         info.add(bundle.getString("PERSONALITY_ATT") + this.personality.toStringByLanguage(option));
@@ -558,6 +559,12 @@ public class AnimalImpl implements Animal {
     public int getStarvation(SaveImpl.FriendSave save) {
         save.hashCode();
         return this.turnsOfStarvation;
+    }
+    
+    @Override
+    public int getActualFastDays(SaveImpl.FriendSave save) {
+        save.hashCode();
+        return this.actualFastDays;
     }
 
 }

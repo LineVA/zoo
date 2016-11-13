@@ -423,6 +423,7 @@ public class SaveImpl implements Save {
         Element el = new Element(Constants.ACTUALFEEDING_ATT);
         el.addContent(createElementWithText(Constants.DIET, String.valueOf(animal.getDiet(friendSave))));
         el.addContent(createElementWithText(Constants.QUANTITY, String.valueOf(att.getFoodQuantity())));
+        el.addContent(createElementWithText(Constants.FASTDAYS, String.valueOf(animal.getActualFastDays(friendSave))));
         return el;
     }
 
