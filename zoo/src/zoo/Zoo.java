@@ -433,7 +433,7 @@ public class Zoo implements IZoo {
             try {
                 return padEntry.getValue().findAnimalByName(animalName);
             } catch (UnknownNameException ex) {
-
+                // If there is no animal of this name in this paddock, we test the next paddock
             }
         }
         throw new UnknownNameException(
