@@ -401,9 +401,11 @@ public class Zoo implements IZoo {
         }
         if (species.containsKey(specieName)) {
             return species.get(specieName);
+        } else {
+            return this.findSpecieByScientificName(specieName);
         }
-        throw new UnknownNameException(
-                this.option.getSpecieBundle().getString("UNKNOWN_NAME"));
+//        throw new UnknownNameException(
+//                this.option.getSpecieBundle().getString("UNKNOWN_NAME"));
     }
 
     @Override
@@ -414,7 +416,8 @@ public class Zoo implements IZoo {
                     this.option.getSpecieBundle().getString("EMPTY_NAME"));
         }
         for (Entry<String, Specie> specie : this.species.entrySet()) {
-            if (specie.getValue().getNames().getScientificName().equals(specieName)) {
+            System.out.println(specie.getValue().getNames().getScientificName());
+            if (specie.getValue().getNames().getScientificName().equalsIgnoreCase(specieName)) {
                 return specie.getValue();
             }
         }
