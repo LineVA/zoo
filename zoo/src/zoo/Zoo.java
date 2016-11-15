@@ -393,19 +393,35 @@ public class Zoo implements IZoo {
         return map;
     }
 
-    @Override
-    public Specie findSpecieByName(String specieName) throws EmptyNameException, UnknownNameException {
-        if (specieName.trim().equals("")) {
+//    @Override
+//    public Specie findSpecieByName(String specieName) throws EmptyNameException, UnknownNameException {
+//        if (specieName.trim().equals("")) {
+//            throw new EmptyNameException(
+//                    this.option.getSpecieBundle().getString("EMPTY_NAME"));
+//        }
+//        if (species.containsKey(specieName)) {
+//            return species.get(specieName);
+//        } else {
+//            return this.findSpecieByScientificName(specieName);
+//        }
+////        throw new UnknownNameException(
+////                this.option.getSpecieBundle().getString("UNKNOWN_NAME"));
+//    }
+    
+     @Override
+    public Specie findSpecieByName(String specieName) 
+            throws EmptyNameException, UnknownNameException {
+       if (specieName.trim().equals("")) {
             throw new EmptyNameException(
                     this.option.getSpecieBundle().getString("EMPTY_NAME"));
         }
-        if (species.containsKey(specieName)) {
-            return species.get(specieName);
-        } else {
-            return this.findSpecieByScientificName(specieName);
+        for (Entry<String, Specie> specie : this.species.entrySet()) {
+            if (specie.getValue().getNames().containsName(specieName, option)) {
+                return specie.getValue();
+            }
         }
-//        throw new UnknownNameException(
-//                this.option.getSpecieBundle().getString("UNKNOWN_NAME"));
+        throw new UnknownNameException(
+                this.option.getSpecieBundle().getString("UNKNOWN_NAME"));
     }
 
     @Override
@@ -416,7 +432,6 @@ public class Zoo implements IZoo {
                     this.option.getSpecieBundle().getString("EMPTY_NAME"));
         }
         for (Entry<String, Specie> specie : this.species.entrySet()) {
-            System.out.println(specie.getValue().getNames().getScientificName());
             if (specie.getValue().getNames().getScientificName().equalsIgnoreCase(specieName)) {
                 return specie.getValue();
             }

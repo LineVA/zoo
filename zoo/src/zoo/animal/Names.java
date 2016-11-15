@@ -40,6 +40,20 @@ public class Names {
             return this.englishName;
         }
     }
+    
+    public List<String> getAdditionalNames(Option option){
+          if (option.getLocale().getLanguage().equals("fr")) {
+            return this.additionalFrenchNames;
+        } else {
+            return this.additionalEnglishNames;
+        }
+    }
+    
+    public boolean containsName(String specieName, Option option){
+        return this.getNameAccordingToLanguage(option).equalsIgnoreCase(specieName)
+                || this.scientificName.equalsIgnoreCase(specieName)
+                || this.getAdditionalNames(option).contains(specieName);
+    }
 
     public String getAdditionalNamesAccordingToLanguage(Option option) {
         if (option.getLocale().getLanguage().equals("fr")) {
