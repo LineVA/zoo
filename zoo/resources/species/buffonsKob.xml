@@ -58,12 +58,16 @@
             <tag>Kob</tag>
             <tag>Cobe</tag>
             <tag>Antilope</tag>
+            <tag>Bovin</tag>
+            <tag>Buffon</tag>
         </frenchTags>
         <englishTags>
             <tag>Mammal</tag>
             <tag>Kob</tag>
             <tag>Antelope</tag>
             <tag>Bovine</tag>
+            <tag>Bovid</tag>
+            <tag>Buffon</tag>
         </englishTags>
     </tags>
 </animal>

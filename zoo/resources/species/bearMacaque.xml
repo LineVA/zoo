@@ -58,12 +58,16 @@
           <tag>Mammifère</tag>
           <tag>Primate</tag>
           <tag>Cercopithèque</tag>
+          <tag>Singe</tag>
           <tag>Macaque</tag>
       </frenchTags>
       <englishTags>
           <tag>Mammal</tag>
           <tag>Primate</tag>
+          <tag>Monkey</tag>
+          <tag>Cercopithecus</tag>
           <tag>Macaque</tag>
+          <tag>Bear</tag>
       </englishTags>
   </tags>
 </animal>

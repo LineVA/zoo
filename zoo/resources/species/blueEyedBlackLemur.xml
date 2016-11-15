@@ -57,10 +57,12 @@
           <tag>Mammifère</tag>
           <tag>Primate</tag>
           <tag>Lémur</tag>
+          <tag>Singe</tag>
           <tag>Lémurien</tag>
       </frenchTags>
       <englishTags>
           <tag>Mammal</tag>
+          <tag>Monkey</tag>
           <tag>Primate</tag>
           <tag>Lemur</tag>
       </englishTags>

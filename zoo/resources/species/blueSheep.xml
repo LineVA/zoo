@@ -62,11 +62,13 @@
       <frenchTags>
           <tag>Mammifère</tag>
           <tag>Bovin</tag>
+          <tag>Mouton</tag>
           <tag>Caprin</tag>
       </frenchTags>
       <englishTags>
           <tag>Mammal</tag>
           <tag>Bovine</tag>
+          <tag>Sheep</tag>
           <tag>Caprine</tag>
       </englishTags>
   </tags>

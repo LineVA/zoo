@@ -51,4 +51,16 @@
   <social>
     <groupSize>1</groupSize>
   </social>
+   <tags>
+      <frenchTags>
+          <tag>Mammifère</tag>
+          <tag>Félin</tag>
+          <tag>Fauve</tag>
+      </frenchTags>
+      <englishTags>
+          <tag>Mammal</tag>
+          <tag>Felid</tag>
+          <tag>Beast</tag>
+      </englishTags>
+  </tags>
 </animal>

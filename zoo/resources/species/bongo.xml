@@ -48,4 +48,18 @@
   <social>
     <groupSize>3</groupSize>
   </social>
+   <tags>
+      <frenchTags>
+          <tag>Mammifère</tag>
+          <tag>Bovin</tag>
+          <tag>Bovidé</tag>
+          <tag>Antilope</tag>
+      </frenchTags>
+      <englishTags>
+          <tag>Mammal</tag>
+          <tag>Bovine</tag>
+          <tag>Bovid</tag>
+          <tag>Antelope</tag>
+      </englishTags>
+  </tags>
 </animal>

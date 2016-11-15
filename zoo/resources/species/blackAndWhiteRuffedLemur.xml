@@ -56,12 +56,14 @@
       <frenchTags>
           <tag>Mammifère</tag>
           <tag>Primate</tag>
+          <tag>Singe</tag>
           <tag>Lémur</tag>
           <tag>Lémurien</tag>
       </frenchTags>
       <englishTags>
           <tag>Mammal</tag>
           <tag>Primate</tag>
+          <tag>Singe</tag>
           <tag>Lemur</tag>
       </englishTags>
   </tags>
