@@ -233,11 +233,18 @@ public class Zoo implements IZoo {
             }
         }
         if (species.size() != 0) {
-            for (Specie spec : species) {
-                for (IPaddock pad : padList) {
+            boolean containsSpecie;
+            for (IPaddock pad : padList) {
+                containsSpecie = true;
+                for (Specie spec : species) {
                     if (pad.countAnimalsOfTheSameSpecie(spec) > 0) {
-                        list.add(pad.getName());
+                        containsSpecie &= true;
+                    } else {
+                         containsSpecie &= false;
                     }
+                }
+                if (containsSpecie) {
+                    list.add(pad.getName());
                 }
             }
         } else {
@@ -407,11 +414,10 @@ public class Zoo implements IZoo {
 ////        throw new UnknownNameException(
 ////                this.option.getSpecieBundle().getString("UNKNOWN_NAME"));
 //    }
-    
-     @Override
-    public Specie findSpecieByName(String specieName) 
+    @Override
+    public Specie findSpecieByName(String specieName)
             throws EmptyNameException, UnknownNameException {
-       if (specieName.trim().equals("")) {
+        if (specieName.trim().equals("")) {
             throw new EmptyNameException(
                     this.option.getSpecieBundle().getString("EMPTY_NAME"));
         }
