@@ -25,7 +25,7 @@ public interface AnimalKeeper {
 
     public Map<TaskPaddock, Double> getTimedTaskPerPaddock();
 
-    public List<String> info() throws UnknownNameException;
+    public List<List<String>> info() throws UnknownNameException;
 
     public void removeTimedTasksPerPaddock(List<TaskPaddock> tasksPaddock);
 

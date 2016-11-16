@@ -107,4 +107,26 @@ public class FormattingDisplay {
         }
         return finalStr;
     }
+    
+    /**
+     * Layout for a list of a list of Strings
+     * @param list List of strings we need to display
+     * @return a formatting String corresponding to the parameter
+     */
+    public static String formattingListOfLists(List<List<String>> list) {
+        Iterator it = list.iterator();
+        List<String> str;
+        String finalStr = "";
+        while (it.hasNext()) {
+            str = (List<String>) it.next();
+            System.out.println(str);
+            finalStr += formattingList(str);
+//            if (it.hasNext()) {
+//                finalStr += str + "\n";
+//            } else {
+//                finalStr += str + "\n";
+//            }
+        }
+        return finalStr;
+    }
 }
