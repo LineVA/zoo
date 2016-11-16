@@ -19,6 +19,9 @@ import launch.play.Play;
  */
 public class FreeCommandManager extends CommandManager {
 
+    private final String LOAD = "load";
+    private final String CREATE = "create";
+
     private final Iterable<AbstractCommand> initialCommands;
 
     private String currentChangingZooCommand;
@@ -42,11 +45,12 @@ public class FreeCommandManager extends CommandManager {
 
     private ReturnExec isCurrentlyChanging(String[] parse) {
         this.isChanging = false;
-        if (currentChangingZooCommand.equals("load")) {
+        if (LOAD.equals(currentChangingZooCommand)) {
             return super.getLoad().confirmChangingZoo(parse);
-        } else {
+        } else if(CREATE.equals(this.currentChangingZooCommand)){
             return super.getCreateZoo().confirmChangingZoo(parse);
-        }
+        } 
+        return null;
     }
 
     private ReturnExec isNotCurrentlySaving(String[] parse) {
@@ -63,9 +67,9 @@ public class FreeCommandManager extends CommandManager {
                     this.isChanging = command.isChangingZoo();
                     if (this.isChanging) {
                         if (command instanceof LoadZoo) {
-                            this.currentChangingZooCommand = "load";
+                            this.currentChangingZooCommand = LOAD;
                         } else if (command instanceof CreateZoo) {
-                            this.currentChangingZooCommand = "create";
+                            this.currentChangingZooCommand = CREATE;
                         }
                     }
                     AbstractCommand tmp = super.getCreateZoo();
