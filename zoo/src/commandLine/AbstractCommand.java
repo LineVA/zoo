@@ -13,6 +13,10 @@ public abstract class AbstractCommand implements Command {
     @Getter
     @Setter
     private boolean isSaving = false;
+    
+    @Getter
+    @Setter
+    private boolean isChangingZoo = false;
 
     @Getter
     private Play play;
