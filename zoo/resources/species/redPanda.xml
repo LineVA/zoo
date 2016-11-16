@@ -57,14 +57,16 @@
     <social>
         <groupSize>1</groupSize>
     </social>
-      <tags>
-      <frenchTags>
-          <tag>Mammifère</tag>
-          <tag>Panda</tag>
-      </frenchTags>
-      <englishTags>
-          <tag>Mammal</tag>
-          <tag>Panda</tag>
-      </englishTags>
-  </tags>
+    <tags>
+        <frenchTags>
+            <tag>Mammifère</tag>
+            <tag>Panda</tag>
+            <tag>Roux</tag>
+        </frenchTags>
+        <englishTags>
+            <tag>Mammal</tag>
+            <tag>Panda</tag>
+            <tag>Red</tag>
+        </englishTags>
+    </tags>
 </animal>

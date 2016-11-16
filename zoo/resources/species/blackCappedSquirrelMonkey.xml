@@ -63,6 +63,7 @@
           <tag>Singe-écureuil</tag>
           <tag>Sapajou</tag>
           <tag>Bolivie</tag>
+          <tag>Noir</tag>
       </frenchTags>
       <englishTags>
           <tag>Mammal</tag>
@@ -70,6 +71,7 @@
           <tag>Monkey</tag>
           <tag>Squirrel-monkey</tag>
           <tag>Bolivia</tag>
+          <tag>Black</tag>
       </englishTags>
   </tags>
 </animal>

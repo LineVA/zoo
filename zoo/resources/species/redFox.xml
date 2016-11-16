@@ -66,10 +66,12 @@
         <frenchTags>
             <tag>Mammifère</tag>
             <tag>Renard</tag>
+                      <tag>Roux</tag>
         </frenchTags>
         <englishTags>
             <tag>Mammal</tag>
-            <tag>Renard</tag>
+            <tag>Fox</tag>
+            <tag>Red</tag>
         </englishTags>
     </tags>
 </animal>

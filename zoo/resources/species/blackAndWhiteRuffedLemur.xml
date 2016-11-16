@@ -59,12 +59,16 @@
           <tag>Singe</tag>
           <tag>Lémur</tag>
           <tag>Lémurien</tag>
+          <tag>Blanc</tag>
+          <tag>Noir</tag>
       </frenchTags>
       <englishTags>
           <tag>Mammal</tag>
           <tag>Primate</tag>
           <tag>Singe</tag>
           <tag>Lemur</tag>
+          <tag>Black</tag>
+          <tag>White</tag>
       </englishTags>
   </tags>
 </animal>

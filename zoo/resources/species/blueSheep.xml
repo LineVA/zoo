@@ -64,12 +64,14 @@
           <tag>Bovin</tag>
           <tag>Mouton</tag>
           <tag>Caprin</tag>
+          <tag>Bleu</tag>
       </frenchTags>
       <englishTags>
           <tag>Mammal</tag>
           <tag>Bovine</tag>
           <tag>Sheep</tag>
           <tag>Caprine</tag>
+          <tag>Blue</tag>
       </englishTags>
   </tags>
 </animal>

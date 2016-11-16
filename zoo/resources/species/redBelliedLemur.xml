@@ -54,11 +54,13 @@
           <tag>Primate</tag>
           <tag>Lémur</tag>
           <tag>Lémurien</tag>
+          <tag>Roux</tag>
       </frenchTags>
       <englishTags>
           <tag>Mammal</tag>
           <tag>Primate</tag>
           <tag>Lemur</tag>
+          <tag>Red</tag>
       </englishTags>
   </tags>
 </animal>

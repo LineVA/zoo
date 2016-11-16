@@ -57,10 +57,12 @@
         <frenchTags>
             <tag>Mammifère</tag>
             <tag>Ours</tag>
+            <tag>Brun</tag>
         </frenchTags>
         <englishTags>
             <tag>Mammal</tag>
             <tag>Bear</tag>
+            <tag>Brown</tag>
         </englishTags>
     </tags>
 </animal>
