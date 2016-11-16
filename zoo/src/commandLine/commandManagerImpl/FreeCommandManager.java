@@ -5,6 +5,8 @@ import commandLine.CommandManager;
 import commandLine.ReturnExec;
 import commandLine.SplitDoubleQuotes;
 import commandLine.TypeReturn;
+import commandLine.commandImpl.CreateZoo;
+import commandLine.commandImpl.LoadZoo;
 import commandLine.commandImpl.Options;
 import commandLine.commandImpl.Man;
 import static java.util.Arrays.asList;
@@ -18,6 +20,8 @@ import launch.play.Play;
 public class FreeCommandManager extends CommandManager {
 
     private final Iterable<AbstractCommand> initialCommands;
+
+    private String currentChangingZooCommand;
 
     public boolean isChanging = false;
 
@@ -38,7 +42,11 @@ public class FreeCommandManager extends CommandManager {
 
     private ReturnExec isCurrentlyChanging(String[] parse) {
         this.isChanging = false;
-        return super.getLoad().confirmChangingZoo(parse);
+        if (currentChangingZooCommand.equals("load")) {
+            return super.getLoad().confirmChangingZoo(parse);
+        } else {
+            return super.getCreateZoo().confirmChangingZoo(parse);
+        }
     }
 
     private ReturnExec isNotCurrentlySaving(String[] parse) {
@@ -53,6 +61,13 @@ public class FreeCommandManager extends CommandManager {
                     this.isInitiate |= command.isInitiate();
                     this.isSaving = command.isSaving();
                     this.isChanging = command.isChangingZoo();
+                    if (this.isChanging) {
+                        if (command instanceof LoadZoo) {
+                            this.currentChangingZooCommand = "load";
+                        } else if (command instanceof CreateZoo) {
+                            this.currentChangingZooCommand = "create";
+                        }
+                    }
                     AbstractCommand tmp = super.getCreateZoo();
                     super.getLoad().setChangingZoo(command.isChangingZoo());
                     tmp = super.getLoad();
