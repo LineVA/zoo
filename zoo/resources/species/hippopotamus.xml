@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+    <names>
+        <fr>Hippopotame</fr>
+        <additionalFrenchNames>
+            <name>Hippopotame amphibie</name>
+        </additionalFrenchNames>
+        <en>HIppopotamus</en>
+        <additionalEnglishNames>
+            <name>Hippo</name>
+        </additionalEnglishNames>
+        <scientific>Hippopotamus amphibius</scientific>
+    </names>
+    <general>
+        <uicn>3</uicn>
+        <family>35</family>
+        <continents>
+            <continent>1</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+        <breedingProgramme>2</breedingProgramme>
+    </general>
+    <documentation>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Hippopotamus_amphibius</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Hippopotamus</englishWikipedia>
+        <animalDiversity />
+    </documentation>
+    <reproduction>
+        <femaleMaturity>43</femaleMaturity>
+        <maleMaturity>43</maleMaturity>
+        <gestationFrequency>0.5</gestationFrequency>
+        <litterSize>1</litterSize>
+        <weaningAge>12</weaningAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>540</femaleLifespan>
+        <maleLifespan>540</maleLifespan>
+    </lifespan>
+    <territory>
+        <territorySize>1500</territorySize>
+        <biomes>
+            <biome>1</biome>
+            <biome>7</biome>
+            <biome>13</biome>
+        </biomes>
+    </territory>
+    <feeding>
+        <quantity>20.0</quantity>
+        <size>8</size>
+        <diets>
+            <diet>21</diet>
+        </diets>
+    </feeding>
+    <social>
+        <groupSize>10</groupSize>
+    </social>
+    <tags>
+        <frenchTags>
+            <tag>Mammifère</tag>
+            <tag>Hippopotame</tag>
+            <tag>Amphibie</tag>
+        </frenchTags>
+        <englishTags>
+            <tag>Mammal</tag>
+            <tag>Hippopotamus</tag>
+            <tag>Hippo</tag>
+        </englishTags>
+    </tags>
+</animal>

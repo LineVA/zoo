@@ -45,7 +45,8 @@ public enum Family {
     CERCOPITHECIDAE(31),
     PITHECIIDAE(32),
     CRICETINAE(33),
-    AILURIDAE(34);
+    AILURIDAE(34),
+    HIPPOPOTAMIDAE(35);
     
 //    HERPESTIDAE(9),
 //    HYENIDAE(10),
