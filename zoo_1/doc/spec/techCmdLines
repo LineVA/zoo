@@ -1,8 +1,0 @@
-CMD LINES NOT DIRECTLY RELATED TO THE GAMEPLAY
-
- - clear : to clear the shell
- - man : 
-	- man
-	- clear
- - save toto.txt : to load the text of the shell inside a file
- - load toto.txt : to load the file to the shell

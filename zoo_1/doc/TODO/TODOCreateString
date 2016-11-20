@@ -1,9 +1,0 @@
-TODO ABOUT THE STRINGS AND LINKS BETWEEN ZOO, PADDOCKS AND ANIMALS
-
-TODO :
- d- Display a specific message if we want to create a paddock with an already used name : DONE (04/03)
- - Display a specific message if we want to create a paddock before creating any zoo 
- - Create a zoo
- - access to the information of the zoo
- - create a pad
- - list of the regimes : enum
