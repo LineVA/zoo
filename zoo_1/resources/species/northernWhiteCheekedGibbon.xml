@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+  <names>
+    <fr>Gibbon à joues pâles</fr>
+    <additionalFrenchNames>
+      <name>Gibbon à joues blanches</name>
+      <name>Gibbon à favoris blancs du Nord</name>
+    </additionalFrenchNames>
+    <en>Northern white-cheeked gibbon</en>
+    <additionalEnglishNames />
+    <scientific>Nomascus leucogenys leucogenys</scientific>
+  </names>
+  <general>
+    <uicn>5</uicn>
+    <family>30</family>
+    <continents>
+      <continent>5</continent>
+    </continents>
+    <ecoregion>0</ecoregion>
+    <breedingProgramme>1</breedingProgramme>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Nomascus_leucogenys</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Northern_white-cheeked_gibbon</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>84</femaleMaturity>
+    <maleMaturity>84</maleMaturity>
+    <gestationFrequency>0.4</gestationFrequency>
+    <litterSize>1</litterSize>
+    <leavingAge>72</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>336</femaleLifespan>
+    <maleLifespan>336</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>100</territorySize>
+    <biomes>
+      <biome>2</biome>
+    </biomes>
+  </territory>
+  <feeding>
+    <quantity>1.042</quantity>
+    <size>2</size>
+    <diets>
+      <diet>5</diet>
+    </diets>
+  </feeding>
+  <social>
+    <groupSize>2</groupSize>
+  </social>
+    <tags>
+      <frenchTags>
+          <tag>Mammifère</tag>
+          <tag>Primate</tag>
+          <tag>Singe</tag>
+          <tag>Gibbon</tag>
+      </frenchTags>
+      <englishTags>
+          <tag>Mammal</tag>
+          <tag>Primate</tag>
+          <tag>Monkey</tag>
+          <tag>Gibbon</tag>
+      </englishTags>
+  </tags>
+</animal>

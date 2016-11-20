@@ -1,0 +1,25 @@
+SOIGNEURS
+
+ - un soigneur doit être affecté à un ensemble d'enclos, possiblement vide ou comportant qu'un seul enclos
+ - l'XP : de deux types : générale et propre à un type d'enclos
+	- générale : plus il a d'ancienneté dans le zoo
+	- liée au types des animaux :  à chaque fois qu'un soigneur s'occupe d'un enclos contenant un type d'animal, il gagne de lxp avec ce type d'animal
+ - l'XP générale permet d'augmenter le bien-être apporté aux animaux en s'occupant de leur enclos (quotidien ou enrichissement), l'XP particulière apporte un bonus avec certains types d'animaux
+ - Un soigneur peut, pour un enclos donné, effectuer deux types de tâches : 
+	le quotidien : nettoyer l'enclos/ nourrir les animaux qu'il contient
+	l'enrichissement : préparer des jeux/objets pour occuper les animaux
+ - Un soigneur peut être occupé de 0 à 100% de sa journée de travail : 
+	- chaque pourcent de sa journée peut être affecté à un enclos et à un type de tâche ; 
+	- le temps global d'occupation de sa journée définie ses gains d'XP générale,
+	- les enclos auxquels il est affecté et les durées d'affectation associées définissent ses gains d'XP particulière. 
+
+
+
+Pour éviter d'affecter un soigneur par enclos à 100% (i.e. chaque enclos à son soigneur dédié), nombre limite de soigneurs : 
+	- x soigneurs maximum par zoo : ils sont tous là dès le début 
+		on peut au début de la partie avoir un soigneur par enclos mais ça change vite 
+		--> peu de générosité sur le nombre initial
+		Oblige à faire des réaffections régulières de personnel. La notion d'xp sur un enclos prend alorsx un sens
+	- le nombre de soigneurs disponibles est lié au nombre d'enclos dans le zoo :
+		--> Oblige aussi à des réaffectations régulières
+		--> fait fonctionner la notion d'ancienneté

@@ -1,0 +1,44 @@
+TODO
+
+SHELL :
+ d- a full scren windows
+ d- Easily recovering the last command line : DONE (28/03)
+	we use a Stream<String>
+ d- Be able to print any line on the shell : DONE (28/03)
+	The printOnEditor method
+ d- Be able to obtain the last lines with the up/down arrows (DONE : 10/04)
+	we replace the current line by the one we found
+		d- if we do only one up with nothing on the current line (DONE : 01/04)
+			d- we already have one or more cmd/s in the shell (DONE : 01/4)
+			d- we do not have one : DONE (01/04)
+		d- if we do only one up with something on the current line : (DONE : 10/04)
+		d- if we do several ups : 
+			d- with no previous cmd and nothing on the current line (DONE : 10/04)
+			d- with no previous cmd and something on the current (DONE : 10/04)
+			d- with previous cmds and nothing on the current -(DONE : 10/04)
+			d- with previous cmds and something on the current (DONE : 10/04)
+		d- Add down arrow (DONE : 10/04)
+
+ - Be able to search a previous line with Ctrl + r
+ d- The last line is always visible (scroll ?) : DONE (29/03)
+	Adding of a JScrollPane in the MainGUI constructor
+ - if a line has more characters than we can display, we display it as a return line (no horizontal scroll)
+ d- when the user can write, the line begins with '>' : DONE (31/03)
+	with the expected new line : more difficult than expected, problem with returning to the line after a cmdInvite
+	We move the caret when the key is released
+ d- An easy way to change the color of the text : DONE (28/03)
+	By using the enum EditorColors
+ d- Deleting the possibility to write something else than the last line (DONE : 01/04) or before the > 
+	At each left click on the mouse, a listner moves the carret to the end of the text.
+ - Be able to use autocomplexion
+ - Do not be able to delete the command invite
+ - Do not be able to write inside the command invite
+ - Be able to clear the shell
+ - Comment the code
+ - Write some documentation about the shell
+
+BUG SHELL : 
+ - Why every lines before a cyan one are grey?
+d- Why the first line after a info becomes cyan? : DONE 31/03
+d- How to capture a pressed key without display this action on the shell? Enter, arrows... : DONE (31/03)
+	We use setCaretPosition() when the key is released

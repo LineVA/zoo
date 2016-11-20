@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+  <names>
+    <fr>Serval</fr>
+    <additionalFrenchNames />
+    <en>Serval</en>
+    <additionalEnglishNames>
+      <name>Tierboskat</name>
+    </additionalEnglishNames>
+    <scientific>Leptailurus serval</scientific>
+  </names>
+  <general>
+    <uicn>1</uicn>
+    <family>8</family>
+    <continents>
+      <continent>1</continent>
+    </continents>
+    <ecoregion>0</ecoregion>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Serval</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Serval</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>27</femaleMaturity>
+    <maleMaturity>27</maleMaturity>
+    <gestationFrequency>0.75</gestationFrequency>
+    <litterSize>2</litterSize>
+    <leavingAge>15</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>254</femaleLifespan>
+    <maleLifespan>254</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>100</territorySize>
+    <biomes>
+      <biome>7</biome>
+    </biomes>
+  </territory>
+  <feeding>
+    <quantity>0.7</quantity>
+    <size>3</size>
+    <diets>
+      <diet>3</diet>
+    </diets>
+  </feeding>
+  <social>
+    <groupSize>1</groupSize>
+  </social>
+</animal>

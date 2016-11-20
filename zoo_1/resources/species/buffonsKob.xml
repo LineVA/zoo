@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+    <names>
+        <fr>Cobe de Buffon</fr>
+        <additionalFrenchNames>
+            <name>Amraye</name>
+        </additionalFrenchNames>
+        <en>Kob</en>
+        <additionalEnglishNames>
+        </additionalEnglishNames>
+        <scientific>Kobus kob</scientific>
+    </names>
+    <general>
+        <uicn>1</uicn>
+        <family>19</family>
+        <continents>
+            <continent>1</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+        <breedingProgramme>0</breedingProgramme>
+    </general>
+    <documentation>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Cobe_de_Buffon</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Kob</englishWikipedia>
+        <animalDiversity />
+    </documentation>
+    <reproduction>
+        <femaleMaturity>13</femaleMaturity>
+        <maleMaturity>18</maleMaturity>
+        <gestationFrequency>1</gestationFrequency>
+        <litterSize>1</litterSize>
+        <weaningAge>6</weaningAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>84</femaleLifespan>
+        <maleLifespan>84</maleLifespan>
+    </lifespan>
+    <territory>
+        <territorySize>3500</territorySize>
+        <biomes>
+            <biome>7</biome>
+        </biomes>
+    </territory>
+    <feeding>
+        <quantity>1.5</quantity>
+        <size>5</size>
+        <diets>
+            <diet>8</diet>
+        </diets>
+    </feeding>
+    <social>
+        <groupSize>15</groupSize>
+    </social>
+    <tags>
+        <frenchTags>
+            <tag>Mammifère</tag>
+            <tag>Bovidé</tag>
+            <tag>Kob</tag>
+            <tag>Cobe</tag>
+            <tag>Antilope</tag>
+            <tag>Bovin</tag>
+            <tag>Buffon</tag>
+        </frenchTags>
+        <englishTags>
+            <tag>Mammal</tag>
+            <tag>Kob</tag>
+            <tag>Antelope</tag>
+            <tag>Bovine</tag>
+            <tag>Bovid</tag>
+            <tag>Buffon</tag>
+        </englishTags>
+    </tags>
+</animal>

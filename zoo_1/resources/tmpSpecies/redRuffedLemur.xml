@@ -1,0 +1,17 @@
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./specie.xsd">
+    <names>
+        <fr>Vari roux</fr>
+        <en>Red ruffed lemur</en>
+        <scientific>Varecia rubra</scientific>
+    </names>
+    <reproduction>
+        <femaleMaturity>24</femaleMaturity>
+        <maleMaturity>0</maleMaturity>
+        <gestationFrequency>1</gestationFrequency>
+        <litterSize>3</litterSize>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>240</femaleLifespan>
+        <maleLifeSpan>240</maleLifeSpan>
+    </lifespan>
+</animal>

@@ -1,0 +1,53 @@
+Manuel d'aide pour les commandes 'specie' : 
+Une commande faisant référence à une espèce peut commencer
+ par le mot 'specie' ou par le diminutif 'spec'.
+
+> specie 'name' : Affiche les détails d'une espèce de nom 'name'
+Ces détails sont, dans l'ordre : 
+    - son nom dans la langue courante,
+    - son nom scientifique,
+    - sa famille,
+    - son poids moyen,
+    - son statut de conservation défini par l'UICN,
+    - sa participation à un programme européen d'élevage (EEP ou ESB),
+    - son continent d'origine,
+    - son biome d'origine,
+    - son écorégion d'origine,
+    - son régime alimentaire,
+    - la quantité moyenne de nourriture doit elle doit disposer par jour,
+    - ses attributs de réproduction (âge moyen de maturité sexuelle pour la femelle et le mâle, 
+ le nombre moyen de porté par an, la taille moyenne d'une portée),
+    - ses attributs de vie (espérance de vie moyenne pour une femelle et un mâle),
+    - ses attributs sociaux (taille moyenne d'un groupe),
+    - ses attributs de territoire (taille moyenne de l'espace nécessaire à un individu),
+    - ses tags.
+Si aucune espèce ne porte ce nom, alors un message d'erreur s'affiche.
+
+> specie ls : Affiche la liste des espèces disponibles classées par ordre alphabétique
+    Des options sont disponibles pour n'afficher que les espèces intéressantes. Plusieurs options peuvent être
+utilisées simultanément et dans un ordre quelconque. Il est posisble d'effectuer une recherche sur plusieurs
+critères du même type, par exemple les espèces présentes à la fois sur le continent asiatique
+ et sur le continent européen. Les options sont alors de la forme : '-ct 4&5'.
+ Les différentes options sont : 
+    - [--paddock|-p] <name> : liste des espèces dans l'enclos 'name'
+Si aucun enclos ne porte ce nom, un message d'erreur s'affiche.
+    - [--ecoregion|-e] 'id' : Liste des espèces selon l'écorégion d'identifiant 'id'
+Si aucune écorégion ne porte cet identifiant, un message d'erreur s'affiche.
+    - [--family|-f] 'id' : Liste des espèces selon la famille d'identifiant 'id' 
+Si aucune famille ne porte cet identifiant, un message d'erreur s'affiche.
+    - [--conservation|-cs] 'id' : Liste des espèces selon le statut de conservation d'identifiant 'id' 
+Si aucun statut de conservation ne porte cet identifiant, un message d'erreur s'affiche.
+    - [--breedingProgramme|-bp] : Liste des espèces selon leur participation 
+à un programme européen d'élevage (EEP ou ESB) d'identifiant 'id'
+Si aucun programme d'élevage ne porte cet identifiant, un message d'erreur s'affiche. 
+    - [--size|-sz] 'id' : Liste des espèces selon la taille d'identifiant 'id' 
+Si aucune taille ne porte cet identifiant, un message d'erreur s'affiche.
+    - [--continent|-ct] 'id' : Liste des espèces selon le continent d'origine d'identifiant 'id' 
+Si aucun continent ne porte cet identifiant, un message d'erreur s'affiche.
+    - [--diet|-d] 'id' : Liste des espèces selon le régime d'identifiant 'id' 
+Si aucun régime alimentaire ne porte cet identifiant, un message d'erreur s'affiche.
+    - [--biome|-b] 'id' : Liste des espèces réclamant le biome 'id'
+Si aucun biome ne porte cet identifiant, un message d'erreur s'affiche.  
+    - [--tag|-t] 'tag' : Liste des espèces possédant le tag 'tag'
+Si aucune espèce ne porte ce tag, la liste est vide.
+  

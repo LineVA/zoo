@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+  <names>
+    <fr>Hapalemur de lac Aloatra</fr>
+    <additionalFrenchNames>
+      <name>Lémur bambou du lac Aloatra</name>
+    </additionalFrenchNames>
+    <en>Lac Aloatra bamboo lemur</en>
+    <additionalEnglishNames>
+      <name>Aloatran bamboo lemur</name>
+      <name>Aloatran gentle lemur</name>
+      <name>Lac Aloatra gentle lemur</name>
+    </additionalEnglishNames>
+    <scientific>Hapalemur occidentalis</scientific>
+  </names>
+  <general>
+    <uicn>4</uicn>
+    <family>10</family>
+    <continents>
+      <continent>1</continent>
+    </continents>
+    <ecoregion>0</ecoregion>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Hapalemur_aloatrensis</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Lac_Aloatra_bamboo_lemur</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>36</femaleMaturity>
+    <maleMaturity>25</maleMaturity>
+    <gestationFrequency>1</gestationFrequency>
+    <litterSize>1</litterSize>
+    <leavingAge>5</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>144</femaleLifespan>
+    <maleLifespan>144</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>8</territorySize>
+    <biomes>
+      <biome>2</biome>
+    </biomes>
+  </territory>
+  <feeding>
+    <quantity>0.095</quantity>
+    <size>1</size>
+    <diets>
+      <diet>5</diet>
+    </diets>
+  </feeding>
+  <social>
+    <groupSize>4</groupSize>
+  </social>
+</animal>

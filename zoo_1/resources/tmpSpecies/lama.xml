@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<animal
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./specie.xsd">
+    <names>
+        <fr>Lama</fr>
+       <en>Lama</en>
+        <scientific>Lama glama</scientific>
+    </names>
+    <reproduction>
+        <femaleMaturity>42</femaleMaturity>
+        <maleMaturity>42</maleMaturity>
+        <gestationFrequency>1</gestationFrequency>
+        <litterSize>1</litterSize>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>240</femaleLifespan>
+        <maleLifeSpan>240</maleLifeSpan>
+    </lifespan>
+
+</animal>

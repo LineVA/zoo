@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+    <names>
+        <fr>Gnou noir</fr>
+        <additionalFrenchNames>
+            <name>Gnou à queue blanche</name>
+        </additionalFrenchNames>
+        <en>Black wildebeest</en>
+        <additionalEnglishNames>
+            <name>White-tailed gnu</name>
+        </additionalEnglishNames>
+        <scientific>Connochates gnou</scientific>
+    </names>
+    <general>
+        <uicn>1</uicn>
+        <family>19</family>
+        <continents>
+            <continent>1</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+        <breedingProgramme>0</breedingProgramme>
+    </general>
+    <documentation>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Gnou_noir</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Black_wildebeest</englishWikipedia>
+        <animalDiversity />
+    </documentation>
+    <reproduction>
+        <femaleMaturity>16</femaleMaturity>
+        <maleMaturity>36</maleMaturity>
+        <gestationFrequency>1</gestationFrequency>
+        <litterSize>1</litterSize>
+        <weaningAge>6</weaningAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>240</femaleLifespan>
+        <maleLifespan>240</maleLifespan>
+    </lifespan>
+    <territory>
+        <territorySize>2160</territorySize>
+        <biomes>
+            <biome>10</biome>
+            <biome>13</biome>
+        </biomes>
+    </territory>
+    <feeding>
+        <quantity>2.5</quantity>
+        <size>6</size>
+        <diets>
+            <diet>8</diet>
+        </diets>
+    </feeding>
+    <social>
+        <groupSize>10</groupSize>
+    </social>
+    <tags>
+        <frenchTags>
+            <tag>Mammifère</tag>
+            <tag>Bovidé</tag>
+            <tag>Antilope</tag>
+            <tag>Gnou</tag>
+            <tag>Alcelaphini</tag>
+            <tag>Connochaetes</tag>
+            <tag>Noir</tag>
+        </frenchTags>
+        <englishTags>
+            <tag>Mammal</tag>
+            <tag>Bovine</tag>
+            <tag>Antelope</tag>
+            <tag>Alcelaphinae</tag>
+            <tag>Wildebeest</tag>
+            <tag>Connochaetes</tag>
+            <tag>Black</tag>
+        </englishTags>
+    </tags>
+</animal>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+  <names>
+    <fr>Zèbre de montagne</fr>
+    <additionalFrenchNames />
+    <en>Mountain zebra</en>
+    <additionalEnglishNames />
+    <scientific>Equus zebra</scientific>
+  </names>
+  <general>
+    <uicn>3</uicn>
+    <family>14</family>
+    <continents>
+      <continent>1</continent>
+    </continents>
+    <ecoregion>0</ecoregion>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Equus_zebra</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Mountain_zebra</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>66</femaleMaturity>
+    <maleMaturity>42</maleMaturity>
+    <gestationFrequency>0</gestationFrequency>
+    <litterSize>1</litterSize>
+    <leavingAge>22</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>240</femaleLifespan>
+    <maleLifespan>240</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>2048</territorySize>
+    <biomes>
+      <biome>13</biome>
+    </biomes>
+  </territory>
+  <feeding>
+    <quantity>10</quantity>
+    <size>8</size>
+    <diets>
+      <diet>21</diet>
+    </diets>
+  </feeding>
+  <social>
+    <groupSize>10</groupSize>
+  </social>
+</animal>

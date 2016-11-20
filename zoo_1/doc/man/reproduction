@@ -1,0 +1,19 @@
+Choix des animaux se reproduisant :
+- on itère sur chaque femelle de l'enclos 
+- si la femelle donée peut se reproduire, on cherche un mâle.
+- on itère sur les animaux de l'enclos et de l'espèce : le premier mâle mature est le père
+
+Condition pour qu'un animal se reproduise :
+- être sexuellement mature (age >= (fe)maleMature)
+- avoir un bien-être suffisant (que la méthode WellBeingImpl.isCloseEnoughToMax() renvoie true)
+- avoir de la chance (un double tiré aléatoirement entre 0 et 1 est inférieur ou égal à gestationFrequency de la femelle)
+- avoir un partenaire du sexe opposé, de la même espèce et dans le même enclos qui vérifie également les conditions précédentes).
+
+Détermination de la composition de la portée
+- la taille de la portée est comprise entre 1 et 2*female.litterSize (calcul dans reproductionImpl.generateFamily())
+- le sexe de chaque petit est déterminé aléatoirement (on tire un booléen ; si true, alors femelle, sinon mâle : méthode ReproductionImpl.generateAnimal())
+
+
+A ajouter : 
+- durée de la gestation
+- choix des partenaire (mâle/femelle/couple dominant)

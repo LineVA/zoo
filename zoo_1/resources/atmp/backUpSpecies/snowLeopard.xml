@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+  <names>
+    <fr>Panthère des neiges</fr>
+    <additionalFrenchNames>
+      <name>Léopard des neiges</name>
+      <name>Once</name>
+      <name>Irbis</name>
+    </additionalFrenchNames>
+    <en>Snow leopard</en>
+    <additionalEnglishNames>
+      <name>Ounce</name>
+    </additionalEnglishNames>
+    <scientific>Uncia uncia</scientific>
+  </names>
+  <general>
+    <uicn>4</uicn>
+    <family>8</family>
+    <continents>
+      <continent>5</continent>
+    </continents>
+    <ecoregion>0</ecoregion>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Panth%C3%A8re_des_neiges</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Snow_leopard</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>30</femaleMaturity>
+    <maleMaturity>42</maleMaturity>
+    <gestationFrequency>0.5</gestationFrequency>
+    <litterSize>3</litterSize>
+    <leavingAge>0</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>180</femaleLifespan>
+    <maleLifespan>180</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>150</territorySize>
+    <biomes>
+      <biome>10</biome>
+    </biomes>
+  </territory>
+  <feeding>
+    <quantity>2.9</quantity>
+    <size>4</size>
+    <diets>
+      <diet>3</diet>
+    </diets>
+  </feeding>
+  <social>
+    <groupSize>1</groupSize>
+  </social>
+</animal>

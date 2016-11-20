@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+    <names>
+        <fr>Bubale kongoni</fr>
+        <additionalFrenchNames>
+        </additionalFrenchNames>
+        <en>Coke's hartebeest</en>
+        <additionalEnglishNames>
+            <name>Kongoni</name>
+        </additionalEnglishNames>
+        <scientific>Alcelaphus buselaphus cokii</scientific>
+    </names>
+    <general>
+        <uicn>1</uicn>
+        <family>19</family>
+        <continents>
+            <continent>1</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+        <breedingProgramme>0</breedingProgramme>
+    </general>
+    <documentation>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Alcelaphus_buselaphus</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Coke's_hartebeest</englishWikipedia>
+        <animalDiversity />
+    </documentation>
+    <reproduction>
+        <femaleMaturity>36</femaleMaturity>
+        <maleMaturity>36</maleMaturity>
+        <gestationFrequency>1</gestationFrequency>
+        <litterSize>1</litterSize>
+        <weaningAge>4</weaningAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>180</femaleLifespan>
+        <maleLifespan>180</maleLifespan>
+    </lifespan>
+    <territory>
+        <territorySize>2200</territorySize>
+        <biomes>
+            <biome>7</biome>
+        </biomes>
+    </territory>
+    <feeding>
+        <quantity>3.6</quantity>
+        <size>6</size>
+        <diets>
+            <diet>8</diet>
+        </diets>
+    </feeding>
+    <social>
+        <groupSize>10</groupSize>
+    </social>
+    <tags>
+        <frenchTags>
+            <tag>Mammifère</tag>
+            <tag>Bovidé</tag>
+            <tag>Antilope</tag>
+            <tag>Alcelaphinae</tag>
+            <tag>Hartebeest</tag>
+        </frenchTags>
+        <englishTags>
+            <tag>Mammal</tag>
+            <tag>Kob</tag>
+            <tag>Bovine</tag>
+            <tag>Antelope</tag>
+            <tag>Alcelaphinae</tag>
+            <tag>Hartebeest</tag>
+        </englishTags>
+    </tags>
+</animal>

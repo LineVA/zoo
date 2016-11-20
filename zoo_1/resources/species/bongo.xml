@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+  <names>
+    <fr>Bongo</fr>
+    <additionalFrenchNames />
+    <en>Bongo</en>
+    <additionalEnglishNames />
+    <scientific>Tragelaphus eurycerus</scientific>
+  </names>
+  <general>
+    <uicn>2</uicn>
+    <family>19</family>
+    <continents>
+      <continent>1</continent>
+    </continents>
+    <ecoregion>0</ecoregion>
+    <breedingProgramme>0</breedingProgramme>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Bongo_%28animal%29</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Bongo_%28antelope%29</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>27</femaleMaturity>
+    <maleMaturity>30</maleMaturity>
+    <gestationFrequency>1</gestationFrequency>
+    <litterSize>1</litterSize>
+    <leavingAge>16</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>252</femaleLifespan>
+    <maleLifespan>252</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>4</territorySize>
+    <biomes>
+      <biome>1</biome>
+    </biomes>
+  </territory>
+  <feeding>
+    <quantity>20</quantity>
+    <size>7</size>
+    <diets>
+      <diet>21</diet>
+    </diets>
+  </feeding>
+  <social>
+    <groupSize>3</groupSize>
+  </social>
+   <tags>
+      <frenchTags>
+          <tag>Mammifère</tag>
+          <tag>Bovin</tag>
+          <tag>Bovidé</tag>
+          <tag>Antilope</tag>
+      </frenchTags>
+      <englishTags>
+          <tag>Mammal</tag>
+          <tag>Bovine</tag>
+          <tag>Bovid</tag>
+          <tag>Antelope</tag>
+      </englishTags>
+  </tags>
+</animal>
