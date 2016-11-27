@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zoo name="zooTest">
+    <dimensions>
+        <width>0</width>
+        <height>0</height>
+    </dimensions>
+    <age>0</age>
+    <monthsPerEvaluation>0</monthsPerEvaluation>
+    <horizon>0</horizon>
+    <language>fr</language>
+    <paddocks></paddocks>
+</zoo>
+

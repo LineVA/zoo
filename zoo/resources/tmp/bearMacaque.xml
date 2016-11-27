@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+  <names>
+    <fr>Macaque à face rouge</fr>
+    <additionalFrenchNames>
+      <name>Macaque brun</name>
+    </additionalFrenchNames>
+    <en>Bear macaque</en>
+    <additionalEnglishNames>
+      <name>Stump-tailed macaque</name>
+    </additionalEnglishNames>
+    <scientific>Macaca arctoides</scientific>
+  </names>
+  <general>
+    <uicn>3</uicn>
+    <family>31</family>
+    <continents>
+      <continent>5</continent>
+    </continents>
+    <ecoregion>0</ecoregion>
+    <breedingProgramme>0</breedingProgramme>
+  </general>
+  <documentation>
+    <frenchWikipedia>https://fr.wikipedia.org/wiki/Macaque_à_face_rouge</frenchWikipedia>
+    <englishWikipedia>https://en.wikipedia.org/wiki/Stump-tailed_macaque</englishWikipedia>
+    <animalDiversity />
+  </documentation>
+  <reproduction>
+    <femaleMaturity>48</femaleMaturity>
+    <maleMaturity>54</maleMaturity>
+    <gestationFrequency>0.5</gestationFrequency>
+    <litterSize>1</litterSize>
+    <weaningAge>9</weaningAge>
+    <leavingAge>18</leavingAge>
+  </reproduction>
+  <lifespan>
+    <femaleLifespan>300</femaleLifespan>
+    <maleLifespan>300</maleLifespan>
+  </lifespan>
+  <territory>
+    <territorySize>180</territorySize>
+    <biomes>
+      <biome>1</biome>
+    </biomes>
+  </territory>
+ <feeding>
+    <quantity>0.800</quantity>
+    <size>2</size>
+    <diets>
+      <diet>17</diet>
+    </diets>
+  </feeding>
+  <social>
+    <groupSize>15</groupSize>
+  </social>
+  <tags>
+      <frenchTags>
+          <tag>Mammifère</tag>
+          <tag>Primate</tag>
+          <tag>Cercopithèque</tag>
+          <tag>Singe</tag>
+          <tag>Macaque</tag>
+      </frenchTags>
+      <englishTags>
+          <tag>Mammal</tag>
+          <tag>Primate</tag>
+          <tag>Monkey</tag>
+          <tag>Cercopithecus</tag>
+          <tag>Macaque</tag>
+          <tag>Bear</tag>
+      </englishTags>
+  </tags>
+</animal>
