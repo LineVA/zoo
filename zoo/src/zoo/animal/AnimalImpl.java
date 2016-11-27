@@ -97,12 +97,7 @@ public class AnimalImpl implements Animal {
         this.name = name;
         this.paddock = paddock;
         this.sex = sex;
-        if (age >= 0) {
-            this.age = age;
-        } else {
-            throw new IncorrectDataException(
-                    this.option.getAnimalBundle().getString("TOO_YOUNG"));
-        }
+       this.checkLoadingOfAge(age);
         this.optimalFeeding = drawOptimalFeeding(spec);
         this.actualFeeding = drawActualFeeding(spec);
         this.actualReproduction = drawActualReproduction(spec);
@@ -115,7 +110,7 @@ public class AnimalImpl implements Animal {
         this.wB = new WellBeingImpl(
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
-        this.wellBeing = 0;
+        this.wellBeing = 0.0;
         this.turnsOfStarvation = 0;
         this.turnsOfDrowning = 0;
     }
@@ -178,12 +173,7 @@ public class AnimalImpl implements Animal {
         this.actualFeeding = actualFeeding;
         this.optimalSocial = social;
         this.optimalTerritory = territory;
-        if (age >= 0) {
-            this.age = age;
-        } else {
-            throw new IncorrectDataException(
-                    this.option.getAnimalBundle().getString("TOO_YOUNG"));
-        }
+       this.checkLoadingOfAge(age);
         this.personality = personality;
         this.wB = new WellBeingImpl(
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
@@ -191,6 +181,15 @@ public class AnimalImpl implements Animal {
         this.wellBeing = wellBeing;
        this.checkLoadingOfDrowning(turnsOfDrowning);
        this.checkLoadingOfStarvation(turnsOfStarvation);
+    }
+    
+    private void checkLoadingOfAge(int age) throws IncorrectDataException{
+         if (age >= 0) {
+            this.age = age;
+        } else {
+            throw new IncorrectDataException(
+                    this.option.getAnimalBundle().getString("TOO_YOUNG"));
+        }
     }
     
     private void checkLoadingOfDrowning(int drowning) throws IncorrectDataException{
