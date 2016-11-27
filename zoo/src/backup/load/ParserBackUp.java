@@ -38,9 +38,10 @@ public class ParserBackUp {
      * The constructor of the parser
      *
      * @param file the file to parse
-     * @throws IOException if if an I/O error prevents a document from being fully parsed
+     * @throws IOException if if an I/O error prevents a document from being
+     * fully parsed
      * @throws JDOMException if error occurs during parsing
-      */
+     */
     public ParserBackUp(File file) throws IOException, JDOMException {
         SAXBuilder sax = new SAXBuilder();
         Document document;
@@ -49,8 +50,8 @@ public class ParserBackUp {
     }
 
     /**
-     * Parse the characteristics of the zoo (not including paddocks, 
-     * animals, keepers and language)
+     * Parse the characteristics of the zoo (not including paddocks, animals,
+     * keepers and language)
      *
      * @return The corresponding FakeZoo
      * @throws IOException
@@ -66,7 +67,7 @@ public class ParserBackUp {
                 Integer.parseInt(zooEl.getChild(Constants.HORIZON).getText())
         );
     }
- 
+
     /**
      * Parse the language of the save
      *
@@ -78,6 +79,7 @@ public class ParserBackUp {
 
     /**
      * Method used to parse paddocks
+     *
      * @return The list of FakePaddocks extracted from the parsed file
      */
     public List<FakePaddock> parserPaddocks() {
@@ -98,6 +100,7 @@ public class ParserBackUp {
 
     /**
      * Extract the list of elements "animals" from the parsed file
+     *
      * @return the list
      */
     private List<Element> findElementsAnimals() {
@@ -124,10 +127,11 @@ public class ParserBackUp {
 
     /**
      * Extract the list of fake animals inside an element "animals"
+     *
      * @param animalsEl the "animals" element to parse
      * @returnthe correpsonding list
-     * @throws IncorrectLoadException if a parsed element does not respect the limitations 
-     * of the animal attributes 
+     * @throws IncorrectLoadException if a parsed element does not respect the
+     * limitations of the animal attributes
      */
     private List<FakeAnimal> parserAnimal(Element animalsEl) throws IncorrectLoadException {
         List<Element> animalsElList = animalsEl.getChildren(Constants.ANIMAL);
@@ -146,9 +150,10 @@ public class ParserBackUp {
         TerritoryAttributes territory;
         double wellBeing;
         int starvation;
+        int drowning;
         int actualFastDays;
-        for(Element tmpAnimalEl : animalsElList){
-        PersonalityAttributes personality;
+        for (Element tmpAnimalEl : animalsElList) {
+            PersonalityAttributes personality;
             spec = tmpAnimalEl.getChildText(Constants.SPECIE);
             sex = Integer.parseInt(tmpAnimalEl.getChildText(Constants.SEX));
             age = Integer.parseInt(tmpAnimalEl.getChildText(Constants.AGE));
@@ -163,47 +168,63 @@ public class ParserBackUp {
             personality = parserPersonalityAttributes(tmpAnimalEl);
             wellBeing = parserWellBeing(tmpAnimalEl);
             starvation = parserStarvation(tmpAnimalEl);
+            drowning = parserDrowning(tmpAnimalEl);
             animalsList.add(new FakeAnimal(spec,
                     tmpAnimalEl.getAttributeValue(Constants.NAME),
                     pad, sex, age, biome, optFeed, actualFeed, diet, repro,
-                    life, social, territory, personality, wellBeing, starvation));
+                    life, social, territory, personality, wellBeing, starvation, drowning));
         }
         return animalsList;
     }
 
     /**
-     * @deprecated 
+     * @deprecated
      */
     private BiomeAttributes parserBiomeAttributes(Element tmpAnimalEl) {
         BiomeAttributes biome = new BiomeAttributes(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
         return biome;
     }
 
-        /**
+    /**
      * Parse the turn's number of starvation of an animal
+     *
      * @param tmpAnimalEl the "animal" element to parse
      * @return the corresponding number of turns
      */
     private int parserStarvation(Element tmpAnimalEl)
             throws IncorrectLoadException {
-      return Integer.parseInt(tmpAnimalEl.getChildText(Constants.STARVATION));
+        return Integer.parseInt(tmpAnimalEl.getChildText(Constants.STARVATION));
     }
     
      /**
+     * Parse the turn's number of drowning of an animal
+     *
+     * @param tmpAnimalEl the "animal" element to parse
+     * @return the corresponding number of turns
+     */
+    private int parserDrowning(Element tmpAnimalEl)
+            throws IncorrectLoadException {
+        return Integer.parseInt(tmpAnimalEl.getChildText(Constants.DROWNING));
+    }
+
+    /**
      * Parse the well-being of an animal
+     *
      * @param tmpAnimalEl the "animal" element to parse
      * @return the corresponding well-being
      */
     private double parserWellBeing(Element tmpAnimalEl)
             throws IncorrectLoadException {
-      return Double.parseDouble(tmpAnimalEl.getChildText(Constants.WELLBEING));
+        return Double.parseDouble(tmpAnimalEl.getChildText(Constants.WELLBEING));
     }
-    
+
     /**
      * Parse the optimal feeding attributes of an animal
+     *
      * @param tmpAnimalEl the "animal" element to parse
      * @return the corresponding attributes
-     * @throws IncorrectLoadException if the values of the attributes are incorrect
+     * @throws IncorrectLoadException if the values of the attributes are
+     * incorrect
      */
     private FeedingAttributes parserOptimalFeedingAttributes(Element tmpAnimalEl)
             throws IncorrectLoadException {
@@ -212,22 +233,25 @@ public class ParserBackUp {
                 Double.parseDouble(feedEl.getChildText(Constants.QUANTITY)), 0);
     }
 
-        /**
+    /**
      * Parse the actual feeding attributes of an animal
+     *
      * @param tmpAnimalEl the "animal" element to parse
      * @return the corresponding attributes
-     * @throws IncorrectLoadException if the values of the attributes are incorrect
+     * @throws IncorrectLoadException if the values of the attributes are
+     * incorrect
      */
     private FeedingAttributes parserActualFeedingAttributes(Element tmpAnimalEl)
             throws IncorrectLoadException {
         Element feedEl = tmpAnimalEl.getChild(Constants.ACTUALFEEDING_ATT);
         return new FeedingAttributes(
-                Double.parseDouble(feedEl.getChildText(Constants.QUANTITY)), 
-        Integer.parseInt(feedEl.getChildText(Constants.FASTDAYS)));
+                Double.parseDouble(feedEl.getChildText(Constants.QUANTITY)),
+                Integer.parseInt(feedEl.getChildText(Constants.FASTDAYS)));
     }
 
-        /**
+    /**
      * Parse the dietof an animal
+     *
      * @param tmpAnimalEl the "animal" element to parse
      * @return the corresponding attributes
      */
@@ -236,11 +260,13 @@ public class ParserBackUp {
         return Integer.parseInt(feedEl.getChildText(Constants.DIET));
     }
 
-        /**
+    /**
      * Parse the reproduction attributes of an animal
+     *
      * @param tmpAnimalEl the "animal" element to parse
      * @return the corresponding attributes
-     * @throws IncorrectLoadException if the values of the attributes are incorrect
+     * @throws IncorrectLoadException if the values of the attributes are
+     * incorrect
      */
     private ReproductionAttributes parserReproductionAttributes(Element tmpAnimalEl) {
         Element reproEl = tmpAnimalEl.getChild(Constants.ACTUALREPRODUCTION_ATT);
@@ -253,11 +279,13 @@ public class ParserBackUp {
         return repro;
     }
 
-        /**
+    /**
      * Parse the lifespan attributes of an animal
+     *
      * @param tmpAnimalEl the "animal" element to parse
      * @return the corresponding attributes
-     * @throws IncorrectLoadException if the values of the attributes are incorrect
+     * @throws IncorrectLoadException if the values of the attributes are
+     * incorrect
      */
     private LifeSpanLightAttributes parserLifeSpanAttributes(Element tmpAnimalEl)
             throws IncorrectLoadException {
@@ -267,11 +295,13 @@ public class ParserBackUp {
         return life;
     }
 
-        /**
+    /**
      * Parse the optimal social attributes of an animal
+     *
      * @param tmpAnimalEl the "animal" element to parse
      * @return the corresponding attributes
-     * @throws IncorrectLoadException if the values of the attributes are incorrect
+     * @throws IncorrectLoadException if the values of the attributes are
+     * incorrect
      */
     private SocialAttributes parserSocialAttributes(Element tmpAnimalEl) throws IncorrectLoadException {
         Element socialEl = tmpAnimalEl.getChild(Constants.OPTIMALSOCIAL_ATT);
@@ -280,11 +310,13 @@ public class ParserBackUp {
         return social;
     }
 
-        /**
+    /**
      * Parse the optimal territory attributes of an animal
+     *
      * @param tmpAnimalEl the "animal" element to parse
      * @return the corresponding attributes
-     * @throws IncorrectLoadException if the values of the attributes are incorrect
+     * @throws IncorrectLoadException if the values of the attributes are
+     * incorrect
      */
     private TerritoryAttributes parserTerritoryAttributes(Element tmpAnimalEl) throws IncorrectLoadException {
         Element territoryEl = tmpAnimalEl.getChild(Constants.OPTIMALTERRITORY_ATT);
@@ -293,24 +325,27 @@ public class ParserBackUp {
         return territory;
     }
 
-        /**
+    /**
      * Parse the personality attributes of an animal
+     *
      * @param tmpAnimalEl the "animal" element to parse
      * @return the corresponding attributes
-     * @throws IncorrectLoadException if the values of the attributes are incorrect
+     * @throws IncorrectLoadException if the values of the attributes are
+     * incorrect
      */
     private PersonalityAttributes parserPersonalityAttributes(Element tmpAnimalEl) {
         Element persoEl = tmpAnimalEl.getChild(Constants.PERSONALITY);
         return new PersonalityAttributes(
                 Double.parseDouble(persoEl.getChildText(Constants.BRAVERY)),
                 Double.parseDouble(persoEl.getChildText(Constants.INTELLIGENCE)),
-                Double.parseDouble(persoEl.getChildText(Constants.METICULOUSNESS)), 
-                Double.parseDouble(persoEl.getChildText(Constants.GREED)), 
+                Double.parseDouble(persoEl.getChildText(Constants.METICULOUSNESS)),
+                Double.parseDouble(persoEl.getChildText(Constants.GREED)),
                 Double.parseDouble(persoEl.getChildText(Constants.CURIOSITY)));
     }
 
     /**
      * Extract the list of fake keepers of the zoo
+     *
      * @return the list of fake animal keepers in the parsed file
      */
     public List<FakeAnimalKeeper> parserAnimalKeepers() {
@@ -324,7 +359,8 @@ public class ParserBackUp {
     }
 
     /**
-     * Parse an element "animalKeeper" 
+     * Parse an element "animalKeeper"
+     *
      * @param el the element to parse
      * @return the corresponding fake keeper
      */
@@ -338,8 +374,10 @@ public class ParserBackUp {
 
     /**
      * Parse an element "timedPaddocks"
+     *
      * @param el the element to parse
-     * @return the corresponding map of the timed paddocks identifying by the name
+     * @return the corresponding map of the timed paddocks identifying by the
+     * name
      */
     private Map<String, Double> parserTimedPaddocks(Element el) {
         Map<String, Double> timedPaddocks = new HashMap<>();
@@ -351,14 +389,16 @@ public class ParserBackUp {
 
     /**
      * Parse an element "timedTasksPerPaddock"
+     *
      * @param el the element to parse
-     * @return the corresponding map of the timed tasks per paddock identifying by the name and id
+     * @return the corresponding map of the timed tasks per paddock identifying
+     * by the name and id
      */
     private Map<FakeTaskPaddock, Double> parserTimedTasksPerPaddock(Element el) {
         Map<FakeTaskPaddock, Double> timedPaddocks = new HashMap<>();
         for (Element padEl : el.getChild(Constants.TIMEDTASKS).getChildren(Constants.TIMEDTASK)) {
             timedPaddocks.put(
-                    new FakeTaskPaddock(padEl.getChildText(Constants.PADDOCK), 
+                    new FakeTaskPaddock(padEl.getChildText(Constants.PADDOCK),
                             Integer.parseInt(padEl.getChildText(Constants.TASK))),
                     Double.parseDouble(padEl.getChildText(Constants.TIME)));
         }
@@ -367,8 +407,10 @@ public class ParserBackUp {
 
     /**
      * Parse an element "managedFamilies"
+     *
      * @param el the element to parse
-     * @return the corresponding map of the managed families identifying by the id
+     * @return the corresponding map of the managed families identifying by the
+     * id
      */
     private Map<Integer, Double> parserManagedFamilies(Element el) {
         Map<Integer, Double> managed = new HashMap<>();
@@ -380,8 +422,9 @@ public class ParserBackUp {
         return managed;
     }
 
-       /**
+    /**
      * Parse an element "managedTasks"
+     *
      * @param el the element to parse
      * @return the corresponding map of the managed tasks identifying by the id
      */
