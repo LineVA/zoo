@@ -331,6 +331,7 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("MONTHS_WITHOUT_EATING") + this.turnsOfStarvation);
         info.add(bundle.getString("ACT_FEEDING_ATT") + this.actualFeeding.toStringByLanguage(option));
         info.add(bundle.getString("NB_FAST_DAYS") + this.actualFeeding.getFastDays());
+        info.add(bundle.getString("TURNS_DROWNING") + this.turnsOfDrowning);
         if (this.sex.isFemale()) {
             info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.femaleToStringByLanguage(option));
         } else {
