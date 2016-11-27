@@ -5,7 +5,7 @@ import backup.load.LoadImpl;
 import commandLine.AbstractChangeZooCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
-import java.io.IOException;
+import exception.UnexistedFileException;
 import launch.play.Play;
 import org.jdom2.JDOMException;
 import utils.Config;
@@ -41,7 +41,7 @@ public class LoadZoo extends AbstractChangeZooCommand {
         } catch (JDOMException ex) {
             return new ReturnExec(
                     super.getPlay().getOption().getGeneralCmdBundle().getString("FAIL_LOAD"), TypeReturn.ERROR);
-        } catch (IOException ex) {
+        } catch (UnexistedFileException ex) {
             return new ReturnExec(
                     super.getPlay().getOption().getGeneralCmdBundle().getString("MISSING_FILE"), TypeReturn.ERROR);
         } catch (Exception ex) {

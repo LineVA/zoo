@@ -1,6 +1,7 @@
 package backup.load;
 
 import exception.IncorrectLoadException;
+import exception.UnexistedFileException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,14 +39,19 @@ public class ParserBackUp {
      * The constructor of the parser
      *
      * @param file the file to parse
+     * @throws exception.UnexistedFileException if we try to load an unexisted file
      * @throws IOException if if an I/O error prevents a document from being
      * fully parsed
      * @throws JDOMException if error occurs during parsing
      */
-    public ParserBackUp(File file) throws IOException, JDOMException {
+    public ParserBackUp(File file) throws UnexistedFileException, IOException, JDOMException {
         SAXBuilder sax = new SAXBuilder();
         Document document;
+        try {
         document = sax.build(file);
+        } catch(IOException ex){
+            throw new UnexistedFileException(ex.getMessage());
+        }
         this.zooEl = document.getRootElement();
     }
 
