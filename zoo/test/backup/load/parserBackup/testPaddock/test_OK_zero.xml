@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zoo name="zooTest">
-  <dimensions>
-    <width>9</width>
-    <height>10</height>
-  </dimensions>
-  <age>11</age>
-  <monthsPerEvaluation>12</monthsPerEvaluation>
-  <horizon>13</horizon>
-  <language>fr</language>
-  <paddocks>
-       <paddock name="pad1">
-      <x>1</x>
-      <y>2</y>
-      <width>3</width>
-      <height>4</height>
-      <animals />
-    </paddock>
-     <paddock name="pad2">
-      <x>5</x>
-      <y>6</y>
-      <width>7</width>
-      <height>8</height>
-      <animals />
-    </paddock>
-  </paddocks>
+    <dimensions>
+        <width>9</width>
+        <height>10</height>
+    </dimensions>
+    <age>11</age>
+    <monthsPerEvaluation>12</monthsPerEvaluation>
+    <horizon>13</horizon>
+    <language>fr</language>
+    <paddocks>
+        <paddock name="pad1">
+            <biome>0</biome>
+            <paddockType>0</paddockType>    
+            <x>0</x>
+            <y>0</y>
+            <width>0</width>
+            <height>0</height>
+            <animals />
+        </paddock>
+    </paddocks>
 </zoo>
 

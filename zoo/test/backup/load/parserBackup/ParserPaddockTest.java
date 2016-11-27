@@ -17,13 +17,10 @@ import zoo.paddock.FakePaddock;
 public class ParserPaddockTest {
 
     @Test
-    /**
-     * We use test2.xml
-     */
     public void shouldParseAZooWithNoPaddock()
             throws IOException, JDOMException {
         // Given
-        ParserBackUp parser = new ParserBackUp(new File("test/backup/load/parserBackup/test2.xml"));
+        ParserBackUp parser = new ParserBackUp(new File("test/backup/load/parserBackup/testPaddock/test_OK_noPaddock.xml"));
         // When
         List<FakePaddock> paddocks = parser.parserPaddocks();
         // Then
@@ -32,35 +29,194 @@ public class ParserPaddockTest {
     }
 
     @Test
-    /**
-     * We use test3.xml
-     */
     public void shouldParseAZooWithTwoPaddockAndTheExpectedValues()
             throws IOException, JDOMException {
         // Given
-        ParserBackUp parser = new ParserBackUp(new File("test/backup/load/parserBackup/test3.xml"));
+        ParserBackUp parser
+                = new ParserBackUp(new File("test/backup/load/parserBackup/testPaddock/test_OK_positivValues.xml"));
         // When
         List<FakePaddock> paddocks = parser.parserPaddocks();
         // Then
-        FakePaddock expectedPad1 = new FakePaddock("pad1", 1, 2, 3, 4);
-        FakePaddock expectedPad2 = new FakePaddock("pad2", 5, 6, 7, 8);
+        FakePaddock expectedPad1 = new FakePaddock("pad1", 1, 2, 3, 4, 9, 10);
+        FakePaddock expectedPad2 = new FakePaddock("pad2", 5, 6, 7, 8, 11, 12);
         List<FakePaddock> expectedPaddocks = new ArrayList<>();
         expectedPaddocks.add(expectedPad1);
         expectedPaddocks.add(expectedPad2);
         Assert.assertEquals(expectedPaddocks.size(), paddocks.size());
-        // Pad1
-        Assert.assertEquals(expectedPad1.getHeight(), paddocks.get(0).getHeight());
-        Assert.assertEquals(expectedPad1.getWidth(), paddocks.get(0).getWidth());
-        Assert.assertEquals(expectedPad1.getX(), paddocks.get(0).getX());
-        Assert.assertEquals(expectedPad1.getY(), paddocks.get(0).getY());
-        Assert.assertEquals(expectedPad1.getName(), paddocks.get(0).getName());
-          // Pad2
-        Assert.assertEquals(expectedPad2.getHeight(), paddocks.get(1).getHeight());
-        Assert.assertEquals(expectedPad2.getWidth(), paddocks.get(1).getWidth());
-        Assert.assertEquals(expectedPad2.getX(), paddocks.get(1).getX());
-        Assert.assertEquals(expectedPad2.getY(), paddocks.get(1).getY());
-        Assert.assertEquals(expectedPad2.getName(), paddocks.get(1).getName());
-
+        Assert.assertTrue(expectedPad1.equals(paddocks.get(0)));
+        Assert.assertTrue(expectedPad2.equals(paddocks.get(1)));
     }
+
+    @Test
+    public void shouldParseAZooWithOnePaddockWhenTheBiomeAndThePaddockTypeDoNotCheckAnyExisting()
+            throws IOException, JDOMException {
+        // Given
+        ParserBackUp parser
+                = new ParserBackUp(new File("test/backup/load/parserBackup/testPaddock/test_OK_unknownBiomeAndPaddockType.xml"));
+        // When
+        List<FakePaddock> paddocks = parser.parserPaddocks();
+        // Then
+        FakePaddock expectedPad1 = new FakePaddock("pad1", 1, 2, 3, 4, 99, 100);
+        List<FakePaddock> expectedPaddocks = new ArrayList<>();
+        expectedPaddocks.add(expectedPad1);
+        Assert.assertEquals(expectedPaddocks.size(), paddocks.size());
+        Assert.assertTrue(expectedPad1.equals(paddocks.get(0)));
+    }
+
+    @Test
+    public void shouldParseAZooWithOnePaddockWhenAllTheValuesAreZero()
+            throws IOException, JDOMException {
+        // Given
+        ParserBackUp parser
+                = new ParserBackUp(new File("test/backup/load/parserBackup/testPaddock/test_OK_zero.xml"));
+        // When
+        List<FakePaddock> paddocks = parser.parserPaddocks();
+        // Then
+        FakePaddock expectedPad1 = new FakePaddock("pad1", 0, 0, 0, 0, 0, 0);
+        List<FakePaddock> expectedPaddocks = new ArrayList<>();
+        expectedPaddocks.add(expectedPad1);
+        Assert.assertEquals(expectedPaddocks.size(), paddocks.size());
+        Assert.assertTrue(expectedPad1.equals(paddocks.get(0)));
+    }
+
+    @Test
+    public void shouldParseAZooWithOnePaddockWhenAllTheValuesAreNegativ()
+            throws IOException, JDOMException {
+        // Given
+        ParserBackUp parser
+                = new ParserBackUp(new File("test/backup/load/parserBackup/testPaddock/test_OK_negativ.xml"));
+        // When
+        List<FakePaddock> paddocks = parser.parserPaddocks();
+        // Then
+        FakePaddock expectedPad1 = new FakePaddock("pad1", -1, -2, -3, -4, -5, -6);
+        List<FakePaddock> expectedPaddocks = new ArrayList<>();
+        expectedPaddocks.add(expectedPad1);
+        Assert.assertEquals(expectedPaddocks.size(), paddocks.size());
+        Assert.assertTrue(expectedPad1.equals(paddocks.get(0)));
+    }
+
+    @Test
+    public void shouldParseAZooWithTwoPaddockWhenTheyHaveTheSameName()
+            throws IOException, JDOMException {
+        // Given
+        ParserBackUp parser
+                = new ParserBackUp(new File("test/backup/load/parserBackup/testPaddock/test_OK_sameNames.xml"));
+        // When
+        List<FakePaddock> paddocks = parser.parserPaddocks();
+        // Then
+        FakePaddock expectedPad1 = new FakePaddock("pad", 1, 2, 3, 4, 9, 10);
+        FakePaddock expectedPad2 = new FakePaddock("pad", 5, 6, 7, 8, 11, 12);
+        List<FakePaddock> expectedPaddocks = new ArrayList<>();
+        expectedPaddocks.add(expectedPad1);
+        expectedPaddocks.add(expectedPad2);
+        Assert.assertEquals(expectedPaddocks.size(), paddocks.size());
+        Assert.assertTrue(expectedPad1.equals(paddocks.get(0)));
+        Assert.assertTrue(expectedPad2.equals(paddocks.get(1)));
+    }
+
+    @Test
+    public void shouldParseAZooWithTwoPaddockWhenTheyHaveTheSameCoordinates()
+            throws IOException, JDOMException {
+        // Given
+        ParserBackUp parser
+                = new ParserBackUp(new File("test/backup/load/parserBackup/testPaddock/test_OK_sameCoordinates.xml"));
+        // When
+        List<FakePaddock> paddocks = parser.parserPaddocks();
+        // Then
+        FakePaddock expectedPad1 = new FakePaddock("pad1", 1, 2, 3, 4, 9, 10);
+        FakePaddock expectedPad2 = new FakePaddock("pad2", 1, 2, 3, 4, 11, 12);
+        List<FakePaddock> expectedPaddocks = new ArrayList<>();
+        expectedPaddocks.add(expectedPad1);
+        expectedPaddocks.add(expectedPad2);
+        Assert.assertEquals(expectedPaddocks.size(), paddocks.size());
+        Assert.assertTrue(expectedPad1.equals(paddocks.get(0)));
+        Assert.assertTrue(expectedPad2.equals(paddocks.get(1)));
+    }
+
+    @Test
+    public void shouldParseAZooWithTwoPaddockWhenTheyAreTheSame()
+            throws IOException, JDOMException {
+        // Given
+        ParserBackUp parser
+                = new ParserBackUp(new File("test/backup/load/parserBackup/testPaddock/test_OK_same.xml"));
+        // When
+        List<FakePaddock> paddocks = parser.parserPaddocks();
+        // Then
+        FakePaddock expectedPad1 = new FakePaddock("pad1", 1, 2, 3, 4, 9, 10);
+        FakePaddock expectedPad2 = new FakePaddock("pad1", 1, 2, 3, 4, 9, 10);
+        List<FakePaddock> expectedPaddocks = new ArrayList<>();
+        expectedPaddocks.add(expectedPad1);
+        expectedPaddocks.add(expectedPad2);
+        Assert.assertEquals(expectedPaddocks.size(), paddocks.size());
+        Assert.assertTrue(expectedPad1.equals(paddocks.get(0)));
+        Assert.assertTrue(expectedPad2.equals(paddocks.get(1)));
+    }
+    
+     @Test(expected = NumberFormatException.class)
+    public void shouldThrowAnNumberFormatExceptionWhenXIsNotANumber()
+            throws IOException, JDOMException {
+        // Given
+        ParserBackUp parser
+                = new ParserBackUp(new File("test/backup/load/parserBackup/testPaddock/test_KO_x.xml"));
+        // When
+        List<FakePaddock> paddocks = parser.parserPaddocks();
+        // Then
+    }
+    
+      @Test(expected = NumberFormatException.class)
+    public void shouldThrowAnNumberFormatExceptionWhenYIsNotANumber()
+            throws IOException, JDOMException {
+        // Given
+        ParserBackUp parser
+                = new ParserBackUp(new File("test/backup/load/parserBackup/testPaddock/test_KO_y.xml"));
+        // When
+        List<FakePaddock> paddocks = parser.parserPaddocks();
+        // Then
+    }
+    
+      @Test(expected = NumberFormatException.class)
+    public void shouldThrowAnNumberFormatExceptionWhenHeightIsNotANumber()
+            throws IOException, JDOMException {
+        // Given
+        ParserBackUp parser
+                = new ParserBackUp(new File("test/backup/load/parserBackup/testPaddock/test_KO_height.xml"));
+        // When
+        List<FakePaddock> paddocks = parser.parserPaddocks();
+        // Then
+    }
+    
+      @Test(expected = NumberFormatException.class)
+    public void shouldThrowAnNumberFormatExceptionWhenWidthIsNotANumber()
+            throws IOException, JDOMException {
+        // Given
+        ParserBackUp parser
+                = new ParserBackUp(new File("test/backup/load/parserBackup/testPaddock/test_KO_width.xml"));
+        // When
+        List<FakePaddock> paddocks = parser.parserPaddocks();
+        // Then
+    }
+    
+      @Test(expected = NumberFormatException.class)
+    public void shouldThrowAnNumberFormatExceptionWhenBiomeIsNotANumber()
+            throws IOException, JDOMException {
+        // Given
+        ParserBackUp parser
+                = new ParserBackUp(new File("test/backup/load/parserBackup/testPaddock/test_KO_biome.xml"));
+        // When
+        List<FakePaddock> paddocks = parser.parserPaddocks();
+        // Then
+    }
+    
+      @Test(expected = NumberFormatException.class)
+    public void shouldThrowAnNumberFormatExceptionWhenPaddockTypeIsNotANumber()
+            throws IOException, JDOMException {
+        // Given
+        ParserBackUp parser
+                = new ParserBackUp(new File("test/backup/load/parserBackup/testPaddock/test_KO_paddockType.xml"));
+        // When
+        List<FakePaddock> paddocks = parser.parserPaddocks();
+        // Then
+    }
+    
 
 }

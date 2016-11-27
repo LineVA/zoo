@@ -5,6 +5,7 @@ import exception.name.EmptyNameException;
 import exception.name.NameException;
 import exception.name.UnauthorizedNameException;
 import exception.name.UnknownNameException;
+import java.util.Objects;
 import lombok.Getter;
 import launch.options.Option;
 
@@ -50,5 +51,53 @@ public class FakePaddock {
                 .biome(this.biome)
                 .buildPaddock();
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.name);
+        hash = 59 * hash + this.x;
+        hash = 59 * hash + this.y;
+        hash = 59 * hash + this.width;
+        hash = 59 * hash + this.height;
+        hash = 59 * hash + this.biome;
+        hash = 59 * hash + this.paddockType;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final FakePaddock other = (FakePaddock) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (this.x != other.x) {
+            return false;
+        }
+        if (this.y != other.y) {
+            return false;
+        }
+        if (this.width != other.width) {
+            return false;
+        }
+        if (this.height != other.height) {
+            return false;
+        }
+        if (this.biome != other.biome) {
+            return false;
+        }
+        if (this.paddockType != other.paddockType) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
 }
