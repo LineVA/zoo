@@ -56,7 +56,7 @@ public class WellBeingImpl implements WellBeing {
     @Override
     public boolean isStarving(int actualDiet, FeedingAttributes feedingAt, IPaddock paddock,
             List<Integer> specieDiet, List<AnimalKeeper> keepers) {
-        if (feedingAt.getFastDays() != 7) {
+        if (feedingAt.getFastDays() == 7) {
             return true;
         }
         if (!specieDiet.contains(actualDiet)) {
