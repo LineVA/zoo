@@ -59,6 +59,7 @@ public class Paddock implements IPaddock {
     BiomeAttributes attributes;
     @Getter
     Map<String, Animal> animals;
+    @Getter
     private int paddockType;
     private List<IPaddock> neightbourhood;
     private BirthObservable obs = new BirthObservable();

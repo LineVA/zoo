@@ -13,6 +13,7 @@ import zoo.animalKeeper.AnimalKeeper;
 import zoo.animalKeeper.Task;
 import zoo.animalKeeper.TaskPaddock;
 import zoo.paddock.IPaddock;
+import zoo.paddock.PaddockTypes;
 import zoo.paddock.TerritoryAttributes;
 import zoo.statistics.Compare;
 
@@ -48,10 +49,14 @@ public class WellBeingImpl implements WellBeing {
         this.diameter = diameter;
     }
 
+    public boolean isDrowning(IPaddock paddock) {
+        return paddock.getPaddockType() == PaddockTypes.AQUARIUM.getId();
+    }
+
     @Override
     public boolean isStarving(int actualDiet, FeedingAttributes feedingAt, IPaddock paddock,
-           List<Integer> specieDiet, List<AnimalKeeper> keepers) {
-        if(feedingAt.getFastDays() != 7){
+            List<Integer> specieDiet, List<AnimalKeeper> keepers) {
+        if (feedingAt.getFastDays() != 7) {
             return true;
         }
         if (!specieDiet.contains(actualDiet)) {
@@ -63,7 +68,6 @@ public class WellBeingImpl implements WellBeing {
             }
         }
         return true;
-        
     }
 
     /**
@@ -191,12 +195,12 @@ public class WellBeingImpl implements WellBeing {
         return false;
     }
 
-    private boolean isActuallyFeeding(IPaddock paddock, List<AnimalKeeper> keepers, 
-            Specie spec, int diet, FeedingAttributes actualFeedingAttributes){
+    private boolean isActuallyFeeding(IPaddock paddock, List<AnimalKeeper> keepers,
+            Specie spec, int diet, FeedingAttributes actualFeedingAttributes) {
         return isAKeeperForFeeding(paddock, keepers) && spec.getDiets().contains(diet)
-                && actualFeedingAttributes.getFastDays() <7;
+                && actualFeedingAttributes.getFastDays() < 7;
     }
-    
+
     private double computeFoodWB(int diet, FeedingAttributes optimalFeeding,
             FeedingAttributes actualFeeding, Specie spec,
             List<AnimalKeeper> keepers, IPaddock paddock) {

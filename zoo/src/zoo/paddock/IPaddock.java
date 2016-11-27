@@ -95,6 +95,8 @@ public interface IPaddock {
     public Option getOption();
 
     public int getBiome();
+    
+    public int getPaddockType();
 
     /**
      * Friend pattern : give access to each of the fields of Zoo only to the

@@ -46,4 +46,6 @@ public interface WellBeing {
      */
     public boolean isStarving(int actualDiet, FeedingAttributes feedinfgAt, IPaddock paddock, 
             List<Integer> specieDiet, List<AnimalKeeper> keepers);
+    
+    public boolean isDrowning(IPaddock paddock);
 }
