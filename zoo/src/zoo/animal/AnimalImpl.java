@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import launch.options.Option;
 import lombok.Getter;
 import lombok.Setter;
+import utils.Constants;
 import utils.Utils;
 import zoo.NameVerifications;
 import zoo.animal.conservation.ConservationStatus;
@@ -188,8 +189,26 @@ public class AnimalImpl implements Animal {
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
         this.wellBeing = wellBeing;
-        this.turnsOfStarvation = turnsOfStarvation;
-        this.turnsOfDrowning = turnsOfDrowning;
+       this.checkLoadingOfDrowning(turnsOfDrowning);
+       this.checkLoadingOfStarvation(turnsOfStarvation);
+    }
+    
+    private void checkLoadingOfDrowning(int drowning) throws IncorrectDataException{
+         if (drowning >= 0 && drowning < Constants.MAX_DROWNING) {
+            this.turnsOfDrowning = drowning;
+        } else {
+            throw new IncorrectDataException(
+                    this.option.getAnimalBundle().getString("TOO_DROWNING"));
+        }
+    }
+    
+    private void checkLoadingOfStarvation(int starvation) throws IncorrectDataException{
+           if (starvation >= 0 && starvation < Constants.MAX_STARVING) {
+            this.turnsOfStarvation = starvation;
+        } else {
+            throw new IncorrectDataException(
+                    this.option.getAnimalBundle().getString("TOO_STARVATION"));
+        }
     }
 
     private BiomeAttributes drawOptimalBiome(Specie spec) {
@@ -317,11 +336,11 @@ public class AnimalImpl implements Animal {
         return this.turnsOfStarvation >= 3;
     }
 
-      @Override
+    @Override
     public boolean isTooDrowning() {
         return this.turnsOfDrowning >= 3;
     }
-    
+
     @Override
     public List<String> info() throws UnknownNameException {
         List<String> info = new ArrayList<>();
@@ -586,8 +605,8 @@ public class AnimalImpl implements Animal {
         save.hashCode();
         return this.turnsOfStarvation;
     }
-    
-     @Override
+
+    @Override
     public int getDrowning(SaveImpl.FriendSave save) {
         save.hashCode();
         return this.turnsOfDrowning;

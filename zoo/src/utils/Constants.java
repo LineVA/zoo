@@ -8,6 +8,11 @@ public class Constants {
 
     // Value for undefined in an enum
     public static final int UNDEFIND_ENUM = -1;
+    // Max number of turns befrore drowning
+    public static final int MAX_DROWNING = 3;
+     // Max number of turns befrore starving
+    public static final int MAX_STARVING = 3;
+    
     // actualFeedingAttributes
     public static final String ACTUALFEEDING_ATT = "actualFeedingAttributes";
     // actualLifeSpanAttributes
