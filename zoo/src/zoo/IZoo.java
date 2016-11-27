@@ -36,6 +36,10 @@ public interface IZoo {
     public void initiateZoo(String name, int width, int height,
             Map<String, Specie> species, int age, int monthsPerEvaluation, int horizon)
             throws IncorrectDimensionsException, EmptyNameException, IOException;
+    
+      public void initiateZoo(String name, int width, int height,
+            Map<String, Specie> species)
+            throws IncorrectDimensionsException, EmptyNameException, IOException;
 
     public void setOption(Option option);
 

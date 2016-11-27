@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import backup.save.SaveImpl;
 import exception.IncorrectLoadException;
 import exception.name.NameException;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -41,13 +40,14 @@ import zoo.paddock.biome.Biome;
  */
 public class Zoo implements IZoo {
 
+    private final int initAge = 0;
+    private final int initHorizon = 5;
+    private final int initMonthsPerEvaluation = 6;
+    
     @Getter
     @Setter
     private Option option;
 
-//    public void setOption(Option option) {
-//        this.option = option;
-//    }
     /**
      * The name of the zoo
      */
@@ -89,7 +89,6 @@ public class Zoo implements IZoo {
     private int horizon;
 
     public Zoo() {
-        //  this.monthsPerEvaluation = 6;
     }
 
     /**
@@ -98,7 +97,10 @@ public class Zoo implements IZoo {
      * @param name the name of the zoo
      * @param width the width of the zoo
      * @param height the height of the zoo
-     * @param species
+     * @param species the map of the species
+     * @param age the age of the zoo
+     * @param monthsPerEvaluation the number of months  per evaluation
+     * @param horizon the value of the horizon
      * @throws IncorrectDimensionsException throws if the width and/or the
      * height is/are smaller than 1
      * @throws exception.name.EmptyNameException
@@ -127,6 +129,44 @@ public class Zoo implements IZoo {
         this.monthsPerEvaluation = monthsPerEvaluation;
         this.horizon = horizon;
     }
+    
+       /**
+     * Constructor of the object 'Zoo'
+     *
+     * @param name the name of the zoo
+     * @param width the width of the zoo
+     * @param height the height of the zoo
+     * @param species
+     * @throws IncorrectDimensionsException throws if the width and/or the
+     * height is/are smaller than 1
+     * @throws exception.name.EmptyNameException
+     */
+    @Override
+    public void initiateZoo(String name, int width, int height,
+            Map<String, Specie> species)
+            throws IncorrectDimensionsException, EmptyNameException, IOException {
+        if (name.trim().equals("")) {
+            throw new EmptyNameException(
+                    this.option.getZooBundle().getString("EMPTY_NAME"));
+        } else {
+            this.name = name;
+        }
+        if (width < 1 || height < 1) {
+            throw new IncorrectDimensionsException(
+                    this.option.getZooBundle().getString("INCORRECT_DIMENSIONS"));
+        } else {
+            this.width = width;
+            this.height = height;
+        }
+        paddocks = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        keepers = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        this.species = species;
+        this.age = this.initAge;
+        this.monthsPerEvaluation = initMonthsPerEvaluation;
+        this.horizon = initHorizon;
+    }
+    
+    
 
     /**
      * Method used to add a paddock to the zoo
