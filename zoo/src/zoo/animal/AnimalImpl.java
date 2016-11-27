@@ -586,5 +586,11 @@ public class AnimalImpl implements Animal {
         save.hashCode();
         return this.turnsOfStarvation;
     }
+    
+     @Override
+    public int getDrowning(SaveImpl.FriendSave save) {
+        save.hashCode();
+        return this.turnsOfDrowning;
+    }
 
 }

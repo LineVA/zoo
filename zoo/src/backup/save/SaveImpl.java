@@ -351,6 +351,7 @@ public class SaveImpl implements Save {
         el.addContent(createElementWithText(Constants.AGE, String.valueOf(animal.getAge(friendSave))));
         el.addContent(createElementWithText(Constants.WELLBEING, String.valueOf(animal.getWellBeeing(friendSave))));
         el.addContent(createElementWithText(Constants.STARVATION, String.valueOf(animal.getStarvation(friendSave))));
+        el.addContent(createElementWithText(Constants.DROWNING, String.valueOf(animal.getDrowning(friendSave))));
         el.addContent(createElementPersonalityAttributes(animal.getPersonality(friendSave)));
         el.addContent(createElementOptimalFeedingAttributes(animal.getOptimalFeeding(friendSave)));
         el.addContent(createElementActualFeedingAttributes(animal, animal.getActualFeeding(friendSave)));
@@ -384,7 +385,7 @@ public class SaveImpl implements Save {
      * @return an element "optimalBiomeAttributes" with eight sub-elements :
      * night- and dayTemperature, pluviometry, treeDensity, treeHeight, drop,
      * humidity and waterSalinity
-     * @deprecated 
+     * @deprecated
      */
     private Element createElementBiomeAttributes(BiomeAttributes att) {
         Element el = new Element("optimalBiomeAttributes");

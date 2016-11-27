@@ -72,6 +72,8 @@ public class Constants {
     public static final String DOCUMENTATION = "documentation";
     // documentation || doc
     public static final String[] DOC_OR_DOCUMENTATION = {"documentation", "doc"};
+    // drowning
+    public static final String DROWNING = "drowning";
     // ecoregion
     public static final String ECOREGION = "ecoregion";
     // --ecoregion || -e as argument
