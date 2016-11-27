@@ -31,6 +31,8 @@ public interface Animal {
 
     public boolean isTooStarving();
 
+    public boolean isTooDrowning();
+
     public List<String> info() throws UnknownNameException;
 
     public void ageing(int monthsPerEvaluation);

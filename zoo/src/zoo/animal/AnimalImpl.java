@@ -317,6 +317,11 @@ public class AnimalImpl implements Animal {
         return this.turnsOfStarvation >= 3;
     }
 
+      @Override
+    public boolean isTooDrowning() {
+        return this.turnsOfDrowning >= 3;
+    }
+    
     @Override
     public List<String> info() throws UnknownNameException {
         List<String> info = new ArrayList<>();
