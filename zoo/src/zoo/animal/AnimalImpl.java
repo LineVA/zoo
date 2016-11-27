@@ -80,6 +80,7 @@ public class AnimalImpl implements Animal {
     // actual is given by the number of animal is the paddock.
     private final TerritoryAttributes optimalTerritory;
     private int turnsOfStarvation;
+    private int turnsOfDrowning;
 
     /**
      * There is no notion of optimal in personality
@@ -115,6 +116,7 @@ public class AnimalImpl implements Animal {
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
         this.wellBeing = 0;
         this.turnsOfStarvation = 0;
+        this.turnsOfDrowning = 0;
     }
 
     public AnimalImpl(Specie spec, String name,
@@ -143,6 +145,7 @@ public class AnimalImpl implements Animal {
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
         this.wellBeing = 0;
         this.turnsOfStarvation = 0;
+        this.turnsOfDrowning = 0;
     }
 
     public void drawAttributes() {
@@ -156,7 +159,8 @@ public class AnimalImpl implements Animal {
             ReproductionAttributes reproduction,
             LifeSpanLightAttributes life, SocialAttributes social,
             TerritoryAttributes territory, PersonalityAttributes personality, double wellBeing,
-            int turnsOfStarvation, Option option)
+            int turnsOfStarvation, int turnsOfDrowning,
+            Option option)
             throws IncorrectDataException, EmptyNameException,
             UnknownNameException, UnauthorizedNameException {
         this.option = option;
@@ -185,6 +189,7 @@ public class AnimalImpl implements Animal {
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
         this.wellBeing = wellBeing;
         this.turnsOfStarvation = turnsOfStarvation;
+        this.turnsOfDrowning = turnsOfDrowning;
     }
 
     private BiomeAttributes drawOptimalBiome(Specie spec) {
