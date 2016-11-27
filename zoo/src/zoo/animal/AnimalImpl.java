@@ -357,10 +357,17 @@ public class AnimalImpl implements Animal {
         AnimalsAttributes attributes = new AnimalsAttributes(this.optimalBiome, this.optimalFeeding,
                 this.actualFeeding, this.actualDiet, this.optimalSocial, this.optimalTerritory, this.personality);
         this.wellBeing = wB.computeWellBeing(attributes, paddock, specie, keepers);
+        // Check if the animal is starving
         if (wB.isStarving(this.actualDiet, this.actualFeeding, paddock, this.specie.getDiets(), keepers)) {
             this.turnsOfStarvation++;
         } else {
             this.turnsOfStarvation = 0;
+        }
+        // Check if the animal is drowning
+        if (wB.isDrowning(paddock)) {
+            this.turnsOfDrowning++;
+        } else {
+            this.turnsOfDrowning = 0;
         }
         return this.wellBeing;
     }
