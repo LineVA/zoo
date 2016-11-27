@@ -40,6 +40,12 @@ import zoo.paddock.biome.BiomeAttributes;
  */
 public class AnimalImpl implements Animal {
 
+    private final double initWB = 0.0;
+    private final double initFoodQuantity = 0.0;
+    private final int initStarvation = 0;
+    private final int initDrowning = 0;
+    private final int initFastDays = 0;
+
     private Option option;
 
     private final Specie specie;
@@ -97,7 +103,7 @@ public class AnimalImpl implements Animal {
         this.name = name;
         this.paddock = paddock;
         this.sex = sex;
-       this.checkLoadingOfAge(age);
+        this.checkLoadingOfAge(age);
         this.optimalFeeding = drawOptimalFeeding(spec);
         this.actualFeeding = drawActualFeeding(spec);
         this.actualReproduction = drawActualReproduction(spec);
@@ -110,9 +116,9 @@ public class AnimalImpl implements Animal {
         this.wB = new WellBeingImpl(
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
-        this.wellBeing = 0.0;
-        this.turnsOfStarvation = 0;
-        this.turnsOfDrowning = 0;
+        this.wellBeing = this.initWB;
+        this.turnsOfStarvation = this.initStarvation;
+        this.turnsOfDrowning = this.initDrowning;
     }
 
     public AnimalImpl(Specie spec, String name,
@@ -139,9 +145,9 @@ public class AnimalImpl implements Animal {
         this.wB = new WellBeingImpl(
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
-        this.wellBeing = 0;
-        this.turnsOfStarvation = 0;
-        this.turnsOfDrowning = 0;
+        this.wellBeing = this.initWB;
+        this.turnsOfStarvation = this.initStarvation;
+        this.turnsOfDrowning = this.initDrowning;
     }
 
     public void drawAttributes() {
@@ -173,36 +179,36 @@ public class AnimalImpl implements Animal {
         this.actualFeeding = actualFeeding;
         this.optimalSocial = social;
         this.optimalTerritory = territory;
-       this.checkLoadingOfAge(age);
+        this.checkLoadingOfAge(age);
         this.personality = personality;
         this.wB = new WellBeingImpl(
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
         this.wellBeing = wellBeing;
-       this.checkLoadingOfDrowning(turnsOfDrowning);
-       this.checkLoadingOfStarvation(turnsOfStarvation);
+        this.checkLoadingOfDrowning(turnsOfDrowning);
+        this.checkLoadingOfStarvation(turnsOfStarvation);
     }
-    
-    private void checkLoadingOfAge(int age) throws IncorrectDataException{
-         if (age >= 0) {
+
+    private void checkLoadingOfAge(int age) throws IncorrectDataException {
+        if (age >= 0) {
             this.age = age;
         } else {
             throw new IncorrectDataException(
                     this.option.getAnimalBundle().getString("TOO_YOUNG"));
         }
     }
-    
-    private void checkLoadingOfDrowning(int drowning) throws IncorrectDataException{
-         if (drowning >= 0 && drowning < Constants.MAX_DROWNING) {
+
+    private void checkLoadingOfDrowning(int drowning) throws IncorrectDataException {
+        if (drowning >= 0 && drowning < Constants.MAX_DROWNING) {
             this.turnsOfDrowning = drowning;
         } else {
             throw new IncorrectDataException(
                     this.option.getAnimalBundle().getString("TOO_DROWNING"));
         }
     }
-    
-    private void checkLoadingOfStarvation(int starvation) throws IncorrectDataException{
-           if (starvation >= 0 && starvation < Constants.MAX_STARVING) {
+
+    private void checkLoadingOfStarvation(int starvation) throws IncorrectDataException {
+        if (starvation >= 0 && starvation < Constants.MAX_STARVING) {
             this.turnsOfStarvation = starvation;
         } else {
             throw new IncorrectDataException(
@@ -232,7 +238,7 @@ public class AnimalImpl implements Animal {
      */
     private FeedingAttributes drawOptimalFeeding(Specie spec) throws IncorrectLoadException {
         double quantity = spec.getGaussianFeeding().getFoodQuantity().nextDouble();
-        return new FeedingAttributes(quantity, 0);
+        return new FeedingAttributes(quantity, this.initFastDays);
     }
 
     /**
@@ -243,7 +249,7 @@ public class AnimalImpl implements Animal {
      * @return its actualFeedingAttributes
      */
     private FeedingAttributes drawActualFeeding(Specie spec) throws IncorrectLoadException {
-        return new FeedingAttributes(0.0, 0);
+        return new FeedingAttributes(this.initFoodQuantity, this.initFastDays);
     }
 
     /**
@@ -384,13 +390,13 @@ public class AnimalImpl implements Animal {
         if (wB.isStarving(this.actualDiet, this.actualFeeding, paddock, this.specie.getDiets(), keepers)) {
             this.turnsOfStarvation++;
         } else {
-            this.turnsOfStarvation = 0;
+            this.turnsOfStarvation = this.initStarvation;
         }
         // Check if the animal is drowning
         if (wB.isDrowning(paddock)) {
             this.turnsOfDrowning++;
         } else {
-            this.turnsOfDrowning = 0;
+            this.turnsOfDrowning = this.initDrowning;
         }
         return this.wellBeing;
     }
