@@ -18,7 +18,7 @@ public class DieImpl implements IDie{
     
     @Override
     public boolean isDied(Animal animal) {
-        return isInStarvation(animal) || mustDie(animal);
+        return isInStarvation(animal) || mustDie(animal) || animal.isTooDrowning();
     }
     
     private boolean mustDie(Animal animal){
