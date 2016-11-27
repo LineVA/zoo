@@ -8,6 +8,7 @@ import java.util.Map;
 import launch.InstanciateSpecies;
 import launch.play.Play;
 import org.jdom2.JDOMException;
+import utils.Config;
 import utils.Constants;
 import zoo.animal.specie.Specie;
 
@@ -27,7 +28,7 @@ public class CreateZoo extends AbstractChangeZooCommand {
             int monthsPerEvaluation = 6;
             int horizon = 5;
             int age = 0;
-            Map<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species",
+            Map<String, Specie> species = InstanciateSpecies.instanciateSpecies(Config.SPECIES_PATH,
                     super.getPlay().getOption());
             if (super.getPreviousCmd() != null) {
                 super.getPlay().getZoo().initiateZoo(super.getPreviousCmd()[2],

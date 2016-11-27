@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Map;
 import launch.InstanciateSpecies;
 import org.jdom2.JDOMException;
+import utils.Config;
 import zoo.animal.specie.Specie;
 
 /**
@@ -22,7 +23,7 @@ public class VisualCreateZoo implements CommandVisual {
     @Override
     public void execute(String[] cmd) {
         try {
-            Map<String, Specie> species = InstanciateSpecies.instanciateSpecies("resources/species", null);
+            Map<String, Specie> species = InstanciateSpecies.instanciateSpecies(Config.SPECIES_PATH, null);
             int monthsPerEvaluation = 6;
             int horizon = 5;
             int age = 0;

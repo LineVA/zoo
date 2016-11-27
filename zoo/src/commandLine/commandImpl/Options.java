@@ -8,6 +8,7 @@ import java.util.Arrays;
 import launch.InstanciateSpecies;
 import launch.play.Play;
 import org.jdom2.JDOMException;
+import utils.Config;
 import utils.Constants;
 
 /**
@@ -25,7 +26,7 @@ public class Options extends AbstractCommand {
         try { 
         super.getPlay().getOption().setLanguage(cmd[2]);
         super.getPlay().updateOption();
-        super.getPlay().getZoo().setSpecies(InstanciateSpecies.instanciateSpecies("resources/species", super.getPlay().getOption()));
+        super.getPlay().getZoo().setSpecies(InstanciateSpecies.instanciateSpecies(Config.SPECIES_PATH, super.getPlay().getOption()));
         super.setSuccess(true);
         return new ReturnExec(super.getPlay().getOption().getGeneralCmdBundle()
                 .getString("OPTION_CHANGE_SUCCESS"), TypeReturn.SUCCESS);

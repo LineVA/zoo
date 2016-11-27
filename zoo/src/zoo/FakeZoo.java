@@ -7,6 +7,7 @@ import launch.InstanciateSpecies;
 import lombok.Getter;
 import launch.options.Option;
 import org.jdom2.JDOMException;
+import utils.Config;
 import zoo.animal.specie.Specie;
 
 /**
@@ -39,7 +40,7 @@ public class FakeZoo {
     }
     
     public IZoo convertToZoo(Option option) throws IOException, JDOMException{
-         Map<String, Specie> spec = InstanciateSpecies.instanciateSpecies("resources/species", option);
+         Map<String, Specie> spec = InstanciateSpecies.instanciateSpecies(Config.SPECIES_PATH, option);
          IZoo zoo = new Zoo();
          zoo.initiateZoo(this.name, this.width, this.height, spec, this.age, 
                  this.monthsPerEvaluation, this.horizon);

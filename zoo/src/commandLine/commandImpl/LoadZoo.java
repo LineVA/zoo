@@ -8,6 +8,7 @@ import commandLine.TypeReturn;
 import java.io.IOException;
 import launch.play.Play;
 import org.jdom2.JDOMException;
+import utils.Config;
 import utils.Constants;
 import zoo.IZoo;
 
@@ -26,9 +27,9 @@ public class LoadZoo extends AbstractChangeZooCommand {
             Load load = new LoadImpl();
             IZoo zoo;
             if (super.getPreviousCmd() != null) {
-                zoo = load.loadZoo("gameBackUps/" + super.getPreviousCmd()[1] + ".xml");
+                zoo = load.loadZoo(Config.BACKUP_PATH + super.getPreviousCmd()[1] + Config.BACKUP_EXTENSION);
             } else {
-                zoo = load.loadZoo("gameBackUps/" + cmd[1] + ".xml");
+                zoo = load.loadZoo(Config.BACKUP_PATH+ cmd[1] + Config.BACKUP_EXTENSION);
             }
             super.getPlay().setZoo(zoo);
             super.getPlay().setOption(zoo.getOption());
