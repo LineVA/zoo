@@ -249,6 +249,42 @@ public class Paddock implements IPaddock {
         }
     }
 
+    private List<Animal> listAnimalWithStarvation(List<Animal> animals, Set<Integer> starvation)
+            throws UnknownNameException {
+        if (starvation != null && starvation.size() != 1) {
+            return new ArrayList<Animal>();
+        } else {
+            List<Animal> list = animals;
+            Iterator it = list.iterator();
+            Animal next;
+            while (it.hasNext()) {
+                next = (AnimalImpl) it.next();
+                if (!starvation.contains(next.getActualStarvation())) {
+                    it.remove();
+                }
+            }
+            return list;
+        }
+    }
+
+    private List<Animal> listAnimalWithDrowning(List<Animal> animals, Set<Integer> fastDay)
+            throws UnknownNameException {
+        if (fastDay != null && fastDay.size() != 1) {
+            return new ArrayList<Animal>();
+        } else {
+            List<Animal> list = animals;
+            Iterator it = list.iterator();
+            Animal next;
+            while (it.hasNext()) {
+                next = (AnimalImpl) it.next();
+                if (!fastDay.contains(next.getActualDrowning())) {
+                    it.remove();
+                }
+            }
+            return list;
+        }
+    }
+
     public List<Animal> listAnimalWithoutCriteria() {
         List<Animal> list = new ArrayList<>();
         animals.entrySet().stream().forEach((entry) -> {
@@ -272,7 +308,7 @@ public class Paddock implements IPaddock {
 
     @Override
     public List<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome,
-            Set<Integer> fastDay)
+            Set<Integer> fastDay, Set<Integer> starvation, Set<Integer> drowning)
             throws UnknownNameException {
         List<Animal> list = listAnimalWithoutCriteria();
         if (specie.getNames() != null) {
@@ -290,6 +326,12 @@ public class Paddock implements IPaddock {
         }
         if (fastDay != null && !fastDay.isEmpty()) {
             list = listAnimalWithFastDay(list, fastDay);
+        }
+        if (starvation != null && !starvation.isEmpty()) {
+            list = listAnimalWithStarvation(list, starvation);
+        }
+        if (drowning != null && !drowning.isEmpty()) {
+            list = listAnimalWithDrowning(list, drowning);
         }
         return list;
     }

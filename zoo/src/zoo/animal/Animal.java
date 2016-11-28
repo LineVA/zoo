@@ -67,6 +67,10 @@ public interface Animal {
 
     public int getActualFastDays();
 
+    public int getActualStarvation();
+
+    public int getActualDrowning();
+
     public int getActualLitterSize();
 
     public double getActualGestationFrequency();

@@ -526,6 +526,16 @@ public class AnimalImpl implements Animal {
         return this.actualFeeding.getFastDays();
     }
 
+    @Override
+    public int getActualStarvation() {
+        return this.turnsOfStarvation;
+    }
+
+    @Override
+    public int getActualDrowning() {
+        return this.turnsOfDrowning;
+    }
+
     /////////////////////
     @Override
     public String getName(SaveImpl.FriendSave save) {

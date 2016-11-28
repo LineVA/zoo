@@ -42,6 +42,8 @@ public class LsAnimal extends AbstractCommand {
     Set<String> paddocks;
     Set<String> tags;
     Set<String> fastDays;
+    Set<String> starvations;
+    Set<String> drownings;
 
     public LsAnimal(Play play) {
         super(play);
@@ -77,8 +79,11 @@ public class LsAnimal extends AbstractCommand {
             }
             super.setSuccess(true);
             List<String> names = new ArrayList<>();
-            for (Animal animal : super.getPlay().getZoo().listAnimal(convertToIPaddock(paddocks), spec, convertStringToSex(sexes),
-                    convertStringToDiet(diets), convertStringToBiome(biomes), Utils.convertToSetOfInteger(fastDays))) {
+            for (Animal animal : super.getPlay().getZoo().listAnimal(convertToIPaddock(paddocks),
+                    spec, convertStringToSex(sexes),
+                    convertStringToDiet(diets), convertStringToBiome(biomes),
+                    Utils.convertToSetOfInteger(fastDays), Utils.convertToSetOfInteger(starvations),
+                    Utils.convertToSetOfInteger(drownings))) {
                 names.add(animal.getName());
             }
             Collections.sort(names);
@@ -108,7 +113,7 @@ public class LsAnimal extends AbstractCommand {
         }
         return diets;
     }
-    
+
     private Set<Biome> convertStringToBiome(Set<String> strings)
             throws UnknownNameException, java.lang.NumberFormatException {
         Set<Biome> biomes = new HashSet<>();
@@ -139,7 +144,7 @@ public class LsAnimal extends AbstractCommand {
     }
 
     private boolean checkLength(String[] cmd) {
-        return cmd.length >= 2 && cmd.length <= 26 && cmd.length % 2 == 0;
+        return cmd.length >= 2 && cmd.length <= 30 && cmd.length % 2 == 0;
     }
 
     private boolean hasArgumentSpecie(String cmd) {
@@ -194,6 +199,14 @@ public class LsAnimal extends AbstractCommand {
         return Arrays.asList(Constants.FASTDAY_ARG).contains(cmd);
     }
 
+    private boolean hasArgumentStarvations(String cmd) {
+        return Arrays.asList(Constants.STARVATION_ARG).contains(cmd);
+    }
+
+    private boolean hasArgumentDrownings(String cmd) {
+        return Arrays.asList(Constants.DROWNING_ARG).contains(cmd);
+    }
+
     private boolean saveArgument(String arg, String value) {
         if (this.hasArgumentBiome(arg)) {
             biomes = SplittingAmpersand.split(value);
@@ -221,6 +234,10 @@ public class LsAnimal extends AbstractCommand {
             tags = SplittingAmpersand.split(value);
         } else if (this.hasArgumentFastDays(arg)) {
             fastDays = SplittingAmpersand.split(value);
+        } else if (this.hasArgumentStarvations(arg)) {
+            starvations = SplittingAmpersand.split(value);
+        } else if (this.hasArgumentDrownings(arg)) {
+            drownings = SplittingAmpersand.split(value);
         } else {
             return false;
         }
@@ -241,6 +258,8 @@ public class LsAnimal extends AbstractCommand {
         breedingProgrammes = new HashSet<>();
         tags = new HashSet<>();
         fastDays = new HashSet<>();
+        starvations = new HashSet<>();
+        drownings = new HashSet<>();
         if (firstCmd(cmd) && checkLength(cmd)) {
             int i = 2;
             while (i <= cmd.length - 2) {

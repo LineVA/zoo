@@ -79,6 +79,8 @@ public class Constants {
     public static final String[] DOC_OR_DOCUMENTATION = {"documentation", "doc"};
     // drowning
     public static final String DROWNING = "drowning";
+    // --drowning || -dw
+    public static final String[] DROWNING_ARG = {"--drowning", "-dw"};
     // ecoregion
     public static final String ECOREGION = "ecoregion";
     // --ecoregion || -e as argument
@@ -221,6 +223,8 @@ public class Constants {
     public static final String[] SPEED_ARG = {"--speed", "-s"};
     // starvation
     public static final String STARVATION = "starvation";
+    // --starvation || -sv
+    public static final String[] STARVATION_ARG = {"--starvation", "-sv"};
     // tag
     public static final String TAG = "tag";
     // tags
