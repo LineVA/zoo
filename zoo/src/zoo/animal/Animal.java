@@ -24,6 +24,8 @@ import zoo.paddock.TerritoryAttributes;
  * @author doyenm
  */
 public interface Animal {
+    
+    public boolean compare(LightAnimal lightAnimal); 
 
     public boolean isMature();
 

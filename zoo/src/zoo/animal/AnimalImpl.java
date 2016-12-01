@@ -484,6 +484,27 @@ public class AnimalImpl implements Animal {
         }
     }
 
+    @Override
+    public boolean compare(LightAnimal lightAnimal) {
+        boolean isCorresponding = true;
+        if (null != lightAnimal.getDiets()) {
+            isCorresponding &= lightAnimal.getDiets().contains(this.actualDiet);
+        }
+        if (null != lightAnimal.getDrownings()) {
+            isCorresponding &= lightAnimal.getDrownings().contains(this.turnsOfDrowning);
+        }
+        // fastDays
+        if (null != lightAnimal.getFastDays()) {
+            isCorresponding &= lightAnimal.getFastDays().contains(this.actualFeeding.getFastDays());
+        }
+        // starvation
+        if (null != lightAnimal.getStarvations()) {
+            isCorresponding &= lightAnimal.getStarvations().contains(this.turnsOfStarvation);
+        }
+        // sexes
+        return isCorresponding;
+    }
+
     /////////////////
     @Override
     public String getName() {

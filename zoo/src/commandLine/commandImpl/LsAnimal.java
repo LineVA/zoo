@@ -17,6 +17,7 @@ import launch.play.Play;
 import utils.Constants;
 import utils.Utils;
 import zoo.animal.Animal;
+import zoo.animal.LightAnimal;
 import zoo.animal.feeding.Diet;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.LightSpecie;
@@ -52,6 +53,7 @@ public class LsAnimal extends AbstractCommand {
     @Override
     public ReturnExec execute(String[] cmd) {
         LightSpecie spec = new LightSpecie(null, null, null, null, null, null, null, null, null, null, null);
+        LightAnimal lightAnimal = new LightAnimal(null, null, null, null, null, null, null);
         try {
             if (specie != null) {
                 spec.setNames(super.getPlay().getZoo().findSpecieByName(specie).getNames());
@@ -77,13 +79,31 @@ public class LsAnimal extends AbstractCommand {
             if (!tags.isEmpty()) {
                 spec.setTags(tags);
             }
+//            if (!paddocks.isEmpty()) {
+                lightAnimal.setPaddocks(convertToIPaddock(paddocks));
+//            }
+            if (!sexes.isEmpty()) {
+                lightAnimal.setSexes(convertStringToSex(sexes));
+            }
+            if (!biomes.isEmpty()) {
+                lightAnimal.setBiomes(convertStringToBiome(biomes));
+            }
+            if (!diets.isEmpty()) {
+                lightAnimal.setDiets(Utils.convertToSetOfInteger(diets));
+            }
+            if (!fastDays.isEmpty()) {
+                lightAnimal.setFastDays(Utils.convertToSetOfInteger(fastDays));
+            }
+            if (!starvations.isEmpty()) {
+                lightAnimal.setStarvations(Utils.convertToSetOfInteger(starvations));
+            }
+            if (!drownings.isEmpty()) {
+                lightAnimal.setDrownings(Utils.convertToSetOfInteger(drownings));
+            }
             super.setSuccess(true);
             List<String> names = new ArrayList<>();
-            for (Animal animal : super.getPlay().getZoo().listAnimal(convertToIPaddock(paddocks),
-                    spec, convertStringToSex(sexes),
-                    convertStringToDiet(diets), convertStringToBiome(biomes),
-                    Utils.convertToSetOfInteger(fastDays), Utils.convertToSetOfInteger(starvations),
-                    Utils.convertToSetOfInteger(drownings))) {
+            for (Animal animal : super.getPlay().getZoo().listAnimal(
+                    spec, lightAnimal)) {
                 names.add(animal.getName());
             }
             Collections.sort(names);

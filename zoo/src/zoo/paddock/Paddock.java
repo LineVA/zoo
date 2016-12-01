@@ -24,6 +24,7 @@ import zoo.BirthObservable;
 import zoo.NameVerifications;
 import zoo.animal.Animal;
 import zoo.animal.AnimalImpl;
+import zoo.animal.LightAnimal;
 import zoo.animal.death.DieImpl;
 import zoo.animal.death.IDie;
 import zoo.animal.feeding.Diet;
@@ -305,34 +306,29 @@ public class Paddock implements IPaddock {
         }
         return list;
     }
+    
+     private List<Animal> listAnimalWithLightAnimal(List<Animal> animals, LightAnimal lightAnimal) {
+        List<Animal> list = animals;
+        Iterator it = list.iterator();
+        Animal next;
+        while (it.hasNext()) {
+            next = (AnimalImpl) it.next();
+            if (!(next.compare(lightAnimal))) {
+                it.remove();
+            }
+        }
+        return list;
+    }
 
     @Override
-    public List<Animal> listAnimal(LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome,
-            Set<Integer> fastDay, Set<Integer> starvation, Set<Integer> drowning)
+    public List<Animal> listAnimal(LightSpecie specie, LightAnimal animal)
             throws UnknownNameException {
         List<Animal> list = listAnimalWithoutCriteria();
         if (specie.getNames() != null) {
             list = listAnimalWithSpecie(list, specie);
         }
         list = listAnimalWithLightSpecie(list, specie);
-        if (sex != null && !sex.isEmpty()) {
-            list = listAnimalWithSex(list, sex);
-        }
-        if (diet != null && !diet.isEmpty()) {
-            list = listAnimalWithDiet(list, diet);
-        }
-        if (biome != null && !biome.isEmpty()) {
-            list = listAnimalWithBiome(list, biome);
-        }
-        if (fastDay != null && !fastDay.isEmpty()) {
-            list = listAnimalWithFastDay(list, fastDay);
-        }
-        if (starvation != null && !starvation.isEmpty()) {
-            list = listAnimalWithStarvation(list, starvation);
-        }
-        if (drowning != null && !drowning.isEmpty()) {
-            list = listAnimalWithDrowning(list, drowning);
-        }
+        list = listAnimalWithLightAnimal(list, animal);
         return list;
     }
 

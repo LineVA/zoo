@@ -15,15 +15,13 @@ import java.util.Set;
 import launch.options.Option;
 import launch.play.tutorials.TutorialPlayImpl_1;
 import zoo.animal.Animal;
-import zoo.animal.feeding.Diet;
-import zoo.animal.reproduction.Sex;
+import zoo.animal.LightAnimal;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
 import zoo.animalKeeper.AnimalKeeper;
 import zoo.paddock.IPaddock;
 import zoo.paddock.LightPaddock;
 import zoo.paddock.PaddockCoordinates;
-import zoo.paddock.biome.Biome;
 
 /**
  *
@@ -85,9 +83,7 @@ public interface IZoo {
     public Animal findAnimalByName(String animalName)
             throws UnknownNameException, EmptyNameException;
 
-    public List<Animal> listAnimal(Set<IPaddock> paddock, LightSpecie specie,
-            Set<Sex> sex, Set<Diet> diet, Set<Biome> biome, Set<Integer> fastDay, 
-            Set<Integer> starvation, Set<Integer> drowning)
+    public List<Animal> listAnimal(LightSpecie specie, LightAnimal animal)
             throws UnknownNameException;
 
     public List<String> listSpecie(LightSpecie lightSpecie, Set<IPaddock> paddock);

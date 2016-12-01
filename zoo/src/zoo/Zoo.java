@@ -23,8 +23,7 @@ import lombok.Getter;
 import lombok.Setter;
 import launch.play.tutorials.TutorialPlayImpl_1;
 import zoo.animal.Animal;
-import zoo.animal.feeding.Diet;
-import zoo.animal.reproduction.Sex;
+import zoo.animal.LightAnimal;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
 import zoo.animalKeeper.AnimalKeeper;
@@ -32,7 +31,6 @@ import zoo.animalKeeper.AnimalKeeperBuilder;
 import zoo.paddock.IPaddock;
 import zoo.paddock.LightPaddock;
 import zoo.paddock.PaddockBuilder;
-import zoo.paddock.biome.Biome;
 
 /**
  *
@@ -43,7 +41,7 @@ public class Zoo implements IZoo {
     private final int initAge = 0;
     private final int initHorizon = 5;
     private final int initMonthsPerEvaluation = 6;
-    
+
     @Getter
     @Setter
     private Option option;
@@ -99,7 +97,7 @@ public class Zoo implements IZoo {
      * @param height the height of the zoo
      * @param species the map of the species
      * @param age the age of the zoo
-     * @param monthsPerEvaluation the number of months  per evaluation
+     * @param monthsPerEvaluation the number of months per evaluation
      * @param horizon the value of the horizon
      * @throws IncorrectDimensionsException throws if the width and/or the
      * height is/are smaller than 1
@@ -129,8 +127,8 @@ public class Zoo implements IZoo {
         this.monthsPerEvaluation = monthsPerEvaluation;
         this.horizon = horizon;
     }
-    
-       /**
+
+    /**
      * Constructor of the object 'Zoo'
      *
      * @param name the name of the zoo
@@ -165,8 +163,6 @@ public class Zoo implements IZoo {
         this.monthsPerEvaluation = initMonthsPerEvaluation;
         this.horizon = initHorizon;
     }
-    
-    
 
     /**
      * Method used to add a paddock to the zoo
@@ -280,7 +276,7 @@ public class Zoo implements IZoo {
                     if (pad.countAnimalsOfTheSameSpecie(spec) > 0) {
                         containsSpecie &= true;
                     } else {
-                         containsSpecie &= false;
+                        containsSpecie &= false;
                     }
                 }
                 if (containsSpecie) {
@@ -505,22 +501,20 @@ public class Zoo implements IZoo {
     }
 
     @Override
-    public List<Animal> listAnimal(Set<IPaddock> paddock,
-            LightSpecie specie, Set<Sex> sex, Set<Diet> diet, Set<Biome> biome, Set<Integer> fastDay, 
-              Set<Integer> starvation, Set<Integer> drowning)
+    public List<Animal> listAnimal(LightSpecie specie, LightAnimal animal)
             throws UnknownNameException {
-        if (paddock.isEmpty()) {
+        if (animal.getPaddocks().isEmpty()) {
             List<Animal> list = new ArrayList<>();
             for (Map.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-                list.addAll(entry.getValue().listAnimal(specie, sex, diet, biome, fastDay, starvation, drowning));
+                list.addAll(entry.getValue().listAnimal(specie, animal));
             }
             return list;
         } else {
-            if (paddock.size() != 1) {
+            if (animal.getPaddocks().size() != 1) {
                 return new ArrayList<Animal>();
             } else {
-                for (IPaddock pad : paddock) {
-                    return pad.listAnimal(specie, sex, diet, biome, fastDay, starvation, drowning);
+                for (IPaddock pad : animal.getPaddocks()) {
+                    return pad.listAnimal(specie, animal);
                 }
             }
             return null;
@@ -614,7 +608,7 @@ public class Zoo implements IZoo {
     public List<Animal> getAnimals(TutorialPlayImpl_1.FriendScenario friend) {
         try {
             friend.hashCode();
-            return this.listAnimal(null, null, null, null, null, null, null, null);
+            return this.listAnimal(null, null);
         } catch (Exception ex) {
             System.out.println("ERROR  !!!!!!!!!!!!!!!!!");
             return null;
