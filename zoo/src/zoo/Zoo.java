@@ -258,7 +258,7 @@ public class Zoo implements IZoo {
             neightbour.addInNeightbourhood(paddock);
         });
     }
-    
+
     private List<IPaddock> listPaddock(LightPaddock lightPaddock) {
         List<IPaddock> padList = new ArrayList<>();
         for (Map.Entry<String, IPaddock> paddock : paddocks.entrySet()) {
@@ -271,13 +271,13 @@ public class Zoo implements IZoo {
 
     @Override
     public List<String> listPaddock(LightPaddock lightPaddock, Set<Specie> species) {
-        List<IPaddock> padList = new ArrayList<>();
+        List<IPaddock> padList = this.listPaddock(lightPaddock);
         List<String> list = new ArrayList<>();
-        for (Map.Entry<String, IPaddock> paddock : paddocks.entrySet()) {
-            if (paddock.getValue().compareTo(lightPaddock)) {
-                padList.add(paddock.getValue());
-            }
-        }
+//        for (Map.Entry<String, IPaddock> paddock : paddocks.entrySet()) {
+//            if (paddock.getValue().compareTo(lightPaddock)) {
+//                padList.add(paddock.getValue());
+//            }
+//        }
         if (species.size() != 0) {
             boolean containsSpecie;
             for (IPaddock pad : padList) {
@@ -513,24 +513,9 @@ public class Zoo implements IZoo {
     @Override
     public List<Animal> listAnimal(LightPaddock paddock, LightSpecie specie, LightAnimal animal)
             throws UnknownNameException {
-//        if (paddock.getNames().isEmpty()) {
-            List<Animal> list = new ArrayList<>();
-//            for (Map.Entry<String, IPaddock> entry : paddocks.entrySet()) {
-//                list.addAll(entry.getValue().listAnimal(specie, animal));
-//            }
-//            return list;
-//        } else {
-//            if (paddock.getNames().size() != 1) {
-//                return new ArrayList<Animal>();
-//            } else {
-//                for (IPaddock pad : paddock.getNames()) {
-//                    return pad.listAnimal(specie, animal);
-//                }
-//            }
-//            return null;
-//        }
-        for(IPaddock pad : this.listPaddock(paddock)){
-             list.addAll(pad.listAnimal(specie, animal));
+        List<Animal> list = new ArrayList<>();
+        for (IPaddock pad : this.listPaddock(paddock)) {
+            list.addAll(pad.listAnimal(specie, animal));
         }
         return list;
     }
