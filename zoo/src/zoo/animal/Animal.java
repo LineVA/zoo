@@ -52,6 +52,8 @@ public interface Animal {
     public boolean canBePregnant();
 
     public boolean isAlreadyPregnant();
+    
+    public boolean updateGestationDuration(int months);
 
     public boolean canFecundateAFemale();
 

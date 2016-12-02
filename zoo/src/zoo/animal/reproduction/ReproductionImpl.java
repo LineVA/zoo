@@ -38,9 +38,20 @@ public class ReproductionImpl implements Reproduction {
         if (canFemaleReproducte(animal, monthsPerEvaluation)) {
             Animal father = whichMale(animal.findRoommatesOfTheSameSpecie());
             if (father != null) {
-                return generateFamily(animal, father);
+                updateGestation(animal, monthsPerEvaluation);
+//                return generateFamily(animal, father);
             }
+        } else if(animal.isAlreadyPregnant()){
+            updateGestation(animal, monthsPerEvaluation);
         }
+        return null;
+    }
+    
+    private List<Animal> updateGestation(Animal animal, int monthsPerEvaluation) 
+            throws IncorrectDataException, NameException, EmptyNameException, IncorrectLoadException{
+        if(animal.updateGestationDuration(monthsPerEvaluation)){
+            return generateFamily(animal, null);
+        } 
         return null;
     }
 
@@ -49,8 +60,8 @@ public class ReproductionImpl implements Reproduction {
      *
      * @param mother the mother of the family
      * @param father the father
-     * @return a List ; the first element is the fater, the following are
-     * the babies
+     * @return a List ; the first element is the fater, the following are the
+     * babies
      */
     public List<Animal> generateFamily(Animal mother, Animal father)
             throws IncorrectDataException, EmptyNameException, NameException, IncorrectLoadException {
@@ -92,7 +103,7 @@ public class ReproductionImpl implements Reproduction {
      * @return true if it can reproducte
      */
     public boolean canFemaleReproducte(Animal animal, int monthsPerEvaluation) {
-        return animal.canBePregnant() && isInGestation(animal, monthsPerEvaluation) && ! animal.isAlreadyPregnant();
+        return animal.canBePregnant() && isInGestation(animal, monthsPerEvaluation) && !animal.isAlreadyPregnant();
     }
 
     /**

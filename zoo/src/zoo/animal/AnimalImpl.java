@@ -444,12 +444,21 @@ public class AnimalImpl implements Animal {
         }
         return false;
     }
-    
-    @Override
-        public boolean isAlreadyPregnant(){
-            return this.currentlyGestationDuration != 0;
-        }
 
+    @Override
+    public boolean isAlreadyPregnant() {
+        return this.currentlyGestationDuration != 0;
+    }
+
+    @Override
+    public boolean updateGestationDuration(int months) {
+        this.currentlyGestationDuration += months;
+        if(this.currentlyGestationDuration >= this.actualReproduction.getGestationDuration()){
+            this.currentlyGestationDuration = 0;
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public boolean canFecundateAFemale() {
@@ -663,8 +672,8 @@ public class AnimalImpl implements Animal {
         save.hashCode();
         return this.turnsOfDrowning;
     }
-    
-     @Override
+
+    @Override
     public int getCurrentlyGestationDuration(SaveImpl.FriendSave save) {
         save.hashCode();
         return this.currentlyGestationDuration;
