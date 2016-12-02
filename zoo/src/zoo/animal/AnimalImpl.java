@@ -657,5 +657,11 @@ public class AnimalImpl implements Animal {
         save.hashCode();
         return this.turnsOfDrowning;
     }
+    
+     @Override
+    public int getCurrentlyGestationDuration(SaveImpl.FriendSave save) {
+        save.hashCode();
+        return this.currentlyGestationDuration;
+    }
 
 }

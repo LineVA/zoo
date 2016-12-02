@@ -356,6 +356,7 @@ public class SaveImpl implements Save {
         el.addContent(createElementOptimalFeedingAttributes(animal.getOptimalFeeding(friendSave)));
         el.addContent(createElementActualFeedingAttributes(animal, animal.getActualFeeding(friendSave)));
         el.addContent(createElementReproductionAttributes(animal.getActualReproduction(friendSave)));
+        el.addContent(createElementWithText(Constants.GESTATIONDURATION, String.valueOf(animal.getCurrentlyGestationDuration(friendSave))));
         el.addContent(createElementLifeSpanAttributes(animal.getActualLifeSpan(friendSave)));
         el.addContent(createElementSocialAttributes(animal.getOptimalSocial(friendSave)));
         el.addContent(createElementTeritoryAttributes(animal.getOptimalTerritory(friendSave)));

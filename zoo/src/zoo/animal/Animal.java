@@ -24,8 +24,8 @@ import zoo.paddock.TerritoryAttributes;
  * @author doyenm
  */
 public interface Animal {
-    
-    public boolean compare(LightAnimal lightAnimal); 
+
+    public boolean compare(LightAnimal lightAnimal);
 
     public boolean isMature();
 
@@ -114,5 +114,7 @@ public interface Animal {
     public int getStarvation(SaveImpl.FriendSave save);
 
     public int getDrowning(SaveImpl.FriendSave save);
+
+    public int getCurrentlyGestationDuration(SaveImpl.FriendSave save);
 
 }
