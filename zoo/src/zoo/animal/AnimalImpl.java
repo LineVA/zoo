@@ -444,6 +444,12 @@ public class AnimalImpl implements Animal {
         }
         return false;
     }
+    
+    @Override
+        public boolean isAlreadyPregnant(){
+            return this.currentlyGestationDuration != 0;
+        }
+
 
     @Override
     public boolean canFecundateAFemale() {

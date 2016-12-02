@@ -51,6 +51,8 @@ public interface Animal {
 
     public boolean canBePregnant();
 
+    public boolean isAlreadyPregnant();
+
     public boolean canFecundateAFemale();
 
     public boolean isEnoughHappy();

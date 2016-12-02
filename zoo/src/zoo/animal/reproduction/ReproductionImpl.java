@@ -92,7 +92,7 @@ public class ReproductionImpl implements Reproduction {
      * @return true if it can reproducte
      */
     public boolean canFemaleReproducte(Animal animal, int monthsPerEvaluation) {
-        return animal.canBePregnant() && isInGestation(animal, monthsPerEvaluation);
+        return animal.canBePregnant() && isInGestation(animal, monthsPerEvaluation) && ! animal.isAlreadyPregnant();
     }
 
     /**
