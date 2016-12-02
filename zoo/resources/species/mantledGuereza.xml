@@ -31,6 +31,7 @@
         <femaleMaturity>48</femaleMaturity>
         <maleMaturity>72</maleMaturity>
         <gestationFrequency>0.5</gestationFrequency>
+        <gestationDuration>6</gestationDuration>
         <litterSize>1</litterSize>
     </reproduction>
     <lifespan>
