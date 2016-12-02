@@ -45,6 +45,7 @@ public class AnimalImpl implements Animal {
     private final int initStarvation = 0;
     private final int initDrowning = 0;
     private final int initFastDays = 0;
+    private final int initCurrentlyGestationDuration = 0;
 
     private Option option;
 
@@ -88,6 +89,7 @@ public class AnimalImpl implements Animal {
     private final TerritoryAttributes optimalTerritory;
     private int turnsOfStarvation;
     private int turnsOfDrowning;
+    private int currentlyGestationDuration;
 
     /**
      * There is no notion of optimal in personality
@@ -119,6 +121,7 @@ public class AnimalImpl implements Animal {
         this.wellBeing = this.initWB;
         this.turnsOfStarvation = this.initStarvation;
         this.turnsOfDrowning = this.initDrowning;
+        this.currentlyGestationDuration = this.initCurrentlyGestationDuration;
     }
 
     public AnimalImpl(Specie spec, String name,
@@ -148,6 +151,7 @@ public class AnimalImpl implements Animal {
         this.wellBeing = this.initWB;
         this.turnsOfStarvation = this.initStarvation;
         this.turnsOfDrowning = this.initDrowning;
+        this.currentlyGestationDuration = this.initCurrentlyGestationDuration;
     }
 
     public void drawAttributes() {
@@ -161,7 +165,7 @@ public class AnimalImpl implements Animal {
             ReproductionAttributes reproduction,
             LifeSpanLightAttributes life, SocialAttributes social,
             TerritoryAttributes territory, PersonalityAttributes personality, double wellBeing,
-            int turnsOfStarvation, int turnsOfDrowning,
+            int turnsOfStarvation, int turnsOfDrowning, int currentlyGestationDuration,
             Option option)
             throws IncorrectDataException, EmptyNameException,
             UnknownNameException, UnauthorizedNameException {
@@ -187,6 +191,7 @@ public class AnimalImpl implements Animal {
         this.wellBeing = wellBeing;
         this.checkLoadingOfDrowning(turnsOfDrowning);
         this.checkLoadingOfStarvation(turnsOfStarvation);
+        this.currentlyGestationDuration = currentlyGestationDuration;
     }
 
     private void checkLoadingOfAge(int age) throws IncorrectDataException {
@@ -364,6 +369,7 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("TURNS_DROWNING") + this.turnsOfDrowning);
         if (this.sex.isFemale()) {
             info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.femaleToStringByLanguage(option));
+            info.add(bundle.getString("ACT_GESTATION_DURATION") + this.currentlyGestationDuration);
         } else {
             info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.maleToStringByLanguage(option));
         }
@@ -503,7 +509,7 @@ public class AnimalImpl implements Animal {
             isCorresponding &= lightAnimal.getStarvations().contains(this.turnsOfStarvation) && lightAnimal.getStarvations().size() == 1;
         }
         // sexes
-         if (null != lightAnimal.getSexes()) {
+        if (null != lightAnimal.getSexes()) {
             isCorresponding &= lightAnimal.getSexes().contains(this.sex) && lightAnimal.getSexes().size() == 1;
         }
         return isCorresponding;
