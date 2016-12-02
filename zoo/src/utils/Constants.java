@@ -10,9 +10,9 @@ public class Constants {
     public static final int UNDEFIND_ENUM = -1;
     // Max number of turns befrore drowning
     public static final int MAX_DROWNING = 3;
-     // Max number of turns befrore starving
+    // Max number of turns befrore starving
     public static final int MAX_STARVING = 3;
-    
+
     // actualFeedingAttributes
     public static final String ACTUALFEEDING_ATT = "actualFeedingAttributes";
     // actualLifeSpanAttributes
@@ -21,7 +21,7 @@ public class Constants {
     public static final String ACTUALREPRODUCTION_ATT = "actualReproductionAttributes";
     // additionalEnglishNames
     public static final String ADDITIONALENGLISHNAMES = "additionalEnglishNames";
-     // additionalFrenchNames
+    // additionalFrenchNames
     public static final String ADDITIONALFRENCHNAMES = "additionalFrenchNames";
     // age
     public static final String AGE = "age";
@@ -86,7 +86,7 @@ public class Constants {
     // --ecoregion || -e as argument
     public static final String[] ECOREGION_ARG = {"--ecoregion", "-e"};
     // en
-     public static final String EN = "en";
+    public static final String EN = "en";
     // EnglishWikipedia
     public static final String ENGLISHWIKI = "englishWikipedia";
     // englishTags
@@ -100,7 +100,7 @@ public class Constants {
     // fastDays
     public static final String FASTDAYS = "fastDays";
     // --fastDay || -fd 
-     public static final String[] FASTDAY_ARG = {"--fastDay", "-fd"};
+    public static final String[] FASTDAY_ARG = {"--fastDay", "-fd"};
     // femaleLifespan
     public static final String FEMALELIFESPAN = "femaleLifespan";
     // femaleMaturityAge
@@ -110,13 +110,15 @@ public class Constants {
     // --foodQuantity || -fg as argument
     public static final String[] FOODQUANTITY_ARG = {"--foodQuantity", "-fq"};
     // fr
-     public static final String FR = "fr";
+    public static final String FR = "fr";
     // frenchTags
     public static final String FRENCHTAGS = "frenchTags";
     // frenchWikipedia
     public static final String FRENCHWIKI = "frenchWikipedia";
     // general
     public static final String GENERAL = "general";
+    // gestationDuration
+    public static final String GESTATIONDURATION = "gestationDuration";
     // gestationFrequency
     public static final String GESTATIONFREQUENCY = "gestationFrequency";
     // greed
@@ -165,7 +167,7 @@ public class Constants {
     public static final String MONTHSPEREVALUATION = "monthsPerEvaluation";
     // name
     public static final String NAME = "name";
-        // names
+    // names
     public static final String NAMES = "names";
     // optimalFeedingAttributes
     public static final String OPTIMALFEEDING_ATT = "optimalFeedingAttributes";

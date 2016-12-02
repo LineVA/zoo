@@ -132,10 +132,19 @@ public class ParserSpecie {
 
     private static ReproductionAttributes reproductionParser(Element root) {
         Element reproEl = root.getChild(Constants.REPRODUCTION);
+        if(reproEl.getChildText(Constants.GESTATIONDURATION) != null){
         return new ReproductionAttributes(Integer.parseInt(reproEl.getChildText(Constants.FEMALEMATURITYAGE)),
                 Integer.parseInt(reproEl.getChildText(Constants.MALEMATURITYAGE)),
                 Double.parseDouble(reproEl.getChildText(Constants.GESTATIONFREQUENCY)),
-                Integer.parseInt(reproEl.getChildText(Constants.LITTERSIZE)), 0);
+                Integer.parseInt(reproEl.getChildText(Constants.LITTERSIZE)), 
+                Integer.parseInt(reproEl.getChildText(Constants.GESTATIONDURATION)));
+        } else {
+              return new ReproductionAttributes(Integer.parseInt(reproEl.getChildText(Constants.FEMALEMATURITYAGE)),
+                Integer.parseInt(reproEl.getChildText(Constants.MALEMATURITYAGE)),
+                Double.parseDouble(reproEl.getChildText(Constants.GESTATIONFREQUENCY)),
+                Integer.parseInt(reproEl.getChildText(Constants.LITTERSIZE)), 
+                0);
+        }
     }
 
     private static LifeSpanAttributes lifeSpanParser(Element root) throws IncorrectDataException, IncorrectLoadException {

@@ -57,6 +57,7 @@
                             <xs:element type="xs:integer" name="femaleMaturity"/>
                             <xs:element type="xs:integer" name="maleMaturity"/>
                             <xs:element type="xs:decimal" name="gestationFrequency"/>
+                            <xs:element type="xs:integer" name="gestationDuration" minOccurs="0" maxOccurs="1"/>
                             <xs:element type="xs:integer" name="litterSize"/>
                             <xs:element type="xs:integer" name="weaningAge" minOccurs="0" maxOccurs="1"/>
                             <xs:element type="xs:integer" name="leavingAge" minOccurs="0" maxOccurs="1"/>

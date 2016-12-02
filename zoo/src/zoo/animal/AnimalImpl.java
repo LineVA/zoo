@@ -268,7 +268,8 @@ public class AnimalImpl implements Animal {
                 getGestationFrequency().gaussianDouble();
         int litter = spec.getGaussianReproduction().
                 getLitterSize().gaussianInt();
-        return new ReproductionAttributes(female, male, frequency, litter, 0);
+        int duration = spec.getGaussianReproduction().getGestationDuration().gaussianInt();
+        return new ReproductionAttributes(female, male, frequency, litter, duration);
     }
 
     private LifeSpanLightAttributes drawActualLifeSpan(Specie spec) throws IncorrectLoadException {
