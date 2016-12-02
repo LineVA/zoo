@@ -39,7 +39,8 @@ public class ParserBackUp {
      * The constructor of the parser
      *
      * @param file the file to parse
-     * @throws exception.UnexistedFileException if we try to load an unexisted file
+     * @throws exception.UnexistedFileException if we try to load an unexisted
+     * file
      * @throws IOException if if an I/O error prevents a document from being
      * fully parsed
      * @throws JDOMException if error occurs during parsing
@@ -48,8 +49,8 @@ public class ParserBackUp {
         SAXBuilder sax = new SAXBuilder();
         Document document;
         try {
-        document = sax.build(file);
-        } catch(IOException ex){
+            document = sax.build(file);
+        } catch (IOException ex) {
             throw new UnexistedFileException(ex.getMessage());
         }
         this.zooEl = document.getRootElement();
@@ -157,7 +158,7 @@ public class ParserBackUp {
         double wellBeing;
         int starvation;
         int drowning;
-        int actualFastDays;
+        int gestationDuration;
         for (Element tmpAnimalEl : animalsElList) {
             PersonalityAttributes personality;
             spec = tmpAnimalEl.getChildText(Constants.SPECIE);
@@ -175,10 +176,11 @@ public class ParserBackUp {
             wellBeing = parserWellBeing(tmpAnimalEl);
             starvation = parserStarvation(tmpAnimalEl);
             drowning = parserDrowning(tmpAnimalEl);
+            gestationDuration = parserGestationDuration(tmpAnimalEl);
             animalsList.add(new FakeAnimal(spec,
                     tmpAnimalEl.getAttributeValue(Constants.NAME),
                     pad, sex, age, biome, optFeed, actualFeed, diet, repro,
-                    life, social, territory, personality, wellBeing, starvation, drowning));
+                    life, social, territory, personality, wellBeing, starvation, drowning, gestationDuration));
         }
         return animalsList;
     }
@@ -201,8 +203,8 @@ public class ParserBackUp {
             throws IncorrectLoadException {
         return Integer.parseInt(tmpAnimalEl.getChildText(Constants.STARVATION));
     }
-    
-     /**
+
+    /**
      * Parse the turn's number of drowning of an animal
      *
      * @param tmpAnimalEl the "animal" element to parse
@@ -213,6 +215,17 @@ public class ParserBackUp {
         return Integer.parseInt(tmpAnimalEl.getChildText(Constants.DROWNING));
     }
 
+    /**
+     * Parse the currently gestation duration of an animal
+     *
+     * @param tmpAnimalEl the "animal" element to parse
+     * @return the corresponding number
+     */
+    private int parserGestationDuration(Element tmpAnimalEl)
+            throws IncorrectLoadException {
+        return Integer.parseInt(tmpAnimalEl.getChildText(Constants.GESTATIONDURATION));
+    }
+    
     /**
      * Parse the well-being of an animal
      *
