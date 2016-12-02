@@ -19,12 +19,15 @@ public class ReproductionAttributes {
     private final double gestationFrequency;
     @Getter
     private final int litterSize;
+    @Getter
+    private final int gestationDuration;
 
-    public ReproductionAttributes(int female, int male, double frequency, int litter) {
+    public ReproductionAttributes(int female, int male, double frequency, int litter, int duration) {
         this.femaleMaturityAge = female;
         this.maleMaturityAge = male;
         this.gestationFrequency = frequency;
         this.litterSize = litter;
+        this.gestationDuration = duration;
     }
 
     public String toStringByLanguage(Option option) {
