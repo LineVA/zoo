@@ -487,21 +487,24 @@ public class AnimalImpl implements Animal {
     @Override
     public boolean compare(LightAnimal lightAnimal) {
         boolean isCorresponding = true;
-        if (null != lightAnimal.getDiets()) {
-            isCorresponding &= lightAnimal.getDiets().contains(this.actualDiet);
+        if (null != lightAnimal.getDiets() && lightAnimal.getDiets().size() != 0) {
+            isCorresponding &= lightAnimal.getDiets().contains(this.actualDiet) && lightAnimal.getDiets().size() == 1;
         }
         if (null != lightAnimal.getDrownings()) {
-            isCorresponding &= lightAnimal.getDrownings().contains(this.turnsOfDrowning);
+            isCorresponding &= lightAnimal.getDrownings().contains(this.turnsOfDrowning) && lightAnimal.getDrownings().size() == 1;;
         }
         // fastDays
         if (null != lightAnimal.getFastDays()) {
-            isCorresponding &= lightAnimal.getFastDays().contains(this.actualFeeding.getFastDays());
+            isCorresponding &= lightAnimal.getFastDays().contains(this.actualFeeding.getFastDays()) && lightAnimal.getFastDays().size() == 1;
         }
         // starvation
         if (null != lightAnimal.getStarvations()) {
-            isCorresponding &= lightAnimal.getStarvations().contains(this.turnsOfStarvation);
+            isCorresponding &= lightAnimal.getStarvations().contains(this.turnsOfStarvation) && lightAnimal.getStarvations().size() == 1;
         }
         // sexes
+         if (null != lightAnimal.getSexes()) {
+            isCorresponding &= lightAnimal.getSexes().contains(this.sex) && lightAnimal.getSexes().size() == 1;
+        }
         return isCorresponding;
     }
 
