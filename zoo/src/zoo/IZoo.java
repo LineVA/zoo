@@ -83,7 +83,7 @@ public interface IZoo {
     public Animal findAnimalByName(String animalName)
             throws UnknownNameException, EmptyNameException;
 
-    public List<Animal> listAnimal(LightSpecie specie, LightAnimal animal)
+    public List<Animal> listAnimal(LightPaddock paddock, LightSpecie specie, LightAnimal animal)
             throws UnknownNameException;
 
     public List<String> listSpecie(LightSpecie lightSpecie, Set<IPaddock> paddock);

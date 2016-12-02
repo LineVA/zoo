@@ -12,7 +12,7 @@ public class LightPaddock {
 
     @Setter
     @Getter
-    Set<String> names;
+    Set<IPaddock> names;
     @Setter
     @Getter
     Set<Integer> biomes;
@@ -20,7 +20,7 @@ public class LightPaddock {
     @Getter
     Set<Integer> types;
 
-    public LightPaddock(Set<String> names, Set<Integer> biomes, Set<Integer> types) {
+    public LightPaddock(Set<IPaddock> names, Set<Integer> biomes, Set<Integer> types) {
         this.names = names;
         this.biomes = biomes;
         this.types = types;

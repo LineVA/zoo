@@ -22,6 +22,7 @@ import zoo.animal.feeding.Diet;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.LightSpecie;
 import zoo.paddock.IPaddock;
+import zoo.paddock.LightPaddock;
 import zoo.paddock.biome.Biome;
 
 /**
@@ -54,6 +55,7 @@ public class LsAnimal extends AbstractCommand {
     public ReturnExec execute(String[] cmd) {
         LightSpecie spec = new LightSpecie(null, null, null, null, null, null, null, null, null, null, null);
         LightAnimal lightAnimal = new LightAnimal(null, null, null, null, null, null, null);
+        LightPaddock lightPaddock = new LightPaddock(null, null, null);
         try {
             if (specie != null) {
                 spec.setNames(super.getPlay().getZoo().findSpecieByName(specie).getNames());
@@ -80,7 +82,7 @@ public class LsAnimal extends AbstractCommand {
                 spec.setTags(tags);
             }
 //            if (!paddocks.isEmpty()) {
-                lightAnimal.setPaddocks(convertToIPaddock(paddocks));
+                lightPaddock.setNames(convertToIPaddock(paddocks));
 //            }
             if (!sexes.isEmpty()) {
                 lightAnimal.setSexes(convertStringToSex(sexes));
@@ -102,7 +104,7 @@ public class LsAnimal extends AbstractCommand {
             }
             super.setSuccess(true);
             List<String> names = new ArrayList<>();
-            for (Animal animal : super.getPlay().getZoo().listAnimal(
+            for (Animal animal : super.getPlay().getZoo().listAnimal(lightPaddock,
                     spec, lightAnimal)) {
                 names.add(animal.getName());
             }
