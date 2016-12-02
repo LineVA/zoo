@@ -28,6 +28,7 @@
         <femaleMaturity>13</femaleMaturity>
         <maleMaturity>18</maleMaturity>
         <gestationFrequency>1</gestationFrequency>
+        <gestationDuration>8</gestationDuration>
         <litterSize>1</litterSize>
         <weaningAge>6</weaningAge>
     </reproduction>
