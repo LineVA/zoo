@@ -46,6 +46,7 @@ public class LsAnimal extends AbstractCommand {
     Set<String> fastDays;
     Set<String> starvations;
     Set<String> drownings;
+    Set<String> types;
 
     public LsAnimal(Play play) {
         super(play);
@@ -82,13 +83,16 @@ public class LsAnimal extends AbstractCommand {
                 spec.setTags(tags);
             }
 //            if (!paddocks.isEmpty()) {
-                lightPaddock.setNames(convertToIPaddock(paddocks));
+            lightPaddock.setNames(convertToIPaddock(paddocks));
 //            }
             if (!sexes.isEmpty()) {
                 lightAnimal.setSexes(convertStringToSex(sexes));
             }
             if (!biomes.isEmpty()) {
-                lightAnimal.setBiomes(convertStringToBiome(biomes));
+                lightPaddock.setBiomes(Utils.convertToSetOfInteger(biomes));
+            }
+             if (!types.isEmpty()) {
+                lightPaddock.setTypes(Utils.convertToSetOfInteger(types));
             }
             if (!diets.isEmpty()) {
                 lightAnimal.setDiets(Utils.convertToSetOfInteger(diets));
@@ -166,7 +170,7 @@ public class LsAnimal extends AbstractCommand {
     }
 
     private boolean checkLength(String[] cmd) {
-        return cmd.length >= 2 && cmd.length <= 30 && cmd.length % 2 == 0;
+        return cmd.length >= 2 && cmd.length <= 32 && cmd.length % 2 == 0;
     }
 
     private boolean hasArgumentSpecie(String cmd) {
@@ -179,6 +183,10 @@ public class LsAnimal extends AbstractCommand {
 
     private boolean hasArgumentPaddock(String cmd) {
         return Arrays.asList(Constants.PADDOCK_ARG).contains(cmd);
+    }
+
+    private boolean hasArgumentPaddockType(String cmd) {
+        return Arrays.asList(Constants.PADDOCKTYPE_ARG).contains(cmd);
     }
 
     private boolean hasArgumentEcoregion(String cmd) {
@@ -259,6 +267,8 @@ public class LsAnimal extends AbstractCommand {
         } else if (this.hasArgumentStarvations(arg)) {
             starvations = SplittingAmpersand.split(value);
         } else if (this.hasArgumentDrownings(arg)) {
+            types = SplittingAmpersand.split(value);
+        } else if (this.hasArgumentPaddockType(arg)) {
             drownings = SplittingAmpersand.split(value);
         } else {
             return false;
@@ -282,6 +292,7 @@ public class LsAnimal extends AbstractCommand {
         fastDays = new HashSet<>();
         starvations = new HashSet<>();
         drownings = new HashSet<>();
+        types = new HashSet<>();
         if (firstCmd(cmd) && checkLength(cmd)) {
             int i = 2;
             while (i <= cmd.length - 2) {
