@@ -22,7 +22,7 @@ public class LsTask extends AbstractCommand {
     public ReturnExec execute(String[] cmd) {
         super.setSuccess(true);
         return new ReturnExec(
-                FormattingDisplay.formattingList(Task.UNKNOWN.list()), 
+                FormattingDisplay.formattingList(Task.UNKNOWN.list(), true), 
                 TypeReturn.SUCCESS);
     }
 

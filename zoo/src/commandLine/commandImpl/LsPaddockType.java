@@ -23,7 +23,8 @@ public class LsPaddockType  extends AbstractCommand {
     @Override
     public ReturnExec execute(String[] cmd) {
         super.setSuccess(true);
-        return new ReturnExec(FormattingDisplay.formattingList(PaddockTypes.UNKNOWN.list()), TypeReturn.SUCCESS);
+        return new ReturnExec(FormattingDisplay.formattingList(PaddockTypes.UNKNOWN.list(), true),
+                TypeReturn.SUCCESS);
     }
 
     @Override

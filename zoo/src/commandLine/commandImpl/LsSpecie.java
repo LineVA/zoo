@@ -97,7 +97,7 @@ public class LsSpecie extends AbstractCommand {
         }
         List<String> list = super.getPlay().getZoo().listSpecie(light, pad);
         Collections.sort(list);
-        return new ReturnExec(FormattingDisplay.formattingList(list), TypeReturn.SUCCESS);
+        return new ReturnExec(FormattingDisplay.formattingList(list, true), TypeReturn.SUCCESS);
     }
 
     public boolean firstCmd(String[] cmd) {

@@ -113,7 +113,7 @@ public class LsAnimal extends AbstractCommand {
                 names.add(animal.getName());
             }
             Collections.sort(names);
-            return new ReturnExec(FormattingDisplay.formattingList(names), TypeReturn.SUCCESS);
+            return new ReturnExec(FormattingDisplay.formattingList(names, true), TypeReturn.SUCCESS);
         } catch (UnknownNameException | EmptyNameException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         } catch (NumberFormatException ex) {

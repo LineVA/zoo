@@ -23,7 +23,7 @@ public class LsBreedingProgramme extends AbstractCommand{
     public ReturnExec execute(String[] cmd) {
         super.setSuccess(true);
         List<String> list = BreedingProgramme.NONE.list();
-        return new ReturnExec(FormattingDisplay.formattingList(list), 
+        return new ReturnExec(FormattingDisplay.formattingList(list, true), 
                 TypeReturn.SUCCESS);
     }
 

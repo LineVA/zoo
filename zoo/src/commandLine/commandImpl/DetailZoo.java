@@ -21,7 +21,7 @@ public class DetailZoo extends AbstractCommand {
     @Override
     public ReturnExec execute(String[] cmd) {
        super.setSuccess(true);
-        return new ReturnExec(FormattingDisplay.formattingList(super.getPlay().getZoo().info()), 
+        return new ReturnExec(FormattingDisplay.formattingList(super.getPlay().getZoo().info(), false), 
                 TypeReturn.SUCCESS);
     }
 

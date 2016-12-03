@@ -21,7 +21,7 @@ public class LsConservation extends AbstractCommand  {
     @Override
     public ReturnExec execute(String[] cmd) {
         super.setSuccess(true);
-        return new ReturnExec(FormattingDisplay.formattingList(ConservationStatus.UNKNOWN.list()), 
+        return new ReturnExec(FormattingDisplay.formattingList(ConservationStatus.UNKNOWN.list(), true), 
                 TypeReturn.SUCCESS);
     }
 

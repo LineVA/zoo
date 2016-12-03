@@ -60,7 +60,7 @@ public class ZooCharacteristics extends AbstractCommand {
                     super.getPlay().getOption().getGeneralCmdBundle().getString("NUMBER_FORMAT_EXCEPTION"),
                     TypeReturn.SUCCESS);
         }
-        return new ReturnExec(FormattingDisplay.formattingList(result), TypeReturn.SUCCESS);
+        return new ReturnExec(FormattingDisplay.formattingList(result, false), TypeReturn.SUCCESS);
     }
 
     @Override

@@ -96,12 +96,14 @@ public class FormattingDisplay {
      * @param list List of strings we need to display
      * @return a formatting String corresponding to the parameter
      */
-    public static String formattingList(List<String> list) {
+    public static String formattingList(List<String> list, boolean isComputing) {
         String finalStr = "";
         for (String str : list) {
             finalStr += str + "\n";
         }
-        finalStr += "------ " + list.size() + " items";
+        if (isComputing) {
+            finalStr += "------ " + list.size() + " items";
+        }
         return finalStr;
     }
 }

@@ -66,7 +66,7 @@ public class FeedingAnimal extends AbstractCommand {
                             TypeReturn.ERROR);
                 }
             }
-            return new ReturnExec(FormattingDisplay.formattingList(result), TypeReturn.SUCCESS);
+            return new ReturnExec(FormattingDisplay.formattingList(result, false), TypeReturn.SUCCESS);
         } catch (EmptyNameException | UnknownNameException |
                 IncorrectLoadException | NumberFormatException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);

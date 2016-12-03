@@ -46,7 +46,8 @@ public class LsPaddock extends AbstractCommand {
             List<String> names = super.getPlay().getZoo().listPaddock(light, convertToSpecieSet(species));
             Collections.sort(names);
             super.setSuccess(true);
-            return new ReturnExec(FormattingDisplay.formattingList(names), TypeReturn.SUCCESS);
+            return new ReturnExec(FormattingDisplay.formattingList(names, true),
+                    TypeReturn.SUCCESS);
         } catch (NumberFormatException ex) {
             return new ReturnExec(super.getPlay().getOption().getGeneralCmdBundle()
                     .getString("NUMBER_FORMAT_EXCEPTION"), TypeReturn.ERROR);
