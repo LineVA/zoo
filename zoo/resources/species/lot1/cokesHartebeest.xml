@@ -59,6 +59,8 @@
             <tag>Antilope</tag>
             <tag>Alcelaphinae</tag>
             <tag>Hartebeest</tag>
+            <tag>Bubale</tag>
+            <tag>Kongoni</tag>
         </frenchTags>
         <englishTags>
             <tag>Mammal</tag>
@@ -67,6 +69,7 @@
             <tag>Antelope</tag>
             <tag>Alcelaphinae</tag>
             <tag>Hartebeest</tag>
+            <tag>Coke</tag>
         </englishTags>
     </tags>
 </animal>

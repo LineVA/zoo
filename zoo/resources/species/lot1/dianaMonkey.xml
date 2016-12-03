@@ -56,12 +56,14 @@
             <tag>Singe</tag>
             <tag>Cercopithèque</tag>
             <tag>Cercopithecus</tag>
+            <tag>Diane</tag>
         </frenchTags>
         <englishTags>
             <tag>Mammal</tag>
             <tag>Primate</tag>
             <tag>Monkey</tag>
             <tag>Cercopithecus</tag>
+            <tag>Diana</tag>
         </englishTags>
     </tags>
 </animal>

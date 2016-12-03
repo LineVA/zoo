@@ -51,4 +51,22 @@
   <social>
     <groupSize>6</groupSize>
   </social>
+      <tags>
+        <frenchTags>
+            <tag>Mammifère</tag>
+            <tag>Primate</tag>
+            <tag>Singe</tag>
+            <tag>Tamarin</tag>
+            <tag>Empereur</tag>
+            <tag></tag>
+        </frenchTags>
+        <englishTags>
+            <tag>Mammal</tag>
+            <tag>Primate</tag>
+            <tag>Monkey</tag>
+            <tag>Emperor</tag>
+            <tag>Tamarin</tag>
+            <tag>Moustached</tag>
+        </englishTags>
+    </tags>
 </animal>
