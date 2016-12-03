@@ -1,5 +1,6 @@
 package basicGui;
 
+import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -100,6 +101,7 @@ public class FormattingDisplay {
         for (String str : list) {
             finalStr += str + "\n";
         }
+        finalStr += "------ " + list.size() + " items";
         return finalStr;
     }
 }
