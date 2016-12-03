@@ -41,6 +41,8 @@ public interface AnimalKeeper {
 
     public boolean isMakingEnrichmentInThePaddock(IPaddock paddock);
 
+    public void evolve(int monthsPerEvaluation);
+
     /**
      * Getters for the back up
      */
@@ -53,7 +55,5 @@ public interface AnimalKeeper {
     public Map<Integer, Double> getManagedFamilies(SaveImpl.FriendSave friend);
 
     public Map<Integer, Double> getManagedTasks(SaveImpl.FriendSave friend);
-
-    public void evolve();
 
 }
