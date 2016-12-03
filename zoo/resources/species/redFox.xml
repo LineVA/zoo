@@ -33,6 +33,7 @@
         <femaleMaturity>10</femaleMaturity>
         <maleMaturity>10</maleMaturity>
         <gestationFrequency>1</gestationFrequency>
+        <gestationDuration>2</gestationDuration>
         <litterSize>5</litterSize>
         <weaningAge>2</weaningAge>
         <leavingAge>10</leavingAge>
@@ -66,7 +67,7 @@
         <frenchTags>
             <tag>Mammifère</tag>
             <tag>Renard</tag>
-                      <tag>Roux</tag>
+            <tag>Roux</tag>
         </frenchTags>
         <englishTags>
             <tag>Mammal</tag>

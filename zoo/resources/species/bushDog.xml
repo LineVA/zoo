@@ -28,6 +28,7 @@
         <femaleMaturity>12</femaleMaturity>
         <maleMaturity>12</maleMaturity>
         <gestationFrequency>1.33</gestationFrequency>
+        <gestationDuration>2</gestationDuration>
         <litterSize>4</litterSize>
         <leavingAge>0</leavingAge>
     </reproduction>

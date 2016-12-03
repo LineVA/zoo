@@ -34,6 +34,7 @@
         <femaleMaturity>30</femaleMaturity>
         <maleMaturity>30</maleMaturity>
         <gestationFrequency>1</gestationFrequency>
+        <gestationDuration>2</gestationDuration>
         <litterSize>6</litterSize>
         <leavingAge>0</leavingAge>
     </reproduction>
