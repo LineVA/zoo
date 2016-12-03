@@ -1,56 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
-  <names>
-    <fr>Ouistiti de Geoffroy</fr>
-    <additionalFrenchNames />
-    <en>Geoffroy's marmoset</en>
-    <additionalEnglishNames>
-      <name>Geoffroy's tufted-ear marmoset</name>
-      <name>White-fronted marmoset</name>
-      <name>White-faced marmoset</name>
-      <name>White-headed marmoset</name>
-    </additionalEnglishNames>
-    <scientific>Callithrix geoffroyi</scientific>
-  </names>
-  <general>
-    <uicn>1</uicn>
-    <family>26</family>
-    <continents>
-      <continent>2</continent>
-    </continents>
-    <ecoregion>0</ecoregion>
-    <breedingProgramme>0</breedingProgramme>
-  </general>
-  <documentation>
-    <frenchWikipedia>https://fr.wikipedia.org/wiki/Ouistiti_de_Geoffroy</frenchWikipedia>
-    <englishWikipedia>https://en.wikipedia.org/wiki/White-headed_marmoset</englishWikipedia>
-    <animalDiversity />
-  </documentation>
-  <reproduction>
-    <femaleMaturity>16</femaleMaturity>
-    <maleMaturity>16</maleMaturity>
-    <gestationFrequency>2</gestationFrequency>
-    <litterSize>2</litterSize>
-    <leavingAge>0</leavingAge>
-  </reproduction>
-  <lifespan>
-    <femaleLifespan>120</femaleLifespan>
-    <maleLifespan>120</maleLifespan>
-  </lifespan>
-  <territory>
-    <territorySize>48</territorySize>
-    <biomes>
-      <biome>1</biome>
-    </biomes>
-  </territory>
-  <feeding>
-    <quantity>0.1</quantity>
-    <size>1</size>
-    <diets>
-      <diet>17</diet>
-    </diets>
-  </feeding>
-  <social>
-    <groupSize>8</groupSize>
-  </social>
+    <names>
+        <fr>Ouistiti de Geoffroy</fr>
+        <additionalFrenchNames />
+        <en>Geoffroy's marmoset</en>
+        <additionalEnglishNames>
+            <name>Geoffroy's tufted-ear marmoset</name>
+            <name>White-fronted marmoset</name>
+            <name>White-faced marmoset</name>
+            <name>White-headed marmoset</name>
+        </additionalEnglishNames>
+        <scientific>Callithrix geoffroyi</scientific>
+    </names>
+    <general>
+        <uicn>1</uicn>
+        <family>26</family>
+        <continents>
+            <continent>2</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+        <breedingProgramme>0</breedingProgramme>
+    </general>
+    <documentation>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Ouistiti_de_Geoffroy</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/White-headed_marmoset</englishWikipedia>
+        <animalDiversity />
+    </documentation>
+    <reproduction>
+        <femaleMaturity>16</femaleMaturity>
+        <maleMaturity>16</maleMaturity>
+        <gestationFrequency>2</gestationFrequency>
+        <litterSize>2</litterSize>
+        <leavingAge>0</leavingAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>120</femaleLifespan>
+        <maleLifespan>120</maleLifespan>
+    </lifespan>
+    <territory>
+        <territorySize>48</territorySize>
+        <biomes>
+            <biome>1</biome>
+        </biomes>
+    </territory>
+    <feeding>
+        <quantity>0.1</quantity>
+        <size>1</size>
+        <diets>
+            <diet>17</diet>
+        </diets>
+    </feeding>
+    <social>
+        <groupSize>8</groupSize>
+    </social>
+    <tags>
+        <frenchTags>
+            <tag>Mammifère</tag>
+            <tag>Primate</tag>
+            <tag>Singe</tag>
+            <tag>Ouistiti</tag>
+            <tag>Geoffroy</tag>
+            <tag></tag>
+        </frenchTags>
+        <englishTags>
+            <tag>Mammal</tag>
+            <tag>Primate</tag>
+            <tag>Monkey</tag>
+            <tag>Geoffroy</tag>
+            <tag>Marmoset</tag>
+            <tag>Ear</tag>
+            <tag>Front</tag>
+            <tag>Fronted</tag>
+            <tag>White</tag>
+            <tag>Face</tag>
+            <tag>Faced</tag>
+            <tag>Head</tag>
+            <tag>Tufted</tag>
+            <tag>Headed</tag>
+            <tag></tag>
+        </englishTags>
+    </tags>
 </animal>

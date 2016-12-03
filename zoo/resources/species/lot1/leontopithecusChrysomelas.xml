@@ -52,4 +52,28 @@
   <social>
     <groupSize>4</groupSize>
   </social>
+    <tags>
+        <frenchTags>
+            <tag>Mammifère</tag>
+            <tag>Primate</tag>
+            <tag>Singe</tag>
+            <tag>Tamarin</tag>
+            <tag>Lion</tag>
+            <tag>Tête</tag>
+            <tag>Or</tag>
+            <tag>Doré</tag>
+            <tag>Dorée</tag>
+        </frenchTags>
+        <englishTags>
+            <tag>Mammal</tag>
+            <tag>Primate</tag>
+            <tag>Monkey</tag>
+            <tag>Gold</tag>
+            <tag>Golden</tag>
+            <tag>Head</tag>
+            <tag>Headed</tag>
+            <tag>Tamarin</tag>
+            <tag>Lion</tag>
+        </englishTags>
+    </tags>
 </animal>

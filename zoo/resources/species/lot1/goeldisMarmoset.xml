@@ -56,4 +56,24 @@
   <social>
     <groupSize>8</groupSize>
   </social>
+    <tags>
+        <frenchTags>
+            <tag>Mammifère</tag>
+            <tag>Primate</tag>
+            <tag>Singe</tag>
+            <tag>Ouistiti</tag>
+            <tag>Goeldi</tag>
+            <tag>Sauteur</tag>
+            <tag></tag>
+        </frenchTags>
+        <englishTags>
+            <tag>Mammal</tag>
+            <tag>Primate</tag>
+            <tag>Monkey</tag>
+            <tag>Geoffroy</tag>
+            <tag>Marmoset</tag>
+            <tag>Jumped</tag>
+            <tag></tag>
+        </englishTags>
+    </tags>
 </animal>

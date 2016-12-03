@@ -59,12 +59,19 @@
           <tag>Primate</tag>
           <tag>Singe</tag>
           <tag>Gibbon</tag>
+          <tag>Main</tag>
+          <tag>Mains</tag>
+          <tag>Blanc</tag>
+          <tag>Lar</tag>
       </frenchTags>
       <englishTags>
           <tag>Mammal</tag>
           <tag>Primate</tag>
           <tag>Monkey</tag>
           <tag>Gibbon</tag>
+          <tag>White</tag>
+          <tag>Hand</tag>
+          <tag>Handed</tag>
       </englishTags>
   </tags>
 </animal>
