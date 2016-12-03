@@ -1,4 +1,3 @@
-
 package basicGui;
 
 import java.util.Arrays;
@@ -39,8 +38,8 @@ public class FormattingDisplay {
             finalStr += "\n";
         }
         for (int j = 0; j < array.length; j++) {
-                finalStr += array[j][array[0].length - 1];
-            }
+            finalStr += array[j][array[0].length - 1];
+        }
         return finalStr;
     }
 
@@ -67,8 +66,10 @@ public class FormattingDisplay {
 
     /**
      * Formating of the map
-     * @param list List of PaddockCoordinates ; the first must represent the dimensions of the zoo
-     * @return 
+     *
+     * @param list List of PaddockCoordinates ; the first must represent the
+     * dimensions of the zoo
+     * @return
      */
     public static String zooMap(List<PaddockCoordinates> list) {
         char[][] array = new char[list.get(0).getWidth() + 2][list.get(0).getHeight() + 2];
@@ -82,7 +83,7 @@ public class FormattingDisplay {
         int cpt = 0;
         while (it.hasNext()) {
             next = (PaddockCoordinates) it.next();
-            array = paddockMap(next, array, signArray[cpt%signArray.length]);
+            array = paddockMap(next, array, signArray[cpt % signArray.length]);
             cpt++;
         }
         return d2ArrayToString(array);
@@ -90,20 +91,14 @@ public class FormattingDisplay {
 
     /**
      * Layout for a list of Strings
+     *
      * @param list List of strings we need to display
      * @return a formatting String corresponding to the parameter
      */
     public static String formattingList(List<String> list) {
-        Iterator it = list.iterator();
-        String str = "";
         String finalStr = "";
-        while (it.hasNext()) {
-            str = (String) it.next();
-            if (it.hasNext()) {
-                finalStr += str + "\n";
-            } else {
-                finalStr += str + "\n";
-            }
+        for (String str : list) {
+            finalStr += str + "\n";
         }
         return finalStr;
     }
