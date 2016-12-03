@@ -61,6 +61,8 @@
           <tag>Félin</tag>
           <tag>Fauve</tag>
           <tag>Lion</tag>
+          <tag>Asiatique</tag>
+          <tag>Asie</tag>
       </frenchTags>
       <englishTags>
           <tag>Mammal</tag>
@@ -68,6 +70,8 @@
           <tag>Feline</tag>
           <tag>Wild cat</tag>
           <tag>Lion</tag>
+          <tag>Asian</tag>
+          <tag>Asia</tag>
       </englishTags>
   </tags>
 </animal>

@@ -61,6 +61,9 @@
             <tag>Cercopithèque</tag>
             <tag>Singe</tag>
             <tag>Macaque</tag>
+            <tag>Façe</tag>
+            <tag>Rouge</tag>
+            <tag>Brun</tag>
         </frenchTags>
         <englishTags>
             <tag>Mammal</tag>
@@ -69,6 +72,10 @@
             <tag>Cercopithecus</tag>
             <tag>Macaque</tag>
             <tag>Bear</tag>
+            <tag>Stump</tag>
+            <tag>Tail</tag>
+            <tag>Tailed</tag>
+            <tag>Stup-tailed</tag>
         </englishTags>
     </tags>
 </animal>

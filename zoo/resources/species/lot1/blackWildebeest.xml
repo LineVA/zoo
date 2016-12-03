@@ -62,7 +62,8 @@
             <tag>Gnou</tag>
             <tag>Alcelaphini</tag>
             <tag>Connochaetes</tag>
-            <tag>Noir</tag>
+            <tag>Queue</tag>
+            <tag>Blanc</tag>
         </frenchTags>
         <englishTags>
             <tag>Mammal</tag>
@@ -72,6 +73,7 @@
             <tag>Wildebeest</tag>
             <tag>Connochaetes</tag>
             <tag>Black</tag>
+            <tag>Gnu</tag>
         </englishTags>
     </tags>
 </animal>

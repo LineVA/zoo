@@ -3,7 +3,7 @@
   <names>
     <fr>Castor canadien</fr>
     <additionalFrenchNames>
-      <name>Castor américaini</name>
+      <name>Castor américain</name>
     </additionalFrenchNames>
     <en>American beaver</en>
     <additionalEnglishNames>
@@ -61,11 +61,15 @@
           <tag>Mammifère</tag>
           <tag>Rongeur</tag>
           <tag>Castor</tag>
+          <tag>Canadien</tag>
+          <tag>Américain</tag>
       </frenchTags>
       <englishTags>
           <tag>Mammal</tag>
           <tag>Rodent</tag>
           <tag>Beaver</tag>
+          <tag>American</tag>
+          <tag>North-American</tag>
       </englishTags>
   </tags>
 </animal>
