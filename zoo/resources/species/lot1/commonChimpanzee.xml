@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+    <names>
+        <fr>Chimpanzée commun</fr>
+        <additionalFrenchNames>
+            <name>Troglodyte noir</name>
+        </additionalFrenchNames>
+        <en>Common chimpanzee</en>
+        <additionalEnglishNames>
+            <name>Robust chimpanzee</name>
+        </additionalEnglishNames>
+        <scientific>Pan troglodytes</scientific>
+    </names>
+    <general>
+        <uicn>4</uicn>
+        <family>36</family>
+        <continents>
+            <continent>1</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+        <breedingProgramme>1</breedingProgramme>
+    </general>
+    <documentation>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Orang-outon_de_Bornéo </frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Common_chimanzee</englishWikipedia>
+        <animalDiversity />
+    </documentation>
+    <reproduction>
+        <femaleMaturity>138</femaleMaturity>
+        <maleMaturity>162</maleMaturity>
+        <gestationFrequency>0.25</gestationFrequency>
+        <gestationDuration>6</gestationDuration>
+        <litterSize>1</litterSize>
+        <weaningAge>37</weaningAge>
+        <leavingAge>72</leavingAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>540</femaleLifespan>
+        <maleLifespan>540</maleLifespan>
+    </lifespan>
+    <territory>
+        <territorySize>420</territorySize>
+        <biomes>
+            <biome>1</biome>
+        </biomes>
+    </territory>
+    <feeding>
+        <quantity>3.1</quantity>
+        <size>4</size>
+        <diets>
+            <diet>5</diet>
+        </diets>
+    </feeding>
+    <social>
+        <groupSize>10</groupSize>
+    </social>
+    <tags>
+        <frenchTags>
+            <tag>Mammifère</tag>
+            <tag>Primate</tag>
+            <tag>Singe</tag>
+            <tag>Chimpanzée</tag>
+            <tag>Commun</tag>
+            <tag>Troglodyte</tag>
+            <tag>Noir</tag>    
+        </frenchTags>
+        <englishTags>
+            <tag>Mammal</tag>
+            <tag>Primate</tag>
+            <tag>Monkey</tag>
+            <tag>Common</tag>
+            <tag>Robuste</tag>
+            <tag>Chimpanzee</tag>
+        </englishTags>
+    </tags>
+</animal>

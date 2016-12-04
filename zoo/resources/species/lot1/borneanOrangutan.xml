@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+    <names>
+        <fr>Orang-outan de Bornéo</fr>
+        <additionalFrenchNames>
+            <name>Orang-outang de Bornéo</name>
+        </additionalFrenchNames>
+        <en>Bornean orangutan</en>
+        <additionalEnglishNames>
+        </additionalEnglishNames>
+        <scientific>Pongo pygmaeus</scientific>
+    </names>
+    <general>
+        <uicn>5</uicn>
+        <family>36</family>
+        <continents>
+            <continent>5</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+        <breedingProgramme>1</breedingProgramme>
+    </general>
+    <documentation>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Orang-outon_de_Bornéo </frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Bornean_orangutan</englishWikipedia>
+        <animalDiversity />
+    </documentation>
+    <reproduction>
+        <femaleMaturity>102</femaleMaturity>
+        <maleMaturity>138</maleMaturity>
+        <gestationFrequency>0.125</gestationFrequency>
+        <gestationDuration>8</gestationDuration>
+        <litterSize>1</litterSize>
+        <weaningAge>50</weaningAge>
+        <leavingAge>80</leavingAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>510</femaleLifespan>
+        <maleLifespan>510</maleLifespan>
+    </lifespan>
+    <territory>
+        <territorySize>140</territorySize>
+        <biomes>
+            <biome>1</biome>
+        </biomes>
+    </territory>
+    <feeding>
+        <quantity>3.0</quantity>
+        <size>5</size>
+        <diets>
+            <diet>5</diet>
+        </diets>
+    </feeding>
+    <social>
+        <groupSize>3</groupSize>
+    </social>
+    <tags>
+        <frenchTags>
+            <tag>Mammifère</tag>
+            <tag>Primate</tag>
+            <tag>Singe</tag>
+            <tag>Bornéo</tag>
+            <tag>Orang</tag>
+            <tag>Outan</tag>
+            <tag>Orang-outan</tag>
+            <tag>Outang</tag>
+            <tag>Orang-outang</tag>
+        </frenchTags>
+        <englishTags>
+            <tag>Mammal</tag>
+            <tag>Primate</tag>
+            <tag>Monkey</tag>
+            <tag>Gorilla</tag>
+            <tag>Western</tag>
+            <tag>West</tag>
+            <tag>Bornean</tag>
+            <tag>Orangutan</tag>
+        </englishTags>
+    </tags>
+</animal>

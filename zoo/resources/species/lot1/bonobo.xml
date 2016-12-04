@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+    <names>
+        <fr>Bonobo</fr>
+        <additionalFrenchNames>
+            <name>Chimpanzée pygmé</name>
+            <name>Chimpanzée nain</name>
+        </additionalFrenchNames>
+        <en>Bonobo</en>
+        <additionalEnglishNames>
+            <name>Pygmy chimpanzee</name>
+            <name>Dwarf chimpanzee</name>
+            <name>Gracile chimpanzee</name>
+        </additionalEnglishNames>
+        <scientific>Pan paniscus</scientific>
+    </names>
+    <general>
+        <uicn>4</uicn>
+        <family>36</family>
+        <continents>
+            <continent>1</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+        <breedingProgramme>1</breedingProgramme>
+    </general>
+    <documentation>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Bonobo</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Bonobo</englishWikipedia>
+        <animalDiversity />
+    </documentation>
+    <reproduction>
+        <femaleMaturity>168</femaleMaturity>
+        <maleMaturity>168</maleMaturity>
+        <gestationFrequency>0.20</gestationFrequency>
+        <gestationDuration>8</gestationDuration>
+        <litterSize>1</litterSize>
+        <weaningAge>48</weaningAge>
+        <leavingAge>96</leavingAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>264</femaleLifespan>
+        <maleLifespan>264</maleLifespan>
+    </lifespan>
+    <territory>
+        <territorySize>170</territorySize>
+        <biomes>
+            <biome>1</biome>
+        </biomes>
+    </territory>
+    <feeding>
+        <quantity>3.0</quantity>
+        <size>4</size>
+        <diets>
+            <diet>5</diet>
+        </diets>
+    </feeding>
+    <social>
+        <groupSize>4</groupSize>
+    </social>
+    <tags>
+        <frenchTags>
+            <tag>Mammifère</tag>
+            <tag>Primate</tag>
+            <tag>Singe</tag>
+            <tag>Chimpanzée</tag>
+            <tag>Nain</tag>
+            <tag>Pygmé</tag>
+        </frenchTags>
+        <englishTags>
+            <tag>Mammal</tag>
+            <tag>Primate</tag>
+            <tag>Monkey</tag>
+            <tag>Chimpanzee</tag>
+            <tag>Dwarf</tag>
+            <tag>Gracile</tag>
+            <tag>Pygmy</tag>
+        </englishTags>
+    </tags>
+</animal>
