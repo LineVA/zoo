@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:./resources/species/specie.xsd">
+    <names>
+        <fr>Gorille de l'Ouest</fr>
+        <additionalFrenchNames>
+        </additionalFrenchNames>
+        <en>Western gorilla</en>
+        <additionalEnglishNames>
+        </additionalEnglishNames>
+        <scientific>Gorilla gorilla</scientific>
+    </names>
+    <general>
+        <uicn>5</uicn>
+        <family>36</family>
+        <continents>
+            <continent>1</continent>
+        </continents>
+        <ecoregion>0</ecoregion>
+        <breedingProgramme>1</breedingProgramme>
+    </general>
+    <documentation>
+        <frenchWikipedia>https://fr.wikipedia.org/wiki/Gorille_de_l'Ouest</frenchWikipedia>
+        <englishWikipedia>https://en.wikipedia.org/wiki/Western_gorilla</englishWikipedia>
+        <animalDiversity />
+    </documentation>
+    <reproduction>
+        <femaleMaturity>120</femaleMaturity>
+        <maleMaturity>180</maleMaturity>
+        <gestationFrequency>0.25</gestationFrequency>
+        <gestationDuration>9</gestationDuration>
+        <litterSize>1</litterSize>
+        <weaningAge>42</weaningAge>
+    </reproduction>
+    <lifespan>
+        <femaleLifespan>410</femaleLifespan>
+        <maleLifespan>410</maleLifespan>
+    </lifespan>
+    <territory>
+        <territorySize>600</territorySize>
+        <biomes>
+            <biome>1</biome>
+        </biomes>
+    </territory>
+    <feeding>
+        <quantity>5.6</quantity>
+        <size>7</size>
+        <diets>
+            <diet>21</diet>
+        </diets>
+    </feeding>
+    <social>
+        <groupSize>7</groupSize>
+    </social>
+    <tags>
+        <frenchTags>
+            <tag>Mammifère</tag>
+            <tag>Primate</tag>
+            <tag>Singe</tag>
+            <tag>Gorille</tag>
+            <tag>Ouest</tag>
+        </frenchTags>
+        <englishTags>
+            <tag>Mammal</tag>
+            <tag>Primate</tag>
+            <tag>Monkey</tag>
+            <tag>Gorilla</tag>
+            <tag>Western</tag>
+            <tag>West</tag>
+        </englishTags>
+    </tags>
+</animal>
