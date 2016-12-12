@@ -30,8 +30,10 @@
     <femaleMaturity>30</femaleMaturity>
     <maleMaturity>30</maleMaturity>
     <gestationFrequency>1</gestationFrequency>
+    <gestationDuration>4</gestationDuration>
     <litterSize>3</litterSize>
-    <leavingAge>0</leavingAge>
+    <weaningAge>1</weaningAge>
+    <leavingAge>24</leavingAge>
   </reproduction>
   <lifespan>
     <femaleLifespan>225</femaleLifespan>

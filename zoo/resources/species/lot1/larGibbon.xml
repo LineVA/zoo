@@ -29,9 +29,9 @@
     <femaleMaturity>90</femaleMaturity>
     <maleMaturity>108</maleMaturity>
     <gestationFrequency>0.29</gestationFrequency>
+    <gestationDuration>7</gestationDuration>
     <litterSize>1</litterSize>
     <weaningAge>20</weaningAge>
-    <leavingAge>0</leavingAge>
   </reproduction>
   <lifespan>
     <femaleLifespan>360</femaleLifespan>

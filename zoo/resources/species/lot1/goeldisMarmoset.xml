@@ -13,7 +13,7 @@
       <name>Spring tamarin</name>
       <name>Callimico</name>
     </additionalEnglishNames>
-    <scientific>Callimico goeldi</scientific>
+    <scientific>Callimico goeldii</scientific>
   </names>
   <general>
     <uicn>3</uicn>
@@ -33,8 +33,9 @@
     <femaleMaturity>14</femaleMaturity>
     <maleMaturity>14</maleMaturity>
     <gestationFrequency>2</gestationFrequency>
+    <gestationDuration>5</gestationDuration>
     <litterSize>1</litterSize>
-    <leavingAge>0</leavingAge>
+    <weaningAge>3</weaningAge>
   </reproduction>
   <lifespan>
     <femaleLifespan>144</femaleLifespan>

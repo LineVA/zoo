@@ -31,7 +31,7 @@
         <gestationFrequency>1</gestationFrequency>
         <gestationDuration>2</gestationDuration>
         <litterSize>4</litterSize>
-        <leavingAge>0</leavingAge>
+        <leavingAge>5</leavingAge>
     </reproduction>
     <lifespan>
         <femaleLifespan>294</femaleLifespan>

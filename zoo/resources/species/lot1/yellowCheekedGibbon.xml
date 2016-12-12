@@ -34,7 +34,9 @@
     <femaleMaturity>84</femaleMaturity>
     <maleMaturity>84</maleMaturity>
     <gestationFrequency>0.4</gestationFrequency>
-    <litterSize>1</litterSize>
+     <gestationDuration>7</gestationDuration>
+   <litterSize>1</litterSize>
+   <weaningAge>24</weaningAge>
     <leavingAge>84</leavingAge>
   </reproduction>
   <lifespan>

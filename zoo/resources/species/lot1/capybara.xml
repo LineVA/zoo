@@ -32,6 +32,7 @@
         <femaleMaturity>18</femaleMaturity>
         <maleMaturity>18</maleMaturity>
         <gestationFrequency>1</gestationFrequency>
+        <gestationDuration>5</gestationDuration>
         <litterSize>4</litterSize>
         <weaningAge>3</weaningAge>
         <leavingAge>12</leavingAge>
