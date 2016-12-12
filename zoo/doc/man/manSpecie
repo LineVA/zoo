@@ -2,10 +2,12 @@ Manuel d'aide pour les commandes 'specie' :
 Une commande faisant référence à une espèce peut commencer
  par le mot 'specie' ou par le diminutif 'spec'.
 
-> specie 'name' : Affiche les détails d'une espèce de nom 'name'
+> specie 'name' : Affiche les détails d'une espèce de nom 'name' (nom principal, additionnel ou scientifique)
 Ces détails sont, dans l'ordre : 
     - son nom dans la langue courante,
+    - ses autres noms dans la langue courante,
     - son nom scientifique,
+    - son nom anglais si la langue courante est le français, son nom français si la langue courante est l'anglais,
     - sa famille,
     - son poids moyen,
     - son statut de conservation défini par l'UICN,
@@ -48,6 +50,6 @@ Si aucun continent ne porte cet identifiant, un message d'erreur s'affiche.
 Si aucun régime alimentaire ne porte cet identifiant, un message d'erreur s'affiche.
     - [--biome|-b] 'id' : Liste des espèces réclamant le biome 'id'
 Si aucun biome ne porte cet identifiant, un message d'erreur s'affiche.  
-    - [--tag|-t] 'tag' : Liste des espèces possédant le tag 'tag'
+    - 'tag' : Liste des espèces possédant le tag 'tag' ou le nom (principal, additionel ou scientifique) 'tag'
 Si aucune espèce ne porte ce tag, la liste est vide.
   

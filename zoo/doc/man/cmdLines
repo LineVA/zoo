@@ -63,8 +63,8 @@ Liste des commandes :
 > specie ls [--diet|-d] 'id' : Liste des espèces selon le régime d'identifiant 'id' 
 > specie ls [--biome|-b] 'id' : Liste des espèces réclamant le biome 'id'
 > specie ls [--breedingProgramme|-bp] 'id' : Liste des espèces participant à un programme d'id 'id'
-> specie ls [--tag|-t] 'tag' : Liste des espèces possédant le tag 'tag'
-> specie <name> : Détails de l'espèce 'name
+> specie ls 'tag' : Liste des espèces possédant le tag 'tag' ou le nom (nom principal, additionel ou scientifique) 'tag'
+> specie <name> : Détails de l'espèce 'name' (nom principal, additionel ou scientifique)
 > [doc|documentation] [wiki|wikipedia] 'name' : Ouverture de la page wikipedia de l'espèce de nom 'name'
 
 > animalKeeper create <name> : Création d'un soigneur de nom 'name' sans affectation
