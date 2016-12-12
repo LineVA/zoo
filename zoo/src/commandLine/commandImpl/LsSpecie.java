@@ -112,7 +112,8 @@ public class LsSpecie extends AbstractCommand {
     }
 
     private boolean checkLength(String[] cmd) {
-        return cmd.length >= 2 && cmd.length <= 22 && cmd.length % 2 == 0;
+
+        return cmd.length >= 2 && cmd.length <= 21;
     }
 
     private boolean hasArgumentPaddock(String cmd) {
@@ -152,10 +153,6 @@ public class LsSpecie extends AbstractCommand {
         return Arrays.asList(Constants.BREEDING_ARG).contains(cmd);
     }
 
-    private boolean hasArgumentTags(String cmd) {
-        return Arrays.asList(Constants.TAG_ARG).contains(cmd);
-    }
-
     private boolean hasArgumentFastDays(String cmd) {
         return Arrays.asList(Constants.FASTDAY_ARG).contains(cmd);
     }
@@ -179,8 +176,6 @@ public class LsSpecie extends AbstractCommand {
             continents = SplittingAmpersand.split(value);
         } else if (this.hasArgumentBreedingProgramme(arg)) {
             breedingProgrammes = SplittingAmpersand.split(value);
-        } else if (this.hasArgumentTags(arg)) {
-            tags = SplittingAmpersand.split(value);
         } else if (this.hasArgumentFastDays(arg)) {
             fastDays = SplittingAmpersand.split(value);
         } else {
@@ -204,7 +199,13 @@ public class LsSpecie extends AbstractCommand {
         fastDays = new HashSet<>();
 
         if (firstCmd(cmd) && checkLength(cmd)) {
-            int i = 2;
+            int i;
+            if (cmd.length % 2 == 0) {
+                i = 2;
+            } else {
+                i = 3;
+                tags = SplittingAmpersand.split(cmd[2]);
+            }
             while (i <= cmd.length - 2) {
                 if (!saveArgument(cmd[i], cmd[i + 1])) {
                     return false;
