@@ -238,8 +238,12 @@ public class Specie {
     public boolean compare(LightSpecie lightSpecie, Option option) {
         boolean isCorresponding = true;
         if (null != lightSpecie.getTags()) {
-            isCorresponding &= Utils.toUpperCase(this.getTagsAccordingToLanguage(option))
-                    .containsAll(Utils.toUpperCase(lightSpecie.getTags()));
+            boolean containsName = false;
+            for(String tag : lightSpecie.getTags()){
+                containsName |= this.names.containsName(tag, option);
+            }
+            isCorresponding &= (Utils.toUpperCase(this.getTagsAccordingToLanguage(option))
+                    .containsAll(Utils.toUpperCase(lightSpecie.getTags())) || containsName);
         }
         if (null != lightSpecie.getBiome()) {
             isCorresponding &= this.biomes.containsAll((lightSpecie.getBiome()));
