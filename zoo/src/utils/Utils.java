@@ -6,15 +6,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
+import zoo.animal.Animal;
 
 /**
  *
  * @author doyenm
  */
 public class Utils {
-    
-    public static boolean isBetween(int test, int min, int max){
-        return (test >= min) && (test<=max);
+
+    public static boolean isBetween(int test, int min, int max) {
+        return (test >= min) && (test <= max);
     }
 
     public static boolean isPositivOrNull(int test) {
@@ -69,28 +70,37 @@ public class Utils {
         }
         return integers;
     }
-    
-    public static Couple transformIntoYearsAndMonthsFromMonths(int initMonths) 
+
+    public static Couple transformIntoYearsAndMonthsFromMonths(int initMonths)
             throws IncorrectDataException {
-        if(initMonths<0){
+        if (initMonths < 0) {
             throw new IncorrectDataException("");
         }
-        return new Couple(initMonths/12, initMonths%12);
+        return new Couple(initMonths / 12, initMonths % 12);
     }
-    
+
     public static String infoAge(int age, ResourceBundle bundle) throws IncorrectDataException {
         Couple ageInYears = Utils.transformIntoYearsAndMonthsFromMonths(age);
         String info = "";
         if (ageInYears.getA() > 1) {
             info += ageInYears.getA() + " " + bundle.getString("YEARS");
         } else {
-            info += ageInYears.getA()  + " " + bundle.getString("YEAR");
+            info += ageInYears.getA() + " " + bundle.getString("YEAR");
         }
         if (ageInYears.getB() > 1) {
             info += ageInYears.getB() + " " + bundle.getString("MONTHS");
         } else {
-            info += ageInYears.getB() + " "+ bundle.getString("MONTH");
+            info += ageInYears.getB() + " " + bundle.getString("MONTH");
         }
+        return info;
+    }
+
+    public static String infoGenealogy(Animal mother, Animal father, ResourceBundle bundle) {
+        String info = "";
+        String motherName = (mother != null) ? mother.getName() : bundle.getString("UNKNOWN_MOTHER");
+        String fatherName = (father != null) ? father.getName() : bundle.getString("UNKNOWN_FATHER");
+        info += bundle.getString("MOTHER") + motherName
+                + ", " + bundle.getString("FATHER") + fatherName;
         return info;
     }
 }

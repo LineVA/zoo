@@ -75,7 +75,7 @@ public class ReproductionImpl implements Reproduction {
         Random random = new Random();
         for (int i = 0; i < litterSize; i++) {
             rand = random.nextInt();
-            family.add(generateAnimal(mother.getSpecie(), String.valueOf(rand), mother.getPaddock()));
+            family.add(generateAnimal(String.valueOf(rand), mother, father));
         }
         return family;
     }
@@ -83,12 +83,15 @@ public class ReproductionImpl implements Reproduction {
     /**
      * Generate randomly a baby with the specified parameters
      *
-     * @param spec the specie of the baby
+     * @param mother
      * @param name its name
-     * @param pad its paddock
+     * @param father
      * @return the baby
+     * @throws exception.IncorrectDataException
+     * @throws exception.name.EmptyNameException
+     * @throws exception.IncorrectLoadException
      */
-    public Animal generateAnimal(Specie spec, String name, IPaddock pad)
+    public Animal generateAnimal(String name, Animal mother, Animal father)
             throws IncorrectDataException, EmptyNameException, NameException, IncorrectLoadException {
         Sex sex;
         if (uniform.nextBoolean()) {
@@ -96,7 +99,8 @@ public class ReproductionImpl implements Reproduction {
         } else {
             sex = Sex.MALE;
         }
-        return new AnimalImpl(spec, name, pad, sex, 0, null, null, pad.getOption());
+        return new AnimalImpl(mother.getSpecie(), name, mother.getPaddock(), sex, 0,
+                mother, father, mother.getPaddock().getOption());
     }
 
     /**
