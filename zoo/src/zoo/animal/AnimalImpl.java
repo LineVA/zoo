@@ -15,6 +15,7 @@ import launch.options.Option;
 import lombok.Getter;
 import lombok.Setter;
 import utils.Constants;
+import utils.Couple;
 import utils.Utils;
 import zoo.NameVerifications;
 import zoo.animal.conservation.ConservationStatus;
@@ -353,13 +354,13 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public List<String> info() throws UnknownNameException {
+    public List<String> info() throws UnknownNameException, IncorrectDataException {
         List<String> info = new ArrayList<>();
         ResourceBundle bundle = this.option.getAnimalBundle();
         info.add(bundle.getString("NAME") + this.name);
         info.add(bundle.getString("PADDOCK") + this.paddock.getName());
         info.add(bundle.getString("SPECIE") + this.specie.getNameAccordingToLanguage(option));
-        info.add(bundle.getString("AGE") + this.age);
+        info.add(bundle.getString("AGE") + infoAge(this.age, bundle));
         info.add(bundle.getString("SEX") + this.sex.toStringByLanguage());
         info.add(bundle.getString("WB") + Utils.truncate(this.wellBeing));
         info.add(bundle.getString("DIET") + Diet.NONE.findById(actualDiet).toStringByLanguage());
@@ -380,6 +381,22 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("OPT_TERRITORY_ATT") + this.optimalTerritory.toStringByLanguage(option));
         info.add(bundle.getString("TERRITORY_SIZE") + this.paddock.computeSize());
         info.add(bundle.getString("PERSONALITY_ATT") + this.personality.toStringByLanguage(option));
+        return info;
+    }
+
+    private String infoAge(int age, ResourceBundle bundle) throws IncorrectDataException {
+        Couple ageInYears = Utils.transformIntoYearsAndMonthsFromMonths(age);
+        String info = "";
+        if (ageInYears.getA() > 1) {
+            info += ageInYears.getA() + " " + bundle.getString("YEARS");
+        } else {
+            info += ageInYears.getA()  + " " + bundle.getString("YEAR");
+        }
+        if (ageInYears.getB() > 1) {
+            info += ageInYears.getB() + " " + bundle.getString("MONTHS");
+        } else {
+            info += ageInYears.getB() + " "+ bundle.getString("MONTH");
+        }
         return info;
     }
 
@@ -453,7 +470,7 @@ public class AnimalImpl implements Animal {
     @Override
     public boolean updateGestationDuration(int months) {
         this.currentlyGestationDuration += months;
-        if(this.currentlyGestationDuration >= this.actualReproduction.getGestationDuration()){
+        if (this.currentlyGestationDuration >= this.actualReproduction.getGestationDuration()) {
             this.currentlyGestationDuration = 0;
             return true;
         }

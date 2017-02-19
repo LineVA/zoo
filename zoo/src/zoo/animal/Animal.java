@@ -1,6 +1,7 @@
 package zoo.animal;
 
 import backup.save.SaveImpl;
+import exception.IncorrectDataException;
 import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.UnauthorizedNameException;
@@ -35,7 +36,7 @@ public interface Animal {
 
     public boolean isTooDrowning();
 
-    public List<String> info() throws UnknownNameException;
+    public List<String> info() throws UnknownNameException, IncorrectDataException;
 
     public void ageing(int monthsPerEvaluation);
 

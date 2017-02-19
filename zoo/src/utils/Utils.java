@@ -1,5 +1,6 @@
 package utils;
 
+import exception.IncorrectDataException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -66,5 +67,13 @@ public class Utils {
             integers.add(Integer.parseInt(str));
         }
         return integers;
+    }
+    
+    public static Couple transformIntoYearsAndMonthsFromMonths(int initMonths) 
+            throws IncorrectDataException {
+        if(initMonths<0){
+            throw new IncorrectDataException("");
+        }
+        return new Couple(initMonths/12, initMonths%12);
     }
 }

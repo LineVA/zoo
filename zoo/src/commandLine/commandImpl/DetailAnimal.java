@@ -4,6 +4,7 @@ import basicGui.FormattingDisplay;
 import commandLine.AbstractCommand;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
+import exception.IncorrectDataException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import launch.play.Play;
@@ -26,7 +27,7 @@ public class DetailAnimal extends AbstractCommand {
             Animal animal = super.getPlay().getZoo().findAnimalByName(cmd[1]);
            super.setSuccess(true);
             return new ReturnExec(FormattingDisplay.formattingList(animal.info(), false),TypeReturn.SUCCESS);
-        } catch (UnknownNameException | EmptyNameException ex) {
+        } catch (UnknownNameException | EmptyNameException | IncorrectDataException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
     }
