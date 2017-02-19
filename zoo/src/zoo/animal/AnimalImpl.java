@@ -738,5 +738,17 @@ public class AnimalImpl implements Animal {
         save.hashCode();
         return this.currentlyGestationDuration;
     }
+    
+    @Override
+    public Animal getMother(SaveImpl.FriendSave save) {
+        save.hashCode();
+        return this.mother;
+    }
+    
+     @Override
+    public Animal getFather(SaveImpl.FriendSave save) {
+        save.hashCode();
+        return this.father;
+    }
 
 }
