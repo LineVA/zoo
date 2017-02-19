@@ -15,7 +15,6 @@ import launch.options.Option;
 import lombok.Getter;
 import lombok.Setter;
 import utils.Constants;
-import utils.Couple;
 import utils.Utils;
 import zoo.NameVerifications;
 import zoo.animal.conservation.ConservationStatus;
@@ -370,7 +369,7 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("TURNS_DROWNING") + this.turnsOfDrowning);
         if (this.sex.isFemale()) {
             info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.femaleToStringByLanguage(option));
-            info.add(bundle.getString("ACT_GESTATION_DURATION") + this.currentlyGestationDuration);
+            info.add(bundle.getString("ACT_GESTATION_DURATION") + Utils.infoAge(this.currentlyGestationDuration, bundle));
         } else {
             info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.maleToStringByLanguage(option));
         }
