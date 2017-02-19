@@ -7,6 +7,7 @@ import exception.name.NameException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 import zoo.statistics.Uniform;
 import zoo.animal.Animal;
 import zoo.animal.AnimalImpl;
@@ -38,20 +39,20 @@ public class ReproductionImpl implements Reproduction {
         if (canFemaleReproducte(animal, monthsPerEvaluation)) {
             Animal father = whichMale(animal.findRoommatesOfTheSameSpecie());
             if (father != null) {
-                updateGestation(animal, monthsPerEvaluation);
-//                return generateFamily(animal, father);
+//                updateGestation(animal, monthsPerEvaluation);
+                return generateFamily(animal, father);
             }
-        } else if(animal.isAlreadyPregnant()){
+        } else if (animal.isAlreadyPregnant()) {
             updateGestation(animal, monthsPerEvaluation);
         }
         return null;
     }
-    
-    private List<Animal> updateGestation(Animal animal, int monthsPerEvaluation) 
-            throws IncorrectDataException, NameException, EmptyNameException, IncorrectLoadException{
-        if(animal.updateGestationDuration(monthsPerEvaluation)){
+
+    private List<Animal> updateGestation(Animal animal, int monthsPerEvaluation)
+            throws IncorrectDataException, NameException, EmptyNameException, IncorrectLoadException {
+        if (animal.updateGestationDuration(monthsPerEvaluation)) {
             return generateFamily(animal, null);
-        } 
+        }
         return null;
     }
 
@@ -70,8 +71,11 @@ public class ReproductionImpl implements Reproduction {
         family.add(father);
         int litterSize = uniform.intAverage(mother.getActualLitterSize());
         System.out.println(litterSize);
+        int rand = 0;
+        Random random = new Random();
         for (int i = 0; i < litterSize; i++) {
-            family.add(generateAnimal(mother.getSpecie(), "", mother.getPaddock()));
+            rand = random.nextInt();
+            family.add(generateAnimal(mother.getSpecie(), String.valueOf(rand), mother.getPaddock()));
         }
         return family;
     }
@@ -92,7 +96,7 @@ public class ReproductionImpl implements Reproduction {
         } else {
             sex = Sex.MALE;
         }
-        return new AnimalImpl(spec, name, pad, sex, pad.getOption());
+        return new AnimalImpl(spec, name, pad, sex, 0, pad.getOption());
     }
 
     /**

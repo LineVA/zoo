@@ -237,7 +237,6 @@ public class Paddock implements IPaddock {
         List<Animal> tmpAnimal = new ArrayList<>();
         Reproduction repro = new ReproductionImpl();
         List<Animal> newFamily;
-        Animal newComer;
         for (Map.Entry<String, Animal> animalEntry : this.animals.entrySet()) {
             newFamily = repro.reproducte(animalEntry.getValue(), monthsPerEvaluation);
             // If there is reproduction
@@ -245,12 +244,11 @@ public class Paddock implements IPaddock {
                 // newFamily[0] = mother;
                 // new Family[1] = father;
                 for (int i = 2; i < newFamily.size(); i++) {
-                    newComer = specifieNameOfTheNewBorn(newFamily.get(i), newFamily.get(0), newFamily.get(1));
-                    tmpAnimal.add(newComer);
+                    tmpAnimal.add(newFamily.get(i));
                     info.add(this.option.getAnimalBundle().getString("NEWCOMER")
                             + newFamily.get(0).getName() + this.option.getAnimalBundle().getString("AND")
                             + newFamily.get(1).getName()
-                            + this.option.getAnimalBundle().getString("CALLED") + newComer.getName());
+                            + this.option.getAnimalBundle().getString("CALLED") + newFamily.get(i).getName());
                 }
             }
         }
