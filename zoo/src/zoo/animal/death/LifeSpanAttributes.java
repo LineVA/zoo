@@ -1,5 +1,6 @@
 package zoo.animal.death;
 
+import exception.IncorrectDataException;
 import exception.IncorrectLoadException;
 import java.util.ResourceBundle;
 import launch.options.Option;
@@ -30,11 +31,11 @@ public class LifeSpanAttributes {
         }
     }
 
-    public String toStringByLanguage(Option option) {
+    public String toStringByLanguage(Option option) throws IncorrectDataException {
         ResourceBundle bundle = option.getAnimalBundle();
         String info = "";
-        info += bundle.getString("LIFESPAN.FEMALE_LIFESPAN") + this.femaleLifeSpan + ", ";
-        info += bundle.getString("LIFESPAN.MALE_LIFESPAN") + this.maleLifeSpan;
+        info += bundle.getString("LIFESPAN.FEMALE_LIFESPAN") + Utils.infoAge(this.femaleLifeSpan, bundle) + ", ";
+        info += bundle.getString("LIFESPAN.MALE_LIFESPAN") + Utils.infoAge(this.maleLifeSpan, bundle);
         return info;
     }
 }

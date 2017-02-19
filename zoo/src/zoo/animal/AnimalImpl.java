@@ -360,7 +360,7 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("NAME") + this.name);
         info.add(bundle.getString("PADDOCK") + this.paddock.getName());
         info.add(bundle.getString("SPECIE") + this.specie.getNameAccordingToLanguage(option));
-        info.add(bundle.getString("AGE") + infoAge(this.age, bundle));
+        info.add(bundle.getString("AGE") + Utils.infoAge(this.age, bundle));
         info.add(bundle.getString("SEX") + this.sex.toStringByLanguage());
         info.add(bundle.getString("WB") + Utils.truncate(this.wellBeing));
         info.add(bundle.getString("DIET") + Diet.NONE.findById(actualDiet).toStringByLanguage());
@@ -381,22 +381,6 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("OPT_TERRITORY_ATT") + this.optimalTerritory.toStringByLanguage(option));
         info.add(bundle.getString("TERRITORY_SIZE") + this.paddock.computeSize());
         info.add(bundle.getString("PERSONALITY_ATT") + this.personality.toStringByLanguage(option));
-        return info;
-    }
-
-    private String infoAge(int age, ResourceBundle bundle) throws IncorrectDataException {
-        Couple ageInYears = Utils.transformIntoYearsAndMonthsFromMonths(age);
-        String info = "";
-        if (ageInYears.getA() > 1) {
-            info += ageInYears.getA() + " " + bundle.getString("YEARS");
-        } else {
-            info += ageInYears.getA()  + " " + bundle.getString("YEAR");
-        }
-        if (ageInYears.getB() > 1) {
-            info += ageInYears.getB() + " " + bundle.getString("MONTHS");
-        } else {
-            info += ageInYears.getB() + " "+ bundle.getString("MONTH");
-        }
         return info;
     }
 

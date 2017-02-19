@@ -4,6 +4,7 @@ import exception.IncorrectDataException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.Set;
 
 /**
@@ -75,5 +76,21 @@ public class Utils {
             throw new IncorrectDataException("");
         }
         return new Couple(initMonths/12, initMonths%12);
+    }
+    
+    public static String infoAge(int age, ResourceBundle bundle) throws IncorrectDataException {
+        Couple ageInYears = Utils.transformIntoYearsAndMonthsFromMonths(age);
+        String info = "";
+        if (ageInYears.getA() > 1) {
+            info += ageInYears.getA() + " " + bundle.getString("YEARS");
+        } else {
+            info += ageInYears.getA()  + " " + bundle.getString("YEAR");
+        }
+        if (ageInYears.getB() > 1) {
+            info += ageInYears.getB() + " " + bundle.getString("MONTHS");
+        } else {
+            info += ageInYears.getB() + " "+ bundle.getString("MONTH");
+        }
+        return info;
     }
 }

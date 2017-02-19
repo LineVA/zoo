@@ -5,6 +5,7 @@ import commandLine.AbstractCommand;
 import commandLine.Command;
 import commandLine.ReturnExec;
 import commandLine.TypeReturn;
+import exception.IncorrectDataException;
 import exception.name.EmptyNameException;
 import exception.name.UnknownNameException;
 import java.util.Arrays;
@@ -30,7 +31,7 @@ public class DetailSpecie extends AbstractCommand implements Command {
             return new ReturnExec(FormattingDisplay.formattingList(
                     spec.toString(super.getPlay().getOption()), false),
                     TypeReturn.SUCCESS);
-        } catch (UnknownNameException | EmptyNameException ex) {
+        } catch (UnknownNameException | EmptyNameException | IncorrectDataException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
     }

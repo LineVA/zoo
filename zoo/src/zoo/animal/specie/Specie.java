@@ -1,5 +1,6 @@
 package zoo.animal.specie;
 
+import exception.IncorrectDataException;
 import zoo.animal.conservation.BreedingProgramme;
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
@@ -136,7 +137,7 @@ public class Specie {
         return false;
     }
 
-    public List<String> toString(Option option) throws UnknownNameException {
+    public List<String> toString(Option option) throws UnknownNameException, IncorrectDataException {
         List<String> info = new ArrayList<>();
         ResourceBundle bundle = option.getSpecieBundle();
         info.add(bundle.getString("NAME") + this.names.getNameAccordingToLanguage(option));

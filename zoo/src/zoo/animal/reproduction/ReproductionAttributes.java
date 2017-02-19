@@ -1,5 +1,6 @@
 package zoo.animal.reproduction;
 
+import exception.IncorrectDataException;
 import java.util.ResourceBundle;
 import launch.options.Option;
 import lombok.Getter;
@@ -30,31 +31,31 @@ public class ReproductionAttributes {
         this.gestationDuration = duration;
     }
 
-    public String toStringByLanguage(Option option) {
+    public String toStringByLanguage(Option option) throws IncorrectDataException {
         String info = "";
         ResourceBundle bundle = option.getAnimalBundle();
-        info += bundle.getString("REPRODUCTION.AGE_FEMALE") + this.femaleMaturityAge + ", ";
-        info += bundle.getString("REPRODUCTION.AGE_MALE") + this.maleMaturityAge + ", ";
+        info += bundle.getString("REPRODUCTION.AGE_FEMALE") + Utils.infoAge(this.femaleMaturityAge, bundle) + ", ";
+        info += bundle.getString("REPRODUCTION.AGE_MALE") + Utils.infoAge(this.maleMaturityAge, bundle) + ", ";
         info += bundle.getString("REPRODUCTION.GESTATION_FREQUENCY") + Utils.truncate(this.gestationFrequency) + ", ";
-        info += bundle.getString("REPRODUCTION.GESTATION_DURATION") + this.gestationDuration + ", ";
+        info += bundle.getString("REPRODUCTION.GESTATION_DURATION") + Utils.infoAge(this.gestationDuration, bundle)+ ", ";
         info += bundle.getString("REPRODUCTION.LITTER_SIZE") + this.litterSize;
         return info;
     }
 
-    public String femaleToStringByLanguage(Option option) {
+    public String femaleToStringByLanguage(Option option) throws IncorrectDataException {
         String info = "";
         ResourceBundle bundle = option.getAnimalBundle();
-        info += bundle.getString("REPRODUCTION.AGE_FEMALE") + this.femaleMaturityAge + ", ";
+        info += bundle.getString("REPRODUCTION.AGE_FEMALE") + Utils.infoAge(this.femaleMaturityAge, bundle) + ", ";
         info += bundle.getString("REPRODUCTION.GESTATION_FREQUENCY") + Utils.truncate(this.gestationFrequency) + ", ";
-        info += bundle.getString("REPRODUCTION.GESTATION_DURATION") + this.gestationDuration + ", ";
+        info += bundle.getString("REPRODUCTION.GESTATION_DURATION") + Utils.infoAge(this.gestationDuration, bundle) + ", ";
         info += bundle.getString("REPRODUCTION.LITTER_SIZE") + this.litterSize;
         return info;
     }
 
-    public String maleToStringByLanguage(Option option) {
+    public String maleToStringByLanguage(Option option) throws IncorrectDataException {
         String info = "";
         ResourceBundle bundle = option.getAnimalBundle();
-        info += bundle.getString("REPRODUCTION.AGE_MALE") + this.maleMaturityAge + ", ";
+        info += bundle.getString("REPRODUCTION.AGE_MALE") + Utils.infoAge(this.maleMaturityAge, bundle)+ ", ";
         return info;
     }
 }
