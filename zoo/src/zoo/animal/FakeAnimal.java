@@ -53,7 +53,8 @@ public class FakeAnimal {
             FeedingAttributes actualFeed, int diet,
             ReproductionAttributes repro, LifeSpanLightAttributes life,
             SocialAttributes social, TerritoryAttributes territory, PersonalityAttributes personality,
-            double wellBeing, int turnsOfStarvation, int turnsOfDrowning, int gestationDuration) {
+            double wellBeing, int turnsOfStarvation, int turnsOfDrowning, int gestationDuration,
+            String mother, String father) {
         this.specie = specie;
         this.name = name;
         this.paddock = paddock;
@@ -72,6 +73,8 @@ public class FakeAnimal {
         this.turnsOfStarvation = turnsOfStarvation;
         this.turnsOfDrowning = turnsOfDrowning;
         this.gestationDuration = gestationDuration;
+        this.mother = mother;
+        this.father = father;
     }
 
     public Animal convertToAnimal(Specie spec, IPaddock pad, Sex sex, Option option)
@@ -80,7 +83,8 @@ public class FakeAnimal {
         return new AnimalImpl(spec, this.name, pad, sex, this.age, this.biome,
                 this.optFeed, this.actualFeed, this.diet, this.repro, this.life,
                 this.social, this.territory, this.personality, this.wellBeing, 
-                this.turnsOfStarvation, this.turnsOfDrowning, this.gestationDuration, null, null,
+                this.turnsOfStarvation, this.turnsOfDrowning, this.gestationDuration,
+                this.mother, this.father,
                 option);
     }
 

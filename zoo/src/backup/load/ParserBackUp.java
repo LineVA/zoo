@@ -159,6 +159,8 @@ public class ParserBackUp {
         int starvation;
         int drowning;
         int gestationDuration;
+        String mother;
+        String father;
         for (Element tmpAnimalEl : animalsElList) {
             PersonalityAttributes personality;
             spec = tmpAnimalEl.getChildText(Constants.SPECIE);
@@ -177,10 +179,13 @@ public class ParserBackUp {
             starvation = parserStarvation(tmpAnimalEl);
             drowning = parserDrowning(tmpAnimalEl);
             gestationDuration = parserGestationDuration(tmpAnimalEl);
+            mother = parserMother(tmpAnimalEl);
+            father = parserFather(tmpAnimalEl);
             animalsList.add(new FakeAnimal(spec,
                     tmpAnimalEl.getAttributeValue(Constants.NAME),
                     pad, sex, age, biome, optFeed, actualFeed, diet, repro,
-                    life, social, territory, personality, wellBeing, starvation, drowning, gestationDuration));
+                    life, social, territory, personality, wellBeing, starvation, drowning, gestationDuration,
+                    mother, father));
         }
         return animalsList;
     }
@@ -224,6 +229,28 @@ public class ParserBackUp {
     private int parserGestationDuration(Element tmpAnimalEl)
             throws IncorrectLoadException {
         return Integer.parseInt(tmpAnimalEl.getChildText(Constants.GESTATIONDURATION));
+    }
+    
+     /**
+     * Parse the mothers name of an animal
+     *
+     * @param tmpAnimalEl the "animal" element to parse
+     * @return the corresponding mother
+     */
+    private String parserMother(Element tmpAnimalEl)
+            throws IncorrectLoadException {
+        return tmpAnimalEl.getChildText(Constants.MOTHER);
+    }
+    
+     /**
+     * Parse the name of the father of an animal
+     *
+     * @param tmpAnimalEl the "animal" element to parse
+     * @return the corresponding father
+     */
+    private String parserFather(Element tmpAnimalEl)
+            throws IncorrectLoadException {
+        return tmpAnimalEl.getChildText(Constants.FATHER);
     }
     
     /**
