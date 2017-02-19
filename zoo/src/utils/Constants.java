@@ -101,6 +101,8 @@ public class Constants {
     public static final String FASTDAYS = "fastDays";
     // --fastDay || -fd 
     public static final String[] FASTDAY_ARG = {"--fastDay", "-fd"};
+    // father
+    public static final String FATHER = "father";
     // femaleLifespan
     public static final String FEMALELIFESPAN = "femaleLifespan";
     // femaleMaturityAge
@@ -165,6 +167,8 @@ public class Constants {
     public static final String METICULOUSNESS = "meticulousness";
     // monthsPerEvaluation
     public static final String MONTHSPEREVALUATION = "monthsPerEvaluation";
+    // mother
+    public static final String MOTHER = "mother";
     // name
     public static final String NAME = "name";
     // names
