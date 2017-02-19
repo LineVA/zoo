@@ -90,9 +90,11 @@ public class AnimalImpl implements Animal {
     private int turnsOfStarvation;
     private int turnsOfDrowning;
     private int currentlyGestationDuration;
+    @Getter
     private String mother;
+    @Getter
     private String father;
-    
+
     /**
      * There is no notion of optimal in personality
      */
@@ -100,6 +102,7 @@ public class AnimalImpl implements Animal {
 
     /**
      * Constructor used to create an animal by breeding
+     *
      * @param spec the specie of then animal
      * @param name the name of the animal
      * @param paddock the paddock of the animal
@@ -109,7 +112,7 @@ public class AnimalImpl implements Animal {
      * @throws IncorrectDataException
      * @throws EmptyNameException
      * @throws NameException
-     * @throws IncorrectLoadException 
+     * @throws IncorrectLoadException
      */
     public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex,
             int age, String mother, String father, Option option)
@@ -143,6 +146,7 @@ public class AnimalImpl implements Animal {
 
     /**
      * Constructor used to create an animal by the command line
+     *
      * @param spec
      * @param name
      * @param paddock
@@ -150,7 +154,7 @@ public class AnimalImpl implements Animal {
      * @param option
      * @throws IncorrectLoadException
      * @throws EmptyNameException
-     * @throws NameException 
+     * @throws NameException
      */
     public AnimalImpl(Specie spec, String name,
             IPaddock paddock, Sex sex, Option option)
@@ -190,6 +194,7 @@ public class AnimalImpl implements Animal {
 
     /**
      * Constructor used to create a animal by loading a game
+     *
      * @param spec
      * @param name
      * @param paddock
@@ -212,7 +217,7 @@ public class AnimalImpl implements Animal {
      * @throws IncorrectDataException
      * @throws EmptyNameException
      * @throws UnknownNameException
-     * @throws UnauthorizedNameException 
+     * @throws UnauthorizedNameException
      */
     public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex,
             int age,
@@ -529,6 +534,16 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
+    public boolean isRelatedTo(Animal potentialRelation) {
+        boolean bool = false;
+        bool |= this.getName().equals(potentialRelation.getFather());
+        bool |= this.getName().equals(potentialRelation.getMother());
+        bool |= potentialRelation.getName().equals(this.father);
+        bool |= potentialRelation.getName().equals(this.mother);
+        return false;
+    }
+
+    @Override
     public boolean isEnoughHappy() {
         return this.wB.isCloseEnoughToMax(this.wellBeing);
     }
@@ -738,14 +753,14 @@ public class AnimalImpl implements Animal {
         save.hashCode();
         return this.currentlyGestationDuration;
     }
-    
+
     @Override
     public String getMother(SaveImpl.FriendSave save) {
         save.hashCode();
         return this.mother;
     }
-    
-     @Override
+
+    @Override
     public String getFather(SaveImpl.FriendSave save) {
         save.hashCode();
         return this.father;

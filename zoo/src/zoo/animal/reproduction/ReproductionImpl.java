@@ -35,9 +35,8 @@ public class ReproductionImpl implements Reproduction {
     public List<Animal> reproducte(Animal animal, int monthsPerEvaluation)
             throws IncorrectDataException, NameException, EmptyNameException, IncorrectLoadException {
         if (canFemaleReproducte(animal, monthsPerEvaluation)) {
-            Animal father = whichMale(animal.findRoommatesOfTheSameSpecie());
+            Animal father = whichMale(animal.findRoommatesOfTheSameSpecie(), animal);
             if (father != null) {
-//                updateGestation(animal, monthsPerEvaluation);
                 return generateFamily(animal, father);
             }
         } else if (animal.isAlreadyPregnant()) {
@@ -129,24 +128,24 @@ public class ReproductionImpl implements Reproduction {
      * @param animal the animal we test
      * @return true if it is, false else
      */
-    public boolean canMaleReproducte(Animal animal) {
-        return animal.canFecundateAFemale();
+    public boolean canMaleReproducte(Animal animal, Animal futureMother) {
+        return animal.canFecundateAFemale() & !animal.isRelatedTo(futureMother);
     }
 
     /**
      * Check if a male is available for the reproduction of the specie in the
      * same paddock as the female Now : the first mature male of the same specie
-     * is selected
+     * is selected, if it is not the father of the son
      *
      * @param animals the animals in the paddock
      * @return the male if one has been found, null else.
      */
-    public Animal whichMale(List<Animal> animals) {
+    public Animal whichMale(List<Animal> animals, Animal futureMother) {
         Iterator it = animals.iterator();
         Animal potentialMale;
         while (it.hasNext()) {
             potentialMale = (Animal) it.next();
-            if (canMaleReproducte(potentialMale)) {
+            if (canMaleReproducte(potentialMale, futureMother)) {
                 return potentialMale;
             }
         }

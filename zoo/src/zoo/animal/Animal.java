@@ -53,10 +53,12 @@ public interface Animal {
     public boolean canBePregnant();
 
     public boolean isAlreadyPregnant();
-    
+
     public boolean updateGestationDuration(int months);
 
     public boolean canFecundateAFemale();
+
+    public boolean isRelatedTo(Animal potentialRelation);
 
     public boolean isEnoughHappy();
 
@@ -83,6 +85,10 @@ public interface Animal {
     public double getActualGestationFrequency();
 
     public IPaddock getPaddock();
+
+    public String getMother();
+
+    public String getFather();
 
     public void setName(String name) throws EmptyNameException, UnauthorizedNameException;
 
@@ -121,9 +127,9 @@ public interface Animal {
     public int getDrowning(SaveImpl.FriendSave save);
 
     public int getCurrentlyGestationDuration(SaveImpl.FriendSave save);
-    
+
     public String getMother(SaveImpl.FriendSave save);
-    
+
     public String getFather(SaveImpl.FriendSave save);
 
 }
