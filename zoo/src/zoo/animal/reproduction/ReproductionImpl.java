@@ -96,7 +96,7 @@ public class ReproductionImpl implements Reproduction {
         } else {
             sex = Sex.MALE;
         }
-        return new AnimalImpl(spec, name, pad, sex, 0, pad.getOption());
+        return new AnimalImpl(spec, name, pad, sex, 0, null, null, pad.getOption());
     }
 
     /**

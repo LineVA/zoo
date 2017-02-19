@@ -90,14 +90,29 @@ public class AnimalImpl implements Animal {
     private int turnsOfStarvation;
     private int turnsOfDrowning;
     private int currentlyGestationDuration;
-
+    private Animal mother;
+    private Animal father;
+    
     /**
      * There is no notion of optimal in personality
      */
     private final PersonalityAttributes personality;
 
+    /**
+     * Constructor used to create an animal by breeding
+     * @param spec the specie of then animal
+     * @param name the name of the animal
+     * @param paddock the paddock of the animal
+     * @param sex the sex of the animal
+     * @param age the age of the animal
+     * @param option the options of the game
+     * @throws IncorrectDataException
+     * @throws EmptyNameException
+     * @throws NameException
+     * @throws IncorrectLoadException 
+     */
     public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex,
-            int age, Option option)
+            int age, Animal mother, Animal father, Option option)
             throws IncorrectDataException, EmptyNameException, NameException, IncorrectLoadException {
         this.option = option;
         this.specie = spec;
@@ -122,8 +137,21 @@ public class AnimalImpl implements Animal {
         this.turnsOfStarvation = this.initStarvation;
         this.turnsOfDrowning = this.initDrowning;
         this.currentlyGestationDuration = this.initCurrentlyGestationDuration;
+        this.mother = mother;
+        this.father = father;
     }
 
+    /**
+     * Constructor used to create an animal by the command line
+     * @param spec
+     * @param name
+     * @param paddock
+     * @param sex
+     * @param option
+     * @throws IncorrectLoadException
+     * @throws EmptyNameException
+     * @throws NameException 
+     */
     public AnimalImpl(Specie spec, String name,
             IPaddock paddock, Sex sex, Option option)
             throws IncorrectLoadException, EmptyNameException, NameException {
@@ -152,12 +180,40 @@ public class AnimalImpl implements Animal {
         this.turnsOfStarvation = this.initStarvation;
         this.turnsOfDrowning = this.initDrowning;
         this.currentlyGestationDuration = this.initCurrentlyGestationDuration;
+        this.mother = null;
+        this.father = null;
     }
 
     public void drawAttributes() {
 
     }
 
+    /**
+     * Constructor used to create a animal by loading a game
+     * @param spec
+     * @param name
+     * @param paddock
+     * @param sex
+     * @param age
+     * @param biome
+     * @param optimalFeeding
+     * @param actualFeeding
+     * @param diet
+     * @param reproduction
+     * @param life
+     * @param social
+     * @param territory
+     * @param personality
+     * @param wellBeing
+     * @param turnsOfStarvation
+     * @param turnsOfDrowning
+     * @param currentlyGestationDuration
+     * @param option
+     * @throws IncorrectDataException
+     * @throws EmptyNameException
+     * @throws UnknownNameException
+     * @throws UnauthorizedNameException 
+     */
     public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex,
             int age,
             BiomeAttributes biome, FeedingAttributes optimalFeeding,
@@ -166,6 +222,7 @@ public class AnimalImpl implements Animal {
             LifeSpanLightAttributes life, SocialAttributes social,
             TerritoryAttributes territory, PersonalityAttributes personality, double wellBeing,
             int turnsOfStarvation, int turnsOfDrowning, int currentlyGestationDuration,
+            Animal mother, Animal father,
             Option option)
             throws IncorrectDataException, EmptyNameException,
             UnknownNameException, UnauthorizedNameException {
@@ -192,6 +249,8 @@ public class AnimalImpl implements Animal {
         this.checkLoadingOfDrowning(turnsOfDrowning);
         this.checkLoadingOfStarvation(turnsOfStarvation);
         this.currentlyGestationDuration = currentlyGestationDuration;
+        this.mother = mother;
+        this.father = father;
     }
 
     private void checkLoadingOfAge(int age) throws IncorrectDataException {

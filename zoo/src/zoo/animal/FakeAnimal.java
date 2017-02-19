@@ -78,7 +78,7 @@ public class FakeAnimal {
         return new AnimalImpl(spec, this.name, pad, sex, this.age, this.biome,
                 this.optFeed, this.actualFeed, this.diet, this.repro, this.life,
                 this.social, this.territory, this.personality, this.wellBeing, 
-                this.turnsOfStarvation, this.turnsOfDrowning, this.gestationDuration,
+                this.turnsOfStarvation, this.turnsOfDrowning, this.gestationDuration, null, null,
                 option);
     }
 
