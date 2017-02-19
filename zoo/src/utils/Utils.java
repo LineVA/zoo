@@ -95,10 +95,10 @@ public class Utils {
         return info;
     }
 
-    public static String infoGenealogy(Animal mother, Animal father, ResourceBundle bundle) {
+    public static String infoGenealogy(String mother, String father, ResourceBundle bundle) {
         String info = "";
-        String motherName = (mother != null) ? mother.getName() : bundle.getString("UNKNOWN_MOTHER");
-        String fatherName = (father != null) ? father.getName() : bundle.getString("UNKNOWN_FATHER");
+        String motherName = (mother != null) ? mother : bundle.getString("UNKNOWN_MOTHER");
+        String fatherName = (father != null) ? father : bundle.getString("UNKNOWN_FATHER");
         info += bundle.getString("MOTHER") + motherName
                 + ", " + bundle.getString("FATHER") + fatherName;
         return info;

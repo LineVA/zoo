@@ -90,8 +90,8 @@ public class AnimalImpl implements Animal {
     private int turnsOfStarvation;
     private int turnsOfDrowning;
     private int currentlyGestationDuration;
-    private Animal mother;
-    private Animal father;
+    private String mother;
+    private String father;
     
     /**
      * There is no notion of optimal in personality
@@ -112,7 +112,7 @@ public class AnimalImpl implements Animal {
      * @throws IncorrectLoadException 
      */
     public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex,
-            int age, Animal mother, Animal father, Option option)
+            int age, String mother, String father, Option option)
             throws IncorrectDataException, EmptyNameException, NameException, IncorrectLoadException {
         this.option = option;
         this.specie = spec;
@@ -222,7 +222,7 @@ public class AnimalImpl implements Animal {
             LifeSpanLightAttributes life, SocialAttributes social,
             TerritoryAttributes territory, PersonalityAttributes personality, double wellBeing,
             int turnsOfStarvation, int turnsOfDrowning, int currentlyGestationDuration,
-            Animal mother, Animal father,
+            String mother, String father,
             Option option)
             throws IncorrectDataException, EmptyNameException,
             UnknownNameException, UnauthorizedNameException {
@@ -740,13 +740,13 @@ public class AnimalImpl implements Animal {
     }
     
     @Override
-    public Animal getMother(SaveImpl.FriendSave save) {
+    public String getMother(SaveImpl.FriendSave save) {
         save.hashCode();
         return this.mother;
     }
     
      @Override
-    public Animal getFather(SaveImpl.FriendSave save) {
+    public String getFather(SaveImpl.FriendSave save) {
         save.hashCode();
         return this.father;
     }

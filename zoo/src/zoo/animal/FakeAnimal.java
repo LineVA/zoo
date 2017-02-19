@@ -45,6 +45,8 @@ public class FakeAnimal {
     int turnsOfStarvation;
     int turnsOfDrowning;
     int gestationDuration;
+    String mother;
+    String father;
 
     public FakeAnimal(String specie, String name, String paddock, int sex, int age,
             BiomeAttributes biome, FeedingAttributes optFeed,

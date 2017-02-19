@@ -11,8 +11,6 @@ import java.util.Random;
 import zoo.statistics.Uniform;
 import zoo.animal.Animal;
 import zoo.animal.AnimalImpl;
-import zoo.animal.specie.Specie;
-import zoo.paddock.IPaddock;
 
 /**
  * First implementation of a reproduction : the selected male is the first one
@@ -100,7 +98,7 @@ public class ReproductionImpl implements Reproduction {
             sex = Sex.MALE;
         }
         return new AnimalImpl(mother.getSpecie(), name, mother.getPaddock(), sex, 0,
-                mother, father, mother.getPaddock().getOption());
+                mother.getName(), father.getName(), mother.getPaddock().getOption());
     }
 
     /**
@@ -111,7 +109,7 @@ public class ReproductionImpl implements Reproduction {
      * @return true if it can reproducte
      */
     public boolean canFemaleReproducte(Animal animal, int monthsPerEvaluation) {
-        return animal.canBePregnant() && isInGestation(animal, monthsPerEvaluation) && !animal.isAlreadyPregnant();
+        return animal.canBePregnant() ;
     }
 
     /**
