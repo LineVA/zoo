@@ -22,6 +22,7 @@ import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.personality.PersonalityAttributes;
+import zoo.animal.reproduction.ContraceptionMethods;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
@@ -94,6 +95,8 @@ public class AnimalImpl implements Animal {
     private String mother;
     @Getter
     private String father;
+    @Getter
+    private ContraceptionMethods contraceptionMethod;
 
     /**
      * There is no notion of optimal in personality
@@ -142,6 +145,7 @@ public class AnimalImpl implements Animal {
         this.currentlyGestationDuration = this.initCurrentlyGestationDuration;
         this.mother = mother;
         this.father = father;
+        this.contraceptionMethod = ContraceptionMethods.NONE;
     }
 
     /**
@@ -186,6 +190,7 @@ public class AnimalImpl implements Animal {
         this.currentlyGestationDuration = this.initCurrentlyGestationDuration;
         this.mother = null;
         this.father = null;
+        this.contraceptionMethod = ContraceptionMethods.NONE;
     }
 
     public void drawAttributes() {
@@ -227,7 +232,7 @@ public class AnimalImpl implements Animal {
             LifeSpanLightAttributes life, SocialAttributes social,
             TerritoryAttributes territory, PersonalityAttributes personality, double wellBeing,
             int turnsOfStarvation, int turnsOfDrowning, int currentlyGestationDuration,
-            String mother, String father,
+            String mother, String father, ContraceptionMethods contraception,
             Option option)
             throws IncorrectDataException, EmptyNameException,
             UnknownNameException, UnauthorizedNameException {
@@ -256,6 +261,7 @@ public class AnimalImpl implements Animal {
         this.currentlyGestationDuration = currentlyGestationDuration;
         this.mother = mother;
         this.father = father;
+        this.contraceptionMethod = contraception;
     }
 
     private void checkLoadingOfAge(int age) throws IncorrectDataException {
