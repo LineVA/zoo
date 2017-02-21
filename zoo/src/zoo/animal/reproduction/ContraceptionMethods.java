@@ -9,19 +9,21 @@ import lombok.Getter;
  * @author doyenm
  */
 public enum ContraceptionMethods {
-   NONE(0),
-    FEMALE_TEMP_CONTRACEPTION(1),
-    MALE_FINAL_CONTRACEPTION(2),
-    FEMALE_FINAL_CONTRACEPTION(3);
-    
+
+    NONE(0),
+    FEMALE_TEMP_CONTRACEPTION_PILL(1),
+    FEMALE_TEMP_CONTRACEPTION_IMPLANT(2),
+    MALE_FINAL_CONTRACEPTION(3),
+    FEMALE_FINAL_CONTRACEPTION(4);
+
     @Getter
     private int id;
 
     ContraceptionMethods(int id) {
         this.id = id;
     }
-    
-     /**
+
+    /**
      * The option used to know the current language
      */
     private Option option;
@@ -31,12 +33,14 @@ public enum ContraceptionMethods {
             method.option = option;
         }
     }
-    
-   /**
-     * Find a contraception method according to its name and the current language
+
+    /**
+     * Find a contraception method according to its name and the current
+     * language
+     *
      * @param name the name to search
      * @return the corresponding method
-     * @throws UnknownNameException if the name matches none of the methods 
+     * @throws UnknownNameException if the name matches none of the methods
      */
     public ContraceptionMethods findByNameAccordingToLanguage(String name)
             throws UnknownNameException {
@@ -49,11 +53,12 @@ public enum ContraceptionMethods {
                 this.option.getAnimalBundle().getString("CONTRACEPTION.UNKNOWN_METHOD"));
     }
 
-      /**
+    /**
      * Find a method of contraception by its identifier
+     *
      * @param id the identifier to search
      * @return the corresponding method
-     * @throws UnknownNameException if no method matches the identifier 
+     * @throws UnknownNameException if no method matches the identifier
      */
     public ContraceptionMethods findById(int id) throws UnknownNameException {
         for (ContraceptionMethods method : ContraceptionMethods.values()) {
@@ -65,12 +70,13 @@ public enum ContraceptionMethods {
                 this.option.getAnimalBundle().getString("CONTRACEPTION.UNKNOWN_METHOD"));
     }
 
-     /**
+    /**
      * toString with the current language
+     *
      * @return the name of the method, according to the current language
      */
     public String toStringByLanguage() {
-        return this.option.getAnimalBundle().getString("CONTRACEPTION_METHOD" + this.toString().toUpperCase());
+        return this.option.getAnimalBundle().getString("CONTRACEPTION_METHOD." + this.toString().toUpperCase());
     }
 //
 //      /**

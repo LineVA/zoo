@@ -18,6 +18,7 @@ import zoo.animal.FakeAnimal;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.personality.PersonalityAttributes;
+import zoo.animal.reproduction.ContraceptionMethods;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
 import zoo.animalKeeper.FakeAnimalKeeper;
@@ -185,7 +186,7 @@ public class ParserBackUp {
                     tmpAnimalEl.getAttributeValue(Constants.NAME),
                     pad, sex, age, biome, optFeed, actualFeed, diet, repro,
                     life, social, territory, personality, wellBeing, starvation, drowning, gestationDuration,
-                    mother, father));
+                    mother, father, ContraceptionMethods.NONE));
         }
         return animalsList;
     }

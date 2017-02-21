@@ -9,6 +9,7 @@ import lombok.Getter;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.personality.PersonalityAttributes;
+import zoo.animal.reproduction.ContraceptionMethods;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
@@ -47,6 +48,7 @@ public class FakeAnimal {
     int gestationDuration;
     String mother;
     String father;
+    ContraceptionMethods contraception;
 
     public FakeAnimal(String specie, String name, String paddock, int sex, int age,
             BiomeAttributes biome, FeedingAttributes optFeed,
@@ -54,7 +56,7 @@ public class FakeAnimal {
             ReproductionAttributes repro, LifeSpanLightAttributes life,
             SocialAttributes social, TerritoryAttributes territory, PersonalityAttributes personality,
             double wellBeing, int turnsOfStarvation, int turnsOfDrowning, int gestationDuration,
-            String mother, String father) {
+            String mother, String father, ContraceptionMethods method) {
         this.specie = specie;
         this.name = name;
         this.paddock = paddock;
@@ -75,6 +77,7 @@ public class FakeAnimal {
         this.gestationDuration = gestationDuration;
         this.mother = mother;
         this.father = father;
+        this.contraception = method;
     }
 
     public Animal convertToAnimal(Specie spec, IPaddock pad, Sex sex, Option option)
@@ -84,7 +87,7 @@ public class FakeAnimal {
                 this.optFeed, this.actualFeed, this.diet, this.repro, this.life,
                 this.social, this.territory, this.personality, this.wellBeing, 
                 this.turnsOfStarvation, this.turnsOfDrowning, this.gestationDuration,
-                this.mother, this.father,
+                this.mother, this.father, this.contraception,
                 option);
     }
 

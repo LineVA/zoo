@@ -1,6 +1,5 @@
 package launch.play;
 
-import java.util.ResourceBundle;
 import launch.options.Option;
 import commandLine.CommandManager;
 import lombok.Getter;
@@ -11,6 +10,7 @@ import zoo.animal.conservation.ConservationStatus;
 import zoo.animal.feeding.Diet;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.conservation.BreedingProgramme;
+import zoo.animal.reproduction.ContraceptionMethods;
 import zoo.animal.specie.Family;
 import zoo.animal.specie.Size;
 import zoo.animalKeeper.Task;
@@ -50,6 +50,7 @@ abstract public class Play {
         PaddockTypes.UNKNOWN.setOption(opt);
         Task.UNKNOWN.setOption(opt);
         BreedingProgramme.NONE.setOption(opt);
+        ContraceptionMethods.NONE.setOption(opt);
         this.option = opt;
     }
 
@@ -64,5 +65,6 @@ abstract public class Play {
         Continent.UNKNOWN.setOption(this.option);
         PaddockTypes.UNKNOWN.setOption(this.option);
         Task.UNKNOWN.setOption(this.option);
+        ContraceptionMethods.NONE.setOption(this.option);
     }
 }
