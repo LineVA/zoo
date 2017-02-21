@@ -461,6 +461,8 @@ public class SaveImpl implements Save {
         el.addContent(createElementWithText(Constants.MALEMATURITYAGE, String.valueOf(att.getMaleMaturityAge())));
         el.addContent(createElementWithText(Constants.GESTATIONFREQUENCY, String.valueOf(att.getGestationFrequency())));
         el.addContent(createElementWithText(Constants.LITTERSIZE, String.valueOf(att.getLitterSize())));
+        el.addContent(createElementWithText(Constants.CONTRACEPTIONMETHOD,
+                String.valueOf(att.getContraceptionMethod().getId())));
         return el;
     }
 
