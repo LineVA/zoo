@@ -4,6 +4,7 @@ import exception.IncorrectDataException;
 import java.util.ResourceBundle;
 import launch.options.Option;
 import lombok.Getter;
+import lombok.Setter;
 import utils.Utils;
 
 /**
@@ -23,7 +24,8 @@ public class ReproductionAttributes {
     @Getter
     private final int gestationDuration;
     @Getter
-    private final ContraceptionMethods contraceptionMethod;
+    @Setter
+    private ContraceptionMethods contraceptionMethod;
 
     public ReproductionAttributes(int female, int male, double frequency, int litter, int duration,
             ContraceptionMethods method) {

@@ -162,6 +162,7 @@ public class ParserBackUp {
         int gestationDuration;
         String mother;
         String father;
+        int contraceptionMethod;
         for (Element tmpAnimalEl : animalsElList) {
             PersonalityAttributes personality;
             spec = tmpAnimalEl.getChildText(Constants.SPECIE);
@@ -182,11 +183,12 @@ public class ParserBackUp {
             gestationDuration = parserGestationDuration(tmpAnimalEl);
             mother = parserMother(tmpAnimalEl);
             father = parserFather(tmpAnimalEl);
+            contraceptionMethod = parserContraceptionMethod(tmpAnimalEl);
             animalsList.add(new FakeAnimal(spec,
                     tmpAnimalEl.getAttributeValue(Constants.NAME),
                     pad, sex, age, biome, optFeed, actualFeed, diet, repro,
                     life, social, territory, personality, wellBeing, starvation, drowning, gestationDuration,
-                    mother, father));
+                    mother, father, contraceptionMethod));
         }
         return animalsList;
     }
@@ -231,8 +233,8 @@ public class ParserBackUp {
             throws IncorrectLoadException {
         return Integer.parseInt(tmpAnimalEl.getChildText(Constants.GESTATIONDURATION));
     }
-    
-     /**
+
+    /**
      * Parse the mothers name of an animal
      *
      * @param tmpAnimalEl the "animal" element to parse
@@ -242,8 +244,8 @@ public class ParserBackUp {
             throws IncorrectLoadException {
         return tmpAnimalEl.getChildText(Constants.MOTHER);
     }
-    
-     /**
+
+    /**
      * Parse the name of the father of an animal
      *
      * @param tmpAnimalEl the "animal" element to parse
@@ -253,7 +255,7 @@ public class ParserBackUp {
             throws IncorrectLoadException {
         return tmpAnimalEl.getChildText(Constants.FATHER);
     }
-    
+
     /**
      * Parse the well-being of an animal
      *
@@ -297,7 +299,7 @@ public class ParserBackUp {
     }
 
     /**
-     * Parse the dietof an animal
+     * Parse the diet of an animal
      *
      * @param tmpAnimalEl the "animal" element to parse
      * @return the corresponding attributes
@@ -321,9 +323,15 @@ public class ParserBackUp {
                 Integer.parseInt(reproEl.getChildText(Constants.FEMALEMATURITYAGE)),
                 Integer.parseInt(reproEl.getChildText(Constants.MALEMATURITYAGE)),
                 Double.parseDouble(reproEl.getChildText(Constants.GESTATIONFREQUENCY)),
-                Integer.parseInt(reproEl.getChildText(Constants.LITTERSIZE)), 0, ContraceptionMethods.NONE
+                Integer.parseInt(reproEl.getChildText(Constants.LITTERSIZE)), 0,
+                ContraceptionMethods.NONE
         );
         return repro;
+    }
+
+    private int parserContraceptionMethod(Element tmpAnimalEl) {
+        Element reproEl = tmpAnimalEl.getChild(Constants.ACTUALREPRODUCTION_ATT);
+        return Integer.parseInt(reproEl.getChildText(Constants.CONTRACEPTIONMETHOD));
     }
 
     /**

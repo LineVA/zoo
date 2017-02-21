@@ -48,7 +48,8 @@ public class FakeAnimal {
     int gestationDuration;
     String mother;
     String father;
-    ContraceptionMethods contraception;
+    @Getter
+    int contraceptionMethod;
 
     public FakeAnimal(String specie, String name, String paddock, int sex, int age,
             BiomeAttributes biome, FeedingAttributes optFeed,
@@ -56,7 +57,7 @@ public class FakeAnimal {
             ReproductionAttributes repro, LifeSpanLightAttributes life,
             SocialAttributes social, TerritoryAttributes territory, PersonalityAttributes personality,
             double wellBeing, int turnsOfStarvation, int turnsOfDrowning, int gestationDuration,
-            String mother, String father) {
+            String mother, String father, int contraception) {
         this.specie = specie;
         this.name = name;
         this.paddock = paddock;
@@ -77,11 +78,13 @@ public class FakeAnimal {
         this.gestationDuration = gestationDuration;
         this.mother = mother;
         this.father = father;
+        this.contraceptionMethod = contraception;
     }
 
     public Animal convertToAnimal(Specie spec, IPaddock pad, Sex sex, Option option)
             throws IncorrectDataException, EmptyNameException, UnauthorizedNameException,
             UnknownNameException {
+        this.repro.setContraceptionMethod(ContraceptionMethods.NONE.findById(this.contraceptionMethod));
         return new AnimalImpl(spec, this.name, pad, sex, this.age, this.biome,
                 this.optFeed, this.actualFeed, this.diet, this.repro, this.life,
                 this.social, this.territory, this.personality, this.wellBeing, 

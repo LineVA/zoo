@@ -18,6 +18,7 @@ import org.jdom2.JDOMException;
 import zoo.IZoo;
 import zoo.animal.FakeAnimal;
 import zoo.animal.feeding.Diet;
+import zoo.animal.reproduction.ContraceptionMethods;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.Family;
 import zoo.animal.specie.Specie;
@@ -83,6 +84,7 @@ public class LoadImpl implements Load {
         IPaddock pad = zoo.findPaddockByName(animal.getPaddock());
         Sex sex = Sex.UNKNOWN.findById(animal.getSex());
         Diet diet = Diet.NONE.findById(animal.getDiet());
+        ContraceptionMethods method = ContraceptionMethods.NONE.findById(animal.getContraceptionMethod());
         pad.addAnimal(animal.convertToAnimal(spec, pad, sex, option));
     }
     
