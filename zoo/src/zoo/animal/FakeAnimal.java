@@ -56,7 +56,7 @@ public class FakeAnimal {
             ReproductionAttributes repro, LifeSpanLightAttributes life,
             SocialAttributes social, TerritoryAttributes territory, PersonalityAttributes personality,
             double wellBeing, int turnsOfStarvation, int turnsOfDrowning, int gestationDuration,
-            String mother, String father, ContraceptionMethods method) {
+            String mother, String father) {
         this.specie = specie;
         this.name = name;
         this.paddock = paddock;
@@ -77,7 +77,6 @@ public class FakeAnimal {
         this.gestationDuration = gestationDuration;
         this.mother = mother;
         this.father = father;
-        this.contraception = method;
     }
 
     public Animal convertToAnimal(Specie spec, IPaddock pad, Sex sex, Option option)
@@ -87,7 +86,7 @@ public class FakeAnimal {
                 this.optFeed, this.actualFeed, this.diet, this.repro, this.life,
                 this.social, this.territory, this.personality, this.wellBeing, 
                 this.turnsOfStarvation, this.turnsOfDrowning, this.gestationDuration,
-                this.mother, this.father, this.contraception,
+                this.mother, this.father,
                 option);
     }
 

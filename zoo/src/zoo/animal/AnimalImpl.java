@@ -95,8 +95,6 @@ public class AnimalImpl implements Animal {
     private String mother;
     @Getter
     private String father;
-    @Getter
-    private ContraceptionMethods contraceptionMethod;
 
     /**
      * There is no notion of optimal in personality
@@ -145,7 +143,6 @@ public class AnimalImpl implements Animal {
         this.currentlyGestationDuration = this.initCurrentlyGestationDuration;
         this.mother = mother;
         this.father = father;
-        this.contraceptionMethod = ContraceptionMethods.NONE;
     }
 
     /**
@@ -190,7 +187,6 @@ public class AnimalImpl implements Animal {
         this.currentlyGestationDuration = this.initCurrentlyGestationDuration;
         this.mother = null;
         this.father = null;
-        this.contraceptionMethod = ContraceptionMethods.NONE;
     }
 
     public void drawAttributes() {
@@ -232,7 +228,7 @@ public class AnimalImpl implements Animal {
             LifeSpanLightAttributes life, SocialAttributes social,
             TerritoryAttributes territory, PersonalityAttributes personality, double wellBeing,
             int turnsOfStarvation, int turnsOfDrowning, int currentlyGestationDuration,
-            String mother, String father, ContraceptionMethods contraception,
+            String mother, String father, 
             Option option)
             throws IncorrectDataException, EmptyNameException,
             UnknownNameException, UnauthorizedNameException {
@@ -261,7 +257,6 @@ public class AnimalImpl implements Animal {
         this.currentlyGestationDuration = currentlyGestationDuration;
         this.mother = mother;
         this.father = father;
-        this.contraceptionMethod = contraception;
     }
 
     private void checkLoadingOfAge(int age) throws IncorrectDataException {
@@ -344,7 +339,7 @@ public class AnimalImpl implements Animal {
         int litter = spec.getGaussianReproduction().
                 getLitterSize().gaussianInt();
         int duration = spec.getGaussianReproduction().getGestationDuration().gaussianInt();
-        return new ReproductionAttributes(female, male, frequency, litter, duration);
+        return new ReproductionAttributes(female, male, frequency, litter, duration, ContraceptionMethods.NONE);
     }
 
     private LifeSpanLightAttributes drawActualLifeSpan(Specie spec) throws IncorrectLoadException {
@@ -438,7 +433,7 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("NB_FAST_DAYS") + this.actualFeeding.getFastDays());
         info.add(bundle.getString("TURNS_DROWNING") + this.turnsOfDrowning);
         info.add(bundle.getString("GENEALOGY") + Utils.infoGenealogy(mother, father, bundle));
-        info.add(bundle.getString("CONTRACEPTION_METHOD") + this.contraceptionMethod.toStringByLanguage());
+        info.add(bundle.getString("CONTRACEPTION_METHOD") + this.actualReproduction.getContraceptionMethod().toStringByLanguage());
         if (this.sex.isFemale()) {
             info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.femaleToStringByLanguage(option));
             info.add(bundle.getString("ACT_GESTATION_DURATION") + Utils.infoAge(this.currentlyGestationDuration, bundle));
@@ -772,5 +767,4 @@ public class AnimalImpl implements Animal {
         save.hashCode();
         return this.father;
     }
-
 }

@@ -22,13 +22,17 @@ public class ReproductionAttributes {
     private final int litterSize;
     @Getter
     private final int gestationDuration;
+    @Getter
+    private final ContraceptionMethods contraceptionMethod;
 
-    public ReproductionAttributes(int female, int male, double frequency, int litter, int duration) {
+    public ReproductionAttributes(int female, int male, double frequency, int litter, int duration,
+            ContraceptionMethods method) {
         this.femaleMaturityAge = female;
         this.maleMaturityAge = male;
         this.gestationFrequency = frequency;
         this.litterSize = litter;
         this.gestationDuration = duration;
+        this.contraceptionMethod = method;
     }
 
     public String toStringByLanguage(Option option) throws IncorrectDataException {

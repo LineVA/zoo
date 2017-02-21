@@ -186,7 +186,7 @@ public class ParserBackUp {
                     tmpAnimalEl.getAttributeValue(Constants.NAME),
                     pad, sex, age, biome, optFeed, actualFeed, diet, repro,
                     life, social, territory, personality, wellBeing, starvation, drowning, gestationDuration,
-                    mother, father, ContraceptionMethods.NONE));
+                    mother, father));
         }
         return animalsList;
     }
@@ -321,7 +321,7 @@ public class ParserBackUp {
                 Integer.parseInt(reproEl.getChildText(Constants.FEMALEMATURITYAGE)),
                 Integer.parseInt(reproEl.getChildText(Constants.MALEMATURITYAGE)),
                 Double.parseDouble(reproEl.getChildText(Constants.GESTATIONFREQUENCY)),
-                Integer.parseInt(reproEl.getChildText(Constants.LITTERSIZE)), 0
+                Integer.parseInt(reproEl.getChildText(Constants.LITTERSIZE)), 0, ContraceptionMethods.NONE
         );
         return repro;
     }
