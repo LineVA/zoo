@@ -75,8 +75,6 @@ public interface Animal {
 
     public Specie getSpecie();
 
-    public Sex getSex();
-
     public int getActualFastDays();
 
     public int getActualStarvation();
@@ -102,8 +100,6 @@ public interface Animal {
     public String getName(SaveImpl.FriendSave save);
 
     public Specie getSpecie(SaveImpl.FriendSave save);
-
-    public Sex getSex(SaveImpl.FriendSave save);
 
     public int getAge(SaveImpl.FriendSave save);
 

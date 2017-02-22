@@ -37,7 +37,6 @@ public class SaveImpl implements Save {
      * animals
      */
     public static final class FriendSave {
-
         private FriendSave() {
         }
     }
@@ -347,7 +346,7 @@ public class SaveImpl implements Save {
         Element el = new Element(Constants.ANIMAL);
         el.setAttribute(createAttribute("name", animal.getName(friendSave)));
         el.addContent(createElementWithText(Constants.SPECIE, animal.getSpecie(friendSave).getNames().getScientificName()));
-        el.addContent(createElementWithText(Constants.SEX, Integer.toString(animal.getSex(friendSave).getId())));
+//        el.addContent(createElementWithText(Constants.SEX, Integer.toString(animal.getSex(friendSave).getId())));
         el.addContent(createElementWithText(Constants.AGE, String.valueOf(animal.getAge(friendSave))));
         el.addContent(createElementWithText(Constants.WELLBEING, String.valueOf(animal.getWellBeeing(friendSave))));
         el.addContent(createElementWithText(Constants.STARVATION, String.valueOf(animal.getStarvation(friendSave))));
@@ -457,6 +456,7 @@ public class SaveImpl implements Save {
      */
     private Element createElementReproductionAttributes(AnimalReproductionAttributes att) {
         Element el = new Element(Constants.ACTUALREPRODUCTION_ATT);
+        el.addContent(createElementWithText(Constants.SEX, String.valueOf(att.getSex().getId())));
         el.addContent(createElementWithText(Constants.FEMALEMATURITYAGE, String.valueOf(att.getFemaleMaturityAge())));
         el.addContent(createElementWithText(Constants.MALEMATURITYAGE, String.valueOf(att.getMaleMaturityAge())));
         el.addContent(createElementWithText(Constants.GESTATIONFREQUENCY, String.valueOf(att.getGestationFrequency())));

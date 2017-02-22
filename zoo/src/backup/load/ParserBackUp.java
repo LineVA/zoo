@@ -20,7 +20,7 @@ import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.personality.PersonalityAttributes;
 import zoo.animal.reproduction.AnimalReproductionAttributes;
 import zoo.animal.reproduction.ContraceptionMethods;
-import zoo.animal.reproduction.ReproductionAttributes;
+import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
 import zoo.animalKeeper.FakeAnimalKeeper;
 import zoo.animalKeeper.FakeTaskPaddock;
@@ -167,7 +167,7 @@ public class ParserBackUp {
         for (Element tmpAnimalEl : animalsElList) {
             PersonalityAttributes personality;
             spec = tmpAnimalEl.getChildText(Constants.SPECIE);
-            sex = Integer.parseInt(tmpAnimalEl.getChildText(Constants.SEX));
+            sex = parserSex(tmpAnimalEl);
             age = Integer.parseInt(tmpAnimalEl.getChildText(Constants.AGE));
             biome = parserBiomeAttributes(tmpAnimalEl);
             optFeed = parserOptimalFeedingAttributes(tmpAnimalEl);
@@ -325,7 +325,8 @@ public class ParserBackUp {
                 Integer.parseInt(reproEl.getChildText(Constants.MALEMATURITYAGE)),
                 Double.parseDouble(reproEl.getChildText(Constants.GESTATIONFREQUENCY)),
                 Integer.parseInt(reproEl.getChildText(Constants.LITTERSIZE)), 0,
-                ContraceptionMethods.NONE
+                ContraceptionMethods.NONE, 
+                Sex.UNKNOWN
         );
         return repro;
     }
@@ -333,6 +334,11 @@ public class ParserBackUp {
     private int parserContraceptionMethod(Element tmpAnimalEl) {
         Element reproEl = tmpAnimalEl.getChild(Constants.ACTUALREPRODUCTION_ATT);
         return Integer.parseInt(reproEl.getChildText(Constants.CONTRACEPTIONMETHOD));
+    }
+    
+      private int parserSex(Element tmpAnimalEl) {
+        Element reproEl = tmpAnimalEl.getChild(Constants.ACTUALREPRODUCTION_ATT);
+        return Integer.parseInt(reproEl.getChildText(Constants.SEX));
     }
 
     /**
