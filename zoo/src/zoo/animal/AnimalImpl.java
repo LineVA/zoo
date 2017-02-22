@@ -228,7 +228,7 @@ public class AnimalImpl implements Animal {
             LifeSpanLightAttributes life, SocialAttributes social,
             TerritoryAttributes territory, PersonalityAttributes personality, double wellBeing,
             int turnsOfStarvation, int turnsOfDrowning, int currentlyGestationDuration,
-            String mother, String father, 
+            String mother, String father,
             Option option)
             throws IncorrectDataException, EmptyNameException,
             UnknownNameException, UnauthorizedNameException {
@@ -580,6 +580,19 @@ public class AnimalImpl implements Animal {
         } else {
             throw new IncorrectLoadException(
                     this.option.getAnimalBundle().getString("INCORRECT_FAST_DAYS_NUMBER"));
+        }
+    }
+
+    @Override
+    public void changeContraceptionMethod(Object contraceptionMethod)
+            throws UnknownNameException {
+        try {
+            int tmpMethodInt = Integer.parseInt((String) contraceptionMethod);
+            this.actualReproduction.setContraceptionMethod(ContraceptionMethods.NONE.findById(tmpMethodInt));
+        } catch (UnknownNameException | NumberFormatException ex) {
+            String tmpMethodStr = (String) contraceptionMethod;
+            this.actualReproduction.setContraceptionMethod(
+                    ContraceptionMethods.NONE.findByNameAccordingToLanguage(tmpMethodStr));
         }
     }
 
