@@ -9,6 +9,7 @@ import lombok.Getter;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.personality.PersonalityAttributes;
+import zoo.animal.reproduction.AnimalReproductionAttributes;
 import zoo.animal.reproduction.ContraceptionMethods;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.reproduction.Sex;
@@ -37,7 +38,7 @@ public class FakeAnimal {
     FeedingAttributes actualFeed;
     @Getter
     int diet;
-    ReproductionAttributes repro;
+    AnimalReproductionAttributes repro;
     LifeSpanLightAttributes life;
     SocialAttributes social;
     TerritoryAttributes territory;
@@ -54,7 +55,7 @@ public class FakeAnimal {
     public FakeAnimal(String specie, String name, String paddock, int sex, int age,
             BiomeAttributes biome, FeedingAttributes optFeed,
             FeedingAttributes actualFeed, int diet,
-            ReproductionAttributes repro, LifeSpanLightAttributes life,
+            AnimalReproductionAttributes repro, LifeSpanLightAttributes life,
             SocialAttributes social, TerritoryAttributes territory, PersonalityAttributes personality,
             double wellBeing, int turnsOfStarvation, int turnsOfDrowning, int gestationDuration,
             String mother, String father, int contraception) {

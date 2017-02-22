@@ -23,17 +23,14 @@ public class ReproductionAttributes {
     private final int litterSize;
     @Getter
     private final int gestationDuration;
-    @Getter
-    private ContraceptionMethods contraceptionMethod;
+   
 
-    public ReproductionAttributes(int female, int male, double frequency, int litter, int duration,
-            ContraceptionMethods method) {
+    public ReproductionAttributes(int female, int male, double frequency, int litter, int duration) {
         this.femaleMaturityAge = female;
         this.maleMaturityAge = male;
         this.gestationFrequency = frequency;
         this.litterSize = litter;
         this.gestationDuration = duration;
-        this.contraceptionMethod = method;
     }
 
     public String toStringByLanguage(Option option) throws IncorrectDataException {
@@ -66,6 +63,6 @@ public class ReproductionAttributes {
     
     // TO DO : logique metier
     public void setContraceptionMethod(ContraceptionMethods method){
-        this.contraceptionMethod = method;
+//        this.contraceptionMethod = method;
     }
 }

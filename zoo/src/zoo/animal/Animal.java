@@ -11,7 +11,7 @@ import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.personality.PersonalityAttributes;
-import zoo.animal.reproduction.ReproductionAttributes;
+import zoo.animal.reproduction.AnimalReproductionAttributes;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.LightSpecie;
@@ -111,7 +111,7 @@ public interface Animal {
 
     public FeedingAttributes getActualFeeding(SaveImpl.FriendSave save);
 
-    public ReproductionAttributes getActualReproduction(SaveImpl.FriendSave save);
+    public AnimalReproductionAttributes getActualReproduction(SaveImpl.FriendSave save);
 
     public LifeSpanLightAttributes getActualLifeSpan(SaveImpl.FriendSave save);
 

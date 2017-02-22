@@ -22,6 +22,7 @@ import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.personality.PersonalityAttributes;
+import zoo.animal.reproduction.AnimalReproductionAttributes;
 import zoo.animal.reproduction.ContraceptionMethods;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.reproduction.Sex;
@@ -76,7 +77,7 @@ public class AnimalImpl implements Animal {
     // The actual reproduction attributes are computed 
     // when the animal is created ;
     // there is no notion of "optimal reproduction attributes".
-    private final ReproductionAttributes actualReproduction;
+    private final AnimalReproductionAttributes actualReproduction;
     // The actual life span is computed when the animal is created ; 
     // the "optimal" lifespan has no sense.
     private final LifeSpanLightAttributes actualLifeSpan;
@@ -224,7 +225,7 @@ public class AnimalImpl implements Animal {
             int age,
             BiomeAttributes biome, FeedingAttributes optimalFeeding,
             FeedingAttributes actualFeeding, int diet,
-            ReproductionAttributes reproduction,
+            AnimalReproductionAttributes reproduction,
             LifeSpanLightAttributes life, SocialAttributes social,
             TerritoryAttributes territory, PersonalityAttributes personality, double wellBeing,
             int turnsOfStarvation, int turnsOfDrowning, int currentlyGestationDuration,
@@ -329,7 +330,7 @@ public class AnimalImpl implements Animal {
      * @param spec the Specie of the animal
      * @return its actualReproductionAttributes
      */
-    private ReproductionAttributes drawActualReproduction(Specie spec) {
+    private AnimalReproductionAttributes drawActualReproduction(Specie spec) {
         int female = spec.getGaussianReproduction().
                 getFemaleMaturityAge().gaussianInt();
         int male = spec.getGaussianReproduction().
@@ -339,7 +340,7 @@ public class AnimalImpl implements Animal {
         int litter = spec.getGaussianReproduction().
                 getLitterSize().gaussianInt();
         int duration = spec.getGaussianReproduction().getGestationDuration().gaussianInt();
-        return new ReproductionAttributes(female, male, frequency, litter, duration, ContraceptionMethods.NONE);
+        return new AnimalReproductionAttributes(female, male, frequency, litter, duration, ContraceptionMethods.NONE);
     }
 
     private LifeSpanLightAttributes drawActualLifeSpan(Specie spec) throws IncorrectLoadException {
@@ -710,7 +711,7 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public ReproductionAttributes getActualReproduction(SaveImpl.FriendSave save) {
+    public AnimalReproductionAttributes getActualReproduction(SaveImpl.FriendSave save) {
         save.hashCode();
         return this.actualReproduction;
     }

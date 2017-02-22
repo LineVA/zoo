@@ -17,7 +17,7 @@ import zoo.animal.Animal;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.personality.PersonalityAttributes;
-import zoo.animal.reproduction.ReproductionAttributes;
+import zoo.animal.reproduction.AnimalReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
 import zoo.animalKeeper.AnimalKeeper;
 import zoo.animalKeeper.TaskPaddock;
@@ -455,7 +455,7 @@ public class SaveImpl implements Save {
      * @return an element "actualReproductionsAttributes" with four sub-elements
      * : femaleMaturityAge, maleMaturityAge, gestationFrequency and litterSize
      */
-    private Element createElementReproductionAttributes(ReproductionAttributes att) {
+    private Element createElementReproductionAttributes(AnimalReproductionAttributes att) {
         Element el = new Element(Constants.ACTUALREPRODUCTION_ATT);
         el.addContent(createElementWithText(Constants.FEMALEMATURITYAGE, String.valueOf(att.getFemaleMaturityAge())));
         el.addContent(createElementWithText(Constants.MALEMATURITYAGE, String.valueOf(att.getMaleMaturityAge())));

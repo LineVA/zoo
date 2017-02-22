@@ -137,13 +137,13 @@ public class ParserSpecie {
                 Integer.parseInt(reproEl.getChildText(Constants.MALEMATURITYAGE)),
                 Double.parseDouble(reproEl.getChildText(Constants.GESTATIONFREQUENCY)),
                 Integer.parseInt(reproEl.getChildText(Constants.LITTERSIZE)), 
-                Integer.parseInt(reproEl.getChildText(Constants.GESTATIONDURATION)), null);
+                Integer.parseInt(reproEl.getChildText(Constants.GESTATIONDURATION)));
         } else {
               return new ReproductionAttributes(Integer.parseInt(reproEl.getChildText(Constants.FEMALEMATURITYAGE)),
                 Integer.parseInt(reproEl.getChildText(Constants.MALEMATURITYAGE)),
                 Double.parseDouble(reproEl.getChildText(Constants.GESTATIONFREQUENCY)),
                 Integer.parseInt(reproEl.getChildText(Constants.LITTERSIZE)), 
-                0, null);
+                0);
         }
     }
 

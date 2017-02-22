@@ -18,6 +18,7 @@ import zoo.animal.FakeAnimal;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.personality.PersonalityAttributes;
+import zoo.animal.reproduction.AnimalReproductionAttributes;
 import zoo.animal.reproduction.ContraceptionMethods;
 import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
@@ -152,7 +153,7 @@ public class ParserBackUp {
         FeedingAttributes optFeed;
         FeedingAttributes actualFeed;
         int diet;
-        ReproductionAttributes repro;
+        AnimalReproductionAttributes repro;
         LifeSpanLightAttributes life;
         SocialAttributes social;
         TerritoryAttributes territory;
@@ -317,9 +318,9 @@ public class ParserBackUp {
      * @throws IncorrectLoadException if the values of the attributes are
      * incorrect
      */
-    private ReproductionAttributes parserReproductionAttributes(Element tmpAnimalEl) {
+    private AnimalReproductionAttributes parserReproductionAttributes(Element tmpAnimalEl) {
         Element reproEl = tmpAnimalEl.getChild(Constants.ACTUALREPRODUCTION_ATT);
-        ReproductionAttributes repro = new ReproductionAttributes(
+        AnimalReproductionAttributes repro = new AnimalReproductionAttributes(
                 Integer.parseInt(reproEl.getChildText(Constants.FEMALEMATURITYAGE)),
                 Integer.parseInt(reproEl.getChildText(Constants.MALEMATURITYAGE)),
                 Double.parseDouble(reproEl.getChildText(Constants.GESTATIONFREQUENCY)),
