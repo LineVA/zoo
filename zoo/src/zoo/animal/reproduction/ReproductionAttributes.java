@@ -24,7 +24,6 @@ public class ReproductionAttributes {
     @Getter
     private final int gestationDuration;
     @Getter
-    @Setter
     private ContraceptionMethods contraceptionMethod;
 
     public ReproductionAttributes(int female, int male, double frequency, int litter, int duration,
@@ -63,5 +62,10 @@ public class ReproductionAttributes {
         ResourceBundle bundle = option.getAnimalBundle();
         info += bundle.getString("REPRODUCTION.AGE_MALE") + Utils.infoAge(this.maleMaturityAge, bundle)+ ", ";
         return info;
+    }
+    
+    // TO DO : logique metier
+    public void setContraceptionMethod(ContraceptionMethods method){
+        this.contraceptionMethod = method;
     }
 }
