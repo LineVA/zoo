@@ -42,7 +42,7 @@ public abstract class CommandManager {
                 new Evaluate(play), new BiomePad(play), new BiomeAttributesPaddock(play),
                 new CreateAnimal(play),  new RemoveAnimal(play), 
                 new LsAnimal(play), new DetailAnimal(play),
-                new FeedingAnimal(play),
+                new FeedingAnimal(play), new UpdateContraceptionMethod(play),
                 new LsSex(play), new LsConservation(play), new LsBreedingProgramme(play),
                 new LsBiome(play), new LsEcoregion(play), new LsContinent(play),
                 new LsPaddockType(play), new PadTypePad(play),
