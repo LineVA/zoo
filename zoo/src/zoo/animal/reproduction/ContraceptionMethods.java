@@ -1,6 +1,8 @@
 package zoo.animal.reproduction;
 
 import exception.name.UnknownNameException;
+import java.util.ArrayList;
+import java.util.List;
 import launch.options.Option;
 import lombok.Getter;
 
@@ -78,17 +80,17 @@ public enum ContraceptionMethods {
     public String toStringByLanguage() {
         return this.option.getAnimalBundle().getString("CONTRACEPTION_METHOD." + this.toString().toUpperCase());
     }
-//
-//      /**
-//     * List all of the sexes
-//     * @return the list, each item corresponding to an element of the enumeration
-//     */
-//    public List<String> list() {
-//        List<String> list = new ArrayList<>();
-//        for (Sex sex : Sex.values()) {
-//            list.add(
-//                    sex.getId() + " - " + sex.toStringByLanguage());
-//        }
-//        return list;
-//    }
+
+      /**
+     * List all of the methods of contraception
+     * @return the list, each item corresponding to an element of the enumeration
+     */
+    public List<String> list() {
+        List<String> list = new ArrayList<>();
+        for (ContraceptionMethods method : ContraceptionMethods.values()) {
+            list.add(
+                    method.getId() + " - " + method.toStringByLanguage());
+        }
+        return list;
+    }
 }
