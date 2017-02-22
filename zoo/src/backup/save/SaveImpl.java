@@ -37,6 +37,7 @@ public class SaveImpl implements Save {
      * animals
      */
     public static final class FriendSave {
+
         private FriendSave() {
         }
     }
@@ -361,7 +362,6 @@ public class SaveImpl implements Save {
         el.addContent(createElementOptimalFeedingAttributes(animal.getOptimalFeeding(friendSave)));
         el.addContent(createElementActualFeedingAttributes(animal, animal.getActualFeeding(friendSave)));
         el.addContent(createElementReproductionAttributes(animal.getActualReproduction(friendSave)));
-        el.addContent(createElementWithText(Constants.GESTATIONDURATION, String.valueOf(animal.getCurrentlyGestationDuration(friendSave))));
         el.addContent(createElementLifeSpanAttributes(animal.getActualLifeSpan(friendSave)));
         el.addContent(createElementSocialAttributes(animal.getOptimalSocial(friendSave)));
         el.addContent(createElementTeritoryAttributes(animal.getOptimalTerritory(friendSave)));
@@ -461,6 +461,8 @@ public class SaveImpl implements Save {
         el.addContent(createElementWithText(Constants.MALEMATURITYAGE, String.valueOf(att.getMaleMaturityAge())));
         el.addContent(createElementWithText(Constants.GESTATIONFREQUENCY, String.valueOf(att.getGestationFrequency())));
         el.addContent(createElementWithText(Constants.LITTERSIZE, String.valueOf(att.getLitterSize())));
+        el.addContent(createElementWithText(Constants.GESTATIONDURATION, String.valueOf(att.getGestationDuration())));
+        el.addContent(createElementWithText(Constants.CURRENTLYGESTATIONDURATION, String.valueOf(att.getCurrentlyGestationDuration())));
         el.addContent(createElementWithText(Constants.CONTRACEPTIONMETHOD,
                 String.valueOf(att.getContraceptionMethod().getId())));
         return el;

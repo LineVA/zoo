@@ -89,7 +89,6 @@ public class AnimalImpl implements Animal {
     private final TerritoryAttributes optimalTerritory;
     private int turnsOfStarvation;
     private int turnsOfDrowning;
-    private int currentlyGestationDuration;
     @Getter
     private String mother;
     @Getter
@@ -138,7 +137,6 @@ public class AnimalImpl implements Animal {
         this.wellBeing = this.initWB;
         this.turnsOfStarvation = this.initStarvation;
         this.turnsOfDrowning = this.initDrowning;
-        this.currentlyGestationDuration = this.initCurrentlyGestationDuration;
         this.mother = mother;
         this.father = father;
     }
@@ -179,7 +177,6 @@ public class AnimalImpl implements Animal {
         this.wellBeing = this.initWB;
         this.turnsOfStarvation = this.initStarvation;
         this.turnsOfDrowning = this.initDrowning;
-        this.currentlyGestationDuration = this.initCurrentlyGestationDuration;
         this.mother = null;
         this.father = null;
     }
@@ -221,7 +218,7 @@ public class AnimalImpl implements Animal {
             AnimalReproductionAttributes reproduction,
             LifeSpanLightAttributes life, SocialAttributes social,
             TerritoryAttributes territory, PersonalityAttributes personality, double wellBeing,
-            int turnsOfStarvation, int turnsOfDrowning, int currentlyGestationDuration,
+            int turnsOfStarvation, int turnsOfDrowning, 
             String mother, String father,
             Option option)
             throws IncorrectDataException, EmptyNameException,
@@ -247,7 +244,6 @@ public class AnimalImpl implements Animal {
         this.wellBeing = wellBeing;
         this.checkLoadingOfDrowning(turnsOfDrowning);
         this.checkLoadingOfStarvation(turnsOfStarvation);
-        this.currentlyGestationDuration = currentlyGestationDuration;
         this.mother = mother;
         this.father = father;
     }
@@ -333,7 +329,7 @@ public class AnimalImpl implements Animal {
                 getLitterSize().gaussianInt();
         int duration = spec.getGaussianReproduction().getGestationDuration().gaussianInt();
         return new AnimalReproductionAttributes(female, male, frequency, litter, duration,
-                ContraceptionMethods.NONE, sex);
+                ContraceptionMethods.NONE, sex, this.initCurrentlyGestationDuration);
     }
 
     private LifeSpanLightAttributes drawActualLifeSpan(Specie spec) throws IncorrectLoadException {
@@ -429,8 +425,8 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("GENEALOGY") + Utils.infoGenealogy(mother, father, bundle));
         info.add(bundle.getString("CONTRACEPTION_METHOD") + this.actualReproduction.getContraceptionMethod().toStringByLanguage());
         if (this.actualReproduction.isFemale()) {
+            info.add(bundle.getString("ACT_GESTATION_DURATION") + this.actualReproduction.getCurrentlyGestationDuration());
             info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.femaleToStringByLanguage(option));
-            info.add(bundle.getString("ACT_GESTATION_DURATION") + Utils.infoAge(this.currentlyGestationDuration, bundle));
         } else {
             info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.maleToStringByLanguage(option));
         }
@@ -508,17 +504,12 @@ public class AnimalImpl implements Animal {
 
     @Override
     public boolean isAlreadyPregnant() {
-        return this.currentlyGestationDuration != 0;
+        return this.actualReproduction.isAlreadyPregnant();
     }
 
     @Override
     public boolean updateGestationDuration(int months) {
-        this.currentlyGestationDuration += months;
-        if (this.currentlyGestationDuration >= this.actualReproduction.getGestationDuration()) {
-            this.currentlyGestationDuration = 0;
-            return true;
-        }
-        return false;
+       return this.actualReproduction.updateGestationDuration(months);
     }
 
     @Override
@@ -744,12 +735,6 @@ public class AnimalImpl implements Animal {
     public int getDrowning(SaveImpl.FriendSave save) {
         save.hashCode();
         return this.turnsOfDrowning;
-    }
-
-    @Override
-    public int getCurrentlyGestationDuration(SaveImpl.FriendSave save) {
-        save.hashCode();
-        return this.currentlyGestationDuration;
     }
 
     @Override

@@ -4,7 +4,6 @@ import exception.IncorrectDataException;
 import java.util.ResourceBundle;
 import launch.options.Option;
 import lombok.Getter;
-import lombok.Setter;
 import utils.Utils;
 
 /**
@@ -44,15 +43,7 @@ public class ReproductionAttributes {
         return info;
     }
 
-    public String femaleToStringByLanguage(Option option) throws IncorrectDataException {
-        String info = "";
-        ResourceBundle bundle = option.getAnimalBundle();
-        info += bundle.getString("REPRODUCTION.AGE_FEMALE") + Utils.infoAge(this.femaleMaturityAge, bundle) + ", ";
-        info += bundle.getString("REPRODUCTION.GESTATION_FREQUENCY") + Utils.truncate(this.gestationFrequency) + ", ";
-        info += bundle.getString("REPRODUCTION.GESTATION_DURATION") + Utils.infoAge(this.gestationDuration, bundle) + ", ";
-        info += bundle.getString("REPRODUCTION.LITTER_SIZE") + this.litterSize;
-        return info;
-    }
+//    abstract public String femaleToStringByLanguage(Option option) throws IncorrectDataException;
 
     public String maleToStringByLanguage(Option option) throws IncorrectDataException {
         String info = "";

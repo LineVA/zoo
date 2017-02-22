@@ -160,7 +160,6 @@ public class ParserBackUp {
         double wellBeing;
         int starvation;
         int drowning;
-        int gestationDuration;
         String mother;
         String father;
         int contraceptionMethod;
@@ -181,14 +180,13 @@ public class ParserBackUp {
             wellBeing = parserWellBeing(tmpAnimalEl);
             starvation = parserStarvation(tmpAnimalEl);
             drowning = parserDrowning(tmpAnimalEl);
-            gestationDuration = parserGestationDuration(tmpAnimalEl);
             mother = parserMother(tmpAnimalEl);
             father = parserFather(tmpAnimalEl);
             contraceptionMethod = parserContraceptionMethod(tmpAnimalEl);
             animalsList.add(new FakeAnimal(spec,
                     tmpAnimalEl.getAttributeValue(Constants.NAME),
                     pad, sex, age, biome, optFeed, actualFeed, diet, repro,
-                    life, social, territory, personality, wellBeing, starvation, drowning, gestationDuration,
+                    life, social, territory, personality, wellBeing, starvation, drowning,
                     mother, father, contraceptionMethod));
         }
         return animalsList;
@@ -324,9 +322,11 @@ public class ParserBackUp {
                 Integer.parseInt(reproEl.getChildText(Constants.FEMALEMATURITYAGE)),
                 Integer.parseInt(reproEl.getChildText(Constants.MALEMATURITYAGE)),
                 Double.parseDouble(reproEl.getChildText(Constants.GESTATIONFREQUENCY)),
-                Integer.parseInt(reproEl.getChildText(Constants.LITTERSIZE)), 0,
+                Integer.parseInt(reproEl.getChildText(Constants.LITTERSIZE)), 
+                Integer.parseInt(reproEl.getChildText(Constants.GESTATIONDURATION)),
                 ContraceptionMethods.NONE, 
-                Sex.UNKNOWN
+                Sex.UNKNOWN,
+                Integer.parseInt(reproEl.getChildText(Constants.CURRENTLYGESTATIONDURATION))
         );
         return repro;
     }

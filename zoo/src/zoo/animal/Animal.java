@@ -125,8 +125,6 @@ public interface Animal {
 
     public int getDrowning(SaveImpl.FriendSave save);
 
-    public int getCurrentlyGestationDuration(SaveImpl.FriendSave save);
-
     public String getMother(SaveImpl.FriendSave save);
 
     public String getFather(SaveImpl.FriendSave save);

@@ -55,7 +55,6 @@ public class FakeAnimal {
     double wellBeing;
     int turnsOfStarvation;
     int turnsOfDrowning;
-    int gestationDuration;
     String mother;
     String father;
     @Getter
@@ -66,7 +65,7 @@ public class FakeAnimal {
             FeedingAttributes actualFeed, int diet,
             AnimalReproductionAttributes repro, LifeSpanLightAttributes life,
             SocialAttributes social, TerritoryAttributes territory, PersonalityAttributes personality,
-            double wellBeing, int turnsOfStarvation, int turnsOfDrowning, int gestationDuration,
+            double wellBeing, int turnsOfStarvation, int turnsOfDrowning, 
             String mother, String father, int contraception) {
         this.specie = specie;
         this.name = name;
@@ -85,7 +84,6 @@ public class FakeAnimal {
         this.wellBeing = wellBeing;
         this.turnsOfStarvation = turnsOfStarvation;
         this.turnsOfDrowning = turnsOfDrowning;
-        this.gestationDuration = gestationDuration;
         this.mother = mother;
         this.father = father;
         this.contraceptionMethod = contraception;
@@ -99,7 +97,7 @@ public class FakeAnimal {
         return new AnimalImpl(spec, this.name, pad, this.age, this.biome,
                 this.optFeed, this.actualFeed, this.diet, this.repro, this.life,
                 this.social, this.territory, this.personality, this.wellBeing, 
-                this.turnsOfStarvation, this.turnsOfDrowning, this.gestationDuration,
+                this.turnsOfStarvation, this.turnsOfDrowning, 
                 this.mother, this.father,
                 option);
     }
