@@ -51,7 +51,7 @@ public abstract class CommandManager {
                  save, load,
                 new Options(play), new ZooCharacteristics(play),
                 new Documentation(play),
-                new LsTask(play),
+                new LsTask(play), new LsContraceptionMethods(play),
                 new LsAnimalKeeper(play), new DetailAnimalKeeper(play),
                 new AddTimedPaddocks(play), new CreateAnimalKeeper(play), 
                 new AddTimedTasksPerPaddock(play), new RemoveAnimalKeeper(play),
