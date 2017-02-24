@@ -35,7 +35,7 @@ public class UpdateContraceptionMethod extends AbstractCommand {
                     super.getPlay().getOption().getGeneralCmdBundle().getString("ANIMALS_CONTRACEPTION_METHOD"),
                     cmd[1], cmd[3]));
             return new ReturnExec(FormattingDisplay.formattingList(result, false), TypeReturn.SUCCESS);
-        } catch (EmptyNameException | UnknownNameException ex) {
+        } catch (EmptyNameException | UnknownNameException | IncorrectLoadException ex) {
             return new ReturnExec(ex.getMessage(), TypeReturn.ERROR);
         }
     }

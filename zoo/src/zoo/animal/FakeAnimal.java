@@ -1,6 +1,7 @@
 package zoo.animal;
 
 import exception.IncorrectDataException;
+import exception.IncorrectLoadException;
 import exception.name.EmptyNameException;
 import exception.name.UnauthorizedNameException;
 import exception.name.UnknownNameException;
@@ -91,9 +92,9 @@ public class FakeAnimal {
 
     public Animal convertToAnimal(Specie spec, IPaddock pad, Option option)
             throws IncorrectDataException, EmptyNameException, UnauthorizedNameException,
-            UnknownNameException {
-        this.repro.setContraceptionMethod(ContraceptionMethods.NONE.findById(this.contraceptionMethod));
+            UnknownNameException, IncorrectLoadException {
         this.repro.setSex(friend, Sex.UNKNOWN.findById(this.sex));
+        this.repro.setContraceptionMethod(ContraceptionMethods.NONE.findById(this.contraceptionMethod), this.age);
         return new AnimalImpl(spec, this.name, pad, this.age, this.biome,
                 this.optFeed, this.actualFeed, this.diet, this.repro, this.life,
                 this.social, this.territory, this.personality, this.wellBeing, 

@@ -51,9 +51,4 @@ public class ReproductionAttributes {
         info += bundle.getString("REPRODUCTION.AGE_MALE") + Utils.infoAge(this.maleMaturityAge, bundle)+ ", ";
         return info;
     }
-    
-    // TO DO : logique metier
-    public void setContraceptionMethod(ContraceptionMethods method){
-//        this.contraceptionMethod = method;
-    }
 }

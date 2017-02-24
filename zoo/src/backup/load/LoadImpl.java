@@ -78,8 +78,8 @@ public class LoadImpl implements Load {
      * @throws AlreadyUsedNameException if an animal is already called by the name of the fake animal
      */
     private void addFakeAnimalToZoo(IZoo zoo, FakeAnimal animal, Option option)
-            throws EmptyNameException, UnknownNameException, IncorrectDataException,
-            AlreadyUsedNameException, UnauthorizedNameException{
+            throws EmptyNameException, UnknownNameException, IncorrectDataException, 
+            IncorrectLoadException, AlreadyUsedNameException, UnauthorizedNameException{
         Specie spec = zoo.findSpecieByScientificName(animal.getSpecie());
         IPaddock pad = zoo.findPaddockByName(animal.getPaddock());
         Sex sex = Sex.UNKNOWN.findById(animal.getSex());

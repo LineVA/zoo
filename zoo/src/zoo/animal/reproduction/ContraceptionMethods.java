@@ -2,6 +2,7 @@ package zoo.animal.reproduction;
 
 import exception.name.UnknownNameException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import launch.options.Option;
 import lombok.Getter;
@@ -20,6 +21,10 @@ public enum ContraceptionMethods {
 
     @Getter
     private int id;
+
+    private final static List<Sex> femaleAndMale = Arrays.asList(Sex.FEMALE, Sex.MALE);
+    private final static List<Sex> female = Arrays.asList(Sex.FEMALE);
+    private final static List<Sex> male = Arrays.asList(Sex.MALE);
 
     ContraceptionMethods(int id) {
         this.id = id;
@@ -81,9 +86,11 @@ public enum ContraceptionMethods {
         return this.option.getAnimalBundle().getString("CONTRACEPTION_METHOD." + this.toString().toUpperCase());
     }
 
-      /**
+    /**
      * List all of the methods of contraception
-     * @return the list, each item corresponding to an element of the enumeration
+     *
+     * @return the list, each item corresponding to an element of the
+     * enumeration
      */
     public List<String> list() {
         List<String> list = new ArrayList<>();
@@ -92,5 +99,33 @@ public enum ContraceptionMethods {
                     method.getId() + " - " + method.toStringByLanguage());
         }
         return list;
+    }
+
+    public List<Sex> getAuthorizedSexes(ContraceptionMethods method) {
+        switch (method) {
+            case NONE:
+                return femaleAndMale;
+            case FEMALE_TEMP_CONTRACEPTION_IMPLANT:
+            case FEMALE_TEMP_CONTRACEPTION_PILL:
+                return female;
+            case MALE_FINAL_CONTRACEPTION:
+                return male;
+            default:
+                return femaleAndMale;
+        }
+    }
+
+    public boolean isDefinitiv() {
+        switch (this) {
+            case NONE:
+            case FEMALE_TEMP_CONTRACEPTION_IMPLANT:
+            case FEMALE_TEMP_CONTRACEPTION_PILL:
+                return false;
+            case FEMALE_FINAL_CONTRACEPTION:
+            case MALE_FINAL_CONTRACEPTION:
+                return true;
+            default:
+                return false;
+        }
     }
 }

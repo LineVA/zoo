@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import launch.options.Option;
 import lombok.Getter;
 import lombok.Setter;
@@ -211,14 +213,14 @@ public class AnimalImpl implements Animal {
      * @throws UnknownNameException
      * @throws UnauthorizedNameException
      */
-    public AnimalImpl(Specie spec, String name, IPaddock paddock, 
+    public AnimalImpl(Specie spec, String name, IPaddock paddock,
             int age,
             BiomeAttributes biome, FeedingAttributes optimalFeeding,
             FeedingAttributes actualFeeding, int diet,
             AnimalReproductionAttributes reproduction,
             LifeSpanLightAttributes life, SocialAttributes social,
             TerritoryAttributes territory, PersonalityAttributes personality, double wellBeing,
-            int turnsOfStarvation, int turnsOfDrowning, 
+            int turnsOfStarvation, int turnsOfDrowning,
             String mother, String father,
             Option option)
             throws IncorrectDataException, EmptyNameException,
@@ -509,7 +511,7 @@ public class AnimalImpl implements Animal {
 
     @Override
     public boolean updateGestationDuration(int months) {
-       return this.actualReproduction.updateGestationDuration(months);
+        return this.actualReproduction.updateGestationDuration(months);
     }
 
     @Override
@@ -570,14 +572,23 @@ public class AnimalImpl implements Animal {
 
     @Override
     public void changeContraceptionMethod(Object contraceptionMethod)
-            throws UnknownNameException {
+            throws UnknownNameException, IncorrectLoadException {
         try {
             int tmpMethodInt = Integer.parseInt((String) contraceptionMethod);
-            this.actualReproduction.setContraceptionMethod(ContraceptionMethods.NONE.findById(tmpMethodInt));
+            this.actualReproduction.setContraceptionMethod(
+                    ContraceptionMethods.NONE.findById(tmpMethodInt), this.age);
         } catch (UnknownNameException | NumberFormatException ex) {
             String tmpMethodStr = (String) contraceptionMethod;
-            this.actualReproduction.setContraceptionMethod(
-                    ContraceptionMethods.NONE.findByNameAccordingToLanguage(tmpMethodStr));
+            try {
+                this.actualReproduction.setContraceptionMethod(
+                        ContraceptionMethods.NONE.findByNameAccordingToLanguage(tmpMethodStr), this.age);
+            } catch (IncorrectLoadException ex1) {
+                throw new IncorrectLoadException(
+                        this.option.getAnimalBundle().getString("INCORRECT_CONTRACEPTION_METHOD"));
+            }
+        } catch (IncorrectLoadException ex) {
+            throw new IncorrectLoadException(
+                    this.option.getAnimalBundle().getString("INCORRECT_CONTRACEPTION_METHOD"));
         }
     }
 

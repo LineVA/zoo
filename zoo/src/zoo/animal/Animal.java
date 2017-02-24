@@ -69,7 +69,7 @@ public interface Animal {
     public void changeFastDays(int fastDays) throws IncorrectLoadException;
     
     public void changeContraceptionMethod(Object contraceptionMethod)
-            throws UnknownNameException;
+            throws UnknownNameException, IncorrectLoadException;
 
     public String getName();
 

@@ -1,6 +1,7 @@
 package zoo.animal.reproduction;
 
 import exception.IncorrectDataException;
+import exception.IncorrectLoadException;
 import java.util.ResourceBundle;
 import launch.options.Option;
 import lombok.Getter;
@@ -72,5 +73,14 @@ public class AnimalReproductionAttributes extends ReproductionAttributes {
 
     public boolean isAlreadyPregnant(){
         return this.currentlyGestationDuration != 0;
+    }
+    
+    public void setContraceptionMethod(ContraceptionMethods method, int age) throws IncorrectLoadException{
+        ContraceptionMethodsValidator validator = new ContraceptionMethodsValidator();
+        if(validator.validate(method, this, age)){
+            this.contraceptionMethod = method;
+        } else {
+            throw new IncorrectLoadException("");
+        }
     }
 }
