@@ -11,7 +11,7 @@ import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.personality.PersonalityAttributes;
-import zoo.animal.reproduction.ReproductionAttributes;
+import zoo.animal.reproduction.AnimalReproductionAttributes;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.LightSpecie;
@@ -67,12 +67,13 @@ public interface Animal {
     public void changeFoodQuantity(Double quantity) throws IncorrectLoadException;
 
     public void changeFastDays(int fastDays) throws IncorrectLoadException;
+    
+    public void changeContraceptionMethod(Object contraceptionMethod)
+            throws UnknownNameException, IncorrectLoadException;
 
     public String getName();
 
     public Specie getSpecie();
-
-    public Sex getSex();
 
     public int getActualFastDays();
 
@@ -100,15 +101,13 @@ public interface Animal {
 
     public Specie getSpecie(SaveImpl.FriendSave save);
 
-    public Sex getSex(SaveImpl.FriendSave save);
-
     public int getAge(SaveImpl.FriendSave save);
 
     public FeedingAttributes getOptimalFeeding(SaveImpl.FriendSave save);
 
     public FeedingAttributes getActualFeeding(SaveImpl.FriendSave save);
 
-    public ReproductionAttributes getActualReproduction(SaveImpl.FriendSave save);
+    public AnimalReproductionAttributes getActualReproduction(SaveImpl.FriendSave save);
 
     public LifeSpanLightAttributes getActualLifeSpan(SaveImpl.FriendSave save);
 
@@ -125,8 +124,6 @@ public interface Animal {
     public int getStarvation(SaveImpl.FriendSave save);
 
     public int getDrowning(SaveImpl.FriendSave save);
-
-    public int getCurrentlyGestationDuration(SaveImpl.FriendSave save);
 
     public String getMother(SaveImpl.FriendSave save);
 

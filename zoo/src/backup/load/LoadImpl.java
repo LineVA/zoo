@@ -18,6 +18,7 @@ import org.jdom2.JDOMException;
 import zoo.IZoo;
 import zoo.animal.FakeAnimal;
 import zoo.animal.feeding.Diet;
+import zoo.animal.reproduction.ContraceptionMethods;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.Family;
 import zoo.animal.specie.Specie;
@@ -31,7 +32,7 @@ import zoo.paddock.PaddockTypes;
 import zoo.paddock.biome.Biome;
 
 /**
- * The concrete class unsed to load a zoo
+ * The concrete class used to load a zoo
  *
  * @author doyenm
  */
@@ -77,13 +78,14 @@ public class LoadImpl implements Load {
      * @throws AlreadyUsedNameException if an animal is already called by the name of the fake animal
      */
     private void addFakeAnimalToZoo(IZoo zoo, FakeAnimal animal, Option option)
-            throws EmptyNameException, UnknownNameException, IncorrectDataException,
-            AlreadyUsedNameException, UnauthorizedNameException{
+            throws EmptyNameException, UnknownNameException, IncorrectDataException, 
+            IncorrectLoadException, AlreadyUsedNameException, UnauthorizedNameException{
         Specie spec = zoo.findSpecieByScientificName(animal.getSpecie());
         IPaddock pad = zoo.findPaddockByName(animal.getPaddock());
         Sex sex = Sex.UNKNOWN.findById(animal.getSex());
         Diet diet = Diet.NONE.findById(animal.getDiet());
-        pad.addAnimal(animal.convertToAnimal(spec, pad, sex, option));
+        ContraceptionMethods method = ContraceptionMethods.NONE.findById(animal.getContraceptionMethod());
+        pad.addAnimal(animal.convertToAnimal(spec, pad, option));
     }
     
     /**

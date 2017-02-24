@@ -19,7 +19,6 @@ import java.util.ResourceBundle;
 import launch.options.Option;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Set;
 import zoo.BirthObservable;
 import zoo.NameVerifications;
 import zoo.animal.Animal;
@@ -27,10 +26,8 @@ import zoo.animal.AnimalImpl;
 import zoo.animal.LightAnimal;
 import zoo.animal.death.DieImpl;
 import zoo.animal.death.IDie;
-import zoo.animal.feeding.Diet;
 import zoo.animal.reproduction.Reproduction;
 import zoo.animal.reproduction.ReproductionImpl;
-import zoo.animal.reproduction.Sex;
 import zoo.animal.specie.LightSpecie;
 import zoo.animal.specie.Specie;
 import zoo.animalKeeper.AnimalKeeper;
@@ -256,12 +253,12 @@ public class Paddock implements IPaddock {
         return info;
     }
 
-    private Animal specifieNameOfTheNewBorn(Animal newBorn, Animal mother, Animal father)
-            throws EmptyNameException, UnauthorizedNameException {
-        obs.askAndWait(mother.getName(), father.getName(), newBorn.getSex().toString());
-        newBorn.setName(newComerName);
-        return newBorn;
-    }
+//    private Animal specifieNameOfTheNewBorn(Animal newBorn, Animal mother, Animal father)
+//            throws EmptyNameException, UnauthorizedNameException {
+//        obs.askAndWait(mother.getName(), father.getName(), newBorn.getSex().toString());
+//        newBorn.setName(newComerName);
+//        return newBorn;
+//    }
 
     String newComerName = "";
 

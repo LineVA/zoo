@@ -94,3 +94,4 @@ Liste des commandes :
 > task ls : Liste des tâches attribuables à un soigneur
 > breedingProgramme : Liste des programmes de conservation
 > paddockType ls : Liste des types d'enclos
+> contraceptionMethod ls : Liste des méthodes de contraception

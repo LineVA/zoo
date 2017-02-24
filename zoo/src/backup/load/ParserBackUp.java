@@ -18,7 +18,9 @@ import zoo.animal.FakeAnimal;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.personality.PersonalityAttributes;
-import zoo.animal.reproduction.ReproductionAttributes;
+import zoo.animal.reproduction.AnimalReproductionAttributes;
+import zoo.animal.reproduction.ContraceptionMethods;
+import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
 import zoo.animalKeeper.FakeAnimalKeeper;
 import zoo.animalKeeper.FakeTaskPaddock;
@@ -151,20 +153,20 @@ public class ParserBackUp {
         FeedingAttributes optFeed;
         FeedingAttributes actualFeed;
         int diet;
-        ReproductionAttributes repro;
+        AnimalReproductionAttributes repro;
         LifeSpanLightAttributes life;
         SocialAttributes social;
         TerritoryAttributes territory;
         double wellBeing;
         int starvation;
         int drowning;
-        int gestationDuration;
         String mother;
         String father;
+        int contraceptionMethod;
         for (Element tmpAnimalEl : animalsElList) {
             PersonalityAttributes personality;
             spec = tmpAnimalEl.getChildText(Constants.SPECIE);
-            sex = Integer.parseInt(tmpAnimalEl.getChildText(Constants.SEX));
+            sex = parserSex(tmpAnimalEl);
             age = Integer.parseInt(tmpAnimalEl.getChildText(Constants.AGE));
             biome = parserBiomeAttributes(tmpAnimalEl);
             optFeed = parserOptimalFeedingAttributes(tmpAnimalEl);
@@ -178,14 +180,14 @@ public class ParserBackUp {
             wellBeing = parserWellBeing(tmpAnimalEl);
             starvation = parserStarvation(tmpAnimalEl);
             drowning = parserDrowning(tmpAnimalEl);
-            gestationDuration = parserGestationDuration(tmpAnimalEl);
             mother = parserMother(tmpAnimalEl);
             father = parserFather(tmpAnimalEl);
+            contraceptionMethod = parserContraceptionMethod(tmpAnimalEl);
             animalsList.add(new FakeAnimal(spec,
                     tmpAnimalEl.getAttributeValue(Constants.NAME),
                     pad, sex, age, biome, optFeed, actualFeed, diet, repro,
-                    life, social, territory, personality, wellBeing, starvation, drowning, gestationDuration,
-                    mother, father));
+                    life, social, territory, personality, wellBeing, starvation, drowning,
+                    mother, father, contraceptionMethod));
         }
         return animalsList;
     }
@@ -230,8 +232,8 @@ public class ParserBackUp {
             throws IncorrectLoadException {
         return Integer.parseInt(tmpAnimalEl.getChildText(Constants.GESTATIONDURATION));
     }
-    
-     /**
+
+    /**
      * Parse the mothers name of an animal
      *
      * @param tmpAnimalEl the "animal" element to parse
@@ -241,8 +243,8 @@ public class ParserBackUp {
             throws IncorrectLoadException {
         return tmpAnimalEl.getChildText(Constants.MOTHER);
     }
-    
-     /**
+
+    /**
      * Parse the name of the father of an animal
      *
      * @param tmpAnimalEl the "animal" element to parse
@@ -252,7 +254,7 @@ public class ParserBackUp {
             throws IncorrectLoadException {
         return tmpAnimalEl.getChildText(Constants.FATHER);
     }
-    
+
     /**
      * Parse the well-being of an animal
      *
@@ -296,7 +298,7 @@ public class ParserBackUp {
     }
 
     /**
-     * Parse the dietof an animal
+     * Parse the diet of an animal
      *
      * @param tmpAnimalEl the "animal" element to parse
      * @return the corresponding attributes
@@ -314,15 +316,29 @@ public class ParserBackUp {
      * @throws IncorrectLoadException if the values of the attributes are
      * incorrect
      */
-    private ReproductionAttributes parserReproductionAttributes(Element tmpAnimalEl) {
+    private AnimalReproductionAttributes parserReproductionAttributes(Element tmpAnimalEl) {
         Element reproEl = tmpAnimalEl.getChild(Constants.ACTUALREPRODUCTION_ATT);
-        ReproductionAttributes repro = new ReproductionAttributes(
+        AnimalReproductionAttributes repro = new AnimalReproductionAttributes(
                 Integer.parseInt(reproEl.getChildText(Constants.FEMALEMATURITYAGE)),
                 Integer.parseInt(reproEl.getChildText(Constants.MALEMATURITYAGE)),
                 Double.parseDouble(reproEl.getChildText(Constants.GESTATIONFREQUENCY)),
-                Integer.parseInt(reproEl.getChildText(Constants.LITTERSIZE)), 0
+                Integer.parseInt(reproEl.getChildText(Constants.LITTERSIZE)), 
+                Integer.parseInt(reproEl.getChildText(Constants.GESTATIONDURATION)),
+                ContraceptionMethods.NONE, 
+                Sex.UNKNOWN,
+                Integer.parseInt(reproEl.getChildText(Constants.CURRENTLYGESTATIONDURATION))
         );
         return repro;
+    }
+
+    private int parserContraceptionMethod(Element tmpAnimalEl) {
+        Element reproEl = tmpAnimalEl.getChild(Constants.ACTUALREPRODUCTION_ATT);
+        return Integer.parseInt(reproEl.getChildText(Constants.CONTRACEPTIONMETHOD));
+    }
+    
+      private int parserSex(Element tmpAnimalEl) {
+        Element reproEl = tmpAnimalEl.getChild(Constants.ACTUALREPRODUCTION_ATT);
+        return Integer.parseInt(reproEl.getChildText(Constants.SEX));
     }
 
     /**
