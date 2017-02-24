@@ -17,7 +17,7 @@ import zoo.animal.Animal;
 import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.personality.PersonalityAttributes;
-import zoo.animal.reproduction.ReproductionAttributes;
+import zoo.animal.reproduction.AnimalReproductionAttributes;
 import zoo.animal.social.SocialAttributes;
 import zoo.animalKeeper.AnimalKeeper;
 import zoo.animalKeeper.TaskPaddock;
@@ -347,7 +347,7 @@ public class SaveImpl implements Save {
         Element el = new Element(Constants.ANIMAL);
         el.setAttribute(createAttribute("name", animal.getName(friendSave)));
         el.addContent(createElementWithText(Constants.SPECIE, animal.getSpecie(friendSave).getNames().getScientificName()));
-        el.addContent(createElementWithText(Constants.SEX, Integer.toString(animal.getSex(friendSave).getId())));
+//        el.addContent(createElementWithText(Constants.SEX, Integer.toString(animal.getSex(friendSave).getId())));
         el.addContent(createElementWithText(Constants.AGE, String.valueOf(animal.getAge(friendSave))));
         el.addContent(createElementWithText(Constants.WELLBEING, String.valueOf(animal.getWellBeeing(friendSave))));
         el.addContent(createElementWithText(Constants.STARVATION, String.valueOf(animal.getStarvation(friendSave))));
@@ -362,7 +362,6 @@ public class SaveImpl implements Save {
         el.addContent(createElementOptimalFeedingAttributes(animal.getOptimalFeeding(friendSave)));
         el.addContent(createElementActualFeedingAttributes(animal, animal.getActualFeeding(friendSave)));
         el.addContent(createElementReproductionAttributes(animal.getActualReproduction(friendSave)));
-        el.addContent(createElementWithText(Constants.GESTATIONDURATION, String.valueOf(animal.getCurrentlyGestationDuration(friendSave))));
         el.addContent(createElementLifeSpanAttributes(animal.getActualLifeSpan(friendSave)));
         el.addContent(createElementSocialAttributes(animal.getOptimalSocial(friendSave)));
         el.addContent(createElementTeritoryAttributes(animal.getOptimalTerritory(friendSave)));
@@ -455,12 +454,15 @@ public class SaveImpl implements Save {
      * @return an element "actualReproductionsAttributes" with four sub-elements
      * : femaleMaturityAge, maleMaturityAge, gestationFrequency and litterSize
      */
-    private Element createElementReproductionAttributes(ReproductionAttributes att) {
+    private Element createElementReproductionAttributes(AnimalReproductionAttributes att) {
         Element el = new Element(Constants.ACTUALREPRODUCTION_ATT);
+        el.addContent(createElementWithText(Constants.SEX, String.valueOf(att.getSex().getId())));
         el.addContent(createElementWithText(Constants.FEMALEMATURITYAGE, String.valueOf(att.getFemaleMaturityAge())));
         el.addContent(createElementWithText(Constants.MALEMATURITYAGE, String.valueOf(att.getMaleMaturityAge())));
         el.addContent(createElementWithText(Constants.GESTATIONFREQUENCY, String.valueOf(att.getGestationFrequency())));
         el.addContent(createElementWithText(Constants.LITTERSIZE, String.valueOf(att.getLitterSize())));
+        el.addContent(createElementWithText(Constants.GESTATIONDURATION, String.valueOf(att.getGestationDuration())));
+        el.addContent(createElementWithText(Constants.CURRENTLYGESTATIONDURATION, String.valueOf(att.getCurrentlyGestationDuration())));
         el.addContent(createElementWithText(Constants.CONTRACEPTIONMETHOD,
                 String.valueOf(att.getContraceptionMethod().getId())));
         return el;

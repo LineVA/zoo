@@ -32,7 +32,7 @@ import zoo.paddock.PaddockTypes;
 import zoo.paddock.biome.Biome;
 
 /**
- * The concrete class unsed to load a zoo
+ * The concrete class used to load a zoo
  *
  * @author doyenm
  */
@@ -85,7 +85,7 @@ public class LoadImpl implements Load {
         Sex sex = Sex.UNKNOWN.findById(animal.getSex());
         Diet diet = Diet.NONE.findById(animal.getDiet());
         ContraceptionMethods method = ContraceptionMethods.NONE.findById(animal.getContraceptionMethod());
-        pad.addAnimal(animal.convertToAnimal(spec, pad, sex, option));
+        pad.addAnimal(animal.convertToAnimal(spec, pad, option));
     }
     
     /**

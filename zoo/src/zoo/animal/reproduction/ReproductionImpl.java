@@ -67,7 +67,6 @@ public class ReproductionImpl implements Reproduction {
         family.add(mother);
         family.add(father);
         int litterSize = uniform.intAverage(mother.getActualLitterSize());
-        System.out.println(litterSize);
         int rand = 0;
         Random random = new Random();
         for (int i = 0; i < litterSize; i++) {

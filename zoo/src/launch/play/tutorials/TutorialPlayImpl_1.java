@@ -80,11 +80,11 @@ public class TutorialPlayImpl_1 extends Play {
                         List<Animal> animals = super.getZoo().getAnimals(friendScenario);
                         for (Animal animal : animals) {
                             for (Animal animal2 : animals) {
-                                if ((animal.getSex() != animal2.getSex())
-                                && (animal.getPaddock().equals(animal2.getPaddock()))
-                                && animal.getSpecie().equals(animal2.getSpecie())) {
+//                                if ((animal.getSex() != animal2.getSex())
+//                                && (animal.getPaddock().equals(animal2.getPaddock()))
+//                                && animal.getSpecie().equals(animal2.getSpecie())) {
                                     return true;
-                                }
+//                                }
                             }
                         }
                         return false;

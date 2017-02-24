@@ -22,8 +22,8 @@ import zoo.animal.death.LifeSpanLightAttributes;
 import zoo.animal.feeding.Diet;
 import zoo.animal.feeding.FeedingAttributes;
 import zoo.animal.personality.PersonalityAttributes;
+import zoo.animal.reproduction.AnimalReproductionAttributes;
 import zoo.animal.reproduction.ContraceptionMethods;
-import zoo.animal.reproduction.ReproductionAttributes;
 import zoo.animal.reproduction.Sex;
 import zoo.animal.social.SocialAttributes;
 import zoo.animal.specie.LightSpecie;
@@ -53,7 +53,6 @@ public class AnimalImpl implements Animal {
     private final Specie specie;
     private String name;
     private final IPaddock paddock;
-    private final Sex sex;
     @Getter
     @Setter
     private double wellBeing;
@@ -76,7 +75,7 @@ public class AnimalImpl implements Animal {
     // The actual reproduction attributes are computed 
     // when the animal is created ;
     // there is no notion of "optimal reproduction attributes".
-    private final ReproductionAttributes actualReproduction;
+    private final AnimalReproductionAttributes actualReproduction;
     // The actual life span is computed when the animal is created ; 
     // the "optimal" lifespan has no sense.
     private final LifeSpanLightAttributes actualLifeSpan;
@@ -90,7 +89,6 @@ public class AnimalImpl implements Animal {
     private final TerritoryAttributes optimalTerritory;
     private int turnsOfStarvation;
     private int turnsOfDrowning;
-    private int currentlyGestationDuration;
     @Getter
     private String mother;
     @Getter
@@ -123,11 +121,10 @@ public class AnimalImpl implements Animal {
         NameVerifications.verify(name, this.option.getAnimalBundle());
         this.name = name;
         this.paddock = paddock;
-        this.sex = sex;
         this.checkLoadingOfAge(age);
         this.optimalFeeding = drawOptimalFeeding(spec);
         this.actualFeeding = drawActualFeeding(spec);
-        this.actualReproduction = drawActualReproduction(spec);
+        this.actualReproduction = drawActualReproduction(spec, sex);
         this.actualLifeSpan = drawActualLifeSpan(spec);
         this.optimalBiome = null;
         this.actualDiet = Diet.NONE.getId();
@@ -140,7 +137,6 @@ public class AnimalImpl implements Animal {
         this.wellBeing = this.initWB;
         this.turnsOfStarvation = this.initStarvation;
         this.turnsOfDrowning = this.initDrowning;
-        this.currentlyGestationDuration = this.initCurrentlyGestationDuration;
         this.mother = mother;
         this.father = father;
     }
@@ -165,26 +161,22 @@ public class AnimalImpl implements Animal {
         NameVerifications.verify(name, this.option.getAnimalBundle());
         this.name = name;
         this.paddock = paddock;
-        this.sex = sex;
         this.optimalFeeding = drawOptimalFeeding(spec);
         this.actualFeeding = drawActualFeeding(spec);
-        this.actualReproduction = drawActualReproduction(spec);
+        this.actualReproduction = drawActualReproduction(spec, sex);
         this.actualLifeSpan = drawActualLifeSpan(spec);
         this.optimalBiome = null;
         this.actualDiet = Diet.NONE.getId();
         this.optimalSocial = drawOptimalSocial(spec);
         this.optimalTerritory = drawOptimalTerritory(spec);
         this.personality = drawPersonality();
-        this.age = this.sex.isFemale()
-                ? this.actualReproduction.getFemaleMaturityAge()
-                : this.actualReproduction.getMaleMaturityAge();
+        this.age = this.actualReproduction.getMaturityAge();
         this.wB = new WellBeingImpl(
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getCoefficient(),
                 ConservationStatus.UNKNOWN.findById(spec.getConservation()).getDiameter());
         this.wellBeing = this.initWB;
         this.turnsOfStarvation = this.initStarvation;
         this.turnsOfDrowning = this.initDrowning;
-        this.currentlyGestationDuration = this.initCurrentlyGestationDuration;
         this.mother = null;
         this.father = null;
     }
@@ -199,7 +191,6 @@ public class AnimalImpl implements Animal {
      * @param spec
      * @param name
      * @param paddock
-     * @param sex
      * @param age
      * @param biome
      * @param optimalFeeding
@@ -220,14 +211,14 @@ public class AnimalImpl implements Animal {
      * @throws UnknownNameException
      * @throws UnauthorizedNameException
      */
-    public AnimalImpl(Specie spec, String name, IPaddock paddock, Sex sex,
+    public AnimalImpl(Specie spec, String name, IPaddock paddock, 
             int age,
             BiomeAttributes biome, FeedingAttributes optimalFeeding,
             FeedingAttributes actualFeeding, int diet,
-            ReproductionAttributes reproduction,
+            AnimalReproductionAttributes reproduction,
             LifeSpanLightAttributes life, SocialAttributes social,
             TerritoryAttributes territory, PersonalityAttributes personality, double wellBeing,
-            int turnsOfStarvation, int turnsOfDrowning, int currentlyGestationDuration,
+            int turnsOfStarvation, int turnsOfDrowning, 
             String mother, String father,
             Option option)
             throws IncorrectDataException, EmptyNameException,
@@ -237,7 +228,6 @@ public class AnimalImpl implements Animal {
         NameVerifications.verify(name, this.option.getAnimalBundle());
         this.name = name;
         this.paddock = paddock;
-        this.sex = sex;
         this.actualReproduction = reproduction;
         this.actualLifeSpan = life;
         this.optimalBiome = biome;
@@ -254,7 +244,6 @@ public class AnimalImpl implements Animal {
         this.wellBeing = wellBeing;
         this.checkLoadingOfDrowning(turnsOfDrowning);
         this.checkLoadingOfStarvation(turnsOfStarvation);
-        this.currentlyGestationDuration = currentlyGestationDuration;
         this.mother = mother;
         this.father = father;
     }
@@ -329,7 +318,7 @@ public class AnimalImpl implements Animal {
      * @param spec the Specie of the animal
      * @return its actualReproductionAttributes
      */
-    private ReproductionAttributes drawActualReproduction(Specie spec) {
+    private AnimalReproductionAttributes drawActualReproduction(Specie spec, Sex sex) {
         int female = spec.getGaussianReproduction().
                 getFemaleMaturityAge().gaussianInt();
         int male = spec.getGaussianReproduction().
@@ -339,12 +328,13 @@ public class AnimalImpl implements Animal {
         int litter = spec.getGaussianReproduction().
                 getLitterSize().gaussianInt();
         int duration = spec.getGaussianReproduction().getGestationDuration().gaussianInt();
-        return new ReproductionAttributes(female, male, frequency, litter, duration, ContraceptionMethods.NONE);
+        return new AnimalReproductionAttributes(female, male, frequency, litter, duration,
+                ContraceptionMethods.NONE, sex, this.initCurrentlyGestationDuration);
     }
 
     private LifeSpanLightAttributes drawActualLifeSpan(Specie spec) throws IncorrectLoadException {
         int lifeSpan;
-        if (this.sex.isFemale()) {
+        if (this.actualReproduction.isFemale()) {
             lifeSpan = spec.getGaussianLifeSpanAttributesSpan().
                     getFemaleLifeSpan().gaussianInt();
         } else {
@@ -379,8 +369,8 @@ public class AnimalImpl implements Animal {
      */
     @Override
     public boolean isMature() {
-        if (this.actualReproduction != null && this.sex != null) {
-            if (this.sex == Sex.FEMALE) {
+        if (this.actualReproduction != null) {
+            if (this.actualReproduction.isFemale()) {
                 return this.age >= this.actualReproduction.getFemaleMaturityAge();
             } else {
                 return this.age >= this.actualReproduction.getMaleMaturityAge();
@@ -425,7 +415,7 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("PADDOCK") + this.paddock.getName());
         info.add(bundle.getString("SPECIE") + this.specie.getNameAccordingToLanguage(option));
         info.add(bundle.getString("AGE") + Utils.infoAge(this.age, bundle));
-        info.add(bundle.getString("SEX") + this.sex.toStringByLanguage());
+        info.add(bundle.getString("SEX") + this.actualReproduction.getSex().toStringByLanguage());
         info.add(bundle.getString("WB") + Utils.truncate(this.wellBeing));
         info.add(bundle.getString("DIET") + Diet.NONE.findById(actualDiet).toStringByLanguage());
         info.add(bundle.getString("MONTHS_WITHOUT_EATING") + this.turnsOfStarvation);
@@ -434,9 +424,9 @@ public class AnimalImpl implements Animal {
         info.add(bundle.getString("TURNS_DROWNING") + this.turnsOfDrowning);
         info.add(bundle.getString("GENEALOGY") + Utils.infoGenealogy(mother, father, bundle));
         info.add(bundle.getString("CONTRACEPTION_METHOD") + this.actualReproduction.getContraceptionMethod().toStringByLanguage());
-        if (this.sex.isFemale()) {
+        if (this.actualReproduction.isFemale()) {
+            info.add(bundle.getString("ACT_GESTATION_DURATION") + this.actualReproduction.getCurrentlyGestationDuration());
             info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.femaleToStringByLanguage(option));
-            info.add(bundle.getString("ACT_GESTATION_DURATION") + Utils.infoAge(this.currentlyGestationDuration, bundle));
         } else {
             info.add(bundle.getString("REPRODUCTION_ATT") + this.actualReproduction.maleToStringByLanguage(option));
         }
@@ -506,31 +496,26 @@ public class AnimalImpl implements Animal {
 
     @Override
     public boolean canBePregnant() {
-        if (sex != null) {
-            return isMature() && this.sex.isFemale() /*&& isEnoughHappy()*/;
+        if (this.actualReproduction != null) {
+            return isMature() && this.actualReproduction.isFemale() /*&& isEnoughHappy()*/;
         }
         return false;
     }
 
     @Override
     public boolean isAlreadyPregnant() {
-        return this.currentlyGestationDuration != 0;
+        return this.actualReproduction.isAlreadyPregnant();
     }
 
     @Override
     public boolean updateGestationDuration(int months) {
-        this.currentlyGestationDuration += months;
-        if (this.currentlyGestationDuration >= this.actualReproduction.getGestationDuration()) {
-            this.currentlyGestationDuration = 0;
-            return true;
-        }
-        return false;
+       return this.actualReproduction.updateGestationDuration(months);
     }
 
     @Override
     public boolean canFecundateAFemale() {
-        if (this.sex != null) {
-            return isMature() && this.sex.isMale() /*&& isEnoughHappy()*/;
+        if (this.actualReproduction != null) {
+            return isMature() && this.actualReproduction.isMale() /*&& isEnoughHappy()*/;
         }
         return false;
     }
@@ -615,7 +600,7 @@ public class AnimalImpl implements Animal {
         }
         // sexes
         if (null != lightAnimal.getSexes()) {
-            isCorresponding &= lightAnimal.getSexes().contains(this.sex) && lightAnimal.getSexes().size() == 1;
+            isCorresponding &= lightAnimal.getSexes().contains(this.actualReproduction.getSex()) && lightAnimal.getSexes().size() == 1;
         }
         return isCorresponding;
     }
@@ -624,11 +609,6 @@ public class AnimalImpl implements Animal {
     @Override
     public String getName() {
         return this.name;
-    }
-
-    @Override
-    public Sex getSex() {
-        return this.sex;
     }
 
     @Override
@@ -686,12 +666,6 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public Sex getSex(SaveImpl.FriendSave save) {
-        save.hashCode();
-        return this.sex;
-    }
-
-    @Override
     public int getAge(SaveImpl.FriendSave save) {
         save.hashCode();
         return this.age;
@@ -710,7 +684,7 @@ public class AnimalImpl implements Animal {
     }
 
     @Override
-    public ReproductionAttributes getActualReproduction(SaveImpl.FriendSave save) {
+    public AnimalReproductionAttributes getActualReproduction(SaveImpl.FriendSave save) {
         save.hashCode();
         return this.actualReproduction;
     }
@@ -761,12 +735,6 @@ public class AnimalImpl implements Animal {
     public int getDrowning(SaveImpl.FriendSave save) {
         save.hashCode();
         return this.turnsOfDrowning;
-    }
-
-    @Override
-    public int getCurrentlyGestationDuration(SaveImpl.FriendSave save) {
-        save.hashCode();
-        return this.currentlyGestationDuration;
     }
 
     @Override

@@ -69,6 +69,8 @@ public class Constants {
     public static final String CREATE = "create";
     // curiosity
     public static final String CURIOSITY = "curiosity";
+    // currentlyGestationDuration
+    public static final String CURRENTLYGESTATIONDURATION = "currentlyGestationDuration";
     // diets
     public static final String DIETS = "diets";
     // diet
